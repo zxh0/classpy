@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class ClassFile {
     private U2 minorVersion;
     private U2 majorVersion;
     private U2 constantPoolCount;
-    private List<?> constants = new ArrayList<Object>();
+    private ConstantPool constantPool;
     private U2 accessFlags;
     private U2 thisClass;
     private U2 superClass;
@@ -54,9 +55,8 @@ public class ClassFile {
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
         constantPoolCount = reader.readU2();
-        for (int i = 0; i < constantPoolCount.getValue(); i++) {
-//            constants.add(i)
-        }
+        constantPool = new ConstantPool(constantPoolCount.getValue());
+        constantPool.read(reader);
         accessFlags = reader.readU2();
         thisClass = reader.readU2();
         superClass = reader.readU2();

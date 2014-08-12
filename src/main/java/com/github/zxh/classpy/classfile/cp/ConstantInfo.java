@@ -9,6 +9,8 @@ import com.github.zxh.classpy.classfile.ClassReader;
  */
 public class ConstantInfo extends ClassComponent {
 
+    private ConstantType tag;
+    
     @Override
     public void readContent(ClassReader reader) {
         // todo
