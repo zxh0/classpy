@@ -1,0 +1,4 @@
+classpy
+=======
+
+class spy
