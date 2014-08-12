@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import java.nio.ByteBuffer;
-
 /**
  *
  * @author zxh
@@ -19,12 +17,12 @@ public abstract class ClassComponent {
         return length;
     }
 
-    public void read(ByteBuffer buf) {
-        offset = buf.position();
-        readContent(buf);
-        length = buf.position() - offset;
+    public void read(ClassReader reader) {
+        offset = reader.position();
+        readContent(reader);
+        length = reader.position() - offset;
     }
     
-    public abstract void readContent(ByteBuffer buf);
+    public abstract void readContent(ClassReader reader);
     
 }

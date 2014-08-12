@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import java.nio.ByteBuffer;
-
 /**
  *
  * @author zxh
@@ -15,8 +13,8 @@ public class U2 extends ClassComponent {
     }
     
     @Override
-    public void readContent(ByteBuffer buf) {
-        value = buf.getShort();
+    public void readContent(ClassReader reader) {
+        value = reader.getByteBuffer().getShort();
     }
     
 }
