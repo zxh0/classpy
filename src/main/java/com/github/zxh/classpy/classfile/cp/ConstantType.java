@@ -27,6 +27,4 @@ public enum ConstantType {
         this.type = type;
     }
     
-    
-    
 }

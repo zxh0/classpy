@@ -1,7 +1,9 @@
 package com.github.zxh.classpy.classfile.cp;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
+import static com.github.zxh.classpy.classfile.cp.ConstantType.values;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +29,35 @@ public class ConstantPool extends ClassComponent {
     }
     
     private static ConstantInfo readConstantInfo(ClassReader reader) {
+        int idx = reader.position();
+        byte tag = reader.getByteBuffer().get(idx);
+        
+        ConstantInfo ci = createConstantInfo(tag);
+        ci.read(reader);
+        
+        return ci;
+    }
+    
+    private static ConstantInfo createConstantInfo(byte tag) {
+        ConstantType ct = getConstantType(tag);
+        
         // todo
-        return null;
+        switch (ct) {
+            case CONSTANT_Integer:
+            case CONSTANT_Long:
+        }
+        
+        // unreachable code
+        throw new ClassParseException("Invalid constant type: " + tag);
+    }
+    
+    private static ConstantType getConstantType(int type) {
+        for (ConstantType ct : values()) {
+            if (ct.type == type) {
+                return ct;
+            }
+        }
+        throw new ClassParseException("Invalid constant type: " + type);
     }
     
 }

@@ -7,13 +7,13 @@ import com.github.zxh.classpy.classfile.ClassReader;
  *
  * @author zxh
  */
-public class ConstantInfo extends ClassComponent {
+public abstract class ConstantInfo extends ClassComponent {
 
     private ConstantType tag;
     
-    @Override
-    public void readContent(ClassReader reader) {
-        // todo
-    }
+//    @Override
+//    public void readContent(ClassReader reader) {
+//        // todo
+//    }
     
 }
