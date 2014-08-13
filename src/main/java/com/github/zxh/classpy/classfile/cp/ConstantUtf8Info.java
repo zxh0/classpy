@@ -16,6 +16,10 @@ public class ConstantUtf8Info extends ConstantInfo {
     private U2 length;
     private String value;
     
+    public String getValue() {
+        return value;
+    }
+    
     @Override
     protected void readInfo(ClassReader reader) {
         length = reader.readU2();

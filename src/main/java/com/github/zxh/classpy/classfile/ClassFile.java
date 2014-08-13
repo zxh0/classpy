@@ -67,8 +67,9 @@ public class ClassFile {
         }
         fieldsCount = reader.readU2();
         for (int i = 0; i < fieldsCount.getValue(); i++) {
-            // todo
-            
+            FieldInfo field = new FieldInfo();
+            field.read(reader);
+            fields.add(field);
         }
 //        // todo
 //        methodsCount = reader.readU2();
