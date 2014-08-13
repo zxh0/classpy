@@ -54,7 +54,7 @@ public class ConstantPool extends ClassComponent {
             case CONSTANT_Methodref: return new ConstantXXXrefInfo();
             case CONSTANT_InterfaceMethodref: return new ConstantXXXrefInfo();
             case CONSTANT_MethodHandle: return new ConstantMethodHandleInfo();
-            case CONSTANT_MethodType:
+            case CONSTANT_MethodType: return new ConstantMethodTypeInfo();
             case CONSTANT_InvokeDynamic:
         }
         
