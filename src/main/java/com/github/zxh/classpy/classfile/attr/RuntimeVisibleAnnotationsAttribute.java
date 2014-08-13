@@ -1,7 +1,9 @@
 package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.U2;
 
 /*
@@ -59,16 +61,77 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         protected void readContent(ClassReader reader) {
             typeIndex = reader.readU2();
             numElementValuePairs = reader.readU2();
-//            elementValuePairs
+            elementValuePairs = reader.readArray(ElementValuePair.class,
+                    numElementValuePairs.getValue());
         }
         
     }
     
     public static class ElementValuePair extends ClassComponent {
+        
+        private U2 elementNameIndex;
+        private ElementValue value;
 
         @Override
         protected void readContent(ClassReader reader) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            elementNameIndex = reader.readU2();
+            value = new ElementValue();
+            value.read(reader);
+        }
+        
+    }
+    
+    public static class ElementValue extends ClassComponent {
+
+        private U1 tag;
+        
+        // tag=B,C,D,F,I,J,S,Z,s
+        private U2 constValueIndex;
+
+        // tag=e
+        // enum_const_value;
+        private U2 typeNameIndex;
+        private U2 constNameIndex;
+
+        // tag=c
+        private U2 classInfoIndex;
+
+        // tag=@
+        private AnnotationInfo annotationValue;
+
+        // tag=[
+        // array_value;
+        private U2 numValues;
+        private ElementValue values[];
+        
+        @Override
+        protected void readContent(ClassReader reader) {
+            tag = reader.readU1();
+            switch (tag.getValue()) {
+                case 'B':
+                case 'C':
+                case 'D':
+                case 'F':
+                case 'I':
+                case 'J':
+                case 'S':
+                case 'Z':
+                case 's': 
+                    constValueIndex = reader.readU2();
+                    break;
+                case 'e': 
+                    typeNameIndex = reader.readU2();
+                    constNameIndex = reader.readU2();
+                    break;
+                case 'c':
+                    classInfoIndex = reader.readU2();
+                    break;
+                case '[':
+                    numValues = reader.readU2();
+                    values = reader.readArray(ElementValue.class, numValues.getValue());
+                    break;
+                // todo
+            }
         }
         
     }
