@@ -39,7 +39,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "Signatur": 
             case "SourceFile": 
             case "SourceDebugExtension": 
-            case "LineNumberTable": 
+            case "LineNumberTable": return new LineNumberTableAttribute();
             case "LocalVariableTable": 
             case "LocalVariableTypeTable": 
             case "Deprecated": 
