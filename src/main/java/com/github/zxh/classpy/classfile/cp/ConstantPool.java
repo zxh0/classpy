@@ -3,7 +3,6 @@ package com.github.zxh.classpy.classfile.cp;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
-import static com.github.zxh.classpy.classfile.cp.ConstantType.values;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,8 +47,8 @@ public class ConstantPool extends ClassComponent {
             case CONSTANT_Long: return new ConstantLongInfo();
             case CONSTANT_Double: return new ConstantDoubleInfo();
             case CONSTANT_String: return new ConstantStringInfo();
-            case CONSTANT_Utf8:
-            case CONSTANT_NameAndType:
+            case CONSTANT_Utf8: return new ConstantUtf8Info();
+            case CONSTANT_NameAndType: return new ConstantNameAndTypeInfo();
             case CONSTANT_Class:
             case CONSTANT_Fieldref:
             case CONSTANT_Methodref:
@@ -64,7 +63,7 @@ public class ConstantPool extends ClassComponent {
     }
     
     private static ConstantType getConstantType(int type) {
-        for (ConstantType ct : values()) {
+        for (ConstantType ct : ConstantType.values()) {
             if (ct.type == type) {
                 return ct;
             }

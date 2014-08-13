@@ -3,10 +3,13 @@ package com.github.zxh.classpy.classfile.cp;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U4;
 
-/**
- *
- * @author zxh
- */
+/*
+CONSTANT_Double_info {
+    u1 tag;
+    u4 high_bytes;
+    u4 low_bytes;
+}
+*/
 public class ConstantDoubleInfo extends ConstantInfo {
 
     private U4 highBytes;
