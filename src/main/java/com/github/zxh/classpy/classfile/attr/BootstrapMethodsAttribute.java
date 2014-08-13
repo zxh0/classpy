@@ -25,9 +25,8 @@ public class BootstrapMethodsAttribute extends AttributeInfo {
         numBootstrapMethods = reader.readU2();
         bootstrapMethods = new BootstrapMethodInfo[numBootstrapMethods.getValue()];
         for (int i = 0; i < bootstrapMethods.length; i++) {
-            BootstrapMethodInfo bsm = new BootstrapMethodInfo();
-            bsm.read(reader);
-            bootstrapMethods[i] = bsm;
+            bootstrapMethods[i] = new BootstrapMethodInfo();
+            bootstrapMethods[i].read(reader);
         }
     }
     

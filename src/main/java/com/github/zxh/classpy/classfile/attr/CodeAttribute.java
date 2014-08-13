@@ -43,9 +43,8 @@ public class CodeAttribute extends AttributeInfo {
         exceptionTableLength = reader.readU2();
         exceptionTable = new ExceptionTableEntry[exceptionTableLength.getValue()];
         for (int i = 0; i < exceptionTable.length; i++) {
-            ExceptionTableEntry entry = new ExceptionTableEntry();
-            entry.read(reader);
-            exceptionTable[i] = entry;
+            exceptionTable[i] = new ExceptionTableEntry();
+            exceptionTable[i].read(reader);
         }
         attributesCount = reader.readU2();
         attributes = new AttributeInfo[attributesCount.getValue()];

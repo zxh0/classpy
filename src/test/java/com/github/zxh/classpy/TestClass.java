@@ -1,5 +1,7 @@
 package com.github.zxh.classpy;
 
+import java.util.List;
+
 public class TestClass implements Runnable, Comparable<TestClass> {
 
     public int x;
@@ -7,12 +9,16 @@ public class TestClass implements Runnable, Comparable<TestClass> {
     
     @Override
     public void run() {
-        Runnable x = () -> {};
+        Runnable r = () -> {};
     }
 
     @Override
     public int compareTo(TestClass o) {
         return 0;
+    }
+    
+    public static <T extends Comparable<T>> void m1(List<T> list) {
+        list.sort((a, b) -> 1);
     }
     
 }

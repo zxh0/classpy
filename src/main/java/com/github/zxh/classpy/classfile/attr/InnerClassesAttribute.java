@@ -27,9 +27,8 @@ public class InnerClassesAttribute extends AttributeInfo {
         numberOfClasses = reader.readU2();
         classes = new InnerClassInfo[numberOfClasses.getValue()];
         for (int i = 0; i < classes.length; i++) {
-            InnerClassInfo cls = new InnerClassInfo();
-            cls.read(reader);
-            classes[i] = cls;
+            classes[i] = new InnerClassInfo();
+            classes[i].read(reader);
         }
     }
     
