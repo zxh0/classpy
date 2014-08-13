@@ -50,7 +50,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "RuntimeVisibleTypeAnnotations":  break;
             case "RuntimeInvisibleTypeAnnotations":  break;
             case "AnnotationDefault":  break;
-            case "BootstrapMethods":  break;
+            case "BootstrapMethods": return new BootstrapMethodsAttribute();
             case "MethodParameters":  break;
         }
         

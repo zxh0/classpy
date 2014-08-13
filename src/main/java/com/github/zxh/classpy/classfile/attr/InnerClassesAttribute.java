@@ -19,21 +19,21 @@ InnerClasses_attribute {
 public class InnerClassesAttribute extends AttributeInfo {
 
     private U2 numberOfClasses;
-    private InnerClassEntry[] classes;
+    private InnerClassInfo[] classes;
     
     
     @Override
     protected void readInfo(ClassReader reader) {
         numberOfClasses = reader.readU2();
-        classes = new InnerClassEntry[numberOfClasses.getValue()];
+        classes = new InnerClassInfo[numberOfClasses.getValue()];
         for (int i = 0; i < classes.length; i++) {
-            InnerClassEntry entry = new InnerClassEntry();
-            entry.read(reader);
-            classes[i] = entry;
+            InnerClassInfo cls = new InnerClassInfo();
+            cls.read(reader);
+            classes[i] = cls;
         }
     }
     
-    public static class InnerClassEntry extends ClassComponent {
+    public static class InnerClassInfo extends ClassComponent {
         
         private U2 innerClassInfoIndex;
         private U2 outerClassInfoIndex;
