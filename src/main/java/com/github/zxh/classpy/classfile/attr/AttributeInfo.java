@@ -37,7 +37,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "EnclosingMethod":  break;
             case "Synthetic":  break;
             case "Signature": return new SignatureAttribute();
-            case "SourceFile":  break;
+            case "SourceFile":  return new SourceFileAttribute();
             case "SourceDebugExtension":  break;
             case "LineNumberTable": return new LineNumberTableAttribute();
             case "LocalVariableTable": return new LocalVariableTableAttribute();
