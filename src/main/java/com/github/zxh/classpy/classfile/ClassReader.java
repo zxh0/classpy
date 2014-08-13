@@ -84,14 +84,26 @@ public class ClassReader {
         
         try {
             for (int i = 0; i < arr.length; i++) {
-                arr[i] = classOfT.newInstance();
-                arr[i].read(this);
+                if (classOfT == AttributeInfo.class) {
+                    @SuppressWarnings("unchecked")
+                    T t = (T) readAttributeInfo();
+                    arr[i] = t;
+                } else {
+                    arr[i] = classOfT.newInstance();
+                    arr[i].read(this);
+                }
             }
         } catch (ReflectiveOperationException e) {
             throw new ClassParseException(e);
         }
         
         return arr;
+    }
+    
+    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, int n) {
+        Table<T> table = new Table<>(classOfT, n);
+        table.read(this);
+        return table;
     }
     
 }

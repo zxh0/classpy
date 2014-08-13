@@ -40,13 +40,13 @@ public class ClassFile {
     private U2 thisClass;
     private U2 superClass;
     private U2 interfacesCount;
-    private U2[] interfaces;
+    private Table<U2> interfaces;
     private U2 fieldsCount;
-    private FieldInfo[] fields;
+    private Table<FieldInfo> fields;
     private U2 methodsCount;
-    private MethodInfo[] methods;
+    private Table<MethodInfo> methods;
     private U2 attributesCount;
-    private AttributeInfo[] attributes;
+    private Table<AttributeInfo> attributes;
     
     public void read(ByteBuffer buf) {
         ClassReader reader = new ClassReader(buf);
@@ -72,38 +72,22 @@ public class ClassFile {
     
     private void readInterfaces(ClassReader reader) {
         interfacesCount = reader.readU2();
-        interfaces = new U2[interfacesCount.getValue()];
-        for (int i = 0; i < interfaces.length; i++) {
-            interfaces[i] = reader.readU2();
-        }
+        interfaces = reader.readTable(U2.class, interfacesCount.getValue());
     }
     
     private void readFields(ClassReader reader) {
         fieldsCount = reader.readU2();
-        fields = new FieldInfo[fieldsCount.getValue()];
-        for (int i = 0; i < fields.length; i++) {
-            FieldInfo field = new FieldInfo();
-            field.read(reader);
-            fields[i] = field;
-        }
+        fields = reader.readTable(FieldInfo.class, fieldsCount.getValue());
     }
     
     private void readMethods(ClassReader reader) {
         methodsCount = reader.readU2();
-        methods = new MethodInfo[methodsCount.getValue()];
-        for (int i = 0; i < methods.length; i++) {
-            MethodInfo method = new MethodInfo();
-            method.read(reader);
-            methods[i] = method;
-        }
+        methods = reader.readTable(MethodInfo.class, methodsCount.getValue());
     }
     
     private void readAttributes(ClassReader reader) {
         attributesCount = reader.readU2();
-        attributes = new AttributeInfo[attributesCount.getValue()];
-        for (int i = 0; i < attributes.length; i++) {
-            attributes[i] = reader.readAttributeInfo();
-        }
+        attributes = reader.readTable(AttributeInfo.class, attributesCount.getValue());
     }
     
     public U4 getMagic() {return magic;}

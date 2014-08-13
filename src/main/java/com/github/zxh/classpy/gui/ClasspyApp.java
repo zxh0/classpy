@@ -6,9 +6,12 @@ import java.nio.file.Files;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,26 +29,20 @@ public class ClasspyApp extends Application {
         BorderPane root = new BorderPane();
         
         
-        root.setTop(createMenuBar(stage));
+        SplitPane mainPane = new SplitPane();
+        mainPane.getItems().add(new Button("aaaaaa"));
+        mainPane.getItems().add(new Button("aaaaaa"));
+        mainPane.getItems().add(new Button("aaaaaa"));
         
+        root.setTop(createMenuBar(stage, root));
+        root.setCenter(mainPane);
         
         Scene scene = new Scene(root, 300, 250);
-//        Group root = new Group();
-//        Button btn = new Button();
-//        btn.setLayoutX(100);
-//        btn.setLayoutY(80);
-//        btn.setText("Hello World");
-//        btn.setOnAction(new EventHandler<ActionEvent>() {
-//            public void handle(ActionEvent event) {
-//                System.out.println("Hello World");
-//            }
-//        });
-//        root.getChildren().add(btn);
         stage.setScene(scene);
         stage.show();
     }
     
-    private MenuBar createMenuBar(Stage stage) {
+    private MenuBar createMenuBar(Stage stage, BorderPane root) {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         menuBar.getMenus().add(fileMenu);
@@ -74,7 +71,10 @@ public class ClasspyApp extends Application {
                 };
                 
                 task.setOnSucceeded(e -> {
-                    System.out.println(e.getSource().getValue());
+                    ClassFile cf = (ClassFile) e.getSource().getValue();
+                    System.out.println(cf);
+                    TreeView<String> tree = new TreeViewBuilder(cf).build();
+                    root.setCenter(tree);
                 });
                 
                 task.setOnFailed(e -> {
