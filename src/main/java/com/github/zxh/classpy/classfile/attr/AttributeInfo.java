@@ -2,16 +2,28 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U4;
 
-/**
- *
- * @author zxh
+/*
+attribute_info {
+    u2 attribute_name_index;
+    u4 attribute_length;
+    u1 info[attribute_length];
+}
  */
-public class AttributeInfo extends ClassComponent {
+public abstract class AttributeInfo extends ClassComponent {
 
+    private U2 attributeNameIndex;
+    private U4 attributeLength;
+    
     @Override
     protected void readContent(ClassReader reader) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        attributeNameIndex = reader.readU2();
+        attributeLength = reader.readU4();
+        readInfo(reader);
     }
+    
+    protected abstract void readInfo(ClassReader reader);
     
 }
