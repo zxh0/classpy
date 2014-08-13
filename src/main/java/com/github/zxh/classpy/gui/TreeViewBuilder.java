@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassFile;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
@@ -16,15 +17,16 @@ public class TreeViewBuilder {
         this.cf = cf;
     }
     
-    public TreeView<String> build() {
+    public TreeView<ClassComponent> build() {
 //        TreeView<String> root = new TreeView<>();
 //        root.getChildren().add(null);
         
-        TreeItem<String> root = new TreeItem<>();
+        TreeItem<ClassComponent> root = new TreeItem<>();
         
-        TreeItem<String> magic = new TreeItem<>();
+        ClassComponentTreeItem magic = new ClassComponentTreeItem(cf.getMagic());
+        root.getChildren().add(magic);
         
-        TreeView<String> tree = new TreeView<>(root);
+        TreeView<ClassComponent> tree = new TreeView<>(root);
         
         return tree;
     }

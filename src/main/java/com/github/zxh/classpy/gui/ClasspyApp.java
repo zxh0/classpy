@@ -73,7 +73,7 @@ public class ClasspyApp extends Application {
                 task.setOnSucceeded(e -> {
                     ClassFile cf = (ClassFile) e.getSource().getValue();
                     System.out.println(cf);
-                    TreeView<String> tree = new TreeViewBuilder(cf).build();
+                    TreeView<?> tree = new TreeViewBuilder(cf).build();
                     root.setCenter(tree);
                 });
                 
