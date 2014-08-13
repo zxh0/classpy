@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.classfile.ClassFile;
 import java.io.File;
+import java.nio.file.Files;
 import javafx.application.Application;
+import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -59,6 +62,26 @@ public class ClasspyApp extends Application {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 // todo
+                Task<ClassFile> task = new Task<ClassFile>() {
+
+                    @Override
+                    protected ClassFile call() throws Exception {
+                        byte[] x = Files.readAllBytes(file.toPath());
+                        ClassFile cf = ClassFile.parse(x);
+                        return cf;
+                    }
+                    
+                };
+                
+                task.setOnSucceeded(e -> {
+                    System.out.println(e.getSource().getValue());
+                });
+                
+                task.setOnFailed(e -> {
+                    System.out.println(e.getSource().getException());
+                });
+                
+                new Thread(task).start();
             }
         });
         
