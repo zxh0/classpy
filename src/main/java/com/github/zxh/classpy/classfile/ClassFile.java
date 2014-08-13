@@ -77,6 +77,8 @@ public class ClassFile {
     public U2 getMajorVersion() {return majorVersion;}
     public U2 getConstantPoolCount() {return constantPoolCount;}
     public U2 getInterfacesCount() {return interfacesCount;}
+    public U2 getFieldsCount() {return fieldsCount;}
+    public U2 getMethodsCount() {return methodsCount;}
 
     
     
