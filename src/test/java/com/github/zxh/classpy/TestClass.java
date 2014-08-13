@@ -7,7 +7,7 @@ public class TestClass implements Runnable, Comparable<TestClass> {
     
     @Override
     public void run() {
-        //
+        Runnable x = () -> {};
     }
 
     @Override
