@@ -43,7 +43,8 @@ public class ConstantPool extends ClassComponent {
         
         // todo
         switch (ct) {
-            case CONSTANT_Integer:
+            case CONSTANT_Integer: return new ConstantIntegerInfo();
+            case CONSTANT_Float: return new ConstantFloatInfo();
             case CONSTANT_Long:
         }
         

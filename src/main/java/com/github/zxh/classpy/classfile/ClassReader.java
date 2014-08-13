@@ -40,4 +40,10 @@ public class ClassReader {
         return u4;
     }
     
+    public U4Float readU4Float() {
+        U4Float u4 = new U4Float();
+        u4.read(this);
+        return u4;
+    }
+    
 }
