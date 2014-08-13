@@ -49,10 +49,6 @@ public class ClassFile {
     private U2 attributesCount;
 //    attribute_info attributes[attributes_count];
     
-    public void read(byte[] bytes) {
-        read(ByteBuffer.wrap(bytes));
-    }
-    
     public void read(ByteBuffer buf) {
         ClassReader reader = new ClassReader(buf);
         magic = reader.readU4();
@@ -74,6 +70,18 @@ public class ClassFile {
 //        // todo
 //        attributesCount = reader.readU2();
 //        // todo
+    }
+    
+    public U4 getMagic() {return magic;}
+    public U2 getMinorVersion() {return minorVersion;}
+    public U2 getMajorVersion() {return majorVersion;}
+
+    
+    
+    public static ClassFile parse(byte[] bytes) {
+        ClassFile cf = new ClassFile();
+        cf.read(ByteBuffer.wrap(bytes));
+        return cf;
     }
     
 }

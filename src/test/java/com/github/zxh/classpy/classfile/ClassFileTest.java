@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class ClassFileTest {
     
@@ -14,7 +15,9 @@ public class ClassFileTest {
         Path classFilePath = Paths.get(TestClass.class.getClassLoader().getResource(classFileName).toURI());
         byte[] classBytes = Files.readAllBytes(classFilePath);
         
-        new ClassFile().read(classBytes);
+        ClassFile cf = ClassFile.parse(classBytes);
+        assertEquals(0, cf.getMinorVersion().getValue());
+        assertEquals(52, cf.getMajorVersion().getValue());
     }
     
 }
