@@ -6,15 +6,16 @@ package com.github.zxh.classpy.classfile;
  */
 public class U2 extends ClassComponent {
 
-    private short value;
+    private int value;
 
-    public short getValue() {
+    public int getValue() {
         return value;
     }
     
     @Override
     protected void readContent(ClassReader reader) {
-        value = reader.getByteBuffer().getShort();
+        short s = reader.getByteBuffer().getShort();
+        value = Short.toUnsignedInt(s);
     }
     
 }

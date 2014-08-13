@@ -6,7 +6,11 @@ package com.github.zxh.classpy.classfile;
  */
 public class U4 extends ClassComponent {
 
-    private int value;
+    private int value; // todo
+
+    public int getValue() {
+        return value;
+    }
     
     @Override
     protected void readContent(ClassReader reader) {

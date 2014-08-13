@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
 import com.github.zxh.classpy.classfile.U4;
@@ -29,7 +30,7 @@ public abstract class AttributeInfo extends ClassComponent {
     public static AttributeInfo create(String name) {
         switch (name) {
             case "ConstantValue": return new ConstantValueAttribute();
-            case "Code": 
+            case "Code": return new CodeAttribute();
             case "StackMapTable": 
             case "Exceptions": 
             case "InnerClasses": 
@@ -54,7 +55,7 @@ public abstract class AttributeInfo extends ClassComponent {
         }
         
         // todo
-        return null;
+        throw new ClassParseException(name);
     }
     
 }

@@ -6,11 +6,12 @@ package com.github.zxh.classpy.classfile;
  */
 public class U1 extends ClassComponent {
 
-    private byte value;
+    private int value;
     
     @Override
     protected void readContent(ClassReader reader) {
-        value = reader.getByteBuffer().get();
+        byte b = reader.getByteBuffer().get();
+        value = Byte.toUnsignedInt(b);
     }
     
 }

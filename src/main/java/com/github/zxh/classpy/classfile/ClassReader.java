@@ -34,6 +34,12 @@ public class ClassReader {
         this.constantPool = constantPool;
     }
     
+    public byte[] readBytes(int n) {
+        byte[] bytes = new byte[n];
+        buf.get(bytes);
+        return bytes;
+    }
+    
     public U1 readU1() {
         U1 u1 = new U1();
         u1.read(this);
@@ -64,8 +70,11 @@ public class ClassReader {
     public AttributeInfo readAttributeInfo() {
         int attributeNameIndex = buf.getShort(buf.position());
         String attributeName = constantPool.getUtf8String(attributeNameIndex);
-        // todo
-        return null;
+        
+        AttributeInfo attr = AttributeInfo.create(attributeName);
+        attr.read(this);
+        
+        return attr;
     }
     
 }
