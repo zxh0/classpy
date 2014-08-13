@@ -57,14 +57,14 @@ public class ClassFile {
         constantPoolCount = reader.readU2();
         constantPool = new ConstantPool(constantPoolCount.getValue());
         constantPool.read(reader);
-//        accessFlags = reader.readU2();
-//        thisClass = reader.readU2();
-//        superClass = reader.readU2();
-//        interfacesCount = reader.readU2();
-//        for (int i = 0; i < interfacesCount.getValue(); i++) {
-//            interfaces.add(reader.readU2());
-//        }
-//        fieldsCount = reader.readU2();
+        accessFlags = reader.readU2();
+        thisClass = reader.readU2();
+        superClass = reader.readU2();
+        interfacesCount = reader.readU2();
+        for (int i = 0; i < interfacesCount.getValue(); i++) {
+            interfaces.add(reader.readU2());
+        }
+        fieldsCount = reader.readU2();
 //        // todo
 //        methodsCount = reader.readU2();
 //        // todo
@@ -76,6 +76,7 @@ public class ClassFile {
     public U2 getMinorVersion() {return minorVersion;}
     public U2 getMajorVersion() {return majorVersion;}
     public U2 getConstantPoolCount() {return constantPoolCount;}
+    public U2 getInterfacesCount() {return interfacesCount;}
 
     
     
