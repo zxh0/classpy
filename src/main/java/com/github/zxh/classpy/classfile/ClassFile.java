@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.attr.AttributeInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.nio.ByteBuffer;
 
@@ -45,25 +46,39 @@ public class ClassFile {
     private U2 methodsCount;
     private MethodInfo[] methods;
     private U2 attributesCount;
-//    attribute_info attributes[attributes_count];
+    private AttributeInfo[] attributes;
     
     public void read(ByteBuffer buf) {
         ClassReader reader = new ClassReader(buf);
         magic = reader.readU4();
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
+        readConstantPool(reader);
+        accessFlags = reader.readU2();
+        thisClass = reader.readU2();
+        superClass = reader.readU2();
+        readInterfaces(reader);
+        readFields(reader);
+        readMethods(reader);
+        readAttributes(reader);
+    }
+    
+    private void readConstantPool(ClassReader reader) {
         constantPoolCount = reader.readU2();
         constantPool = new ConstantPool(constantPoolCount.getValue());
         constantPool.read(reader);
         reader.setConstantPool(constantPool);
-        accessFlags = reader.readU2();
-        thisClass = reader.readU2();
-        superClass = reader.readU2();
+    }
+    
+    private void readInterfaces(ClassReader reader) {
         interfacesCount = reader.readU2();
         interfaces = new U2[interfacesCount.getValue()];
         for (int i = 0; i < interfaces.length; i++) {
             interfaces[i] = reader.readU2();
         }
+    }
+    
+    private void readFields(ClassReader reader) {
         fieldsCount = reader.readU2();
         fields = new FieldInfo[fieldsCount.getValue()];
         for (int i = 0; i < fields.length; i++) {
@@ -71,6 +86,9 @@ public class ClassFile {
             field.read(reader);
             fields[i] = field;
         }
+    }
+    
+    private void readMethods(ClassReader reader) {
         methodsCount = reader.readU2();
         methods = new MethodInfo[methodsCount.getValue()];
         for (int i = 0; i < methods.length; i++) {
@@ -78,9 +96,14 @@ public class ClassFile {
             method.read(reader);
             methods[i] = method;
         }
-//        // todo
+    }
+    
+    private void readAttributes(ClassReader reader) {
 //        attributesCount = reader.readU2();
-//        // todo
+//        attributes = new AttributeInfo[attributesCount.getValue()];
+//        for (int i = 0; i < attributes.length; i++) {
+//            attributes[i] = reader.readAttributeInfo();
+//        }
     }
     
     public U4 getMagic() {return magic;}
