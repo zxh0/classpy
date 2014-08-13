@@ -35,23 +35,23 @@ public abstract class AttributeInfo extends ClassComponent {
             case "Exceptions": return new ExceptionsAttribute();
             case "InnerClasses": return new InnerClassesAttribute();
             case "EnclosingMethod": return new EnclosingMethodAttribute();
-            case "Synthetic":  break;
+            case "Synthetic": break;
             case "Signature": return new SignatureAttribute();
             case "SourceFile":  return new SourceFileAttribute();
-            case "SourceDebugExtension":  break;
+            case "SourceDebugExtension": break;
             case "LineNumberTable": return new LineNumberTableAttribute();
             case "LocalVariableTable": return new LocalVariableTableAttribute();
             case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute();
             case "Deprecated": return new DeprecatedAttribute();
             case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
-            case "RuntimeInvisibleAnnotations":  break;
-            case "RuntimeVisibleParameterAnnotations":  break;
-            case "RuntimeInvisibleParameterAnnotations":  break;
-            case "RuntimeVisibleTypeAnnotations":  break;
-            case "RuntimeInvisibleTypeAnnotations":  break;
-            case "AnnotationDefault":  break;
+            case "RuntimeInvisibleAnnotations": break;
+            case "RuntimeVisibleParameterAnnotations": break;
+            case "RuntimeInvisibleParameterAnnotations": break;
+            case "RuntimeVisibleTypeAnnotations": break;
+            case "RuntimeInvisibleTypeAnnotations": break;
+            case "AnnotationDefault": break;
             case "BootstrapMethods": return new BootstrapMethodsAttribute();
-            case "MethodParameters":  break;
+            case "MethodParameters": break;
         }
         
         // todo
