@@ -15,8 +15,8 @@ attribute_info {
  */
 public abstract class AttributeInfo extends ClassComponent {
 
-    private U2 attributeNameIndex;
-    private U4 attributeLength;
+    protected U2 attributeNameIndex;
+    protected U4 attributeLength;
     
     @Override
     protected void readContent(ClassReader reader) {
@@ -31,7 +31,7 @@ public abstract class AttributeInfo extends ClassComponent {
         switch (name) {
             case "ConstantValue": return new ConstantValueAttribute();
             case "Code": return new CodeAttribute();
-            case "StackMapTable": 
+            case "StackMapTable": return new StackMapTableAttribute();
             case "Exceptions": 
             case "InnerClasses": 
             case "EnclosingMethod": 
