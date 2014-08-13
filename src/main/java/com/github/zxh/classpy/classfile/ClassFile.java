@@ -49,27 +49,31 @@ public class ClassFile {
     private U2 attributesCount;
 //    attribute_info attributes[attributes_count];
     
+    public void read(byte[] bytes) {
+        read(ByteBuffer.wrap(bytes));
+    }
+    
     public void read(ByteBuffer buf) {
         ClassReader reader = new ClassReader(buf);
         magic = reader.readU4();
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
         constantPoolCount = reader.readU2();
-        constantPool = new ConstantPool(constantPoolCount.getValue());
-        constantPool.read(reader);
-        accessFlags = reader.readU2();
-        thisClass = reader.readU2();
-        superClass = reader.readU2();
-        interfacesCount = reader.readU2();
-        for (int i = 0; i < interfacesCount.getValue(); i++) {
-            interfaces.add(reader.readU2());
-        }
-        fieldsCount = reader.readU2();
-        // todo
-        methodsCount = reader.readU2();
-        // todo
-        attributesCount = reader.readU2();
-        // todo
+//        constantPool = new ConstantPool(constantPoolCount.getValue());
+//        constantPool.read(reader);
+//        accessFlags = reader.readU2();
+//        thisClass = reader.readU2();
+//        superClass = reader.readU2();
+//        interfacesCount = reader.readU2();
+//        for (int i = 0; i < interfacesCount.getValue(); i++) {
+//            interfaces.add(reader.readU2());
+//        }
+//        fieldsCount = reader.readU2();
+//        // todo
+//        methodsCount = reader.readU2();
+//        // todo
+//        attributesCount = reader.readU2();
+//        // todo
     }
     
 }
