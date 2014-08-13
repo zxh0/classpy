@@ -18,7 +18,7 @@ public class TestClass implements Runnable, Comparable<TestClass> {
     }
     
     @Deprecated
-    public static <T extends Comparable<T>> void m1(List<T> list) {
+    public static <T extends Comparable<T>> void m1(List<T> list) throws RuntimeException {
         list.sort((a, b) -> 1);
     }
     
