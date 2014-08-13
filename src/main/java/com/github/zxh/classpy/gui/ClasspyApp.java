@@ -1,11 +1,13 @@
 package com.github.zxh.classpy.gui;
 
+import java.io.File;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -21,7 +23,7 @@ public class ClasspyApp extends Application {
         BorderPane root = new BorderPane();
         
         
-        root.setTop(createMenuBar());
+        root.setTop(createMenuBar(stage));
         
         
         Scene scene = new Scene(root, 300, 250);
@@ -40,12 +42,25 @@ public class ClasspyApp extends Application {
         stage.show();
     }
     
-    private MenuBar createMenuBar() {
+    private MenuBar createMenuBar(Stage stage) {
         MenuBar menuBar = new MenuBar();
         Menu fileMenu = new Menu("File");
         menuBar.getMenus().add(fileMenu);
         MenuItem openMenuItem = new MenuItem("Open...");
         fileMenu.getItems().add(openMenuItem);
+        
+        openMenuItem.setOnAction(actionEvent -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Open .class or .jar File");
+            fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("CLASS", "*.class"),
+                new FileChooser.ExtensionFilter("JAR", "*.jar")
+            );
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                // todo
+            }
+        });
         
         return menuBar;
     }
