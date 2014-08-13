@@ -26,4 +26,35 @@ public abstract class AttributeInfo extends ClassComponent {
     
     protected abstract void readInfo(ClassReader reader);
     
+    public static AttributeInfo create(String name) {
+        switch (name) {
+            case "ConstantValue": return new ConstantValueAttribute();
+            case "Code": 
+            case "StackMapTable": 
+            case "Exceptions": 
+            case "InnerClasses": 
+            case "EnclosingMethod": 
+            case "Synthetic": 
+            case "Signatur": 
+            case "SourceFile": 
+            case "SourceDebugExtension": 
+            case "LineNumberTable": 
+            case "LocalVariableTable": 
+            case "LocalVariableTypeTable": 
+            case "Deprecated": 
+            case "RuntimeVisibleAnnotations": 
+            case "RuntimeInvisibleAnnotations": 
+            case "RuntimeVisibleParameterAnnotations": 
+            case "RuntimeInvisibleParameterAnnotations": 
+            case "RuntimeVisibleTypeAnnotations": 
+            case "RuntimeInvisibleTypeAnnotations": 
+            case "AnnotationDefault": 
+            case "BootstrapMethods": 
+            case "MethodParameters": 
+        }
+        
+        // todo
+        return null;
+    }
+    
 }
