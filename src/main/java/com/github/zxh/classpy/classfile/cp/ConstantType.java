@@ -27,4 +27,13 @@ public enum ConstantType {
         this.type = type;
     }
     
+    public static ConstantType valueOf(int type) {
+        for (ConstantType ct : values()) {
+            if (ct.type == type) {
+                return ct;
+            }
+        }
+        throw new IllegalArgumentException("Invalid constant type: " + type);
+    }
+    
 }

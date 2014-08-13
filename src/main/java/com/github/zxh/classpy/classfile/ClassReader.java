@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.nio.ByteBuffer;
 
 /**
@@ -9,6 +10,7 @@ import java.nio.ByteBuffer;
 public class ClassReader {
 
     private final ByteBuffer buf;
+    private ConstantPool constantPool;
     
     public ClassReader(ByteBuffer buf) {
         this.buf = buf;
@@ -20,6 +22,14 @@ public class ClassReader {
     
     public int position() {
         return buf.position();
+    }
+
+    public ConstantPool getConstantPool() {
+        return constantPool;
+    }
+
+    public void setConstantPool(ConstantPool constantPool) {
+        this.constantPool = constantPool;
     }
     
     public U1 readU1() {

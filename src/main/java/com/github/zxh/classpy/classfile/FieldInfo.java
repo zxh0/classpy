@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.attr.AttributeInfo;
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -18,7 +19,7 @@ public class FieldInfo extends ClassComponent {
     private U2 nameIndex;
     private U2 descriptorIndex;
     private U2 attributesCount;
-    private List<AttributeInfo> attributes;
+    private final List<AttributeInfo> attributes = new ArrayList<>();
     
     @Override
     protected void readContent(ClassReader reader) {
@@ -26,7 +27,12 @@ public class FieldInfo extends ClassComponent {
         nameIndex = reader.readU2();
         descriptorIndex = reader.readU2();
         attributesCount = reader.readU2();
-        // todo read attributes
+        for (int i = 0; i < attributesCount.getValue(); i++) {
+//            reader.getConstantPool().
+            
+            AttributeInfo attrInfo = null; // todo
+            attributes.add(attrInfo);
+        }
     }
     
 }
