@@ -17,6 +17,7 @@ public class TestClass implements Runnable, Comparable<TestClass> {
         return 0;
     }
     
+    @Deprecated
     public static <T extends Comparable<T>> void m1(List<T> list) {
         list.sort((a, b) -> 1);
     }
