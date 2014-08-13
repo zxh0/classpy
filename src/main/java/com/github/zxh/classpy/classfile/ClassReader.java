@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.attr.AttributeInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.nio.ByteBuffer;
@@ -58,6 +59,13 @@ public class ClassReader {
         ci.read(this);
         
         return ci;
+    }
+    
+    public AttributeInfo readAttributeInfo() {
+        int attributeNameIndex = buf.getShort(buf.position());
+        String attributeName = constantPool.getUtf8String(attributeNameIndex);
+        // todo
+        return null;
     }
     
 }

@@ -71,8 +71,12 @@ public class ClassFile {
             field.read(reader);
             fields.add(field);
         }
-//        // todo
-//        methodsCount = reader.readU2();
+        methodsCount = reader.readU2();
+        for (int i = 0; i < methodsCount.getValue(); i++) {
+            MethodInfo method = new MethodInfo();
+            method.read(reader);
+            methods.add(method);
+        }
 //        // todo
 //        attributesCount = reader.readU2();
 //        // todo
