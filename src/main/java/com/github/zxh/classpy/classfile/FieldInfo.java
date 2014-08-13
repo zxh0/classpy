@@ -1,5 +1,8 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.attr.AttributeInfo;
+import java.util.List;
+
 /*
 field_info {
     u2             access_flags;
@@ -15,10 +18,15 @@ public class FieldInfo extends ClassComponent {
     private U2 nameIndex;
     private U2 descriptorIndex;
     private U2 attributesCount;
+    private List<AttributeInfo> attributes;
     
     @Override
     protected void readContent(ClassReader reader) {
-        // todo
+        accessFlags = reader.readU2();
+        nameIndex = reader.readU2();
+        descriptorIndex = reader.readU2();
+        attributesCount = reader.readU2();
+        // todo read attributes
     }
     
 }
