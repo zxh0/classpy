@@ -2,6 +2,7 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.attr.AttributeInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantPool;
+import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 
 /**
@@ -99,11 +100,29 @@ public class ClassFile {
     public U2 getMethodsCount() {return methodsCount;}
 
     
-    
     public static ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();
         cf.read(ByteBuffer.wrap(bytes));
+        try {
+            xxNames(cf);
+        } catch (ReflectiveOperationException e) {
+            throw new ClassParseException(e);
+        }
+        
         return cf;
+    }
+
+    // todo
+    private static void xxNames(Object obj) throws ReflectiveOperationException {
+        for (Field field : obj.getClass().getDeclaredFields()) {
+            if (ClassComponent.class.isAssignableFrom(field.getType())) {
+                ClassComponent fieldVal = (ClassComponent) field.get(obj);
+                if (fieldVal != null) {
+                    fieldVal.setName(field.getName());
+                    xxNames(fieldVal);
+                }
+            }
+        }
     }
     
 }
