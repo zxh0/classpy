@@ -23,11 +23,8 @@ public class BootstrapMethodsAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         numBootstrapMethods = reader.readU2();
-        bootstrapMethods = new BootstrapMethodInfo[numBootstrapMethods.getValue()];
-        for (int i = 0; i < bootstrapMethods.length; i++) {
-            bootstrapMethods[i] = new BootstrapMethodInfo();
-            bootstrapMethods[i].read(reader);
-        }
+        bootstrapMethods = reader.readArray(BootstrapMethodInfo.class,
+                numBootstrapMethods.getValue());
     }
     
     public static class BootstrapMethodInfo extends ClassComponent {
@@ -40,10 +37,8 @@ public class BootstrapMethodsAttribute extends AttributeInfo {
         protected void readContent(ClassReader reader) {
             bootstrapMethodRef = reader.readU2();
             numBootstrapArguments = reader.readU2();
-            bootstrapArguments = new U2[numBootstrapArguments.getValue()];
-            for (int i = 0; i < bootstrapArguments.length; i++) {
-                bootstrapArguments[i] = reader.readU2();
-            }
+            bootstrapArguments = reader.readArray(U2.class,
+                    numBootstrapArguments.getValue());
         }
         
     }

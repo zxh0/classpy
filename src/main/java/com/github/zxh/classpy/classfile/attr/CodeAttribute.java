@@ -41,11 +41,8 @@ public class CodeAttribute extends AttributeInfo {
         codeLength = reader.readU4();
         code = reader.readBytes(codeLength.getValue());
         exceptionTableLength = reader.readU2();
-        exceptionTable = new ExceptionTableEntry[exceptionTableLength.getValue()];
-        for (int i = 0; i < exceptionTable.length; i++) {
-            exceptionTable[i] = new ExceptionTableEntry();
-            exceptionTable[i].read(reader);
-        }
+        exceptionTable = reader.readArray(ExceptionTableEntry.class,
+                exceptionTableLength.getValue());
         attributesCount = reader.readU2();
         attributes = new AttributeInfo[attributesCount.getValue()];
         for (int i = 0; i < attributes.length; i++) {
@@ -54,6 +51,7 @@ public class CodeAttribute extends AttributeInfo {
     }
     
     public static class ExceptionTableEntry extends ClassComponent {
+        
         private U2 startPc;
         private U2 endPc;
         private U2 handlerPc;
@@ -66,6 +64,7 @@ public class CodeAttribute extends AttributeInfo {
             handlerPc = reader.readU2();
             catchType = reader.readU2();
         }
+        
     }
     
 }

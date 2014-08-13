@@ -3,6 +3,7 @@ package com.github.zxh.classpy.classfile;
 import com.github.zxh.classpy.classfile.attr.AttributeInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantPool;
+import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 
 /**
@@ -75,6 +76,22 @@ public class ClassReader {
         attr.read(this);
         
         return attr;
+    }
+    
+    public <T extends ClassComponent> T[] readArray(Class<T> classOfT, int n) {
+        @SuppressWarnings("unchecked")
+        T[] arr = (T[]) Array.newInstance(classOfT, n);
+        
+        try {
+            for (int i = 0; i < arr.length; i++) {
+                arr[i] = classOfT.newInstance();
+                arr[i].read(this);
+            }
+        } catch (ReflectiveOperationException e) {
+            throw new ClassParseException(e);
+        }
+        
+        return arr;
     }
     
 }

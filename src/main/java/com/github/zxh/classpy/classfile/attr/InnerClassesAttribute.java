@@ -25,11 +25,8 @@ public class InnerClassesAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         numberOfClasses = reader.readU2();
-        classes = new InnerClassInfo[numberOfClasses.getValue()];
-        for (int i = 0; i < classes.length; i++) {
-            classes[i] = new InnerClassInfo();
-            classes[i].read(reader);
-        }
+        classes = reader.readArray(InnerClassInfo.class,
+                numberOfClasses.getValue());
     }
     
     public static class InnerClassInfo extends ClassComponent {

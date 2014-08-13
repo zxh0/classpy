@@ -45,11 +45,8 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         numAnnotations = reader.readU2();
-        annotations = new AnnotationInfo[numAnnotations.getValue()];
-        for (int i = 0; i < annotations.length; i++) {
-            annotations[i] = new AnnotationInfo();
-            annotations[i].read(reader);
-        }
+        annotations = reader.readArray(AnnotationInfo.class,
+                numAnnotations.getValue());
     }
     
     public static class AnnotationInfo extends ClassComponent {

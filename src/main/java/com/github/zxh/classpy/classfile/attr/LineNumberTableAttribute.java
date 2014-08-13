@@ -22,11 +22,8 @@ public class LineNumberTableAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         lineNumberTableLength = reader.readU2();
-        lineNumberTable = new LineNumberTableEntry[lineNumberTableLength.getValue()];
-        for (int i = 0; i < lineNumberTable.length; i++) {
-            lineNumberTable[i] = new LineNumberTableEntry();
-            lineNumberTable[i].read(reader);
-        }
+        lineNumberTable = reader.readArray(LineNumberTableEntry.class,
+                lineNumberTableLength.getValue());
     }
     
     public static class LineNumberTableEntry extends ClassComponent {

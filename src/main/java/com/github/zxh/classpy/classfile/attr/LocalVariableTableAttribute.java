@@ -25,11 +25,8 @@ public class LocalVariableTableAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         localVariableTableLength = reader.readU2();
-        localVariableTable = new LocalVariableTableEntry[localVariableTableLength.getValue()];
-        for (int i = 0; i < localVariableTable.length; i++) {
-            localVariableTable[i] = new LocalVariableTableEntry();
-            localVariableTable[i].read(reader);
-        }
+        localVariableTable = reader.readArray(LocalVariableTableEntry.class,
+                localVariableTableLength.getValue());
     }
     
     public static class LocalVariableTableEntry extends ClassComponent {
