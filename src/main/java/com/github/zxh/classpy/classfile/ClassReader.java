@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.cp.ConstantInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.nio.ByteBuffer;
 
@@ -48,6 +49,15 @@ public class ClassReader {
         U4 u4 = new U4();
         u4.read(this);
         return u4;
+    }
+    
+    public ConstantInfo readConstantInfo() {
+        byte tag = buf.get(buf.position());
+        
+        ConstantInfo ci = ConstantInfo.create(tag);
+        ci.read(this);
+        
+        return ci;
     }
     
 }
