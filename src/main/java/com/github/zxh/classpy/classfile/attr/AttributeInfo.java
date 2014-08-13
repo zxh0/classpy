@@ -34,7 +34,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "StackMapTable": return new StackMapTableAttribute();
             case "Exceptions": return new ExceptionsAttribute();
             case "InnerClasses": return new InnerClassesAttribute();
-            case "EnclosingMethod":  break;
+            case "EnclosingMethod": return new EnclosingMethodAttribute();
             case "Synthetic":  break;
             case "Signature": return new SignatureAttribute();
             case "SourceFile":  return new SourceFileAttribute();

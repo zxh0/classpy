@@ -22,4 +22,15 @@ public class TestClass implements Runnable, Comparable<TestClass> {
         list.sort((a, b) -> 1);
     }
     
+    public void testEnclosingMethodAttribute() {
+        new Runnable() {
+
+            @Override
+            public void run() {
+                //
+            }
+            
+        }.run();
+    }
+    
 }

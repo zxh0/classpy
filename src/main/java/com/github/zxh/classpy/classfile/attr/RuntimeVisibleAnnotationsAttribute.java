@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.U2;

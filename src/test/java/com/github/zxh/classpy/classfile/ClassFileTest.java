@@ -18,9 +18,18 @@ public class ClassFileTest {
         ClassFile cf = ClassFile.parse(classBytes);
         assertEquals(0, cf.getMinorVersion().getValue());
         assertEquals(52, cf.getMajorVersion().getValue());
-        assertEquals(91, cf.getConstantPoolCount().getValue());
+        assertEquals(99, cf.getConstantPoolCount().getValue());
         assertEquals(2, cf.getInterfacesCount().getValue());
         assertEquals(2, cf.getFieldsCount().getValue());
+    }
+    
+    @Test
+    public void enclosingMethodAttribute() throws Exception {
+        String classFileName = TestClass.class.getName().replace('.', '/') + "$1.class";
+        Path classFilePath = Paths.get(TestClass.class.getClassLoader().getResource(classFileName).toURI());
+        byte[] classBytes = Files.readAllBytes(classFilePath);
+        
+        ClassFile.parse(classBytes);
     }
     
 }
