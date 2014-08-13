@@ -55,8 +55,8 @@ public class ClassFile {
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
         constantPoolCount = reader.readU2();
-//        constantPool = new ConstantPool(constantPoolCount.getValue());
-//        constantPool.read(reader);
+        constantPool = new ConstantPool(constantPoolCount.getValue());
+        constantPool.read(reader);
 //        accessFlags = reader.readU2();
 //        thisClass = reader.readU2();
 //        superClass = reader.readU2();
@@ -75,6 +75,7 @@ public class ClassFile {
     public U4 getMagic() {return magic;}
     public U2 getMinorVersion() {return minorVersion;}
     public U2 getMajorVersion() {return majorVersion;}
+    public U2 getConstantPoolCount() {return constantPoolCount;}
 
     
     

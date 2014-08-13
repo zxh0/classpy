@@ -22,14 +22,13 @@ public class ConstantPool extends ClassComponent {
     
     @Override
     protected void readContent(ClassReader reader) {
-        for (int i = 0; i < cpCount; i++) {
+        for (int i = 1; i < cpCount; i++) {
             constants.add(readConstantInfo(reader));
         }
     }
     
     private static ConstantInfo readConstantInfo(ClassReader reader) {
-        int idx = reader.position();
-        byte tag = reader.getByteBuffer().get(idx);
+        byte tag = reader.getByteBuffer().get(reader.position());
         
         ConstantInfo ci = createConstantInfo(tag);
         ci.read(reader);
