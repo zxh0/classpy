@@ -2,8 +2,6 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -41,11 +39,11 @@ public class ClassFile {
     private U2 thisClass;
     private U2 superClass;
     private U2 interfacesCount;
-    private List<U2> interfaces = new ArrayList<>();
+    private U2[] interfaces;
     private U2 fieldsCount;
-    private List<FieldInfo> fields = new ArrayList<>();
+    private FieldInfo[] fields;
     private U2 methodsCount;
-    private List<MethodInfo> methods = new ArrayList<>();
+    private MethodInfo[] methods;
     private U2 attributesCount;
 //    attribute_info attributes[attributes_count];
     
@@ -62,20 +60,23 @@ public class ClassFile {
         thisClass = reader.readU2();
         superClass = reader.readU2();
         interfacesCount = reader.readU2();
-        for (int i = 0; i < interfacesCount.getValue(); i++) {
-            interfaces.add(reader.readU2());
+        interfaces = new U2[interfacesCount.getValue()];
+        for (int i = 0; i < interfaces.length; i++) {
+            interfaces[i] = reader.readU2();
         }
         fieldsCount = reader.readU2();
-        for (int i = 0; i < fieldsCount.getValue(); i++) {
+        fields = new FieldInfo[fieldsCount.getValue()];
+        for (int i = 0; i < fields.length; i++) {
             FieldInfo field = new FieldInfo();
             field.read(reader);
-            fields.add(field);
+            fields[i] = field;
         }
         methodsCount = reader.readU2();
-        for (int i = 0; i < methodsCount.getValue(); i++) {
+        methods = new MethodInfo[methodsCount.getValue()];
+        for (int i = 0; i < methods.length; i++) {
             MethodInfo method = new MethodInfo();
             method.read(reader);
-            methods.add(method);
+            methods[i] = method;
         }
 //        // todo
 //        attributesCount = reader.readU2();
