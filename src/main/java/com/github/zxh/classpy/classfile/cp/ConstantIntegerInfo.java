@@ -14,7 +14,7 @@ public class ConstantIntegerInfo extends ConstantInfo {
     private U4 value;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         value = reader.readU4();
     }
     

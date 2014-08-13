@@ -16,7 +16,7 @@ public class ConstantInvokeDynamicInfo extends ConstantInfo {
     private U2 nameAndTypeIndex;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         bootstrapMethodAttrIndex = reader.readU2();
         nameAndTypeIndex = reader.readU2();
     }

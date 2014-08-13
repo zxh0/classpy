@@ -13,7 +13,7 @@ public class U2 extends ClassComponent {
     }
     
     @Override
-    public void readContent(ClassReader reader) {
+    protected void readContent(ClassReader reader) {
         value = reader.getByteBuffer().getShort();
     }
     

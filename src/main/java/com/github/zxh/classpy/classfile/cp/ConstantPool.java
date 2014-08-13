@@ -21,7 +21,7 @@ public class ConstantPool extends ClassComponent {
     }
     
     @Override
-    public void readContent(ClassReader reader) {
+    protected void readContent(ClassReader reader) {
         for (int i = 0; i < cpCount; i++) {
             constants.add(readConstantInfo(reader));
         }

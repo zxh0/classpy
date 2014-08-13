@@ -14,11 +14,11 @@ public abstract class ConstantInfo extends ClassComponent {
     private U1 tag;
     
     @Override
-    public final void readContent(ClassReader reader) {
+    protected final void readContent(ClassReader reader) {
         tag = reader.readU1();
         readInfo(reader);
     }
     
-    public abstract void readInfo(ClassReader reader);
+    protected abstract void readInfo(ClassReader reader);
     
 }

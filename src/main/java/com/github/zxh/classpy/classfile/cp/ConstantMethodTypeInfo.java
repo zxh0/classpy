@@ -14,7 +14,7 @@ public class ConstantMethodTypeInfo extends ConstantInfo {
     private U2 descriptorIndex;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         descriptorIndex = reader.readU2();
     }
     

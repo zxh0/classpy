@@ -17,7 +17,7 @@ public class ConstantUtf8Info extends ConstantInfo {
     private String value;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         length = reader.readU2();
         byte[] bytes = new byte[length.getValue()];
         reader.getByteBuffer().get(bytes);

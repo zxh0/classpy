@@ -17,7 +17,7 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
     private U2 referenceIndex;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         referenceKind = reader.readU1();
         referenceIndex = reader.readU2();
     }

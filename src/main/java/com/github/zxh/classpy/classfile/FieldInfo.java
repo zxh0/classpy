@@ -17,7 +17,7 @@ public class FieldInfo extends ClassComponent {
     private U2 attributesCount;
     
     @Override
-    public void readContent(ClassReader reader) {
+    protected void readContent(ClassReader reader) {
         // todo
     }
     

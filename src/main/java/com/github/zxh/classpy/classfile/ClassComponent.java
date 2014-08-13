@@ -23,6 +23,6 @@ public abstract class ClassComponent {
         length = reader.position() - offset;
     }
     
-    public abstract void readContent(ClassReader reader);
+    protected abstract void readContent(ClassReader reader);
     
 }

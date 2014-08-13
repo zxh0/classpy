@@ -17,7 +17,7 @@ public class ConstantDoubleInfo extends ConstantInfo {
     private double value;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         value = reader.getByteBuffer().getDouble(reader.position());
         highBytes = reader.readU4();
         lowBytes = reader.readU4();

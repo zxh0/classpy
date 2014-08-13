@@ -17,7 +17,7 @@ public class ConstantLongInfo extends ConstantInfo {
     private long value;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         value = reader.getByteBuffer().getLong(reader.position());
         highBytes = reader.readU4();
         lowBytes = reader.readU4();

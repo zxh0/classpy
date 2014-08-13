@@ -15,7 +15,7 @@ public class ConstantFloatInfo extends ConstantInfo {
     private float value;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         value = reader.getByteBuffer().getFloat(reader.position());
         bytes = reader.readU4();
     }

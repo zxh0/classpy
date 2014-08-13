@@ -14,7 +14,7 @@ public class ConstantClassInfo extends ConstantInfo {
     private U2 nameIndex;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         nameIndex = reader.readU2();
     }
     

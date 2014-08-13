@@ -16,7 +16,7 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
     private U2 descriptorIndex;
     
     @Override
-    public void readInfo(ClassReader reader) {
+    protected void readInfo(ClassReader reader) {
         nameIndex = reader.readU2();
         descriptorIndex = reader.readU2();
     }
