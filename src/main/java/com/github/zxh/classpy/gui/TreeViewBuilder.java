@@ -23,8 +23,11 @@ public class TreeViewBuilder {
         
         TreeItem<ClassComponent> root = new TreeItem<>();
         
-        ClassComponentTreeItem magic = new ClassComponentTreeItem(cf.getMagic());
-        root.getChildren().add(magic);
+        root.getChildren().add(new ClassComponentTreeItem(cf.getMagic()));
+        root.getChildren().add(new ClassComponentTreeItem(cf.getMinorVersion()));
+        root.getChildren().add(new ClassComponentTreeItem(cf.getMajorVersion()));
+        root.getChildren().add(new ClassComponentTreeItem(cf.getConstantPoolCount()));
+        
         
         TreeView<ClassComponent> tree = new TreeView<>(root);
         
