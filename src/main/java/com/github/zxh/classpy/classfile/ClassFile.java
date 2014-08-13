@@ -43,9 +43,9 @@ public class ClassFile {
     private U2 interfacesCount;
     private List<U2> interfaces = new ArrayList<>();
     private U2 fieldsCount;
-//    field_info     fields[fields_count];
+    private List<FieldInfo> fields = new ArrayList<>();
     private U2 methodsCount;
-//    method_info    methods[methods_count];
+    private List<MethodInfo> methods = new ArrayList<>();
     private U2 attributesCount;
 //    attribute_info attributes[attributes_count];
     
