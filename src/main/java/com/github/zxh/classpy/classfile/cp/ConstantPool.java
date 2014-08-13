@@ -47,6 +47,16 @@ public class ConstantPool extends ClassComponent {
             case CONSTANT_Float: return new ConstantFloatInfo();
             case CONSTANT_Long: return new ConstantLongInfo();
             case CONSTANT_Double: return new ConstantDoubleInfo();
+            case CONSTANT_String: return new ConstantStringInfo();
+            case CONSTANT_Utf8:
+            case CONSTANT_NameAndType:
+            case CONSTANT_Class:
+            case CONSTANT_Fieldref:
+            case CONSTANT_Methodref:
+            case CONSTANT_InterfaceMethodref:
+            case CONSTANT_InvokeDynamic:
+            case CONSTANT_MethodHandle:
+            case CONSTANT_MethodType:
         }
         
         // unreachable code
