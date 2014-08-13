@@ -99,11 +99,11 @@ public class ClassFile {
     }
     
     private void readAttributes(ClassReader reader) {
-//        attributesCount = reader.readU2();
-//        attributes = new AttributeInfo[attributesCount.getValue()];
-//        for (int i = 0; i < attributes.length; i++) {
-//            attributes[i] = reader.readAttributeInfo();
-//        }
+        attributesCount = reader.readU2();
+        attributes = new AttributeInfo[attributesCount.getValue()];
+        for (int i = 0; i < attributes.length; i++) {
+            attributes[i] = reader.readAttributeInfo();
+        }
     }
     
     public U4 getMagic() {return magic;}

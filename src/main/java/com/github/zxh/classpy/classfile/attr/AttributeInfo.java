@@ -32,26 +32,26 @@ public abstract class AttributeInfo extends ClassComponent {
             case "ConstantValue": return new ConstantValueAttribute();
             case "Code": return new CodeAttribute();
             case "StackMapTable": return new StackMapTableAttribute();
-            case "Exceptions": 
-            case "InnerClasses": 
-            case "EnclosingMethod": 
-            case "Synthetic": 
-            case "Signatur": 
-            case "SourceFile": 
-            case "SourceDebugExtension": 
+            case "Exceptions": break;
+            case "InnerClasses":  break;
+            case "EnclosingMethod":  break;
+            case "Synthetic":  break;
+            case "Signature": return new SignatureAttribute();
+            case "SourceFile":  break;
+            case "SourceDebugExtension":  break;
             case "LineNumberTable": return new LineNumberTableAttribute();
             case "LocalVariableTable": return new LocalVariableTableAttribute();
-            case "LocalVariableTypeTable": 
-            case "Deprecated": 
-            case "RuntimeVisibleAnnotations": 
-            case "RuntimeInvisibleAnnotations": 
-            case "RuntimeVisibleParameterAnnotations": 
-            case "RuntimeInvisibleParameterAnnotations": 
-            case "RuntimeVisibleTypeAnnotations": 
-            case "RuntimeInvisibleTypeAnnotations": 
-            case "AnnotationDefault": 
-            case "BootstrapMethods": 
-            case "MethodParameters": 
+            case "LocalVariableTypeTable":  break;
+            case "Deprecated":  break;
+            case "RuntimeVisibleAnnotations":  break;
+            case "RuntimeInvisibleAnnotations":  break;
+            case "RuntimeVisibleParameterAnnotations":  break;
+            case "RuntimeInvisibleParameterAnnotations":  break;
+            case "RuntimeVisibleTypeAnnotations":  break;
+            case "RuntimeInvisibleTypeAnnotations":  break;
+            case "AnnotationDefault":  break;
+            case "BootstrapMethods":  break;
+            case "MethodParameters":  break;
         }
         
         // todo

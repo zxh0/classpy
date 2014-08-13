@@ -4,7 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
 
-/**
+/*
 LocalVariableTable_attribute {
     u2 attribute_name_index;
     u4 attribute_length;
