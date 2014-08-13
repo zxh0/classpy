@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.cp;
 
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U4Float;
+import com.github.zxh.classpy.classfile.U4;
 
 /**
  *
@@ -9,11 +9,13 @@ import com.github.zxh.classpy.classfile.U4Float;
  */
 public class ConstantFloatInfo extends ConstantInfo {
 
-    private U4Float floatValue;
+    private U4 bytes;
+    private float value;
     
     @Override
     public void readInfo(ClassReader reader) {
-        floatValue = reader.readU4Float();
+        value = reader.getByteBuffer().getFloat(reader.position());
+        bytes = reader.readU4();
     }
     
 }

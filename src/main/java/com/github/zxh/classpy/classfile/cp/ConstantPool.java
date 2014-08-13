@@ -45,7 +45,8 @@ public class ConstantPool extends ClassComponent {
         switch (ct) {
             case CONSTANT_Integer: return new ConstantIntegerInfo();
             case CONSTANT_Float: return new ConstantFloatInfo();
-            case CONSTANT_Long:
+            case CONSTANT_Long: return new ConstantLongInfo();
+            case CONSTANT_Double:
         }
         
         // unreachable code
