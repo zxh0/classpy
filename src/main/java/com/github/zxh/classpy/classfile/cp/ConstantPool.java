@@ -49,7 +49,7 @@ public class ConstantPool extends ClassComponent {
             case CONSTANT_String: return new ConstantStringInfo();
             case CONSTANT_Utf8: return new ConstantUtf8Info();
             case CONSTANT_NameAndType: return new ConstantNameAndTypeInfo();
-            case CONSTANT_Class:
+            case CONSTANT_Class: return new ConstantClassInfo();
             case CONSTANT_Fieldref:
             case CONSTANT_Methodref:
             case CONSTANT_InterfaceMethodref:
