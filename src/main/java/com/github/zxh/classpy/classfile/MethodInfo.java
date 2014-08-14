@@ -1,6 +1,8 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.attr.AttributeInfo;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 method_info {
@@ -17,7 +19,7 @@ public class MethodInfo extends ClassComponent {
     private U2 nameIndex;
     private U2 descriptorIndex;
     private U2 attributesCount;
-    private AttributeInfo[] attributes;
+    private Table<AttributeInfo> attributes;
     
     @Override
     protected void readContent(ClassReader reader) {
@@ -25,10 +27,15 @@ public class MethodInfo extends ClassComponent {
         nameIndex = reader.readU2();
         descriptorIndex = reader.readU2();
         attributesCount = reader.readU2();
-        attributes = new AttributeInfo[attributesCount.getValue()];
-        for (int i = 0; i < attributes.length; i++) {
-            attributes[i] = reader.readAttributeInfo();
-        }
+        attributes = reader.readTable(AttributeInfo.class,
+                attributesCount.getValue());
+        setDesc(reader.getConstantPool().getUtf8String(nameIndex.getValue()));
+    }
+
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(accessFlags, nameIndex, descriptorIndex,
+                attributesCount, attributes);
     }
     
 }
