@@ -1,11 +1,5 @@
 package com.github.zxh.classpy.classfile.cp;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
-import java.util.Arrays;
-import java.util.List;
-
 /*
 CONSTANT_Methodref_info {
     u1 tag;
@@ -13,20 +7,6 @@ CONSTANT_Methodref_info {
     u2 name_and_type_index;
 }
 */
-public class ConstantMethodrefInfo extends ConstantInfo {
-
-    private U2 classIndex;
-    private U2 nameAndTypeIndex;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        classIndex = reader.readU2();
-        nameAndTypeIndex = reader.readU2();
-    }
-        
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), classIndex, nameAndTypeIndex);
-    }
+public class ConstantMethodrefInfo extends ConstantFieldrefInfo {
     
 }

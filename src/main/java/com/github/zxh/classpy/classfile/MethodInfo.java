@@ -1,9 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.classfile.attr.AttributeInfo;
-import java.util.Arrays;
-import java.util.List;
-
 /*
 method_info {
     u2             access_flags;
@@ -13,29 +9,6 @@ method_info {
     attribute_info attributes[attributes_count];
 }
  */
-public class MethodInfo extends ClassComponent {
-
-    private U2 accessFlags;
-    private U2 nameIndex;
-    private U2 descriptorIndex;
-    private U2 attributesCount;
-    private Table<AttributeInfo> attributes;
-    
-    @Override
-    protected void readContent(ClassReader reader) {
-        accessFlags = reader.readU2();
-        nameIndex = reader.readU2();
-        descriptorIndex = reader.readU2();
-        attributesCount = reader.readU2();
-        attributes = reader.readTable(AttributeInfo.class,
-                attributesCount.getValue());
-        setDesc(reader.getConstantPool().getUtf8String(nameIndex.getValue()));
-    }
-
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(accessFlags, nameIndex, descriptorIndex,
-                attributesCount, attributes);
-    }
+public class MethodInfo extends FieldInfo {
     
 }
