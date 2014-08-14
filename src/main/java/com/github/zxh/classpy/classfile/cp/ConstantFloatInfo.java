@@ -24,7 +24,7 @@ public class ConstantFloatInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return null;
+        return String.valueOf(bytes.getValue());
     }
     
     @Override

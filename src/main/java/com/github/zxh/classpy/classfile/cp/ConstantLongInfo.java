@@ -33,7 +33,7 @@ public class ConstantLongInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return null;
+        return String.valueOf(value);
     }
     
     @Override
