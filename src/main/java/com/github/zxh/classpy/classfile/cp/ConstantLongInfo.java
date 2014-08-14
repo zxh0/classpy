@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.classfile.cp;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U4;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 CONSTANT_Long_info {
@@ -24,6 +27,11 @@ public class ConstantLongInfo extends ConstantInfo {
         value = reader.getByteBuffer().getLong(reader.getPosition());
         highBytes = reader.readU4();
         lowBytes = reader.readU4();
+    }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(getTag()/*todo*/);
     }
     
 }

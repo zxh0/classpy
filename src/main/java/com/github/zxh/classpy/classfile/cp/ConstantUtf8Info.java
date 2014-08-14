@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.classfile.cp;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 CONSTANT_Utf8_info {
@@ -15,13 +18,8 @@ public class ConstantUtf8Info extends ConstantInfo {
     private U2 length;
     private Utf8String bytes;
     
-    // because getLength() is defined in ClassComponent
-    public U2 getByteCount() {
-        return length;
-    }
-
-    public Utf8String getBytes() {
-        return bytes;
+    public String getString() {
+        return bytes.getValue();
     }
     
     @Override
@@ -29,6 +27,11 @@ public class ConstantUtf8Info extends ConstantInfo {
         length = reader.readU2();
         bytes = new Utf8String(length.getValue());
         bytes.read(reader);
+    }
+        
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(getTag(), length, bytes);
     }
     
 }

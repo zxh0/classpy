@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.classfile.cp;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 CONSTANT_NameAndType_info {
@@ -19,6 +22,11 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
     protected void readInfo(ClassReader reader) {
         nameIndex = reader.readU2();
         descriptorIndex = reader.readU2();
+    }
+        
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(getTag(), nameIndex, descriptorIndex);
     }
     
 }

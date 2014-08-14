@@ -1,8 +1,11 @@
 package com.github.zxh.classpy.classfile.cp;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 CONSTANT_MethodHandle_info {
@@ -20,6 +23,11 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
     protected void readInfo(ClassReader reader) {
         referenceKind = reader.readU1();
         referenceIndex = reader.readU2();
+    }
+        
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(getTag(), referenceKind, referenceIndex);
     }
     
 }

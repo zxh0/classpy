@@ -4,6 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U1;
+import java.util.List;
 
 /*
 cp_info {
@@ -24,6 +25,7 @@ public abstract class ConstantInfo extends ClassComponent {
     }
     
     protected abstract void readInfo(ClassReader reader);
+    public abstract List<ClassComponent> getSubComponents();
 
     /**
      * Create concrete ConstantXxxInfo by tag.

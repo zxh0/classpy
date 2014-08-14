@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.classfile.cp;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U4;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 CONSTANT_Integer_info {
@@ -13,13 +16,14 @@ public class ConstantIntegerInfo extends ConstantInfo {
 
     private U4 bytes;
 
-    public U4 getBytes() {
-        return bytes;
-    }
-    
     @Override
     protected void readInfo(ClassReader reader) {
         bytes = reader.readU4();
+    }
+        
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(getTag(), bytes);
     }
     
 }
