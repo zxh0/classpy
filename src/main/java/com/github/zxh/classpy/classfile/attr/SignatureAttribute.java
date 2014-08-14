@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.classfile.attr;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 Signature_attribute {
@@ -17,6 +20,12 @@ public class SignatureAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         signatureIndex = reader.readU2();
+    }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                signatureIndex);
     }
     
 }
