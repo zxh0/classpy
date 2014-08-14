@@ -2,6 +2,7 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.attr.AttributeInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantPool;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 
@@ -82,7 +83,7 @@ public class ClassFile {
         ClassFile cf = new ClassFile();
         cf.read(ByteBuffer.wrap(bytes));
         try {
-            xxNames(cf);
+            setNameForClassComponents(cf);
         } catch (ReflectiveOperationException e) {
             throw new ClassParseException(e);
         }
@@ -91,16 +92,41 @@ public class ClassFile {
     }
 
     // todo
-    private static void xxNames(Object obj) throws ReflectiveOperationException {
-        for (Field field : obj.getClass().getDeclaredFields()) {
-            if (ClassComponent.class.isAssignableFrom(field.getType())) {
-                ClassComponent fieldVal = (ClassComponent) field.get(obj);
-                if (fieldVal != null) {
-                    fieldVal.setName(field.getName());
-                    xxNames(fieldVal);
+    private static void setNameForClassComponents(Object obj) throws ReflectiveOperationException {
+        for (Class<?> cls = obj.getClass(); cls != null; cls = cls.getSuperclass()) {
+            for (Field field : cls.getDeclaredFields()) {
+                field.setAccessible(true);
+                if (isClassComponentType(field)) {
+                    // field is ClassComponent
+                    ClassComponent ccFieldVal = (ClassComponent) field.get(obj);
+                    if (ccFieldVal != null) {
+                        ccFieldVal.setName(field.getName());
+                        setNameForClassComponents(ccFieldVal);
+                    }
+                } else if (isClassComponentArrayType(field)) {
+                    // field is ClassComponent[]
+                    Object arrFieldVal = field.get(obj);
+                    if (arrFieldVal != null) {
+                        int length = Array.getLength(arrFieldVal);
+                        for (int i = 0; i < length; i++) {
+                            ClassComponent arrItem = (ClassComponent) Array.get(arrFieldVal, i);
+                            if (arrItem != null) {
+                                setNameForClassComponents(arrItem);
+                            }
+                        }
+                    }
                 }
             }
         }
+    }
+    
+    private static boolean isClassComponentType(Field field) {
+        return ClassComponent.class.isAssignableFrom(field.getType());
+    }
+    
+    private static boolean isClassComponentArrayType(Field field) {
+        return field.getType().isArray()
+                && ClassComponent.class.isAssignableFrom(field.getType().getComponentType());
     }
     
 }

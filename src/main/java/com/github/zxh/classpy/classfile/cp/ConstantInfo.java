@@ -14,6 +14,8 @@ cp_info {
 public abstract class ConstantInfo extends ClassComponent {
 
     private U1 tag;
+    
+    public U1 getTag() {return tag;}
 
     @Override
     protected final void readContent(ClassReader reader) {
