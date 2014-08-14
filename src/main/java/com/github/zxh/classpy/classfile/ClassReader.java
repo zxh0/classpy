@@ -75,6 +75,7 @@ public class ClassReader {
         return attr;
     }
     
+    // todo
     public <T extends ClassComponent> T[] readArray(Class<T> classOfT, int n) {
         @SuppressWarnings("unchecked")
         T[] arr = (T[]) Array.newInstance(classOfT, n);
@@ -97,8 +98,8 @@ public class ClassReader {
         return arr;
     }
     
-    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, int n) {
-        Table<T> table = new Table<>(classOfT, n);
+    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, U2 length) {
+        Table<T> table = new Table<>(classOfT, length.getValue());
         table.read(this);
         return table;
     }

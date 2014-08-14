@@ -68,13 +68,13 @@ public class ClassFile extends ClassComponent {
         thisClass = reader.readU2();
         superClass = reader.readU2();
         interfacesCount = reader.readU2();
-        interfaces = reader.readTable(U2.class, interfacesCount.getValue());
+        interfaces = reader.readTable(U2.class, interfacesCount);
         fieldsCount = reader.readU2();
-        fields = reader.readTable(FieldInfo.class, fieldsCount.getValue());
+        fields = reader.readTable(FieldInfo.class, fieldsCount);
         methodsCount = reader.readU2();
-        methods = reader.readTable(MethodInfo.class, methodsCount.getValue());
+        methods = reader.readTable(MethodInfo.class, methodsCount);
         attributesCount = reader.readU2();
-        attributes = reader.readTable(AttributeInfo.class, attributesCount.getValue());
+        attributes = reader.readTable(AttributeInfo.class, attributesCount);
         
         // todo
         interfaces.getSubComponents().forEach(u2 -> {
