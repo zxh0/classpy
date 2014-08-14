@@ -23,8 +23,12 @@ public class Table<T extends ClassComponent> extends ClassComponent {
     protected void readContent(ClassReader reader) {
         table = reader.readArray(classOfT, n);
         for (int i = 0; i < table.length; i++) {
-            String name = Util.formatIndex(n, i);
-            table[i].setName(name);
+            String oldName = table[i].getName();
+            String newName = Util.formatIndex(n, i);
+            if (oldName != null) {
+                newName += " (" + oldName + ")";
+            }
+            table[i].setName(newName);
         }
     }
 

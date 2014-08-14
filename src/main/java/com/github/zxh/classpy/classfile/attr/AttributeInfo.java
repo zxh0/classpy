@@ -23,7 +23,7 @@ public abstract class AttributeInfo extends ClassComponent {
         attributeNameIndex = reader.readU2();
         attributeLength = reader.readU4();
         readInfo(reader);
-        setDesc(reader.getConstantPool().getUtf8String(attributeNameIndex));
+        setName(reader.getConstantPool().getUtf8String(attributeNameIndex));
     }
     
     protected abstract void readInfo(ClassReader reader);
@@ -39,7 +39,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "Synthetic": break; // todo
             case "Signature": return new SignatureAttribute();
             case "SourceFile":  return new SourceFileAttribute();
-            case "SourceDebugExtension": break;
+            case "SourceDebugExtension": break; // todo
             case "LineNumberTable": return new LineNumberTableAttribute();
             case "LocalVariableTable": return new LocalVariableTableAttribute();
             case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute();
