@@ -73,9 +73,13 @@ public class ClassFile {
     public U2 getMinorVersion() {return minorVersion;}
     public U2 getMajorVersion() {return majorVersion;}
     public U2 getConstantPoolCount() {return constantPoolCount;}
+    public U2 getAccessFlags() {return accessFlags;}
+    public U2 getThisClass() {return thisClass;}
+    public U2 getSuperClass() {return superClass;}
     public U2 getInterfacesCount() {return interfacesCount;}
     public U2 getFieldsCount() {return fieldsCount;}
     public U2 getMethodsCount() {return methodsCount;}
+    public U2 getAttributesCount() {return attributesCount;}
 
     
     public static ClassFile parse(byte[] bytes) {

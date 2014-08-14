@@ -19,18 +19,13 @@ public class ClassReader {
         this.buf = buf;
     }
     
-    public ByteBuffer getByteBuffer() {
-        return buf;
-    }
+    public ByteBuffer getByteBuffer() {return buf;}
+    public ConstantPool getConstantPool() {return constantPool;}
     
     public int getPosition() {
         return buf.position();
     }
-
-    public ConstantPool getConstantPool() {
-        return constantPool;
-    }
-
+    
     public U1 readU1() {
         U1 u1 = new U1();
         u1.read(this);

@@ -16,6 +16,7 @@ public class U2 extends ClassComponent {
     protected void readContent(ClassReader reader) {
         short s = reader.getByteBuffer().getShort();
         value = Short.toUnsignedInt(s);
+        setDesc(String.valueOf(value));
     }
     
 }

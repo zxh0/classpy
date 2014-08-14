@@ -27,6 +27,14 @@ public class TreeViewBuilder {
         root.getChildren().add(new ClassTreeItem(cf.getMinorVersion()));
         root.getChildren().add(new ClassTreeItem(cf.getMajorVersion()));
         root.getChildren().add(new ClassTreeItem(cf.getConstantPoolCount()));
+        // cp
+        root.getChildren().add(new ClassTreeItem(cf.getAccessFlags()));
+        root.getChildren().add(new ClassTreeItem(cf.getThisClass()));
+        root.getChildren().add(new ClassTreeItem(cf.getSuperClass()));
+        root.getChildren().add(new ClassTreeItem(cf.getInterfacesCount()));
+        root.getChildren().add(new ClassTreeItem(cf.getFieldsCount()));
+        root.getChildren().add(new ClassTreeItem(cf.getMethodsCount()));
+        root.getChildren().add(new ClassTreeItem(cf.getAttributesCount()));
         
         
         TreeView<ClassComponent> tree = new TreeView<>(root);
