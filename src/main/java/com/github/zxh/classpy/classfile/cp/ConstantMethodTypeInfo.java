@@ -23,7 +23,7 @@ public class ConstantMethodTypeInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return pool.getUtf8String(descriptorIndex.getValue());
+        return pool.getUtf8String(descriptorIndex);
     }
     
     @Override

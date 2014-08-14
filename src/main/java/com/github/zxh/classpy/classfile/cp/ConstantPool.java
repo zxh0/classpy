@@ -3,6 +3,7 @@ package com.github.zxh.classpy.classfile.cp;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.U2;
 import com.github.zxh.classpy.classfile.Util;
 import java.util.Arrays;
 import java.util.List;
@@ -68,6 +69,10 @@ public class ConstantPool extends ClassComponent {
     
     public String getUtf8String(int index) {
         return getConstant(ConstantUtf8Info.class, index).getString();
+    }
+    
+    public String getUtf8String(U2 index) {
+        return getUtf8String(index.getValue());
     }
     
     public ConstantUtf8Info getUtf8Info(int index) {

@@ -23,7 +23,7 @@ public abstract class AttributeInfo extends ClassComponent {
         attributeNameIndex = reader.readU2();
         attributeLength = reader.readU4();
         readInfo(reader);
-        setDesc(reader.getConstantPool().getUtf8String(attributeNameIndex.getValue()));
+        setDesc(reader.getConstantPool().getUtf8String(attributeNameIndex));
     }
     
     protected abstract void readInfo(ClassReader reader);
