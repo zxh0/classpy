@@ -2,7 +2,6 @@ package com.github.zxh.classpy.classfile.cp;
 
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
-import java.nio.charset.StandardCharsets;
 
 /*
 CONSTANT_Utf8_info {
@@ -14,17 +13,21 @@ CONSTANT_Utf8_info {
 public class ConstantUtf8Info extends ConstantInfo {
 
     private U2 length;
-    private String value;
+    private Utf8String bytes;
     
-    public String getValue() {
-        return value;
+    public U2 getByteCount() {
+        return length;
+    }
+
+    public String getString() {
+        return bytes.getValue();
     }
     
     @Override
     protected void readInfo(ClassReader reader) {
         length = reader.readU2();
-        byte[] bytes = reader.readBytes(length.getValue());
-        value = new String(bytes, StandardCharsets.UTF_8);
+        bytes = new Utf8String(length.getValue());
+        bytes.read(reader);
     }
     
 }

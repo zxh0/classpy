@@ -47,7 +47,7 @@ public class ConstantPool extends ClassComponent {
     public String getUtf8String(int index) {
         ConstantInfo info = constants[index];
         if (info instanceof ConstantUtf8Info) {
-            return ((ConstantUtf8Info) info).getValue();
+            return ((ConstantUtf8Info) info).getString();
         } else {
             throw new ClassParseException("Constant#" + index + " is not ConstantUtf8Info!");
         }
