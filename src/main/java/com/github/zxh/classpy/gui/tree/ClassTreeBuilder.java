@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui.tree;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassFile;
+import com.github.zxh.classpy.gui.tree.item.ConstantPoolTreeItem;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
@@ -25,7 +26,7 @@ public class ClassTreeBuilder {
         root.getChildren().add(new ClassTreeItem(cf.getMinorVersion()));
         root.getChildren().add(new ClassTreeItem(cf.getMajorVersion()));
         root.getChildren().add(new ClassTreeItem(cf.getConstantPoolCount()));
-        root.getChildren().add(new ClassTreeItem(cf.getConstantPool()));
+        root.getChildren().add(new ConstantPoolTreeItem(cf.getConstantPool()));
         root.getChildren().add(new ClassTreeItem(cf.getAccessFlags()));
         root.getChildren().add(new ClassTreeItem(cf.getThisClass()));
         root.getChildren().add(new ClassTreeItem(cf.getSuperClass()));

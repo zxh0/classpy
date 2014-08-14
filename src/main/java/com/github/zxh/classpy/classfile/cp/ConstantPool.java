@@ -3,6 +3,7 @@ package com.github.zxh.classpy.classfile.cp;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
+import java.util.function.Consumer;
 
 /**
  *
@@ -23,6 +24,12 @@ public class ConstantPool extends ClassComponent {
         // The constant_pool table is indexed from 1 to constant_pool_count - 1. 
         for (int i = 1; i < cpCount; i++) {
             constants[i] = reader.readConstantInfo();
+        }
+    }
+    
+    public void forEach(Consumer<ConstantInfo> consumer) {
+        for (int i = 1; i < cpCount; i++) {
+            consumer.accept(constants[i]);
         }
     }
     

@@ -38,7 +38,7 @@ public class ClasspyApp extends Application {
         root.setTop(createMenuBar(stage, root));
         root.setCenter(mainPane);
         
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 500, 600);
         stage.setScene(scene);
         stage.show();
     }
