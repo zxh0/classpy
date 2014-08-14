@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.gui.tree.ClassTreeBuilder;
 import com.github.zxh.classpy.classfile.ClassFile;
+import com.github.zxh.classpy.classfile.ClassParser;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
@@ -65,7 +66,7 @@ public class ClasspyApp extends Application {
                     @Override
                     protected ClassFile call() throws Exception {
                         byte[] x = Files.readAllBytes(file.toPath());
-                        ClassFile cf = ClassFile.parse(x);
+                        ClassFile cf = ClassParser.parse(x);
                         return cf;
                     }
                     
