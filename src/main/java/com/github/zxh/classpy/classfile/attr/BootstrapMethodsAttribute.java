@@ -2,7 +2,10 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 BootstrapMethods_attribute {
@@ -18,29 +21,42 @@ BootstrapMethods_attribute {
 public class BootstrapMethodsAttribute extends AttributeInfo {
 
     private U2 numBootstrapMethods;
-    private BootstrapMethodInfo[] bootstrapMethods;
+    private Table<BootstrapMethodInfo> bootstrapMethods;
     
     @Override
     protected void readInfo(ClassReader reader) {
         numBootstrapMethods = reader.readU2();
-        bootstrapMethods = reader.readArray(BootstrapMethodInfo.class,
-                numBootstrapMethods.getValue());
+        bootstrapMethods = reader.readTable(BootstrapMethodInfo.class,
+                numBootstrapMethods);
     }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                numBootstrapMethods, bootstrapMethods);
+    }
+    
     
     public static class BootstrapMethodInfo extends ClassComponent {
         
-        private U2  bootstrapMethodRef;
-        private U2  numBootstrapArguments;
-        private U2[] bootstrapArguments;
+        private U2 bootstrapMethodRef;
+        private U2 numBootstrapArguments;
+        private Table<U2> bootstrapArguments;
         
         @Override
         protected void readContent(ClassReader reader) {
             bootstrapMethodRef = reader.readU2();
             numBootstrapArguments = reader.readU2();
-            bootstrapArguments = reader.readArray(U2.class,
-                    numBootstrapArguments.getValue());
+            bootstrapArguments = reader.readTable(U2.class,
+                    numBootstrapArguments);
         }
         
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(bootstrapMethodRef, numBootstrapArguments,
+                    bootstrapArguments);
+        }
+    
     }
     
 }
