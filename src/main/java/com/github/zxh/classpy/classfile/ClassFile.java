@@ -65,6 +65,7 @@ public class ClassFile extends ClassComponent {
     @Override
     protected void readContent(ClassReader reader) {
         magic = reader.readU4();
+        magic.useHexDesc();
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
         constantPoolCount = reader.readU2();

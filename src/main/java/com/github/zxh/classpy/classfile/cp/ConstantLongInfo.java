@@ -26,12 +26,14 @@ public class ConstantLongInfo extends ConstantInfo {
     protected void readInfo(ClassReader reader) {
         value = reader.getByteBuffer().getLong(reader.getPosition());
         highBytes = reader.readU4();
+        highBytes.useHexDesc();
         lowBytes = reader.readU4();
+        lowBytes.useHexDesc();
     }
     
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag()/*todo*/);
+        return Arrays.asList(getTag(), highBytes, lowBytes);
     }
     
 }
