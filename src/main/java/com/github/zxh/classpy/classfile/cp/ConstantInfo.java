@@ -14,7 +14,7 @@ cp_info {
 public abstract class ConstantInfo extends ClassComponent {
 
     private U1 tag;
-    
+
     @Override
     protected final void readContent(ClassReader reader) {
         tag = reader.readU1();
@@ -22,9 +22,9 @@ public abstract class ConstantInfo extends ClassComponent {
     }
     
     protected abstract void readInfo(ClassReader reader);
-    
+
     /**
-     * Factory method.
+     * Create concrete ConstantXxxInfo by tag.
      * @param tag
      * @return 
      */

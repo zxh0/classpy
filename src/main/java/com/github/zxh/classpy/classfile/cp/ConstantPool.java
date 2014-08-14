@@ -24,7 +24,18 @@ public class ConstantPool extends ClassComponent {
         // The constant_pool table is indexed from 1 to constant_pool_count - 1. 
         for (int i = 1; i < cpCount; i++) {
             constants[i] = reader.readConstantInfo();
+            setConstantName(constants[i], i);
         }
+    }
+    
+    // like #32: Utf8
+    private void setConstantName(ConstantInfo constant, int idx) {
+        int idxWide = String.valueOf(cpCount).length();
+        String fmtStr = "#%0" + idxWide + "d: %s";
+        String constantName = constant.getClass().getSimpleName()
+                .replace("Constant", "")
+                .replace("Info", "");
+        constant.setName(String.format(fmtStr, idx, constantName));
     }
     
     public void forEach(Consumer<ConstantInfo> consumer) {
