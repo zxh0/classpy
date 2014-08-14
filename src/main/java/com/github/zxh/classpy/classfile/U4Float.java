@@ -14,7 +14,7 @@ public class U4Float extends ClassComponent {
     
     @Override
     protected void readContent(ClassReader reader) {
-        value = reader.getByteBuffer().getInt();
+        value = reader.getByteBuffer().getFloat();
         setDesc(String.valueOf(value));
     }
     

@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.gui.tree.item;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.cp.ConstantFloatInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantIntegerInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantUtf8Info;
@@ -29,6 +30,9 @@ public class ConstantInfoTreeItem extends LazyTreeItem {
         } else if (c instanceof  ConstantIntegerInfo) {
             ConstantIntegerInfo i = (ConstantIntegerInfo) c;
             children.add(new ClassTreeItem(i.getBytes()));
+        } else if (c instanceof ConstantFloatInfo) {
+            ConstantFloatInfo f = (ConstantFloatInfo) c;
+            children.add(new ClassTreeItem(f.getBytes()));
         }
     }
     
