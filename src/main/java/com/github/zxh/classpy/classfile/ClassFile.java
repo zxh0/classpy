@@ -54,37 +54,17 @@ public class ClassFile {
         magic = reader.readU4();
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
-        readConstantPool(reader);
+        constantPoolCount = reader.readU2();
+        constantPool = reader.readConstantPool(constantPoolCount.getValue());
         accessFlags = reader.readU2();
         thisClass = reader.readU2();
         superClass = reader.readU2();
-        readInterfaces(reader);
-        readFields(reader);
-        readMethods(reader);
-        readAttributes(reader);
-    }
-    
-    private void readConstantPool(ClassReader reader) {
-        constantPoolCount = reader.readU2();
-        constantPool = reader.readConstantPool(constantPoolCount.getValue());
-    }
-    
-    private void readInterfaces(ClassReader reader) {
         interfacesCount = reader.readU2();
         interfaces = reader.readTable(U2.class, interfacesCount.getValue());
-    }
-    
-    private void readFields(ClassReader reader) {
         fieldsCount = reader.readU2();
         fields = reader.readTable(FieldInfo.class, fieldsCount.getValue());
-    }
-    
-    private void readMethods(ClassReader reader) {
         methodsCount = reader.readU2();
         methods = reader.readTable(MethodInfo.class, methodsCount.getValue());
-    }
-    
-    private void readAttributes(ClassReader reader) {
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount.getValue());
     }
