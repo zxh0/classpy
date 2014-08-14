@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile.cp;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U1;
 
@@ -12,7 +13,6 @@ cp_info {
  */
 public abstract class ConstantInfo extends ClassComponent {
 
-//    private ConstantType tag;
     private U1 tag;
     
     @Override
@@ -29,25 +29,24 @@ public abstract class ConstantInfo extends ClassComponent {
      * @return 
      */
     public static ConstantInfo create(byte tag) {
-        switch (ConstantType.valueOf(tag)) {
-            case CONSTANT_Integer: return new ConstantIntegerInfo();
-            case CONSTANT_Float: return new ConstantFloatInfo();
-            case CONSTANT_Long: return new ConstantLongInfo();
-            case CONSTANT_Double: return new ConstantDoubleInfo();
-            case CONSTANT_String: return new ConstantStringInfo();
-            case CONSTANT_Utf8: return new ConstantUtf8Info();
-            case CONSTANT_NameAndType: return new ConstantNameAndTypeInfo();
-            case CONSTANT_Class: return new ConstantClassInfo();
-            case CONSTANT_Fieldref: return new ConstantXXXrefInfo();
-            case CONSTANT_Methodref: return new ConstantXXXrefInfo();
-            case CONSTANT_InterfaceMethodref: return new ConstantXXXrefInfo();
-            case CONSTANT_MethodHandle: return new ConstantMethodHandleInfo();
-            case CONSTANT_MethodType: return new ConstantMethodTypeInfo();
-            case CONSTANT_InvokeDynamic: return new ConstantInvokeDynamicInfo();
+        switch (tag) {
+            case  1: return new ConstantUtf8Info();
+            case  3: return new ConstantIntegerInfo();
+            case  4: return new ConstantFloatInfo();
+            case  5: return new ConstantLongInfo();
+            case  6: return new ConstantDoubleInfo();
+            case  7: return new ConstantClassInfo();
+            case  8: return new ConstantStringInfo();
+            case  9: return new ConstantFieldrefInfo();
+            case 10: return new ConstantMethodrefInfo();
+            case 11: return new ConstantInterfaceMethodrefInfo();
+            case 12: return new ConstantNameAndTypeInfo();
+            case 15: return new ConstantMethodHandleInfo();
+            case 16: return new ConstantMethodTypeInfo();
+            case 18: return new ConstantInvokeDynamicInfo();
         }
         
-        // unreachable code
-        throw new RuntimeException("Should not throw this exception!");
+        throw new ClassParseException("Invalid Constant Type: " + tag);
     }
     
 }
