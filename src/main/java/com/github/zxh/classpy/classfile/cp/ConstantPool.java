@@ -3,6 +3,7 @@ package com.github.zxh.classpy.classfile.cp;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.Util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -41,14 +42,13 @@ public class ConstantPool extends ClassComponent {
         loadConstantDesc();
     }
     
-    // like #32: Utf8
+    // like #32: (Utf8)
     private void setConstantName(ConstantInfo constant, int idx) {
-        int idxWide = String.valueOf(cpCount).length();
-        String fmtStr = "#%0" + idxWide + "d (%s)";
+        String idxStr = Util.formatIndex(cpCount, idx);
         String constantName = constant.getClass().getSimpleName()
                 .replace("Constant", "")
                 .replace("Info", "");
-        constant.setName(String.format(fmtStr, idx, constantName));
+        constant.setName(idxStr + " (" + constantName + ")");
     }
     
     private void loadConstantDesc() {
