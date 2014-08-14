@@ -4,11 +4,11 @@ package com.github.zxh.classpy.classfile;
  *
  * @author zxh
  */
-public class U4 extends ClassComponent {
+public class U4Float extends ClassComponent {
 
-    private int value;
+    private float value;
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
     

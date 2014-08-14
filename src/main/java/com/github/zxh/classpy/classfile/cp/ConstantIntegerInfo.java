@@ -11,11 +11,15 @@ CONSTANT_Integer_info {
 */
 public class ConstantIntegerInfo extends ConstantInfo {
 
-    private U4 value;
+    private U4 bytes;
+
+    public U4 getBytes() {
+        return bytes;
+    }
     
     @Override
     protected void readInfo(ClassReader reader) {
-        value = reader.readU4();
+        bytes = reader.readU4();
     }
     
 }

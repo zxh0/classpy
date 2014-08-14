@@ -18,9 +18,9 @@ public class ClassFileTest {
         ClassFile cf = ClassFile.parse(classBytes);
         assertEquals(0, cf.getMinorVersion().getValue());
         assertEquals(52, cf.getMajorVersion().getValue());
-        assertEquals(104, cf.getConstantPoolCount().getValue());
+        assertEquals(110, cf.getConstantPoolCount().getValue());
         assertEquals(2, cf.getInterfacesCount().getValue());
-        assertEquals(3, cf.getFieldsCount().getValue());
+        assertEquals(6, cf.getFieldsCount().getValue());
     }
     
     @Test
