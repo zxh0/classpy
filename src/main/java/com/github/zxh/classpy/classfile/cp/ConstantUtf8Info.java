@@ -15,12 +15,13 @@ public class ConstantUtf8Info extends ConstantInfo {
     private U2 length;
     private Utf8String bytes;
     
+    // because getLength() is defined in ClassComponent
     public U2 getByteCount() {
         return length;
     }
 
-    public String getString() {
-        return bytes.getValue();
+    public Utf8String getBytes() {
+        return bytes;
     }
     
     @Override

@@ -25,6 +25,12 @@ public class Utf8String extends ClassComponent {
     protected void readContent(ClassReader reader) {
         byte[] bytes = reader.readBytes(length);
         value = new String(bytes, StandardCharsets.UTF_8);
+        if (value.length() < 100) {
+            setDesc(value);
+        } else {
+            // cut long String
+            setDesc(value.substring(0, 100) + "...");
+        }
     }
     
 }

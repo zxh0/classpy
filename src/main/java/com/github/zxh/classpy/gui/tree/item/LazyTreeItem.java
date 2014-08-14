@@ -28,6 +28,7 @@ public abstract class LazyTreeItem extends TreeItem<ClassComponent> {
     public ObservableList<TreeItem<ClassComponent>> getChildren() {
         if (isFirstTimeChildren) {
             isFirstTimeChildren = false;
+            System.out.println("get children of " + getValue());
 
             // First getChildren() call, so we actually go off and 
             // determine the children of the File contained in this TreeItem.

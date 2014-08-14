@@ -24,6 +24,7 @@ public class ConstantInfoTreeItem extends LazyTreeItem {
         if (c instanceof ConstantUtf8Info) {
             ConstantUtf8Info utf8 = (ConstantUtf8Info) c;
             children.add(new ClassTreeItem(utf8.getByteCount()));
+            children.add(new ClassTreeItem(utf8.getBytes()));
         }
     }
     

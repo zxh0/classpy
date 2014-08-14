@@ -4,6 +4,7 @@ import java.util.List;
 
 public class TestClass implements Runnable, Comparable<TestClass> {
 
+    public static final String STR = "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq";
     public int x;
     private float y;
     
