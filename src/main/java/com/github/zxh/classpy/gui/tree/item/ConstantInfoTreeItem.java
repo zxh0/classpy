@@ -7,6 +7,7 @@ import com.github.zxh.classpy.classfile.cp.ConstantFloatInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantIntegerInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantLongInfo;
+import com.github.zxh.classpy.classfile.cp.ConstantStringInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantUtf8Info;
 import com.github.zxh.classpy.gui.tree.ClassTreeItem;
 import javafx.collections.ObservableList;
@@ -47,6 +48,9 @@ public class ConstantInfoTreeItem extends LazyTreeItem {
         } else if (c instanceof ConstantClassInfo) {
             ConstantClassInfo cls = (ConstantClassInfo) c;
             children.add(new ClassTreeItem(cls.getNameIndex()));
+        } else if (c instanceof ConstantStringInfo) {
+            ConstantStringInfo str = (ConstantStringInfo) c;
+            children.add(new ClassTreeItem(str.getStringIndex()));
         }
     }
     

@@ -12,6 +12,10 @@ CONSTANT_String_info {
 public class ConstantStringInfo extends ConstantInfo {
 
     private U2 stringIndex;
+
+    public U2 getStringIndex() {
+        return stringIndex;
+    }
     
     @Override
     protected void readInfo(ClassReader reader) {
