@@ -36,11 +36,17 @@ public abstract class ClassComponent {
     
     @Override
     public String toString() {
-        if (name == null) {
-            name = getClass().getSimpleName();
+        if (name != null && desc != null) {
+            return name + ": " + desc;
+        }
+        if (name != null) {
+            return name;
+        }
+        if (desc != null) {
+            return desc;
         }
         
-        return desc == null ? name : name + ": " + desc;
+        return getClass().getSimpleName();
     }
     
 }
