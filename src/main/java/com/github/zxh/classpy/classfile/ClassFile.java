@@ -75,6 +75,11 @@ public class ClassFile extends ClassComponent {
         methods = reader.readTable(MethodInfo.class, methodsCount.getValue());
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount.getValue());
+        
+        // todo
+        interfaces.getSubComponents().forEach(u2 -> {
+            u2.setDesc(constantPool.getClassInfo(u2.getValue()).getDesc());
+        });
     }
 
     @Override

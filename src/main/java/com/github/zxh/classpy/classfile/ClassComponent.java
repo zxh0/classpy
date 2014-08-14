@@ -30,7 +30,7 @@ public abstract class ClassComponent {
     protected abstract void readContent(ClassReader reader);
     
     @SuppressWarnings("unchecked")
-    public List<ClassComponent> getSubComponents() {
+    public List<? extends ClassComponent> getSubComponents() {
         return Collections.EMPTY_LIST;
     }
     

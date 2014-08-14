@@ -23,12 +23,13 @@ public class Table<T extends ClassComponent> extends ClassComponent {
     protected void readContent(ClassReader reader) {
         table = reader.readArray(classOfT, n);
         for (int i = 0; i < table.length; i++) {
-            table[i].setName(String.valueOf(i));
+            String name = Util.formatIndex(n, i);
+            table[i].setName(name);
         }
     }
 
     @Override
-    public List<ClassComponent> getSubComponents() {
+    public List<T> getSubComponents() {
         return Arrays.asList(table);
     }
     
