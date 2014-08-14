@@ -30,6 +30,10 @@ public class TestClass implements Runnable, Comparable<TestClass> {
         list.sort((a, b) -> 1);
     }
     
+    public int m2() {
+        return x + 1;
+    }
+    
     public void testEnclosingMethodAttribute() {
         new Runnable() {
 

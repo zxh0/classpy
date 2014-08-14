@@ -17,6 +17,10 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
 
     private U2 nameIndex;
     private U2 descriptorIndex;
+
+    public U2 getNameIndex() {
+        return nameIndex;
+    }
     
     @Override
     protected void readInfo(ClassReader reader) {

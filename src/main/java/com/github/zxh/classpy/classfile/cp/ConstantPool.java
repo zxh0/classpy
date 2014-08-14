@@ -67,12 +67,23 @@ public class ConstantPool extends ClassComponent {
     }
     
     public String getUtf8String(int index) {
-        ConstantInfo info = constants[index];
-        if (info instanceof ConstantUtf8Info) {
-            return ((ConstantUtf8Info) info).getString();
-        } else {
-            throw new ClassParseException("Constant#" + index + " is not ConstantUtf8Info!");
+        return getConstant(ConstantUtf8Info.class, index).getString();
+    }
+    
+    public ConstantClassInfo getClassInfo(int index) {
+        return getConstant(ConstantClassInfo.class, index);
+    }
+    
+    public ConstantNameAndTypeInfo getNameAndTypeInfo(int index) {
+        return getConstant(ConstantNameAndTypeInfo.class, index);
+    }
+    
+    private <T> T getConstant(Class<T> classOfT, int index) {
+        ConstantInfo c = constants[index];
+        if (c.getClass() != classOfT) {
+            throw new ClassParseException("Constant#" + index + " is not " + classOfT.getSimpleName() + "!");
         }
+        return classOfT.cast(c);
     }
     
 }
