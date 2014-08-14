@@ -26,7 +26,7 @@ ClassFile {
     attribute_info attributes[attributes_count];
 }
 */
-public class ClassFile {
+public class ClassFile extends ClassComponent {
     
     private U4 magic;
     private U2 minorVersion;
@@ -45,8 +45,25 @@ public class ClassFile {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
     
-    public void read(ByteBuffer buf) {
-        ClassReader reader = new ClassReader(buf);
+    public U4 getMagic() {return magic;}
+    public U2 getMinorVersion() {return minorVersion;}
+    public U2 getMajorVersion() {return majorVersion;}
+    public U2 getConstantPoolCount() {return constantPoolCount;}
+    public ConstantPool getConstantPool() {return constantPool;}
+    public U2 getAccessFlags() {return accessFlags;}
+    public U2 getThisClass() {return thisClass;}
+    public U2 getSuperClass() {return superClass;}
+    public U2 getInterfacesCount() {return interfacesCount;}
+    public U2 getFieldsCount() {return fieldsCount;}
+    public U2 getMethodsCount() {return methodsCount;}
+    public U2 getAttributesCount() {return attributesCount;}
+    
+//    public void read(ByteBuffer buf) {
+//        readContent(new ClassReader(buf));
+//    }
+    
+    @Override
+    protected void readContent(ClassReader reader) {
         magic = reader.readU4();
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
@@ -65,23 +82,17 @@ public class ClassFile {
         attributes = reader.readTable(AttributeInfo.class, attributesCount.getValue());
     }
     
-    public U4 getMagic() {return magic;}
-    public U2 getMinorVersion() {return minorVersion;}
-    public U2 getMajorVersion() {return majorVersion;}
-    public U2 getConstantPoolCount() {return constantPoolCount;}
-    public ConstantPool getConstantPool() {return constantPool;}
-    public U2 getAccessFlags() {return accessFlags;}
-    public U2 getThisClass() {return thisClass;}
-    public U2 getSuperClass() {return superClass;}
-    public U2 getInterfacesCount() {return interfacesCount;}
-    public U2 getFieldsCount() {return fieldsCount;}
-    public U2 getMethodsCount() {return methodsCount;}
-    public U2 getAttributesCount() {return attributesCount;}
-
+    @Override
+    public String toString() {
+        return "ClassFile"; // todo
+    }
     
     public static ClassFile parse(byte[] bytes) {
+        ByteBuffer buf = ByteBuffer.wrap(bytes);
+        ClassReader reader = new ClassReader(buf);
         ClassFile cf = new ClassFile();
-        cf.read(ByteBuffer.wrap(bytes));
+        cf.read(reader);
+        
         try {
             setNameForClassComponents(cf);
         } catch (ReflectiveOperationException e) {
@@ -128,5 +139,5 @@ public class ClassFile {
         return field.getType().isArray()
                 && ClassComponent.class.isAssignableFrom(field.getType().getComponentType());
     }
-    
+
 }

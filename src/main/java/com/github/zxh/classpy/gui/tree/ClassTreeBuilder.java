@@ -20,7 +20,8 @@ public class ClassTreeBuilder {
     }
     
     public TreeView<ClassComponent> build() {
-        TreeItem<ClassComponent> root = new TreeItem<>();
+        TreeItem<ClassComponent> root = new TreeItem<>(cf);
+        root.setExpanded(true);
         
         root.getChildren().add(new ClassTreeItem(cf.getMagic()));
         root.getChildren().add(new ClassTreeItem(cf.getMinorVersion()));
