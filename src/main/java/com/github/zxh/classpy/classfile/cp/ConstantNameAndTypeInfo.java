@@ -30,7 +30,9 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return null;
+        String name = pool.getUtf8String(nameIndex.getValue());
+        String type = pool.getUtf8String(descriptorIndex.getValue());
+        return name + "&" + type;
     }
     
     @Override
