@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.classfile.attr;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 Exceptions_attribute {
@@ -21,6 +24,12 @@ public class ExceptionsAttribute extends AttributeInfo {
         numberOfExceptions = reader.readU2();
         exceptionIndexTable = reader.readArray(U2.class,
                 numberOfExceptions.getValue());
+    }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                numberOfExceptions);
     }
     
 }
