@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.gui.tree.item;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
@@ -30,11 +31,13 @@ public abstract class LazyTreeItem extends TreeItem<ClassComponent> {
 
             // First getChildren() call, so we actually go off and 
             // determine the children of the File contained in this TreeItem.
-            super.getChildren().setAll(buildChildren());
+            ObservableList<TreeItem<ClassComponent>> children = FXCollections.observableArrayList();
+            buildChildren(children);
+            super.getChildren().setAll(children);
         }
         return super.getChildren();
     }
 
-    protected abstract ObservableList<TreeItem<ClassComponent>> buildChildren();
+    protected abstract void buildChildren(ObservableList<TreeItem<ClassComponent>> children);
     
 }
