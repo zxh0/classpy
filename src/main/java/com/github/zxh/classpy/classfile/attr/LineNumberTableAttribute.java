@@ -2,7 +2,10 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 LineNumberTable_attribute {
@@ -17,14 +20,21 @@ LineNumberTable_attribute {
 public class LineNumberTableAttribute extends AttributeInfo {
 
     private U2 lineNumberTableLength;
-    private LineNumberTableEntry[] lineNumberTable;
+    private Table<LineNumberTableEntry> lineNumberTable;
     
     @Override
     protected void readInfo(ClassReader reader) {
         lineNumberTableLength = reader.readU2();
-        lineNumberTable = reader.readArray(LineNumberTableEntry.class,
-                lineNumberTableLength.getValue());
+        lineNumberTable = reader.readTable(LineNumberTableEntry.class,
+                lineNumberTableLength);
     }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                lineNumberTableLength, lineNumberTable);
+    }
+    
     
     public static class LineNumberTableEntry extends ClassComponent {
         
