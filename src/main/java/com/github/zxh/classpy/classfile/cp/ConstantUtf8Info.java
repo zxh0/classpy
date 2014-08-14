@@ -31,7 +31,12 @@ public class ConstantUtf8Info extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return null;
+        String str = bytes.getValue();
+        if (str.length() > 32) {
+            return str.substring(0, 32) + "...";
+        } else {
+            return str;
+        }
     }
     
     @Override

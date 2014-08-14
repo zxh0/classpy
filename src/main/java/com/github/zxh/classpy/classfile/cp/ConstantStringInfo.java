@@ -23,7 +23,7 @@ public class ConstantStringInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return null;
+        return pool.getUtf8Info(stringIndex.getValue()).loadDesc(pool);
     }
     
     @Override

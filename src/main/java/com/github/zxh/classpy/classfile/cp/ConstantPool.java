@@ -70,6 +70,10 @@ public class ConstantPool extends ClassComponent {
         return getConstant(ConstantUtf8Info.class, index).getString();
     }
     
+    public ConstantUtf8Info getUtf8Info(int index) {
+        return getConstant(ConstantUtf8Info.class, index);
+    }
+    
     public ConstantClassInfo getClassInfo(int index) {
         return getConstant(ConstantClassInfo.class, index);
     }
