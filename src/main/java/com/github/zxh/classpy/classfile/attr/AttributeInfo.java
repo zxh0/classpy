@@ -33,7 +33,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "ConstantValue": return new ConstantValueAttribute();
             case "Code": return new CodeAttribute(); // todo
             case "StackMapTable": return new StackMapTableAttribute(); // todo
-            case "Exceptions": return new ExceptionsAttribute(); // todo
+            case "Exceptions": return new ExceptionsAttribute();
             case "InnerClasses": return new InnerClassesAttribute(); // todo
             case "EnclosingMethod": return new EnclosingMethodAttribute();
             case "Synthetic": break; // todo

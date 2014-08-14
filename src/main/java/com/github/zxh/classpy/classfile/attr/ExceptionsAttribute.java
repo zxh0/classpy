@@ -29,7 +29,7 @@ public class ExceptionsAttribute extends AttributeInfo {
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(attributeNameIndex, attributeLength,
-                numberOfExceptions);
+                numberOfExceptions, exceptionIndexTable);
     }
     
 }
