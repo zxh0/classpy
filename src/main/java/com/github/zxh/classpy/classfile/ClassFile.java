@@ -5,11 +5,6 @@ import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
 
-/**
- *
- * 
- * @author zxh
- */
 /*
 ClassFile {
     u4             magic;
@@ -73,6 +68,7 @@ public class ClassFile {
     public U2 getMinorVersion() {return minorVersion;}
     public U2 getMajorVersion() {return majorVersion;}
     public U2 getConstantPoolCount() {return constantPoolCount;}
+    public ConstantPool getConstantPool() {return constantPool;}
     public U2 getAccessFlags() {return accessFlags;}
     public U2 getThisClass() {return thisClass;}
     public U2 getSuperClass() {return superClass;}
