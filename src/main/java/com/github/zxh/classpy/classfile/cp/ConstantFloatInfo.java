@@ -21,7 +21,12 @@ public class ConstantFloatInfo extends ConstantInfo {
         bytes = new U4Float();
         bytes.read(reader);
     }
-        
+    
+    @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
+    
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, bytes);

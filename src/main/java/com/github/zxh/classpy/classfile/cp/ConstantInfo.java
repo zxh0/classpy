@@ -22,6 +22,7 @@ public abstract class ConstantInfo extends ClassComponent {
     }
     
     protected abstract void readInfo(ClassReader reader);
+    protected abstract String loadDesc(ConstantPool pool);
     
 
     /**

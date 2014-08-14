@@ -20,7 +20,12 @@ public class ConstantIntegerInfo extends ConstantInfo {
     protected void readInfo(ClassReader reader) {
         bytes = reader.readU4();
     }
-        
+    
+    @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
+    
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, bytes);

@@ -24,7 +24,12 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
         referenceKind = reader.readU1();
         referenceIndex = reader.readU2();
     }
-        
+    
+    @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
+    
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, referenceKind, referenceIndex);

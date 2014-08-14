@@ -32,6 +32,11 @@ public class ConstantLongInfo extends ConstantInfo {
     }
     
     @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
+    
+    @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, highBytes, lowBytes);
     }

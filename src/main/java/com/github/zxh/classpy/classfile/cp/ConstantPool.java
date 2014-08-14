@@ -6,7 +6,6 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 /**
@@ -39,6 +38,7 @@ public class ConstantPool extends ClassComponent {
                 i++;
             }
         }
+        loadConstantDesc();
     }
     
     // like #32: Utf8
@@ -49,6 +49,14 @@ public class ConstantPool extends ClassComponent {
                 .replace("Constant", "")
                 .replace("Info", "");
         constant.setName(String.format(fmtStr, idx, constantName));
+    }
+    
+    private void loadConstantDesc() {
+        for (ConstantInfo c : constants) {
+            if (c != null) {
+                c.setDesc(c.loadDesc(this));
+            }
+        }
     }
 
     @Override

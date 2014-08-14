@@ -23,7 +23,12 @@ public class ConstantInvokeDynamicInfo extends ConstantInfo {
         bootstrapMethodAttrIndex = reader.readU2();
         nameAndTypeIndex = reader.readU2();
     }
-        
+    
+    @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
+    
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, bootstrapMethodAttrIndex, nameAndTypeIndex);

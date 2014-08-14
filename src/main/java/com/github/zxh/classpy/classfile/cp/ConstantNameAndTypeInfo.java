@@ -23,7 +23,12 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
         nameIndex = reader.readU2();
         descriptorIndex = reader.readU2();
     }
-        
+    
+    @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
+    
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, nameIndex, descriptorIndex);

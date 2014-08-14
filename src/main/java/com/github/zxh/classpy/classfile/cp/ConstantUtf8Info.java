@@ -28,7 +28,12 @@ public class ConstantUtf8Info extends ConstantInfo {
         bytes = new Utf8String(length.getValue());
         bytes.read(reader);
     }
-        
+    
+    @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
+    
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, length, bytes);

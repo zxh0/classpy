@@ -27,6 +27,11 @@ public class ConstantDoubleInfo extends ConstantInfo {
         lowBytes = reader.readU4();
         lowBytes.useHexDesc();
     }
+
+    @Override
+    protected String loadDesc(ConstantPool pool) {
+        return null;
+    }
     
     @Override
     public List<ClassComponent> getSubComponents() {

@@ -22,6 +22,11 @@ public class ConstantClassInfo extends ConstantInfo {
     }
 
     @Override
+    protected String loadDesc(ConstantPool pool) {
+        return pool.getUtf8String(nameIndex.getValue());
+    }
+
+    @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(tag, nameIndex);
     }
