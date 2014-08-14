@@ -40,19 +40,19 @@ public abstract class AttributeInfo extends ClassComponent {
             case "Signature": return new SignatureAttribute();
             case "SourceFile":  return new SourceFileAttribute();
             case "SourceDebugExtension": break; // todo
-            case "LineNumberTable": return new LineNumberTableAttribute();
-            case "LocalVariableTable": return new LocalVariableTableAttribute();
-            case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute();
+            case "LineNumberTable": return new LineNumberTableAttribute(); // todo
+            case "LocalVariableTable": return new LocalVariableTableAttribute(); // todo
+            case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute(); // todo
             case "Deprecated": return new DeprecatedAttribute();
-            case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
-            case "RuntimeInvisibleAnnotations": break;
-            case "RuntimeVisibleParameterAnnotations": break;
-            case "RuntimeInvisibleParameterAnnotations": break;
-            case "RuntimeVisibleTypeAnnotations": break;
-            case "RuntimeInvisibleTypeAnnotations": break;
-            case "AnnotationDefault": break;
-            case "BootstrapMethods": return new BootstrapMethodsAttribute();
-            case "MethodParameters": break;
+            case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute(); // todo
+            case "RuntimeInvisibleAnnotations": break; // todo
+            case "RuntimeVisibleParameterAnnotations": break; // todo
+            case "RuntimeInvisibleParameterAnnotations": break; // todo
+            case "RuntimeVisibleTypeAnnotations": break; // todo
+            case "RuntimeInvisibleTypeAnnotations": break; // todo
+            case "AnnotationDefault": break; // todo
+            case "BootstrapMethods": return new BootstrapMethodsAttribute(); // todo
+            case "MethodParameters": break; // todo
         }
         
         // todo

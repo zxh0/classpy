@@ -26,11 +26,15 @@ public class TestClass implements Runnable, Comparable<TestClass> {
     }
     
     @Deprecated
-    public void deprecatedM() {
+    public void testDeprecatedAttribute() {
         
     }
     
-    public static <T extends Comparable<T>> void m1(List<T> list) throws RuntimeException {
+    public void testExceptionsAttribute() throws RuntimeException {
+        
+    }
+    
+    public static <T extends Comparable<T>> void m1(List<T> list) {
         list.sort((a, b) -> 1);
     }
     
