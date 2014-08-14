@@ -9,11 +9,11 @@ import javafx.scene.control.TreeView;
  *
  * @author zxh
  */
-public class TreeViewBuilder {
+public class ClassTreeBuilder {
     
     private final ClassFile cf;
 
-    public TreeViewBuilder(ClassFile cf) {
+    public ClassTreeBuilder(ClassFile cf) {
         this.cf = cf;
     }
     
