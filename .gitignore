@@ -1,3 +1,5 @@
 /.gradle/*
 /.nb-gradle/*
 /build/
+/TestJava7/.nb-gradle/private/
+/TestJava7/build/

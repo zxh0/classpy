@@ -12,6 +12,10 @@ CONSTANT_Class_info {
 public class ConstantClassInfo extends ConstantInfo {
 
     private U2 nameIndex;
+
+    public U2 getNameIndex() {
+        return nameIndex;
+    }
     
     @Override
     protected void readInfo(ClassReader reader) {

@@ -15,6 +15,9 @@ public class ConstantLongInfo extends ConstantInfo {
     private U4 highBytes;
     private U4 lowBytes;
     private long value;
+
+    public U4 getHighBytes() {return highBytes;}
+    public U4 getLowBytes() {return lowBytes;}
     
     @Override
     protected void readInfo(ClassReader reader) {

@@ -1,9 +1,12 @@
 package com.github.zxh.classpy.gui.tree.item;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.cp.ConstantClassInfo;
+import com.github.zxh.classpy.classfile.cp.ConstantDoubleInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantFloatInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantIntegerInfo;
+import com.github.zxh.classpy.classfile.cp.ConstantLongInfo;
 import com.github.zxh.classpy.classfile.cp.ConstantUtf8Info;
 import com.github.zxh.classpy.gui.tree.ClassTreeItem;
 import javafx.collections.ObservableList;
@@ -33,6 +36,17 @@ public class ConstantInfoTreeItem extends LazyTreeItem {
         } else if (c instanceof ConstantFloatInfo) {
             ConstantFloatInfo f = (ConstantFloatInfo) c;
             children.add(new ClassTreeItem(f.getBytes()));
+        } else if (c instanceof  ConstantLongInfo) {
+            ConstantLongInfo l = (ConstantLongInfo) c;
+            //children.add(new ClassTreeItem(l.getHighBytes()));
+            //children.add(new ClassTreeItem(l.getLowBytes()));
+        } else if (c instanceof  ConstantDoubleInfo) {
+            ConstantDoubleInfo d = (ConstantDoubleInfo) c;
+            //children.add(new ClassTreeItem(d.getHighBytes()));
+            //children.add(new ClassTreeItem(d.getLowBytes()));
+        } else if (c instanceof ConstantClassInfo) {
+            ConstantClassInfo cls = (ConstantClassInfo) c;
+            children.add(new ClassTreeItem(cls.getNameIndex()));
         }
     }
     
