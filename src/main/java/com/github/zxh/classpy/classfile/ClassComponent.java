@@ -1,5 +1,8 @@
 package com.github.zxh.classpy.classfile;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  *
  * @author zxh
@@ -22,6 +25,11 @@ public abstract class ClassComponent {
         offset = reader.getPosition();
         readContent(reader);
         length = reader.getPosition() - offset;
+    }
+    
+    @SuppressWarnings("unchecked")
+    public List<ClassComponent> getSubComponents() {
+        return Collections.EMPTY_LIST;
     }
     
     protected abstract void readContent(ClassReader reader);
