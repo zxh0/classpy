@@ -75,28 +75,28 @@ public class ConstantPool extends ClassComponent {
         return getUtf8String(index.getValue());
     }
     
-    public ConstantUtf8Info getUtf8Info(int index) {
-        return getConstant(ConstantUtf8Info.class, index);
+    public ConstantUtf8Info getUtf8Info(U2 index) {
+        return getConstant(ConstantUtf8Info.class, index.getValue());
     }
     
-    public ConstantClassInfo getClassInfo(int index) {
-        return getConstant(ConstantClassInfo.class, index);
+    public ConstantClassInfo getClassInfo(U2 index) {
+        return getConstant(ConstantClassInfo.class, index.getValue());
     }
     
-    public ConstantNameAndTypeInfo getNameAndTypeInfo(int index) {
-        return getConstant(ConstantNameAndTypeInfo.class, index);
+    public ConstantNameAndTypeInfo getNameAndTypeInfo(U2 index) {
+        return getConstant(ConstantNameAndTypeInfo.class, index.getValue());
     }
     
-    public ConstantFieldrefInfo getFieldrefInfo(int index) {
-        return getConstant(ConstantFieldrefInfo.class, index);
+    public ConstantFieldrefInfo getFieldrefInfo(U2 index) {
+        return getConstant(ConstantFieldrefInfo.class, index.getValue());
     }
     
-    public ConstantMethodrefInfo getMethodrefInfo(int index) {
-        return getConstant(ConstantMethodrefInfo.class, index);
+    public ConstantMethodrefInfo getMethodrefInfo(U2 index) {
+        return getConstant(ConstantMethodrefInfo.class, index.getValue());
     }
     
-    public ConstantInterfaceMethodrefInfo getInterfaceMethodrefInfo(int index) {
-        return getConstant(ConstantInterfaceMethodrefInfo.class, index);
+    public ConstantInterfaceMethodrefInfo getInterfaceMethodrefInfo(U2 index) {
+        return getConstant(ConstantInterfaceMethodrefInfo.class, index.getValue());
     }
     
     private <T> T getConstant(Class<T> classOfT, int index) {

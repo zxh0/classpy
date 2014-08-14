@@ -26,8 +26,7 @@ public class ConstantInvokeDynamicInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return pool.getNameAndTypeInfo(nameAndTypeIndex.getValue())
-                .loadDesc(pool);
+        return pool.getNameAndTypeInfo(nameAndTypeIndex).loadDesc(pool);
     }
     
     @Override

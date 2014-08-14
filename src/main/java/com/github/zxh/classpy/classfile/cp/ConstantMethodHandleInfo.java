@@ -33,19 +33,19 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
             case REF_getStatic:
             case REF_putField:
             case REF_putStatic:
-                return refKind + "=>" + pool.getFieldrefInfo(referenceIndex.getValue()).loadDesc(pool);
+                return refKind + "=>" + pool.getFieldrefInfo(referenceIndex).loadDesc(pool);
             case REF_invokeVirtual:
             case REF_newInvokeSpecial:
-                return refKind + "=>" + pool.getMethodrefInfo(referenceIndex.getValue()).loadDesc(pool);
+                return refKind + "=>" + pool.getMethodrefInfo(referenceIndex).loadDesc(pool);
             case REF_invokeStatic:
             case REF_invokeSpecial:
                 try {
-                    return refKind + "=>" + pool.getMethodrefInfo(referenceIndex.getValue()).loadDesc(pool); 
+                    return refKind + "=>" + pool.getMethodrefInfo(referenceIndex).loadDesc(pool); 
                 } catch (Exception e) {
-                    return refKind + "=>" + pool.getInterfaceMethodrefInfo(referenceIndex.getValue()).loadDesc(pool);
+                    return refKind + "=>" + pool.getInterfaceMethodrefInfo(referenceIndex).loadDesc(pool);
                 }
             case REF_invokeInterface:
-                return refKind + "=>" + pool.getInterfaceMethodrefInfo(referenceIndex.getValue()).loadDesc(pool);
+                return refKind + "=>" + pool.getInterfaceMethodrefInfo(referenceIndex).loadDesc(pool);
         }
         
         return null;

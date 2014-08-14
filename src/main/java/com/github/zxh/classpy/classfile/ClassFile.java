@@ -78,7 +78,7 @@ public class ClassFile extends ClassComponent {
         
         // todo
         interfaces.getSubComponents().forEach(u2 -> {
-            u2.setDesc(constantPool.getClassInfo(u2.getValue()).getDesc());
+            u2.setDesc(constantPool.getClassInfo(u2).getDesc());
         });
     }
 

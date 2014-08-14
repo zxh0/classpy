@@ -26,9 +26,9 @@ public class ConstantFieldrefInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        ConstantClassInfo classInfo = pool.getClassInfo(classIndex.getValue());
+        ConstantClassInfo classInfo = pool.getClassInfo(classIndex);
         String className = pool.getUtf8String(classInfo.getNameIndex());
-        ConstantNameAndTypeInfo nameAndTypeInfo = pool.getNameAndTypeInfo(nameAndTypeIndex.getValue());
+        ConstantNameAndTypeInfo nameAndTypeInfo = pool.getNameAndTypeInfo(nameAndTypeIndex);
         String fieldName = pool.getUtf8String(nameAndTypeInfo.getNameIndex());
         return className + "." + fieldName;
     }
