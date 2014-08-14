@@ -5,6 +5,8 @@ import com.github.zxh.classpy.classfile.cp.ConstantPool;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.nio.ByteBuffer;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 ClassFile {
@@ -45,23 +47,6 @@ public class ClassFile extends ClassComponent {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
     
-    public U4 getMagic() {return magic;}
-    public U2 getMinorVersion() {return minorVersion;}
-    public U2 getMajorVersion() {return majorVersion;}
-    public U2 getConstantPoolCount() {return constantPoolCount;}
-    public ConstantPool getConstantPool() {return constantPool;}
-    public U2 getAccessFlags() {return accessFlags;}
-    public U2 getThisClass() {return thisClass;}
-    public U2 getSuperClass() {return superClass;}
-    public U2 getInterfacesCount() {return interfacesCount;}
-    public U2 getFieldsCount() {return fieldsCount;}
-    public U2 getMethodsCount() {return methodsCount;}
-    public U2 getAttributesCount() {return attributesCount;}
-    
-//    public void read(ByteBuffer buf) {
-//        readContent(new ClassReader(buf));
-//    }
-    
     @Override
     protected void readContent(ClassReader reader) {
         magic = reader.readU4();
@@ -81,6 +66,18 @@ public class ClassFile extends ClassComponent {
         methods = reader.readTable(MethodInfo.class, methodsCount.getValue());
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount.getValue());
+    }
+
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(magic,
+                minorVersion, majorVersion,
+                constantPoolCount, constantPool,
+                accessFlags, thisClass, superClass,
+                interfacesCount, interfaces,
+                fieldsCount, fields,
+                methodsCount, methods,
+                attributesCount, attributes);
     }
     
     @Override

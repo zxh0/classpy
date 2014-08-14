@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class Table<T extends ClassComponent> extends ClassComponent {
 
     @Override
     public List<ClassComponent> getSubComponents() {
-        return super.getSubComponents(); //To change body of generated methods, choose Tools | Templates.
+        return Arrays.asList(table);
     }
     
 }
