@@ -47,6 +47,18 @@ public class ClassFile extends ClassComponent {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
     
+    public U4 getMagic() {return magic;}
+    public U2 getMinorVersion() {return minorVersion;}
+    public U2 getMajorVersion() {return majorVersion;}
+    public U2 getConstantPoolCount() {return constantPoolCount;}
+    public U2 getAccessFlags() {return accessFlags;}
+    public U2 getThisClass() {return thisClass;}
+    public U2 getSuperClass() {return superClass;}
+    public U2 getInterfacesCount() {return interfacesCount;}
+    public U2 getFieldsCount() {return fieldsCount;}
+    public U2 getMethodsCount() {return methodsCount;}
+    public U2 getAttributesCount() {return attributesCount;}
+    
     @Override
     protected void readContent(ClassReader reader) {
         magic = reader.readU4();
