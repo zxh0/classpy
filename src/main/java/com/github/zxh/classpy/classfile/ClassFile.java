@@ -66,9 +66,7 @@ public class ClassFile {
     
     private void readConstantPool(ClassReader reader) {
         constantPoolCount = reader.readU2();
-        constantPool = new ConstantPool(constantPoolCount.getValue());
-        constantPool.read(reader);
-        reader.setConstantPool(constantPool);
+        constantPool = reader.readConstantPool(constantPoolCount.getValue());
     }
     
     private void readInterfaces(ClassReader reader) {

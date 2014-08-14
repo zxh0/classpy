@@ -23,7 +23,7 @@ public class ClassReader {
         return buf;
     }
     
-    public int position() {
+    public int getPosition() {
         return buf.position();
     }
 
@@ -31,16 +31,6 @@ public class ClassReader {
         return constantPool;
     }
 
-    public void setConstantPool(ConstantPool constantPool) {
-        this.constantPool = constantPool;
-    }
-    
-    public byte[] readBytes(int n) {
-        byte[] bytes = new byte[n];
-        buf.get(bytes);
-        return bytes;
-    }
-    
     public U1 readU1() {
         U1 u1 = new U1();
         u1.read(this);
@@ -57,6 +47,18 @@ public class ClassReader {
         U4 u4 = new U4();
         u4.read(this);
         return u4;
+    }
+    
+    public byte[] readBytes(int n) {
+        byte[] bytes = new byte[n];
+        buf.get(bytes);
+        return bytes;
+    }
+    
+    public ConstantPool readConstantPool(int cpCount) {
+        constantPool = new ConstantPool(cpCount);
+        constantPool.read(this);
+        return constantPool;
     }
     
     public ConstantInfo readConstantInfo() {
