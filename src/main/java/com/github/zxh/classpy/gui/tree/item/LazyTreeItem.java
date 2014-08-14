@@ -21,7 +21,7 @@ public abstract class LazyTreeItem extends TreeItem<ClassComponent> {
 
     @Override
     public boolean isLeaf() {
-        return false;
+        return getValue().getSubComponents().isEmpty();
     }
     
     @Override

@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.gui.tree.item;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.gui.tree.ClassTreeItem;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
@@ -18,7 +17,7 @@ public class ClassComponentTreeItem extends LazyTreeItem {
     @Override
     protected void buildChildren(ObservableList<TreeItem<ClassComponent>> children) {
         getValue().getSubComponents().forEach(sub -> {
-            children.add(new ClassTreeItem(sub));
+            children.add(new ClassComponentTreeItem(sub));
         });
     }
     

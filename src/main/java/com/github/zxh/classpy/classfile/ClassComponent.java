@@ -27,12 +27,12 @@ public abstract class ClassComponent {
         length = reader.getPosition() - offset;
     }
     
+    protected abstract void readContent(ClassReader reader);
+    
     @SuppressWarnings("unchecked")
     public List<ClassComponent> getSubComponents() {
         return Collections.EMPTY_LIST;
     }
-    
-    protected abstract void readContent(ClassReader reader);
     
     @Override
     public String toString() {

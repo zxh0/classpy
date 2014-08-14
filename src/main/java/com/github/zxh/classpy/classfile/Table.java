@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
+import java.util.List;
+
 /**
  *
  * @author zxh
@@ -19,6 +21,11 @@ public class Table<T extends ClassComponent> extends ClassComponent {
     @Override
     protected void readContent(ClassReader reader) {
         table = reader.readArray(classOfT, n);
+    }
+
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return super.getSubComponents(); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

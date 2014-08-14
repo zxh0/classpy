@@ -3,7 +3,11 @@ package com.github.zxh.classpy.classfile.cp;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -45,6 +49,13 @@ public class ConstantPool extends ClassComponent {
                 .replace("Constant", "")
                 .replace("Info", "");
         constant.setName(String.format(fmtStr, idx, constantName));
+    }
+
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.stream(constants)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
     
     public void forEach(Consumer<ConstantInfo> consumer) {
