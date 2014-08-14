@@ -78,6 +78,18 @@ public class ConstantPool extends ClassComponent {
         return getConstant(ConstantNameAndTypeInfo.class, index);
     }
     
+    public ConstantFieldrefInfo getFieldrefInfo(int index) {
+        return getConstant(ConstantFieldrefInfo.class, index);
+    }
+    
+    public ConstantMethodrefInfo getMethodrefInfo(int index) {
+        return getConstant(ConstantMethodrefInfo.class, index);
+    }
+    
+    public ConstantInterfaceMethodrefInfo getInterfaceMethodrefInfo(int index) {
+        return getConstant(ConstantInterfaceMethodrefInfo.class, index);
+    }
+    
     private <T> T getConstant(Class<T> classOfT, int index) {
         ConstantInfo c = constants[index];
         if (c.getClass() != classOfT) {
