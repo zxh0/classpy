@@ -36,7 +36,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "Exceptions": return new ExceptionsAttribute(); // todo
             case "InnerClasses": return new InnerClassesAttribute(); // todo
             case "EnclosingMethod": return new EnclosingMethodAttribute();
-            case "Synthetic": break;
+            case "Synthetic": break; // todo
             case "Signature": return new SignatureAttribute();
             case "SourceFile":  return new SourceFileAttribute();
             case "SourceDebugExtension": break;
