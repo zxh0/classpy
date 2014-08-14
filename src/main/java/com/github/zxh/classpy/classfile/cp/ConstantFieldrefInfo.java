@@ -26,7 +26,7 @@ public class ConstantFieldrefInfo extends ConstantInfo {
     
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), classIndex, nameAndTypeIndex);
+        return Arrays.asList(tag, classIndex, nameAndTypeIndex);
     }
     
 }

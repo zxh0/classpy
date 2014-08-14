@@ -23,7 +23,7 @@ public class ConstantStringInfo extends ConstantInfo {
         
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), stringIndex);
+        return Arrays.asList(tag, stringIndex);
     }
     
 }

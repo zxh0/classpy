@@ -23,7 +23,7 @@ public class ConstantMethodTypeInfo extends ConstantInfo {
         
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), descriptorIndex);
+        return Arrays.asList(tag, descriptorIndex);
     }
     
 }

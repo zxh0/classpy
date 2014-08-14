@@ -30,7 +30,7 @@ public class ConstantDoubleInfo extends ConstantInfo {
     
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), highBytes, lowBytes);
+        return Arrays.asList(tag, highBytes, lowBytes);
     }
     
 }

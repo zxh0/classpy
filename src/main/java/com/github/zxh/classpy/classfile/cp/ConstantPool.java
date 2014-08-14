@@ -44,7 +44,7 @@ public class ConstantPool extends ClassComponent {
     // like #32: Utf8
     private void setConstantName(ConstantInfo constant, int idx) {
         int idxWide = String.valueOf(cpCount).length();
-        String fmtStr = "#%0" + idxWide + "d: %s";
+        String fmtStr = "#%0" + idxWide + "d (%s)";
         String constantName = constant.getClass().getSimpleName()
                 .replace("Constant", "")
                 .replace("Info", "");
@@ -56,14 +56,6 @@ public class ConstantPool extends ClassComponent {
         return Arrays.stream(constants)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-    }
-    
-    public void forEach(Consumer<ConstantInfo> consumer) {
-        for (ConstantInfo c : constants) {
-            if (c != null) {
-                consumer.accept(c);
-            }
-        }
     }
     
     public String getUtf8String(int index) {

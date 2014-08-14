@@ -31,7 +31,7 @@ public class ConstantUtf8Info extends ConstantInfo {
         
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), length, bytes);
+        return Arrays.asList(tag, length, bytes);
     }
     
 }

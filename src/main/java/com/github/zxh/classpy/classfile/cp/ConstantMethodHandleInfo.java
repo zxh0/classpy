@@ -27,7 +27,7 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
         
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), referenceKind, referenceIndex);
+        return Arrays.asList(tag, referenceKind, referenceIndex);
     }
     
 }

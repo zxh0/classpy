@@ -26,7 +26,7 @@ public class ConstantInvokeDynamicInfo extends ConstantInfo {
         
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), bootstrapMethodAttrIndex, nameAndTypeIndex);
+        return Arrays.asList(tag, bootstrapMethodAttrIndex, nameAndTypeIndex);
     }
     
 }

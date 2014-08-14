@@ -24,7 +24,7 @@ public class ConstantFloatInfo extends ConstantInfo {
         
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), bytes);
+        return Arrays.asList(tag, bytes);
     }
     
 }

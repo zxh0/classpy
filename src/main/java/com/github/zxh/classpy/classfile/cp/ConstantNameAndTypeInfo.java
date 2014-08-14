@@ -26,7 +26,7 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
         
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(getTag(), nameIndex, descriptorIndex);
+        return Arrays.asList(tag, nameIndex, descriptorIndex);
     }
     
 }
