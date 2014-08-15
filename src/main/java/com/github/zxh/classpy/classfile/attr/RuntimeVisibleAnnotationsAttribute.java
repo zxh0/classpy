@@ -117,8 +117,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
 
         // tag=e
         // enum_const_value;
-        private U2CpIndex typeNameIndex;
-        private U2CpIndex constNameIndex;
+        private EnumConstValue enumConstValue;
 
         // tag=c
         private U2CpIndex classInfoIndex;
@@ -148,8 +147,8 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                     constValueIndex = reader.readU2CpIndex();
                     break;
                 case 'e': 
-                    typeNameIndex = reader.readU2CpIndex();
-                    constNameIndex = reader.readU2CpIndex();
+                    enumConstValue = new EnumConstValue();
+                    enumConstValue.read(reader);
                     break;
                 case 'c':
                     classInfoIndex = reader.readU2CpIndex();
@@ -169,13 +168,31 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         @Override
         public List<ClassComponent> getSubComponents() {
             List<ClassComponent> all = Arrays.asList(tag, constValueIndex,
-                    typeNameIndex, constNameIndex,
+                    enumConstValue,
                     classInfoIndex, annotationValue,
                     numValues, values);
             
             return all.stream()
                     .filter(Objects::nonNull)
                     .collect(Collectors.toList());
+        }
+        
+    }
+    
+    public static class EnumConstValue extends ClassComponent {
+
+        private U2CpIndex typeNameIndex;
+        private U2CpIndex constNameIndex;
+        
+        @Override
+        protected void readContent(ClassReader reader) {
+            typeNameIndex = reader.readU2CpIndex();
+            constNameIndex = reader.readU2CpIndex();
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(typeNameIndex, constNameIndex);
         }
         
     }
