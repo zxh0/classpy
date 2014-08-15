@@ -4,6 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 import com.github.zxh.classpy.classfile.U4;
 import java.util.Arrays;
 import java.util.List;
@@ -65,14 +66,14 @@ public class CodeAttribute extends AttributeInfo {
         private U2 startPc;
         private U2 endPc;
         private U2 handlerPc;
-        private U2 catchType;
+        private U2CpIndex catchType;
 
         @Override
         protected void readContent(ClassReader reader) {
             startPc = reader.readU2();
             endPc = reader.readU2();
             handlerPc = reader.readU2();
-            catchType = reader.readU2();
+            catchType = reader.readU2CpIndex();
         }
         
         @Override
