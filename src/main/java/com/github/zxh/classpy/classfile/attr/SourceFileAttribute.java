@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,11 +15,11 @@ SourceFile_attribute {
  */
 public class SourceFileAttribute extends AttributeInfo {
 
-    private U2 sourceFileIndex;
+    private U2CpIndex sourceFileIndex;
     
     @Override
     protected void readInfo(ClassReader reader) {
-        sourceFileIndex = reader.readU2();
+        sourceFileIndex = reader.readU2CpIndex();
     }
     
     @Override
