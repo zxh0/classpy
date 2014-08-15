@@ -34,9 +34,9 @@ public class ClassFile extends ClassComponent {
     private ConstantPool constantPool;
     private U2 accessFlags;
     private U2CpIndex thisClass;
-    private U2 superClass;
+    private U2CpIndex superClass;
     private U2 interfacesCount;
-    private Table<U2> interfaces;
+    private Table<U2CpIndex> interfaces;
     private U2 fieldsCount;
     private Table<FieldInfo> fields;
     private U2 methodsCount;
@@ -48,9 +48,6 @@ public class ClassFile extends ClassComponent {
     public U2 getMinorVersion() {return minorVersion;}
     public U2 getMajorVersion() {return majorVersion;}
     public U2 getConstantPoolCount() {return constantPoolCount;}
-    public U2 getAccessFlags() {return accessFlags;}
-    public U2CpIndex getThisClass() {return thisClass;}
-    public U2 getSuperClass() {return superClass;}
     public U2 getInterfacesCount() {return interfacesCount;}
     public U2 getFieldsCount() {return fieldsCount;}
     public U2 getMethodsCount() {return methodsCount;}
@@ -65,20 +62,15 @@ public class ClassFile extends ClassComponent {
         constantPool = reader.readConstantPool(constantPoolCount.getValue());
         accessFlags = reader.readU2();
         thisClass = reader.readU2CpIndex();
-        superClass = reader.readU2();
+        superClass = reader.readU2CpIndex();
         interfacesCount = reader.readU2();
-        interfaces = reader.readTable(U2.class, interfacesCount);
+        interfaces = reader.readTable(U2CpIndex.class, interfacesCount);
         fieldsCount = reader.readU2();
         fields = reader.readTable(FieldInfo.class, fieldsCount);
         methodsCount = reader.readU2();
         methods = reader.readTable(MethodInfo.class, methodsCount);
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount);
-        
-        // todo
-        interfaces.getSubComponents().forEach(u2 -> {
-            u2.setDesc(constantPool.getClassInfo(u2).getDesc());
-        });
     }
 
     @Override
