@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
         intValue = 100,
         strValue = "test",
         enumValue = ElementType.METHOD,
+        classValue = String.class,
         annotationValue = @Target({})
 )
 public class AnnotatedClass {

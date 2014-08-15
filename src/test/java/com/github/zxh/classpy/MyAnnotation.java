@@ -18,6 +18,7 @@ public @interface MyAnnotation {
     int intValue() default 1;
     String strValue() default "str";
     ElementType enumValue() default ElementType.TYPE;
+    Class<?> classValue() default Object.class;
     Target annotationValue() default @Target({TYPE});
     
 }

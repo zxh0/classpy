@@ -121,7 +121,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         private U2CpIndex constNameIndex;
 
         // tag=c
-        private U2 classInfoIndex;
+        private U2CpIndex classInfoIndex;
 
         // tag=@
         private AnnotationInfo annotationValue;
@@ -152,7 +152,11 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                     constNameIndex = reader.readU2CpIndex();
                     break;
                 case 'c':
-                    classInfoIndex = reader.readU2();
+                    classInfoIndex = reader.readU2CpIndex();
+                    break;
+                case '@':
+                    annotationValue = new AnnotationInfo();
+                    annotationValue.read(reader);
                     break;
                 case '[':
                     numValues = reader.readU2();
@@ -164,7 +168,12 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
         @Override
         public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(tag, constValueIndex, typeNameIndex, constNameIndex).stream()
+            List<ClassComponent> all = Arrays.asList(tag, constValueIndex,
+                    typeNameIndex, constNameIndex,
+                    classInfoIndex, annotationValue,
+                    numValues, values);
+            
+            return all.stream()
                     .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
