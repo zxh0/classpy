@@ -26,7 +26,7 @@ public class MethodParametersAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         parametersCount = reader.readU1();
-        parameters = reader.readTable(ParameterInfo.class, parametersCount.getValue());
+        parameters = reader.readTable(ParameterInfo.class, parametersCount);
     }
     
     @Override

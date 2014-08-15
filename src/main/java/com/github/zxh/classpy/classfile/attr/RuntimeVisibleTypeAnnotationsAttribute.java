@@ -242,7 +242,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         @Override
         protected void readContent(ClassReader reader) {
             pathLength = reader.readU1();
-            path = reader.readTable(PathInfo.class, pathLength.getValue());
+            path = reader.readTable(PathInfo.class, pathLength);
         }
         
         @Override

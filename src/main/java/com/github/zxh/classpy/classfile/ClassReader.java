@@ -110,11 +110,15 @@ public class ClassReader {
         return arr;
     }
     
+    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, U1 length) {
+        return readTable(classOfT, length.getValue());
+    }
+    
     public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, U2 length) {
         return readTable(classOfT, length.getValue());
     }
     
-    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, int length) {
+    private <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, int length) {
         Table<T> table = new Table<>(classOfT, length);
         table.read(this);
         return table;

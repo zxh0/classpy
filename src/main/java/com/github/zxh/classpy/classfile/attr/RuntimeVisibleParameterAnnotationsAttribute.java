@@ -28,7 +28,7 @@ public class RuntimeVisibleParameterAnnotationsAttribute extends AttributeInfo {
     protected void readInfo(ClassReader reader) {
         numParameters = reader.readU1();
         parameterAnnotations = reader.readTable(ParameterAnnotationInfo.class,
-                numParameters.getValue());
+                numParameters);
     }
     
     @Override
