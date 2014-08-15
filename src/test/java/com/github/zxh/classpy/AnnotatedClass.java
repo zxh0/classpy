@@ -13,6 +13,26 @@ import java.lang.annotation.Target;
 )
 public class AnnotatedClass {
     
-
+    @MyAnnotation(
+        intValue = 123,
+        strValue = "test",
+        enumValue = ElementType.METHOD,
+        classValue = String.class,
+        annotationValue = @Target({}),
+        arrayValue = {"X", "Y", "Z"}
+    )
+    public int f1 = 123;
+    
+    @MyAnnotation(
+        intValue = 456,
+        strValue = "test",
+        enumValue = ElementType.METHOD,
+        classValue = String.class,
+        annotationValue = @Target({}),
+        arrayValue = {"X", "Y", "Z"}
+    )
+    public void m1() {
+        
+    }
     
 }
