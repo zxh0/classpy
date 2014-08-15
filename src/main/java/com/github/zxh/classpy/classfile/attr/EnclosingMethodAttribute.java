@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,13 +16,13 @@ EnclosingMethod_attribute {
  */
 public class EnclosingMethodAttribute extends AttributeInfo {
 
-    private U2 classIndex;
-    private U2 methodIndex;
+    private U2CpIndex classIndex;
+    private U2CpIndex methodIndex;
     
     @Override
     protected void readInfo(ClassReader reader) {
-        classIndex = reader.readU2();
-        methodIndex = reader.readU2();
+        classIndex = reader.readU2CpIndex();
+        methodIndex = reader.readU2CpIndex();
     }
     
     @Override
