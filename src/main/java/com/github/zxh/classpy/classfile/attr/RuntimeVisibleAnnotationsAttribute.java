@@ -63,16 +63,22 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     
         private U2 typeIndex;
         private U2 numElementValuePairs;
-        private ElementValuePair[] elementValuePairs;
+        private Table<ElementValuePair> elementValuePairs;
     
         @Override
         protected void readContent(ClassReader reader) {
             typeIndex = reader.readU2();
             numElementValuePairs = reader.readU2();
-            elementValuePairs = reader.readArray(ElementValuePair.class,
-                    numElementValuePairs.getValue());
+            elementValuePairs = reader.readTable(ElementValuePair.class,
+                    numElementValuePairs);
         }
-        
+    
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(typeIndex, numElementValuePairs,
+                    elementValuePairs);
+        }
+    
     }
     
     public static class ElementValuePair extends ClassComponent {
@@ -110,7 +116,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         // tag=[
         // array_value;
         private U2 numValues;
-        private ElementValue values[];
+        private Table<ElementValue> values;
         
         @Override
         protected void readContent(ClassReader reader) {
@@ -136,7 +142,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                     break;
                 case '[':
                     numValues = reader.readU2();
-                    values = reader.readArray(ElementValue.class, numValues.getValue());
+                    values = reader.readTable(ElementValue.class, numValues);
                     break;
                 // todo
             }
