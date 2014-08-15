@@ -18,10 +18,10 @@ public class ClassFileTest {
         ClassFile cf = ClassParser.parse(classBytes);
         assertEquals(0, cf.getMinorVersion().getValue());
         assertEquals(52, cf.getMajorVersion().getValue());
-        assertEquals(120, cf.getConstantPoolCount().getValue());
+        assertEquals(113, cf.getConstantPoolCount().getValue());
         assertEquals(2, cf.getInterfacesCount().getValue());
         assertEquals(9, cf.getFieldsCount().getValue());
-        assertEquals(12, cf.getMethodsCount().getValue());
+        assertEquals(11, cf.getMethodsCount().getValue());
         assertEquals(4, cf.getAttributesCount().getValue());
     }
     

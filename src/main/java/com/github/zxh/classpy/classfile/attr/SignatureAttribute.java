@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,11 +15,11 @@ Signature_attribute {
  */
 public class SignatureAttribute extends AttributeInfo {
 
-    private U2 signatureIndex;
+    private U2CpIndex signatureIndex;
     
     @Override
     protected void readInfo(ClassReader reader) {
-        signatureIndex = reader.readU2();
+        signatureIndex = reader.readU2CpIndex();
     }
     
     @Override

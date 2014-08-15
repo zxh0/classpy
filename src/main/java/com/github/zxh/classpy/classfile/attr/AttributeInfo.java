@@ -19,7 +19,7 @@ public abstract class AttributeInfo extends ClassComponent {
     protected U4 attributeLength;
     
     @Override
-    protected void readContent(ClassReader reader) {
+    protected final void readContent(ClassReader reader) {
         attributeNameIndex = reader.readU2();
         attributeLength = reader.readU4();
         readInfo(reader);
@@ -27,6 +27,7 @@ public abstract class AttributeInfo extends ClassComponent {
     }
     
     protected abstract void readInfo(ClassReader reader);
+    
     
     public static AttributeInfo create(String name) {
         switch (name) {

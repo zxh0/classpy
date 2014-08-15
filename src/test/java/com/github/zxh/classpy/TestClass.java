@@ -1,7 +1,6 @@
 package com.github.zxh.classpy;
 
 import java.io.IOException;
-import java.util.List;
 
 public class TestClass implements Runnable, Comparable<TestClass> {
 
@@ -37,10 +36,6 @@ public class TestClass implements Runnable, Comparable<TestClass> {
     
     public void testInvokeDynamic() {
         Runnable r = () -> {};
-    }
-    
-    public static <T extends Comparable<T>> void testGeneric(List<T> list) {
-        //list.sort((a, b) -> 1);
     }
     
     public int m2() {
