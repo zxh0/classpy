@@ -1,10 +1,15 @@
 package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /*
 RuntimeVisibleTypeAnnotations_attribute {
@@ -24,6 +29,13 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         numAnnotations = reader.readU2();
         annotations = reader.readTable(TypeAnnotationInfo.class, numAnnotations);
     }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                numAnnotations, annotations);
+    }
+    
     
     /*
     type_annotation {
@@ -63,6 +75,11 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
             // todo
         }
         
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(targetType, targetInfo);
+        }
+    
     }
     
     /*
@@ -105,6 +122,16 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
     public static class TargetInfo extends ClassComponent {
 
         private final int targetType;
+        private U1 typeParameterIndex; // type_parameter_target & type_parameter_bound_target
+        private U2 supertypeIndex; // supertype_target
+        private U1 boundIndex; // type_parameter_bound_target
+        private U1 formalParameterIndex; // formal_parameter_target
+        private U2 throwsTypeIndex; // throws_target
+        private U2 tableLength; // localvar_target
+        private Table<LocalVarInfo> table; // localvar_target
+        private U2 exceptionTableIndex; // catch_target
+        private U2 offset; // offset_target & type_argument_target
+        private U1 typeArgumentIndex; // type_argument_target
 
         public TargetInfo(int targetType) {
             this.targetType = targetType;
@@ -112,7 +139,84 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         
         @Override
         protected void readContent(ClassReader reader) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            switch (targetType) {
+                case 0x00:
+                case 0x01:
+                    typeParameterIndex = reader.readU1();
+                    break;
+                case 0x10:
+                    supertypeIndex = reader.readU2();
+                    break;
+                case 0x11:
+                case 0x12:
+                    typeParameterIndex = reader.readU1();
+                    boundIndex = reader.readU1();
+                    break;
+                case 0x13:
+                case 0x14:
+                case 0x15:
+                    break;
+                case 0x16:
+                    formalParameterIndex = reader.readU1();
+                    break;
+                case 0x17:
+                    throwsTypeIndex = reader.readU2();
+                    break;
+                case 0x40:
+                case 0x41:
+                    tableLength = reader.readU2();
+                    table = reader.readTable(LocalVarInfo.class, tableLength);
+                    break;
+                case 0x42:
+                    exceptionTableIndex = reader.readU2();
+                    break;
+                case 0x43:
+                case 0x44:
+                case 0x45:
+                case 0x46:
+                    offset = reader.readU2();
+                    break;
+                case 0x47:
+                case 0x48:
+                case 0x49:
+                case 0x4A:
+                case 0x4B:
+                    offset = reader.readU2();
+                    typeArgumentIndex = reader.readU1();
+                    break;
+                default: throw new ClassParseException("Invalid target_type: " + targetType);
+            }
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            List<ClassComponent> all = Arrays.asList(typeParameterIndex,
+                    supertypeIndex, boundIndex, formalParameterIndex,
+                    throwsTypeIndex, tableLength, table, exceptionTableIndex,
+                    offset, typeArgumentIndex);
+            return all.stream()
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        }
+        
+    }
+    
+    public static class LocalVarInfo extends ClassComponent {
+        
+        private U2 startPc;
+        private U2 length;
+        private U2 index;
+        
+        @Override
+        protected void readContent(ClassReader reader) {
+            startPc = reader.readU2();
+            length = reader.readU2();
+            index = reader.readU2();
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(startPc, length, index);
         }
         
     }

@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U1;
@@ -158,7 +159,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                     arrayValue = new ArrayValue();
                     arrayValue.read(reader);
                     break;
-                // todo
+                default: throw new ClassParseException("Invalid element_value tag: " + tag.getDesc());
             }
         }
         
