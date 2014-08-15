@@ -47,6 +47,11 @@ public class LineNumberTableAttribute extends AttributeInfo {
             lineNumber = reader.readU2();
         }
         
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(startPc, lineNumber);
+        }
+        
     }
     
 }
