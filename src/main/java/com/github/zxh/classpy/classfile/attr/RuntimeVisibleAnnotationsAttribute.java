@@ -55,7 +55,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
             numElementValuePairs = reader.readU2();
             elementValuePairs = reader.readTable(ElementValuePair.class,
                     numElementValuePairs);
-            setDesc(reader.getConstantPool().getUtf8String(typeIndex.getValue()));
+            setDesc(reader.getConstantPool().getUtf8String(typeIndex));
         }
         
         @Override
@@ -76,7 +76,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
             elementNameIndex = reader.readU2CpIndex();
             value = new ElementValue();
             value.read(reader);
-            setDesc(reader.getConstantPool().getUtf8String(elementNameIndex.getValue()));
+            setDesc(reader.getConstantPool().getUtf8String(elementNameIndex));
         }
         
         @Override

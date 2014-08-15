@@ -28,7 +28,7 @@ public class FieldInfo extends ClassComponent {
         descriptorIndex = reader.readU2CpIndex();
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount);
-        setDesc(reader.getConstantPool().getUtf8String(nameIndex.getValue()));
+        setDesc(reader.getConstantPool().getUtf8String(nameIndex));
     }
 
     @Override

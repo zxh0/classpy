@@ -55,7 +55,7 @@ public class LocalVariableTypeTableAttribute extends AttributeInfo {
             nameIndex = reader.readU2CpIndex();
             signatureIndex = reader.readU2CpIndex();
             index = reader.readU2();
-            setDesc(reader.getConstantPool().getUtf8String(nameIndex.getValue()));
+            setDesc(reader.getConstantPool().getUtf8String(nameIndex));
         }
         
         @Override

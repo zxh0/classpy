@@ -4,6 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 import com.github.zxh.classpy.classfile.Util;
 import java.util.Arrays;
 import java.util.List;
@@ -72,6 +73,10 @@ public class ConstantPool extends ClassComponent {
     }
     
     public String getUtf8String(U2 index) {
+        return getUtf8String(index.getValue());
+    }
+    
+    public String getUtf8String(U2CpIndex index) {
         return getUtf8String(index.getValue());
     }
     
