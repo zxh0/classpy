@@ -37,7 +37,7 @@ public class AnnotatedClass {
         annotationValue = @Target({}),
         arrayValue = {"X", "Y", "Z"}
     )
-    public int f1 = 123;
+    public int testFieldAnnotations = 123;
     
     @MyRuntimeAnnotation(
         intValue = 456,
@@ -55,8 +55,30 @@ public class AnnotatedClass {
         annotationValue = @Target({}),
         arrayValue = {"X", "Y", "Z"}
     )
-    public void m1() {
+    public void testMethodAnnotations() {
         
+    }
+    
+    public void testParameterAnnotations(
+        @MyRuntimeAnnotation(
+            intValue = 456,
+            strValue = "test",
+            enumValue = ElementType.METHOD,
+            classValue = String.class,
+            annotationValue = @Target({}),
+            arrayValue = {"X", "Y", "Z"}
+        )
+//        @MyClassAnnotation(
+//            intValue = 456,
+//            strValue = "test",
+//            enumValue = ElementType.METHOD,
+//            classValue = String.class,
+//            annotationValue = @Target({}),
+//            arrayValue = {"X", "Y", "Z"}
+//        )   
+        int param1
+    ) {
+        // ...
     }
     
 }
