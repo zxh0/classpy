@@ -1,21 +1,45 @@
 package com.github.zxh.classpy.gui.tree;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
 /**
- *
+ * Build children lazily.
+ * http://download.java.net/jdk8/jfxdocs/javafx/scene/control/TreeItem.html
+ * 
  * @author zxh
  */
-public class ClassComponentTreeItem extends LazyTreeItem {
+public class ClassComponentTreeItem extends TreeItem<ClassComponent> {
 
-    public ClassComponentTreeItem(ClassComponent c) {
-        super(c);
+    private boolean isFirstTimeChildren = true;
+    
+    public ClassComponentTreeItem(ClassComponent cc) {
+        super(cc);
     }
 
     @Override
-    protected void buildChildren(ObservableList<TreeItem<ClassComponent>> children) {
+    public boolean isLeaf() {
+        return getValue().getSubComponents().isEmpty();
+    }
+    
+    @Override
+    public ObservableList<TreeItem<ClassComponent>> getChildren() {
+        if (isFirstTimeChildren) {
+            isFirstTimeChildren = false;
+            System.out.println("get children of " + getValue());
+
+            // First getChildren() call, so we actually go off and 
+            // determine the children of the File contained in this TreeItem.
+            ObservableList<TreeItem<ClassComponent>> children = FXCollections.observableArrayList();
+            buildChildren(children);
+            super.getChildren().setAll(children);
+        }
+        return super.getChildren();
+    }
+
+    private void buildChildren(ObservableList<TreeItem<ClassComponent>> children) {
         getValue().getSubComponents().forEach(sub -> {
             children.add(new ClassComponentTreeItem(sub));
         });
