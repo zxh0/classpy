@@ -2,8 +2,11 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U2;
 import com.github.zxh.classpy.classfile.U4;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 Code_attribute {
@@ -30,9 +33,9 @@ public class CodeAttribute extends AttributeInfo {
     private U4 codeLength;
     private byte[] code; // todo
     private U2 exceptionTableLength;
-    private ExceptionTableEntry[] exceptionTable;
+    private Table<ExceptionTableEntry> exceptionTable;
     private U2 attributesCount;
-    private AttributeInfo[] attributes;
+    private Table<AttributeInfo> attributes;
     
     @Override
     protected void readInfo(ClassReader reader) {
@@ -41,13 +44,19 @@ public class CodeAttribute extends AttributeInfo {
         codeLength = reader.readU4();
         code = reader.readBytes(codeLength.getValue());
         exceptionTableLength = reader.readU2();
-        exceptionTable = reader.readArray(ExceptionTableEntry.class,
-                exceptionTableLength.getValue());
+        exceptionTable = reader.readTable(ExceptionTableEntry.class,
+                exceptionTableLength);
         attributesCount = reader.readU2();
-        attributes = new AttributeInfo[attributesCount.getValue()];
-        for (int i = 0; i < attributes.length; i++) {
-            attributes[i] = reader.readAttributeInfo();
-        }
+        attributes = reader.readTable(AttributeInfo.class, attributesCount);
+    }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                maxStack, maxLocals, codeLength,
+                // todo code
+                exceptionTableLength, exceptionTable,
+                attributesCount, attributes);
     }
     
     public static class ExceptionTableEntry extends ClassComponent {
