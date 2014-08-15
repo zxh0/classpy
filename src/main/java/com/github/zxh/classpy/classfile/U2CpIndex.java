@@ -16,8 +16,12 @@ public class U2CpIndex extends ClassComponent {
     protected void readContent(ClassReader reader) {
         short s = reader.getByteBuffer().getShort();
         value = Short.toUnsignedInt(s);
-        String constantDesc = reader.getConstantPool().getConstantDesc(value);
-        setDesc(value + "->" + constantDesc);
+        if (value > 0) {
+            String constantDesc = reader.getConstantPool().getConstantDesc(value);
+            setDesc(value + "->" + constantDesc);
+        } else {
+            setDesc(String.valueOf(value));
+        }
     }
     
 }

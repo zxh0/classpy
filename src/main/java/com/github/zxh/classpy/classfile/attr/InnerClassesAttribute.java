@@ -2,7 +2,11 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 InnerClasses_attribute {
@@ -19,29 +23,39 @@ InnerClasses_attribute {
 public class InnerClassesAttribute extends AttributeInfo {
 
     private U2 numberOfClasses;
-    private InnerClassInfo[] classes;
-    
+    private Table<InnerClassInfo> classes;
     
     @Override
     protected void readInfo(ClassReader reader) {
         numberOfClasses = reader.readU2();
-        classes = reader.readArray(InnerClassInfo.class,
-                numberOfClasses.getValue());
+        classes = reader.readTable(InnerClassInfo.class, numberOfClasses);
     }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(numberOfClasses, classes);
+    }
+    
     
     public static class InnerClassInfo extends ClassComponent {
         
-        private U2 innerClassInfoIndex;
-        private U2 outerClassInfoIndex;
-        private U2 innerNameIndex;
+        private U2CpIndex innerClassInfoIndex;
+        private U2CpIndex outerClassInfoIndex;
+        private U2CpIndex innerNameIndex;
         private U2 innerClassAccessFlags;
 
         @Override
         protected void readContent(ClassReader reader) {
-            innerClassInfoIndex = reader.readU2();
-            outerClassInfoIndex = reader.readU2();
-            innerNameIndex = reader.readU2();
+            innerClassInfoIndex = reader.readU2CpIndex();
+            outerClassInfoIndex = reader.readU2CpIndex();
+            innerNameIndex = reader.readU2CpIndex();
             innerClassAccessFlags = reader.readU2();
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(innerClassInfoIndex, outerClassInfoIndex,
+                    innerNameIndex, innerClassAccessFlags);
         }
         
     }
