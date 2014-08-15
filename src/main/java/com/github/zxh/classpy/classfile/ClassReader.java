@@ -44,6 +44,12 @@ public class ClassReader {
         return u4;
     }
     
+    public U4Hex readU4Hex() {
+        U4Hex u4 = new U4Hex();
+        u4.read(this);
+        return u4;
+    }
+    
     public byte[] readBytes(int n) {
         byte[] bytes = new byte[n];
         buf.get(bytes);

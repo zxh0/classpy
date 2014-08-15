@@ -18,8 +18,4 @@ public class U4 extends ClassComponent {
         setDesc(String.valueOf(value));
     }
     
-    public void useHexDesc() {
-        setDesc("0x" + Integer.toHexString(value).toUpperCase());
-    }
-    
 }

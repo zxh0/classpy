@@ -27,7 +27,7 @@ ClassFile {
 */
 public class ClassFile extends ClassComponent {
     
-    private U4 magic;
+    private U4Hex magic;
     private U2 minorVersion;
     private U2 majorVersion;
     private U2 constantPoolCount;
@@ -44,7 +44,7 @@ public class ClassFile extends ClassComponent {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
     
-    public U4 getMagic() {return magic;}
+    public U4Hex getMagic() {return magic;}
     public U2 getMinorVersion() {return minorVersion;}
     public U2 getMajorVersion() {return majorVersion;}
     public U2 getConstantPoolCount() {return constantPoolCount;}
@@ -58,8 +58,7 @@ public class ClassFile extends ClassComponent {
     
     @Override
     protected void readContent(ClassReader reader) {
-        magic = reader.readU4();
-        magic.useHexDesc();
+        magic = reader.readU4Hex();
         minorVersion = reader.readU2();
         majorVersion = reader.readU2();
         constantPoolCount = reader.readU2();
