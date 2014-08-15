@@ -1,7 +1,10 @@
 package com.github.zxh.classpy;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Random;
+import java.util.concurrent.Callable;
+import java.util.function.Predicate;
 
 // todo targetType0x15
 @SuppressWarnings("serial")
@@ -59,6 +62,19 @@ public class TypeAnnotatedClass<@MyTypeAnnotation(strValue = "targetType0x00") T
     
     public void targetType0x44() {
         Random r = new @MyTypeAnnotation(strValue = "targetType0x44") Random();
+    }
+    
+    public void targetType0x45() {
+        Callable<Object> x = @MyTypeAnnotation(strValue = "targetType0x45") Object::new;
+    }
+    
+    public void targetType0x46() {
+        Predicate<Object> y = @MyTypeAnnotation(strValue = "targetType0x46") Objects::isNull;
+    }
+    
+    public void targetType0x47() {
+        Object o = "str";
+        String s = (@MyTypeAnnotation(strValue = "targetType0x47") String) o;
     }
     
 }
