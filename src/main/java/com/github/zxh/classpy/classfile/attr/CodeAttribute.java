@@ -59,6 +59,7 @@ public class CodeAttribute extends AttributeInfo {
                 attributesCount, attributes);
     }
     
+    
     public static class ExceptionTableEntry extends ClassComponent {
         
         private U2 startPc;
@@ -74,6 +75,11 @@ public class CodeAttribute extends AttributeInfo {
             catchType = reader.readU2();
         }
         
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(startPc, endPc, handlerPc, catchType);
+        }
+    
     }
     
 }

@@ -57,4 +57,14 @@ public class TestClass implements Runnable, Comparable<TestClass> {
         }.run();
     }
     
+    public void testCodeAttribute() {
+        int a = 1;
+        int b = 2;
+        try {
+            int c = a / b;
+        } catch (Exception e) {
+            //
+        }
+    }
+    
 }
