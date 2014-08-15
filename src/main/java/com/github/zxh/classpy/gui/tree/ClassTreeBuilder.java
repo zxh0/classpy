@@ -2,7 +2,6 @@ package com.github.zxh.classpy.gui.tree;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassFile;
-import com.github.zxh.classpy.gui.tree.item.ClassComponentTreeItem;
 import javafx.scene.control.TreeView;
 
 /**
