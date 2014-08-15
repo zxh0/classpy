@@ -221,15 +221,48 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         
     }
     
+    /*
+    type_path {
+        u1 path_length;
+        {   u1 type_path_kind;
+            u1 type_argument_index;
+        } path[path_length];
+    }
+    */
     public static class TypePath extends ClassComponent {
 
+        private U1 pathLength;
+        private Table<PathInfo> path;
+        
         @Override
         protected void readContent(ClassReader reader) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            pathLength = reader.readU1();
+            path = reader.readTable(PathInfo.class, pathLength.getValue());
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(pathLength, path);
         }
         
     }
     
-    
+    public static class PathInfo extends ClassComponent {
+
+        private U1 typePathKind;
+        private U1 typeArgumentIndex;
+        
+        @Override
+        protected void readContent(ClassReader reader) {
+            typePathKind = reader.readU1();
+            typeArgumentIndex = reader.readU1();
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(typePathKind, typeArgumentIndex);
+        }
+        
+    }
     
 }
