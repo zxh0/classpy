@@ -116,7 +116,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         private U2CpIndex constValueIndex;
 
         // tag=e
-        // enum_const_value;
         private EnumConstValue enumConstValue;
 
         // tag=c
@@ -126,9 +125,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         private AnnotationInfo annotationValue;
 
         // tag=[
-        // array_value;
-        private U2 numValues;
-        private Table<ElementValue> values;
+        private ArrayValue arrayValue;
         
         @Override
         protected void readContent(ClassReader reader) {
@@ -158,8 +155,8 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                     annotationValue.read(reader);
                     break;
                 case '[':
-                    numValues = reader.readU2();
-                    values = reader.readTable(ElementValue.class, numValues);
+                    arrayValue = new ArrayValue();
+                    arrayValue.read(reader);
                     break;
                 // todo
             }
@@ -168,9 +165,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         @Override
         public List<ClassComponent> getSubComponents() {
             List<ClassComponent> all = Arrays.asList(tag, constValueIndex,
-                    enumConstValue,
-                    classInfoIndex, annotationValue,
-                    numValues, values);
+                    enumConstValue, classInfoIndex, annotationValue, arrayValue);
             
             return all.stream()
                     .filter(Objects::nonNull)
@@ -193,6 +188,24 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         @Override
         public List<ClassComponent> getSubComponents() {
             return Arrays.asList(typeNameIndex, constNameIndex);
+        }
+        
+    }
+    
+    public static class ArrayValue extends  ClassComponent {
+        
+        private U2 numValues;
+        private Table<ElementValue> values;
+        
+        @Override
+        protected void readContent(ClassReader reader) {
+            numValues = reader.readU2();
+            values = reader.readTable(ElementValue.class, numValues);
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(numValues, values);
         }
         
     }

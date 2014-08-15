@@ -20,5 +20,6 @@ public @interface MyAnnotation {
     ElementType enumValue() default ElementType.TYPE;
     Class<?> classValue() default Object.class;
     Target annotationValue() default @Target({TYPE});
+    String[] arrayValue() default {"A", "B", "C"};
     
 }

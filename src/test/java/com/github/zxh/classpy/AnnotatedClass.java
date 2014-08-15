@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
         strValue = "test",
         enumValue = ElementType.METHOD,
         classValue = String.class,
-        annotationValue = @Target({})
+        annotationValue = @Target({}),
+        arrayValue = {"X", "Y", "Z"}
 )
 public class AnnotatedClass {
     
