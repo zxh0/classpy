@@ -33,7 +33,7 @@ public class ClassFile extends ClassComponent {
     private U2 constantPoolCount;
     private ConstantPool constantPool;
     private U2 accessFlags;
-    private U2 thisClass;
+    private U2CpIndex thisClass;
     private U2 superClass;
     private U2 interfacesCount;
     private Table<U2> interfaces;
@@ -49,7 +49,7 @@ public class ClassFile extends ClassComponent {
     public U2 getMajorVersion() {return majorVersion;}
     public U2 getConstantPoolCount() {return constantPoolCount;}
     public U2 getAccessFlags() {return accessFlags;}
-    public U2 getThisClass() {return thisClass;}
+    public U2CpIndex getThisClass() {return thisClass;}
     public U2 getSuperClass() {return superClass;}
     public U2 getInterfacesCount() {return interfacesCount;}
     public U2 getFieldsCount() {return fieldsCount;}
@@ -64,7 +64,7 @@ public class ClassFile extends ClassComponent {
         constantPoolCount = reader.readU2();
         constantPool = reader.readConstantPool(constantPoolCount.getValue());
         accessFlags = reader.readU2();
-        thisClass = reader.readU2();
+        thisClass = reader.readU2CpIndex();
         superClass = reader.readU2();
         interfacesCount = reader.readU2();
         interfaces = reader.readTable(U2.class, interfacesCount);

@@ -107,4 +107,9 @@ public class ConstantPool extends ClassComponent {
         return classOfT.cast(c);
     }
     
+    public String getConstantDesc(int index) {
+        ConstantInfo c = constants[index];
+        return c.getDesc();
+    }
+    
 }
