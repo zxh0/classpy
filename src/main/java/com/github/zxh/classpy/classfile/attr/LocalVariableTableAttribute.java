@@ -2,7 +2,10 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 LocalVariableTable_attribute {
@@ -20,14 +23,20 @@ LocalVariableTable_attribute {
 public class LocalVariableTableAttribute extends AttributeInfo {
 
     private U2 localVariableTableLength;
-    private LocalVariableTableEntry[] localVariableTable;
+    private Table<LocalVariableTableEntry> localVariableTable;
     
     @Override
     protected void readInfo(ClassReader reader) {
         localVariableTableLength = reader.readU2();
-        localVariableTable = reader.readArray(LocalVariableTableEntry.class,
-                localVariableTableLength.getValue());
+        localVariableTable = reader.readTable(LocalVariableTableEntry.class,
+                localVariableTableLength);
     }
+    
+//    @Override
+//    public List<ClassComponent> getSubComponents() {
+//        return Arrays.asList(numberOfClasses, classes);
+//    }
+    
     
     public static class LocalVariableTableEntry extends ClassComponent {
         

@@ -33,7 +33,8 @@ public class InnerClassesAttribute extends AttributeInfo {
     
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(numberOfClasses, classes);
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                numberOfClasses, classes);
     }
     
     

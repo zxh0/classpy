@@ -5,6 +5,8 @@ import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
 import com.github.zxh.classpy.classfile.U4;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 attribute_info {
@@ -28,6 +30,10 @@ public abstract class AttributeInfo extends ClassComponent {
     
     protected abstract void readInfo(ClassReader reader);
     
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength);
+    }
     
     public static AttributeInfo create(String name) {
         //  predefined class file attributes:
@@ -42,7 +48,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "Signature": return new SignatureAttribute();
             case "SourceFile":  return new SourceFileAttribute();
             case "SourceDebugExtension": return new SourceDebugExtensionAttribute(); // todo
-            case "LineNumberTable": return new LineNumberTableAttribute(); // todo
+            case "LineNumberTable": return new LineNumberTableAttribute();
             case "LocalVariableTable": return new LocalVariableTableAttribute(); // todo
             case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute(); // todo
             case "Deprecated": return new DeprecatedAttribute();
