@@ -16,19 +16,19 @@ field_info {
 public class FieldInfo extends ClassComponent {
 
     private U2 accessFlags;
-    private U2 nameIndex;
-    private U2 descriptorIndex;
+    private U2CpIndex nameIndex;
+    private U2CpIndex descriptorIndex;
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
     
     @Override
     protected void readContent(ClassReader reader) {
         accessFlags = reader.readU2();
-        nameIndex = reader.readU2();
-        descriptorIndex = reader.readU2();
+        nameIndex = reader.readU2CpIndex();
+        descriptorIndex = reader.readU2CpIndex();
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount);
-        setDesc(reader.getConstantPool().getUtf8String(nameIndex));
+        setDesc(reader.getConstantPool().getUtf8String(nameIndex.getValue()));
     }
 
     @Override
