@@ -2,8 +2,11 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.U2;
+import java.util.Arrays;
+import java.util.List;
 
 /*
 RuntimeVisibleAnnotations_attribute {
@@ -41,14 +44,20 @@ element_value {
 public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
 
     private U2 numAnnotations;
-    private AnnotationInfo[] annotations;
+    private Table<AnnotationInfo> annotations;
     
     @Override
     protected void readInfo(ClassReader reader) {
         numAnnotations = reader.readU2();
-        annotations = reader.readArray(AnnotationInfo.class,
-                numAnnotations.getValue());
+        annotations = reader.readTable(AnnotationInfo.class, numAnnotations);
     }
+    
+    @Override
+    public List<ClassComponent> getSubComponents() {
+        return Arrays.asList(attributeNameIndex, attributeLength,
+                numAnnotations, annotations);
+    }
+    
     
     public static class AnnotationInfo extends ClassComponent {
     

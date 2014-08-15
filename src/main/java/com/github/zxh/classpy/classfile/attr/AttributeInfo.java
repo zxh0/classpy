@@ -50,7 +50,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "SourceDebugExtension": return new SourceDebugExtensionAttribute(); // todo
             case "LineNumberTable": return new LineNumberTableAttribute();
             case "LocalVariableTable": return new LocalVariableTableAttribute();
-            case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute(); // todo
+            case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute();
             case "Deprecated": return new DeprecatedAttribute();
             case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute(); // todo
             case "RuntimeInvisibleAnnotations": break; // todo

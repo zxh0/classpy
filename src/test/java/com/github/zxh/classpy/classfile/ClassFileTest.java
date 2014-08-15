@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.AnnotatedClass;
 import com.github.zxh.classpy.SimpleClass;
 import com.github.zxh.classpy.GenericClass;
 import java.nio.file.Files;
@@ -33,6 +34,12 @@ public class ClassFileTest {
     @Test
     public void genericClass() throws Exception {
         byte[] classBytes = loadClass(GenericClass.class);
+        ClassParser.parse(classBytes);
+    }
+    
+    @Test
+    public void annotatedClass() throws Exception {
+        byte[] classBytes = loadClass(AnnotatedClass.class);
         ClassParser.parse(classBytes);
     }
     
