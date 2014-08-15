@@ -71,6 +71,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         @Override
         protected void readContent(ClassReader reader) {
             targetType = reader.readU1();
+            targetType.setDesc("0x" + Integer.toHexString(targetType.getValue()));
             targetInfo = new TargetInfo(targetType.getValue());
             targetInfo.read(reader);
             targetPath = new TypePath();
