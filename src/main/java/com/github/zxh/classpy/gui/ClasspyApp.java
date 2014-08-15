@@ -13,6 +13,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -36,8 +37,12 @@ public class ClasspyApp extends Application {
         mainPane.getItems().add(new Button("aaaaaa"));
         mainPane.getItems().add(new Button("aaaaaa"));
         
+        TextArea textArea = new TextArea("1122");
+        textArea.selectPositionCaret(2);
+        
         root.setTop(createMenuBar(stage, root));
-        root.setCenter(mainPane);
+//        root.setCenter(mainPane);
+        root.setCenter(textArea);
         
         Scene scene = new Scene(root, 500, 600);
         stage.setScene(scene);

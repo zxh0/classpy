@@ -27,6 +27,7 @@ ClassFile {
 */
 public class ClassFile extends ClassComponent {
     
+    private byte[] bytes;
     private U4Hex magic;
     private U2 minorVersion;
     private U2 majorVersion;
@@ -44,6 +45,8 @@ public class ClassFile extends ClassComponent {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
     
+    public void setBytes(byte[] bytes) {this.bytes = bytes;}
+    public byte[] getBytes() {return bytes;}
     public U4Hex getMagic() {return magic;}
     public U2 getMinorVersion() {return minorVersion;}
     public U2 getMajorVersion() {return majorVersion;}

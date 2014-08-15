@@ -15,6 +15,7 @@ public class ClassParser {
         ClassReader reader = new ClassReader(buf);
         ClassFile cf = new ClassFile();
         cf.read(reader);
+        cf.setBytes(bytes);
         
         try {
             setNameForClassComponents(cf);
