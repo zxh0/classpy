@@ -77,16 +77,6 @@ public class ClassReader {
         return ci;
     }
     
-    public AttributeInfo readAttributeInfo() {
-        int attributeNameIndex = buf.getShort(buf.position());
-        String attributeName = constantPool.getUtf8String(attributeNameIndex);
-        
-        AttributeInfo attr = AttributeInfo.create(attributeName);
-        attr.read(this);
-        
-        return attr;
-    }
-    
     // todo
     public <T extends ClassComponent> T[] readArray(Class<T> classOfT, int n) {
         @SuppressWarnings("unchecked")
@@ -108,6 +98,16 @@ public class ClassReader {
         }
         
         return arr;
+    }
+    
+    private AttributeInfo readAttributeInfo() {
+        int attributeNameIndex = buf.getShort(buf.position());
+        String attributeName = constantPool.getUtf8String(attributeNameIndex);
+        
+        AttributeInfo attr = AttributeInfo.create(attributeName);
+        attr.read(this);
+        
+        return attr;
     }
     
     public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, U1 length) {
