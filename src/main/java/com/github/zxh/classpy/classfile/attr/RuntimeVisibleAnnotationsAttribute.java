@@ -8,6 +8,8 @@ import com.github.zxh.classpy.classfile.U2;
 import com.github.zxh.classpy.classfile.U2CpIndex;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /*
 RuntimeVisibleAnnotations_attribute {
@@ -111,12 +113,12 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         private U1 tag;
         
         // tag=B,C,D,F,I,J,S,Z,s
-        private U2 constValueIndex;
+        private U2CpIndex constValueIndex;
 
         // tag=e
         // enum_const_value;
-        private U2 typeNameIndex;
-        private U2 constNameIndex;
+        private U2CpIndex typeNameIndex;
+        private U2CpIndex constNameIndex;
 
         // tag=c
         private U2 classInfoIndex;
@@ -132,6 +134,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         @Override
         protected void readContent(ClassReader reader) {
             tag = reader.readU1();
+            tag.setDesc(Character.toString((char) tag.getValue()));
             switch (tag.getValue()) {
                 case 'B':
                 case 'C':
@@ -142,11 +145,11 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                 case 'S':
                 case 'Z':
                 case 's': 
-                    constValueIndex = reader.readU2();
+                    constValueIndex = reader.readU2CpIndex();
                     break;
                 case 'e': 
-                    typeNameIndex = reader.readU2();
-                    constNameIndex = reader.readU2();
+                    typeNameIndex = reader.readU2CpIndex();
+                    constNameIndex = reader.readU2CpIndex();
                     break;
                 case 'c':
                     classInfoIndex = reader.readU2();
@@ -157,6 +160,13 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                     break;
                 // todo
             }
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(tag, constValueIndex).stream()
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
         }
         
     }
