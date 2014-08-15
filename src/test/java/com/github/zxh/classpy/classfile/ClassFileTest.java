@@ -44,11 +44,11 @@ public class ClassFileTest {
         ClassParser.parse(classBytes);
     }
     
-    @Test
-    public void typeAnnotatedClass() throws Exception {
-        byte[] classBytes = loadClass(TypeAnnotatedClass.class);
-        ClassParser.parse(classBytes);
-    }
+//    @Test
+//    public void typeAnnotatedClass() throws Exception {
+//        byte[] classBytes = loadClass(TypeAnnotatedClass.class);
+//        ClassParser.parse(classBytes);
+//    }
     
     private static byte[] loadClass(Class<?> cls) throws Exception {
         String classFileName = cls.getName().replace('.', '/') + ".class";
