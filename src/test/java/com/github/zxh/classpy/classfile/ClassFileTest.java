@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.TestClass;
+import com.github.zxh.classpy.TestSignature;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -30,8 +31,9 @@ public class ClassFileTest {
     }
     
     @Test
-    public void signatures() {
-        // todo
+    public void signatures() throws Exception {
+        byte[] classBytes = loadClass(TestSignature.class);
+        ClassParser.parse(classBytes);
     }
     
     private static byte[] loadClass(Class<?> cls) throws Exception {
