@@ -3,7 +3,7 @@ package com.github.zxh.classpy;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 
-@MyAnnotation(
+@MyRuntimeAnnotation(
         intValue = 100,
         strValue = "test",
         enumValue = ElementType.METHOD,
@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 )
 public class AnnotatedClass {
     
-    @MyAnnotation(
+    @MyRuntimeAnnotation(
         intValue = 123,
         strValue = "test",
         enumValue = ElementType.METHOD,
@@ -23,7 +23,7 @@ public class AnnotatedClass {
     )
     public int f1 = 123;
     
-    @MyAnnotation(
+    @MyRuntimeAnnotation(
         intValue = 456,
         strValue = "test",
         enumValue = ElementType.METHOD,

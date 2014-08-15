@@ -13,7 +13,7 @@ import java.lang.annotation.Target;
 
 @Target({TYPE, FIELD, METHOD, PARAMETER, CONSTRUCTOR, LOCAL_VARIABLE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MyAnnotation {
+public @interface MyRuntimeAnnotation {
     
     int intValue() default 1;
     String strValue() default "str";

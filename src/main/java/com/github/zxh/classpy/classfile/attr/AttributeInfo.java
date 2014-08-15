@@ -52,8 +52,8 @@ public abstract class AttributeInfo extends ClassComponent {
             case "LocalVariableTable": return new LocalVariableTableAttribute();
             case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute();
             case "Deprecated": return new DeprecatedAttribute();
-            case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute(); // todo
-            case "RuntimeInvisibleAnnotations": break; // todo
+            case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
+            case "RuntimeInvisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
             case "RuntimeVisibleParameterAnnotations": break; // todo
             case "RuntimeInvisibleParameterAnnotations": break; // todo
             case "RuntimeVisibleTypeAnnotations": break; // todo
