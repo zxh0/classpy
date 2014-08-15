@@ -3,7 +3,9 @@ package com.github.zxh.classpy.classfile;
 import com.github.zxh.classpy.AnnotatedClass;
 import com.github.zxh.classpy.SimpleClass;
 import com.github.zxh.classpy.GenericClass;
+import com.github.zxh.classpy.MyRuntimeAnnotation;
 import com.github.zxh.classpy.TypeAnnotatedClass;
+import com.github.zxh.classpy.classfile.attr.AnnotationDefaultAttribute;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,6 +31,12 @@ public class ClassFileTest {
     public void enclosingMethodAttribute() throws Exception {
         String classFileName = SimpleClass.class.getName().replace('.', '/') + "$1.class";
         byte[] classBytes = loadClass(classFileName);
+        ClassParser.parse(classBytes);
+    }
+    
+    @Test
+    public void annotationDefaultAttribute() throws Exception {
+        byte[] classBytes = loadClass(MyRuntimeAnnotation.class);
         ClassParser.parse(classBytes);
     }
     
