@@ -6,6 +6,7 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.attr.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -65,19 +66,22 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         private U1 targetType;
         private TargetInfo targetInfo;
         private TypePath targetPath;
-        private U2 typeIndex;
-        private U2 numElementValuePairs;
+        private AnnotationInfo annotation;
         
         @Override
         protected void readContent(ClassReader reader) {
             targetType = reader.readU1();
             targetInfo = new TargetInfo(targetType.getValue());
-            // todo
+            targetInfo.read(reader);
+            targetPath = new TypePath();
+            targetPath.read(reader);
+            annotation = new AnnotationInfo();
+            annotation.read(reader);
         }
         
         @Override
         public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(targetType, targetInfo);
+            return Arrays.asList(targetType, targetInfo, targetPath, annotation);
         }
     
     }
