@@ -164,7 +164,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
         @Override
         public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(tag, constValueIndex).stream()
+            return Arrays.asList(tag, constValueIndex, typeNameIndex, constNameIndex).stream()
                     .filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }

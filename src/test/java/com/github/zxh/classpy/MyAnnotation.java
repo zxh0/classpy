@@ -1,5 +1,6 @@
 package com.github.zxh.classpy;
 
+import java.lang.annotation.ElementType;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.LOCAL_VARIABLE;
@@ -16,5 +17,7 @@ public @interface MyAnnotation {
     
     int intValue() default 1;
     String strValue() default "str";
+    ElementType enumValue() default ElementType.TYPE;
+    Target annotationValue() default @Target({TYPE});
     
 }
