@@ -11,13 +11,7 @@ import javafx.scene.control.TreeView;
  */
 public class ClassTreeBuilder {
     
-    private final ClassFile cf;
-
-    public ClassTreeBuilder(ClassFile cf) {
-        this.cf = cf;
-    }
-    
-    public TreeView<ClassComponent> build() {
+    public static TreeView<ClassComponent> build(ClassFile cf) {
         ClassComponentTreeItem root = new ClassComponentTreeItem(cf);
         root.setExpanded(true);
         
