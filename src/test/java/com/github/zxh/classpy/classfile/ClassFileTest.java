@@ -1,11 +1,10 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.AnnotatedClass;
-import com.github.zxh.classpy.SimpleClass;
-import com.github.zxh.classpy.GenericClass;
-import com.github.zxh.classpy.MyRuntimeAnnotation;
-import com.github.zxh.classpy.TypeAnnotatedClass;
-import com.github.zxh.classpy.classfile.attr.AnnotationDefaultAttribute;
+import com.github.zxh.classpy.testclasses.AnnotatedClass;
+import com.github.zxh.classpy.testclasses.SimpleClass;
+import com.github.zxh.classpy.testclasses.GenericClass;
+import com.github.zxh.classpy.testclasses.MyRuntimeAnnotation;
+import com.github.zxh.classpy.testclasses.TypeAnnotatedClass;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;

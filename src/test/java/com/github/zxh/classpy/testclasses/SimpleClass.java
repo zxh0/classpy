@@ -1,4 +1,4 @@
-package com.github.zxh.classpy;
+package com.github.zxh.classpy.testclasses;
 
 import java.io.IOException;
 
