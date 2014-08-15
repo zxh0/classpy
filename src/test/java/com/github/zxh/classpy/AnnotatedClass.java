@@ -68,14 +68,14 @@ public class AnnotatedClass {
             annotationValue = @Target({}),
             arrayValue = {"X", "Y", "Z"}
         )
-//        @MyClassAnnotation(
-//            intValue = 456,
-//            strValue = "test",
-//            enumValue = ElementType.METHOD,
-//            classValue = String.class,
-//            annotationValue = @Target({}),
-//            arrayValue = {"X", "Y", "Z"}
-//        )   
+        @MyClassAnnotation(
+            intValue = 456,
+            strValue = "test",
+            enumValue = ElementType.METHOD,
+            classValue = String.class,
+            annotationValue = @Target({}),
+            arrayValue = {"X", "Y", "Z"}
+        )   
         int param1
     ) {
         // ...
