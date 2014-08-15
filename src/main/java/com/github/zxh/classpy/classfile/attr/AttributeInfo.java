@@ -54,7 +54,7 @@ public abstract class AttributeInfo extends ClassComponent {
             case "Deprecated": return new DeprecatedAttribute();
             case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
             case "RuntimeInvisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
-            case "RuntimeVisibleParameterAnnotations": break; // todo
+            case "RuntimeVisibleParameterAnnotations": return new RuntimeVisibleParameterAnnotationsAttribute();
             case "RuntimeInvisibleParameterAnnotations": break; // todo
             case "RuntimeVisibleTypeAnnotations": break; // todo
             case "RuntimeInvisibleTypeAnnotations": break; // todo
