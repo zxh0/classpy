@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.TestClass;
-import com.github.zxh.classpy.TestSignature;
+import com.github.zxh.classpy.SimpleClass;
+import com.github.zxh.classpy.GenericClass;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,8 +11,8 @@ import static org.junit.Assert.*;
 public class ClassFileTest {
     
     @Test
-    public void classFile() throws Exception {
-        byte[] classBytes = loadClass(TestClass.class);
+    public void simpleClass() throws Exception {
+        byte[] classBytes = loadClass(SimpleClass.class);
         ClassFile cf = ClassParser.parse(classBytes);
         assertEquals(0, cf.getMinorVersion().getValue());
         assertEquals(52, cf.getMajorVersion().getValue());
@@ -25,14 +25,14 @@ public class ClassFileTest {
     
     @Test
     public void enclosingMethodAttribute() throws Exception {
-        String classFileName = TestClass.class.getName().replace('.', '/') + "$1.class";
+        String classFileName = SimpleClass.class.getName().replace('.', '/') + "$1.class";
         byte[] classBytes = loadClass(classFileName);
         ClassParser.parse(classBytes);
     }
     
     @Test
-    public void signatures() throws Exception {
-        byte[] classBytes = loadClass(TestSignature.class);
+    public void genericClass() throws Exception {
+        byte[] classBytes = loadClass(GenericClass.class);
         ClassParser.parse(classBytes);
     }
     
@@ -42,7 +42,7 @@ public class ClassFileTest {
     }
     
     private static byte[] loadClass(String classFileName) throws Exception {
-        ClassLoader cl =TestClass.class.getClassLoader();
+        ClassLoader cl =SimpleClass.class.getClassLoader();
         Path classFilePath = Paths.get(cl.getResource(classFileName).toURI());
         byte[] classBytes = Files.readAllBytes(classFilePath);
         return classBytes;
