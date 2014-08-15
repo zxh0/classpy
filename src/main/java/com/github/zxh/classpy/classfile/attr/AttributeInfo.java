@@ -59,8 +59,8 @@ public abstract class AttributeInfo extends ClassComponent {
             case "RuntimeVisibleTypeAnnotations": return new RuntimeVisibleTypeAnnotationsAttribute();
             case "RuntimeInvisibleTypeAnnotations": return new RuntimeVisibleTypeAnnotationsAttribute();
             case "AnnotationDefault": return new AnnotationDefaultAttribute();
-            case "BootstrapMethods": return new BootstrapMethodsAttribute(); // todo
-            case "MethodParameters": break; // todo
+            case "BootstrapMethods": return new BootstrapMethodsAttribute();
+            case "MethodParameters": return new MethodParametersAttribute(); // todo
         }
         
         // todo
