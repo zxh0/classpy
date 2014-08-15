@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.attr;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,11 +15,11 @@ ConstantValue_attribute {
  */
 public class ConstantValueAttribute extends AttributeInfo {
 
-    private U2 constantValueIndex;
+    private U2CpIndex constantValueIndex;
     
     @Override
     protected void readInfo(ClassReader reader) {
-        constantValueIndex = reader.readU2();
+        constantValueIndex = reader.readU2CpIndex();
     }
 
     @Override
