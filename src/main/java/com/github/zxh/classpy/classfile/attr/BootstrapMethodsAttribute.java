@@ -4,6 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -39,16 +40,17 @@ public class BootstrapMethodsAttribute extends AttributeInfo {
     
     public static class BootstrapMethodInfo extends ClassComponent {
         
-        private U2 bootstrapMethodRef;
+        private U2CpIndex bootstrapMethodRef;
         private U2 numBootstrapArguments;
-        private Table<U2> bootstrapArguments;
+        private Table<U2CpIndex> bootstrapArguments;
         
         @Override
         protected void readContent(ClassReader reader) {
-            bootstrapMethodRef = reader.readU2();
+            bootstrapMethodRef = reader.readU2CpIndex();
             numBootstrapArguments = reader.readU2();
-            bootstrapArguments = reader.readTable(U2.class,
+            bootstrapArguments = reader.readTable(U2CpIndex.class,
                     numBootstrapArguments);
+            //setDesc(bootstrapMethodRef.getDesc());
         }
         
         @Override
