@@ -11,6 +11,14 @@ import java.lang.annotation.Target;
         annotationValue = @Target({}),
         arrayValue = {"X", "Y", "Z"}
 )
+@MyClassAnnotation(
+        intValue = 100,
+        strValue = "test",
+        enumValue = ElementType.METHOD,
+        classValue = String.class,
+        annotationValue = @Target({}),
+        arrayValue = {"X", "Y", "Z"}
+)
 public class AnnotatedClass {
     
     @MyRuntimeAnnotation(
@@ -21,9 +29,25 @@ public class AnnotatedClass {
         annotationValue = @Target({}),
         arrayValue = {"X", "Y", "Z"}
     )
+    @MyClassAnnotation(
+        intValue = 123,
+        strValue = "test",
+        enumValue = ElementType.METHOD,
+        classValue = String.class,
+        annotationValue = @Target({}),
+        arrayValue = {"X", "Y", "Z"}
+    )
     public int f1 = 123;
     
     @MyRuntimeAnnotation(
+        intValue = 456,
+        strValue = "test",
+        enumValue = ElementType.METHOD,
+        classValue = String.class,
+        annotationValue = @Target({}),
+        arrayValue = {"X", "Y", "Z"}
+    )
+    @MyClassAnnotation(
         intValue = 456,
         strValue = "test",
         enumValue = ElementType.METHOD,
