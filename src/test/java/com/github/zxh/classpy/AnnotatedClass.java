@@ -1,6 +1,9 @@
 package com.github.zxh.classpy;
 
-@MyAnnotation
+@MyAnnotation(
+        intValue = 100,
+        strValue = "test"
+)
 public class AnnotatedClass {
     
 

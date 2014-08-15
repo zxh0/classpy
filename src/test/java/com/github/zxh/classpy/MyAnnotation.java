@@ -14,6 +14,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyAnnotation {
     
-    // todo
+    int intValue() default 1;
+    String strValue() default "str";
     
 }

@@ -44,37 +44,44 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     }
     */
     public static class AnnotationInfo extends ClassComponent {
-    
+        
         private U2CpIndex typeIndex;
         private U2 numElementValuePairs;
         private Table<ElementValuePair> elementValuePairs;
-    
+        
         @Override
         protected void readContent(ClassReader reader) {
             typeIndex = reader.readU2CpIndex();
             numElementValuePairs = reader.readU2();
             elementValuePairs = reader.readTable(ElementValuePair.class,
                     numElementValuePairs);
+            setDesc(reader.getConstantPool().getUtf8String(typeIndex.getValue()));
         }
-    
+        
         @Override
         public List<ClassComponent> getSubComponents() {
             return Arrays.asList(typeIndex, numElementValuePairs,
                     elementValuePairs);
         }
-    
+        
     }
     
     public static class ElementValuePair extends ClassComponent {
         
-        private U2 elementNameIndex;
+        private U2CpIndex elementNameIndex;
         private ElementValue value;
-
+        
         @Override
         protected void readContent(ClassReader reader) {
-            elementNameIndex = reader.readU2();
+            elementNameIndex = reader.readU2CpIndex();
             value = new ElementValue();
             value.read(reader);
+            setDesc(reader.getConstantPool().getUtf8String(elementNameIndex.getValue()));
+        }
+        
+        @Override
+        public List<ClassComponent> getSubComponents() {
+            return Arrays.asList(elementNameIndex, value);
         }
         
     }
