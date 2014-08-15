@@ -3,6 +3,7 @@ package com.github.zxh.classpy.classfile;
 import com.github.zxh.classpy.AnnotatedClass;
 import com.github.zxh.classpy.SimpleClass;
 import com.github.zxh.classpy.GenericClass;
+import com.github.zxh.classpy.TypeAnnotatedClass;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -40,6 +41,12 @@ public class ClassFileTest {
     @Test
     public void annotatedClass() throws Exception {
         byte[] classBytes = loadClass(AnnotatedClass.class);
+        ClassParser.parse(classBytes);
+    }
+    
+    @Test
+    public void typeAnnotatedClass() throws Exception {
+        byte[] classBytes = loadClass(TypeAnnotatedClass.class);
         ClassParser.parse(classBytes);
     }
     
