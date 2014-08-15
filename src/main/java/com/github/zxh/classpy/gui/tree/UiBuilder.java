@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui.tree;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassFile;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeView;
 
 /**
@@ -9,7 +10,7 @@ import javafx.scene.control.TreeView;
  * 
  * @author zxh
  */
-public class ClassTreeBuilder {
+public class UiBuilder {
     
     public static TreeView<ClassComponent> build(ClassFile cf) {
         ClassComponentTreeItem root = new ClassComponentTreeItem(cf);
@@ -18,6 +19,12 @@ public class ClassTreeBuilder {
         TreeView<ClassComponent> tree = new TreeView<>(root);
         
         return tree;
+    }
+    
+    public static SplitPane buildSplitPane() {
+        SplitPane sp = new SplitPane();
+        
+        return sp;
     }
     
 }

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.gui.tree.ClassTreeBuilder;
+import com.github.zxh.classpy.gui.tree.UiBuilder;
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.classfile.ClassParser;
 import java.io.File;
@@ -75,7 +75,7 @@ public class ClasspyApp extends Application {
                 task.setOnSucceeded(e -> {
                     ClassFile cf = (ClassFile) e.getSource().getValue();
                     System.out.println(cf);
-                    TreeView<?> tree = ClassTreeBuilder.build(cf);
+                    TreeView<?> tree = UiBuilder.build(cf);
                     root.setCenter(tree);
                 });
                 
