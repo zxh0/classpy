@@ -30,6 +30,7 @@ public abstract class AttributeInfo extends ClassComponent {
     
     
     public static AttributeInfo create(String name) {
+        //  predefined class file attributes:
         switch (name) {
             case "ConstantValue": return new ConstantValueAttribute();
             case "Code": return new CodeAttribute();
@@ -39,8 +40,8 @@ public abstract class AttributeInfo extends ClassComponent {
             case "EnclosingMethod": return new EnclosingMethodAttribute();
             case "Synthetic": return new SyntheticAttribute();
             case "Signature": return new SignatureAttribute();
-            case "SourceFile":  return new SourceFileAttribute(); // <-
-            case "SourceDebugExtension": break; // todo
+            case "SourceFile":  return new SourceFileAttribute();
+            case "SourceDebugExtension": return new SourceDebugExtensionAttribute(); // todo
             case "LineNumberTable": return new LineNumberTableAttribute(); // todo
             case "LocalVariableTable": return new LocalVariableTableAttribute(); // todo
             case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute(); // todo
