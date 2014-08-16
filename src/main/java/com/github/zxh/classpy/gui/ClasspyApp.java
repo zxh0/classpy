@@ -3,6 +3,7 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.gui.tree.UiBuilder;
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.classfile.ClassParser;
+import com.github.zxh.classpy.gui.hex.ClassHex;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
@@ -91,6 +92,10 @@ public class ClasspyApp extends Application {
                     System.out.println(cf);
                     TreeView<?> tree = UiBuilder.build(cf);
                     root.setCenter(tree);
+                    
+                    ClassHex hex = new ClassHex(cf);
+                    System.out.println(hex.getHexString());
+                    
                 });
                 
                 task.setOnFailed(e -> {

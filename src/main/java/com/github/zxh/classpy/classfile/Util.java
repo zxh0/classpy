@@ -27,15 +27,4 @@ public class Util {
         return String.format(fmtStr, index);
     }
     
-    // todo
-    public static String toHexString(byte[] bytes) {
-        StringBuilder buf = new StringBuilder();
-        
-        for (int i = 0; i < bytes.length; i++) {
-            buf.append(Integer.toHexString(bytes[i]));
-        }
-        
-        return buf.toString();
-    }
-    
 }
