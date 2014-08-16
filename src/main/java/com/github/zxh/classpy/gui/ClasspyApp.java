@@ -85,49 +85,19 @@ public class ClasspyApp extends Application {
                     ClassFile cf = (ClassFile) e.getSource().getValue();
                     System.out.println(cf);
                     TreeView<ClassComponent> tree = UiBuilder.build(cf);
-                    tree.selectionModelProperty().addListener((x, old, n) -> {
-                        System.out.println(x);
-                        System.out.println(old);
-                        System.out.println(n);
-                    });
-                    tree.focusModelProperty().addListener((x, old, n) -> {
-                        System.out.println(x);
-                        System.out.println(old);
-                        System.out.println(n);
-                    });
                     tree.getSelectionModel().getSelectedItems().addListener(
                             (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
-                                //throw new UnsupportedOperationException("Not supported yet.");
-                                //System.out.println(c);
-                                //System.out.println(c.getClass());
                                 if (c.next()) {
-//                                    if (c.wasPermutated()) {
-//                                        System.out.println("wasPermutated::"+c);
-//                                    } else {
-//                                        System.out.println("!!!!!!!!!!!!!::"+c);
-//                                        Object x = c.getList().get(c.getFrom());
-//                                        System.out.println("Vvvvvvv:"+x);
-//                                    } 
-                                    if (c.wasPermutated()) {
-                                        System.out.println("wasPermutated::"+c);
-                                    }
-                                    if (c.wasReplaced()) {
-                                        System.out.println("wasReplaced::"+c);
-                                    }
-                                    if (c.wasUpdated()) {
-                                        System.out.println("wasUpdated::"+c);
-                                    }
                                     if (c.wasAdded()) {
-                                        System.out.println("wasAdded::"+c);
+                                        TreeItem<ClassComponent> node = c.getList().get(c.getFrom());
+                                        ClassComponent cc = node.getValue();
+                                        
+                                        System.out.println("ccccc:"+cc);
+                                        System.out.println(cc.getClass());
                                     }
-                                    
                                 }
-//                                
-                                //Object x = c.getList().get(c.getTo());
-                                //System.out.println(x);
-                                //System.out.println(x.getClass());
-                    });
-//                    tree.getSelectionModel().getSelectedItems().add
+                            }
+                    );
                     
                     root.setLeft(tree);
                     
