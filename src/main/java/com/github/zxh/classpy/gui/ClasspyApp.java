@@ -102,6 +102,7 @@ public class ClasspyApp extends Application {
                     root.setLeft(tree);
                     
                     ClassHex hex = new ClassHex(cf);
+                    System.out.println(hex.getHexString());
                     HexPane hexPane = new HexPane(hex);
                     root.setRight(hexPane);
                 });

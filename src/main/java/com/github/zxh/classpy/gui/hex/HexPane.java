@@ -11,10 +11,10 @@ public class HexPane extends BorderPane {
     
     public HexPane(ClassHex hex) {
         TextArea hexArea = new TextArea(hex.getHexString());
-        TextArea asciiArea = new TextArea(hex.getAsciiString());
+        //TextArea asciiArea = new TextArea(hex.getAsciiString());
         
         setLeft(hexArea);
-        setRight(asciiArea);
+        //setRight(asciiArea);
         
     }
     

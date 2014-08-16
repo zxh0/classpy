@@ -10,57 +10,56 @@ public class ClassHex {
     
     private final int bytesPerRow = 16; // todo
     private String hexString;
-    private String asciiString;
     
     public ClassHex(ClassFile cf) {
         initHexString(cf.getBytes());
-        initAsciiString(cf.getBytes());
     }
     
     private void initHexString(byte[] bytes) {
         StringBuilder buf = new StringBuilder();
         
-        for (int i = 0; i < bytes.length; i++) {
-            int unsignedByte = Byte.toUnsignedInt(bytes[i]);
-            if (unsignedByte < 16) {
-                buf.append('0');
-            }
-            buf.append(Integer.toHexString(unsignedByte).toUpperCase());
-            if ((i + 1) % bytesPerRow == 0) {
-                buf.append('\n');
-            } else {
-                buf.append(' ');
-            }
+        for (int i = 0; i < bytes.length; i += bytesPerRow) {
+            rowToHex(bytes, i, buf);
+            buf.append('|');
+            rowToAscii(bytes, i, buf);
+            buf.append('\n');
         }
         
         hexString = buf.toString();
     }
     
-    private void initAsciiString(byte[] bytes) {
-        StringBuilder buf = new StringBuilder();
-        
-        for (int i = 0; i < bytes.length; i++) {
-            char c = (char) bytes[i];
-            if (c >= '!' && c <= '~') {
-                buf.append(c);
+    private void rowToHex(byte[] bytes, int offset, StringBuilder buf) {
+        for (int i = 0; i < bytesPerRow; i++) {
+            if (offset + i < bytes.length) {
+                byte b = bytes[offset + i];
+                int unsignedByte = Byte.toUnsignedInt(b);
+                if (unsignedByte < 16) {
+                    buf.append('0');
+                }
+                buf.append(Integer.toHexString(unsignedByte).toUpperCase());
+                buf.append(' ');
             } else {
-                buf.append('.');
-            }
-            if ((i + 1) % bytesPerRow == 0) {
-                buf.append('\n');
+                buf.append("   ");
             }
         }
-        
-        asciiString = buf.toString();
+    }
+    
+    private void rowToAscii(byte[] bytes, int offset, StringBuilder buf) {
+        for (int i = 0; i < bytesPerRow; i++) {
+            if (offset + i < bytes.length) {
+                char c = (char) bytes[offset + i];
+                if (c >= '!' && c <= '~') {
+                    buf.append(c);
+                } else {
+                    buf.append('.');
+                }
+            }
+        }
     }
 
     public String getHexString() {
         return hexString;
     }
 
-    public String getAsciiString() {
-        return asciiString;
-    }
-    
     
 }
