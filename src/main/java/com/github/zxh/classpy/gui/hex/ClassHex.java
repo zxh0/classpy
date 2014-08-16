@@ -19,6 +19,8 @@ public class ClassHex {
         StringBuilder buf = new StringBuilder();
         
         for (int i = 0; i < bytes.length; i += bytesPerRow) {
+            buf.append(String.format("%08X", i));
+            buf.append('|').append(' ');
             rowToHex(bytes, i, buf);
             buf.append('|');
             rowToAscii(bytes, i, buf);
