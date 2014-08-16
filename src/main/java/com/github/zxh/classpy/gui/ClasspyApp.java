@@ -16,6 +16,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -27,6 +28,9 @@ public class ClasspyApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        //System.out.println(Font.getFamilies());
+        
+        
         stage.setTitle("Classpy");
         
         BorderPane root = new BorderPane();
@@ -37,8 +41,13 @@ public class ClasspyApp extends Application {
         mainPane.getItems().add(new Button("aaaaaa"));
         mainPane.getItems().add(new Button("aaaaaa"));
         
-        TextArea textArea = new TextArea("1122");
-        textArea.selectPositionCaret(2);
+        TextArea textArea = new TextArea("11223333\nwww");
+//        textArea.setFont(Font.);
+        textArea.positionCaret(2);
+        textArea.selectPositionCaret(11);
+        textArea.setOnMouseClicked(e -> {
+            System.out.println(textArea.getSelection());
+        });
         
         root.setTop(createMenuBar(stage, root));
 //        root.setCenter(mainPane);
