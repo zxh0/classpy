@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.gui.tree.UiBuilder;
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.classfile.ClassParser;
@@ -8,6 +9,7 @@ import com.github.zxh.classpy.gui.hex.HexPane;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
+import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +17,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -81,7 +84,37 @@ public class ClasspyApp extends Application {
                 task.setOnSucceeded(e -> {
                     ClassFile cf = (ClassFile) e.getSource().getValue();
                     System.out.println(cf);
-                    TreeView<?> tree = UiBuilder.build(cf);
+                    TreeView<ClassComponent> tree = UiBuilder.build(cf);
+                    tree.selectionModelProperty().addListener((x, old, n) -> {
+                        System.out.println(x);
+                        System.out.println(old);
+                        System.out.println(n);
+                    });
+                    tree.focusModelProperty().addListener((x, old, n) -> {
+                        System.out.println(x);
+                        System.out.println(old);
+                        System.out.println(n);
+                    });
+                    tree.getSelectionModel().getSelectedItems().addListener(
+                            (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
+                                //throw new UnsupportedOperationException("Not supported yet.");
+                                System.out.println(c);
+                                System.out.println(c.getClass());
+//                                if (c.wasPermutated()) {
+//                                    System.out.println("111");
+//                                }
+//                                if (c.wasReplaced()) {
+//                                    System.out.println("222");
+//                                }
+//                                if (c.wasUpdated()) {
+//                                    System.out.println("333");
+//                                }
+                                //Object x = c.getList().get(c.getTo());
+                                //System.out.println(x);
+                                //System.out.println(x.getClass());
+                    });
+//                    tree.getSelectionModel().getSelectedItems().add
+                    
                     root.setLeft(tree);
                     
                     ClassHex hex = new ClassHex(cf);
