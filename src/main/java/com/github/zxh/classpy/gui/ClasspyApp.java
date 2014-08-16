@@ -98,31 +98,28 @@ public class ClasspyApp extends Application {
                     tree.getSelectionModel().getSelectedItems().addListener(
                             (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
                                 //throw new UnsupportedOperationException("Not supported yet.");
-                                System.out.println(c);
-                                System.out.println(c.getClass());
+                                //System.out.println(c);
+                                //System.out.println(c.getClass());
                                 if (c.next()) {
+//                                    if (c.wasPermutated()) {
+//                                        System.out.println("wasPermutated::"+c);
+//                                    } else {
+//                                        System.out.println("!!!!!!!!!!!!!::"+c);
+//                                        Object x = c.getList().get(c.getFrom());
+//                                        System.out.println("Vvvvvvv:"+x);
+//                                    } 
                                     if (c.wasPermutated()) {
                                         System.out.println("wasPermutated::"+c);
-                                    } else {
-                                        System.out.println("!!!!!!!!!!!!!::"+c);
-                                        Object x = c.getList().get(c.getFrom());
-                                        System.out.println("Vvvvvvv:"+x);
                                     }
-//                                    if (c.wasReplaced()) {
-//                                        System.out.println("wasReplaced::"+c);
-//                                        Object x = c.getList().get(c.getFrom());
-//                                        System.out.println(x);
-//                                    }
-//                                    if (c.wasUpdated()) {
-//                                        System.out.println("wasUpdated::"+c);
-//                                        Object x = c.getList().get(c.getFrom());
-//                                        System.out.println(x);
-//                                    }
-//                                    if (c.wasAdded()) {
-//                                        System.out.println("wasAdded::"+c);
-//                                        Object x = c.getList().get(c.getFrom());
-//                                        System.out.println(x);
-//                                    }
+                                    if (c.wasReplaced()) {
+                                        System.out.println("wasReplaced::"+c);
+                                    }
+                                    if (c.wasUpdated()) {
+                                        System.out.println("wasUpdated::"+c);
+                                    }
+                                    if (c.wasAdded()) {
+                                        System.out.println("wasAdded::"+c);
+                                    }
                                     
                                 }
 //                                
