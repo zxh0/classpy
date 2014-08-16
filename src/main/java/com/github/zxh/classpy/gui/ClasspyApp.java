@@ -100,15 +100,32 @@ public class ClasspyApp extends Application {
                                 //throw new UnsupportedOperationException("Not supported yet.");
                                 System.out.println(c);
                                 System.out.println(c.getClass());
-//                                if (c.wasPermutated()) {
-//                                    System.out.println("111");
-//                                }
-//                                if (c.wasReplaced()) {
-//                                    System.out.println("222");
-//                                }
-//                                if (c.wasUpdated()) {
-//                                    System.out.println("333");
-//                                }
+                                if (c.next()) {
+                                    if (c.wasPermutated()) {
+                                        System.out.println("wasPermutated::"+c);
+                                    } else {
+                                        System.out.println("!!!!!!!!!!!!!::"+c);
+                                        Object x = c.getList().get(c.getFrom());
+                                        System.out.println("Vvvvvvv:"+x);
+                                    }
+//                                    if (c.wasReplaced()) {
+//                                        System.out.println("wasReplaced::"+c);
+//                                        Object x = c.getList().get(c.getFrom());
+//                                        System.out.println(x);
+//                                    }
+//                                    if (c.wasUpdated()) {
+//                                        System.out.println("wasUpdated::"+c);
+//                                        Object x = c.getList().get(c.getFrom());
+//                                        System.out.println(x);
+//                                    }
+//                                    if (c.wasAdded()) {
+//                                        System.out.println("wasAdded::"+c);
+//                                        Object x = c.getList().get(c.getFrom());
+//                                        System.out.println(x);
+//                                    }
+                                    
+                                }
+//                                
                                 //Object x = c.getList().get(c.getTo());
                                 //System.out.println(x);
                                 //System.out.println(x.getClass());
