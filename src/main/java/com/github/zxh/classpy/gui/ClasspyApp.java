@@ -4,6 +4,7 @@ import com.github.zxh.classpy.gui.tree.UiBuilder;
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.gui.hex.ClassHex;
+import com.github.zxh.classpy.gui.hex.HexPane;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
@@ -14,10 +15,8 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SplitPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -42,17 +41,9 @@ public class ClasspyApp extends Application {
         mainPane.getItems().add(new Button("aaaaaa"));
         mainPane.getItems().add(new Button("aaaaaa"));
         
-        TextArea textArea = new TextArea("11223333\nwww");
-//        textArea.setFont(Font.);
-        textArea.positionCaret(2);
-        textArea.selectPositionCaret(11);
-        textArea.setOnMouseClicked(e -> {
-            System.out.println(textArea.getSelection());
-        });
         
         root.setTop(createMenuBar(stage, root));
 //        root.setCenter(mainPane);
-        root.setCenter(textArea);
         
         Scene scene = new Scene(root, 500, 600);
         stage.setScene(scene);
@@ -91,12 +82,11 @@ public class ClasspyApp extends Application {
                     ClassFile cf = (ClassFile) e.getSource().getValue();
                     System.out.println(cf);
                     TreeView<?> tree = UiBuilder.build(cf);
-                    root.setCenter(tree);
+                    root.setLeft(tree);
                     
                     ClassHex hex = new ClassHex(cf);
-                    System.out.println(hex.getHexString());
-                    System.out.println(hex.getAsciiString());
-                    
+                    HexPane hexPane = new HexPane(hex);
+                    root.setRight(hexPane);
                 });
                 
                 task.setOnFailed(e -> {
