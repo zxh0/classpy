@@ -95,6 +95,7 @@ public class ClasspyApp extends Application {
                     
                     ClassHex hex = new ClassHex(cf);
                     System.out.println(hex.getHexString());
+                    System.out.println(hex.getAsciiString());
                     
                 });
                 

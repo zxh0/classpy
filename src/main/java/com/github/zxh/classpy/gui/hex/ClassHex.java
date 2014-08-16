@@ -14,6 +14,7 @@ public class ClassHex {
     
     public ClassHex(ClassFile cf) {
         initHexString(cf.getBytes());
+        initAsciiString(cf.getBytes());
     }
     
     private void initHexString(byte[] bytes) {
@@ -34,11 +35,32 @@ public class ClassHex {
         
         hexString = buf.toString();
     }
+    
+    private void initAsciiString(byte[] bytes) {
+        StringBuilder buf = new StringBuilder();
+        
+        for (int i = 0; i < bytes.length; i++) {
+            char c = (char) bytes[i];
+            if (c >= '!' && c <= '~') {
+                buf.append(c);
+            } else {
+                buf.append('.');
+            }
+            if ((i + 1) % bytesPerRow == 0) {
+                buf.append('\n');
+            }
+        }
+        
+        asciiString = buf.toString();
+    }
 
     public String getHexString() {
         return hexString;
     }
-    
+
+    public String getAsciiString() {
+        return asciiString;
+    }
     
     
 }
