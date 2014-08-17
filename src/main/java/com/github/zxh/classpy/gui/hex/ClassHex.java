@@ -75,7 +75,7 @@ public class ClassHex {
     private int calcTextPosition(int byteOffset) {
         int rowIndex = byteOffset / bytesPerRow;
         int colIndex = byteOffset % bytesPerRow;
-        return (75 * rowIndex) + 10 + (colIndex * 3);
+        return (76 * rowIndex) + 10 + (colIndex * 3);
     }
 
     
