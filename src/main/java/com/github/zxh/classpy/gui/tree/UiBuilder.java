@@ -20,8 +20,10 @@ public class UiBuilder {
         SplitPane sp = new SplitPane();
         
         TreeView<ClassComponent> tree = buildClassTree(cf);
+        HexPane hexPane = buildHexPane(cf);
+        
         sp.getItems().add(tree);
-        sp.getItems().add(buildHexPane(cf));
+        sp.getItems().add(hexPane);
         
         tree.getSelectionModel().getSelectedItems().addListener(
             (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
@@ -29,9 +31,8 @@ public class UiBuilder {
                     if (c.wasAdded()) {
                         TreeItem<ClassComponent> node = c.getList().get(c.getFrom());
                         ClassComponent cc = node.getValue();
-
-                        System.out.println("ccccc:"+cc);
-                        System.out.println(cc.getClass());
+                        hexPane.select(cc);
+                        //System.out.println("select " + cc);
                     }
                 }
             }
