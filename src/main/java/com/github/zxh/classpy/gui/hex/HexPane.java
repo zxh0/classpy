@@ -17,8 +17,9 @@ public class HexPane extends TextArea {
     }
     
     public void select(ClassComponent cc) {
-        positionCaret(cc.getOffset());
-        selectPositionCaret(cc.getOffset() + cc.getLength());
+        ClassHex.Selection selection = hex.calcSelection(cc);
+        positionCaret(selection.getStartPosition());
+        selectPositionCaret(selection.getEndPosition());
     }
     
 }

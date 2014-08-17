@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui.hex;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassFile;
 
 /**
@@ -9,7 +10,7 @@ import com.github.zxh.classpy.classfile.ClassFile;
 public class ClassHex {
     
     private final int bytesPerRow = 16; // todo
-    private String hexString;
+    private String hexString; // hexText
     
     public ClassHex(ClassFile cf) {
         initHexString(cf.getBytes());
@@ -62,6 +63,35 @@ public class ClassHex {
     public String getHexString() {
         return hexString;
     }
+    
+    // todo
+    public Selection calcSelection(ClassComponent cc) {
+        Selection selection = new Selection();
+        selection.startPosition = calcTextPosition(cc.getOffset());
+        selection.endPosition = calcTextPosition(cc.getOffset() + cc.getLength()) - 1;
+        return selection;
+    }
+    
+    private int calcTextPosition(int byteOffset) {
+        int rowIndex = byteOffset / bytesPerRow;
+        int colIndex = byteOffset % bytesPerRow;
+        return (75 * rowIndex) + 10 + (colIndex * 3);
+    }
 
+    
+    public static class Selection {
+        
+        private int startPosition;
+        private int endPosition;
+
+        public int getStartPosition() {
+            return startPosition;
+        }
+
+        public int getEndPosition() {
+            return endPosition;
+        }
+        
+    }
     
 }

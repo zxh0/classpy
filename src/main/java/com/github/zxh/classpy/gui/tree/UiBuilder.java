@@ -31,8 +31,10 @@ public class UiBuilder {
                     if (c.wasAdded()) {
                         TreeItem<ClassComponent> node = c.getList().get(c.getFrom());
                         ClassComponent cc = node.getValue();
-                        hexPane.select(cc);
                         //System.out.println("select " + cc);
+                        if (!(cc instanceof ClassFile)) {
+                            hexPane.select(cc);
+                        }
                     }
                 }
             }
