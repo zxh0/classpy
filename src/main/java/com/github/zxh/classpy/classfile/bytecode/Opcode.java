@@ -35,7 +35,7 @@ public enum Opcode {
     lload           (0x16, 1),
     fload           (0x17, 1),
     dload           (0x18, 1),
-    aload           (0x19, 1), // <-
+    aload           (0x19, 1),
     iload_0         (0x1a, 0),
     iload_1         (0x1b, 0),
     iload_2         (0x1c, 0),
@@ -65,7 +65,7 @@ public enum Opcode {
     caload          (0x34, 0),
     saload          (0x35, 0),
     // Stores
-    istore          (0x36, 1),
+    istore          (0x36, 1), // <-
     lstore          (0x37, 1),
     fstore          (0x38, 1),
     dstore          (0x39, 1),

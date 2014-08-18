@@ -84,7 +84,7 @@ public class ByteCode {
         double d = c; // dload 4
         double e = d; // dload 6
     }
-        
+    
     public static void aload() {
         Object a = null;
         Object b = a; // aload_0
@@ -93,6 +93,19 @@ public class ByteCode {
         Object e = d; // aload_3
         Object f = e; // aload 4
         Object g = f; // aload 5
+    }
+    
+    public static void xaload(int[] a1, long[] a2, float[] a3, double[] a4,
+            Object[] a5, byte[] a6, char[] a7, short[] a8) {
+        
+        int b1 = a1[0]; // iaload
+        long b2 = a2[0]; // laload
+        float b3 = a3[0]; // faload
+        double b4 = a4[0]; // daload
+        Object b5 = a5[0]; // aaload
+        byte b6 = a6[0]; // baload
+        char b7 = a7[0]; // caload
+        short b8 = a8[0]; // saload
     }
     
 }
