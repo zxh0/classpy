@@ -28,7 +28,42 @@ public enum Opcode {
     ldc        (0x12, 0),
     ldc_w      (0x13, 0),
     ldc2_w     (0x14, 0),
-;    
+    // Loads
+    iload      (0x15, 0),
+    lload      (0x16, 0),
+    fload      (0x17, 0),
+    dload      (0x18, 0),
+    aload      (0x19, 0),
+    iload_0    (0x1a, 0),
+    iload_1    (0x1b, 0),
+    iload_2    (0x1c, 0),
+    iload_3    (0x1d, 0),
+    lload_0    (0x1e, 0),
+    lload_1    (0x1f, 0),
+    lload_2    (0x20, 0),
+    lload_3    (0x21, 0),
+    fload_0    (0x22, 0),
+    fload_1    (0x23, 0),
+    fload_2    (0x24, 0),
+    fload_3    (0x25, 0),
+    dload_0    (0x26, 0),
+    dload_1    (0x27, 0),
+    dload_2    (0x28, 0),
+    dload_3    (0x29, 0),
+    aload_0    (0x2a, 0),
+    aload_1    (0x2b, 0),
+    aload_2    (0x2c, 0),
+    aload_3    (0x2d, 0),
+    iaload     (0x2e, 0),
+    laload     (0x2f, 0),
+    faload     (0x30, 0),
+    daload     (0x31, 0),
+    aaload     (0x32, 0),
+    baload     (0x33, 0),
+    caload     (0x34, 0),
+    saload     (0x35, 0),
+    ;
+    
     public final int opcode;
     public final int operandCount;
 
