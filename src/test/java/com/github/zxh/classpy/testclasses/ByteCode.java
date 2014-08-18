@@ -23,4 +23,11 @@ public class ByteCode {
         x = 1;
     }
     
+    public void fconst_x() {
+        float x;
+        x = 0;
+        x = 1;
+        x = 2;
+    }
+    
 }
