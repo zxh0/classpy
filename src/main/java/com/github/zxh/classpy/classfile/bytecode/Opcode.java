@@ -160,6 +160,26 @@ public enum Opcode {
     i2b        (0x91, 0),
     i2c        (0x92, 0),
     i2s        (0x93, 0),
+    // Comparisons
+    lcmp       (0x94, 0),
+    fcmpl      (0x95, 0),
+    fcmpg      (0x96, 0),
+    dcmpl      (0x97, 0),
+    dcmpg      (0x98, 0),
+    ifeq       (0x99, 0),
+    ifne       (0x9a, 0),
+    iflt       (0x9b, 0),
+    ifge       (0x9c, 0),
+    ifgt       (0x9d, 0),
+    ifle       (0x9e, 0),
+    if_icmpeq  (0x9f, 0),
+    if_icmpne  (0xa0, 0),
+    if_icmplt  (0xa1, 0),
+    if_icmpge  (0xa2, 0),
+    if_icmpgt  (0xa3, 0),
+    if_icmple  (0xa4, 0),
+    if_acmpeq  (0xa5, 0),
+    if_acmpne  (0xa6, 0),
     ;
     
     public final int opcode;
