@@ -180,6 +180,19 @@ public enum Opcode {
     if_icmple  (0xa4, 0),
     if_acmpeq  (0xa5, 0),
     if_acmpne  (0xa6, 0),
+    // Control
+    //goto(0xa7, 0),
+    jsr         (0xa8, 0),
+    ret         (0xa9, 0),
+    tableswitch (0xaa, 0),
+    lookupswitch(0xab, 0),
+    ireturn     (0xac, 0),
+    lreturn     (0xad, 0),
+    freturn     (0xae, 0),
+    dreturn     (0xaf, 0),
+    areturn     (0xb0, 0),
+    //return(0xb1, 0),
+    // References
     ;
     
     public final int opcode;
