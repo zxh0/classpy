@@ -11,7 +11,7 @@ public enum Opcode {
     // Constants
     nop             (0x00, 0),
     aconst_null     (0x01, 0),
-    iconst_m1       (0x02, 0),
+    iconst_m1       (0x02, 0),//<-
     iconst_0        (0x03, 0),
     iconst_1        (0x04, 0),
     iconst_2        (0x05, 0),

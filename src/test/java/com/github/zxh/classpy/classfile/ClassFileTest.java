@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.testclasses.AnnotatedClass;
+import com.github.zxh.classpy.testclasses.ByteCode;
 import com.github.zxh.classpy.testclasses.SimpleClass;
 import com.github.zxh.classpy.testclasses.GenericClass;
 import com.github.zxh.classpy.testclasses.MyRuntimeAnnotation;
@@ -54,6 +55,12 @@ public class ClassFileTest {
     @Test
     public void typeAnnotatedClass() throws Exception {
         byte[] classBytes = loadClass(TypeAnnotatedClass.class);
+        ClassParser.parse(classBytes);
+    }
+    
+    @Test
+    public void byteCode() throws Exception {
+        byte[] classBytes = loadClass(ByteCode.class);
         ClassParser.parse(classBytes);
     }
     

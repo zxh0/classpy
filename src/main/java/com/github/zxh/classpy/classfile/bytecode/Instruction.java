@@ -28,6 +28,7 @@ public class Instruction extends ClassComponent {
     
     public static Instruction create(Opcode opcode) {
         switch (opcode) {
+//            case aconst_null:
             // todo
             default: return new Instruction(opcode);
         }
