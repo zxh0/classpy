@@ -76,5 +76,13 @@ public class ByteCode {
         float f = e; // fload 4
         float g = f; // fload 5
     }
-        
+    
+    public static void dload() {
+        double a = 1;
+        double b = a; // dload_0
+        double c = b; // dload_2
+        double d = c; // dload 4
+        double e = d; // dload 6
+    }
+    
 }

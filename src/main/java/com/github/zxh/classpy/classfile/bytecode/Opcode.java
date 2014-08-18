@@ -33,9 +33,9 @@ public enum Opcode {
     // Loads
     iload           (0x15, 1),
     lload           (0x16, 1),
-    fload           (0x17, 1), // <-
+    fload           (0x17, 1),
     dload           (0x18, 1),
-    aload           (0x19, 1),
+    aload           (0x19, 1), // <-
     iload_0         (0x1a, 0),
     iload_1         (0x1b, 0),
     iload_2         (0x1c, 0),
