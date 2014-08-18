@@ -7,7 +7,7 @@ package com.github.zxh.classpy.classfile.bytecode;
 public enum Opcode {
     
     // Constants
-    NOP        (0x00, 0),
+    nop        (0x00, 0),
     aconst_null(0x01, 0),
     iconst_m1  (0x02, 0),
     iconst_0   (0x03, 0),
@@ -62,6 +62,41 @@ public enum Opcode {
     baload     (0x33, 0),
     caload     (0x34, 0),
     saload     (0x35, 0),
+    // Stores
+    istore     (0x36, 0),
+    lstore     (0x37, 0),
+    fstore     (0x38, 0),
+    dstore     (0x39, 0),
+    astore     (0x3a, 0),
+    istore_0   (0x3b, 0),
+    istore_1   (0x3c, 0),
+    istore_2   (0x3d, 0),
+    istore_3   (0x3e, 0),
+    lstore_0   (0x3f, 0),
+    lstore_1   (0x40, 0),
+    lstore_2   (0x41, 0),
+    lstore_3   (0x42, 0),
+    fstore_0   (0x43, 0),
+    fstore_1   (0x44, 0),
+    fstore_2   (0x45, 0),
+    fstore_3   (0x46, 0),
+    dstore_0   (0x47, 0),
+    dstore_1   (0x48, 0),
+    dstore_2   (0x49, 0),
+    dstore_3   (0x4a, 0),
+    astore_0   (0x4b, 0),
+    astore_1   (0x4c, 0),
+    astore_2   (0x4d, 0),
+    astore_3   (0x4e, 0),
+    iastore    (0x4f, 0),
+    lastore    (0x50, 0),
+    fastore    (0x51, 0),
+    dastore    (0x52, 0),
+    aastore    (0x53, 0),
+    bastore    (0x54, 0),
+    castore    (0x55, 0),
+    sastore    (0x56, 0),
+    //                                   
     ;
     
     public final int opcode;
