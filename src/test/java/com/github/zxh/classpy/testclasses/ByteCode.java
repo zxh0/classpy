@@ -49,4 +49,14 @@ public class ByteCode {
         long y = CONST_LONG; // ldc_2w
     }
     
+    public static void iload() {
+        int a = 1;
+        int b = a; // iload_0
+        int c = b; // iload_1
+        int d = c; // iload_2
+        int e = d; // iload_3
+        int f = e; // iload 4
+        int g = f; // iload 5
+    }
+    
 }

@@ -25,13 +25,13 @@ public enum Opcode {
     fconst_2        (0x0d, 0),
     dconst_0        (0x0e, 0),
     dconst_1        (0x0f, 0),
-    bipush          (0x10, 1),// todo
-    sipush          (0x11, 2),//<-
+    bipush          (0x10, 1), // todo
+    sipush          (0x11, 2), // todo
     ldc             (0x12, 1),
     ldc_w           (0x13, 2),
     ldc2_w          (0x14, 2),
     // Loads
-    iload           (0x15, 1),
+    iload           (0x15, 1), // <-
     lload           (0x16, 1),
     fload           (0x17, 1),
     dload           (0x18, 1),
