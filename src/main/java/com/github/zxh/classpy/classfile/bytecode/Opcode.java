@@ -18,14 +18,14 @@ public enum Opcode {
     iconst_3        (0x06, 0),
     iconst_4        (0x07, 0),
     iconst_5        (0x08, 0),
-    lconst_0        (0x09, 0),//<-
+    lconst_0        (0x09, 0),
     lconst_1        (0x0a, 0),
     fconst_0        (0x0b, 0),
     fconst_1        (0x0c, 0),
     fconst_2        (0x0d, 0),
     dconst_0        (0x0e, 0),
     dconst_1        (0x0f, 0),
-    bipush          (0x10, 1),
+    bipush          (0x10, 1),//<-
     sipush          (0x11, 2),
     ldc             (0x12, 1),
     ldc_w           (0x13, 2),
