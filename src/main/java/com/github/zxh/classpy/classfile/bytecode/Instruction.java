@@ -13,6 +13,7 @@ public class Instruction extends ClassComponent {
 
     public Instruction(Opcode opcode) {
         this.opcode = opcode;
+        setName(opcode.name());
     }
     
     @Override

@@ -237,7 +237,7 @@ public enum Opcode {
     
     public static Opcode valueOf(int opcode) {
         if (opcode < 0xca) {
-            return values()[0xca];
+            return values()[opcode];
         } else {
             throw new ClassParseException("Invalid opcode: " + opcode);
         }

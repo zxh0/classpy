@@ -14,12 +14,12 @@ public abstract class ClassComponent {
     private String name;
     private String desc;
 
-    public int getOffset() {return offset;}
-    public int getLength() {return length;}
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
-    public String getDesc() {return desc;}
-    public void setDesc(String desc) {this.desc = desc;}
+    public final int getOffset() {return offset;}
+    public final int getLength() {return length;}
+    public final String getName() {return name;}
+    public final void setName(String name) {this.name = name;}
+    public final String getDesc() {return desc;}
+    public final void setDesc(String desc) {this.desc = desc;}
 
     public void read(ClassReader reader) {
         offset = reader.getPosition();
