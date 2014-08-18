@@ -2,7 +2,7 @@ package com.github.zxh.classpy.testclasses;
 
 public class ByteCode {
     
-    //public static final int CONST_INT = 2014;
+    public static final long CONST_LONG = -1L;
     public static final String CONST_STR = "PI";
     
     public Object aconst_null_areturn() {
@@ -40,12 +40,13 @@ public class ByteCode {
     }
     
     public void bipush_sipush() {
-        int x = 6;
-        short y = 257;
+        int x = 6; // bipush
+        short y = 257; // sipush
     }
     
     public void ldc() {
-        String x = CONST_STR;
+        String x = CONST_STR; // ldc
+        long y = CONST_LONG; // ldc_2w
     }
     
 }

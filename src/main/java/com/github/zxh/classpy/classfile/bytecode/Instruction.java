@@ -41,6 +41,8 @@ public class Instruction extends ClassComponent {
     public static Instruction create(Opcode opcode) {
         switch (opcode) {
             case ldc: return new InstructionU1(opcode);
+            case ldc_w:
+            case ldc2_w: return new InstructionU2(opcode);
             // todo
             default: return new Instruction(opcode);
         }
