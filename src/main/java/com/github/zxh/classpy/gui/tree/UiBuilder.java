@@ -24,6 +24,7 @@ public class UiBuilder {
         
         sp.getItems().add(tree);
         sp.getItems().add(hexPane);
+        sp.setDividerPositions(0.1, 0.5);
         
         tree.getSelectionModel().getSelectedItems().addListener(
             (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
@@ -46,7 +47,11 @@ public class UiBuilder {
     private static TreeView<ClassComponent> buildClassTree(ClassFile cf) {
         ClassComponentTreeItem root = new ClassComponentTreeItem(cf);
         root.setExpanded(true);
-        return new TreeView<>(root);
+        
+        TreeView<ClassComponent> tree = new TreeView<>(root);
+        tree.setMinWidth(200);
+        
+        return tree;
     }
     
     private static HexPane buildHexPane(ClassFile cf) {

@@ -14,6 +14,7 @@ public class HexPane extends TextArea {
     public HexPane(ClassHex hex) {
         super(hex.getHexString());
         this.hex = hex;
+        setEditable(false);
     }
     
     public void select(ClassComponent cc) {
