@@ -2,7 +2,6 @@ package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.bytecode.Instruction;
 import com.github.zxh.classpy.classfile.bytecode.Opcode;
 import java.util.ArrayList;
@@ -31,6 +30,11 @@ public class Code extends ClassComponent {
             instruction.read(reader);
             instructions.add(instruction);
         }
+    }
+
+    @Override
+    public List<? extends ClassComponent> getSubComponents() {
+        return instructions;
     }
     
 }

@@ -55,8 +55,7 @@ public class CodeAttribute extends AttributeInfo {
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(attributeNameIndex, attributeLength,
-                maxStack, maxLocals, codeLength,
-                // todo code
+                maxStack, maxLocals, codeLength, code,
                 exceptionTableLength, exceptionTable,
                 attributesCount, attributes);
     }
