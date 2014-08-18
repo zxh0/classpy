@@ -106,21 +106,46 @@ public enum Opcode {
     dup2_x1    (0x5d, 0),
     dup2_x2    (0x5e, 0),
     swap       (0x5f, 0),
-//     Math
-
-
-//96 (0x60) iadd
-//97 (0x61) ladd
-//98 (0x62) fadd
-//99 (0x63) dadd
-//100 (0x64) isub
-//101 (0x65) lsub
-//102 (0x66) fsub
-//103 (0x67) dsub
-//104 (0x68) imul
-//105 (0x69) lmul 106 (0x6a) fmul 107 (0x6b) dmul 108 (0x6c) idiv 109 (0x6d) ldiv 110 (0x6e) fdiv 111 (0x6f) ddiv 112 (0x70) irem 113 (0x71) lrem 114 (0x72) frem 115 (0x73) drem 116 (0x74) ineg 117 (0x75) lneg 118 (0x76) fneg 119 (0x77) dneg 120 (0x78) ishl 121 (0x79) lshl 122 (0x7a) ishr 123 (0x7b) lshr 124 (0x7c) iushr 125 (0x7d) lushr 126 (0x7e) iand 127 (0x7f) land 128 (0x80) ior 129 (0x81) lor 130 (0x82) ixor 131 (0x83) lxor 132 (0x84) iinc
+    // Math
+    iadd       (0x60, 0),
+    ladd       (0x61, 0),
+    fadd       (0x62, 0),
+    dadd       (0x63, 0),
+    isub       (0x64, 0),
+    lsub       (0x65, 0),
+    fsub       (0x66, 0),
+    dsub       (0x67, 0),
+    imul       (0x68, 0),
+    lmul       (0x69, 0),
+    fmul       (0x6a, 0), 
+    dmul       (0x6b, 0),
+    idiv       (0x6c, 0),
+    ldiv       (0x6d, 0),
+    fdiv       (0x6e, 0),
+    ddiv       (0x6f, 0),
+    irem       (0x70, 0),
+    lrem       (0x71, 0),
+    frem       (0x72, 0),
+    drem       (0x73, 0),
+    ineg       (0x74, 0),
+    lneg       (0x75, 0),
+    fneg       (0x76, 0),
+    dneg       (0x77, 0),
+    ishl       (0x78, 0),
+    lshl       (0x79, 0),
+    ishr       (0x7a, 0),
+    lshr       (0x7b, 0),
+    iushr      (0x7c, 0),
+    lushr      (0x7d, 0),
+    iand       (0x7e, 0),
+    land       (0x7f, 0),
+    ior        (0x80, 0),
+    lor        (0x81, 0),
+    ixor       (0x82, 0),
+    lxor       (0x83, 0),
+    iinc       (0x84, 0),
 //Conversions
-//133 (0x85) i2l 134 (0x86) i2f 135 (0x87) i2d 136 (0x88) l2i 137 (0x89) l2f 138 (0x8a) l2d 139 (0x8b) f2i 140 (0x8c) f2l 141 (0x8d) f2d 142 (0x8e) d2i 143 (0x8f) d2l 144 (0x90) d2f 145 (0x91) i2b 146 (0x92) i2c 147 (0x93) i2s
+//133 (0x 85) i2l 134 (0x86) i2f 135 (0x87) i2d 136 (0x88) l2i 137 (0x89) l2f 138 (0x8a) l2d 139 (0x8b) f2i 140 (0x8c) f2l 141 (0x8d) f2d 142 (0x8e) d2i 143 (0x8f) d2l 144 (0x90) d2f 145 (0x91) i2b 146 (0x92) i2c 147 (0x93) i2s
     ;
     
     public final int opcode;
