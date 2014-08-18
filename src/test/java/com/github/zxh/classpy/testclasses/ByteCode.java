@@ -59,4 +59,12 @@ public class ByteCode {
         int g = f; // iload 5
     }
     
+    public static void lload() {
+        long a = 1;
+        long b = a; // lload_0
+        long c = b; // iload_2
+        long d = c; // iload 4
+        long e = d; // iload 6
+    }
+    
 }
