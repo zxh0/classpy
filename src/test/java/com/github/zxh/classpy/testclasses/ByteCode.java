@@ -36,4 +36,8 @@ public class ByteCode {
         x = 1;
     }
     
+    public void bipush() {
+        int x = 6;
+    }
+    
 }
