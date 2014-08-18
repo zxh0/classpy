@@ -46,7 +46,8 @@ public class Instruction extends ClassComponent {
             case iload: 
             case lload:
             case fload: 
-            case dload: return new InstructionU1(opcode);
+            case dload:
+            case aload: return new InstructionU1(opcode);
             // todo
             default: return new Instruction(opcode);
         }

@@ -84,5 +84,15 @@ public class ByteCode {
         double d = c; // dload 4
         double e = d; // dload 6
     }
+        
+    public static void aload() {
+        Object a = null;
+        Object b = a; // aload_0
+        Object c = b; // aload_1
+        Object d = c; // aload_2
+        Object e = d; // aload_3
+        Object f = e; // aload 4
+        Object g = f; // aload 5
+    }
     
 }
