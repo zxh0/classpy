@@ -32,8 +32,8 @@ public enum Opcode {
     ldc2_w          (0x14, 2),
     // Loads
     iload           (0x15, 1),
-    lload           (0x16, 1), // <-
-    fload           (0x17, 1),
+    lload           (0x16, 1),
+    fload           (0x17, 1), // <-
     dload           (0x18, 1),
     aload           (0x19, 1),
     iload_0         (0x1a, 0),

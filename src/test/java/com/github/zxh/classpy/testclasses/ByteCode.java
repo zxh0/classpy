@@ -62,9 +62,19 @@ public class ByteCode {
     public static void lload() {
         long a = 1;
         long b = a; // lload_0
-        long c = b; // iload_2
-        long d = c; // iload 4
-        long e = d; // iload 6
+        long c = b; // lload_2
+        long d = c; // lload 4
+        long e = d; // lload 6
     }
     
+    public static void fload() {
+        float a = 3.14f;
+        float b = a; // fload_0
+        float c = b; // fload_1
+        float d = c; // fload_2
+        float e = d; // fload_3
+        float f = e; // fload 4
+        float g = f; // fload 5
+    }
+        
 }
