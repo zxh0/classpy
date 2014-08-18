@@ -144,8 +144,22 @@ public enum Opcode {
     ixor       (0x82, 0),
     lxor       (0x83, 0),
     iinc       (0x84, 0),
-//Conversions
-//133 (0x 85) i2l 134 (0x86) i2f 135 (0x87) i2d 136 (0x88) l2i 137 (0x89) l2f 138 (0x8a) l2d 139 (0x8b) f2i 140 (0x8c) f2l 141 (0x8d) f2d 142 (0x8e) d2i 143 (0x8f) d2l 144 (0x90) d2f 145 (0x91) i2b 146 (0x92) i2c 147 (0x93) i2s
+    // Conversions
+    i2l        (0x85, 0),
+    i2f        (0x86, 0),
+    i2d        (0x87, 0),
+    l2i        (0x88, 0),
+    l2f        (0x89, 0),
+    l2d        (0x8a, 0),
+    f2i        (0x8b, 0),
+    f2l        (0x8c, 0),
+    f2d        (0x8d, 0),
+    d2i        (0x8e, 0),
+    d2l        (0x8f, 0),
+    d2f        (0x90, 0),
+    i2b        (0x91, 0),
+    i2c        (0x92, 0),
+    i2s        (0x93, 0),
     ;
     
     public final int opcode;
