@@ -30,4 +30,10 @@ public class ByteCode {
         x = 2;
     }
     
+    public void dconst_x() {
+        double x;
+        x = 0;
+        x = 1;
+    }
+    
 }
