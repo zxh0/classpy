@@ -1,9 +1,10 @@
-package com.github.zxh.classpy.gui.tree;
+package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.gui.hex.ClassHex;
 import com.github.zxh.classpy.gui.hex.HexPane;
+import com.github.zxh.classpy.gui.tree.ClassComponentTreeItem;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;

@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.gui.tree.UiBuilder;
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.classfile.ClassParser;
 import java.io.File;
