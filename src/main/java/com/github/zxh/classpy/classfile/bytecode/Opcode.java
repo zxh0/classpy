@@ -96,7 +96,31 @@ public enum Opcode {
     bastore    (0x54, 0),
     castore    (0x55, 0),
     sastore    (0x56, 0),
-    //                                   
+    // Stack
+    pop        (0x57, 0),
+    pop2       (0x58, 0),
+    dup        (0x59, 0),
+    dup_x1     (0x5a, 0),
+    dup_x2     (0x5b, 0),
+    dup2       (0x5c, 0),
+    dup2_x1    (0x5d, 0),
+    dup2_x2    (0x5e, 0),
+    swap       (0x5f, 0),
+//     Math
+
+
+//96 (0x60) iadd
+//97 (0x61) ladd
+//98 (0x62) fadd
+//99 (0x63) dadd
+//100 (0x64) isub
+//101 (0x65) lsub
+//102 (0x66) fsub
+//103 (0x67) dsub
+//104 (0x68) imul
+//105 (0x69) lmul 106 (0x6a) fmul 107 (0x6b) dmul 108 (0x6c) idiv 109 (0x6d) ldiv 110 (0x6e) fdiv 111 (0x6f) ddiv 112 (0x70) irem 113 (0x71) lrem 114 (0x72) frem 115 (0x73) drem 116 (0x74) ineg 117 (0x75) lneg 118 (0x76) fneg 119 (0x77) dneg 120 (0x78) ishl 121 (0x79) lshl 122 (0x7a) ishr 123 (0x7b) lshr 124 (0x7c) iushr 125 (0x7d) lushr 126 (0x7e) iand 127 (0x7f) land 128 (0x80) ior 129 (0x81) lor 130 (0x82) ixor 131 (0x83) lxor 132 (0x84) iinc
+//Conversions
+//133 (0x85) i2l 134 (0x86) i2f 135 (0x87) i2d 136 (0x88) l2i 137 (0x89) l2f 138 (0x8a) l2d 139 (0x8b) f2i 140 (0x8c) f2l 141 (0x8d) f2d 142 (0x8e) d2i 143 (0x8f) d2l 144 (0x90) d2f 145 (0x91) i2b 146 (0x92) i2c 147 (0x93) i2s
     ;
     
     public final int opcode;
