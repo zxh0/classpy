@@ -6,15 +6,21 @@ public class ByteCode {
         return null;
     }
     
-    public void iconst_x_return(int x) {
-        int a;
-        a = -1;
-        a = 0;
-        a = 1;
-        a = 2;
-        a = 3;
-        a = 4;
-        a = 5;
+    public void iconst_x_return() {
+        int x;
+        x = -1;
+        x = 0;
+        x = 1;
+        x = 2;
+        x = 3;
+        x = 4;
+        x = 5;
+    }
+    
+    public void lconst_x() {
+        long x;
+        x = 0;
+        x = 1;
     }
     
 }
