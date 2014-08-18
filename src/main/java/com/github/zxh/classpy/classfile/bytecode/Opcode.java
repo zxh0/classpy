@@ -193,26 +193,34 @@ public enum Opcode {
     areturn     (0xb0, 0),
     //return(0xb1, 0),
     // References
-getstatic(0xb2, 0),
-putstatic(0xb3, 0),
-getfield(0xb4, 0),
-putfield(0xb5, 0),
-invokevirtual(0xb6, 0),
-invokespecial(0xb7, 0),
-invokestatic(0xb8, 0),
-invokeinterface(0xb9, 0),
-invokedynamic(0xba, 0),
-//new(0xbb, 0),
-newarray(0xbc, 0),
-anewarray(0xbd, 0),
-arraylength(0xbe, 0),
-athrow(0xbf, 0),
-checkcast(0xc0, 0),
-//instanceof(0xc1, 0),
-monitorenter(0xc2, 0),
-monitorexit(0xc3, 0),
-         
-       
+    getstatic(0xb2, 0),
+    putstatic(0xb3, 0),
+    getfield(0xb4, 0),
+    putfield(0xb5, 0),
+    invokevirtual(0xb6, 0),
+    invokespecial(0xb7, 0),
+    invokestatic(0xb8, 0),
+    invokeinterface(0xb9, 0),
+    invokedynamic(0xba, 0),
+    //new(0xbb, 0),
+    newarray(0xbc, 0),
+    anewarray(0xbd, 0),
+    arraylength(0xbe, 0),
+    athrow(0xbf, 0),
+    checkcast(0xc0, 0),
+    //instanceof(0xc1, 0),
+    monitorenter(0xc2, 0),
+    monitorexit(0xc3, 0),
+    // Extended
+    wide(0xc4, 0),
+    multianewarray(0xc5, 0),
+    ifnull(0xc6, 0),
+    ifnonnull(0xc7, 0),
+    goto_w(0xc8, 0),
+    jsr_w(0xc9, 0),
+  
+ 
+
     ;
     
     public final int opcode;
