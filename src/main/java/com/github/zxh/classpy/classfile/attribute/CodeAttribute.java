@@ -32,7 +32,7 @@ public class CodeAttribute extends AttributeInfo {
     private U2 maxStack;
     private U2 maxLocals;
     private U4 codeLength;
-    private byte[] code; // todo
+    private Code code;
     private U2 exceptionTableLength;
     private Table<ExceptionTableEntry> exceptionTable;
     private U2 attributesCount;
@@ -43,7 +43,8 @@ public class CodeAttribute extends AttributeInfo {
         maxStack = reader.readU2();
         maxLocals = reader.readU2();
         codeLength = reader.readU4();
-        code = reader.readBytes(codeLength.getValue());
+        code = new Code(codeLength.getValue());
+        code.read(reader);
         exceptionTableLength = reader.readU2();
         exceptionTable = reader.readTable(ExceptionTableEntry.class,
                 exceptionTableLength);
