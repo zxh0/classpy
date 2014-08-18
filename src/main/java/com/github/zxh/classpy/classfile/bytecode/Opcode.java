@@ -218,7 +218,11 @@ public enum Opcode {
     ifnonnull(0xc7, 0),
     goto_w(0xc8, 0),
     jsr_w(0xc9, 0),
-  
+    // Reserved
+    breakpoint(0xca, 0),
+    impdep1(0xfe, 0),
+    impdep2(0xff, 0),
+
  
 
     ;
