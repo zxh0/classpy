@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile.attr;
+package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
@@ -7,25 +7,25 @@ import java.util.Arrays;
 import java.util.List;
 
 /*
-ConstantValue_attribute {
+Signature_attribute {
     u2 attribute_name_index;
     u4 attribute_length;
-    u2 constantvalue_index;
+    u2 signature_index;
 }
  */
-public class ConstantValueAttribute extends AttributeInfo {
+public class SignatureAttribute extends AttributeInfo {
 
-    private U2CpIndex constantValueIndex;
+    private U2CpIndex signatureIndex;
     
     @Override
     protected void readInfo(ClassReader reader) {
-        constantValueIndex = reader.readU2CpIndex();
+        signatureIndex = reader.readU2CpIndex();
     }
-
+    
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(attributeNameIndex, attributeLength,
-                constantValueIndex);
+                signatureIndex);
     }
     
 }

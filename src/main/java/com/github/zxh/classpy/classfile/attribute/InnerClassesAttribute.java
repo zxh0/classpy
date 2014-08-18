@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile.attr;
+package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;

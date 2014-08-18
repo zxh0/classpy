@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.classfile.attr.AttributeInfo;
+import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import java.util.Arrays;
 import java.util.List;
 

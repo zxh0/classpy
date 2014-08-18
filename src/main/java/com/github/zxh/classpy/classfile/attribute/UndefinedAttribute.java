@@ -1,19 +1,18 @@
-package com.github.zxh.classpy.classfile.attr;
+package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassReader;
 
 /*
-SourceDebugExtension_attribute {
+attribute_info {
     u2 attribute_name_index;
     u4 attribute_length;
-    u1 debug_extension[attribute_length];
+    u1 info[attribute_length];
 }
  */
-public class SourceDebugExtensionAttribute extends AttributeInfo {
+public class UndefinedAttribute extends AttributeInfo {
 
     @Override
     protected void readInfo(ClassReader reader) {
-        // todo
         reader.readBytes(attributeLength.getValue());
     }
     

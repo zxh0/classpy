@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile.attr;
+package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
@@ -6,7 +6,7 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.U1;
 import com.github.zxh.classpy.classfile.U2;
-import com.github.zxh.classpy.classfile.attr.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
+import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;

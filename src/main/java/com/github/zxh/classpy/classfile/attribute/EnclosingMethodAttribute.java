@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile.attr;
+package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
@@ -7,25 +7,28 @@ import java.util.Arrays;
 import java.util.List;
 
 /*
-SourceFile_attribute {
+EnclosingMethod_attribute {
     u2 attribute_name_index;
     u4 attribute_length;
-    u2 sourcefile_index;
+    u2 class_index;
+    u2 method_index;
 }
  */
-public class SourceFileAttribute extends AttributeInfo {
+public class EnclosingMethodAttribute extends AttributeInfo {
 
-    private U2CpIndex sourceFileIndex;
+    private U2CpIndex classIndex;
+    private U2CpIndex methodIndex;
     
     @Override
     protected void readInfo(ClassReader reader) {
-        sourceFileIndex = reader.readU2CpIndex();
+        classIndex = reader.readU2CpIndex();
+        methodIndex = reader.readU2CpIndex();
     }
     
     @Override
     public List<ClassComponent> getSubComponents() {
         return Arrays.asList(attributeNameIndex, attributeLength,
-                sourceFileIndex);
+                classIndex, methodIndex);
     }
     
 }
