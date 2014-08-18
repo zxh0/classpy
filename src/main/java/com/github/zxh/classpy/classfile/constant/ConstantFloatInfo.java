@@ -1,34 +1,35 @@
-package com.github.zxh.classpy.classfile.cp;
+package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U4Float;
 import java.util.Arrays;
 import java.util.List;
 
 /*
-CONSTANT_MethodType_info {
+CONSTANT_Float_info {
     u1 tag;
-    u2 descriptor_index;
+    u4 bytes;
 }
 */
-public class ConstantMethodTypeInfo extends ConstantInfo {
+public class ConstantFloatInfo extends ConstantInfo {
 
-    private U2 descriptorIndex;
-    
+    private U4Float bytes;
+
     @Override
     protected void readInfo(ClassReader reader) {
-        descriptorIndex = reader.readU2();
+        bytes = new U4Float();
+        bytes.read(reader);
     }
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return pool.getUtf8String(descriptorIndex);
+        return String.valueOf(bytes.getValue());
     }
     
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(tag, descriptorIndex);
+        return Arrays.asList(tag, bytes);
     }
     
 }

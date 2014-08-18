@@ -1,8 +1,8 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
-import com.github.zxh.classpy.classfile.cp.ConstantInfo;
-import com.github.zxh.classpy.classfile.cp.ConstantPool;
+import com.github.zxh.classpy.classfile.constant.ConstantInfo;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 

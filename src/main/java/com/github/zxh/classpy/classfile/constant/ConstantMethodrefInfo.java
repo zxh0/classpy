@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile.cp;
+package com.github.zxh.classpy.classfile.constant;
 
 /*
 CONSTANT_Methodref_info {

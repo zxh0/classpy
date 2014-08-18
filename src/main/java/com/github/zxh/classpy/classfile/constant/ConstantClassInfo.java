@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile.cp;
+package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;

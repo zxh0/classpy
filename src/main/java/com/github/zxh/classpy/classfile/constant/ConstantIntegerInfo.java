@@ -1,34 +1,34 @@
-package com.github.zxh.classpy.classfile.cp;
+package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U4;
 import java.util.Arrays;
 import java.util.List;
 
 /*
-CONSTANT_String_info {
+CONSTANT_Integer_info {
     u1 tag;
-    u2 string_index;
+    u4 bytes;
 }
 */
-public class ConstantStringInfo extends ConstantInfo {
+public class ConstantIntegerInfo extends ConstantInfo {
 
-    private U2 stringIndex;
+    private U4 bytes;
 
     @Override
     protected void readInfo(ClassReader reader) {
-        stringIndex = reader.readU2();
+        bytes = reader.readU4();
     }
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return pool.getUtf8Info(stringIndex).loadDesc(pool);
+        return String.valueOf(bytes.getValue());
     }
     
     @Override
     public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(tag, stringIndex);
+        return Arrays.asList(tag, bytes);
     }
     
 }
