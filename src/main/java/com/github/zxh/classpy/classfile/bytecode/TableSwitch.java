@@ -28,10 +28,8 @@ public class TableSwitch extends Instruction {
     @Override
     protected void readOperands(ClassReader reader) {
         // skip padding
-        int i = 1;
-        while ((pc + i) %4 != 0) {
+        for (int i = 1; (pc + i) %4 != 0; i++) {
             reader.getByteBuffer().get();
-            i++;
         }
         
         int dft = reader.getByteBuffer().getInt();
