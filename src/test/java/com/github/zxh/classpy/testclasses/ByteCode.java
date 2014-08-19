@@ -177,11 +177,15 @@ public class ByteCode {
         for (int i = 0; i < 10; i++) {
             //
         }
-        
-//        int j = 0;
-//        do {
-//            j++;
-//        } while (j < 10);
+    }
+    
+    int tableswitch(int i) {
+        switch (i) {
+            case 0:  return  0;
+            case 1:  return  1;
+            case 2:  return  2;
+            default: return -1;
+        }
     }
     
 }

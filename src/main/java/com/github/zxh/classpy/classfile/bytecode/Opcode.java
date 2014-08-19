@@ -183,9 +183,9 @@ public enum Opcode {
     if_acmpeq       (0xa5, 2),
     if_acmpne       (0xa6, 2),
     // Control
-    _goto           (0xa7, 2),
-    jsr             (0xa8, 2),
-    ret             (0xa9, 1),
+    _goto           (0xa7, 2), // goto branchbyte1 branchbyte2
+    jsr             (0xa8, 2), // todo
+    ret             (0xa9, 1), // todo
     tableswitch     (0xaa, 0),
     lookupswitch    (0xab, 0), // todo
     ireturn         (0xac, 0),
