@@ -23,6 +23,8 @@ import javafx.stage.Stage;
  */
 public class ClasspyApp extends Application {
 
+    private static final String TITLE = "Classpy 8";
+    
     private FileChooser fileChooser;
     private Stage stage;
     private BorderPane root;
@@ -34,8 +36,8 @@ public class ClasspyApp extends Application {
         root = new BorderPane();
         root.setTop(createMenuBar());
         
-        stage.setScene(new Scene(root, 800, 600));
-        stage.setTitle("Classpy 8");
+        stage.setScene(new Scene(root, 900, 600));
+        stage.setTitle(TITLE);
         stage.show();
     }
     
@@ -61,7 +63,7 @@ public class ClasspyApp extends Application {
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             // todo
-            openClass(file, root);
+            openClass(file);
         }
     }
     
@@ -74,7 +76,7 @@ public class ClasspyApp extends Application {
         );
     }
     
-    private void openClass(File file, BorderPane root) {
+    private void openClass(File file) {
         ProgressBar pb = new ProgressBar();
         root.setCenter(pb);
         
@@ -82,8 +84,8 @@ public class ClasspyApp extends Application {
 
             @Override
             protected ClassFile call() throws Exception {
-                byte[] x = Files.readAllBytes(file.toPath());
-                ClassFile cf = ClassParser.parse(x);
+                byte[] bytes = Files.readAllBytes(file.toPath());
+                ClassFile cf = ClassParser.parse(bytes);
                 return cf;
             }
 
@@ -93,6 +95,7 @@ public class ClasspyApp extends Application {
             ClassFile cf = (ClassFile) e.getSource().getValue();
             SplitPane sp = UiBuilder.buildMainPane(cf);
             root.setCenter(sp);
+            stage.setTitle(TITLE + " - " + file.getAbsolutePath());
         });
 
         task.setOnFailed(e -> {
