@@ -179,8 +179,9 @@ public class ByteCode {
         }
     }
     
-    int tableswitch(int i) {
+    public static int tableswitch(int i) {
         switch (i) {
+            case -1: return -1;
             case 0:  return  0;
             case 1:  return  1;
             case 2:  return  2;

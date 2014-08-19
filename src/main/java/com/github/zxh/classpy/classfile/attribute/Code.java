@@ -48,7 +48,7 @@ public class Code extends ClassComponent {
     }
 
     @Override
-    public List<? extends ClassComponent> getSubComponents() {
+    public List<Instruction> getSubComponents() {
         return instructions;
     }
     
