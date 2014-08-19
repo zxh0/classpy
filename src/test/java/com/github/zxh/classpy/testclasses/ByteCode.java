@@ -5,11 +5,11 @@ public class ByteCode {
     public static final long CONST_LONG = -1L;
     public static final String CONST_STR = "PI";
     
-    public Object aconst_null_areturn() {
+    public static Object aconst_null_areturn() {
         return null;
     }
     
-    public void iconst_x_return() {
+    public static void iconst_x_return() {
         int x;
         x = -1;
         x = 0;
@@ -20,31 +20,31 @@ public class ByteCode {
         x = 5;
     }
     
-    public void lconst_x() {
+    public static void lconst_x() {
         long x;
         x = 0;
         x = 1;
     }
     
-    public void fconst_x() {
+    public static void fconst_x() {
         float x;
         x = 0;
         x = 1;
         x = 2;
     }
     
-    public void dconst_x() {
+    public static void dconst_x() {
         double x;
         x = 0;
         x = 1;
     }
     
-    public void bipush_sipush() {
+    public static void bipush_sipush() {
         int x = 6; // bipush
         short y = 257; // sipush
     }
     
-    public void ldc() {
+    public static void ldc() {
         String x = CONST_STR; // ldc
         long y = CONST_LONG; // ldc_2w
     }
@@ -116,6 +116,29 @@ public class ByteCode {
         a6[0] = 1;
         a7[0] = 'c';
         a8[0] = 1;
+    }
+    
+    public static void iinc(int x) {
+        x += 5;
+    }
+    
+    public static void conversions() {
+        int i = 1;
+        long L = i; // i2l
+        float f = i; // i2f
+        double d = i; // i2d
+        i = (int) L; // l2i
+        f = L; // l2f
+        d = L; // l2d
+        i = (int) f; // f2i
+        L = (long) f; // f2l
+        d = f; // f2d
+        i = (int) d; // d2i
+        L = (long) d; // d2l
+        f = (float) d; // d2f
+        byte b = (byte) i; // i2b
+        char c = (char) i; // i2c
+        short s = (short) i; // i2s
     }
     
 }
