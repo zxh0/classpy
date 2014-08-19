@@ -157,4 +157,20 @@ public class ByteCode {
         }
     }
     
+    public static void if_icmpxx(int x, int y) {
+        if (x == y) { // if_icmpeq
+            if (x != y) { // if_icmpne
+                if (x < y) { // if_icmplt
+                    if (x >= y) { // if_icmpge
+                        if (x > y) { // if_icmpgt
+                            if (x <= y) { // if_icmple
+                                //
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }
