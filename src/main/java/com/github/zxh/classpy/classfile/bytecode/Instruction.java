@@ -52,6 +52,7 @@ public class Instruction extends ClassComponent {
             case fstore: 
             case dstore: 
             case astore: return new InstructionU1(opcode, pc);
+            case iinc: return new Iinc(opcode, pc);
             case ifeq:
             case ifne:
             case iflt:
