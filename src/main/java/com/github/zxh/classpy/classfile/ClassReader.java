@@ -35,12 +35,17 @@ public class ClassReader {
             return constantPool;
         }
     }
-
     
     public void skip(int n) {
         for (int i = 0; i < n; i++) {
             buf.get();
         }
+    }
+    
+    public byte[] readBytes(int n) {
+        byte[] bytes = new byte[n];
+        buf.get(bytes);
+        return bytes;
     }
     
     public U1 readU1() {
@@ -77,12 +82,6 @@ public class ClassReader {
         U4Hex u4 = new U4Hex();
         u4.read(this);
         return u4;
-    }
-    
-    public byte[] readBytes(int n) {
-        byte[] bytes = new byte[n];
-        buf.get(bytes);
-        return bytes;
     }
     
     public ConstantPool readConstantPool(int cpCount) {
