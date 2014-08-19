@@ -37,11 +37,19 @@ public class Instruction extends ClassComponent {
     
     public static Instruction create(Opcode opcode, int pc) {
         switch (opcode) {
-            case bipush: return new Bipush(opcode, pc);
-            case sipush: return new Sipush(opcode, pc);
-            case ldc: return new InstructionCp1(opcode, pc);
             case ldc_w:
-            case ldc2_w: return new InstructionCp2(opcode, pc);
+            case ldc2_w:
+            case getstatic:
+            case putstatic:
+            case getfield:
+            case putfield:
+            case invokevirtual:
+            case invokespecial:
+            case invokestatic:
+            case _new:
+            case anewarray:
+            case checkcast:
+            case _instanceof: return new InstructionCp2(opcode, pc);
             case iload: 
             case lload:
             case fload: 
@@ -52,7 +60,6 @@ public class Instruction extends ClassComponent {
             case fstore: 
             case dstore: 
             case astore: return new InstructionU1(opcode, pc);
-            case iinc: return new Iinc(opcode, pc);
             case ifeq:
             case ifne:
             case iflt:
@@ -65,23 +72,16 @@ public class Instruction extends ClassComponent {
             case if_icmpge:
             case if_icmpgt:
             case if_icmple:
-            case _goto: return new Branch(opcode, pc);
-            case tableswitch: return new TableSwitch(opcode, pc);
-            case lookupswitch: return new LookupSwitch(opcode, pc);
-            case getstatic:
-            case putstatic:
-            case getfield:
-            case putfield:
-            case invokevirtual:
-            case invokespecial:
-            case invokestatic:
-            case _new:
-            case anewarray:
-            case checkcast:
-            case _instanceof: return new InstructionCp2(opcode, pc);
-            case wide: return new Wide(opcode, pc);
+            case _goto:
             case ifnull:
             case ifnonnull: return new Branch(opcode, pc);
+            case bipush: return new Bipush(opcode, pc);
+            case sipush: return new Sipush(opcode, pc);
+            case ldc: return new InstructionCp1(opcode, pc);
+            case iinc: return new Iinc(opcode, pc);
+            case tableswitch: return new TableSwitch(opcode, pc);
+            case lookupswitch: return new LookupSwitch(opcode, pc);
+            case wide: return new Wide(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }
