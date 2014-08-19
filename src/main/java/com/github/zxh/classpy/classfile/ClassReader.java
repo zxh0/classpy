@@ -32,6 +32,12 @@ public class ClassReader {
         return u1;
     }
     
+    public U1CpIndex readU1CpIndex() {
+        U1CpIndex u1 = new U1CpIndex();
+        u1.read(this);
+        return u1;
+    }
+    
     public U2 readU2() {
         U2 u2 = new U2();
         u2.read(this);

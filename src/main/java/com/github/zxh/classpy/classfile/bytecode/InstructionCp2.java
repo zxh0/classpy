@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.U2CpIndex;
 
 /**
  *
@@ -15,8 +15,8 @@ public class InstructionCp2 extends Instruction {
 
     @Override
     protected void readOperands(ClassReader reader) {
-        U2 operand = reader.readU2();
-        setDesc(getDesc() + " #" + operand.getDesc());
+        U2CpIndex operand = reader.readU2CpIndex();
+        setDesc(getDesc() + " " + operand.getDesc());
     }
     
 }

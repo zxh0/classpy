@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U1;
+import com.github.zxh.classpy.classfile.U1CpIndex;
 
 /**
  *
@@ -15,8 +15,8 @@ public class InstructionCp1 extends Instruction {
 
     @Override
     protected void readOperands(ClassReader reader) {
-        U1 operand = reader.readU1();
-        setDesc(getDesc() + " #" + operand.getDesc());
+        U1CpIndex operand = reader.readU1CpIndex();
+        setDesc(getDesc() + " " + operand.getDesc());
     }
     
 }

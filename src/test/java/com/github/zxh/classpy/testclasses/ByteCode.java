@@ -211,4 +211,9 @@ public class ByteCode {
         bc.y = 100;
     }
     
+    public static void invokexxx(String str) {
+        ByteCode bc = new ByteCode(); // invokespecial
+//        str.hashCode(); // invokevirtual
+    }
+    
 }
