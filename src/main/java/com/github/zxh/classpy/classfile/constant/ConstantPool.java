@@ -29,7 +29,7 @@ public class ConstantPool extends ClassComponent {
     protected void readContent(ClassReader reader) {
         // The constant_pool table is indexed from 1 to constant_pool_count - 1. 
         for (int i = 1; i < cpCount; i++) {
-            ConstantInfo c = reader.readConstantInfo();
+            ConstantInfo c = readConstantInfo(reader);
             setConstantName(c, i);
             constants[i] = c;
             // http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.4.5
@@ -42,6 +42,15 @@ public class ConstantPool extends ClassComponent {
             }
         }
         loadConstantDesc();
+    }
+    
+    public ConstantInfo readConstantInfo(ClassReader reader) {
+        byte tag = reader.getByteBuffer().get(reader.getPosition());
+        
+        ConstantInfo ci = ConstantInfo.create(tag);
+        ci.read(reader);
+        
+        return ci;
     }
     
     // like #32: (Utf8)
