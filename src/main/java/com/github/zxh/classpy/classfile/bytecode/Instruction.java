@@ -77,6 +77,8 @@ public class Instruction extends ClassComponent {
             case checkcast:
             case _instanceof: return new InstructionCp2(opcode, pc);
             case wide: return new Wide(opcode, pc);
+            case ifnull:
+            case ifnonnull: return new Branch(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }

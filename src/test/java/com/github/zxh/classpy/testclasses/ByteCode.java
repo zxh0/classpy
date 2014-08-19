@@ -230,4 +230,12 @@ public class ByteCode {
         }
     }
     
+    public static void ifnull_nonull(Object x) {
+        if (x == null) {
+            if (x != null) {
+                //
+            }
+        }
+    }
+    
 }
