@@ -66,8 +66,7 @@ public class ClasspyApp extends Application {
     private Menu createHelpMenu() {
         MenuItem aboutMenuItem = new MenuItem("About");
         aboutMenuItem.setOnAction(e -> {
-            // todo
-            System.out.println("about");
+            AboutDialog.showDialog();
         });
         
         Menu helpMenu = new Menu("Help");

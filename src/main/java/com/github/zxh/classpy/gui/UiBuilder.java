@@ -12,7 +12,6 @@ import javafx.scene.control.TreeView;
 import javafx.scene.text.Font;
 
 /**
- * Build a TreeView from ClassFile.
  * 
  * @author zxh
  */
@@ -63,5 +62,5 @@ public class UiBuilder {
         pane.setFont(Font.font("Courier New", 14));
         return pane;
     }
-
+    
 }
