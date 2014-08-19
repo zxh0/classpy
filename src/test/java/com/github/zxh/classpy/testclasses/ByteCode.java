@@ -213,7 +213,13 @@ public class ByteCode {
     
     public static void invokexxx(String str) {
         ByteCode bc = new ByteCode(); // invokespecial
-//        str.hashCode(); // invokevirtual
+        bc.hashCode(); // invokevirtual
+        ByteCode.lookupSwitch(1); // invokestatic
+    }
+    
+    public static void newxxx() {
+        ByteCode bc = new ByteCode(); // new
+        ByteCode[] bca = new ByteCode[0]; // anewarray
     }
     
 }

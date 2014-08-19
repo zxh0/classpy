@@ -69,7 +69,12 @@ public class Instruction extends ClassComponent {
             case getstatic:
             case putstatic:
             case getfield:
-            case putfield: return new InstructionCp2(opcode, pc);
+            case putfield:
+            case invokevirtual:
+            case invokespecial:
+            case invokestatic:
+            case _new:
+            case anewarray: return new InstructionCp2(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }
