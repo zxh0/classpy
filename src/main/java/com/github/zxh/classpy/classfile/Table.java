@@ -15,20 +15,20 @@ import java.util.List;
 public class Table<E extends ClassComponent> extends ClassComponent {
 
     private final Class<E> classOfT;
-    private final int n;
+    private final int length;
     private E[] table;
 
     public Table(Class<E> classOfT, int n) {
         this.classOfT = classOfT;
-        this.n = n;
+        this.length = n;
     }
     
     @Override
     protected void readContent(ClassReader reader) {
-        table = readArray(reader, classOfT, n);
+        table = readArray(reader, classOfT, length);
         for (int i = 0; i < table.length; i++) {
             String oldName = table[i].getName();
-            String newName = Util.formatIndex(n, i);
+            String newName = Util.formatIndex(length, i);
             if (oldName != null) {
                 newName += " (" + oldName + ")";
             }
