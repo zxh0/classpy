@@ -59,8 +59,12 @@ public class ClassParser {
     }
     
     private static boolean isClassComponentArrayType(Field field) {
-        return field.getType().isArray()
-                && ClassComponent.class.isAssignableFrom(field.getType().getComponentType());
+        if (!field.getType().isArray()) {
+            return false;
+        }
+        
+        return ClassComponent.class.isAssignableFrom(
+                field.getType().getComponentType());
     }
     
 }
