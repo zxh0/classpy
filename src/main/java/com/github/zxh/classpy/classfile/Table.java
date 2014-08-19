@@ -7,16 +7,18 @@ import java.util.List;
 
 /**
  *
+ * 
+ * @param <E> the type of entry in this table
+ * 
  * @author zxh
- * @param <T>
  */
-public class Table<T extends ClassComponent> extends ClassComponent {
+public class Table<E extends ClassComponent> extends ClassComponent {
 
-    private final Class<T> classOfT;
+    private final Class<E> classOfT;
     private final int n;
-    private T[] table;
+    private E[] table;
 
-    public Table(Class<T> classOfT, int n) {
+    public Table(Class<E> classOfT, int n) {
         this.classOfT = classOfT;
         this.n = n;
     }
@@ -69,7 +71,7 @@ public class Table<T extends ClassComponent> extends ClassComponent {
     }
     
     @Override
-    public List<T> getSubComponents() {
+    public List<E> getSubComponents() {
         return Arrays.asList(table);
     }
     
