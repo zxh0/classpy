@@ -25,14 +25,13 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     
     @Override
     protected void readContent(ClassReader reader) {
-        table = readArray(reader, length);
+        table = readTable(reader);
         setEntryName();
     }
     
-    private E[] readArray(ClassReader reader, int n) {
-        
+    private E[] readTable(ClassReader reader) {
         @SuppressWarnings("unchecked")
-        E[] arr = (E[]) Array.newInstance(classOfT, n);
+        E[] arr = (E[]) Array.newInstance(classOfT, length);
         
         try {
             for (int i = 0; i < arr.length; i++) {
