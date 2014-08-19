@@ -25,28 +25,20 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     
     @Override
     protected void readContent(ClassReader reader) {
-        table = readArray(reader, classOfT, length);
-        for (int i = 0; i < table.length; i++) {
-            String oldName = table[i].getName();
-            String newName = Util.formatIndex(length, i);
-            if (oldName != null) {
-                newName += " (" + oldName + ")";
-            }
-            table[i].setName(newName);
-        }
+        table = readArray(reader, length);
+        setEntryName();
     }
-
-    private <T extends ClassComponent> T[] readArray(ClassReader reader,
-            Class<T> classOfT, int n) {
+    
+    private E[] readArray(ClassReader reader, int n) {
         
         @SuppressWarnings("unchecked")
-        T[] arr = (T[]) Array.newInstance(classOfT, n);
+        E[] arr = (E[]) Array.newInstance(classOfT, n);
         
         try {
             for (int i = 0; i < arr.length; i++) {
                 if (classOfT == AttributeInfo.class) {
                     @SuppressWarnings("unchecked")
-                    T t = (T) readAttributeInfo(reader);
+                    E t = (E) readAttributeInfo(reader);
                     arr[i] = t;
                 } else {
                     arr[i] = classOfT.newInstance();
@@ -68,6 +60,17 @@ public class Table<E extends ClassComponent> extends ClassComponent {
         attr.read(reader);
         
         return attr;
+    }
+    
+    private void setEntryName() {
+        for (int i = 0; i < table.length; i++) {
+            String oldName = table[i].getName();
+            String newName = Util.formatIndex(length, i);
+            if (oldName != null) {
+                newName += " (" + oldName + ")";
+            }
+            table[i].setName(newName);
+        }
     }
     
     @Override
