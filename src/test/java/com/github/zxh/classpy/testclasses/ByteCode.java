@@ -217,6 +217,8 @@ public class ByteCode {
         ByteCode bc = new ByteCode(); // invokespecial
         bc.hashCode(); // invokevirtual
         ByteCode.lookupSwitch(1); // invokestatic
+        Runnable r = null;
+        r.run(); // invokeinterface
     }
     
     public static void newxxx() {

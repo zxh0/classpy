@@ -81,6 +81,7 @@ public class Instruction extends ClassComponent {
             case iinc: return new Iinc(opcode, pc);
             case tableswitch: return new TableSwitch(opcode, pc);
             case lookupswitch: return new LookupSwitch(opcode, pc);
+            case invokeinterface: return new InvokeInterface(opcode, pc);
             case wide: return new Wide(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
