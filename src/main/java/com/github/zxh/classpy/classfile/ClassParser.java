@@ -15,7 +15,7 @@ public class ClassParser {
         cf.setBytes(bytes);
         
         try {
-            setNameForClassComponents(cf);
+            setNameForClassComponentFields(cf);
         } catch (ReflectiveOperationException e) {
             throw new ClassParseException(e);
         }
@@ -24,7 +24,7 @@ public class ClassParser {
     }
 
     // todo
-    private static void setNameForClassComponents(ClassComponent ccObj)
+    private static void setNameForClassComponentFields(ClassComponent ccObj)
             throws ReflectiveOperationException {
         
         for (Class<?> cls = ccObj.getClass(); cls != null; cls = cls.getSuperclass()) {
@@ -35,7 +35,7 @@ public class ClassParser {
                     ClassComponent ccFieldVal = (ClassComponent) field.get(ccObj);
                     if (ccFieldVal != null) {
                         ccFieldVal.setName(field.getName());
-                        setNameForClassComponents(ccFieldVal);
+                        setNameForClassComponentFields(ccFieldVal);
                     }
                 } else if (isClassComponentArrayType(field)) {
                     // field is ClassComponent[]
@@ -45,7 +45,7 @@ public class ClassParser {
                         for (int i = 0; i < length; i++) {
                             ClassComponent arrItem = (ClassComponent) Array.get(arrFieldVal, i);
                             if (arrItem != null) {
-                                setNameForClassComponents(arrItem);
+                                setNameForClassComponentFields(arrItem);
                             }
                         }
                     }
