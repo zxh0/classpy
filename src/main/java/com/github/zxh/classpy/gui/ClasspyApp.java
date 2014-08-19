@@ -16,24 +16,20 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- *
+ * Main class.
+ * 
  * @author zxh
  */
 public class ClasspyApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //System.out.println(Font.getFamilies());
-        
-        
-        stage.setTitle("Classpy");
-        
         BorderPane root = new BorderPane();
+        MenuBar menuBar = createMenuBar(stage, root);
+        root.setTop(menuBar);
         
-        root.setTop(createMenuBar(stage, root));
-        
-        Scene scene = new Scene(root, 800, 600);
-        stage.setScene(scene);
+        stage.setScene(new Scene(root, 800, 600));
+        stage.setTitle("Classpy 8");
         stage.show();
     }
     
