@@ -9,6 +9,7 @@ import javafx.collections.ListChangeListener;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.text.Font;
 
 /**
  * Build a TreeView from ClassFile.
@@ -57,7 +58,10 @@ public class UiBuilder {
     
     private static HexPane buildHexPane(ClassFile cf) {
         ClassHex hex = new ClassHex(cf);
-        return new HexPane(hex);
+        HexPane pane = new HexPane(hex);
+        // http://stackoverflow.com/questions/24983841/format-text-output-in-javafx
+        pane.setFont(Font.font("Courier New", 14));
+        return pane;
     }
 
 }
