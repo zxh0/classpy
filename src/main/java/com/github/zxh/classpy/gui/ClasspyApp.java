@@ -13,6 +13,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -84,6 +85,7 @@ public class ClasspyApp extends Application {
 
             @Override
             protected ClassFile call() throws Exception {
+                System.out.println("loading " + file.getAbsolutePath() + "...");
                 byte[] bytes = Files.readAllBytes(file.toPath());
                 ClassFile cf = ClassParser.parse(bytes);
                 return cf;
@@ -99,7 +101,12 @@ public class ClasspyApp extends Application {
         });
 
         task.setOnFailed(e -> {
-            System.out.println(e.getSource().getException());
+            Throwable err = e.getSource().getException();
+            System.out.println(err);
+            //err.printStackTrace(System.err);
+            
+            Text errMsg = new Text(err.toString());
+            root.setCenter(errMsg);
         });
 
         new Thread(task).start();
