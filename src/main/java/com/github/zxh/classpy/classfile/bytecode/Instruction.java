@@ -65,6 +65,7 @@ public class Instruction extends ClassComponent {
             case if_icmple:
             case _goto: return new Branch(opcode, pc);
             case tableswitch: return new TableSwitch(opcode, pc);
+            case lookupswitch: return new LookupSwitch(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }

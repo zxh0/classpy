@@ -179,13 +179,23 @@ public class ByteCode {
         }
     }
     
-    public static int tableswitch(int i) {
+    public static int tableSwitch(int i) {
         switch (i) {
             case -1: return -1;
             case 0:  return  0;
             case 1:  return  1;
             case 2:  return  2;
             default: return -1;
+        }
+    }
+    
+    public static int lookupSwitch(int i) {
+        i += 100;
+        switch (i) {
+            case -100: return -1;
+            case 0:    return  0;
+            case 100:  return  1;
+            default:   return -1;
         }
     }
     
