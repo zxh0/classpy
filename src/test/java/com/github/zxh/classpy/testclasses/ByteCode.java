@@ -43,7 +43,9 @@ public class ByteCode {
     
     public static void bipush_sipush() {
         int x = 6; // bipush
-        short y = 257; // sipush
+        int y = -2;
+        short u = 257; // sipush
+        short v = -1000;
     }
     
     public static void ldc() {

@@ -25,8 +25,8 @@ public enum Opcode {
     fconst_2        (0x0d, 0),
     dconst_0        (0x0e, 0),
     dconst_1        (0x0f, 0),
-    bipush          (0x10, 1), // bipush byte
-    sipush          (0x11, 2), // sipush byte1 byte2
+    bipush          (0x10, 1),
+    sipush          (0x11, 2),
     ldc             (0x12, 1),
     ldc_w           (0x13, 2),
     ldc2_w          (0x14, 2),
@@ -168,13 +168,13 @@ public enum Opcode {
     fcmpg           (0x96, 0),
     dcmpl           (0x97, 0),
     dcmpg           (0x98, 0),
-    ifeq            (0x99, 2), // if<cond> branchbyte1 branchbyte2
+    ifeq            (0x99, 2),
     ifne            (0x9a, 2),
     iflt            (0x9b, 2),
     ifge            (0x9c, 2),
     ifgt            (0x9d, 2),
     ifle            (0x9e, 2),
-    if_icmpeq       (0x9f, 2), // if_icmp<cond> branchbyte1 branchbyte2
+    if_icmpeq       (0x9f, 2),
     if_icmpne       (0xa0, 2),
     if_icmplt       (0xa1, 2),
     if_icmpge       (0xa2, 2),
@@ -183,7 +183,7 @@ public enum Opcode {
     if_acmpeq       (0xa5, 2),
     if_acmpne       (0xa6, 2),
     // Control
-    _goto           (0xa7, 2), // goto branchbyte1 branchbyte2
+    _goto           (0xa7, 2),
     jsr             (0xa8, 2), // todo
     ret             (0xa9, 1), // todo
     tableswitch     (0xaa, 0),
