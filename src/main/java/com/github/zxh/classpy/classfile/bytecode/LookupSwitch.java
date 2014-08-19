@@ -15,7 +15,7 @@ npairs3
 npairs4
 match-offset pairs...
  */
-public class LookupSwitch extends Switch {
+public class LookupSwitch extends Instruction {
 
     public LookupSwitch(Opcode opcode, int pc) {
         super(opcode, pc);
@@ -23,11 +23,15 @@ public class LookupSwitch extends Switch {
     
     @Override
     protected void readOperands(ClassReader reader) {
-        // skip padding
-        for (int i = 1; (pc + i) %4 != 0; i++) {
-            reader.getByteBuffer().get();
-        }
-        
+//        skipPadding(reader);
+//        
+//        JumpOffset defaultOffset = readJumpOffset(reader, "default");
+//        int npairs = reader.getByteBuffer().getInt();
+//        
+//        for (int i = 0; i < npairs; i++) {
+//            readJumpOffset(reader, "");
+//            
+//        }
     }
     
 }
