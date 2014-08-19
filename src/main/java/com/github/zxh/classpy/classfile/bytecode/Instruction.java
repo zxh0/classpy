@@ -56,7 +56,7 @@ public class Instruction extends ClassComponent {
             case iflt:
             case ifge:
             case ifgt:
-            case ifle: return new InstructionU2(opcode, pc);
+            case ifle: return new IfXX(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }
