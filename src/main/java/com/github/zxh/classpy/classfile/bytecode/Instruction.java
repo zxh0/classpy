@@ -74,7 +74,9 @@ public class Instruction extends ClassComponent {
             case invokespecial:
             case invokestatic:
             case _new:
-            case anewarray: return new InstructionCp2(opcode, pc);
+            case anewarray:
+            case checkcast:
+            case _instanceof: return new InstructionCp2(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }

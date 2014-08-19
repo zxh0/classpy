@@ -220,6 +220,14 @@ public class ByteCode {
     public static void newxxx() {
         ByteCode bc = new ByteCode(); // new
         ByteCode[] bca = new ByteCode[0]; // anewarray
+        
+        int[] ia = new int[0]; // newarray
+    }
+    
+    public static void checkCast_instanceOf(Object x) {
+        if (x instanceof String) {
+            String s = (String) x;
+        }
     }
     
 }
