@@ -173,4 +173,15 @@ public class ByteCode {
         }
     }
     
+    public static void _goto() {
+        for (int i = 0; i < 10; i++) {
+            //
+        }
+        
+//        int j = 0;
+//        do {
+//            j++;
+//        } while (j < 10);
+    }
+    
 }

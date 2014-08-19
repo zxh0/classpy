@@ -62,7 +62,8 @@ public class Instruction extends ClassComponent {
             case if_icmplt:
             case if_icmpge:
             case if_icmpgt:
-            case if_icmple: return new IfXX(opcode, pc);
+            case if_icmple:
+            case _goto: return new BranchInstruction(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }

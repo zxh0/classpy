@@ -174,7 +174,7 @@ public enum Opcode {
     ifge            (0x9c, 2),
     ifgt            (0x9d, 2),
     ifle            (0x9e, 2),
-    if_icmpeq       (0x9f, 2),
+    if_icmpeq       (0x9f, 2), // if_icmp<cond> branchbyte1 branchbyte2
     if_icmpne       (0xa0, 2),
     if_icmplt       (0xa1, 2),
     if_icmpge       (0xa2, 2),
@@ -187,7 +187,7 @@ public enum Opcode {
     jsr             (0xa8, 2),
     ret             (0xa9, 1),
     tableswitch     (0xaa, 0),
-    lookupswitch    (0xab, 0),// todo
+    lookupswitch    (0xab, 0), // todo
     ireturn         (0xac, 0),
     lreturn         (0xad, 0),
     freturn         (0xae, 0),
