@@ -27,8 +27,8 @@ public class ClassParser {
     private static void setNameForClassComponentFields(ClassComponent ccObj)
             throws ReflectiveOperationException {
         
-        for (Class<?> cls = ccObj.getClass(); cls != null; cls = cls.getSuperclass()) {
-            for (Field field : cls.getDeclaredFields()) {
+        for (Class<?> ccClass = ccObj.getClass(); ccClass != null; ccClass = ccClass.getSuperclass()) {
+            for (Field field : ccClass.getDeclaredFields()) {
                 field.setAccessible(true);
                 if (isClassComponentType(field)) {
                     // field is ClassComponent
