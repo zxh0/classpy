@@ -26,7 +26,7 @@ public class UiBuilder {
         
         sp.getItems().add(tree);
         sp.getItems().add(hexPane);
-        sp.setDividerPositions(0.1, 0.5);
+        sp.setDividerPositions(0.1, 0.9);
         
         tree.getSelectionModel().getSelectedItems().addListener(
             (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {

@@ -32,7 +32,7 @@ public class ClasspyApp extends Application {
         
         root.setTop(createMenuBar(stage, root));
         
-        Scene scene = new Scene(root, 500, 600);
+        Scene scene = new Scene(root, 800, 600);
         stage.setScene(scene);
         stage.show();
     }
