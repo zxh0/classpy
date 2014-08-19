@@ -6,9 +6,9 @@ import com.github.zxh.classpy.classfile.ClassReader;
  *
  * @author zxh
  */
-public class BranchInstruction extends Instruction {
+public class Branch extends Instruction {
 
-    public BranchInstruction(Opcode opcode, int pc) {
+    public Branch(Opcode opcode, int pc) {
         super(opcode, pc);
     }
     

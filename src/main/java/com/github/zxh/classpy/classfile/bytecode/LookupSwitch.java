@@ -15,7 +15,7 @@ npairs3
 npairs4
 match-offset pairs...
  */
-public class LookupSwitch extends Instruction {
+public class LookupSwitch extends Switch {
 
     public LookupSwitch(Opcode opcode, int pc) {
         super(opcode, pc);
