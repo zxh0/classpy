@@ -1,8 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 
 /**
@@ -87,39 +85,6 @@ public class ClassReader {
         constantPool = new ConstantPool(cpCount);
         constantPool.read(this);
         return constantPool;
-    }
-    
-    // todo
-    public <T extends ClassComponent> T[] readArray(Class<T> classOfT, int n) {
-        @SuppressWarnings("unchecked")
-        T[] arr = (T[]) Array.newInstance(classOfT, n);
-        
-        try {
-            for (int i = 0; i < arr.length; i++) {
-                if (classOfT == AttributeInfo.class) {
-                    @SuppressWarnings("unchecked")
-                    T t = (T) readAttributeInfo();
-                    arr[i] = t;
-                } else {
-                    arr[i] = classOfT.newInstance();
-                    arr[i].read(this);
-                }
-            }
-        } catch (ReflectiveOperationException e) {
-            throw new ClassParseException(e);
-        }
-        
-        return arr;
-    }
-    
-    private AttributeInfo readAttributeInfo() {
-        int attributeNameIndex = buf.getShort(buf.position());
-        String attributeName = constantPool.getUtf8String(attributeNameIndex);
-        
-        AttributeInfo attr = AttributeInfo.create(attributeName);
-        attr.read(this);
-        
-        return attr;
     }
     
     public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, U1 length) {
