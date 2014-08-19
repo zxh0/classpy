@@ -4,6 +4,8 @@ public class ByteCode {
     
     public static final long CONST_LONG = -1L;
     public static final String CONST_STR = "PI";
+    static int x = 1;
+    int y = 2;
     
     public static Object aconst_null_areturn() {
         return null;
@@ -197,6 +199,14 @@ public class ByteCode {
             case 100:  return  1;
             default:   return -1;
         }
+    }
+    
+    public static void get_put_static() {
+        int a = ByteCode.x;
+    }
+    
+    public static void get_put_field(ByteCode bc) {
+        int a = bc.y;
     }
     
 }

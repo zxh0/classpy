@@ -38,9 +38,9 @@ public class Instruction extends ClassComponent {
     
     public static Instruction create(Opcode opcode, int pc) {
         switch (opcode) {
-            case ldc: return new InstructionU1(opcode, pc);
+            case ldc: return new InstructionCp1(opcode, pc);
             case ldc_w:
-            case ldc2_w: return new InstructionU2(opcode, pc);
+            case ldc2_w: return new InstructionCp2(opcode, pc);
             case iload: 
             case lload:
             case fload: 
