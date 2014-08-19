@@ -7,17 +7,17 @@ import com.github.zxh.classpy.classfile.U2CpIndex;
  *
  * @author zxh
  */
-public class InvokeInterface extends Instruction {
+public class Multianewarray extends Instruction {
 
-    public InvokeInterface(Opcode opcode, int pc) {
+    public Multianewarray(Opcode opcode, int pc) {
         super(opcode, pc);
     }
     
     @Override
     protected void readOperands(ClassReader reader) {
         U2CpIndex cpIdx = reader.readU2CpIndex();
-        int count = reader.readU1().getValue();
-        setDesc(getDesc() + " " + cpIdx.getDesc() + ", " + count);
+        int dimensions = reader.readU1().getValue();
+        setDesc(getDesc() + " " + cpIdx.getDesc() + ", " + dimensions);
     }
     
 }

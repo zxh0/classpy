@@ -226,6 +226,10 @@ public class ByteCode {
         ByteCode bc = new ByteCode(); // new
         ByteCode[] bca = new ByteCode[0]; // anewarray
         
+        // multianewarray
+        int[][][] ia234 = new int[2][3][4];
+        Object[][] oa56 = new Object[5][6];
+        
         int[] ia = new int[0]; // newarray
     }
     

@@ -83,6 +83,7 @@ public class Instruction extends ClassComponent {
             case lookupswitch: return new LookupSwitch(opcode, pc);
             case invokeinterface: return new InvokeInterface(opcode, pc);
             case invokedynamic: return new InvokeDynamic(opcode, pc);
+            case multianewarray: return new Multianewarray(opcode, pc);
             case wide: return new Wide(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
