@@ -25,30 +25,28 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     
     @Override
     protected void readContent(ClassReader reader) {
-        table = readTable(reader);
+        readTable(reader);
         setEntryName();
     }
     
-    private E[] readTable(ClassReader reader) {
-        @SuppressWarnings("unchecked")
-        E[] arr = (E[]) Array.newInstance(classOfT, length);
+    private void readTable(ClassReader reader) {
+        //@SuppressWarnings("unchecked")
+        table = (E[]) Array.newInstance(classOfT, length);
         
         try {
-            for (int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < length; i++) {
                 if (classOfT == AttributeInfo.class) {
-                    @SuppressWarnings("unchecked")
-                    E t = (E) readAttributeInfo(reader);
-                    arr[i] = t;
+                    //@SuppressWarnings("unchecked")
+                    E e = (E) readAttributeInfo(reader);
+                    table[i] = e;
                 } else {
-                    arr[i] = classOfT.newInstance();
-                    arr[i].read(reader);
+                    table[i] = classOfT.newInstance();
+                    table[i].read(reader);
                 }
             }
         } catch (ReflectiveOperationException e) {
             throw new ClassParseException(e);
         }
-        
-        return arr;
     }
     
     private AttributeInfo readAttributeInfo(ClassReader reader) {
