@@ -35,6 +35,10 @@ public class Code extends ClassComponent {
             instructions.add(instruction);
         }
         
+        setInstructionName();
+    }
+    
+    private void setInstructionName() {
         int maxPc = instructions.get(instructions.size() - 1).getPc();
         int pcWidth = String.valueOf(maxPc).length();
         String fmtStr = "%0" + pcWidth + "d";
