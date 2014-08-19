@@ -50,10 +50,10 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     }
     
     private AttributeInfo readAttributeInfo(ClassReader reader) {
-        int attributeNameIndex = reader.getByteBuffer().getShort(reader.getPosition());
-        String attributeName = reader.getConstantPool().getUtf8String(attributeNameIndex);
+        int attrNameIndex = reader.getByteBuffer().getShort(reader.getPosition());
+        String attrName = reader.getConstantPool().getUtf8String(attrNameIndex);
         
-        AttributeInfo attr = AttributeInfo.create(attributeName);
+        AttributeInfo attr = AttributeInfo.create(attrName);
         attr.read(reader);
         
         return attr;
