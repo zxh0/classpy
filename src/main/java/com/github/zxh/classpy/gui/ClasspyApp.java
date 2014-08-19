@@ -43,17 +43,21 @@ public class ClasspyApp extends Application {
     }
     
     private MenuBar createMenuBar() {
-        Menu fileMenu = new Menu("File");
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().add(createFileMenu());
+        
+        return menuBar;
+    }
+    
+    private Menu createFileMenu() {
         MenuItem openMenuItem = new MenuItem("Open...");
         openMenuItem.setOnAction(e -> {
             showFileChooser();
         });
         
-        MenuBar menuBar = new MenuBar();
-        menuBar.getMenus().add(fileMenu);
+        Menu fileMenu = new Menu("File");
         fileMenu.getItems().add(openMenuItem);
-        
-        return menuBar;
+        return fileMenu;
     }
     
     private void showFileChooser() {
