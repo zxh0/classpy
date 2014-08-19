@@ -13,7 +13,7 @@ public class Instruction extends ClassComponent {
 
     public Instruction(Opcode opcode) {
         this.opcode = opcode;
-        setName(opcode.name());
+        setDesc(opcode.name());
     }
     
     @Override
@@ -27,14 +27,6 @@ public class Instruction extends ClassComponent {
         for (int i = 0; i < opcode.operandCount; i++) {
             reader.readU1();
         }
-    }
-    
-    @Override
-    public String toString() {
-        if (getDesc() != null) {
-            return getName() + " " + getDesc();
-        }
-        return getName();
     }
     
     

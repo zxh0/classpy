@@ -16,7 +16,7 @@ public class InstructionU1 extends Instruction {
     @Override
     protected void readOperands(ClassReader reader) {
         U1 operand = reader.readU1();
-        setDesc(operand.getDesc());
+        setDesc(getDesc() + " " + operand.getDesc());
     }
     
 }
