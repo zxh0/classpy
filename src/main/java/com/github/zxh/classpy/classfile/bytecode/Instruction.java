@@ -10,10 +10,16 @@ import com.github.zxh.classpy.classfile.ClassReader;
 public class Instruction extends ClassComponent {
 
     protected final Opcode opcode;
+    protected final int pc;
 
-    public Instruction(Opcode opcode) {
+    public Instruction(Opcode opcode, int pc) {
         this.opcode = opcode;
+        this.pc = pc;
         setDesc(opcode.name());
+    }
+
+    public int getPc() {
+        return pc;
     }
     
     @Override
@@ -30,11 +36,11 @@ public class Instruction extends ClassComponent {
     }
     
     
-    public static Instruction create(Opcode opcode) {
+    public static Instruction create(Opcode opcode, int pc) {
         switch (opcode) {
-            case ldc: return new InstructionU1(opcode);
+            case ldc: return new InstructionU1(opcode, pc);
             case ldc_w:
-            case ldc2_w: return new InstructionU2(opcode);
+            case ldc2_w: return new InstructionU2(opcode, pc);
             case iload: 
             case lload:
             case fload: 
@@ -44,15 +50,15 @@ public class Instruction extends ClassComponent {
             case lstore:
             case fstore: 
             case dstore: 
-            case astore: return new InstructionU1(opcode);
+            case astore: return new InstructionU1(opcode, pc);
             case ifeq:
             case ifne:
             case iflt:
             case ifge:
             case ifgt:
-            case ifle: return new InstructionU2(opcode);
+            case ifle: return new InstructionU2(opcode, pc);
             // todo
-            default: return new Instruction(opcode);
+            default: return new Instruction(opcode, pc);
         }
     }
 

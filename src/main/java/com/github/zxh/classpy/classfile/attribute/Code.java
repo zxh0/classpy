@@ -25,27 +25,22 @@ public class Code extends ClassComponent {
         final int startPosition = reader.getPosition();
         final int endPosition = startPosition + codeLength;
         
-        List<Integer> codeOffsets = new ArrayList<>();
-        
         int position;
         while ((position = reader.getPosition()) < endPosition) {
-            codeOffsets.add(position - startPosition);
-            
+            int pc = position - startPosition;
             byte b = reader.getByteBuffer().get(position);
             Opcode opcode = Opcode.valueOf(Byte.toUnsignedInt(b));
-            Instruction instruction = Instruction.create(opcode);
+            Instruction instruction = Instruction.create(opcode, pc);
             instruction.read(reader);
             instructions.add(instruction);
         }
         
-        int maxOffset = codeOffsets.get(codeOffsets.size() - 1);
-        int offsetWidth = String.valueOf(maxOffset).length();
-        String fmtStr = "%0" + offsetWidth + "d";
-        for (int i = 0; i < instructions.size(); i++) {
-            Instruction instruction = instructions.get(i);
-            int codeOffset = codeOffsets.get(i);
-            instruction.setName(String.format(fmtStr, codeOffset));
-        }
+        int maxPc = instructions.get(instructions.size() - 1).getPc();
+        int pcWidth = String.valueOf(maxPc).length();
+        String fmtStr = "%0" + pcWidth + "d";
+        instructions.forEach(instruction -> {
+            instruction.setName(String.format(fmtStr, instruction.getPc()));
+        });
     }
 
     @Override

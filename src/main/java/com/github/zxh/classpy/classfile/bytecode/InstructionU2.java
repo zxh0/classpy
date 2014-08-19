@@ -9,8 +9,8 @@ import com.github.zxh.classpy.classfile.U2;
  */
 public class InstructionU2 extends Instruction {
 
-    public InstructionU2(Opcode opcode) {
-        super(opcode);
+    public InstructionU2(Opcode opcode, int pc) {
+        super(opcode, pc);
     }
 
     @Override
