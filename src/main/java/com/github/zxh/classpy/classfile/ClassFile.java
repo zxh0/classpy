@@ -74,6 +74,7 @@ public class ClassFile extends ClassComponent {
         methods = reader.readTable(MethodInfo.class, methodsCount);
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount);
+        //setName("ClassFile"); // todo
     }
 
     @Override
@@ -86,11 +87,6 @@ public class ClassFile extends ClassComponent {
                 fieldsCount, fields,
                 methodsCount, methods,
                 attributesCount, attributes);
-    }
-    
-    @Override
-    public String toString() {
-        return "ClassFile"; // todo
     }
     
 }
