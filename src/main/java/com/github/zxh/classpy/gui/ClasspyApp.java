@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -74,6 +75,9 @@ public class ClasspyApp extends Application {
     }
     
     private void openClass(File file, BorderPane root) {
+        ProgressBar pb = new ProgressBar();
+        root.setCenter(pb);
+        
         Task<ClassFile> task = new Task<ClassFile>() {
 
             @Override
