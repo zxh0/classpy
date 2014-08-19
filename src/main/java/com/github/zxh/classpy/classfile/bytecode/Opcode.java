@@ -187,7 +187,7 @@ public enum Opcode {
     jsr             (0xa8, 2), // todo
     ret             (0xa9, 1), // todo
     tableswitch     (0xaa, 0),
-    lookupswitch    (0xab, 0), // todo
+    lookupswitch    (0xab, 0),
     ireturn         (0xac, 0),
     lreturn         (0xad, 0),
     freturn         (0xae, 0),
@@ -202,10 +202,10 @@ public enum Opcode {
     invokevirtual   (0xb6, 2),
     invokespecial   (0xb7, 2),
     invokestatic    (0xb8, 2),
-    invokeinterface (0xb9, 4),
-    invokedynamic   (0xba, 4),
+    invokeinterface (0xb9, 4), // todo
+    invokedynamic   (0xba, 4), // todo
     _new            (0xbb, 2),
-    newarray        (0xbc, 1),
+    newarray        (0xbc, 1), // todo
     anewarray       (0xbd, 2),
     arraylength     (0xbe, 0),
     athrow          (0xbf, 0),
@@ -214,8 +214,8 @@ public enum Opcode {
     monitorenter    (0xc2, 0),
     monitorexit     (0xc3, 0),
     // Extended
-    wide            (0xc4, 0), // todo
-    multianewarray  (0xc5, 3),
+    wide            (0xc4, 0),
+    multianewarray  (0xc5, 3), // todo
     ifnull          (0xc6, 2),
     ifnonnull       (0xc7, 2),
     goto_w          (0xc8, 4),
