@@ -95,7 +95,7 @@ public class ByteCode {
         Object g = f; // aload#5 astore#6
     }
     
-    public static void xaload(int[] a1, long[] a2, float[] a3, double[] a4,
+    public static void xaload_xastore(int[] a1, long[] a2, float[] a3, double[] a4,
             Object[] a5, byte[] a6, char[] a7, short[] a8) {
         
         int b1 = a1[0]; // iaload
@@ -106,6 +106,16 @@ public class ByteCode {
         byte b6 = a6[0]; // baload
         char b7 = a7[0]; // caload
         short b8 = a8[0]; // saload
+        
+        // xastore
+        a1[0] = 1;
+        a2[0] = 1L;
+        a3[0] = 1F;
+        a4[0] = 1D;
+        a5[0] = null;
+        a6[0] = 1;
+        a7[0] = 'c';
+        a8[0] = 1;
     }
     
 }
