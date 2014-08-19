@@ -145,7 +145,7 @@ public enum Opcode {
     lor             (0x81, 0),
     ixor            (0x82, 0),
     lxor            (0x83, 0),
-    iinc            (0x84, 2), // iinc index, const
+    iinc            (0x84, 2),
     // Conversions
     i2l             (0x85, 0),
     i2f             (0x86, 0),
@@ -202,10 +202,10 @@ public enum Opcode {
     invokevirtual   (0xb6, 2),
     invokespecial   (0xb7, 2),
     invokestatic    (0xb8, 2),
-    invokeinterface (0xb9, 4), // todo
-    invokedynamic   (0xba, 4), // todo
+    invokeinterface (0xb9, 4),
+    invokedynamic   (0xba, 4),
     _new            (0xbb, 2),
-    newarray        (0xbc, 1), // todo
+    newarray        (0xbc, 1),
     anewarray       (0xbd, 2),
     arraylength     (0xbe, 0),
     athrow          (0xbf, 0),
@@ -215,7 +215,7 @@ public enum Opcode {
     monitorexit     (0xc3, 0),
     // Extended
     wide            (0xc4, 0),
-    multianewarray  (0xc5, 3), // todo
+    multianewarray  (0xc5, 3),
     ifnull          (0xc6, 2),
     ifnonnull       (0xc7, 2),
     goto_w          (0xc8, 4),

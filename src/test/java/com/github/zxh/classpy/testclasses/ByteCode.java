@@ -230,7 +230,15 @@ public class ByteCode {
         int[][][] ia234 = new int[2][3][4];
         Object[][] oa56 = new Object[5][6];
         
-        int[] ia = new int[0]; // newarray
+        // newarray
+        boolean[] za = new boolean[0];
+        char[] ca = new char[0];
+        float[] fa = new float[0];
+        double[] da = new double[0];
+        byte[] ba = new byte[0];
+        short[] sa = new short[0];
+        int[] ia = new int[0];
+        long[] La = new long[0];
     }
     
     public static void checkCast_instanceOf(Object x) {
