@@ -40,7 +40,7 @@ public class ClasspyApp extends Application {
         MenuItem openMenuItem = new MenuItem("Open...");
         fileMenu.getItems().add(openMenuItem);
         
-        openMenuItem.setOnAction(actionEvent -> {
+        openMenuItem.setOnAction(e -> {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Open .class or .jar File");
             fileChooser.getExtensionFilters().addAll(
@@ -50,32 +50,36 @@ public class ClasspyApp extends Application {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 // todo
-                Task<ClassFile> task = new Task<ClassFile>() {
-
-                    @Override
-                    protected ClassFile call() throws Exception {
-                        byte[] x = Files.readAllBytes(file.toPath());
-                        ClassFile cf = ClassParser.parse(x);
-                        return cf;
-                    }
-                    
-                };
-                
-                task.setOnSucceeded(e -> {
-                    ClassFile cf = (ClassFile) e.getSource().getValue();
-                    SplitPane sp = UiBuilder.buildMainPane(cf);
-                    root.setCenter(sp);
-                });
-                
-                task.setOnFailed(e -> {
-                    System.out.println(e.getSource().getException());
-                });
-                
-                new Thread(task).start();
+                openClass(file, root);
             }
         });
         
         return menuBar;
+    }
+    
+    private void openClass(File file, BorderPane root) {
+        Task<ClassFile> task = new Task<ClassFile>() {
+
+            @Override
+            protected ClassFile call() throws Exception {
+                byte[] x = Files.readAllBytes(file.toPath());
+                ClassFile cf = ClassParser.parse(x);
+                return cf;
+            }
+
+        };
+
+        task.setOnSucceeded(e -> {
+            ClassFile cf = (ClassFile) e.getSource().getValue();
+            SplitPane sp = UiBuilder.buildMainPane(cf);
+            root.setCenter(sp);
+        });
+
+        task.setOnFailed(e -> {
+            System.out.println(e.getSource().getException());
+        });
+
+        new Thread(task).start();
     }
     
     
