@@ -203,10 +203,12 @@ public class ByteCode {
     
     public static void get_put_static() {
         int a = ByteCode.x;
+        ByteCode.x = 100;
     }
     
     public static void get_put_field(ByteCode bc) {
         int a = bc.y;
+        bc.y = 100;
     }
     
 }
