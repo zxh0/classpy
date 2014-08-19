@@ -1,9 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
     tableswitch
@@ -22,10 +19,8 @@ import java.util.List;
     highbyte4
     jump offsets...
  */
-public class TableSwitch extends Instruction {
+public class TableSwitch extends Switch {
 
-    private final List<JumpOffset> jumpOffsets = new ArrayList<>();
-    
     public TableSwitch(Opcode opcode, int pc) {
         super(opcode, pc);
     }
@@ -37,41 +32,18 @@ public class TableSwitch extends Instruction {
             reader.getByteBuffer().get();
         }
         
-        JumpOffset defaultOffset = new JumpOffset();
-        defaultOffset.read(reader);
-        defaultOffset.setName("default");
-        defaultOffset.setDesc(String.valueOf(pc + defaultOffset.offset));
+        JumpOffset defaultOffset = readJumpOffset(reader, "default");
         
         int low = reader.getByteBuffer().getInt();
         int high = reader.getByteBuffer().getInt();
         
         // high - low + 1 signed 32-bit offsets
         for (int i = low; i <= high; i++) {
-            JumpOffset offset = new JumpOffset();
-            offset.read(reader);
-            offset.setName(String.valueOf(i));
-            offset.setDesc(String.valueOf(pc + offset.offset));
+            JumpOffset offset = readJumpOffset(reader, String.valueOf(i));
             jumpOffsets.add(offset);
         }
         
         jumpOffsets.add(defaultOffset);
-    }
-
-    @Override
-    public List<JumpOffset> getSubComponents() {
-        return jumpOffsets;
-    }
-    
-    
-    public static class JumpOffset extends ClassComponent {
-
-        private int offset;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            offset = reader.getByteBuffer().getInt();
-        }
-        
     }
     
 }
