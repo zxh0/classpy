@@ -26,6 +26,12 @@ public class ClassReader {
         return buf.position();
     }
     
+    public void skip(int n) {
+        for (int i = 0; i < n; i++) {
+            buf.get();
+        }
+    }
+    
     public U1 readU1() {
         U1 u1 = new U1();
         u1.read(this);

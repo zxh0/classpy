@@ -23,9 +23,8 @@ public class Instruction extends ClassComponent {
     }
     
     @Override
-    protected void readContent(ClassReader reader) {
-        // todo
-        reader.readU1();
+    protected final void readContent(ClassReader reader) {
+        reader.readU1(); // opcode
         readOperands(reader);
     }
     
@@ -77,6 +76,7 @@ public class Instruction extends ClassComponent {
             case anewarray:
             case checkcast:
             case _instanceof: return new InstructionCp2(opcode, pc);
+            case wide: return new Wide(opcode, pc);
             // todo
             default: return new Instruction(opcode, pc);
         }
