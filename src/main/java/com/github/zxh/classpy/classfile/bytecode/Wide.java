@@ -16,9 +16,9 @@ public class Wide extends Instruction {
     protected void readOperands(ClassReader reader) {
         int wideOpcode = reader.readU1().getValue();
         if (wideOpcode == Opcode.iinc.opcode) {
-            reader.skip(4);
+            reader.skipBytes(4);
         } else {
-            reader.skip(2);
+            reader.skipBytes(2);
         }
     }
     

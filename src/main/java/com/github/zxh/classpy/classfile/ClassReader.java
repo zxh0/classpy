@@ -36,7 +36,7 @@ public class ClassReader {
         }
     }
     
-    public void skip(int n) {
+    public void skipBytes(int n) {
         for (int i = 0; i < n; i++) {
             buf.get();
         }

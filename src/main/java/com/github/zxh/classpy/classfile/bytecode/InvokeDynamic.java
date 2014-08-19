@@ -16,7 +16,7 @@ public class InvokeDynamic extends Instruction {
     @Override
     protected void readOperands(ClassReader reader) {
         U2CpIndex cpIdx = reader.readU2CpIndex();
-        reader.skip(2);
+        reader.skipBytes(2);
         setDesc(getDesc() + " " + cpIdx.getDesc());
     }
     
