@@ -10,9 +10,8 @@ import java.lang.reflect.Field;
 public class ClassParser {
     
     public static ClassFile parse(byte[] bytes) {
-        ClassReader reader = new ClassReader(bytes);
         ClassFile cf = new ClassFile();
-        cf.read(reader);
+        cf.read(new ClassReader(bytes));
         cf.setBytes(bytes);
         
         try {
@@ -25,20 +24,22 @@ public class ClassParser {
     }
 
     // todo
-    private static void setNameForClassComponents(Object obj) throws ReflectiveOperationException {
-        for (Class<?> cls = obj.getClass(); cls != null; cls = cls.getSuperclass()) {
+    private static void setNameForClassComponents(ClassComponent ccObj)
+            throws ReflectiveOperationException {
+        
+        for (Class<?> cls = ccObj.getClass(); cls != null; cls = cls.getSuperclass()) {
             for (Field field : cls.getDeclaredFields()) {
                 field.setAccessible(true);
                 if (isClassComponentType(field)) {
                     // field is ClassComponent
-                    ClassComponent ccFieldVal = (ClassComponent) field.get(obj);
+                    ClassComponent ccFieldVal = (ClassComponent) field.get(ccObj);
                     if (ccFieldVal != null) {
                         ccFieldVal.setName(field.getName());
                         setNameForClassComponents(ccFieldVal);
                     }
                 } else if (isClassComponentArrayType(field)) {
                     // field is ClassComponent[]
-                    Object arrFieldVal = field.get(obj);
+                    Object arrFieldVal = field.get(ccObj);
                     if (arrFieldVal != null) {
                         int length = Array.getLength(arrFieldVal);
                         for (int i = 0; i < length; i++) {
