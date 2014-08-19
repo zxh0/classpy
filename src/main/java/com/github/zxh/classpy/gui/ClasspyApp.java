@@ -44,7 +44,9 @@ public class ClasspyApp extends Application {
     
     private MenuBar createMenuBar() {
         MenuBar menuBar = new MenuBar();
+        
         menuBar.getMenus().add(createFileMenu());
+        menuBar.getMenus().add(createHelpMenu());
         
         return menuBar;
     }
@@ -57,7 +59,21 @@ public class ClasspyApp extends Application {
         
         Menu fileMenu = new Menu("File");
         fileMenu.getItems().add(openMenuItem);
+        
         return fileMenu;
+    }
+    
+    private Menu createHelpMenu() {
+        MenuItem aboutMenuItem = new MenuItem("About");
+        aboutMenuItem.setOnAction(e -> {
+            // todo
+            System.out.println("about");
+        });
+        
+        Menu helpMenu = new Menu("Help");
+        helpMenu.getItems().add(aboutMenuItem);
+        
+        return helpMenu;
     }
     
     private void showFileChooser() {
