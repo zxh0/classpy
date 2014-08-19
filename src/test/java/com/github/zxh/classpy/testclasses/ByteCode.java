@@ -141,4 +141,20 @@ public class ByteCode {
         short s = (short) i; // i2s
     }
     
+    public static void ifxx(int x) {
+        if (x == 0) { // ifeq
+            if (x != 0) { // ifne
+                if (x < 0) { // iflt
+                    if (x >= 0) { // ifge
+                        if (x > 0) { // ifgt
+                            if (x <= 0) { // ifle
+                                //
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
 }

@@ -25,8 +25,8 @@ public enum Opcode {
     fconst_2        (0x0d, 0),
     dconst_0        (0x0e, 0),
     dconst_1        (0x0f, 0),
-    bipush          (0x10, 1), // todo
-    sipush          (0x11, 2), // todo
+    bipush          (0x10, 1), // bipush byte
+    sipush          (0x11, 2), // sipush byte1 byte2
     ldc             (0x12, 1),
     ldc_w           (0x13, 2),
     ldc2_w          (0x14, 2),
@@ -65,7 +65,7 @@ public enum Opcode {
     caload          (0x34, 0),
     saload          (0x35, 0),
     // Stores
-    istore          (0x36, 1), // <-
+    istore          (0x36, 1),
     lstore          (0x37, 1),
     fstore          (0x38, 1),
     dstore          (0x39, 1),
@@ -145,7 +145,7 @@ public enum Opcode {
     lor             (0x81, 0),
     ixor            (0x82, 0),
     lxor            (0x83, 0),
-    iinc            (0x84, 2),
+    iinc            (0x84, 2), // iinc index, const
     // Conversions
     i2l             (0x85, 0),
     i2f             (0x86, 0),
@@ -168,7 +168,7 @@ public enum Opcode {
     fcmpg           (0x96, 0),
     dcmpl           (0x97, 0),
     dcmpg           (0x98, 0),
-    ifeq            (0x99, 2),
+    ifeq            (0x99, 2), // if<cond> branchbyte1 branchbyte2
     ifne            (0x9a, 2),
     iflt            (0x9b, 2),
     ifge            (0x9c, 2),

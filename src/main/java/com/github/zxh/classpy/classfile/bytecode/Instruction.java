@@ -53,6 +53,12 @@ public class Instruction extends ClassComponent {
             case fstore: 
             case dstore: 
             case astore: return new InstructionU1(opcode);
+            case ifeq:
+            case ifne:
+            case iflt:
+            case ifge:
+            case ifgt:
+            case ifle: return new InstructionU2(opcode);
             // todo
             default: return new Instruction(opcode);
         }
