@@ -45,6 +45,7 @@ public class ClassFile extends ClassComponent {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
     
+    // Getters & Setters
     public void setBytes(byte[] bytes) {this.bytes = bytes;}
     public byte[] getBytes() {return bytes;}
     public U4Hex getMagic() {return magic;}
