@@ -30,13 +30,14 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     }
     
     private void readTable(ClassReader reader) {
-        //@SuppressWarnings("unchecked")
-        table = (E[]) Array.newInstance(classOfE, length);
+        @SuppressWarnings("unchecked")
+        E[] arr = (E[]) Array.newInstance(classOfE, length);
+        table = arr;
         
         try {
             for (int i = 0; i < length; i++) {
                 if (classOfE == AttributeInfo.class) {
-                    //@SuppressWarnings("unchecked")
+                    @SuppressWarnings("unchecked")
                     E e = (E) readAttributeInfo(reader);
                     table[i] = e;
                 } else {
