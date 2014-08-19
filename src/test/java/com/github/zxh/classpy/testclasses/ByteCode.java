@@ -219,6 +219,7 @@ public class ByteCode {
         ByteCode.lookupSwitch(1); // invokestatic
         Runnable r = null;
         r.run(); // invokeinterface
+        r = () -> {}; // invokedynamic
     }
     
     public static void newxxx() {
