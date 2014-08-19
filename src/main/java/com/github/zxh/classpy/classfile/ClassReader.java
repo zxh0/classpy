@@ -7,7 +7,8 @@ import java.lang.reflect.Array;
 import java.nio.ByteBuffer;
 
 /**
- *
+ * Convenience class for reading class files.
+ * 
  * @author zxh
  */
 public class ClassReader {
@@ -15,16 +16,26 @@ public class ClassReader {
     private final ByteBuffer buf;
     private ConstantPool constantPool;
     
-    public ClassReader(ByteBuffer buf) {
-        this.buf = buf;
+    public ClassReader(byte[] bytes) {
+        this.buf = ByteBuffer.wrap(bytes);
     }
     
-    public ByteBuffer getByteBuffer() {return buf;}
-    public ConstantPool getConstantPool() {return constantPool;}
+    public ByteBuffer getByteBuffer() {
+        return buf;
+    }
     
     public int getPosition() {
         return buf.position();
     }
+    
+    public ConstantPool getConstantPool() {
+        if (constantPool == null) {
+            throw new ClassParseException("ConstantPool is not ready!");
+        } else {
+            return constantPool;
+        }
+    }
+
     
     public void skip(int n) {
         for (int i = 0; i < n; i++) {

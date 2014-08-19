@@ -2,7 +2,6 @@ package com.github.zxh.classpy.classfile;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
-import java.nio.ByteBuffer;
 
 /**
  *
@@ -11,8 +10,7 @@ import java.nio.ByteBuffer;
 public class ClassParser {
     
     public static ClassFile parse(byte[] bytes) {
-        ByteBuffer buf = ByteBuffer.wrap(bytes);
-        ClassReader reader = new ClassReader(buf);
+        ClassReader reader = new ClassReader(bytes);
         ClassFile cf = new ClassFile();
         cf.read(reader);
         cf.setBytes(bytes);
