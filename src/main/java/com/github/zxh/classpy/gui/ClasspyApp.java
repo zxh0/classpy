@@ -22,39 +22,55 @@ import javafx.stage.Stage;
  */
 public class ClasspyApp extends Application {
 
+    private FileChooser fileChooser;
+    private Stage stage;
+    private BorderPane root;
+    
     @Override
     public void start(Stage stage) throws Exception {
-        BorderPane root = new BorderPane();
-        MenuBar menuBar = createMenuBar(stage, root);
-        root.setTop(menuBar);
+        this.stage = stage;
+        
+        root = new BorderPane();
+        root.setTop(createMenuBar());
         
         stage.setScene(new Scene(root, 800, 600));
         stage.setTitle("Classpy 8");
         stage.show();
     }
     
-    private MenuBar createMenuBar(Stage stage, BorderPane root) {
-        MenuBar menuBar = new MenuBar();
+    private MenuBar createMenuBar() {
         Menu fileMenu = new Menu("File");
-        menuBar.getMenus().add(fileMenu);
         MenuItem openMenuItem = new MenuItem("Open...");
-        fileMenu.getItems().add(openMenuItem);
-        
         openMenuItem.setOnAction(e -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Open .class or .jar File");
-            fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("CLASS", "*.class"),
-                new FileChooser.ExtensionFilter("JAR", "*.jar")
-            );
-            File file = fileChooser.showOpenDialog(stage);
-            if (file != null) {
-                // todo
-                openClass(file, root);
-            }
+            showFileChooser();
         });
         
+        MenuBar menuBar = new MenuBar();
+        menuBar.getMenus().add(fileMenu);
+        fileMenu.getItems().add(openMenuItem);
+        
         return menuBar;
+    }
+    
+    private void showFileChooser() {
+        if (fileChooser == null) {
+            initFileChooser();
+        }
+
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            // todo
+            openClass(file, root);
+        }
+    }
+    
+    private void initFileChooser() {
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Open .class or .jar File");
+        fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("CLASS", "*.class"),
+            new FileChooser.ExtensionFilter("JAR", "*.jar")
+        );
     }
     
     private void openClass(File file, BorderPane root) {
