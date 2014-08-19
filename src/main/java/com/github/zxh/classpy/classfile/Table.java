@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * Array of class components.
  * 
  * @param <E> the type of entry in this table
  * 
@@ -14,12 +14,12 @@ import java.util.List;
  */
 public class Table<E extends ClassComponent> extends ClassComponent {
 
-    private final Class<E> classOfT;
+    private final Class<E> classOfE;
     private final int length;
     private E[] table;
 
-    public Table(Class<E> classOfT, int n) {
-        this.classOfT = classOfT;
+    public Table(Class<E> classOfE, int n) {
+        this.classOfE = classOfE;
         this.length = n;
     }
     
@@ -31,16 +31,16 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     
     private void readTable(ClassReader reader) {
         //@SuppressWarnings("unchecked")
-        table = (E[]) Array.newInstance(classOfT, length);
+        table = (E[]) Array.newInstance(classOfE, length);
         
         try {
             for (int i = 0; i < length; i++) {
-                if (classOfT == AttributeInfo.class) {
+                if (classOfE == AttributeInfo.class) {
                     //@SuppressWarnings("unchecked")
                     E e = (E) readAttributeInfo(reader);
                     table[i] = e;
                 } else {
-                    table[i] = classOfT.newInstance();
+                    table[i] = classOfE.newInstance();
                     table[i].read(reader);
                 }
             }
