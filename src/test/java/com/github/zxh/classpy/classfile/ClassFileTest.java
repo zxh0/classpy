@@ -3,6 +3,7 @@ package com.github.zxh.classpy.classfile;
 import com.github.zxh.classpy.testclasses.AnnotatedClass;
 import com.github.zxh.classpy.testclasses.SimpleAttr;
 import com.github.zxh.classpy.testclasses.ByteCode;
+import com.github.zxh.classpy.testclasses.CodeAttr;
 import com.github.zxh.classpy.testclasses.ConstantPool;
 import com.github.zxh.classpy.testclasses.SimpleClass;
 import com.github.zxh.classpy.testclasses.GenericClass;
@@ -34,8 +35,13 @@ public class ClassFileTest {
     }
     
     @Test
-    public void attrSimple() throws Exception {
+    public void simpleAttr() throws Exception {
         loadClass(SimpleAttr.class);
+    }
+    
+    @Test
+    public void codeAttr() throws Exception {
+        loadClass(CodeAttr.class);
     }
     
     @Test

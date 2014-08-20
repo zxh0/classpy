@@ -31,15 +31,4 @@ public class SimpleAttr {
         }.run();
     }
     
-    // todo
-    public void codeAttribute() {
-        int a = 1;
-        int b = 2;
-        try {
-            int c = a / b;
-        } catch (Exception e) {
-            //
-        }
-    }
-    
 }
