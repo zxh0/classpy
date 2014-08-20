@@ -7,6 +7,7 @@ import com.github.zxh.classpy.testclasses.CodeAttr;
 import com.github.zxh.classpy.testclasses.ConstantPool;
 import com.github.zxh.classpy.testclasses.SimpleClass;
 import com.github.zxh.classpy.testclasses.GenericClass;
+import com.github.zxh.classpy.testclasses.MyInterface;
 import com.github.zxh.classpy.testclasses.annotations.MyRuntimeAnnotation;
 import com.github.zxh.classpy.testclasses.TypeAnnotatedClass;
 import java.nio.file.Files;
@@ -53,6 +54,11 @@ public class ClassFileTest {
     @Test
     public void annotationDefaultAttribute() throws Exception {
         loadClass(MyRuntimeAnnotation.class);
+    }
+    
+    @Test
+    public void methodParametersAttribute() throws Exception {
+        loadClass(MyInterface.class);
     }
     
     @Test
