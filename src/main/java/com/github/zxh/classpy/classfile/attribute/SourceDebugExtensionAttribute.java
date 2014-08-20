@@ -14,7 +14,7 @@ public class SourceDebugExtensionAttribute extends AttributeInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         // todo
-        reader.readBytes(attributeLength.getValue());
+        reader.skipBytes(attributeLength.getValue());
     }
     
 }

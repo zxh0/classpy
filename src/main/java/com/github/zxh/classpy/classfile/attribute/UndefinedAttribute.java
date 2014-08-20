@@ -13,7 +13,7 @@ public class UndefinedAttribute extends AttributeInfo {
 
     @Override
     protected void readInfo(ClassReader reader) {
-        reader.readBytes(attributeLength.getValue());
+        reader.skipBytes(attributeLength.getValue());
     }
     
 }

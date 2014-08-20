@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CodeAttr {
     
-    public void simpleMethod() {
+    public void simpleMethod(int x, Object y) {
         int a = 1;
         int b = 2;
         try {
