@@ -4,6 +4,7 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U1CpIndex;
 
 /**
+ * The instruction whose operand is U1CpIndex.
  *
  * @author zxh
  */

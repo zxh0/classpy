@@ -4,6 +4,7 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2CpIndex;
 
 /**
+ * The instruction whose operand is U2CpIndex.
  *
  * @author zxh
  */
