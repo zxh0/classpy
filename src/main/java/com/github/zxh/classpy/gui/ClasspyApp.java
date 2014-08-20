@@ -97,8 +97,8 @@ public class ClasspyApp extends Application {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open .class or .jar File");
         fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("CLASS", "*.class"),
-            new FileChooser.ExtensionFilter("JAR", "*.jar")
+            new FileChooser.ExtensionFilter("CLASS", "*.class")/*,
+            new FileChooser.ExtensionFilter("JAR", "*.jar")*/
         );
     }
     
