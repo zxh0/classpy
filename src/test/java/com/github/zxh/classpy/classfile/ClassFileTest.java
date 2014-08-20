@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.testclasses.AnnotatedClass;
-import com.github.zxh.classpy.testclasses.AttrSimple;
+import com.github.zxh.classpy.testclasses.SimpleAttr;
 import com.github.zxh.classpy.testclasses.ByteCode;
 import com.github.zxh.classpy.testclasses.ConstantPool;
 import com.github.zxh.classpy.testclasses.SimpleClass;
@@ -35,12 +35,12 @@ public class ClassFileTest {
     
     @Test
     public void attrSimple() throws Exception {
-        loadClass(AttrSimple.class);
+        loadClass(SimpleAttr.class);
     }
     
     @Test
     public void enclosingMethodAttribute() throws Exception {
-        String classFileName = AttrSimple.class.getName().replace('.', '/') + "$1.class";
+        String classFileName = SimpleAttr.class.getName().replace('.', '/') + "$1.class";
         loadClass(classFileName);
     }
     
