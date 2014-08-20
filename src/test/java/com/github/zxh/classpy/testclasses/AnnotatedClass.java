@@ -10,7 +10,7 @@ import java.lang.annotation.Target;
         strValue = "test",
         enumValue = ElementType.METHOD,
         classValue = String.class,
-        annotationValue = @Target({}),
+        annotationValue = @Target({ElementType.METHOD}),
         arrayValue = {"X", "Y", "Z"}
 )
 @MyClassAnnotation(
@@ -28,7 +28,7 @@ public class AnnotatedClass {
         strValue = "test",
         enumValue = ElementType.METHOD,
         classValue = String.class,
-        annotationValue = @Target({}),
+        annotationValue = @Target({ElementType.METHOD}),
         arrayValue = {"X", "Y", "Z"}
     )
     @MyClassAnnotation(
@@ -46,7 +46,7 @@ public class AnnotatedClass {
         strValue = "test",
         enumValue = ElementType.METHOD,
         classValue = String.class,
-        annotationValue = @Target({}),
+        annotationValue = @Target({ElementType.METHOD}),
         arrayValue = {"X", "Y", "Z"}
     )
     @MyClassAnnotation(
@@ -67,7 +67,7 @@ public class AnnotatedClass {
             strValue = "test",
             enumValue = ElementType.METHOD,
             classValue = String.class,
-            annotationValue = @Target({}),
+            annotationValue = @Target({ElementType.METHOD}),
             arrayValue = {"X", "Y", "Z"}
         )
         @MyClassAnnotation(
