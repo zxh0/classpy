@@ -5,7 +5,8 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import java.nio.charset.StandardCharsets;
 
 /**
- *
+ * UTF8 String in constant pool.
+ * 
  * @author zxh
  */
 public class Utf8String extends ClassComponent {

@@ -2,6 +2,7 @@ package com.github.zxh.classpy.testclasses;
 
 public class ConstantPool {
     
+    public static final String CHINESE = "你好，中国。";
     public static final String CONST_STRING = "qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq";
     public static final int CONST_INT1 = 65535;
     public static final int CONST_INT2 = -8;
