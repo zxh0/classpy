@@ -12,13 +12,13 @@ public class HexPane extends TextArea {
     private final ClassHex hex;
     
     public HexPane(ClassHex hex) {
-        super(hex.getHexString());
+        super(hex.getHexText());
         this.hex = hex;
         setEditable(false);
     }
     
     public void select(ClassComponent cc) {
-        ClassHex.Selection selection = hex.calcSelection(cc);
+        ClassHex.Selection selection = hex.select(cc);
         positionCaret(selection.getStartPosition());
         selectPositionCaret(selection.getEndPosition());
     }

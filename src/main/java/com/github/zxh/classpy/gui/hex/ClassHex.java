@@ -15,10 +15,10 @@ public class ClassHex {
     
     private static final int BYTES_PER_ROW = 16;
     
-    private final String hexString; // hexText
+    private final String hexText;
     
     public ClassHex(ClassFile cf) {
-        hexString = format(cf.getBytes());
+        hexText = format(cf.getBytes());
     }
     
     private String format(byte[] bytes) {
@@ -65,12 +65,12 @@ public class ClassHex {
         }
     }
 
-    public String getHexString() {
-        return hexString;
+    public String getHexText() {
+        return hexText;
     }
     
     // todo
-    public Selection calcSelection(ClassComponent cc) {
+    public Selection select(ClassComponent cc) {
         Selection selection = new Selection();
         selection.startPosition = calcTextPosition(cc.getOffset());
         selection.endPosition = calcTextPosition(cc.getOffset() + cc.getLength()) - 1;
