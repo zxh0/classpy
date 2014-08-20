@@ -15,9 +15,13 @@ import static org.junit.Assert.*;
 public class ClassFileTest {
     
     @Test
+    public void constantPool() throws Exception {
+        
+    }
+    
+    @Test
     public void simpleClass() throws Exception {
-        byte[] classBytes = loadClass(SimpleClass.class);
-        ClassFile cf = ClassParser.parse(classBytes);
+        ClassFile cf = loadClass(SimpleClass.class);
         assertEquals(0, cf.getMinorVersion().getValue());
         assertEquals(52, cf.getMajorVersion().getValue());
         assertEquals(113, cf.getConstantPoolCount().getValue());
@@ -30,50 +34,45 @@ public class ClassFileTest {
     @Test
     public void enclosingMethodAttribute() throws Exception {
         String classFileName = SimpleClass.class.getName().replace('.', '/') + "$1.class";
-        byte[] classBytes = loadClass(classFileName);
-        ClassParser.parse(classBytes);
+        loadClass(classFileName);
     }
     
     @Test
     public void annotationDefaultAttribute() throws Exception {
-        byte[] classBytes = loadClass(MyRuntimeAnnotation.class);
-        ClassParser.parse(classBytes);
+        loadClass(MyRuntimeAnnotation.class);
     }
     
     @Test
     public void genericClass() throws Exception {
-        byte[] classBytes = loadClass(GenericClass.class);
-        ClassParser.parse(classBytes);
+        loadClass(GenericClass.class);
     }
     
     @Test
     public void annotatedClass() throws Exception {
-        byte[] classBytes = loadClass(AnnotatedClass.class);
-        ClassParser.parse(classBytes);
+        loadClass(AnnotatedClass.class);
     }
     
     @Test
     public void typeAnnotatedClass() throws Exception {
-        byte[] classBytes = loadClass(TypeAnnotatedClass.class);
-        ClassParser.parse(classBytes);
+        loadClass(TypeAnnotatedClass.class);
     }
     
     @Test
     public void byteCode() throws Exception {
-        byte[] classBytes = loadClass(ByteCode.class);
-        ClassParser.parse(classBytes);
+        loadClass(ByteCode.class);
     }
     
-    private static byte[] loadClass(Class<?> cls) throws Exception {
+    private static ClassFile loadClass(Class<?> cls) throws Exception {
         String classFileName = cls.getName().replace('.', '/') + ".class";
         return loadClass(classFileName);
     }
     
-    private static byte[] loadClass(String classFileName) throws Exception {
+    private static ClassFile loadClass(String classFileName) throws Exception {
         ClassLoader cl =SimpleClass.class.getClassLoader();
         Path classFilePath = Paths.get(cl.getResource(classFileName).toURI());
         byte[] classBytes = Files.readAllBytes(classFilePath);
-        return classBytes;
+        ClassFile cf = ClassParser.parse(classBytes);
+        return cf;
     }
     
 }

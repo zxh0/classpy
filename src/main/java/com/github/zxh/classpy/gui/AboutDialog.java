@@ -24,7 +24,7 @@ public class AboutDialog {
         stage.initModality(Modality.APPLICATION_MODAL);
         
         BorderPane aboutPane = createAboutPane(stage);
-        Scene scene = new Scene(aboutPane, 300, 200);
+        Scene scene = new Scene(aboutPane, 300, 180);
         
         stage.setScene(scene);
         stage.setTitle("About");
