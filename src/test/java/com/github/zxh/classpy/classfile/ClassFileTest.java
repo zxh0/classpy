@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.testclasses.AnnotatedClass;
+import com.github.zxh.classpy.testclasses.AttrSimple;
 import com.github.zxh.classpy.testclasses.ByteCode;
 import com.github.zxh.classpy.testclasses.ConstantPool;
 import com.github.zxh.classpy.testclasses.SimpleClass;
@@ -20,11 +21,11 @@ public class ClassFileTest {
         ClassFile cf = loadClass(SimpleClass.class);
         assertEquals(0, cf.getMinorVersion().getValue());
         assertEquals(52, cf.getMajorVersion().getValue());
-        assertEquals(91, cf.getConstantPoolCount().getValue());
+        assertEquals(37, cf.getConstantPoolCount().getValue());
         assertEquals(2, cf.getInterfacesCount().getValue());
         assertEquals(2, cf.getFieldsCount().getValue());
-        assertEquals(11, cf.getMethodsCount().getValue());
-        assertEquals(4, cf.getAttributesCount().getValue());
+        assertEquals(5, cf.getMethodsCount().getValue());
+        assertEquals(2, cf.getAttributesCount().getValue());
     }
     
     @Test
@@ -34,7 +35,7 @@ public class ClassFileTest {
     
     @Test
     public void enclosingMethodAttribute() throws Exception {
-        String classFileName = SimpleClass.class.getName().replace('.', '/') + "$1.class";
+        String classFileName = AttrSimple.class.getName().replace('.', '/') + "$1.class";
         loadClass(classFileName);
     }
     
