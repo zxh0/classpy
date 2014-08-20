@@ -34,6 +34,12 @@ public abstract class AttributeInfo extends ClassComponent {
         return Arrays.asList(attributeNameIndex, attributeLength);
     }
     
+    
+    /**
+     * Create concrete XxxAttribute by name.
+     * @param name
+     * @return 
+     */
     public static AttributeInfo create(String name) {
         //  predefined class file attributes:
         switch (name) {
