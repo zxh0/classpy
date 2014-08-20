@@ -4,8 +4,8 @@ Classpy is a GUI tool for investigating Java class files.
 
 ## Screenshots
 
-![Screenshot](https://raw.githubusercontent.com/zxh0/classpy/master/screen-shot.png)
-![Screenshot](https://raw.githubusercontent.com/zxh0/classpy/master/screen-shot2.png)
+![Screenshot1](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot.png)
+![Screenshot2](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot2.png)
 
 ## Inspiration
 
