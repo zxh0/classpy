@@ -2,22 +2,25 @@ package com.github.zxh.classpy.testclasses;
 
 import java.io.IOException;
 
+// SourceFileAttribute
+// InnerClassesAttribute
+// BootstrapMethodsAttribute
 public class AttrSimple {
     
     @Deprecated
-    public void testDeprecatedAttribute() {
+    public void deprecatedAttribute() {
         
     }
     
-    public void testExceptionsAttribute() throws IOException, RuntimeException {
+    public void exceptionsAttribute() throws IOException, RuntimeException {
         
     }
     
-    public void testInvokeDynamic() {
+    public void invokeDynamic() {
         Runnable r = () -> {};
     }
     
-    public void testEnclosingMethodAttribute() {
+    public void enclosingMethodAttribute() {
         new Runnable() {
 
             @Override
@@ -28,7 +31,8 @@ public class AttrSimple {
         }.run();
     }
     
-    public void testCodeAttribute() {
+    // todo
+    public void codeAttribute() {
         int a = 1;
         int b = 2;
         try {

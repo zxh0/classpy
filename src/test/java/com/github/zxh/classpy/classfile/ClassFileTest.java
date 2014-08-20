@@ -34,6 +34,11 @@ public class ClassFileTest {
     }
     
     @Test
+    public void attrSimple() throws Exception {
+        loadClass(AttrSimple.class);
+    }
+    
+    @Test
     public void enclosingMethodAttribute() throws Exception {
         String classFileName = AttrSimple.class.getName().replace('.', '/') + "$1.class";
         loadClass(classFileName);
