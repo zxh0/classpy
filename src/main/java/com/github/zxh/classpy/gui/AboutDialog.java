@@ -2,9 +2,12 @@ package com.github.zxh.classpy.gui;
 
 import java.io.IOException;
 import java.net.URI;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -17,17 +20,34 @@ public class AboutDialog {
     private static final String HOME_URL = "https://github.com/zxh0/classpy";
     
     public static void showDialog() {
-        Stage dialogStage = new Stage();
-        dialogStage.initModality(Modality.APPLICATION_MODAL);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
         
-        BorderPane aboutPane = createAboutPane(dialogStage);
+        BorderPane aboutPane = createAboutPane(stage);
         Scene scene = new Scene(aboutPane, 300, 200);
         
-        dialogStage.setScene(scene);
-        dialogStage.show();
+        stage.setScene(scene);
+        stage.setTitle("About");
+        stage.show();
     }
     
     private static BorderPane createAboutPane(Stage dialogStage) {
+        VBox vbox = new VBox();
+        vbox.getChildren().add(new Label("Classpy"));
+        vbox.getChildren().add(new Label(" "));
+        vbox.getChildren().add(createHomeLink());
+        vbox.setAlignment(Pos.CENTER);
+        
+        BorderPane pane = new BorderPane();
+        pane.setCenter(vbox);
+        pane.setOnMouseClicked(e -> {
+            dialogStage.close();
+        });
+        
+        return pane;
+    }
+    
+    private static Hyperlink createHomeLink() {
         Hyperlink link = new Hyperlink(HOME_URL);
         link.setOnAction(e -> {
             try {
@@ -37,13 +57,7 @@ public class AboutDialog {
             }
         });
         
-        BorderPane pane = new BorderPane();
-        pane.setCenter(link);
-        pane.setOnMouseClicked(e -> {
-            dialogStage.close();
-        });
-        
-        return pane;
+        return link;
     }
     
 }
