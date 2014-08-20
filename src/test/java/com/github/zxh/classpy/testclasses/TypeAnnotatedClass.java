@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.testclasses;
 
+import com.github.zxh.classpy.testclasses.annotations.MyTypeAnnotation;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;

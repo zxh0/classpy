@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.testclasses;
 
+import com.github.zxh.classpy.testclasses.annotations.MyRuntimeAnnotation;
+import com.github.zxh.classpy.testclasses.annotations.MyClassAnnotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Target;
 

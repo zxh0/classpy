@@ -6,7 +6,7 @@ import com.github.zxh.classpy.testclasses.ByteCode;
 import com.github.zxh.classpy.testclasses.ConstantPool;
 import com.github.zxh.classpy.testclasses.SimpleClass;
 import com.github.zxh.classpy.testclasses.GenericClass;
-import com.github.zxh.classpy.testclasses.MyRuntimeAnnotation;
+import com.github.zxh.classpy.testclasses.annotations.MyRuntimeAnnotation;
 import com.github.zxh.classpy.testclasses.TypeAnnotatedClass;
 import java.nio.file.Files;
 import java.nio.file.Path;
