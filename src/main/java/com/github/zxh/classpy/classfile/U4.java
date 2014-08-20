@@ -1,7 +1,8 @@
 package com.github.zxh.classpy.classfile;
 
 /**
- *
+ * Unsigned four-byte quantity.
+ * 
  * @author zxh
  */
 public class U4 extends ClassComponent {
@@ -15,6 +16,9 @@ public class U4 extends ClassComponent {
     @Override
     protected void readContent(ClassReader reader) {
         value = reader.getByteBuffer().getInt();
+        if (value < 0) {
+            // todo
+        }
         setDesc(String.valueOf(value));
     }
     

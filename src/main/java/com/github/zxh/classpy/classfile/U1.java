@@ -1,7 +1,8 @@
 package com.github.zxh.classpy.classfile;
 
 /**
- *
+ * Unsigned one-byte quantity.
+ * 
  * @author zxh
  */
 public class U1 extends ClassComponent {

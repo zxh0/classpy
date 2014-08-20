@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 /**
+ * Unsigned two-byte quantity.
  *
  * @author zxh
  */

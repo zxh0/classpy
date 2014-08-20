@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 /**
+ * Same as U1, but used as index of ConstantPool.
  *
  * @author zxh
  */
