@@ -32,17 +32,18 @@ public class ClassComponentTreeItem extends TreeItem<ClassComponent> {
 
             // First getChildren() call, so we actually go off and 
             // determine the children of the File contained in this TreeItem.
-            ObservableList<TreeItem<ClassComponent>> children = FXCollections.observableArrayList();
-            buildChildren(children);
-            super.getChildren().setAll(children);
+            super.getChildren().setAll(buildChildren());
         }
+        
         return super.getChildren();
     }
 
-    private void buildChildren(ObservableList<TreeItem<ClassComponent>> children) {
+    private ObservableList<TreeItem<ClassComponent>> buildChildren() {
+        ObservableList<TreeItem<ClassComponent>> children = FXCollections.observableArrayList();
         getValue().getSubComponents().forEach(sub -> {
             children.add(new ClassComponentTreeItem(sub));
         });
+        return children;
     }
     
 }
