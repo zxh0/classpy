@@ -58,6 +58,10 @@ public class AccessFlags {
         flags.setDesc(describe(TYPE_METHOD, flags.getValue()));
     }
     
+    public static void describeInnerClassFlags(U2 flags) {
+        flags.setDesc(describe(TYPE_NESTED_CLASS, flags.getValue()));
+    }
+    
     private static String describe(int flagType, int flags) {
         return Stream.of(Flags.values())
                 .filter(flag -> (flag.type & flagType) != 0 && (flag.flag & flags) != 0)

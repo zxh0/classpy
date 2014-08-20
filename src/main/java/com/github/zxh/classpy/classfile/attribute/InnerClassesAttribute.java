@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
+import com.github.zxh.classpy.classfile.AccessFlags;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
@@ -51,6 +52,7 @@ public class InnerClassesAttribute extends AttributeInfo {
             outerClassInfoIndex = reader.readU2CpIndex();
             innerNameIndex = reader.readU2CpIndex();
             innerClassAccessFlags = reader.readU2();
+            AccessFlags.describeInnerClassFlags(innerClassAccessFlags);
         }
         
         @Override
