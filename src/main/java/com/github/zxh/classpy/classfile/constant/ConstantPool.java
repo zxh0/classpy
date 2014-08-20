@@ -12,7 +12,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
- *
+ * The constant pool in class file.
+ * 
  * @author zxh
  */
 public class ConstantPool extends ClassComponent {
@@ -44,7 +45,7 @@ public class ConstantPool extends ClassComponent {
         loadConstantDesc();
     }
     
-    public ConstantInfo readConstantInfo(ClassReader reader) {
+    private ConstantInfo readConstantInfo(ClassReader reader) {
         byte tag = reader.getByteBuffer().get(reader.getPosition());
         
         ConstantInfo ci = ConstantInfo.create(tag);
@@ -77,16 +78,16 @@ public class ConstantPool extends ClassComponent {
                 .collect(Collectors.toList());
     }
     
-    public String getUtf8String(int index) {
-        return getConstant(ConstantUtf8Info.class, index).getString();
-    }
-    
     public String getUtf8String(U2 index) {
         return getUtf8String(index.getValue());
     }
     
     public String getUtf8String(U2CpIndex index) {
         return getUtf8String(index.getValue());
+    }
+    
+    public String getUtf8String(int index) {
+        return getConstant(ConstantUtf8Info.class, index).getString();
     }
     
     public ConstantUtf8Info getUtf8Info(U2 index) {
