@@ -62,8 +62,8 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     
     private void setEntryName() {
         for (int i = 0; i < table.length; i++) {
-            String oldName = table[i].getName();
             String newName = Util.formatIndex(length, i);
+            String oldName = table[i].getName();
             if (oldName != null) {
                 newName += " (" + oldName + ")";
             }
