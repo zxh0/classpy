@@ -11,4 +11,9 @@ method_info {
  */
 public class MethodInfo extends FieldInfo {
     
+    @Override
+    protected void afterRead() {
+        AccessFlags.describeMethodFlags(accessFlags);
+    }
+    
 }

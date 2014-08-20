@@ -65,6 +65,7 @@ public class ClassFile extends ClassComponent {
         constantPoolCount = reader.readU2();
         constantPool = reader.readConstantPool(constantPoolCount.getValue());
         accessFlags = reader.readU2();
+        AccessFlags.describeClassFlags(accessFlags);
         thisClass = reader.readU2CpIndex();
         superClass = reader.readU2CpIndex();
         interfacesCount = reader.readU2();

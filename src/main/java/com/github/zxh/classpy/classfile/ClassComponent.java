@@ -13,7 +13,7 @@ public abstract class ClassComponent {
     private int offset; // the position of this ClassComponent in class file
     private int length; // how many bytes this ClassComponent has
     private String name;
-    private String desc;
+    private String desc; // description
 
     // Getters & Setters
     public final int getOffset() {return offset;}

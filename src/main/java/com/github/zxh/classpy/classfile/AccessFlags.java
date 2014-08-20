@@ -1,5 +1,8 @@
 package com.github.zxh.classpy.classfile;
 
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  *
  * @author zxh
@@ -41,6 +44,25 @@ public class AccessFlags {
             this.type = type;
         }
         
+    }
+    
+    public static void describeClassFlags(U2 flags) {
+        flags.setDesc(describe(TYPE_CLASS, flags.getValue()));
+    }
+    
+    public static void describeFieldFlags(U2 flags) {
+        flags.setDesc(describe(TYPE_FIELD, flags.getValue()));
+    }
+    
+    public static void describeMethodFlags(U2 flags) {
+        flags.setDesc(describe(TYPE_METHOD, flags.getValue()));
+    }
+    
+    private static String describe(int flagType, int flags) {
+        return Stream.of(Flags.values())
+                .filter(flag -> (flag.type & flagType) != 0 && (flag.flag & flags) != 0)
+                .map(Object::toString)
+                .collect(Collectors.joining(", "));
     }
     
 }
