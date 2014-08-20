@@ -29,6 +29,7 @@ public class ClasspyApp extends Application {
     private FileChooser fileChooser;
     private Stage stage;
     private BorderPane root;
+    private File lastOpenFile;
     
     @Override
     public void start(Stage stage) throws Exception {
@@ -78,12 +79,17 @@ public class ClasspyApp extends Application {
     private void showFileChooser() {
         if (fileChooser == null) {
             initFileChooser();
+        } else if (lastOpenFile != null) {
+            fileChooser.setInitialDirectory(lastOpenFile.getParentFile());
         }
 
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             // todo
-            openClass(file);
+            openClass(file, () -> {
+                // todo
+                lastOpenFile = file;
+            });
         }
     }
     
@@ -96,7 +102,7 @@ public class ClasspyApp extends Application {
         );
     }
     
-    private void openClass(File file) {
+    private void openClass(File file, Runnable succeededCallback) {
         ProgressBar pb = new ProgressBar();
         root.setCenter(pb);
         
@@ -117,6 +123,7 @@ public class ClasspyApp extends Application {
             SplitPane sp = UiBuilder.buildMainPane(cf);
             root.setCenter(sp);
             stage.setTitle(TITLE + " - " + file.getAbsolutePath());
+            succeededCallback.run();
         });
 
         task.setOnFailed(e -> {
