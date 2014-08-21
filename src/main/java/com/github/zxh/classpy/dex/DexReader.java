@@ -16,6 +16,10 @@ public class DexReader {
         this.buf.order(ByteOrder.LITTLE_ENDIAN);
     }
     
+    public int getPosition() {
+        return buf.position();
+    }
+    
     // 8-bit signed int
     public byte readByte() {
         return buf.get();
