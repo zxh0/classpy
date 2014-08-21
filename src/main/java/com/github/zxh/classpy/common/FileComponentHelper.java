@@ -10,7 +10,7 @@ import java.lang.reflect.Field;
 public class FileComponentHelper {
     
     // todo
-    public static void setNameForFileComponentFields(FileComponent fcObj)
+    public static void inferSubComponentName(FileComponent fcObj)
             throws ReflectiveOperationException {
         
         for (Class<?> fcClass = fcObj.getClass(); fcClass != null; fcClass = fcClass.getSuperclass()) {
@@ -21,7 +21,7 @@ public class FileComponentHelper {
                     FileComponent fcFieldVal = (FileComponent) field.get(fcObj);
                     if (fcFieldVal != null) {
                         fcFieldVal.setName(field.getName());
-                        setNameForFileComponentFields(fcFieldVal);
+                        inferSubComponentName(fcFieldVal);
                     }
                 } else if (isFileComponentArrayType(field)) {
                     // field is FileComponent[]
@@ -31,7 +31,7 @@ public class FileComponentHelper {
                         for (int i = 0; i < length; i++) {
                             FileComponent arrItem = (FileComponent) Array.get(arrFieldVal, i);
                             if (arrItem != null) {
-                                setNameForFileComponentFields(arrItem);
+                                inferSubComponentName(arrItem);
                             }
                         }
                     }

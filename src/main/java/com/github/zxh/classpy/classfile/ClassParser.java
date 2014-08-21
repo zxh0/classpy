@@ -13,7 +13,7 @@ public class ClassParser {
         cf.read(new ClassReader(bytes));
         
         try {
-            FileComponentHelper.setNameForFileComponentFields(cf);
+            FileComponentHelper.inferSubComponentName(cf);
         } catch (ReflectiveOperationException e) {
             throw new ClassParseException(e);
         }
