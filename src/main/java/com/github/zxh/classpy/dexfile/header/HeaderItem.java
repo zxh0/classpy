@@ -12,12 +12,15 @@ public class HeaderItem extends DexComponent {
 
     private FileMagic magic;
     private UInt checksum;
+    private Signature signature;
     
     @Override
     protected void readContent(DexReader reader) {
         magic = new FileMagic();
         magic.read(reader);
         checksum = reader.readUInt();
+        signature = new Signature();
+        signature.read(reader);
         // todo
     }
     
