@@ -13,6 +13,8 @@ public class HeaderItem extends DexComponent {
     private FileMagic magic;
     private UInt checksum;
     private Signature signature;
+    private UInt fileSize;
+    private UInt headerSize;
     
     @Override
     protected void readContent(DexReader reader) {
@@ -21,6 +23,8 @@ public class HeaderItem extends DexComponent {
         checksum = reader.readUInt();
         signature = new Signature();
         signature.read(reader);
+        fileSize = reader.readUInt();
+        headerSize = reader.readUInt();
         // todo
     }
     
