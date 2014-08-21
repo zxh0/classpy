@@ -87,7 +87,7 @@ public class ClassFileTest {
     }
     
     private static ClassFile loadClass(String classFileName) throws Exception {
-        ClassLoader cl =SimpleClass.class.getClassLoader();
+        ClassLoader cl = SimpleClass.class.getClassLoader();
         Path classFilePath = Paths.get(cl.getResource(classFileName).toURI());
         byte[] classBytes = Files.readAllBytes(classFilePath);
         ClassFile cf = ClassParser.parse(classBytes);

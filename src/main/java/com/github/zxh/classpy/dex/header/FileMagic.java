@@ -13,7 +13,7 @@ public class FileMagic extends DexComponent {
 
     @Override
     protected void readContent(DexReader reader) {
-        reader.skipBytes(4);
+        reader.skipBytes(4); // todo check
         StringBuilder magic = new StringBuilder("dex\\n");
         magic.append((char) reader.readUByte());
         magic.append((char) reader.readUByte());
