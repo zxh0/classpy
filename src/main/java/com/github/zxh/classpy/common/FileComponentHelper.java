@@ -10,22 +10,22 @@ import java.lang.reflect.Field;
 public class FileComponentHelper {
     
     // todo
-    public static void setNameForFileComponentFields(FileComponent ccObj)
+    public static void setNameForFileComponentFields(FileComponent fcObj)
             throws ReflectiveOperationException {
         
-        for (Class<?> ccClass = ccObj.getClass(); ccClass != null; ccClass = ccClass.getSuperclass()) {
-            for (Field field : ccClass.getDeclaredFields()) {
+        for (Class<?> fcClass = fcObj.getClass(); fcClass != null; fcClass = fcClass.getSuperclass()) {
+            for (Field field : fcClass.getDeclaredFields()) {
                 field.setAccessible(true);
                 if (isFileComponentType(field)) {
                     // field is FileComponent
-                    FileComponent ccFieldVal = (FileComponent) field.get(ccObj);
-                    if (ccFieldVal != null) {
-                        ccFieldVal.setName(field.getName());
-                        setNameForFileComponentFields(ccFieldVal);
+                    FileComponent fcFieldVal = (FileComponent) field.get(fcObj);
+                    if (fcFieldVal != null) {
+                        fcFieldVal.setName(field.getName());
+                        setNameForFileComponentFields(fcFieldVal);
                     }
                 } else if (isFileComponentArrayType(field)) {
                     // field is FileComponent[]
-                    Object arrFieldVal = field.get(ccObj);
+                    Object arrFieldVal = field.get(fcObj);
                     if (arrFieldVal != null) {
                         int length = Array.getLength(arrFieldVal);
                         for (int i = 0; i < length; i++) {
