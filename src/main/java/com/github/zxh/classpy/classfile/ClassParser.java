@@ -1,8 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.common.FileComponentHelper;
-import java.lang.reflect.Array;
-import java.lang.reflect.Field;
 
 /**
  *
@@ -15,7 +13,7 @@ public class ClassParser {
         cf.read(new ClassReader(bytes));
         
         try {
-            FileComponentHelper.setNameForClassComponentFields(cf);
+            FileComponentHelper.setNameForFileComponentFields(cf);
         } catch (ReflectiveOperationException e) {
             throw new ClassParseException(e);
         }

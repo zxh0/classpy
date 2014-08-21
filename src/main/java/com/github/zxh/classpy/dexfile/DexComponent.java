@@ -19,8 +19,8 @@ public abstract class DexComponent implements FileComponent {
     // Getters & Setters
     @Override public final int getOffset() {return offset;}
     @Override public final int getLength() {return length;}
-    public final String getName() {return name;}
-    public final void setName(String name) {this.name = name;}
+    @Override public final String getName() {return name;}
+    @Override public final void setName(String name) {this.name = name;}
     public final String getDesc() {return desc;}
     public final void setDesc(String desc) {this.desc = desc;}
 
