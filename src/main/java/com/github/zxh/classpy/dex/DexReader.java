@@ -20,6 +20,19 @@ public class DexReader {
         return buf.position();
     }
     
+    public void skipBytes(int n) {
+        for (int i = 0; i < n; i++) {
+            buf.get();
+        }
+    }
+    
+    // byte[]
+    public byte[] readBytes(int n) {
+        byte[] bytes = new byte[n];
+        buf.get(bytes);
+        return bytes;
+    }
+    
     // 8-bit signed int
     public byte readByte() {
         return buf.get();

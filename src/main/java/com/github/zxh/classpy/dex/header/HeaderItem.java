@@ -9,10 +9,12 @@ import com.github.zxh.classpy.dex.DexReader;
  */
 public class HeaderItem extends DexComponent {
 
-    // magic
+    private FileMagic magic;
     
     @Override
     protected void readContent(DexReader reader) {
+        magic = new FileMagic();
+        magic.read(reader);
         // todo
     }
     
