@@ -59,8 +59,10 @@ public class DexReader {
     }
     
     // 32-bit unsigned int, little-endian
-    public long readUInt() {
-        return Integer.toUnsignedLong(buf.getInt());
+    public UInt readUInt() {
+        UInt uint = new UInt();
+        uint.read(this);
+        return uint;
     }
     
     // 64-bit signed int, little-endian
