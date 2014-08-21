@@ -80,4 +80,10 @@ public class DexReader {
         return ulong;
     }
     
+    public Hex readHex(int n) {
+        Hex hex = new Hex(n);
+        hex.readContent(this);
+        return hex;
+    }
+    
 }
