@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.dexfile;
 
-import com.github.zxh.classpy.dexfile.DexParser;
-import com.github.zxh.classpy.dexfile.DexFile;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
