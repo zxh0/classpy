@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.classfile.ClassParser;
+import com.github.zxh.classpy.common.FileComponent;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
@@ -97,8 +98,9 @@ public class ClasspyApp extends Application {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open .class file");
         fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("CLASS", "*.class")/*,
-            new FileChooser.ExtensionFilter("JAR", "*.jar")*/
+            new FileChooser.ExtensionFilter("CLASS", "*.class"),
+            new FileChooser.ExtensionFilter("DEX", "*.dex")
+            //new FileChooser.ExtensionFilter("JAR", "*.jar")
         );
     }
     
@@ -106,21 +108,25 @@ public class ClasspyApp extends Application {
         ProgressBar pb = new ProgressBar();
         root.setCenter(pb);
         
-        Task<ClassFile> task = new Task<ClassFile>() {
+        Task<Object[]> task = new Task<Object[]>() {
 
             @Override
-            protected ClassFile call() throws Exception {
+            protected Object[] call() throws Exception {
                 System.out.println("loading " + file.getAbsolutePath() + "...");
+                
                 byte[] bytes = Files.readAllBytes(file.toPath());
                 ClassFile cf = ClassParser.parse(bytes);
-                return cf;
+                
+                return new Object[] {cf, bytes};
             }
 
         };
 
         task.setOnSucceeded(e -> {
-            ClassFile cf = (ClassFile) e.getSource().getValue();
-            SplitPane sp = UiBuilder.buildMainPane(cf);
+            Object[] arr = (Object[]) e.getSource().getValue();
+            FileComponent fc = (FileComponent) arr[0];
+            byte[] bytes = (byte[]) arr[1];
+            SplitPane sp = UiBuilder.buildMainPane(fc, bytes);
             root.setCenter(sp);
             stage.setTitle(TITLE + " - " + file.getAbsolutePath());
             succeededCallback.run();

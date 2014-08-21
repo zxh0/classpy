@@ -17,8 +17,8 @@ public class ClassHex {
     
     private final String hexText;
     
-    public ClassHex(ClassFile cf) {
-        hexText = format(cf.getBytes());
+    public ClassHex(byte[] bytes) {
+        hexText = format(bytes);
     }
     
     private String format(byte[] bytes) {

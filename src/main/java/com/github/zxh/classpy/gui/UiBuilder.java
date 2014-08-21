@@ -17,11 +17,11 @@ import javafx.scene.text.Font;
  */
 public class UiBuilder {
     
-    public static SplitPane buildMainPane(ClassFile cf) {
+    public static SplitPane buildMainPane(FileComponent file, byte[] bytes) {
         SplitPane sp = new SplitPane();
         
-        TreeView<FileComponent> tree = buildClassTree(cf);
-        HexPane hexPane = buildHexPane(cf);
+        TreeView<FileComponent> tree = buildClassTree(file);
+        HexPane hexPane = buildHexPane(bytes);
         
         sp.getItems().add(tree);
         sp.getItems().add(hexPane);
@@ -47,8 +47,8 @@ public class UiBuilder {
         return sp;
     }
     
-    private static TreeView<FileComponent> buildClassTree(ClassFile cf) {
-        FileComponentTreeItem root = new FileComponentTreeItem(cf);
+    private static TreeView<FileComponent> buildClassTree(FileComponent file) {
+        FileComponentTreeItem root = new FileComponentTreeItem(file);
         root.setExpanded(true);
         
         TreeView<FileComponent> tree = new TreeView<>(root);
@@ -57,8 +57,8 @@ public class UiBuilder {
         return tree;
     }
     
-    private static HexPane buildHexPane(ClassFile cf) {
-        ClassHex hex = new ClassHex(cf);
+    private static HexPane buildHexPane(byte[] bytes) {
+        ClassHex hex = new ClassHex(bytes);
         HexPane pane = new HexPane(hex);
         // http://stackoverflow.com/questions/24983841/format-text-output-in-javafx
         pane.setFont(Font.font("Courier New", 14));

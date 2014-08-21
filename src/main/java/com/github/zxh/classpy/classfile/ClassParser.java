@@ -12,7 +12,6 @@ public class ClassParser {
     public static ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();
         cf.read(new ClassReader(bytes));
-        cf.setBytes(bytes);
         
         try {
             setNameForClassComponentFields(cf);
