@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.common.FileComponent;
 import java.util.Collections;
 import java.util.List;
 
@@ -8,7 +9,7 @@ import java.util.List;
  * 
  * @author zxh
  */
-public abstract class DexComponent {
+public abstract class DexComponent implements FileComponent {
     
     private int offset; // the position of this ClassComponent in class file
     private int length; // how many bytes this ClassComponent has
@@ -16,8 +17,8 @@ public abstract class DexComponent {
     private String desc; // description
 
     // Getters & Setters
-    public final int getOffset() {return offset;}
-    public final int getLength() {return length;}
+    @Override public final int getOffset() {return offset;}
+    @Override public final int getLength() {return length;}
     public final String getName() {return name;}
     public final void setName(String name) {this.name = name;}
     public final String getDesc() {return desc;}
@@ -45,6 +46,7 @@ public abstract class DexComponent {
      * should override this.
      * @return 
      */
+    @Override
     @SuppressWarnings("unchecked")
     public List<? extends DexComponent> getSubComponents() {
         return Collections.EMPTY_LIST;

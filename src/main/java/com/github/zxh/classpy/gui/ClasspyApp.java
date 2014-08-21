@@ -1,8 +1,8 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.dexfile.DexParser;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
@@ -115,9 +115,11 @@ public class ClasspyApp extends Application {
                 System.out.println("loading " + file.getAbsolutePath() + "...");
                 
                 byte[] bytes = Files.readAllBytes(file.toPath());
-                ClassFile cf = ClassParser.parse(bytes);
+                FileComponent fc = file.getName().endsWith(".class")
+                        ? ClassParser.parse(bytes)
+                        : DexParser.parse(bytes);
                 
-                return new Object[] {cf, bytes};
+                return new Object[] {fc, bytes};
             }
 
         };
