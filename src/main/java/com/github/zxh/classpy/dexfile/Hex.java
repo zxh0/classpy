@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
 /**
- * ubyte[20].
  *
  * @author zxh
  */

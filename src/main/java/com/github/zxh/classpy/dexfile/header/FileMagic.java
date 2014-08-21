@@ -7,7 +7,7 @@ import com.github.zxh.classpy.dexfile.DexReader;
  *
  * DEX_FILE_MAGIC="dex\nXXX\0".
  * 
- * @author pc
+ * @author zxh
  */
 public class FileMagic extends DexComponent {
 
@@ -20,6 +20,7 @@ public class FileMagic extends DexComponent {
         magic.append((char) reader.readUByte());
         reader.skipBytes(1);
         magic.append("\\0");
+        setDesc(magic.toString());
     }
     
 }
