@@ -213,13 +213,20 @@ public class ByteCode {
         bc.y = 100;
     }
     
-    public static void invokexxx(String str) {
-        ByteCode bc = new ByteCode(); // invokespecial
+    public void invokexxx() {
+        // invokespecial
+        ByteCode bc = new ByteCode(); // new
+        bc.foo(); // private method
+        super.toString(); // super
+        
         bc.hashCode(); // invokevirtual
-        ByteCode.lookupSwitch(1); // invokestatic
-        Runnable r = null;
+        ByteCode.get_put_static(); // invokestatic
+        Runnable r = () -> {}; // invokedynamic
         r.run(); // invokeinterface
-        r = () -> {}; // invokedynamic
+    }
+    
+    private void foo() {
+        
     }
     
     public static void newxxx() {
