@@ -1,10 +1,10 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassFile;
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.hex.ClassHex;
 import com.github.zxh.classpy.gui.hex.HexPane;
-import com.github.zxh.classpy.gui.tree.ClassComponentTreeItem;
+import com.github.zxh.classpy.gui.tree.FileComponentTreeItem;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
@@ -20,7 +20,7 @@ public class UiBuilder {
     public static SplitPane buildMainPane(ClassFile cf) {
         SplitPane sp = new SplitPane();
         
-        TreeView<ClassComponent> tree = buildClassTree(cf);
+        TreeView<FileComponent> tree = buildClassTree(cf);
         HexPane hexPane = buildHexPane(cf);
         
         sp.getItems().add(tree);
@@ -28,15 +28,15 @@ public class UiBuilder {
         sp.setDividerPositions(0.1, 0.9);
         
         tree.getSelectionModel().getSelectedItems().addListener(
-            (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
+            (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
                 if (c.next()) {
                     if (c.wasAdded()) {
-                        TreeItem<ClassComponent> node = c.getList().get(c.getFrom());
+                        TreeItem<FileComponent> node = c.getList().get(c.getFrom());
                         if (node != null) {
-                            ClassComponent cc = node.getValue(); // NPE
+                            FileComponent fc = node.getValue(); // NPE
                             //System.out.println("select " + cc);
-                            if (!(cc instanceof ClassFile)) {
-                                hexPane.select(cc);
+                            if (!(fc instanceof ClassFile)) {
+                                hexPane.select(fc);
                             }
                         }
                     }
@@ -47,11 +47,11 @@ public class UiBuilder {
         return sp;
     }
     
-    private static TreeView<ClassComponent> buildClassTree(ClassFile cf) {
-        ClassComponentTreeItem root = new ClassComponentTreeItem(cf);
+    private static TreeView<FileComponent> buildClassTree(ClassFile cf) {
+        FileComponentTreeItem root = new FileComponentTreeItem(cf);
         root.setExpanded(true);
         
-        TreeView<ClassComponent> tree = new TreeView<>(root);
+        TreeView<FileComponent> tree = new TreeView<>(root);
         tree.setMinWidth(200);
         
         return tree;

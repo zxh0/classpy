@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui.tree;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
@@ -11,12 +11,12 @@ import javafx.scene.control.TreeItem;
  * 
  * @author zxh
  */
-public class ClassComponentTreeItem extends TreeItem<ClassComponent> {
+public class FileComponentTreeItem extends TreeItem<FileComponent> {
 
     private boolean isFirstTimeChildren = true;
     
-    public ClassComponentTreeItem(ClassComponent cc) {
-        super(cc);
+    public FileComponentTreeItem(FileComponent fc) {
+        super(fc);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class ClassComponentTreeItem extends TreeItem<ClassComponent> {
     }
     
     @Override
-    public ObservableList<TreeItem<ClassComponent>> getChildren() {
+    public ObservableList<TreeItem<FileComponent>> getChildren() {
         if (isFirstTimeChildren) {
             isFirstTimeChildren = false;
             System.out.println("get children of " + getValue());
@@ -38,10 +38,10 @@ public class ClassComponentTreeItem extends TreeItem<ClassComponent> {
         return super.getChildren();
     }
 
-    private ObservableList<TreeItem<ClassComponent>> buildChildren() {
-        ObservableList<TreeItem<ClassComponent>> children = FXCollections.observableArrayList();
+    private ObservableList<TreeItem<FileComponent>> buildChildren() {
+        ObservableList<TreeItem<FileComponent>> children = FXCollections.observableArrayList();
         getValue().getSubComponents().forEach(sub -> {
-            children.add(new ClassComponentTreeItem(sub));
+            children.add(new FileComponentTreeItem(sub));
         });
         return children;
     }

@@ -70,10 +70,10 @@ public class ClassHex {
     }
     
     // todo
-    public Selection select(FileComponent cc) {
+    public Selection select(FileComponent fc) {
         Selection selection = new Selection();
-        selection.startPosition = calcTextPosition(cc.getOffset());
-        selection.endPosition = calcTextPosition(cc.getOffset() + cc.getLength()) - 1;
+        selection.startPosition = calcTextPosition(fc.getOffset());
+        selection.endPosition = calcTextPosition(fc.getOffset() + fc.getLength()) - 1;
         return selection;
     }
     
