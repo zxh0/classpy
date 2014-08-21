@@ -5,12 +5,12 @@ import com.github.zxh.classpy.dex.DexReader;
 
 /**
  *
- * @author zxh
+ * DEX_FILE_MAGIC.
+ * 
+ * @author pc
  */
-public class HeaderItem extends DexComponent {
+public class FileMagic extends DexComponent {
 
-    // magic
-    
     @Override
     protected void readContent(DexReader reader) {
         // todo
