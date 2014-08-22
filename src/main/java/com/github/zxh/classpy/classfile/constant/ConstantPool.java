@@ -5,7 +5,7 @@ import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.U2;
 import com.github.zxh.classpy.classfile.U2CpIndex;
-import com.github.zxh.classpy.classfile.Util;
+import com.github.zxh.classpy.common.Util;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;

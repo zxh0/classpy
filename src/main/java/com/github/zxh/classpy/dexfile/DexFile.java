@@ -21,6 +21,7 @@ public class DexFile extends DexComponent {
         header.read(reader);
         int stringIdSize = header.getStringIdsSize().getValue();
         stringIds = reader.readList(stringIdSize, StringIdItem::new);
+        //stringIds.setDesc(Integer.toString(stringIdSize));
         // todo
     }
 

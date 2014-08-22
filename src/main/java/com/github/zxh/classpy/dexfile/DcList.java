@@ -26,7 +26,7 @@ public class DcList<E extends DexComponent> extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         readTable(reader);
-//        setEntryName();
+        setElementName();
     }
     
     private void readTable(DexReader reader) {
@@ -37,9 +37,8 @@ public class DcList<E extends DexComponent> extends DexComponent {
         }
     }
     
-//    
-//    private void setEntryName() {
-//        for (int i = 0; i < table.length; i++) {
+    private void setElementName() {
+//        for (int i = 0; i < size; i++) {
 //            String newName = Util.formatIndex(length, i);
 //            String oldName = table[i].getName();
 //            if (oldName != null) {
@@ -47,8 +46,8 @@ public class DcList<E extends DexComponent> extends DexComponent {
 //            }
 //            table[i].setName(newName);
 //        }
-//    }
-//    
+    }
+    
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return list;
