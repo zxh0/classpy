@@ -1,8 +1,8 @@
 package com.github.zxh.classpy.dexfile;
 
-import com.github.zxh.classpy.classfile.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * DexComponents list.
@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class DcList<E extends DexComponent> extends DexComponent {
 
-    private final Class<E> classOfE;
     private final int size;
+    private final Supplier<E> factory;
     private final List<E> list;
 
-    public DcList(Class<E> classOfE, int size) {
-        this.classOfE = classOfE;
+    public DcList(int size, Supplier<E> factory) {
         this.size = size;
+        this.factory = factory;
         this.list = new ArrayList<>();
     }
     
@@ -30,14 +30,10 @@ public class DcList<E extends DexComponent> extends DexComponent {
     }
     
     private void readTable(DexReader reader) {
-        
-        try {
-            for (int i = 0; i < size; i++) {
-                E e = classOfE.newInstance();
-                list.add(e);
-            }
-        } catch (ReflectiveOperationException e) {
-            throw new ClassParseException(e);
+        for (int i = 0; i < size; i++) {
+            E e = factory.get();
+            e.read(reader);
+            list.add(e);
         }
     }
     

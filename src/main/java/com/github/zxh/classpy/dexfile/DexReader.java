@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.util.function.Supplier;
 
 /**
  *
@@ -84,6 +85,12 @@ public class DexReader {
         Hex hex = new Hex(n);
         hex.readContent(this);
         return hex;
+    }
+    
+    public <E extends DexComponent> DcList<E> readList(int size, Supplier<E> factory) {
+        DcList<E> list = new DcList<>(size, factory);
+        list.read(this);
+        return list;
     }
     
 }
