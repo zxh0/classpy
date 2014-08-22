@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.common.ClassParseException;
+import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -47,7 +47,7 @@ public class Table<E extends ClassComponent> extends ClassComponent {
                 }
             }
         } catch (ReflectiveOperationException e) {
-            throw new ClassParseException(e);
+            throw new FileParseException(e);
         }
     }
     

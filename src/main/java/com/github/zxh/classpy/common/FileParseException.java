@@ -5,13 +5,13 @@ package com.github.zxh.classpy.common;
  * @author zxh
  */
 @SuppressWarnings("serial")
-public class ClassParseException extends RuntimeException {
+public class FileParseException extends RuntimeException {
 
-    public ClassParseException(String message) {
+    public FileParseException(String message) {
         super(message);
     }
 
-    public ClassParseException(Throwable cause) {
+    public FileParseException(Throwable cause) {
         super(cause);
     }
     

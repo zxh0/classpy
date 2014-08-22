@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.common.ClassParseException;
+import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 
 /**
@@ -29,7 +29,7 @@ public class NewArray extends Instruction {
             case  9: return "short";
             case 10: return "int";
             case 11: return "long";
-            default: throw new ClassParseException("Invalid atype: " + atype);
+            default: throw new FileParseException("Invalid atype: " + atype);
         }
     }
     
