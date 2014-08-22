@@ -10,9 +10,9 @@ public class Util {
      * Convert index to String.
      * Examples:
      * maxIndex index result
-     *  9         8    #8
-     * 15         8    #08
-     * 15        12    #12
+     *   9        8    #8
+     *  15        8    #08
+     *  15       12    #12
      * 123        8    #008
      * 123       12    #012
      * 123      120    #120
