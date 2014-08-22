@@ -3,7 +3,7 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.dexfile.DexParser;
-import com.github.zxh.classpy.gui.hex.ClassHex;
+import com.github.zxh.classpy.common.ClassHex;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
