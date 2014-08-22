@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  *
+ * http://source.android.com/devices/tech/dalvik/dex-format.html
  * @author zxh
  */
 public class DexFile extends DexComponent {
