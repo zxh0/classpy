@@ -3,7 +3,7 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.dexfile.DexParser;
-import com.github.zxh.classpy.common.ClassHex;
+import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
 import java.nio.file.Files;
 import javafx.application.Application;
@@ -116,7 +116,7 @@ public class ClasspyApp extends Application {
                 System.out.println("loading " + file.getAbsolutePath() + "...");
                 
                 byte[] bytes = Files.readAllBytes(file.toPath());
-                ClassHex hex = new ClassHex(bytes);
+                FileHex hex = new FileHex(bytes);
                 FileComponent fc = file.getName().endsWith(".class")
                         ? ClassParser.parse(bytes)
                         : DexParser.parse(bytes);
@@ -129,7 +129,7 @@ public class ClasspyApp extends Application {
 
         task.setOnSucceeded(e -> {
             Object[] arr = (Object[]) e.getSource().getValue();
-            ClassHex hex = (ClassHex) arr[0];
+            FileHex hex = (FileHex) arr[0];
             FileComponent fc = (FileComponent) arr[1];
             
             SplitPane sp = UiBuilder.buildMainPane(fc, hex);

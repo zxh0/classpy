@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui.hex;
 
-import com.github.zxh.classpy.common.ClassHex;
+import com.github.zxh.classpy.common.FileHex;
 import com.github.zxh.classpy.common.FileComponent;
 import javafx.scene.control.TextArea;
 
@@ -10,16 +10,16 @@ import javafx.scene.control.TextArea;
  */
 public class HexPane extends TextArea {
     
-    private final ClassHex hex;
+    private final FileHex hex;
     
-    public HexPane(ClassHex hex) {
+    public HexPane(FileHex hex) {
         super(hex.getHexText());
         this.hex = hex;
         setEditable(false);
     }
     
     public void select(FileComponent fc) {
-        ClassHex.Selection selection = hex.select(fc);
+        FileHex.Selection selection = hex.select(fc);
         positionCaret(selection.getStartPosition());
         selectPositionCaret(selection.getEndPosition());
     }

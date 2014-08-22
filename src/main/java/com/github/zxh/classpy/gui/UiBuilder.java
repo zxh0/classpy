@@ -2,7 +2,7 @@ package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.common.ClassHex;
+import com.github.zxh.classpy.common.FileHex;
 import com.github.zxh.classpy.gui.hex.HexPane;
 import com.github.zxh.classpy.gui.tree.FileComponentTreeItem;
 import javafx.collections.ListChangeListener;
@@ -17,7 +17,7 @@ import javafx.scene.text.Font;
  */
 public class UiBuilder {
     
-    public static SplitPane buildMainPane(FileComponent file, ClassHex hex) {
+    public static SplitPane buildMainPane(FileComponent file, FileHex hex) {
         SplitPane sp = new SplitPane();
         
         TreeView<FileComponent> tree = buildClassTree(file);
@@ -57,7 +57,7 @@ public class UiBuilder {
         return tree;
     }
     
-    private static HexPane buildHexPane(ClassHex hex) {
+    private static HexPane buildHexPane(FileHex hex) {
         HexPane pane = new HexPane(hex);
         // http://stackoverflow.com/questions/24983841/format-text-output-in-javafx
         pane.setFont(Font.font("Courier New", 14));
