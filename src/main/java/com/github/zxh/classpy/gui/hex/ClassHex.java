@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.gui.hex;
 
-import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.common.FileComponent;
 
 /**
