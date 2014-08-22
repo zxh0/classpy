@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.common.Util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
@@ -38,14 +39,16 @@ public class DcList<E extends DexComponent> extends DexComponent {
     }
     
     private void setElementName() {
-//        for (int i = 0; i < size; i++) {
-//            String newName = Util.formatIndex(length, i);
-//            String oldName = table[i].getName();
-//            if (oldName != null) {
-//                newName += " (" + oldName + ")";
-//            }
-//            table[i].setName(newName);
-//        }
+        for (int i = 0; i < size; i++) {
+            E element = list.get(i);
+            
+            String newName = Util.formatIndex(size, i);
+            String oldName = element.getName();
+            if (oldName != null) {
+                newName += " (" + oldName + ")";
+            }
+            element.setName(newName);
+        }
     }
     
     @Override

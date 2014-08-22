@@ -2,6 +2,7 @@ package com.github.zxh.classpy.common;
 
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
+import java.util.List;
 
 /**
  *
@@ -35,6 +36,15 @@ public class FileComponentHelper {
                             }
                         }
                     }
+                } else {
+                    Object fcFieldVal = field.get(fcObj);
+                    if (isFileComponentList(fcFieldVal)) {
+                        @SuppressWarnings("unchecked")
+                        List<FileComponent> list = (List<FileComponent>) fcFieldVal;
+                        for (FileComponent item : list) {
+                            inferSubComponentName(item);
+                        }
+                    }
                 }
             }
         }
@@ -45,12 +55,25 @@ public class FileComponentHelper {
     }
     
     private static boolean isFileComponentArrayType(Field field) {
-        if (!field.getType().isArray()) {
+        if (! field.getType().isArray()) {
             return false;
         }
         
         return FileComponent.class.isAssignableFrom(
                 field.getType().getComponentType());
+    }
+    
+    private static boolean isFileComponentList(Object obj) {
+        if (! (obj instanceof List)) {
+            return false;
+        }
+        
+        List<?> list = (List<?>) obj;
+        if (list.isEmpty()) {
+            return false;
+        }
+        
+        return list.get(0) instanceof FileComponent;
     }
     
 }
