@@ -1,13 +1,9 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.dexfile.DexParser;
 import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
-import java.nio.file.Files;
 import javafx.application.Application;
-import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -109,46 +105,22 @@ public class ClasspyApp extends Application {
         ProgressBar pb = new ProgressBar();
         root.setCenter(pb);
         
-        Task<Object[]> task = new Task<Object[]>() {
-
-            @Override
-            protected Object[] call() throws Exception {
-                System.out.println("loading " + file.getAbsolutePath() + "...");
-                
-                byte[] bytes = Files.readAllBytes(file.toPath());
-                FileHex hex = new FileHex(bytes);
-                FileComponent fc = file.getName().endsWith(".class")
-                        ? ClassParser.parse(bytes)
-                        : DexParser.parse(bytes);
-                
-                System.out.println("finish loading");
-                return new Object[] {hex, fc};
-            }
-
-        };
-
-        task.setOnSucceeded(e -> {
-            Object[] arr = (Object[]) e.getSource().getValue();
-            FileHex hex = (FileHex) arr[0];
-            FileComponent fc = (FileComponent) arr[1];
-            
+        OpenFileTask task = new OpenFileTask(file);
+        
+        task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
             SplitPane sp = UiBuilder.buildMainPane(fc, hex);
             root.setCenter(sp);
             stage.setTitle(TITLE + " - " + file.getAbsolutePath());
             
             succeededCallback.run();
         });
-
-        task.setOnFailed(e -> {
-            Throwable err = e.getSource().getException();
-            System.out.println(err);
-            //err.printStackTrace(System.err);
-            
+        
+        task.setOnFailed((Throwable err) -> {
             Text errMsg = new Text(err.toString());
             root.setCenter(errMsg);
         });
 
-        new Thread(task).start();
+        task.startInNewThread();
     }
     
     
