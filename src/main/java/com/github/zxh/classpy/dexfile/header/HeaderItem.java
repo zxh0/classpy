@@ -18,7 +18,7 @@ public class HeaderItem extends DexComponent {
     private Hex signature;
     private UInt fileSize;
     private UInt headerSize;
-    private Hex endianTag;
+    private UInt endianTag;
     private UInt linkSize;
     private UInt linkOff;
     private UInt mapOff;
@@ -45,7 +45,8 @@ public class HeaderItem extends DexComponent {
         signature = reader.readHex(20);
         fileSize = reader.readUInt();
         headerSize = reader.readUInt();
-        endianTag = reader.readHex(4);
+        endianTag = reader.readUInt();
+        endianTag.setDesc(endianTag.toHexString());
         linkSize = reader.readUInt();
         linkOff = reader.readUInt();
         mapOff = reader.readUInt();

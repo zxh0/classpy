@@ -6,14 +6,20 @@ package com.github.zxh.classpy.dexfile;
  */
 public class UInt extends DexComponent {
 
+    private int value;
+
     @Override
     protected void readContent(DexReader reader) {
-        int value = reader.readInt(); // todo
+        value = reader.readInt(); // todo
         if (value < 0) {
             setDesc(Integer.toUnsignedString(value));
         } else {
             setDesc(Integer.toString(value));
         }
+    }
+    
+    public String toHexString() {
+        return "0x" + Integer.toHexString(value);
     }
     
 }
