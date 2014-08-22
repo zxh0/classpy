@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui.hex;
+package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.common.FileHex;
 import com.github.zxh.classpy.common.FileComponent;

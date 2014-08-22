@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui.tree;
+package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.common.FileComponent;
 import javafx.collections.FXCollections;
