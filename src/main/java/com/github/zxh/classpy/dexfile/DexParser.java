@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
-import com.github.zxh.classpy.classfile.ClassParseException;
+import com.github.zxh.classpy.common.ClassParseException;
 import com.github.zxh.classpy.common.FileComponentHelper;
 
 /**

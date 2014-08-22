@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.common.ClassParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import java.nio.ByteBuffer;
 
