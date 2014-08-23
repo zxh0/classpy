@@ -9,20 +9,18 @@ import java.util.List;
  */
 public class StringDataItem extends DexComponent {
 
-    private UInt classIdx;
-    private UInt typeIdx;
-    private UInt nameIdx;
+    private ULEB128 utf16Size;
+    private Utf8String data;
     
     @Override
     protected void readContent(DexReader reader) {
-        classIdx = reader.readUInt();
-        typeIdx = reader.readUInt();
-        nameIdx = reader.readUInt();
+        utf16Size = reader.readULEB128();
+        data = reader.readUtf8String();
     }
 
     @Override
     public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(classIdx, typeIdx, nameIdx);
+        return Arrays.asList(utf16Size, data);
     }
     
 }

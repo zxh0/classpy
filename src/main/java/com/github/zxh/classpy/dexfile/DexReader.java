@@ -38,6 +38,17 @@ public class DexReader {
         return bytes;
     }
     
+    public byte[] readMUTF8Bytes() {
+        int nextZeroPos;
+        for (nextZeroPos = buf.position(); ; nextZeroPos++) {
+            if (buf.get(nextZeroPos) == 0) {
+                break;
+            }
+        }
+        
+        return readBytes(nextZeroPos - buf.position());
+    }
+    
     // 8-bit signed int
     public byte readByte() {
         return buf.get();
@@ -90,6 +101,12 @@ public class DexReader {
         ULEB128 uleb = new ULEB128();
         uleb.read(this);
         return uleb;
+    }
+    
+    public Utf8String readUtf8String() {
+        Utf8String str = new Utf8String();
+        str.read(this);
+        return str;
     }
     
     public Hex readHex(int n) {
