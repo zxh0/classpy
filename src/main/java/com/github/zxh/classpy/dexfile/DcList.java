@@ -52,7 +52,7 @@ public class DcList<E extends DexComponent> extends DexComponent {
     }
     
     @Override
-    public List<? extends DexComponent> getSubComponents() {
+    public List<E> getSubComponents() {
         return list;
     }
     

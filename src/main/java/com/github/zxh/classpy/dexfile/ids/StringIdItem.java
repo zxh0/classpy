@@ -14,6 +14,10 @@ public class StringIdItem extends DexComponent {
 
     private UInt stringDataOff;
     
+    public int getStringDataOff() {
+        return stringDataOff.getValue();
+    }
+    
     @Override
     protected void readContent(DexReader reader) {
         stringDataOff = reader.readUInt();

@@ -23,6 +23,7 @@ public class DexFile extends DexComponent {
     private DcList<FieldIdItem> fieldIds;
     private DcList<MethodIdItem> methodIds;
     private DcList<ClassDefItem> classDefs;
+    private StringDataList strings;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -34,13 +35,14 @@ public class DexFile extends DexComponent {
         fieldIds = reader.readList(header.getFieldIdsSize(), FieldIdItem::new);
         methodIds = reader.readList(header.getMethodIdsSize(), MethodIdItem::new);
         classDefs = reader.readList(header.getClassDefsSize(), ClassDefItem::new);
-        // todo
+        strings = new StringDataList(stringIds);
+        strings.read(reader);
     }
 
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(header, stringIds, typeIds,
-                protoIds, fieldIds, methodIds, classDefs);
+                protoIds, fieldIds, methodIds, classDefs, strings);
     }
     
 }
