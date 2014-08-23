@@ -21,6 +21,10 @@ public class DexReader {
         return buf.position();
     }
     
+    public void setPosition(int newPosition) {
+        buf.position(newPosition);
+    }
+    
     public void skipBytes(int n) {
         for (int i = 0; i < n; i++) {
             buf.get();
@@ -79,6 +83,13 @@ public class DexReader {
         }
         
         return ulong;
+    }
+    
+    // Unsigned Little-Endian Base 128.
+    public ULEB128 readULEB128() {
+        ULEB128 uleb = new ULEB128();
+        uleb.read(this);
+        return uleb;
     }
     
     public Hex readHex(int n) {
