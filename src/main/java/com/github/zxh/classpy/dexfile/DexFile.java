@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.dexfile.header.HeaderItem;
 import com.github.zxh.classpy.dexfile.ids.StringIdItem;
+import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,20 +15,20 @@ public class DexFile extends DexComponent {
     
     private HeaderItem header;
     private DcList<StringIdItem> stringIds;
+    private DcList<TypeIdItem> typeIds;
 
     @Override
     protected void readContent(DexReader reader) {
         header = new HeaderItem();
         header.read(reader);
-        int stringIdSize = header.getStringIdsSize().getValue();
-        stringIds = reader.readList(stringIdSize, StringIdItem::new);
-        //stringIds.setDesc(Integer.toString(stringIdSize));
+        stringIds = reader.readList(header.getStringIdsSize(), StringIdItem::new);
+        typeIds = reader.readList(header.getTypeIdsSize(), TypeIdItem::new);
         // todo
     }
 
     @Override
     public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(header, stringIds);
+        return Arrays.asList(header, stringIds, typeIds);
     }
     
 }

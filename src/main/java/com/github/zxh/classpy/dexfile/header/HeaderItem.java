@@ -40,6 +40,8 @@ public class HeaderItem extends DexComponent {
     // Getters
     public UInt getStringIdsSize() {return stringIdsSize;}
     public UInt getStringIdsOff() {return stringIdsOff;}
+    public UInt getTypeIdsSize() {return typeIdsSize;}
+    public UInt getTypeIdsOff() {return typeIdsOff;}
     
     @Override
     protected void readContent(DexReader reader) {
