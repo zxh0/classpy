@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.dexfile.header.HeaderItem;
 import com.github.zxh.classpy.dexfile.ids.FieldIdItem;
+import com.github.zxh.classpy.dexfile.ids.MethodIdItem;
 import com.github.zxh.classpy.dexfile.ids.ProtoIdItem;
 import com.github.zxh.classpy.dexfile.ids.StringIdItem;
 import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
@@ -20,6 +21,7 @@ public class DexFile extends DexComponent {
     private DcList<TypeIdItem> typeIds;
     private DcList<ProtoIdItem> protoIds;
     private DcList<FieldIdItem> fieldIds;
+    private DcList<MethodIdItem> methodIds;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -29,6 +31,7 @@ public class DexFile extends DexComponent {
         typeIds = reader.readList(header.getTypeIdsSize(), TypeIdItem::new);
         protoIds = reader.readList(header.getProtoIdsSize(), ProtoIdItem::new);
         fieldIds = reader.readList(header.getFieldIdsSize(), FieldIdItem::new);
+        methodIds = reader.readList(header.getMethodIdsSize(), MethodIdItem::new);
         // todo
     }
 

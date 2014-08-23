@@ -46,6 +46,8 @@ public class HeaderItem extends DexComponent {
     public UInt getProtoIdsOff() {return protoIdsOff;}
     public UInt getFieldIdsSize() {return fieldIdsSize;}
     public UInt getFieldIdsOff() {return fieldIdsOff;}
+    public UInt getMethodIdsSize() {return methodIdsSize;}
+    public UInt getMethodIdsOff() {return methodIdsOff;}
     
     @Override
     protected void readContent(DexReader reader) {
