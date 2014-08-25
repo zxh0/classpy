@@ -29,11 +29,17 @@ public class DexFile extends DexComponent {
     protected void readContent(DexReader reader) {
         header = new HeaderItem();
         header.read(reader);
+        reader.setPosition(header.getStringIdsOff());
         stringIds = reader.readList(header.getStringIdsSize(), StringIdItem::new);
+        reader.setPosition(header.getTypeIdsOff());
         typeIds = reader.readList(header.getTypeIdsSize(), TypeIdItem::new);
+        reader.setPosition(header.getProtoIdsOff());
         protoIds = reader.readList(header.getProtoIdsSize(), ProtoIdItem::new);
+        reader.setPosition(header.getFieldIdsOff());
         fieldIds = reader.readList(header.getFieldIdsSize(), FieldIdItem::new);
+        reader.setPosition(header.getMethodIdsOff());
         methodIds = reader.readList(header.getMethodIdsSize(), MethodIdItem::new);
+        reader.setPosition(header.getClassDefsOff());
         classDefs = reader.readList(header.getClassDefsSize(), ClassDefItem::new);
         strings = new StringDataList(stringIds);
         strings.read(reader);

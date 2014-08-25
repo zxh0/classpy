@@ -21,6 +21,10 @@ public class DexReader {
         return buf.position();
     }
     
+    public void setPosition(UInt newPosition) {
+        buf.position(newPosition.getValue());
+    }
+    
     public void setPosition(int newPosition) {
         buf.position(newPosition);
     }
