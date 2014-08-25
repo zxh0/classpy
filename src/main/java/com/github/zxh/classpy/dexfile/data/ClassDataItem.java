@@ -4,6 +4,8 @@ import com.github.zxh.classpy.dexfile.DexList;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.Uleb128;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -26,10 +28,17 @@ public class ClassDataItem extends DexComponent {
         instanceFieldsSize = reader.readUleb128();
         directMethodsSize = reader.readUleb128();
         virtualMethodsSize = reader.readUleb128();
-        staticFields = reader.readList(staticFieldsSize, EncodedField::new);
-        instanceFields = reader.readList(instanceFieldsSize, EncodedField::new);
-        directMethods = reader.readList(directMethodsSize, EncodedMethod::new);
-        virtualMethods = reader.readList(virtualMethodsSize, EncodedMethod::new);
+        staticFields = reader.readDexList(staticFieldsSize, EncodedField::new);
+        instanceFields = reader.readDexList(instanceFieldsSize, EncodedField::new);
+        directMethods = reader.readDexList(directMethodsSize, EncodedMethod::new);
+        virtualMethods = reader.readDexList(virtualMethodsSize, EncodedMethod::new);
+    }
+
+    @Override
+    public List<? extends DexComponent> getSubComponents() {
+        return Arrays.asList(staticFieldsSize, instanceFieldsSize,
+                directMethodsSize, virtualMethodsSize,
+                staticFields, instanceFields, directMethods, virtualMethods);
     }
     
     
@@ -44,6 +53,11 @@ public class ClassDataItem extends DexComponent {
             accessFlags = reader.readUleb128();
         }
         
+        @Override
+        public List<? extends DexComponent> getSubComponents() {
+            return Arrays.asList(fieldIdxDiff, accessFlags);
+        }
+    
     }
     
     public static class EncodedMethod extends DexComponent {
@@ -57,6 +71,11 @@ public class ClassDataItem extends DexComponent {
             methodIdxDiff = reader.readUleb128();
             accessFlags = reader.readUleb128();
             codeOff = reader.readUleb128();
+        }
+        
+        @Override
+        public List<? extends DexComponent> getSubComponents() {
+            return Arrays.asList(methodIdxDiff, accessFlags, codeOff);
         }
         
     }

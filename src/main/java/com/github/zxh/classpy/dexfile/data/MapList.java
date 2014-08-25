@@ -19,7 +19,7 @@ public class MapList extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         size = reader.readUInt();
-        list = reader.readList(size, MapItem::new);
+        list = reader.readDexList(size, MapItem::new);
     }
 
     @Override

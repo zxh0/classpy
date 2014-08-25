@@ -4,6 +4,7 @@ import com.github.zxh.classpy.common.Util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  * DexComponents list.
@@ -54,6 +55,10 @@ public class DexList<E extends DexComponent> extends DexComponent {
     @Override
     public List<E> getSubComponents() {
         return list;
+    }
+    
+    public Stream<E> stream() {
+        return list.stream();
     }
     
 }

@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.dexfile.data.ClassDataItem;
+import com.github.zxh.classpy.dexfile.data.DataList;
 import com.github.zxh.classpy.dexfile.data.StringDataList;
 import com.github.zxh.classpy.dexfile.data.MapList;
 import com.github.zxh.classpy.dexfile.header.HeaderItem;
@@ -27,6 +29,7 @@ public class DexFile extends DexComponent {
     private DexList<ClassDefItem> classDefs;
     private MapList mapList;
     private StringDataList stringList;
+    private DataList<ClassDataItem> classDataList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -42,17 +45,17 @@ public class DexFile extends DexComponent {
     
     private void readIdsAndClassDefs(DexReader reader) {
         reader.setPosition(header.getStringIdsOff());
-        stringIds = reader.readList(header.getStringIdsSize(), StringIdItem::new);
+        stringIds = reader.readDexList(header.getStringIdsSize(), StringIdItem::new);
         reader.setPosition(header.getTypeIdsOff());
-        typeIds = reader.readList(header.getTypeIdsSize(), TypeIdItem::new);
+        typeIds = reader.readDexList(header.getTypeIdsSize(), TypeIdItem::new);
         reader.setPosition(header.getProtoIdsOff());
-        protoIds = reader.readList(header.getProtoIdsSize(), ProtoIdItem::new);
+        protoIds = reader.readDexList(header.getProtoIdsSize(), ProtoIdItem::new);
         reader.setPosition(header.getFieldIdsOff());
-        fieldIds = reader.readList(header.getFieldIdsSize(), FieldIdItem::new);
+        fieldIds = reader.readDexList(header.getFieldIdsSize(), FieldIdItem::new);
         reader.setPosition(header.getMethodIdsOff());
-        methodIds = reader.readList(header.getMethodIdsSize(), MethodIdItem::new);
+        methodIds = reader.readDexList(header.getMethodIdsSize(), MethodIdItem::new);
         reader.setPosition(header.getClassDefsOff());
-        classDefs = reader.readList(header.getClassDefsSize(), ClassDefItem::new);
+        classDefs = reader.readDexList(header.getClassDefsSize(), ClassDefItem::new);
     }
     
     private void readData(DexReader reader) {
@@ -60,13 +63,15 @@ public class DexFile extends DexComponent {
         mapList.read(reader);
         stringList = new StringDataList(stringIds);
         stringList.read(reader);
+        classDataList = reader.readDataList(ClassDataItem::new,
+                classDefs.stream().map(ClassDefItem::getClassDataOff));
     }
 
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(header,
                 stringIds, typeIds, protoIds, fieldIds, methodIds, classDefs,
-                mapList, stringList);
+                mapList, stringList, classDataList);
     }
     
 }

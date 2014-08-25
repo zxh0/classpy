@@ -17,7 +17,11 @@ public class ClassDefItem extends DexComponent {
     private UInt annotationsOff;
     private UInt classDataOff;
     private UInt staticValuesOff;
-    
+
+    public UInt getClassDataOff() {
+        return classDataOff;
+    }
+
     @Override
     protected void readContent(DexReader reader) {
         classIdx = reader.readUInt();

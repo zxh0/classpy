@@ -1,8 +1,10 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.dexfile.data.DataList;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 /**
  *
@@ -121,16 +123,22 @@ public class DexReader {
         return hex;
     }
     
-    public <E extends DexComponent> DexList<E> readList(UInt size, Supplier<E> factory) {
-        return readList(size.getValue(), factory);
+    public <E extends DexComponent> DexList<E> readDexList(UInt size, Supplier<E> factory) {
+        return readDexList(size.getValue(), factory);
     }
     
-    public <E extends DexComponent> DexList<E> readList(Uleb128 size, Supplier<E> factory) {
-        return readList(size.getValue(), factory);
+    public <E extends DexComponent> DexList<E> readDexList(Uleb128 size, Supplier<E> factory) {
+        return readDexList(size.getValue(), factory);
     }
     
-    public <E extends DexComponent> DexList<E> readList(int size, Supplier<E> factory) {
+    public <E extends DexComponent> DexList<E> readDexList(int size, Supplier<E> factory) {
         DexList<E> list = new DexList<>(size, factory);
+        list.read(this);
+        return list;
+    }
+    
+    public <E extends DexComponent> DataList<E> readDataList(Supplier<E> factory, Stream<UInt> offStream) {
+        DataList<E> list = new DataList<>(offStream, factory);
         list.read(this);
         return list;
     }
