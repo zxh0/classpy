@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.dexfile.data;
 
-import com.github.zxh.classpy.dexfile.DcList;
+import com.github.zxh.classpy.dexfile.DexList;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.Utf8String;
@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class StringDataList extends DexComponent {
 
-    private final DcList<StringIdItem> stringIds;
+    private final DexList<StringIdItem> stringIds;
     private final List<Utf8String> strings = new ArrayList<>();
 
-    public StringDataList(DcList<StringIdItem> stringIds) {
+    public StringDataList(DexList<StringIdItem> stringIds) {
         this.stringIds = stringIds;
     }
     

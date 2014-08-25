@@ -121,16 +121,16 @@ public class DexReader {
         return hex;
     }
     
-    public <E extends DexComponent> DcList<E> readList(UInt size, Supplier<E> factory) {
+    public <E extends DexComponent> DexList<E> readList(UInt size, Supplier<E> factory) {
         return readList(size.getValue(), factory);
     }
     
-    public <E extends DexComponent> DcList<E> readList(Uleb128 size, Supplier<E> factory) {
+    public <E extends DexComponent> DexList<E> readList(Uleb128 size, Supplier<E> factory) {
         return readList(size.getValue(), factory);
     }
     
-    public <E extends DexComponent> DcList<E> readList(int size, Supplier<E> factory) {
-        DcList<E> list = new DcList<>(size, factory);
+    public <E extends DexComponent> DexList<E> readList(int size, Supplier<E> factory) {
+        DexList<E> list = new DexList<>(size, factory);
         list.read(this);
         return list;
     }

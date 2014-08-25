@@ -19,12 +19,12 @@ import java.util.List;
 public class DexFile extends DexComponent {
     
     private HeaderItem header;
-    private DcList<StringIdItem> stringIds;
-    private DcList<TypeIdItem> typeIds;
-    private DcList<ProtoIdItem> protoIds;
-    private DcList<FieldIdItem> fieldIds;
-    private DcList<MethodIdItem> methodIds;
-    private DcList<ClassDefItem> classDefs;
+    private DexList<StringIdItem> stringIds;
+    private DexList<TypeIdItem> typeIds;
+    private DexList<ProtoIdItem> protoIds;
+    private DexList<FieldIdItem> fieldIds;
+    private DexList<MethodIdItem> methodIds;
+    private DexList<ClassDefItem> classDefs;
     private MapList mapList;
     private StringDataList stringList;
 

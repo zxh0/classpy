@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.dexfile.data;
 
-import com.github.zxh.classpy.dexfile.DcList;
+import com.github.zxh.classpy.dexfile.DexList;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.Uleb128;
@@ -15,10 +15,10 @@ public class ClassDataItem extends DexComponent {
     private Uleb128 instanceFieldsSize;
     private Uleb128 directMethodsSize;
     private Uleb128 virtualMethodsSize;
-    private DcList<EncodedField> staticFields;
-    private DcList<EncodedField> instanceFields;
-    private DcList<EncodedMethod> directMethods;
-    private DcList<EncodedMethod> virtualMethods;
+    private DexList<EncodedField> staticFields;
+    private DexList<EncodedField> instanceFields;
+    private DexList<EncodedMethod> directMethods;
+    private DexList<EncodedMethod> virtualMethods;
     
     @Override
     protected void readContent(DexReader reader) {
