@@ -103,8 +103,8 @@ public class DexReader {
     }
     
     // Unsigned Little-Endian Base 128.
-    public ULEB128 readULEB128() {
-        ULEB128 uleb = new ULEB128();
+    public Uleb128 readUleb128() {
+        Uleb128 uleb = new Uleb128();
         uleb.read(this);
         return uleb;
     }
