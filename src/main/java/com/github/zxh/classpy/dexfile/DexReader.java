@@ -125,6 +125,10 @@ public class DexReader {
         return readList(size.getValue(), factory);
     }
     
+    public <E extends DexComponent> DcList<E> readList(Uleb128 size, Supplier<E> factory) {
+        return readList(size.getValue(), factory);
+    }
+    
     public <E extends DexComponent> DcList<E> readList(int size, Supplier<E> factory) {
         DcList<E> list = new DcList<>(size, factory);
         list.read(this);
