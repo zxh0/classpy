@@ -24,7 +24,7 @@ public class StringDataList extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         for (StringIdItem stringId : stringIds.getSubComponents()) {
-            reader.setPosition(stringId.getStringDataOff());
+            reader.setPosition(stringId.getDataOffset());
             strings.add(reader.readUtf8String());
         }
     }
