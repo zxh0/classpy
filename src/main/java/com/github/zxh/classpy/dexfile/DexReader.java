@@ -69,8 +69,10 @@ public class DexReader {
     }
     
     // 16-bit unsigned int, little-endian
-    public int readUShort() {
-        return Short.toUnsignedInt(buf.getShort());
+    public UShort readUShort() {
+        UShort ushort = new UShort();
+        ushort.read(this);
+        return ushort;
     }
     
     // 32-bit signed int, little-endian
