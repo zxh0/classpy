@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.dexfile.data.StringDataList;
 import com.github.zxh.classpy.dexfile.data.MapList;
 import com.github.zxh.classpy.dexfile.header.HeaderItem;
 import com.github.zxh.classpy.dexfile.ids.FieldIdItem;
@@ -25,7 +26,7 @@ public class DexFile extends DexComponent {
     private DcList<MethodIdItem> methodIds;
     private DcList<ClassDefItem> classDefs;
     private MapList mapList;
-    private StringDataList strings;
+    private StringDataList stringList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -57,15 +58,15 @@ public class DexFile extends DexComponent {
     private void readData(DexReader reader) {
         mapList = new MapList();
         mapList.read(reader);
-        strings = new StringDataList(stringIds);
-        strings.read(reader);
+        stringList = new StringDataList(stringIds);
+        stringList.read(reader);
     }
 
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(header,
                 stringIds, typeIds, protoIds, fieldIds, methodIds, classDefs,
-                mapList, strings);
+                mapList, stringList);
     }
     
 }
