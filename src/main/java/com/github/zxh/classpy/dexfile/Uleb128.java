@@ -24,6 +24,7 @@ public class Uleb128 extends DexComponent {
                 break;
             }
         }
+        setDesc(String.valueOf(value));
     }
     
 }

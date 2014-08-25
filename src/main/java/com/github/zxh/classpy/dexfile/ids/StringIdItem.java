@@ -14,8 +14,8 @@ public class StringIdItem extends DexComponent {
 
     private UInt stringDataOff;
     
-    public int getStringDataOff() {
-        return stringDataOff.getValue();
+    public UInt getStringDataOff() {
+        return stringDataOff;
     }
     
     @Override
