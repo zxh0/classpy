@@ -30,7 +30,15 @@ public class Util {
         return String.format(fmtStr, index);
     }
     
-    
+    /**
+     * Decode modified UTF-8 string from byte[].
+     * The code is copied form java.io.DataInputStream and then modified.
+     * 
+     * @param bytearr
+     * @return
+     * @throws IOException 
+     * @see java.io.DataInputStream.readUTF()
+     */
     public final static String decodeMutf8(final byte[] bytearr) throws IOException {
         int utflen = bytearr.length;
         char[] chararr = new char[utflen];
