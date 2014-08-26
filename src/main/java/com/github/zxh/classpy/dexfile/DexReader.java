@@ -52,7 +52,11 @@ public class DexReader {
             }
         }
         
-        return readBytes(nextZeroPos - buf.position());
+        int numOfNonZeroBytes = nextZeroPos - buf.position();
+        byte[] bytes = readBytes(numOfNonZeroBytes);
+        buf.get(); // skip zero
+        
+        return bytes;
     }
     
     // 8-bit signed int

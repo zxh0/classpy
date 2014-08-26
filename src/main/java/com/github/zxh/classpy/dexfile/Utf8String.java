@@ -1,6 +1,8 @@
 package com.github.zxh.classpy.dexfile;
 
-import java.nio.charset.StandardCharsets;
+import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.common.Util;
+import java.io.IOException;
 
 /**
  *
@@ -12,9 +14,13 @@ public class Utf8String extends DexComponent {
     
     @Override
     protected void readContent(DexReader reader) {
-        byte[] data = reader.readMutf8Bytes();
-        value = new String(data, StandardCharsets.UTF_8);
-        setDesc(value);
+        try {
+            byte[] data = reader.readMutf8Bytes();
+            value = Util.decodeMutf8(data);
+            setDesc(value);
+        } catch (IOException e) {
+            throw new FileParseException(e);
+        }
     }
     
 }
