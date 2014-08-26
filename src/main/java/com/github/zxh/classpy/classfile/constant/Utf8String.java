@@ -2,7 +2,9 @@ package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import java.nio.charset.StandardCharsets;
+import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.common.Util;
+import java.io.IOException;
 
 /**
  * UTF8 String in constant pool.
@@ -25,12 +27,18 @@ public class Utf8String extends ClassComponent {
     @Override
     protected void readContent(ClassReader reader) {
         byte[] bytes = reader.readBytes(length);
-        value = new String(bytes, StandardCharsets.UTF_8);
+        try {
+            value = Util.decodeMutf8(bytes);
+        } catch (IOException e) {
+            throw new FileParseException(e);
+        }
+        
         if (value.length() < 100) {
             setDesc(value);
         } else {
             // cut long String
-            setDesc(value.substring(0, 100) + "...");
+            // todo
+            setDesc(value.substring(0, 90) + "...");
         }
     }
     
