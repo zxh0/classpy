@@ -44,7 +44,7 @@ public class DexReader {
         return bytes;
     }
     
-    public byte[] readMUTF8Bytes() {
+    public byte[] readMutf8Bytes() {
         int nextZeroPos;
         for (nextZeroPos = buf.position(); ; nextZeroPos++) {
             if (buf.get(nextZeroPos) == 0) {

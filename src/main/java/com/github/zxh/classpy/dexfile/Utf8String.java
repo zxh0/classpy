@@ -12,7 +12,7 @@ public class Utf8String extends DexComponent {
     
     @Override
     protected void readContent(DexReader reader) {
-        byte[] data = reader.readMUTF8Bytes();
+        byte[] data = reader.readMutf8Bytes();
         value = new String(data, StandardCharsets.UTF_8);
         setDesc(value);
     }
