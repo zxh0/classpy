@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.common;
 
 import java.io.DataInput;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.UTFDataFormatException;
 
@@ -33,22 +32,12 @@ public class Util {
     }
     
     
-    public final static String readUTF(DataInput in) throws IOException {
+    public final static String readMutf8(DataInput in) throws IOException {
         int utflen = in.readUnsignedShort();
         byte[] bytearr = null;
         char[] chararr = null;
-        if (in instanceof DataInputStream) {
-            DataInputStream dis = (DataInputStream)in;
-//            if (dis.bytearr.length < utflen){
-//                dis.bytearr = new byte[utflen*2];
-//                dis.chararr = new char[utflen*2];
-//            }
-//            chararr = dis.chararr;
-//            bytearr = dis.bytearr;
-        } else {
-            bytearr = new byte[utflen];
-            chararr = new char[utflen];
-        }
+        bytearr = new byte[utflen];
+        chararr = new char[utflen];
 
         int c, char2, char3;
         int count = 0;
