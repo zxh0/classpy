@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.testclasses;
+package com.github.zxh.classpy.classfile.testclasses;
 
 public class SimpleClass implements Runnable, Comparable<SimpleClass> {
 

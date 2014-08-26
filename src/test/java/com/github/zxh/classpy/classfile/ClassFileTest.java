@@ -1,15 +1,15 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.testclasses.AnnotatedClass;
-import com.github.zxh.classpy.testclasses.SimpleAttr;
-import com.github.zxh.classpy.testclasses.ByteCode;
-import com.github.zxh.classpy.testclasses.CodeAttr;
-import com.github.zxh.classpy.testclasses.ConstantPool;
-import com.github.zxh.classpy.testclasses.SimpleClass;
-import com.github.zxh.classpy.testclasses.GenericClass;
-import com.github.zxh.classpy.testclasses.MyInterface;
-import com.github.zxh.classpy.testclasses.annotations.MyRuntimeAnnotation;
-import com.github.zxh.classpy.testclasses.TypeAnnotatedClass;
+import com.github.zxh.classpy.classfile.testclasses.AnnotatedClass;
+import com.github.zxh.classpy.classfile.testclasses.SimpleAttr;
+import com.github.zxh.classpy.classfile.testclasses.ByteCode;
+import com.github.zxh.classpy.classfile.testclasses.CodeAttr;
+import com.github.zxh.classpy.classfile.testclasses.ConstantPool;
+import com.github.zxh.classpy.classfile.testclasses.SimpleClass;
+import com.github.zxh.classpy.classfile.testclasses.GenericClass;
+import com.github.zxh.classpy.classfile.testclasses.MyInterface;
+import com.github.zxh.classpy.classfile.testclasses.annotations.MyRuntimeAnnotation;
+import com.github.zxh.classpy.classfile.testclasses.TypeAnnotatedClass;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;

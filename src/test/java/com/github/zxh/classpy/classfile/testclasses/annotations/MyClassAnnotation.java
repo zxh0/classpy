@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.testclasses.annotations;
+package com.github.zxh.classpy.classfile.testclasses.annotations;
 
 import java.lang.annotation.ElementType;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
