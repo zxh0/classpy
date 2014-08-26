@@ -33,13 +33,7 @@ public class Utf8String extends ClassComponent {
             throw new FileParseException(e);
         }
         
-        if (value.length() < 100) {
-            setDesc(value);
-        } else {
-            // cut long String
-            // todo
-            setDesc(value.substring(0, 90) + "...");
-        }
+        setDesc(Util.cutAndAppendEllipsis(value, 100));
     }
     
 }

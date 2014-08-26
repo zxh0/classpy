@@ -31,6 +31,27 @@ public class Util {
     }
     
     /**
+     * Cut the string and append ellipsis if it is too long.
+     * @param str
+     * @param maxLength
+     * @return 
+     */
+    public static String cutAndAppendEllipsis(String str, int maxLength) {
+        if (str.length() < maxLength) {
+            return str;
+        }
+        
+        int cutPos = maxLength - 3;
+        char firstCutChar = str.charAt(cutPos);
+        
+        if (Character.isLowSurrogate(firstCutChar)) {
+            return str.substring(0, cutPos - 1) + "...";
+        } else {
+            return str.substring(0, cutPos) + "...";
+        }
+    }
+    
+    /**
      * Decode modified UTF-8 string from byte[].
      * The code is copied form java.io.DataInputStream and then modified.
      * 
@@ -39,7 +60,7 @@ public class Util {
      * @throws IOException 
      * @see java.io.DataInputStream.readUTF()
      */
-    public final static String decodeMutf8(final byte[] bytearr) throws IOException {
+    public static String decodeMutf8(final byte[] bytearr) throws IOException {
         int utflen = bytearr.length;
         char[] chararr = new char[utflen];
 
