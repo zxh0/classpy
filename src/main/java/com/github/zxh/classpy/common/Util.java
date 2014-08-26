@@ -37,7 +37,7 @@ public class Util {
      * @return 
      */
     public static String cutAndAppendEllipsis(String str, int maxLength) {
-        if (str.length() < maxLength) {
+        if (str.length() <= maxLength) {
             return str;
         }
         
