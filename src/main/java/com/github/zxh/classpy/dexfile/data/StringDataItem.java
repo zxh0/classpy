@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.data;
 
+import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.Uleb128;
@@ -20,7 +21,7 @@ public class StringDataItem extends DexComponent {
     protected void readContent(DexReader reader) {
         utf16Size = reader.readUleb128();
         data = reader.readUtf8String();
-        setDesc(data.getDesc());
+        setDesc(Util.cutAndAppendEllipsis(data.getDesc(), 100));
     }
 
     @Override

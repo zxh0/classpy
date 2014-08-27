@@ -41,6 +41,7 @@ public class DexFile extends DexComponent {
         readHeader(reader);
         readIdsAndClassDefs(reader);
         readData(reader);
+        postRead();
     }
     
     private void readHeader(DexReader reader) {
@@ -77,6 +78,14 @@ public class DexFile extends DexComponent {
         //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
         typeList = reader.readDataList(() -> new SizeList<>(TypeItem::new), 
                 classDefs.stream().map(ClassDefItem::getInterfacesOff).filter(off -> off.getValue() > 0));
+    }
+    
+    private void postRead() {
+        typeIds.stream().forEach(typeId -> {
+            // todo
+//            typeId.get
+//            stringDataList.get
+        });
     }
 
     @Override
