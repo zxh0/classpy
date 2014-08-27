@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 /**
- * Abstract base class for SizeKnownList, SizeHeaderList and
- * OffsetsKnownList.
+ * Abstract base class for SizeKnownList and OffsetsKnownList.
  * 
  * @param <E> the type of elements in this list
  * 
