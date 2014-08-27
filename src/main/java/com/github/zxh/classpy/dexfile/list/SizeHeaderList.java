@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.function.Supplier;
 
 /**
- * TODO better name.
+ * 
  * @param <E>
+ * 
  * @author zxh
  */
 public class SizeHeaderList<E extends DexComponent> extends DexComponent {
