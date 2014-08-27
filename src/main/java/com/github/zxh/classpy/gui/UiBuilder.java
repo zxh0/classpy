@@ -15,7 +15,7 @@ import javafx.scene.text.Font;
  */
 public class UiBuilder {
     
-    public static SplitPane buildMainPane(FileComponent file, FileHex hex) {
+    public static SplitPane buildSplitPane(FileComponent file, FileHex hex) {
         SplitPane sp = new SplitPane();
         
         TreeView<FileComponent> tree = buildClassTree(file);

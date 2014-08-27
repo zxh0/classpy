@@ -5,6 +5,7 @@ import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -35,6 +36,7 @@ public class ClasspyApp extends Application {
         
         root = new BorderPane();
         root.setTop(createMenuBar());
+        root.setBottom(new Label("status"));
         
         stage.setScene(new Scene(root, 900, 600));
         stage.setTitle(TITLE);
@@ -108,7 +110,7 @@ public class ClasspyApp extends Application {
         OpenFileTask task = new OpenFileTask(file);
         
         task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
-            SplitPane sp = UiBuilder.buildMainPane(fc, hex);
+            SplitPane sp = UiBuilder.buildSplitPane(fc, hex);
             root.setCenter(sp);
             stage.setTitle(TITLE + " - " + file.getAbsolutePath());
             
