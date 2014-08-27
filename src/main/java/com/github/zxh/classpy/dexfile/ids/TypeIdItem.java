@@ -3,7 +3,7 @@ package com.github.zxh.classpy.dexfile.ids;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.index.UIntStringIndex;
+import com.github.zxh.classpy.dexfile.index.UIntStringIdIndex;
 import java.util.Collections;
 import java.util.List;
 
@@ -13,15 +13,15 @@ import java.util.List;
  */
 public class TypeIdItem extends DexComponent {
 
-    private UIntStringIndex descriptorIdx;
+    private UIntStringIdIndex descriptorIdx;
 
-    public UIntStringIndex getDescriptorIdx() {
+    public UIntStringIdIndex getDescriptorIdx() {
         return descriptorIdx;
     }
 
     @Override
     protected void readContent(DexReader reader) {
-        descriptorIdx = reader.readUIntStringIndex();
+        descriptorIdx = reader.readUIntStringIdIndex();
     }
 
     @Override

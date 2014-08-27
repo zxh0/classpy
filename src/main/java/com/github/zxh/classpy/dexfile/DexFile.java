@@ -99,26 +99,8 @@ public class DexFile extends DexComponent {
         return typeIds.get(index);
     }
     
-//    private void postRead() {
-//        
-//        protoIds.stream().forEach(protoId -> {
-
-//        });
-//        
-//        fieldIds.stream().forEach(fieldId -> {
-//            //int classIdx = fieldId.getClassIdx().getValue();
-//            //String className = typeIds.get(classIdx).getDesc();
-//            int nameIdx = fieldId.getNameIdx().getValue();
-//            String name = stringDataList.get(nameIdx).getValue();
-//            fieldId.setDesc(name);
-//        });
-//        
-//        methodIds.stream().forEach(methodId -> {
-//            //int classIdx = fieldId.getClassIdx().getValue();
-//            //String className = typeIds.get(classIdx).getDesc();
-//            int nameIdx = methodId.getNameIdx().getValue();
-//            String name = stringDataList.get(nameIdx).getValue();
-//            methodId.setDesc(name);
-//        });
-//    }
+    public ProtoIdItem getProtoIdItem(int index) {
+        return protoIds.get(index);
+    }
+    
 }

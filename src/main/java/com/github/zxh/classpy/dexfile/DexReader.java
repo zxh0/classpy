@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
-import com.github.zxh.classpy.dexfile.index.UIntStringIndex;
+import com.github.zxh.classpy.dexfile.index.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.index.UIntTypeIdIndex;
 import com.github.zxh.classpy.dexfile.index.UShortTypeIdIndex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
@@ -104,8 +104,8 @@ public class DexReader {
         return uint;
     }
     
-    public UIntStringIndex readUIntStringIndex() {
-        UIntStringIndex uint = new UIntStringIndex();
+    public UIntStringIdIndex readUIntStringIdIndex() {
+        UIntStringIdIndex uint = new UIntStringIdIndex();
         uint.read(this);
         return uint;
     }
