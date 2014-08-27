@@ -72,9 +72,10 @@ public class DexFile extends DexComponent {
         stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
                 stringIds.stream().map(StringIdItem::getStringDataOff));
         
-        // todo
+        reader.setPosition(classDefs.get(0).getClassDataOff());
         classDataList = reader.readOffsetsKnownList(ClassDataItem::new,
                 classDefs.stream().map(ClassDefItem::getClassDataOff));
+        // todo
         
         //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
         typeList = reader.readOffsetsKnownList(() -> new SizeHeaderList<>(TypeItem::new), 
@@ -102,6 +103,14 @@ public class DexFile extends DexComponent {
     
     public TypeIdItem getTypeIdItem(int index) {
         return typeIds.get(index);
+    }
+    
+    public FieldIdItem getFieldIdItem(int index) {
+        return fieldIds.get(index);
+    }
+    
+    public MethodIdItem getMethodIdItem(int index) {
+        return methodIds.get(index);
     }
     
 }

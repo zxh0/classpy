@@ -2,8 +2,11 @@ package com.github.zxh.classpy.dexfile.data;
 
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.DexComponent;
+import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.Uleb128;
+import com.github.zxh.classpy.dexfile.ids.FieldIdItem;
+import com.github.zxh.classpy.dexfile.ids.MethodIdItem;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,10 +38,41 @@ public class ClassDataItem extends DexComponent {
     }
 
     @Override
+    protected void postRead(DexFile dexFile) {
+        super.postRead(dexFile);
+        
+        int fieldIdx = 0;
+        for (EncodedField field : staticFields) {
+            fieldIdx += field.fieldIdxDiff.getValue();
+            FieldIdItem fieldId = dexFile.getFieldIdItem(fieldIdx);
+            field.setDesc(fieldId.getDesc());
+        }
+        fieldIdx = 0;
+        for (EncodedField field : instanceFields) {
+            fieldIdx += field.fieldIdxDiff.getValue();
+            FieldIdItem fieldId = dexFile.getFieldIdItem(fieldIdx);
+            field.setDesc(fieldId.getDesc());
+        }
+        int methodIdx = 0;
+        for (EncodedMethod method : directMethods) {
+            methodIdx += method.methodIdxDiff.getValue();
+            MethodIdItem methodId = dexFile.getMethodIdItem(methodIdx);
+            method.setDesc(methodId.getDesc());
+        }
+        methodIdx = 0;
+        for (EncodedMethod method : virtualMethods) {
+            methodIdx += method.methodIdxDiff.getValue();
+            MethodIdItem methodId = dexFile.getMethodIdItem(methodIdx);
+            method.setDesc(methodId.getDesc());
+        }
+    }
+
+    @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(staticFieldsSize, instanceFieldsSize,
                 directMethodsSize, virtualMethodsSize,
-                staticFields, instanceFields, directMethods, virtualMethods);
+                staticFields, instanceFields,
+                directMethods, virtualMethods);
     }
     
     

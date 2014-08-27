@@ -4,6 +4,7 @@ import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -14,7 +15,7 @@ import java.util.stream.Stream;
  * 
  * @author zxh
  */
-public abstract class DexList<E extends DexComponent> extends DexComponent {
+public abstract class DexList<E extends DexComponent> extends DexComponent implements Iterable<E> {
 
     protected final List<E> list = new ArrayList<>();
     
@@ -51,6 +52,11 @@ public abstract class DexList<E extends DexComponent> extends DexComponent {
     @Override
     public List<E> getSubComponents() {
         return list;
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return list.iterator();
     }
     
 }
