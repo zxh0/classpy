@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.dexfile.index.UIntStringIndex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
@@ -91,6 +92,12 @@ public class DexReader {
     // 32-bit unsigned int, little-endian
     public UInt readUInt() {
         UInt uint = new UInt();
+        uint.read(this);
+        return uint;
+    }
+    
+    public UIntStringIndex readUIntStringIndex() {
+        UIntStringIndex uint = new UIntStringIndex();
         uint.read(this);
         return uint;
     }
