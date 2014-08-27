@@ -12,7 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
 /**
- * Container for TreeView, HexPane and StatusBar.
+ * Container of TreeView, HexPane and StatusBar.
  * 
  * |--------------------|
  * | TreeView | HexPane |
