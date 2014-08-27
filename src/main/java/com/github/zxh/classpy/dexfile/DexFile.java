@@ -95,6 +95,10 @@ public class DexFile extends DexComponent {
         return stringDataList.get(index).getValue();
     }
     
+    public TypeIdItem getTypeIdItem(UInt index) {
+        return getTypeIdItem(index.getValue());
+    }
+    
     public TypeIdItem getTypeIdItem(int index) {
         return typeIds.get(index);
     }
