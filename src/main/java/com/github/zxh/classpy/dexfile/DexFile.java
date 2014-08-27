@@ -12,7 +12,7 @@ import com.github.zxh.classpy.dexfile.ids.StringIdItem;
 import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
-import com.github.zxh.classpy.dexfile.list.SizeList;
+import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,10 +31,10 @@ public class DexFile extends DexComponent {
     private SizeKnownList<FieldIdItem> fieldIds;
     private SizeKnownList<MethodIdItem> methodIds;
     private SizeKnownList<ClassDefItem> classDefs;
-    private SizeList<MapItem> mapList;
+    private SizeHeaderList<MapItem> mapList;
     private OffsetsKnownList<StringDataItem> stringDataList;
     private OffsetsKnownList<ClassDataItem> classDataList;
-    private OffsetsKnownList<SizeList<TypeItem>> typeList;
+    private OffsetsKnownList<SizeHeaderList<TypeItem>> typeList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -65,7 +65,7 @@ public class DexFile extends DexComponent {
     }
     
     private void readData(DexReader reader) {
-        mapList = reader.readSizeList(MapItem::new);
+        mapList = reader.readSizeHeaderList(MapItem::new);
         
         reader.setPosition(stringIds.get(0).getStringDataOff());
         stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
@@ -76,7 +76,7 @@ public class DexFile extends DexComponent {
                 classDefs.stream().map(ClassDefItem::getClassDataOff));
         
         //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
-        typeList = reader.readOffsetsKnownList(() -> new SizeList<>(TypeItem::new), 
+        typeList = reader.readOffsetsKnownList(() -> new SizeHeaderList<>(TypeItem::new), 
                 classDefs.stream().map(ClassDefItem::getInterfacesOff).filter(off -> off.getValue() > 0));
     }
     

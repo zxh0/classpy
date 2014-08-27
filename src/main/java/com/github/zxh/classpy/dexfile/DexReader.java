@@ -2,7 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
-import com.github.zxh.classpy.dexfile.list.SizeList;
+import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.function.Supplier;
@@ -149,8 +149,8 @@ public class DexReader {
         return list;
     }
     
-    public <E extends DexComponent> SizeList<E> readSizeList(Supplier<E> factory) {
-        SizeList<E> list = new SizeList<>(factory);
+    public <E extends DexComponent> SizeHeaderList<E> readSizeHeaderList(Supplier<E> factory) {
+        SizeHeaderList<E> list = new SizeHeaderList<>(factory);
         list.read(this);
         return list;
     }
