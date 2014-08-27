@@ -13,6 +13,10 @@ import java.util.List;
 public class TypeIdItem extends DexComponent {
 
     private UInt descriptorIdx;
+
+    public UInt getDescriptorIdx() {
+        return descriptorIdx;
+    }
     
     @Override
     protected void readContent(DexReader reader) {

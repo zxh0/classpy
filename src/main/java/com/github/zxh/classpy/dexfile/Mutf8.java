@@ -11,6 +11,10 @@ import java.io.IOException;
 public class Mutf8 extends DexComponent {
 
     private String value;
+
+    public String getValue() {
+        return value;
+    }
     
     @Override
     protected void readContent(DexReader reader) {

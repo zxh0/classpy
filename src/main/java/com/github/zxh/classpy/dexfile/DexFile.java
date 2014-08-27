@@ -82,9 +82,9 @@ public class DexFile extends DexComponent {
     
     private void postRead() {
         typeIds.stream().forEach(typeId -> {
-            // todo
-//            typeId.get
-//            stringDataList.get
+            int descIdx = typeId.getDescriptorIdx().getValue();
+            String desc = stringDataList.get(descIdx).getValue();
+            typeId.setDesc(desc);
         });
     }
 

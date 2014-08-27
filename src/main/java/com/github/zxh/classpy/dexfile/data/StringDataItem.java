@@ -17,6 +17,10 @@ public class StringDataItem extends DexComponent {
     private Uleb128 utf16Size;
     private Mutf8 data;
     
+    public String getValue() {
+        return data.getValue();
+    }
+    
     @Override
     protected void readContent(DexReader reader) {
         utf16Size = reader.readUleb128();
