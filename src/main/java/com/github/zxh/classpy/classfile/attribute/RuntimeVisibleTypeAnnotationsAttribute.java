@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /*
 RuntimeVisibleTypeAnnotations_attribute {
@@ -195,12 +196,12 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         
         @Override
         public List<ClassComponent> getSubComponents() {
-            List<ClassComponent> all = Arrays.asList(typeParameterIndex,
+            Stream<ClassComponent> all = Stream.of(typeParameterIndex,
                     supertypeIndex, boundIndex, formalParameterIndex,
                     throwsTypeIndex, tableLength, table, exceptionTableIndex,
                     offset, typeArgumentIndex);
-            return all.stream()
-                    .filter(Objects::nonNull)
+            
+            return all.filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
         

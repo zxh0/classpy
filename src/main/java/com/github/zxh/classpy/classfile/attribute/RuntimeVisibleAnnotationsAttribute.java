@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /*
 RuntimeVisibleAnnotations_attribute {
@@ -165,11 +166,10 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
         @Override
         public List<ClassComponent> getSubComponents() {
-            List<ClassComponent> all = Arrays.asList(tag, constValueIndex,
+            Stream<ClassComponent> all = Stream.of(tag, constValueIndex,
                     enumConstValue, classInfoIndex, annotationValue, arrayValue);
             
-            return all.stream()
-                    .filter(Objects::nonNull)
+            return all.filter(Objects::nonNull)
                     .collect(Collectors.toList());
         }
         
