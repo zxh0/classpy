@@ -5,6 +5,7 @@ import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.UInt;
 import com.github.zxh.classpy.dexfile.index.UIntStringIndex;
+import com.github.zxh.classpy.dexfile.index.UIntTypeIdIndex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -15,13 +16,13 @@ import java.util.List;
 public class ProtoIdItem extends DexComponent {
 
     private UIntStringIndex shortyIdx;
-    private UInt returnTypeIdx;
+    private UIntTypeIdIndex returnTypeIdx;
     private UInt parametersOff;
 
     @Override
     protected void readContent(DexReader reader) {
         shortyIdx = reader.readUIntStringIndex();
-        returnTypeIdx = reader.readUInt();
+        returnTypeIdx = reader.readUIntTypeIdIndex();
         parametersOff = reader.readUInt();
     }
 

@@ -95,6 +95,10 @@ public class DexFile extends DexComponent {
         return stringDataList.get(index).getValue();
     }
     
+    public TypeIdItem getTypeIdItem(int index) {
+        return typeIds.get(index);
+    }
+    
 //    private void postRead() {
 //        
 //        protoIds.stream().forEach(protoId -> {

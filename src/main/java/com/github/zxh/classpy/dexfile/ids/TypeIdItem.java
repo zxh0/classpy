@@ -15,6 +15,10 @@ public class TypeIdItem extends DexComponent {
 
     private UIntStringIndex descriptorIdx;
 
+    public UIntStringIndex getDescriptorIdx() {
+        return descriptorIdx;
+    }
+
     @Override
     protected void readContent(DexReader reader) {
         descriptorIdx = reader.readUIntStringIndex();
