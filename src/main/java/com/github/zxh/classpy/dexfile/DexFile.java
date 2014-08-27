@@ -15,6 +15,7 @@ import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 /**
@@ -86,20 +87,20 @@ public class DexFile extends DexComponent {
     }
     
     private void readTypeList(DexReader reader) {
-        IntStream x = classDefs.stream()
+        IntStream off1 = classDefs.stream()
                 .map(ClassDefItem::getInterfacesOff)
                 .mapToInt(off -> off.getValue())
                 .filter(off -> off > 0);
-        IntStream y = protoIds.stream()
+        IntStream off2 = protoIds.stream()
                 .map(ProtoIdItem::getParametersOff)
                 .mapToInt(off -> off.getValue())
                 .filter(off -> off > 0);
-        IntStream z = IntStream.concat(x, y).distinct();
+        int[] offArr = IntStream.concat(off1, off2).distinct().toArray();
         
-//        //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
-        typeList = reader.readOffsetsKnownList(() -> new SizeHeaderList<>(TypeItem::new), 
-                z);
+        Supplier<SizeHeaderList<TypeItem>> factory = () -> new SizeHeaderList<>(TypeItem::new);
         
+        reader.setPosition(offArr[0]);
+        typeList = reader.readOffsetsKnownList(factory, Arrays.stream(offArr));
     }
     
     @Override
