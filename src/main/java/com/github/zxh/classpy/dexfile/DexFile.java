@@ -65,6 +65,7 @@ public class DexFile extends DexComponent {
     }
     
     private void readData(DexReader reader) {
+        reader.setPosition(header.getMapOff());
         mapList = reader.readSizeHeaderList(MapItem::new);
         
         reader.setPosition(stringIds.get(0).getStringDataOff());

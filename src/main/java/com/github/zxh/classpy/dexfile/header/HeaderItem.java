@@ -38,6 +38,7 @@ public class HeaderItem extends DexComponent {
     private UInt dataOff;
 
     // Getters
+    public UInt getMapOff() {return mapOff;}
     public UInt getStringIdsSize() {return stringIdsSize;}
     public UInt getStringIdsOff() {return stringIdsOff;}
     public UInt getTypeIdsSize() {return typeIdsSize;}
