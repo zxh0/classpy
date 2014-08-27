@@ -117,8 +117,8 @@ public class DexReader {
         return uleb;
     }
     
-    public Utf8String readUtf8String() {
-        Utf8String str = new Utf8String();
+    public Mutf8 readUtf8String() {
+        Mutf8 str = new Mutf8();
         str.read(this);
         return str;
     }

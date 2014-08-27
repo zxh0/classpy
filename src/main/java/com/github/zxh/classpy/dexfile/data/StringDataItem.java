@@ -3,7 +3,7 @@ package com.github.zxh.classpy.dexfile.data;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.Uleb128;
-import com.github.zxh.classpy.dexfile.Utf8String;
+import com.github.zxh.classpy.dexfile.Mutf8;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class StringDataItem extends DexComponent {
 
     private Uleb128 utf16Size;
-    private Utf8String data;
+    private Mutf8 data;
     
     @Override
     protected void readContent(DexReader reader) {
