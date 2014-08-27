@@ -5,12 +5,10 @@ import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -36,7 +34,6 @@ public class ClasspyApp extends Application {
         
         root = new BorderPane();
         root.setTop(createMenuBar());
-        root.setBottom(new Label("status"));
         
         stage.setScene(new Scene(root, 900, 600));
         stage.setTitle(TITLE);
@@ -110,8 +107,8 @@ public class ClasspyApp extends Application {
         OpenFileTask task = new OpenFileTask(file);
         
         task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
-            SplitPane sp = UiBuilder.buildSplitPane(fc, hex);
-            root.setCenter(sp);
+            MainPane mainPane = new MainPane(fc, hex);
+            root.setCenter(mainPane);
             stage.setTitle(TITLE + " - " + file.getAbsolutePath());
             
             succeededCallback.run();

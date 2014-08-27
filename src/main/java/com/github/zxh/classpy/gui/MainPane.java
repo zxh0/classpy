@@ -4,18 +4,28 @@ import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
 import javafx.collections.ListChangeListener;
+import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 
 /**
  * 
  * @author zxh
  */
-public class UiBuilder {
+public class MainPane extends BorderPane {
     
-    public static SplitPane buildSplitPane(FileComponent file, FileHex hex) {
+    public MainPane(FileComponent file, FileHex hex) {
+        Label statusBar = new Label(" ");
+        super.setBottom(statusBar);
+        
+        SplitPane splitPane = buildSplitPane(file, hex, statusBar);
+        super.setCenter(splitPane);
+    }
+    
+    private static SplitPane buildSplitPane(FileComponent file, FileHex hex, Label statusBar) {
         SplitPane sp = new SplitPane();
         
         TreeView<FileComponent> tree = buildClassTree(file);
@@ -35,6 +45,7 @@ public class UiBuilder {
                             //System.out.println("select " + cc);
                             if (!(fc instanceof ClassFile)) {
                                 hexPane.select(fc);
+                                statusBar.setText(" " + fc.getClass().getSimpleName());
                             }
                         }
                     }
