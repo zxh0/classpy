@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassFile;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
 import javafx.collections.ListChangeListener;
@@ -68,13 +67,11 @@ public class MainPane extends BorderPane {
                 if (c.next()) {
                     if (c.wasAdded()) {
                         TreeItem<FileComponent> node = c.getList().get(c.getFrom());
-                        if (node != null) {
-                            FileComponent fc = node.getValue(); // NPE
+                        if (node != null && node.getParent() != null) {
+                            FileComponent fc = node.getValue();
                             //System.out.println("select " + cc);
-                            if (!(fc instanceof ClassFile)) {
-                                hexPane.select(fc);
-                                statusBar.setText(" " + fc.getClass().getSimpleName());
-                            }
+                            hexPane.select(fc);
+                            statusBar.setText(" " + fc.getClass().getSimpleName());
                         }
                     }
                 }
