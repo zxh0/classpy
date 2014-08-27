@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.dexfile.index.UIntStringIndex;
 import com.github.zxh.classpy.dexfile.index.UIntTypeIdIndex;
+import com.github.zxh.classpy.dexfile.index.UShortTypeIdIndex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
@@ -81,6 +82,12 @@ public class DexReader {
     // 16-bit unsigned int, little-endian
     public UShort readUShort() {
         UShort ushort = new UShort();
+        ushort.read(this);
+        return ushort;
+    }
+    
+    public UShortTypeIdIndex readUShortTypeIdIndex() {
+        UShortTypeIdIndex ushort = new UShortTypeIdIndex();
         ushort.read(this);
         return ushort;
     }
