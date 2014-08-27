@@ -40,6 +40,13 @@ public abstract class DexComponent implements FileComponent {
      */
     protected abstract void readContent(DexReader reader);
     
+    // todo
+    protected void postRead(DexFile dexFile) {
+        getSubComponents().forEach(sub -> {
+            sub.postRead(dexFile);
+        });
+    }
+    
     /**
      * Returns sub-components.
      * This is the default implementation, subclass which really has sub-components

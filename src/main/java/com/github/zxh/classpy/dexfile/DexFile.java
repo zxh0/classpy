@@ -41,7 +41,7 @@ public class DexFile extends DexComponent {
         readHeader(reader);
         readIdsAndClassDefs(reader);
         readData(reader);
-        postRead();
+        super.postRead(this);
     }
     
     private void readHeader(DexReader reader) {
@@ -80,36 +80,6 @@ public class DexFile extends DexComponent {
                 classDefs.stream().map(ClassDefItem::getInterfacesOff).filter(off -> off.getValue() > 0));
     }
     
-    private void postRead() {
-        typeIds.stream().forEach(typeId -> {
-            int descIdx = typeId.getDescriptorIdx().getValue();
-            String desc = stringDataList.get(descIdx).getValue();
-            typeId.setDesc(desc);
-        });
-        
-        protoIds.stream().forEach(protoId -> {
-            int descIdx = protoId.getShortyIdx().getValue();
-            String desc = stringDataList.get(descIdx).getValue();
-            protoId.setDesc(desc);
-        });
-        
-        fieldIds.stream().forEach(fieldId -> {
-            //int classIdx = fieldId.getClassIdx().getValue();
-            //String className = typeIds.get(classIdx).getDesc();
-            int nameIdx = fieldId.getNameIdx().getValue();
-            String name = stringDataList.get(nameIdx).getValue();
-            fieldId.setDesc(name);
-        });
-        
-        methodIds.stream().forEach(methodId -> {
-            //int classIdx = fieldId.getClassIdx().getValue();
-            //String className = typeIds.get(classIdx).getDesc();
-            int nameIdx = methodId.getNameIdx().getValue();
-            String name = stringDataList.get(nameIdx).getValue();
-            methodId.setDesc(name);
-        });
-    }
-
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(header,
@@ -117,4 +87,41 @@ public class DexFile extends DexComponent {
                 mapList, stringDataList, classDataList, typeList);
     }
     
+    public String getString(UInt index) {
+        return getString(index.getValue());
+    }
+    
+    public String getString(int index) {
+        return stringDataList.get(index).getValue();
+    }
+    
+//    private void postRead() {
+//        typeIds.stream().forEach(typeId -> {
+//            int descIdx = typeId.getDescriptorIdx().getValue();
+//            String desc = stringDataList.get(descIdx).getValue();
+//            typeId.setDesc(desc);
+//        });
+//        
+//        protoIds.stream().forEach(protoId -> {
+//            int descIdx = protoId.getShortyIdx().getValue();
+//            String desc = stringDataList.get(descIdx).getValue();
+//            protoId.setDesc(desc);
+//        });
+//        
+//        fieldIds.stream().forEach(fieldId -> {
+//            //int classIdx = fieldId.getClassIdx().getValue();
+//            //String className = typeIds.get(classIdx).getDesc();
+//            int nameIdx = fieldId.getNameIdx().getValue();
+//            String name = stringDataList.get(nameIdx).getValue();
+//            fieldId.setDesc(name);
+//        });
+//        
+//        methodIds.stream().forEach(methodId -> {
+//            //int classIdx = fieldId.getClassIdx().getValue();
+//            //String className = typeIds.get(classIdx).getDesc();
+//            int nameIdx = methodId.getNameIdx().getValue();
+//            String name = stringDataList.get(nameIdx).getValue();
+//            methodId.setDesc(name);
+//        });
+//    }
 }
