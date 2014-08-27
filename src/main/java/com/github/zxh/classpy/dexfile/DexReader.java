@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
-import com.github.zxh.classpy.dexfile.list.DexList;
+import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.DataList;
 import com.github.zxh.classpy.dexfile.list.SizeList;
 import java.nio.ByteBuffer;
@@ -129,16 +129,16 @@ public class DexReader {
         return hex;
     }
     
-    public <E extends DexComponent> DexList<E> readDexList(UInt size, Supplier<E> factory) {
-        return readDexList(size.getValue(), factory);
+    public <E extends DexComponent> SizeKnownList<E> readSizeKnownList(UInt size, Supplier<E> factory) {
+        return readSizeKnownList(size.getValue(), factory);
     }
     
-    public <E extends DexComponent> DexList<E> readDexList(Uleb128 size, Supplier<E> factory) {
-        return readDexList(size.getValue(), factory);
+    public <E extends DexComponent> SizeKnownList<E> readSizeKnownList(Uleb128 size, Supplier<E> factory) {
+        return readSizeKnownList(size.getValue(), factory);
     }
     
-    public <E extends DexComponent> DexList<E> readDexList(int size, Supplier<E> factory) {
-        DexList<E> list = new DexList<>(size, factory);
+    public <E extends DexComponent> SizeKnownList<E> readSizeKnownList(int size, Supplier<E> factory) {
+        SizeKnownList<E> list = new SizeKnownList<>(size, factory);
         list.read(this);
         return list;
     }

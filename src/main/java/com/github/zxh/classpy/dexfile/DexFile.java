@@ -11,7 +11,7 @@ import com.github.zxh.classpy.dexfile.ids.ProtoIdItem;
 import com.github.zxh.classpy.dexfile.ids.StringIdItem;
 import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.list.DataList;
-import com.github.zxh.classpy.dexfile.list.DexList;
+import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeList;
 import java.util.Arrays;
 import java.util.List;
@@ -25,12 +25,12 @@ import java.util.List;
 public class DexFile extends DexComponent {
     
     private HeaderItem header;
-    private DexList<StringIdItem> stringIds;
-    private DexList<TypeIdItem> typeIds;
-    private DexList<ProtoIdItem> protoIds;
-    private DexList<FieldIdItem> fieldIds;
-    private DexList<MethodIdItem> methodIds;
-    private DexList<ClassDefItem> classDefs;
+    private SizeKnownList<StringIdItem> stringIds;
+    private SizeKnownList<TypeIdItem> typeIds;
+    private SizeKnownList<ProtoIdItem> protoIds;
+    private SizeKnownList<FieldIdItem> fieldIds;
+    private SizeKnownList<MethodIdItem> methodIds;
+    private SizeKnownList<ClassDefItem> classDefs;
     private SizeList<MapItem> mapList;
     private DataList<StringDataItem> stringDataList;
     private DataList<ClassDataItem> classDataList;
@@ -51,17 +51,17 @@ public class DexFile extends DexComponent {
     
     private void readIdsAndClassDefs(DexReader reader) {
         reader.setPosition(header.getStringIdsOff());
-        stringIds = reader.readDexList(header.getStringIdsSize(), StringIdItem::new);
+        stringIds = reader.readSizeKnownList(header.getStringIdsSize(), StringIdItem::new);
         reader.setPosition(header.getTypeIdsOff());
-        typeIds = reader.readDexList(header.getTypeIdsSize(), TypeIdItem::new);
+        typeIds = reader.readSizeKnownList(header.getTypeIdsSize(), TypeIdItem::new);
         reader.setPosition(header.getProtoIdsOff());
-        protoIds = reader.readDexList(header.getProtoIdsSize(), ProtoIdItem::new);
+        protoIds = reader.readSizeKnownList(header.getProtoIdsSize(), ProtoIdItem::new);
         reader.setPosition(header.getFieldIdsOff());
-        fieldIds = reader.readDexList(header.getFieldIdsSize(), FieldIdItem::new);
+        fieldIds = reader.readSizeKnownList(header.getFieldIdsSize(), FieldIdItem::new);
         reader.setPosition(header.getMethodIdsOff());
-        methodIds = reader.readDexList(header.getMethodIdsSize(), MethodIdItem::new);
+        methodIds = reader.readSizeKnownList(header.getMethodIdsSize(), MethodIdItem::new);
         reader.setPosition(header.getClassDefsOff());
-        classDefs = reader.readDexList(header.getClassDefsSize(), ClassDefItem::new);
+        classDefs = reader.readSizeKnownList(header.getClassDefsSize(), ClassDefItem::new);
     }
     
     private void readData(DexReader reader) {

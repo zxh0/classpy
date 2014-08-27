@@ -9,19 +9,19 @@ import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 /**
- * DexComponents list.
+ * DexComponent list.
  * 
  * @param <E> the type of elements in this list
  * 
  * @author zxh
  */
-public class DexList<E extends DexComponent> extends DexComponent {
+public class SizeKnownList<E extends DexComponent> extends DexComponent {
 
     private final int size;
     private final Supplier<E> factory;
     private final List<E> list;
 
-    public DexList(int size, Supplier<E> factory) {
+    public SizeKnownList(int size, Supplier<E> factory) {
         this.size = size;
         this.factory = factory;
         this.list = new ArrayList<>();

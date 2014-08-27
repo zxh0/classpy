@@ -16,7 +16,7 @@ public class SizeList<E extends DexComponent> extends DexComponent {
 
     private final Supplier<E> factory;
     private UInt size;
-    private DexList<E> list;
+    private SizeKnownList<E> list;
 
     public SizeList(Supplier<E> factory) {
         this.factory = factory;
@@ -25,7 +25,7 @@ public class SizeList<E extends DexComponent> extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         size = reader.readUInt();
-        list = reader.readDexList(size, factory);
+        list = reader.readSizeKnownList(size, factory);
     }
 
     @Override

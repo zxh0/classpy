@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.dexfile.data;
 
-import com.github.zxh.classpy.dexfile.list.DexList;
+import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.Uleb128;
@@ -17,10 +17,10 @@ public class ClassDataItem extends DexComponent {
     private Uleb128 instanceFieldsSize;
     private Uleb128 directMethodsSize;
     private Uleb128 virtualMethodsSize;
-    private DexList<EncodedField> staticFields;
-    private DexList<EncodedField> instanceFields;
-    private DexList<EncodedMethod> directMethods;
-    private DexList<EncodedMethod> virtualMethods;
+    private SizeKnownList<EncodedField> staticFields;
+    private SizeKnownList<EncodedField> instanceFields;
+    private SizeKnownList<EncodedMethod> directMethods;
+    private SizeKnownList<EncodedMethod> virtualMethods;
     
     @Override
     protected void readContent(DexReader reader) {
@@ -28,10 +28,10 @@ public class ClassDataItem extends DexComponent {
         instanceFieldsSize = reader.readUleb128();
         directMethodsSize = reader.readUleb128();
         virtualMethodsSize = reader.readUleb128();
-        staticFields = reader.readDexList(staticFieldsSize, EncodedField::new);
-        instanceFields = reader.readDexList(instanceFieldsSize, EncodedField::new);
-        directMethods = reader.readDexList(directMethodsSize, EncodedMethod::new);
-        virtualMethods = reader.readDexList(virtualMethodsSize, EncodedMethod::new);
+        staticFields = reader.readSizeKnownList(staticFieldsSize, EncodedField::new);
+        instanceFields = reader.readSizeKnownList(instanceFieldsSize, EncodedField::new);
+        directMethods = reader.readSizeKnownList(directMethodsSize, EncodedMethod::new);
+        virtualMethods = reader.readSizeKnownList(virtualMethodsSize, EncodedMethod::new);
     }
 
     @Override
