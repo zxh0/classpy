@@ -16,7 +16,7 @@ CONSTANT_Utf8_info {
 public class ConstantUtf8Info extends ConstantInfo {
 
     private U2 length;
-    private Utf8String bytes;
+    private Mutf8 bytes;
     
     public String getString() {
         return bytes.getValue();
@@ -25,7 +25,7 @@ public class ConstantUtf8Info extends ConstantInfo {
     @Override
     protected void readInfo(ClassReader reader) {
         length = reader.readU2();
-        bytes = new Utf8String(length.getValue());
+        bytes = new Mutf8(length.getValue());
         bytes.read(reader);
     }
     
