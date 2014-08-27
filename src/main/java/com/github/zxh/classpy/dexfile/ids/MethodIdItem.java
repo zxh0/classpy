@@ -16,6 +16,10 @@ public class MethodIdItem extends DexComponent {
     private UShort classIdx;
     private UShort protoIdx;
     private UInt nameIdx;
+
+    public UShort getClassIdx() {return classIdx;}
+    public UShort getProtoIdx() {return protoIdx;}
+    public UInt getNameIdx() {return nameIdx;}
     
     @Override
     protected void readContent(DexReader reader) {

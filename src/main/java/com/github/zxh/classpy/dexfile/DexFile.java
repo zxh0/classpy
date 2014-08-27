@@ -100,6 +100,14 @@ public class DexFile extends DexComponent {
             String name = stringDataList.get(nameIdx).getValue();
             fieldId.setDesc(name);
         });
+        
+        methodIds.stream().forEach(methodId -> {
+            //int classIdx = fieldId.getClassIdx().getValue();
+            //String className = typeIds.get(classIdx).getDesc();
+            int nameIdx = methodId.getNameIdx().getValue();
+            String name = stringDataList.get(nameIdx).getValue();
+            methodId.setDesc(name);
+        });
     }
 
     @Override
