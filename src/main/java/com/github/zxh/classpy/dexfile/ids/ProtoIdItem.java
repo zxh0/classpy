@@ -19,6 +19,10 @@ public class ProtoIdItem extends DexComponent {
     private UIntTypeIdIndex returnTypeIdx;
     private UInt parametersOff; // todo type_list
 
+    public UInt getParametersOff() {
+        return parametersOff;
+    }
+
     @Override
     protected void readContent(DexReader reader) {
         shortyIdx = reader.readUIntStringIdIndex();

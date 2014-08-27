@@ -15,6 +15,7 @@ import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.IntStream;
 
 /**
  * The parse result of .dex file.
@@ -74,16 +75,31 @@ public class DexFile extends DexComponent {
         
         reader.setPosition(stringIds.get(0).getStringDataOff());
         stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
-                stringIds.stream().map(StringIdItem::getStringDataOff));
+                stringIds.stream().mapToInt(stringId -> stringId.getStringDataOff().getValue()));
         
         reader.setPosition(classDefs.get(0).getClassDataOff());
         classDataList = reader.readOffsetsKnownList(ClassDataItem::new,
-                classDefs.stream().map(ClassDefItem::getClassDataOff));
-        // todo
+                classDefs.stream().mapToInt(classDef -> classDef.getClassDataOff().getValue()));
         
-        //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
+        // todo
+        readTypeList(reader);
+    }
+    
+    private void readTypeList(DexReader reader) {
+        IntStream x = classDefs.stream()
+                .map(ClassDefItem::getInterfacesOff)
+                .mapToInt(off -> off.getValue())
+                .filter(off -> off > 0);
+        IntStream y = protoIds.stream()
+                .map(ProtoIdItem::getParametersOff)
+                .mapToInt(off -> off.getValue())
+                .filter(off -> off > 0);
+        IntStream z = IntStream.concat(x, y).distinct();
+        
+//        //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
         typeList = reader.readOffsetsKnownList(() -> new SizeHeaderList<>(TypeItem::new), 
-                classDefs.stream().map(ClassDefItem::getInterfacesOff).filter(off -> off.getValue() > 0));
+                z);
+        
     }
     
     @Override

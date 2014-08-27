@@ -9,7 +9,7 @@ import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -164,7 +164,7 @@ public class DexReader {
         return list;
     }
     
-    public <E extends DexComponent> OffsetsKnownList<E> readOffsetsKnownList(Supplier<E> factory, Stream<UInt> offStream) {
+    public <E extends DexComponent> OffsetsKnownList<E> readOffsetsKnownList(Supplier<E> factory, IntStream offStream) {
         OffsetsKnownList<E> list = new OffsetsKnownList<>(offStream, factory);
         list.read(this);
         return list;

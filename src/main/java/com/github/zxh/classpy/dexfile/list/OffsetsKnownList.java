@@ -2,9 +2,8 @@ package com.github.zxh.classpy.dexfile.list;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.UInt;
 import java.util.function.Supplier;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 /**
  *
@@ -14,10 +13,10 @@ import java.util.stream.Stream;
  */
 public class OffsetsKnownList<E extends DexComponent> extends DexList<E> {
 
-    private final Stream<UInt> offStream;
+    private final IntStream offStream;
     private final Supplier<E> factory;
 
-    public OffsetsKnownList(Stream<UInt> offStream, Supplier<E> factory) {
+    public OffsetsKnownList(IntStream offStream, Supplier<E> factory) {
         this.offStream = offStream;
         this.factory = factory;
     }
