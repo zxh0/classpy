@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.dexfile.data;
 
-import com.github.zxh.classpy.dexfile.DexList;
+import com.github.zxh.classpy.dexfile.list.DexList;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.UInt;
