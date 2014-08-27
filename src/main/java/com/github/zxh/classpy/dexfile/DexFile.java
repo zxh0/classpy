@@ -3,6 +3,7 @@ package com.github.zxh.classpy.dexfile;
 import com.github.zxh.classpy.dexfile.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.data.MapItem;
 import com.github.zxh.classpy.dexfile.data.StringDataItem;
+import com.github.zxh.classpy.dexfile.data.TypeItem;
 import com.github.zxh.classpy.dexfile.header.HeaderItem;
 import com.github.zxh.classpy.dexfile.ids.FieldIdItem;
 import com.github.zxh.classpy.dexfile.ids.MethodIdItem;
@@ -32,6 +33,7 @@ public class DexFile extends DexComponent {
     private SizeList<MapItem> mapList;
     private DataList<StringDataItem> stringDataList;
     private DataList<ClassDataItem> classDataList;
+    private DataList<SizeList<TypeItem>> typeList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -66,13 +68,17 @@ public class DexFile extends DexComponent {
                 stringIds.stream().map(StringIdItem::getStringDataOff));
         classDataList = reader.readDataList(ClassDataItem::new,
                 classDefs.stream().map(ClassDefItem::getClassDataOff));
+        
+        //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
+        typeList = reader.readDataList(() -> new SizeList<>(TypeItem::new), 
+                classDefs.stream().map(ClassDefItem::getInterfacesOff).filter(off -> off.getValue() > 0));
     }
 
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(header,
                 stringIds, typeIds, protoIds, fieldIds, methodIds, classDefs,
-                mapList, stringDataList, classDataList);
+                mapList, stringDataList, classDataList, typeList);
     }
     
 }

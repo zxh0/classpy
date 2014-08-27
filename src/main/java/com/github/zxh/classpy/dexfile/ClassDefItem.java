@@ -18,9 +18,8 @@ public class ClassDefItem extends DexComponent {
     private UInt classDataOff;
     private UInt staticValuesOff;
 
-    public UInt getClassDataOff() {
-        return classDataOff;
-    }
+    public UInt getClassDataOff() {return classDataOff;}
+    public UInt getInterfacesOff() {return interfacesOff;}
 
     @Override
     protected void readContent(DexReader reader) {
