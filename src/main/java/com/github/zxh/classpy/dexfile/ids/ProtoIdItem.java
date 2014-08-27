@@ -15,6 +15,10 @@ public class ProtoIdItem extends DexComponent {
     private UInt shortyIdx;
     private UInt returnTypeIdx;
     private UInt parametersOff;
+
+    public UInt getShortyIdx() {
+        return shortyIdx;
+    }
     
     @Override
     protected void readContent(DexReader reader) {

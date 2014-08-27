@@ -86,6 +86,12 @@ public class DexFile extends DexComponent {
             String desc = stringDataList.get(descIdx).getValue();
             typeId.setDesc(desc);
         });
+        
+        protoIds.stream().forEach(protoId -> {
+            int descIdx = protoId.getShortyIdx().getValue();
+            String desc = stringDataList.get(descIdx).getValue();
+            protoId.setDesc(desc);
+        });
     }
 
     @Override
