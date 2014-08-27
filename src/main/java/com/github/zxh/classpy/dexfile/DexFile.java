@@ -39,7 +39,8 @@ public class DexFile extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         readHeader(reader);
-        readIdsAndClassDefs(reader);
+        readIds(reader);
+        readClassDefs(reader);
         readData(reader);
         super.postRead(this);
     }
@@ -49,7 +50,7 @@ public class DexFile extends DexComponent {
         header.read(reader);
     }
     
-    private void readIdsAndClassDefs(DexReader reader) {
+    private void readIds(DexReader reader) {
         reader.setPosition(header.getStringIdsOff());
         stringIds = reader.readSizeKnownList(header.getStringIdsSize(), StringIdItem::new);
         reader.setPosition(header.getTypeIdsOff());
@@ -60,6 +61,9 @@ public class DexFile extends DexComponent {
         fieldIds = reader.readSizeKnownList(header.getFieldIdsSize(), FieldIdItem::new);
         reader.setPosition(header.getMethodIdsOff());
         methodIds = reader.readSizeKnownList(header.getMethodIdsSize(), MethodIdItem::new);
+    }
+    
+    private void readClassDefs(DexReader reader) {
         reader.setPosition(header.getClassDefsOff());
         classDefs = reader.readSizeKnownList(header.getClassDefsSize(), ClassDefItem::new);
     }
