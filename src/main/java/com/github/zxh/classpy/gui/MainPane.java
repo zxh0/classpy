@@ -26,32 +26,14 @@ public class MainPane extends BorderPane {
     }
     
     private static SplitPane buildSplitPane(FileComponent file, FileHex hex, Label statusBar) {
-        SplitPane sp = new SplitPane();
-        
         TreeView<FileComponent> tree = buildClassTree(file);
         HexPane hexPane = buildHexPane(hex);
+        listenTreeItemSelection(tree, hexPane, statusBar);
         
+        SplitPane sp = new SplitPane();
         sp.getItems().add(tree);
         sp.getItems().add(hexPane);
         sp.setDividerPositions(0.1, 0.9);
-        
-        tree.getSelectionModel().getSelectedItems().addListener(
-            (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
-                if (c.next()) {
-                    if (c.wasAdded()) {
-                        TreeItem<FileComponent> node = c.getList().get(c.getFrom());
-                        if (node != null) {
-                            FileComponent fc = node.getValue(); // NPE
-                            //System.out.println("select " + cc);
-                            if (!(fc instanceof ClassFile)) {
-                                hexPane.select(fc);
-                                statusBar.setText(" " + fc.getClass().getSimpleName());
-                            }
-                        }
-                    }
-                }
-            }
-        );
         
         return sp;
     }
@@ -71,6 +53,26 @@ public class MainPane extends BorderPane {
         // http://stackoverflow.com/questions/24983841/format-text-output-in-javafx
         pane.setFont(Font.font("Courier New", 14));
         return pane;
+    }
+    
+    private static void listenTreeItemSelection(TreeView<FileComponent> tree, HexPane hexPane, Label statusBar) {
+        tree.getSelectionModel().getSelectedItems().addListener(
+            (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
+                if (c.next()) {
+                    if (c.wasAdded()) {
+                        TreeItem<FileComponent> node = c.getList().get(c.getFrom());
+                        if (node != null) {
+                            FileComponent fc = node.getValue(); // NPE
+                            //System.out.println("select " + cc);
+                            if (!(fc instanceof ClassFile)) {
+                                hexPane.select(fc);
+                                statusBar.setText(" " + fc.getClass().getSimpleName());
+                            }
+                        }
+                    }
+                }
+            }
+        );
     }
     
 }
