@@ -20,6 +20,7 @@ public class StringDataItem extends DexComponent {
     protected void readContent(DexReader reader) {
         utf16Size = reader.readUleb128();
         data = reader.readUtf8String();
+        setDesc(data.getDesc());
     }
 
     @Override

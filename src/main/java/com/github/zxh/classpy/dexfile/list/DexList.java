@@ -29,11 +29,11 @@ public class DexList<E extends DexComponent> extends DexComponent {
     
     @Override
     protected void readContent(DexReader reader) {
-        readTable(reader);
+        readList(reader);
         setElementName();
     }
     
-    private void readTable(DexReader reader) {
+    private void readList(DexReader reader) {
         for (int i = 0; i < size; i++) {
             E e = factory.get();
             e.read(reader);
@@ -61,6 +61,10 @@ public class DexList<E extends DexComponent> extends DexComponent {
     
     public Stream<E> stream() {
         return list.stream();
+    }
+    
+    public E get(int index) {
+        return list.get(index);
     }
     
 }

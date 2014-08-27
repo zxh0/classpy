@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.list;
 
+import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.UInt;
@@ -27,6 +28,11 @@ public class DataList<E extends DexComponent> extends DexComponent {
     
     @Override
     protected void readContent(DexReader reader) {
+        readList(reader);
+        setElementName();
+    }
+    
+    private void readList(DexReader reader) {
         offStream.forEach(offset -> {
             reader.setPosition(offset);
             E e = factory.get();
@@ -34,7 +40,22 @@ public class DataList<E extends DexComponent> extends DexComponent {
             list.add(e);
         });
     }
-
+    
+    // todo
+    private void setElementName() {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            E element = list.get(i);
+            
+            String newName = Util.formatIndex(size, i);
+            String oldName = element.getName();
+            if (oldName != null) {
+                newName += " (" + oldName + ")";
+            }
+            element.setName(newName);
+        }
+    }
+    
     @Override
     public List<E> getSubComponents() {
         return list;

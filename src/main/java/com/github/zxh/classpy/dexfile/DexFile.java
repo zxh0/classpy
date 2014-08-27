@@ -17,8 +17,9 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
+ * The parse result of .dex file.
  * http://source.android.com/devices/tech/dalvik/dex-format.html
+ * 
  * @author zxh
  */
 public class DexFile extends DexComponent {
@@ -64,8 +65,12 @@ public class DexFile extends DexComponent {
     
     private void readData(DexReader reader) {
         mapList = reader.readSizeList(MapItem::new);
+        
+        reader.setPosition(stringIds.get(0).getStringDataOff());
         stringDataList = reader.readDataList(StringDataItem::new,
                 stringIds.stream().map(StringIdItem::getStringDataOff));
+        
+        // todo
         classDataList = reader.readDataList(ClassDataItem::new,
                 classDefs.stream().map(ClassDefItem::getClassDataOff));
         
