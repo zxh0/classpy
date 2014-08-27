@@ -10,7 +10,7 @@ import com.github.zxh.classpy.dexfile.ids.MethodIdItem;
 import com.github.zxh.classpy.dexfile.ids.ProtoIdItem;
 import com.github.zxh.classpy.dexfile.ids.StringIdItem;
 import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
-import com.github.zxh.classpy.dexfile.list.DataList;
+import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeList;
 import java.util.Arrays;
@@ -32,9 +32,9 @@ public class DexFile extends DexComponent {
     private SizeKnownList<MethodIdItem> methodIds;
     private SizeKnownList<ClassDefItem> classDefs;
     private SizeList<MapItem> mapList;
-    private DataList<StringDataItem> stringDataList;
-    private DataList<ClassDataItem> classDataList;
-    private DataList<SizeList<TypeItem>> typeList;
+    private OffsetsKnownList<StringDataItem> stringDataList;
+    private OffsetsKnownList<ClassDataItem> classDataList;
+    private OffsetsKnownList<SizeList<TypeItem>> typeList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -68,15 +68,15 @@ public class DexFile extends DexComponent {
         mapList = reader.readSizeList(MapItem::new);
         
         reader.setPosition(stringIds.get(0).getStringDataOff());
-        stringDataList = reader.readDataList(StringDataItem::new,
+        stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
                 stringIds.stream().map(StringIdItem::getStringDataOff));
         
         // todo
-        classDataList = reader.readDataList(ClassDataItem::new,
+        classDataList = reader.readOffsetsKnownList(ClassDataItem::new,
                 classDefs.stream().map(ClassDefItem::getClassDataOff));
         
         //Supplier<SizeList<TypeItem>> factory = () -> new SizeList<>(TypeItem::new);
-        typeList = reader.readDataList(() -> new SizeList<>(TypeItem::new), 
+        typeList = reader.readOffsetsKnownList(() -> new SizeList<>(TypeItem::new), 
                 classDefs.stream().map(ClassDefItem::getInterfacesOff).filter(off -> off.getValue() > 0));
     }
     

@@ -15,13 +15,13 @@ import java.util.stream.Stream;
  * 
  * @author zxh
  */
-public class DataList<E extends DexComponent> extends DexComponent {
+public class OffsetsKnownList<E extends DexComponent> extends DexComponent {
 
     private final Stream<UInt> offStream;
     private final Supplier<E> factory;
     private final List<E> list = new ArrayList<>();
 
-    public DataList(Stream<UInt> offStream, Supplier<E> factory) {
+    public OffsetsKnownList(Stream<UInt> offStream, Supplier<E> factory) {
         this.offStream = offStream;
         this.factory = factory;
     }
