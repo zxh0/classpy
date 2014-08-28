@@ -7,6 +7,7 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.body.ids.FieldIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.MethodIdItem;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128Hex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -101,7 +102,7 @@ public class ClassDataItem extends DexComponent {
 
         private Uleb128 methodIdxDiff;
         private Uleb128 accessFlags;
-        private Uleb128 codeOff; // todo
+        private Uleb128Hex codeOff; // todo
 
         public Uleb128 getCodeOff() {
             return codeOff;
@@ -111,7 +112,7 @@ public class ClassDataItem extends DexComponent {
         protected void readContent(DexReader reader) {
             methodIdxDiff = reader.readUleb128();
             accessFlags = reader.readUleb128();
-            codeOff = reader.readUleb128();
+            codeOff = reader.readUleb128Hex();
         }
         
         @Override
