@@ -2,7 +2,7 @@ package com.github.zxh.classpy.dexfile.ids;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,15 +12,15 @@ import java.util.List;
  */
 public class StringIdItem extends DexComponent {
 
-    private UInt stringDataOff;
+    private UIntHex stringDataOff;
     
-    public UInt getStringDataOff() {
+    public UIntHex getStringDataOff() {
         return stringDataOff;
     }
     
     @Override
     protected void readContent(DexReader reader) {
-        stringDataOff = reader.readUInt();
+        stringDataOff = reader.readUIntHex();
     }
 
     @Override
