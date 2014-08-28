@@ -34,6 +34,12 @@ public abstract class DexComponent extends FileComponent {
         });
     }
     
+    // to make an optional UShort
+    public final void readNothing(DexReader reader) {
+        startRead(reader.getPosition());
+        endRead(reader.getPosition());
+    }
+    
     @Override
     @SuppressWarnings("unchecked")
     public List<? extends DexComponent> getSubComponents() {

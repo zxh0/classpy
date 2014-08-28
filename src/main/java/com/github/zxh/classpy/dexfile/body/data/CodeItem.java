@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile.body.data;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
+import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
@@ -98,11 +99,26 @@ public class CodeItem extends DexComponent {
     
     public static class EncodedCatchHandler extends DexComponent {
 
-        private Uleb128 size;
+        private Sleb128 size;
+        private SizeKnownList<EncodedTypeAddrPair> handlers;
+        private Uleb128 catchAllAddr;
         
         @Override
         protected void readContent(DexReader reader) {
-            // todo
+            size = reader.readSleb128();
+            handlers = reader.readSizeKnownList(Math.abs(size.getValue()),
+                    EncodedTypeAddrPair::new);
+            if (size.getValue() <= 0) {
+                catchAllAddr = reader.readUleb128();
+            } else {
+                catchAllAddr = new Uleb128();
+                catchAllAddr.readNothing(reader);
+            }
+        }
+        
+        @Override
+        public List<? extends DexComponent> getSubComponents() {
+            return Arrays.asList(size, handlers, catchAllAddr);
         }
         
     }
