@@ -12,8 +12,8 @@ public abstract class FileComponent {
     
     private String name;
     private String desc; // description
-    protected int offset; // the position of this FileComponent in the file
-    protected int length; // how many bytes this FileComponent has
+    private int offset; // the position of this FileComponent in the file
+    private int length; // how many bytes this FileComponent has
     
     // Getters & Setters
     public final String getName() {return name;}
@@ -22,6 +22,14 @@ public abstract class FileComponent {
     public final void setDesc(String desc) {this.desc = desc;}
     public final int getOffset() {return offset;}
     public final int getLength() {return length;}
+    
+    protected void startRead(int position) {
+        offset = position;
+    }
+    
+    protected void endRead(int position) {
+        length = position - offset;
+    }
     
     /**
      * Returns sub-components.

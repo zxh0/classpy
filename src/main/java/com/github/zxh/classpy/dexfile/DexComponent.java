@@ -16,9 +16,9 @@ public abstract class DexComponent extends FileComponent {
      * @param reader 
      */
     public final void read(DexReader reader) {
-        offset = reader.getPosition();
+        startRead(reader.getPosition());
         readContent(reader);
-        length = reader.getPosition() - offset;
+        endRead(reader.getPosition());
     }
     
     /**

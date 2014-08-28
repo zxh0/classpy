@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.FileParseException;
-import com.github.zxh.classpy.common.Util;
+import com.github.zxh.classpy.common.Mutf8Decoder;
 import java.io.IOException;
 
 /**
@@ -20,7 +20,7 @@ public class Mutf8 extends DexComponent {
     protected void readContent(DexReader reader) {
         try {
             byte[] data = reader.readMutf8Bytes();
-            value = Util.decodeMutf8(data);
+            value = Mutf8Decoder.decodeMutf8(data);
             setDesc(value);
         } catch (IOException e) {
             throw new FileParseException(e);

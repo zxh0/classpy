@@ -14,9 +14,9 @@ public abstract class ClassComponent extends FileComponent {
      * @param reader 
      */
     public final void read(ClassReader reader) {
-        offset = reader.getPosition();
+        startRead(reader.getPosition());
         readContent(reader);
-        length = reader.getPosition() - offset;
+        endRead(reader.getPosition());
     }
     
     /**
