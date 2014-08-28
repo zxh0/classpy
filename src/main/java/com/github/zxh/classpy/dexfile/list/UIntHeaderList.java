@@ -13,13 +13,13 @@ import java.util.function.Supplier;
  * 
  * @author zxh
  */
-public class SizeHeaderList<E extends DexComponent> extends DexComponent {
+public class UIntHeaderList<E extends DexComponent> extends DexComponent {
 
     private final Supplier<E> factory;
     private UInt size;
     private SizeKnownList<E> list;
 
-    public SizeHeaderList(Supplier<E> factory) {
+    public UIntHeaderList(Supplier<E> factory) {
         this.factory = factory;
     }
     
