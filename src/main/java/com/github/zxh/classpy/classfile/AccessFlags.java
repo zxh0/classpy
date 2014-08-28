@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.datatype.U2;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

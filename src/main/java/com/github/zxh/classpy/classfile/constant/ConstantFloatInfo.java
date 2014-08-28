@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U4Float;
+import com.github.zxh.classpy.classfile.datatype.U4Float;
 import java.util.Arrays;
 import java.util.List;
 

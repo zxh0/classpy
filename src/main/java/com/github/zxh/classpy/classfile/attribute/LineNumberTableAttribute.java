@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.attribute;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.datatype.U2;
 import java.util.Arrays;
 import java.util.List;
 

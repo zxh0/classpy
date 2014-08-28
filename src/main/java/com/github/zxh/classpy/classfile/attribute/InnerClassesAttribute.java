@@ -4,8 +4,8 @@ import com.github.zxh.classpy.classfile.AccessFlags;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
-import com.github.zxh.classpy.classfile.U2;
-import com.github.zxh.classpy.classfile.U2CpIndex;
+import com.github.zxh.classpy.classfile.datatype.U2;
+import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import java.util.Arrays;
 import java.util.List;
 

@@ -2,8 +2,8 @@ package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U1;
-import com.github.zxh.classpy.classfile.U2;
+import com.github.zxh.classpy.classfile.datatype.U1;
+import com.github.zxh.classpy.classfile.datatype.U2;
 import java.util.Arrays;
 import java.util.List;
 

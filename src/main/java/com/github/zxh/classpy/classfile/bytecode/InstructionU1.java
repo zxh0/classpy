@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.U1;
+import com.github.zxh.classpy.classfile.datatype.U1;
 
 /**
  * The instruction whose operand is U1.
