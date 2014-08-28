@@ -25,7 +25,8 @@ public class Uleb128 extends DexComponent implements IntValue {
             
             value |= ((b & 0b0111_1111) << (i * 7));
             
-            if ((b >> 7) == 0) {
+            if (b >= 0) {
+                // most significant bit clear
                 break;
             }
         }
