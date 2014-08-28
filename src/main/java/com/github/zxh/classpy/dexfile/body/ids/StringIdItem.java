@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.dexfile.ids;
+package com.github.zxh.classpy.dexfile.body.ids;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;

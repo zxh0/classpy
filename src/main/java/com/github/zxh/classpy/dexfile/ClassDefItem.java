@@ -2,7 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
-import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
+import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
 import java.util.Arrays;
 import java.util.List;

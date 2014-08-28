@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.dexfile.ids;
+package com.github.zxh.classpy.dexfile.body.ids;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
@@ -14,20 +14,20 @@ import java.util.List;
  *
  * @author zxh
  */
-public class FieldIdItem extends DexComponent {
+public class MethodIdItem extends DexComponent {
 
     private UShortTypeIdIndex classIdx;
-    private UShortTypeIdIndex typeIdx;
+    private UShort protoIdx; // todo
     private UIntStringIdIndex nameIdx;
 
     public UShort getClassIdx() {return classIdx;}
-    public UShort getTypeIdx() {return typeIdx;}
+    public UShort getProtoIdx() {return protoIdx;}
     public UInt getNameIdx() {return nameIdx;}
     
     @Override
     protected void readContent(DexReader reader) {
         classIdx = reader.readUShortTypeIdIndex();
-        typeIdx = reader.readUShortTypeIdIndex();
+        protoIdx = reader.readUShort();
         nameIdx = reader.readUIntStringIdIndex();
     }
 
@@ -39,7 +39,7 @@ public class FieldIdItem extends DexComponent {
 
     @Override
     public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(classIdx, typeIdx, nameIdx);
+        return Arrays.asList(classIdx, protoIdx, nameIdx);
     }
     
 }
