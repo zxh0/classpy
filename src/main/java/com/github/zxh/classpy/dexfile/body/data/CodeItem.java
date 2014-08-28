@@ -5,6 +5,7 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
+import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class CodeItem extends DexComponent {
     private UInt insnsSize;
     // insns
     private UShort padding;
-    // tries
+    private SizeKnownList<TryItem> tries;
     // handlers
     
     @Override
@@ -33,8 +34,9 @@ public class CodeItem extends DexComponent {
         triesSize = reader.readUShort();
         debugInfoOff = reader.readUIntHex();
         insnsSize = reader.readUInt();
-        reader.skipBytes(insSize.getValue() * 2); // insns
+        reader.skipBytes(insnsSize.getValue() * 2); // insns
         readPadding(reader);
+        tries = reader.readSizeKnownList(insSize, TryItem::new);
     }
     
     private void readPadding(DexReader reader) {
@@ -49,7 +51,28 @@ public class CodeItem extends DexComponent {
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(registersSize, insSize, outsSize, triesSize,
-                debugInfoOff, insnsSize, padding);
+                debugInfoOff, insnsSize, padding, tries);
+    }
+    
+    
+    public static class TryItem extends DexComponent {
+
+        private UInt startAddr;
+        private UShort insnCount;
+        private UShort handlerOff;
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            startAddr = reader.readUInt();
+            insnCount = reader.readUShort();
+            handlerOff = reader.readUShort();
+        }
+        
+        @Override
+        public List<? extends DexComponent> getSubComponents() {
+            return Arrays.asList(startAddr, insnCount, handlerOff);
+        }
+        
     }
     
 }
