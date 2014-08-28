@@ -25,7 +25,7 @@ public class Sleb128 extends DexComponent implements IntValue {
             
             if (b >= 0) {
                 // most significant bit clear
-                value |= (((b << 25) >>> 25) << (i * 7));
+                value |= (((b << 25) >> 25) << (i * 7));
                 break;
             } else {
                 value |= ((b & 0b0111_1111) << (i * 7));

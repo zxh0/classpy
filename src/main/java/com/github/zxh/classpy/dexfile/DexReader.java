@@ -7,6 +7,7 @@ import com.github.zxh.classpy.dexfile.datatype.Mutf8;
 import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.common.IntValue;
+import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
@@ -141,6 +142,13 @@ public class DexReader extends BytesReader {
     
     public Uleb128Hex readUleb128Hex() {
         Uleb128Hex uleb = new Uleb128Hex();
+        uleb.read(this);
+        return uleb;
+    }
+    
+    // Signed Little-Endian Base 128.
+    public Sleb128 readSleb128() {
+        Sleb128 uleb = new Sleb128();
         uleb.read(this);
         return uleb;
     }
