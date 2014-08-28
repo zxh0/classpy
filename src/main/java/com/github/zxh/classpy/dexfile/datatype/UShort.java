@@ -23,4 +23,10 @@ public class UShort extends DexComponent implements IntValue {
         setDesc(String.valueOf(value));
     }
     
+    // to make an optional UShort
+    public void readNothing(DexReader reader) {
+        startRead(reader.getPosition());
+        endRead(reader.getPosition());
+    }
+    
 }
