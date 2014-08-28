@@ -24,11 +24,21 @@ public class OffsetsKnownList<E extends DexComponent> extends DexList<E> {
     @Override
     protected void readList(DexReader reader) {
         offStream.forEach(offset -> {
-            reader.setPosition(offset);
             E e = factory.get();
+            reader.setPosition(offset);
             e.read(reader);
             list.add(e);
         });
+    }
+    
+    @Override
+    protected void setElementName() {
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            E element = list.get(i);
+            String name = "#" + i + "(0x" + Integer.toHexString(element.getOffset()) + ")";
+            element.setName(name);
+        }
     }
     
 }

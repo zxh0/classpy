@@ -35,7 +35,7 @@ public abstract class DexList<E extends DexComponent> extends DexComponent imple
     
     protected abstract void readList(DexReader reader);
     
-    private void setElementName() {
+    protected void setElementName() {
         int size = list.size();
         for (int i = 0; i < size; i++) {
             E element = list.get(i);
