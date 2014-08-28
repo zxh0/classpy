@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.dexfile.body.ClassDefItem;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.data.MapItem;

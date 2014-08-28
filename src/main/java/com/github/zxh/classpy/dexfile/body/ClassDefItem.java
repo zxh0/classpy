@@ -1,5 +1,8 @@
-package com.github.zxh.classpy.dexfile;
+package com.github.zxh.classpy.dexfile.body;
 
+import com.github.zxh.classpy.dexfile.DexComponent;
+import com.github.zxh.classpy.dexfile.DexFile;
+import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
