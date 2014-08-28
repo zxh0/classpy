@@ -39,8 +39,8 @@ public class CodeItem extends DexComponent {
         reader.skipBytes(insnsSize.getValue() * 2); // insns
         readPadding(reader);
         tries = reader.readSizeKnownList(insSize, TryItem::new);
-        handlers = new EncodedCatchHandlerList();
-        handlers.read(reader);
+//        handlers = new EncodedCatchHandlerList();
+//        handlers.read(reader);
     }
     
     private void readPadding(DexReader reader) {
@@ -55,13 +55,13 @@ public class CodeItem extends DexComponent {
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(registersSize, insSize, outsSize, triesSize,
-                debugInfoOff, insnsSize, padding, tries, handlers);
+                debugInfoOff, insnsSize, padding, tries/*, handlers*/);
     }
     
     
     public static class TryItem extends DexComponent {
 
-        private UInt startAddr;
+        private UInt startAddr; // todo
         private UShort insnCount;
         private UShort handlerOff;
         
