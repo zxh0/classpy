@@ -16,7 +16,6 @@ import com.github.zxh.classpy.dexfile.datatype.Uleb128Hex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.UIntHeaderList;
-import com.github.zxh.classpy.dexfile.list.Uleb128HeaderList;
 import java.nio.ByteOrder;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -176,12 +175,6 @@ public class DexReader extends BytesReader {
     
     public <E extends DexComponent> UIntHeaderList<E> readUIntHeaderList(Supplier<E> factory) {
         UIntHeaderList<E> list = new UIntHeaderList<>(factory);
-        list.read(this);
-        return list;
-    }
-    
-    public <E extends DexComponent> Uleb128HeaderList<E> readUleb128HeaderList(Supplier<E> factory) {
-        Uleb128HeaderList<E> list = new Uleb128HeaderList<>(factory);
         list.read(this);
         return list;
     }

@@ -5,6 +5,7 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +25,7 @@ public class CodeItem extends DexComponent {
     // insns
     private UShort padding;
     private SizeKnownList<TryItem> tries;
-    // handlers
+    private EncodedCatchHandlerList handlers;
     
     @Override
     protected void readContent(DexReader reader) {
@@ -37,6 +38,8 @@ public class CodeItem extends DexComponent {
         reader.skipBytes(insnsSize.getValue() * 2); // insns
         readPadding(reader);
         tries = reader.readSizeKnownList(insSize, TryItem::new);
+        handlers = new EncodedCatchHandlerList();
+        handlers.read(reader);
     }
     
     private void readPadding(DexReader reader) {
@@ -51,7 +54,7 @@ public class CodeItem extends DexComponent {
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(registersSize, insSize, outsSize, triesSize,
-                debugInfoOff, insnsSize, padding, tries);
+                debugInfoOff, insnsSize, padding, tries, handlers);
     }
     
     
@@ -71,6 +74,53 @@ public class CodeItem extends DexComponent {
         @Override
         public List<? extends DexComponent> getSubComponents() {
             return Arrays.asList(startAddr, insnCount, handlerOff);
+        }
+        
+    }
+    
+    public static class EncodedCatchHandlerList extends DexComponent {
+
+        private Uleb128 size;
+        private SizeKnownList<EncodedCatchHandler> list;
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            size = reader.readUleb128();
+            list = reader.readSizeKnownList(size, EncodedCatchHandler::new);
+        }
+        
+        @Override
+        public List<? extends DexComponent> getSubComponents() {
+            return Arrays.asList(size, list);
+        }
+        
+    }
+    
+    public static class EncodedCatchHandler extends DexComponent {
+
+        private Uleb128 size;
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            // todo
+        }
+        
+    }
+    
+    public static class EncodedTypeAddrPair extends DexComponent {
+
+        private Uleb128 typeIdx; // todo
+        private Uleb128 addr;
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            typeIdx = reader.readUleb128();
+            addr = reader.readUleb128();
+        }
+        
+        @Override
+        public List<? extends DexComponent> getSubComponents() {
+            return Arrays.asList(typeIdx, addr);
         }
         
     }
