@@ -6,6 +6,7 @@ import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.datatype.Mutf8;
 import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.common.BytesReader;
+import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
@@ -27,7 +28,7 @@ public class DexReader extends BytesReader {
         super(bytes, ByteOrder.LITTLE_ENDIAN, false);
     }
     
-    public void setPosition(UInt newPosition) {
+    public void setPosition(IntValue newPosition) {
         buf.position(newPosition.getValue());
     }
     

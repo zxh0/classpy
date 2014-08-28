@@ -21,37 +21,37 @@ public class HeaderItem extends DexComponent {
     private UInt headerSize;
     private UIntHex endianTag;
     private UInt linkSize;
-    private UInt linkOff;
-    private UInt mapOff;
+    private UIntHex linkOff;
+    private UIntHex mapOff;
     private UInt stringIdsSize;
-    private UInt stringIdsOff;
+    private UIntHex stringIdsOff;
     private UInt typeIdsSize;
-    private UInt typeIdsOff;
+    private UIntHex typeIdsOff;
     private UInt protoIdsSize;
-    private UInt protoIdsOff;
+    private UIntHex protoIdsOff;
     private UInt fieldIdsSize;
-    private UInt fieldIdsOff;
+    private UIntHex fieldIdsOff;
     private UInt methodIdsSize;
-    private UInt methodIdsOff;
+    private UIntHex methodIdsOff;
     private UInt classDefsSize;
-    private UInt classDefsOff;
+    private UIntHex classDefsOff;
     private UInt dataSize;
-    private UInt dataOff;
+    private UIntHex dataOff;
 
     // Getters
-    public UInt getMapOff() {return mapOff;}
+    public UIntHex getMapOff() {return mapOff;}
     public UInt getStringIdsSize() {return stringIdsSize;}
-    public UInt getStringIdsOff() {return stringIdsOff;}
+    public UIntHex getStringIdsOff() {return stringIdsOff;}
     public UInt getTypeIdsSize() {return typeIdsSize;}
-    public UInt getTypeIdsOff() {return typeIdsOff;}
+    public UIntHex getTypeIdsOff() {return typeIdsOff;}
     public UInt getProtoIdsSize() {return protoIdsSize;}
-    public UInt getProtoIdsOff() {return protoIdsOff;}
+    public UIntHex getProtoIdsOff() {return protoIdsOff;}
     public UInt getFieldIdsSize() {return fieldIdsSize;}
-    public UInt getFieldIdsOff() {return fieldIdsOff;}
+    public UIntHex getFieldIdsOff() {return fieldIdsOff;}
     public UInt getMethodIdsSize() {return methodIdsSize;}
-    public UInt getMethodIdsOff() {return methodIdsOff;}
+    public UIntHex getMethodIdsOff() {return methodIdsOff;}
     public UInt getClassDefsSize() {return classDefsSize;}
-    public UInt getClassDefsOff() {return classDefsOff;}
+    public UIntHex getClassDefsOff() {return classDefsOff;}
     
     @Override
     protected void readContent(DexReader reader) {
@@ -63,22 +63,22 @@ public class HeaderItem extends DexComponent {
         headerSize = reader.readUInt();
         endianTag = reader.readUIntHex();
         linkSize = reader.readUInt();
-        linkOff = reader.readUInt();
-        mapOff = reader.readUInt();
+        linkOff = reader.readUIntHex();
+        mapOff = reader.readUIntHex();
         stringIdsSize = reader.readUInt();
-        stringIdsOff = reader.readUInt();
+        stringIdsOff = reader.readUIntHex();
         typeIdsSize = reader.readUInt();
-        typeIdsOff = reader.readUInt();
+        typeIdsOff = reader.readUIntHex();
         protoIdsSize = reader.readUInt();
-        protoIdsOff = reader.readUInt();
+        protoIdsOff = reader.readUIntHex();
         fieldIdsSize = reader.readUInt();
-        fieldIdsOff = reader.readUInt();
+        fieldIdsOff = reader.readUIntHex();
         methodIdsSize = reader.readUInt();
-        methodIdsOff = reader.readUInt();
+        methodIdsOff = reader.readUIntHex();
         classDefsSize = reader.readUInt();
-        classDefsOff = reader.readUInt();
+        classDefsOff = reader.readUIntHex();
         dataSize = reader.readUInt();
-        dataOff = reader.readUInt();
+        dataOff = reader.readUIntHex();
     }
 
     @Override

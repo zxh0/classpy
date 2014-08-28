@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.datatype;
 
+import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 
@@ -7,10 +8,11 @@ import com.github.zxh.classpy.dexfile.DexReader;
  *
  * @author zxh
  */
-public class UIntHex extends DexComponent {
+public class UIntHex extends DexComponent implements IntValue {
 
     private int value;
 
+    @Override
     public int getValue() {
         if (value < 0) {
             // todo
