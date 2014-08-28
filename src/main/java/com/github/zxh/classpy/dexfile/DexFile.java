@@ -17,7 +17,7 @@ import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
-import com.github.zxh.classpy.dexfile.list.UIntHeaderList;
+import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,10 +39,10 @@ public class DexFile extends DexComponent {
     private SizeKnownList<FieldIdItem> fieldIds;
     private SizeKnownList<MethodIdItem> methodIds;
     private SizeKnownList<ClassDefItem> classDefs;
-    private UIntHeaderList<MapItem> mapList;
+    private SizeHeaderList<MapItem> mapList;
     private OffsetsKnownList<StringDataItem> stringDataList;
     private OffsetsKnownList<ClassDataItem> classDataList;
-    private OffsetsKnownList<UIntHeaderList<TypeItem>> typeList;
+    private OffsetsKnownList<SizeHeaderList<TypeItem>> typeList;
     private OffsetsKnownList<CodeItem> codeList;
 
     @Override
@@ -104,7 +104,7 @@ public class DexFile extends DexComponent {
                 .filter(off -> off > 0);
         int[] offArr = IntStream.concat(off1, off2).distinct().toArray();
         
-        Supplier<UIntHeaderList<TypeItem>> factory = () -> new UIntHeaderList<>(TypeItem::new);
+        Supplier<SizeHeaderList<TypeItem>> factory = () -> new SizeHeaderList<>(TypeItem::new);
         
         reader.setPosition(offArr[0]);
         typeList = reader.readOffsetsKnownList(factory, Arrays.stream(offArr));
