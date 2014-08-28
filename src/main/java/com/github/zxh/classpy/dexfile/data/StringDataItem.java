@@ -3,8 +3,8 @@ package com.github.zxh.classpy.dexfile.data;
 import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.Uleb128;
-import com.github.zxh.classpy.dexfile.Mutf8;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128;
+import com.github.zxh.classpy.dexfile.datatype.Mutf8;
 import java.util.Arrays;
 import java.util.List;
 

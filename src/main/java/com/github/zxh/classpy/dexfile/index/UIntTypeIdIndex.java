@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.dexfile.index;
 
 import com.github.zxh.classpy.dexfile.DexFile;
-import com.github.zxh.classpy.dexfile.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
 
 /**

@@ -1,4 +1,7 @@
-package com.github.zxh.classpy.dexfile;
+package com.github.zxh.classpy.dexfile.datatype;
+
+import com.github.zxh.classpy.dexfile.DexComponent;
+import com.github.zxh.classpy.dexfile.DexReader;
 
 /**
  * Unsigned Little-Endian Base 128.

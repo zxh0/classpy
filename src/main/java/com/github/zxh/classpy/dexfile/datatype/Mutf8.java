@@ -1,7 +1,9 @@
-package com.github.zxh.classpy.dexfile;
+package com.github.zxh.classpy.dexfile.datatype;
 
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.Mutf8Decoder;
+import com.github.zxh.classpy.dexfile.DexComponent;
+import com.github.zxh.classpy.dexfile.DexReader;
 import java.io.IOException;
 
 /**

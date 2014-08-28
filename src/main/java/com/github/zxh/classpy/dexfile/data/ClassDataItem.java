@@ -4,7 +4,7 @@ import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.Uleb128;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.ids.FieldIdItem;
 import com.github.zxh.classpy.dexfile.ids.MethodIdItem;
 import java.util.Arrays;

@@ -3,7 +3,7 @@ package com.github.zxh.classpy.dexfile.ids;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.index.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.index.UIntTypeIdIndex;
 import java.util.Arrays;

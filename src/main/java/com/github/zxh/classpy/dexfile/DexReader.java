@@ -1,5 +1,10 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UShort;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128;
+import com.github.zxh.classpy.dexfile.datatype.Mutf8;
+import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.dexfile.index.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.index.UIntTypeIdIndex;
@@ -126,7 +131,7 @@ public class DexReader extends BytesReader {
     
     public Hex readHex(int n) {
         Hex hex = new Hex(n);
-        hex.readContent(this);
+        hex.read(this);
         return hex;
     }
     

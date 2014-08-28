@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.dexfile.header;
 
-import com.github.zxh.classpy.dexfile.Hex;
+import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UInt;
 import java.util.Arrays;
 import java.util.List;
 
