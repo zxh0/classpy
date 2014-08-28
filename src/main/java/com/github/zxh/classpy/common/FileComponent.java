@@ -4,23 +4,24 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- *
+ * A part of a file.
+ * 
  * @author zxh
  */
 public abstract class FileComponent {
     
-    protected int offset; // the position of this ClassComponent in class file
-    protected int length; // how many bytes this ClassComponent has
     private String name;
     private String desc; // description
+    protected int offset; // the position of this FileComponent in the file
+    protected int length; // how many bytes this FileComponent has
     
     // Getters & Setters
-    public final int getOffset() {return offset;}
-    public final int getLength() {return length;}
     public final String getName() {return name;}
     public final void setName(String name) {this.name = name;}
     public final String getDesc() {return desc;}
     public final void setDesc(String desc) {this.desc = desc;}
+    public final int getOffset() {return offset;}
+    public final int getLength() {return length;}
     
     /**
      * Returns sub-components.
@@ -35,7 +36,8 @@ public abstract class FileComponent {
     }
     
     /**
-     * The returned string will be displayed by ClassComponentTreeItem.
+     * The returned string will be displayed by FileComponentTreeItem.
+     * 
      * @return 
      */
     @Override
