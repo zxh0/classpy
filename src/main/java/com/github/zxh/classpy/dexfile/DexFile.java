@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.body.ClassDefItem;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
@@ -112,7 +113,7 @@ public class DexFile extends DexComponent {
                 mapList, stringDataList, classDataList, typeList);
     }
     
-    public String getString(UInt index) {
+    public String getString(IntValue index) {
         return getString(index.getValue());
     }
     
@@ -120,7 +121,7 @@ public class DexFile extends DexComponent {
         return stringDataList.get(index).getValue();
     }
     
-    public TypeIdItem getTypeIdItem(UInt index) {
+    public TypeIdItem getTypeIdItem(IntValue index) {
         return getTypeIdItem(index.getValue());
     }
     
