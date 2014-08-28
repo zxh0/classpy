@@ -8,28 +8,20 @@ import com.github.zxh.classpy.classfile.datatype.U4Hex;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import java.nio.ByteBuffer;
+import com.github.zxh.classpy.common.BytesReader;
+import java.nio.ByteOrder;
 
 /**
  * Convenience class for reading class files.
  * 
  * @author zxh
  */
-public class ClassReader {
+public class ClassReader extends BytesReader {
 
-    private final ByteBuffer buf;
     private ConstantPool constantPool;
     
     public ClassReader(byte[] bytes) {
-        this.buf = ByteBuffer.wrap(bytes);
-    }
-    
-    public ByteBuffer getByteBuffer() {
-        return buf;
-    }
-    
-    public int getPosition() {
-        return buf.position();
+        super(bytes, ByteOrder.BIG_ENDIAN);
     }
     
     public ConstantPool getConstantPool() {
@@ -38,18 +30,6 @@ public class ClassReader {
         } else {
             return constantPool;
         }
-    }
-    
-    public void skipBytes(int n) {
-        for (int i = 0; i < n; i++) {
-            buf.get();
-        }
-    }
-    
-    public byte[] readBytes(int n) {
-        byte[] bytes = new byte[n];
-        buf.get(bytes);
-        return bytes;
     }
     
     public U1 readU1() {

@@ -20,8 +20,8 @@ public class DexReader {
     private final ByteBuffer buf;
 
     public DexReader(byte[] bytes) {
-        this.buf = ByteBuffer.wrap(bytes);
-        this.buf.order(ByteOrder.LITTLE_ENDIAN);
+        buf = ByteBuffer.wrap(bytes);
+        buf.order(ByteOrder.LITTLE_ENDIAN);
     }
     
     public int getPosition() {
