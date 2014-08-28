@@ -10,6 +10,9 @@ import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  *
@@ -38,25 +41,31 @@ public class CodeItem extends DexComponent {
         insnsSize = reader.readUInt();
         reader.skipBytes(insnsSize.getValue() * 2); // insns
         readPadding(reader);
-//        tries = reader.readSizeKnownList(insSize, TryItem::new);
-//        handlers = new EncodedCatchHandlerList();
-//        handlers.read(reader);
+        tries = reader.readSizeKnownList(triesSize, TryItem::new);
+        readHandlers(reader);
     }
     
     private void readPadding(DexReader reader) {
         // This element is only present if tries_size is non-zero and insns_size is odd. 
         if ((triesSize.getValue() > 0) && (insnsSize.getValue() %2 == 1)) {
             padding = reader.readUShort();
-        } else {
-            padding = new UShort();
-            padding.readNothing(reader);
         }
     }
-
+    
+    private void readHandlers(DexReader reader) {
+        if (triesSize.getValue() > 0) {
+            handlers = new EncodedCatchHandlerList();
+            handlers.read(reader);
+        }
+    }
+    
     @Override
     public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(registersSize, insSize, outsSize, triesSize,
-                debugInfoOff, insnsSize, padding/*, tries, handlers*/);
+        Stream<DexComponent> all = Stream.of(registersSize, insSize, outsSize,
+                triesSize, debugInfoOff, insnsSize, padding, tries, handlers);
+        
+        return all.filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
     
     
@@ -111,15 +120,15 @@ public class CodeItem extends DexComponent {
                     EncodedTypeAddrPair::new);
             if (size.getValue() <= 0) {
                 catchAllAddr = reader.readUleb128();
-            } else {
-                catchAllAddr = new Uleb128();
-                catchAllAddr.readNothing(reader);
             }
         }
         
         @Override
         public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(size, handlers, catchAllAddr);
+            Stream<DexComponent> all = Stream.of(size, handlers, catchAllAddr);
+            
+            return all.filter(Objects::nonNull)
+                    .collect(Collectors.toList());
         }
         
     }
