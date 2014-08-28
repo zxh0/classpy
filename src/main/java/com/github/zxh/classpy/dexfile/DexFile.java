@@ -2,8 +2,9 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.body.ClassDefItem;
-import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
+import com.github.zxh.classpy.dexfile.body.data.ClassDataItem.EncodedMethod;
+import com.github.zxh.classpy.dexfile.body.data.CodeItem;
 import com.github.zxh.classpy.dexfile.body.data.MapItem;
 import com.github.zxh.classpy.dexfile.body.data.StringDataItem;
 import com.github.zxh.classpy.dexfile.body.data.TypeItem;
@@ -13,9 +14,11 @@ import com.github.zxh.classpy.dexfile.body.ids.MethodIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.ProtoIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.StringIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
@@ -40,6 +43,7 @@ public class DexFile extends DexComponent {
     private OffsetsKnownList<StringDataItem> stringDataList;
     private OffsetsKnownList<ClassDataItem> classDataList;
     private OffsetsKnownList<SizeHeaderList<TypeItem>> typeList;
+    private OffsetsKnownList<CodeItem> codeList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -85,8 +89,8 @@ public class DexFile extends DexComponent {
         classDataList = reader.readOffsetsKnownList(ClassDataItem::new,
                 classDefs.stream().mapToInt(classDef -> classDef.getClassDataOff().getValue()));
         
-        // todo
         readTypeList(reader);
+        readCodeList(reader);
     }
     
     private void readTypeList(DexReader reader) {
@@ -106,11 +110,32 @@ public class DexFile extends DexComponent {
         typeList = reader.readOffsetsKnownList(factory, Arrays.stream(offArr));
     }
     
+    // todo
+    private void readCodeList(DexReader reader) {
+        List<Uleb128> codeOffsets = new ArrayList<>();
+        for (ClassDataItem classData : classDataList) {
+            for (EncodedMethod method : classData.getDirectMethods()) {
+                if (method.getCodeOff().getValue() > 0) {
+                    codeOffsets.add(method.getCodeOff());
+                }
+            }
+            for (EncodedMethod method : classData.getVirtualMethods()) {
+                if (method.getCodeOff().getValue() > 0) {
+                    codeOffsets.add(method.getCodeOff());
+                }
+            }
+        }
+        
+        reader.setPosition(codeOffsets.get(0));
+        codeList = reader.readOffsetsKnownList(CodeItem::new,
+                codeOffsets.stream().mapToInt(Uleb128::getValue));
+    }
+    
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(header,
                 stringIds, typeIds, protoIds, fieldIds, methodIds, classDefs,
-                mapList, stringDataList, classDataList, typeList);
+                mapList, stringDataList, classDataList, typeList, codeList);
     }
     
     public String getString(IntValue index) {

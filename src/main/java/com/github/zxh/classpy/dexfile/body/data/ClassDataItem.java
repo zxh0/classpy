@@ -9,9 +9,6 @@ import com.github.zxh.classpy.dexfile.body.ids.FieldIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.MethodIdItem;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  *
@@ -27,6 +24,9 @@ public class ClassDataItem extends DexComponent {
     private SizeKnownList<EncodedField> instanceFields;
     private SizeKnownList<EncodedMethod> directMethods;
     private SizeKnownList<EncodedMethod> virtualMethods;
+
+    public SizeKnownList<EncodedMethod> getDirectMethods() {return directMethods;}
+    public SizeKnownList<EncodedMethod> getVirtualMethods() {return virtualMethods;}
     
     @Override
     protected void readContent(DexReader reader) {
@@ -101,34 +101,22 @@ public class ClassDataItem extends DexComponent {
 
         private Uleb128 methodIdxDiff;
         private Uleb128 accessFlags;
-        private Uleb128 codeOff;
-        private CodeItem codeItem;
+        private Uleb128 codeOff; // todo
+
+        public Uleb128 getCodeOff() {
+            return codeOff;
+        }
         
         @Override
         protected void readContent(DexReader reader) {
             methodIdxDiff = reader.readUleb128();
             accessFlags = reader.readUleb128();
             codeOff = reader.readUleb128();
-            if (codeOff.getValue() > 0) {
-                readCodeItem(reader);
-            }
-        }
-        
-        private void readCodeItem(DexReader reader) {
-            int currentPosition = reader.getPosition();
-            reader.setPosition(codeOff.getValue());
-            codeItem = new CodeItem();
-            codeItem.read(reader);
-            reader.setPosition(currentPosition);
         }
         
         @Override
         public List<? extends DexComponent> getSubComponents() {
-            Stream<DexComponent> all = Stream.of(methodIdxDiff, accessFlags,
-                    codeOff, codeItem);
-            
-            return all.filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+            return Arrays.asList(methodIdxDiff, accessFlags, codeOff);
         }
         
     }
