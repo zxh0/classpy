@@ -143,11 +143,7 @@ public class DexReader extends BytesReader {
         return hex;
     }
     
-    public <E extends DexComponent> SizeKnownList<E> readSizeKnownList(UInt size, Supplier<E> factory) {
-        return readSizeKnownList(size.getValue(), factory);
-    }
-    
-    public <E extends DexComponent> SizeKnownList<E> readSizeKnownList(Uleb128 size, Supplier<E> factory) {
+    public <E extends DexComponent> SizeKnownList<E> readSizeKnownList(IntValue size, Supplier<E> factory) {
         return readSizeKnownList(size.getValue(), factory);
     }
     
