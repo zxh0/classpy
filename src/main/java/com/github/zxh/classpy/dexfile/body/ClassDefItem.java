@@ -6,6 +6,7 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
+import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
 import java.util.Arrays;
 import java.util.List;
@@ -20,7 +21,7 @@ public class ClassDefItem extends DexComponent {
     private UInt accessFlags; // todo
     private UIntTypeIdIndex superclassIdx;
     private UIntHex interfacesOff; // todo
-    private UInt sourceFileIdx; // todo
+    private UIntStringIdIndex sourceFileIdx;
     private UIntHex annotationsOff; // todo
     private UIntHex classDataOff; // todo
     private UIntHex staticValuesOff; // todo
@@ -34,7 +35,7 @@ public class ClassDefItem extends DexComponent {
         accessFlags = reader.readUInt();
         superclassIdx = reader.readUIntTypeIdIndex();
         interfacesOff = reader.readUIntHex();
-        sourceFileIdx = reader.readUInt();
+        sourceFileIdx = reader.readUIntStringIdIndex();
         annotationsOff = reader.readUIntHex();
         classDataOff = reader.readUIntHex();
         staticValuesOff = reader.readUIntHex();
