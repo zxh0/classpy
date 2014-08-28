@@ -27,9 +27,9 @@ public class CodeItem extends DexComponent {
     private UIntHex debugInfoOff; // todo
     private UInt insnsSize;
     // insns
-    private UShort padding;
-    private SizeKnownList<TryItem> tries;
-    private EncodedCatchHandlerList handlers;
+    private UShort padding; // optional
+    private SizeKnownList<TryItem> tries; // optional
+    private EncodedCatchHandlerList handlers; // optional
     
     @Override
     protected void readContent(DexReader reader) {
@@ -41,7 +41,7 @@ public class CodeItem extends DexComponent {
         insnsSize = reader.readUInt();
         reader.skipBytes(insnsSize.getValue() * 2); // insns
         readPadding(reader);
-        tries = reader.readSizeKnownList(triesSize, TryItem::new);
+        readTries(reader);
         readHandlers(reader);
     }
     
@@ -49,6 +49,12 @@ public class CodeItem extends DexComponent {
         // This element is only present if tries_size is non-zero and insns_size is odd. 
         if ((triesSize.getValue() > 0) && (insnsSize.getValue() %2 == 1)) {
             padding = reader.readUShort();
+        }
+    }
+    
+    private void readTries(DexReader reader) {
+        if (triesSize.getValue() > 0) {
+            tries = reader.readSizeKnownList(triesSize, TryItem::new);
         }
     }
     
