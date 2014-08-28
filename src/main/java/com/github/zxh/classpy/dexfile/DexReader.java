@@ -173,7 +173,7 @@ public class DexReader extends BytesReader {
         return list;
     }
     
-    public <E extends DexComponent> SizeHeaderList<E> readUIntHeaderList(Supplier<E> factory) {
+    public <E extends DexComponent> SizeHeaderList<E> readSizeHeaderList(Supplier<E> factory) {
         SizeHeaderList<E> list = new SizeHeaderList<>(factory);
         list.read(this);
         return list;
