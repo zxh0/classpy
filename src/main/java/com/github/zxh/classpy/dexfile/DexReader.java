@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.dexfile;
 
+import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.dexfile.index.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.index.UIntTypeIdIndex;
 import com.github.zxh.classpy.dexfile.index.UShortTypeIdIndex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
-import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.function.Supplier;
 import java.util.stream.IntStream;
@@ -15,17 +15,10 @@ import java.util.stream.IntStream;
  *
  * @author zxh
  */
-public class DexReader {
-    
-    private final ByteBuffer buf;
+public class DexReader extends BytesReader {
 
     public DexReader(byte[] bytes) {
-        buf = ByteBuffer.wrap(bytes);
-        buf.order(ByteOrder.LITTLE_ENDIAN);
-    }
-    
-    public int getPosition() {
-        return buf.position();
+        super(bytes, ByteOrder.LITTLE_ENDIAN, false);
     }
     
     public void setPosition(UInt newPosition) {
@@ -34,19 +27,6 @@ public class DexReader {
     
     public void setPosition(int newPosition) {
         buf.position(newPosition);
-    }
-    
-    public void skipBytes(int n) {
-        for (int i = 0; i < n; i++) {
-            buf.get();
-        }
-    }
-    
-    // byte[]
-    public byte[] readBytes(int n) {
-        byte[] bytes = new byte[n];
-        buf.get(bytes);
-        return bytes;
     }
     
     public byte[] readMutf8Bytes() {

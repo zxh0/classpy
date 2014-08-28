@@ -21,7 +21,7 @@ public class ClassReader extends BytesReader {
     private ConstantPool constantPool;
     
     public ClassReader(byte[] bytes) {
-        super(bytes, ByteOrder.BIG_ENDIAN);
+        super(bytes, ByteOrder.BIG_ENDIAN, true);
     }
     
     public ConstantPool getConstantPool() {

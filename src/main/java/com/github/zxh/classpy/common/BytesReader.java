@@ -11,10 +11,9 @@ public abstract class BytesReader {
     
     protected final ByteBuffer buf;
 
-    public BytesReader(byte[] bytes, ByteOrder order) {
-        buf = ByteBuffer.wrap(bytes)
-                .order(order)
-                .asReadOnlyBuffer();
+    public BytesReader(byte[] bytes, ByteOrder order, boolean readOnly) {
+        ByteBuffer _buf = ByteBuffer.wrap(bytes).order(order);
+        this.buf = readOnly ? _buf.asReadOnlyBuffer() : _buf;
     }
     
     public ByteBuffer getByteBuffer() {
