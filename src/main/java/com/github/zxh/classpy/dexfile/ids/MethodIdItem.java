@@ -5,8 +5,8 @@ import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
-import com.github.zxh.classpy.dexfile.index.UIntStringIdIndex;
-import com.github.zxh.classpy.dexfile.index.UShortTypeIdIndex;
+import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
+import com.github.zxh.classpy.dexfile.datatype.UShortTypeIdIndex;
 import java.util.Arrays;
 import java.util.List;
 
