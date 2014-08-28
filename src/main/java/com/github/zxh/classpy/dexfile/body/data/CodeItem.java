@@ -38,13 +38,14 @@ public class CodeItem extends DexComponent {
         insnsSize = reader.readUInt();
         reader.skipBytes(insnsSize.getValue() * 2); // insns
         readPadding(reader);
-        tries = reader.readSizeKnownList(insSize, TryItem::new);
+//        tries = reader.readSizeKnownList(insSize, TryItem::new);
 //        handlers = new EncodedCatchHandlerList();
 //        handlers.read(reader);
     }
     
     private void readPadding(DexReader reader) {
-        if ((reader.getPosition() % 4) != 0) {
+        // This element is only present if tries_size is non-zero and insns_size is odd. 
+        if ((triesSize.getValue() > 0) && (insnsSize.getValue() %2 == 1)) {
             padding = reader.readUShort();
         } else {
             padding = new UShort();
@@ -55,7 +56,7 @@ public class CodeItem extends DexComponent {
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(registersSize, insSize, outsSize, triesSize,
-                debugInfoOff, insnsSize, padding, tries/*, handlers*/);
+                debugInfoOff, insnsSize, padding/*, tries, handlers*/);
     }
     
     
