@@ -4,7 +4,7 @@ package com.github.zxh.classpy.dexfile.datatype;
  *
  * @author zxh
  */
-public class UIntHex extends UInt {
+public class Uleb128Hex extends Uleb128 {
 
     @Override
     protected void describe(int value) {

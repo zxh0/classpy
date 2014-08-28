@@ -29,6 +29,11 @@ public class Uleb128 extends DexComponent implements IntValue {
                 break;
             }
         }
+        
+        describe(value);
+    }
+    
+    protected void describe(int value) {
         setDesc(String.valueOf(value));
     }
     
