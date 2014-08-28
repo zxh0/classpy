@@ -4,6 +4,7 @@ import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class HeaderItem extends DexComponent {
     private Hex signature;
     private UInt fileSize;
     private UInt headerSize;
-    private UInt endianTag;
+    private UIntHex endianTag;
     private UInt linkSize;
     private UInt linkOff;
     private UInt mapOff;
@@ -60,8 +61,7 @@ public class HeaderItem extends DexComponent {
         signature = reader.readHex(20);
         fileSize = reader.readUInt();
         headerSize = reader.readUInt();
-        endianTag = reader.readUInt();
-        endianTag.setDesc(endianTag.toHexString());
+        endianTag = reader.readUIntHex();
         linkSize = reader.readUInt();
         linkOff = reader.readUInt();
         mapOff = reader.readUInt();

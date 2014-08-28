@@ -28,8 +28,4 @@ public class UInt extends DexComponent {
         }
     }
     
-    public String toHexString() {
-        return "0x" + Integer.toHexString(value);
-    }
-    
 }

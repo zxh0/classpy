@@ -6,6 +6,7 @@ import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.datatype.Mutf8;
 import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.common.BytesReader;
+import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UShortTypeIdIndex;
@@ -85,6 +86,12 @@ public class DexReader extends BytesReader {
     // 32-bit unsigned int, little-endian
     public UInt readUInt() {
         UInt uint = new UInt();
+        uint.read(this);
+        return uint;
+    }
+    
+    public UIntHex readUIntHex() {
+        UIntHex uint = new UIntHex();
         uint.read(this);
         return uint;
     }
