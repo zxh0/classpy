@@ -23,6 +23,10 @@ public class UInt extends DexComponent implements IntValue {
     @Override
     protected void readContent(DexReader reader) {
         value = reader.readInt(); // todo
+        setDesc(value);
+    }
+    
+    protected void setDesc(int value) {
         if (value < 0) {
             setDesc(Integer.toUnsignedString(value));
         } else {
