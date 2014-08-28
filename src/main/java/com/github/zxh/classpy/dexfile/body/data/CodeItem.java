@@ -1,7 +1,9 @@
 package com.github.zxh.classpy.dexfile.body.data;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
+import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
+import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
@@ -77,7 +79,7 @@ public class CodeItem extends DexComponent {
     
     public static class TryItem extends DexComponent {
 
-        private UInt startAddr; // todo
+        private UInt startAddr;
         private UShort insnCount;
         private UShort handlerOff;
         
@@ -117,7 +119,7 @@ public class CodeItem extends DexComponent {
 
         private Sleb128 size;
         private SizeKnownList<EncodedTypeAddrPair> handlers;
-        private Uleb128 catchAllAddr;
+        private Uleb128 catchAllAddr; // optional
         
         @Override
         protected void readContent(DexReader reader) {
@@ -148,6 +150,14 @@ public class CodeItem extends DexComponent {
         protected void readContent(DexReader reader) {
             typeIdx = reader.readUleb128();
             addr = reader.readUleb128();
+        }
+        
+        @Override
+        protected void postRead(DexFile dexFile) {
+            TypeIdItem typeId = dexFile.getTypeIdItem(typeIdx);
+            String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
+            
+            typeIdx.setDesc(typeIdx.getValue() + "->" + typeDesc);
         }
         
         @Override
