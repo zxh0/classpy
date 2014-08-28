@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
 import java.util.Arrays;
@@ -15,25 +16,25 @@ public class ClassDefItem extends DexComponent {
     private UIntTypeIdIndex classIdx;
     private UInt accessFlags; // todo
     private UIntTypeIdIndex superclassIdx;
-    private UInt interfacesOff; // todo
+    private UIntHex interfacesOff; // todo
     private UInt sourceFileIdx; // todo
-    private UInt annotationsOff; // todo
-    private UInt classDataOff; // todo
-    private UInt staticValuesOff; // todo
+    private UIntHex annotationsOff; // todo
+    private UIntHex classDataOff; // todo
+    private UIntHex staticValuesOff; // todo
 
-    public UInt getClassDataOff() {return classDataOff;}
-    public UInt getInterfacesOff() {return interfacesOff;}
+    public UIntHex getClassDataOff() {return classDataOff;}
+    public UIntHex getInterfacesOff() {return interfacesOff;}
 
     @Override
     protected void readContent(DexReader reader) {
         classIdx = reader.readUIntTypeIdIndex();
         accessFlags = reader.readUInt();
         superclassIdx = reader.readUIntTypeIdIndex();
-        interfacesOff = reader.readUInt();
+        interfacesOff = reader.readUIntHex();
         sourceFileIdx = reader.readUInt();
-        annotationsOff = reader.readUInt();
-        classDataOff = reader.readUInt();
-        staticValuesOff = reader.readUInt();
+        annotationsOff = reader.readUIntHex();
+        classDataOff = reader.readUIntHex();
+        staticValuesOff = reader.readUIntHex();
     }
 
     @Override
