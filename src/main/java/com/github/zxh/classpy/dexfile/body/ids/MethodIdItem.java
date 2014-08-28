@@ -6,6 +6,7 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
 import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
+import com.github.zxh.classpy.dexfile.datatype.UShortProtoIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UShortTypeIdIndex;
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.List;
 public class MethodIdItem extends DexComponent {
 
     private UShortTypeIdIndex classIdx;
-    private UShort protoIdx; // todo
+    private UShortProtoIdIndex protoIdx;
     private UIntStringIdIndex nameIdx;
 
     public UShort getClassIdx() {return classIdx;}
@@ -27,7 +28,7 @@ public class MethodIdItem extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         classIdx = reader.readUShortTypeIdIndex();
-        protoIdx = reader.readUShort();
+        protoIdx = reader.readUShortProtoIdIndex();
         nameIdx = reader.readUIntStringIdIndex();
     }
 

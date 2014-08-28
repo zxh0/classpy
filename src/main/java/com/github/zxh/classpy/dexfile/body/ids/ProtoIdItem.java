@@ -19,9 +19,8 @@ public class ProtoIdItem extends DexComponent {
     private UIntTypeIdIndex returnTypeIdx;
     private UIntHex parametersOff; // todo type_list
 
-    public UIntHex getParametersOff() {
-        return parametersOff;
-    }
+    public UIntStringIdIndex getShortyIdx() {return shortyIdx;}
+    public UIntHex getParametersOff() {return parametersOff;}
 
     @Override
     protected void readContent(DexReader reader) {

@@ -10,6 +10,7 @@ import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
+import com.github.zxh.classpy.dexfile.datatype.UShortProtoIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UShortTypeIdIndex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
@@ -75,6 +76,12 @@ public class DexReader extends BytesReader {
     
     public UShortTypeIdIndex readUShortTypeIdIndex() {
         UShortTypeIdIndex ushort = new UShortTypeIdIndex();
+        ushort.read(this);
+        return ushort;
+    }
+    
+    public UShortProtoIdIndex readUShortProtoIdIndex() {
+        UShortProtoIdIndex ushort = new UShortProtoIdIndex();
         ushort.read(this);
         return ushort;
     }

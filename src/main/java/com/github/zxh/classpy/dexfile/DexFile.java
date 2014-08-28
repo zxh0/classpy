@@ -129,6 +129,10 @@ public class DexFile extends DexComponent {
         return typeIds.get(index);
     }
     
+    public ProtoIdItem getProtoIdItem(int index) {
+        return protoIds.get(index);
+    }
+    
     public FieldIdItem getFieldIdItem(int index) {
         return fieldIds.get(index);
     }
