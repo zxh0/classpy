@@ -39,6 +39,7 @@ public class FileComponentHelper {
                 } else {
                     Object fcFieldVal = field.get(fcObj);
                     if (isFileComponentList(fcFieldVal)) {
+                        // field is List<FileComponent>
                         @SuppressWarnings("unchecked")
                         List<FileComponent> list = (List<FileComponent>) fcFieldVal;
                         for (FileComponent item : list) {
