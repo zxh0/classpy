@@ -1,28 +1,13 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.common.FileComponent;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Abstract base class for all class file components.
  * 
  * @author zxh
  */
-public abstract class ClassComponent implements FileComponent {
-    
-    private int offset; // the position of this ClassComponent in class file
-    private int length; // how many bytes this ClassComponent has
-    private String name;
-    private String desc; // description
-
-    // Getters & Setters
-    @Override public final int getOffset() {return offset;}
-    @Override public final int getLength() {return length;}
-    @Override public final String getName() {return name;}
-    @Override public final void setName(String name) {this.name = name;}
-    public final String getDesc() {return desc;}
-    public final void setDesc(String desc) {this.desc = desc;}
+public abstract class ClassComponent extends FileComponent {
 
     /**
      * Reads content, records offset and length.
@@ -39,36 +24,5 @@ public abstract class ClassComponent implements FileComponent {
      * @param reader 
      */
     protected abstract void readContent(ClassReader reader);
-    
-    /**
-     * Returns sub-components.
-     * This is the default implementation, subclass which really has sub-components
-     * should override this.
-     * @return 
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<? extends ClassComponent> getSubComponents() {
-        return Collections.EMPTY_LIST;
-    }
-    
-    /**
-     * The returned string will be displayed by ClassComponentTreeItem.
-     * @return 
-     */
-    @Override
-    public final String toString() {
-        if (name != null && desc != null) {
-            return name + ": " + desc;
-        }
-        if (name != null) {
-            return name;
-        }
-        if (desc != null) {
-            return desc;
-        }
-        
-        return getClass().getSimpleName();
-    }
     
 }
