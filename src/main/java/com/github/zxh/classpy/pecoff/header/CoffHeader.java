@@ -3,6 +3,7 @@ package com.github.zxh.classpy.pecoff.header;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.pecoff.PeComponent;
 import com.github.zxh.classpy.pecoff.PeReader;
+import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
 import java.util.Arrays;
 import java.util.List;
@@ -14,11 +15,13 @@ import java.util.List;
 public class CoffHeader extends PeComponent {
 
     private UInt16Hex machine;
+    private UInt16 numberOfSections;
     
     @Override
     protected void readContent(PeReader reader) {
         machine = reader.readUInt16Hex();
         machine.setDesc(machine.getDesc() + "(" + getMachineType(machine.getValue()) + ")");
+        numberOfSections = reader.readUInt16();
     }
     
     private static String getMachineType(int value) {
@@ -51,7 +54,7 @@ public class CoffHeader extends PeComponent {
 
     @Override
     public List<? extends PeComponent> getSubComponents() {
-        return Arrays.asList(machine);
+        return Arrays.asList(machine, numberOfSections);
     }
     
 }

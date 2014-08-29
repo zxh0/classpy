@@ -1,26 +1,15 @@
 package com.github.zxh.classpy.pecoff.datatype;
 
-import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.common.Util;
-import com.github.zxh.classpy.pecoff.PeComponent;
-import com.github.zxh.classpy.pecoff.PeReader;
 
 /**
  *
  * @author zxh
  */
-public class UInt16Hex extends PeComponent implements IntValue {
-    
-    private int value;
+public class UInt16Hex extends UInt16 {
 
     @Override
-    public int getValue() {
-        return value;
-    }
-
-    @Override
-    protected void readContent(PeReader reader) {
-        value = Short.toUnsignedInt(reader.getByteBuffer().getShort());
+    protected void describe(int value) {
         setDesc(Util.toHexString(value));
     }
     

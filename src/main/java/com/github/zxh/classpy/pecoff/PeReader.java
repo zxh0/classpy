@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.pecoff;
 
 import com.github.zxh.classpy.common.BytesReader;
+import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
 import java.nio.ByteOrder;
 
@@ -12,6 +13,13 @@ public class PeReader extends BytesReader {
 
     public PeReader(byte[] bytes) {
         super(bytes, ByteOrder.LITTLE_ENDIAN, true);
+    }
+    
+    // todo
+    public UInt16 readUInt16() {
+        UInt16 uint = new UInt16();
+        uint.read(this);
+        return uint;
     }
     
     // todo
