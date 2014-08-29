@@ -7,7 +7,7 @@ import java.nio.ByteOrder;
  *
  * @author zxh
  */
-public abstract class BytesReader {
+public class BytesReader {
     
     protected final ByteBuffer buf;
 

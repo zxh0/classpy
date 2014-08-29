@@ -7,8 +7,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import org.junit.Test;
 import static com.github.zxh.classpy.common.Mutf8Decoder.decodeMutf8;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
+/**
+ * 
+ * @author zxh
+ */
 public class Mutf8DecoderTest {
     
     @Test
