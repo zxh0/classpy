@@ -5,6 +5,7 @@ import com.github.zxh.classpy.pecoff.PeComponent;
 import com.github.zxh.classpy.pecoff.PeReader;
 import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
+import com.github.zxh.classpy.pecoff.datatype.Int32;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,12 +17,14 @@ public class CoffHeader extends PeComponent {
 
     private UInt16Hex machine;
     private UInt16 numberOfSections;
+    private Int32 timeDateStamp;
     
     @Override
     protected void readContent(PeReader reader) {
         machine = reader.readUInt16Hex();
         machine.setDesc(machine.getDesc() + "(" + getMachineType(machine.getValue()) + ")");
         numberOfSections = reader.readUInt16();
+        timeDateStamp = reader.readInt32();
     }
     
     private static String getMachineType(int value) {
@@ -54,7 +57,7 @@ public class CoffHeader extends PeComponent {
 
     @Override
     public List<? extends PeComponent> getSubComponents() {
-        return Arrays.asList(machine, numberOfSections);
+        return Arrays.asList(machine, numberOfSections, timeDateStamp);
     }
     
 }
