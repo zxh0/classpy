@@ -11,19 +11,24 @@ import java.util.Map;
  */
 public class FileParsers {
     
-    private static final Map<String, FileParser> parsers = new HashMap<>();
+    private static final Map<String, FileParser> PARSERS = new HashMap<>();
     static {
-        parsers.put(".class", new ClassParser());
-        parsers.put(".dex", new DexParser());
+        PARSERS.put(".class", new ClassParser());
+        PARSERS.put(".dex", new DexParser());
     }
     
+    private static final FileParser UNSUPPORTED_FILE_PARSER = f -> {
+        FileComponent fc = new FileComponent() {};
+        fc.setName("UnsupportedFile");
+        return fc;
+    };
     
     public static FileParser getParser(String fileType) {
-        if (! parsers.containsKey(fileType)) {
-            throw new FileParseException("Unsupported file type: " + fileType);
+        if (PARSERS.containsKey(fileType)) {
+            return PARSERS.get(fileType);
+        } else {
+            return UNSUPPORTED_FILE_PARSER;
         }
-        
-        return parsers.get(fileType);
     }
     
 }
