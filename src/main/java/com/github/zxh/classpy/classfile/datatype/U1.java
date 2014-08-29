@@ -20,6 +20,10 @@ public class U1 extends ClassComponent {
     protected void readContent(ClassReader reader) {
         byte b = reader.getByteBuffer().get();
         value = Byte.toUnsignedInt(b);
+        describe(value, reader);
+    }
+    
+    protected void describe(int value, ClassReader reader) {
         setDesc(String.valueOf(value));
     }
     
