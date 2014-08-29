@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.pecoff;
 
+import com.github.zxh.classpy.pecoff.header.MsDosStub;
 import java.util.Arrays;
 import java.util.List;
 
