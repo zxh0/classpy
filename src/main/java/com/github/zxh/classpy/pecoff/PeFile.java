@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.pecoff;
 
+import com.github.zxh.classpy.pecoff.header.CoffHeader;
 import com.github.zxh.classpy.pecoff.header.MsDosStub;
 import com.github.zxh.classpy.pecoff.header.Signature;
 import java.util.Arrays;
@@ -15,6 +16,7 @@ public class PeFile extends PeComponent {
 
     private MsDosStub dosStub;
     private Signature signature;
+    private CoffHeader coffHeader;
     
     @Override
     protected void readContent(PeReader reader) {
@@ -22,12 +24,14 @@ public class PeFile extends PeComponent {
         dosStub.read(reader);
         signature = new Signature();
         signature.read(reader);
+        coffHeader = new CoffHeader();
+        coffHeader.read(reader);
         // todo
     }
 
     @Override
     public List<? extends PeComponent> getSubComponents() {
-        return Arrays.asList(dosStub, signature);
+        return Arrays.asList(dosStub, signature, coffHeader);
     }
     
 }

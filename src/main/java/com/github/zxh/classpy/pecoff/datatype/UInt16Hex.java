@@ -9,7 +9,7 @@ import com.github.zxh.classpy.pecoff.PeReader;
  *
  * @author zxh
  */
-public class Int16Hex extends PeComponent implements IntValue {
+public class UInt16Hex extends PeComponent implements IntValue {
     
     private int value;
 
@@ -20,7 +20,7 @@ public class Int16Hex extends PeComponent implements IntValue {
 
     @Override
     protected void readContent(PeReader reader) {
-        value = reader.readInt16();
+        value = Short.toUnsignedInt(reader.getByteBuffer().getShort());
         setDesc(Util.toHexString(value));
     }
     
