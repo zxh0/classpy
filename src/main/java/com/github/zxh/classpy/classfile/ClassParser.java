@@ -2,14 +2,16 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.FileComponentHelper;
+import com.github.zxh.classpy.common.FileParser;
 
 /**
  *
  * @author zxh
  */
-public class ClassParser {
+public class ClassParser implements FileParser {
     
-    public static ClassFile parse(byte[] bytes) {
+    @Override
+    public ClassFile parse(byte[] bytes) throws FileParseException {
         ClassFile cf = new ClassFile();
         cf.read(new ClassReader(bytes));
         

@@ -2,15 +2,16 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.FileComponentHelper;
+import com.github.zxh.classpy.common.FileParser;
 
 /**
  *
  * @author zxh
  */
-public class DexParser {
+public class DexParser implements FileParser {
 
-    // todo
-    public static DexFile parse(byte[] bytes) {
+    @Override
+    public DexFile parse(byte[] bytes) throws FileParseException {
         DexFile dex = new DexFile();
         dex.read(new DexReader(bytes));
         

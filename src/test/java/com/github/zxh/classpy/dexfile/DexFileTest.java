@@ -15,7 +15,7 @@ public class DexFileTest {
     private static DexFile loadDex(String dexFileName) throws Exception {
         Path dexFilePath = Paths.get(ClassLoader.getSystemResource(dexFileName).toURI());
         byte[] dexBytes = Files.readAllBytes(dexFilePath);
-        DexFile dex = DexParser.parse(dexBytes);
+        DexFile dex = new DexParser().parse(dexBytes);
         return dex;
     }
     
