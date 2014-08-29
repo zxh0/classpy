@@ -13,4 +13,9 @@ public class PeReader extends BytesReader {
         super(bytes, ByteOrder.LITTLE_ENDIAN, true);
     }
     
+    // todo
+    public int readInt16() {
+        return buf.getShort();
+    }
+    
 }
