@@ -3,6 +3,7 @@ package com.github.zxh.classpy.dexfile.body.data;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,7 +13,7 @@ import java.util.List;
  */
 public class AnnotationsDirectoryItem extends DexComponent {
 
-    private UInt classAnnotationsOff;
+    private UIntHex classAnnotationsOff;
     private UInt fieldsSize;
     private UInt annotatedMethodsSize;
     private UInt annotatedParametersSize;
@@ -23,7 +24,7 @@ public class AnnotationsDirectoryItem extends DexComponent {
     
     @Override
     protected void readContent(DexReader reader) {
-        classAnnotationsOff = reader.readUInt();
+        classAnnotationsOff = reader.readUIntHex();
         fieldsSize = reader.readUInt();
         annotatedMethodsSize = reader.readUInt();
         annotatedParametersSize = reader.readUInt();

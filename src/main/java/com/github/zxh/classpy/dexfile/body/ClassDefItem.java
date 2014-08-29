@@ -28,6 +28,7 @@ public class ClassDefItem extends DexComponent {
 
     public UIntHex getClassDataOff() {return classDataOff;}
     public UIntHex getInterfacesOff() {return interfacesOff;}
+    public UIntHex getAnnotationsOff() {return annotationsOff;}
 
     @Override
     protected void readContent(DexReader reader) {

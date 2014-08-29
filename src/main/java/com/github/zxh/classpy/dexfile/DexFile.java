@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.body.ClassDefItem;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationsDirectoryItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem.EncodedMethod;
 import com.github.zxh.classpy.dexfile.body.data.CodeItem;
@@ -46,6 +47,7 @@ public class DexFile extends DexComponent {
     private OffsetsKnownList<SizeHeaderList<TypeItem>> typeList;
     private OffsetsKnownList<CodeItem> codeList;
     private OffsetsKnownList<DebugInfoItem> debugInfoList;
+    private OffsetsKnownList<AnnotationsDirectoryItem> annotationsDirectoryList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -94,6 +96,7 @@ public class DexFile extends DexComponent {
         readTypeList(reader);
         readCodeList(reader);
         readDebugInfoList(reader);
+        readAnnotationsDirectoryList(reader);
     }
     
     private void readTypeList(DexReader reader) {
@@ -143,8 +146,22 @@ public class DexFile extends DexComponent {
         if (offArr.length > 0) {
             reader.setPosition(offArr[0]);
         }
-        debugInfoList = reader.readOffsetsKnownList(DebugInfoItem::new,
-                Arrays.stream(offArr));
+        debugInfoList = reader.readOffsetsKnownList(
+                DebugInfoItem::new, Arrays.stream(offArr));
+    }
+    
+    private void readAnnotationsDirectoryList(DexReader reader) {
+        int[] offArr = classDefs.stream()
+                .map(classDef -> classDef.getAnnotationsOff())
+                .filter(off -> off.getValue() > 0)
+                .mapToInt(x -> x.getValue())
+                .toArray();
+        
+        if (offArr.length > 0) {
+            reader.setPosition(offArr[0]);
+        }
+        annotationsDirectoryList = reader.readOffsetsKnownList(
+                AnnotationsDirectoryItem::new, Arrays.stream(offArr));
     }
     
     @Override
@@ -152,7 +169,7 @@ public class DexFile extends DexComponent {
         return Arrays.asList(header,
                 stringIds, typeIds, protoIds, fieldIds, methodIds, classDefs,
                 mapList, stringDataList, classDataList, typeList, codeList,
-                debugInfoList);
+                debugInfoList, annotationsDirectoryList);
     }
     
     public String getString(IntValue index) {
