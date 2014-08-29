@@ -3,7 +3,9 @@ package com.github.zxh.classpy.dexfile.body.data;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UIntFieldIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
+import com.github.zxh.classpy.dexfile.datatype.UIntMethodIdIndex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.util.Arrays;
 import java.util.List;
@@ -43,13 +45,13 @@ public class AnnotationsDirectoryItem extends DexComponent {
     
     public static class FieldAnnotation extends DexComponent {
 
-        private UInt fieldIdx;
-        private UInt annotationsOff;
+        private UIntFieldIdIndex fieldIdx;
+        private UIntHex annotationsOff;
         
         @Override
         protected void readContent(DexReader reader) {
-            fieldIdx = reader.readUInt();
-            annotationsOff = reader.readUInt();
+            fieldIdx = reader.readUIntFieldIdIndex();
+            annotationsOff = reader.readUIntHex();
         }
         
         @Override
@@ -61,13 +63,13 @@ public class AnnotationsDirectoryItem extends DexComponent {
     
     public static class MethodAnnotation extends DexComponent {
 
-        private UInt methodIdx;
-        private UInt annotationsOff;
+        private UIntMethodIdIndex methodIdx;
+        private UIntHex annotationsOff;
         
         @Override
         protected void readContent(DexReader reader) {
-            methodIdx = reader.readUInt();
-            annotationsOff = reader.readUInt();
+            methodIdx = reader.readUIntMethodIdIndex();
+            annotationsOff = reader.readUIntHex();
         }
         
         @Override
