@@ -30,10 +30,21 @@ public abstract class BytesReader {
         }
     }
     
+    // byte[]
     public byte[] readBytes(int n) {
         byte[] bytes = new byte[n];
         buf.get(bytes);
         return bytes;
+    }
+    
+    // 8-bit signed int
+    public byte readByte() {
+        return buf.get();
+    }
+    
+    // 8-bit unsigned int
+    public int readUByte() {
+        return Byte.toUnsignedInt(buf.get());
     }
     
 }

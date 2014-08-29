@@ -2,6 +2,7 @@ package com.github.zxh.classpy.common;
 
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.dexfile.DexParser;
+import com.github.zxh.classpy.pecoff.PeParser;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ public class FileParsers {
     static {
         PARSERS.put(".class", new ClassParser());
         PARSERS.put(".dex", new DexParser());
+        PARSERS.put(".exe", new PeParser());
     }
     
     private static final FileParser UNSUPPORTED_FILE_PARSER = f -> {
