@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
+import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.FileParser;
 import com.github.zxh.classpy.common.FileParsers;
 import java.io.File;
@@ -25,6 +26,10 @@ public class OpenFileTask extends Task<Object> {
     @Override
     protected Object call() throws Exception {
         System.out.println("loading " + file.getAbsolutePath() + "...");
+        
+        if (Files.size(file.toPath()) > 512 * 1024) {
+            throw new FileParseException("File is too large!");
+        }
         
         String fileType = getExtension(file.getName());
         FileParser parser = FileParsers.getParser(fileType);

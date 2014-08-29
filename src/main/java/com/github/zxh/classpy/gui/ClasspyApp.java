@@ -93,9 +93,9 @@ public class ClasspyApp extends Application {
     private void initFileChooser() {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
-        fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("BIN", "*.class", "*.dex")
-        );
+//        fileChooser.getExtensionFilters().addAll(
+//            new FileChooser.ExtensionFilter("BIN", "*.class", "*.dex")
+//        );
     }
     
     private void openFile(File file, Runnable succeededCallback) {
