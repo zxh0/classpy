@@ -14,6 +14,7 @@ public class DebugInfoItem extends DexComponent {
 
     private Uleb128 lineStart;
     private Uleb128 parametersSize;
+    // parameter_names todo
     
     @Override
     protected void readContent(DexReader reader) {
