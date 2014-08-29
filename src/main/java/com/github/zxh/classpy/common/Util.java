@@ -12,6 +12,16 @@ import java.util.stream.Stream;
 public class Util {
     
     /**
+     * Convert i to HEX string.
+     * 
+     * @param i
+     * @return 
+     */
+    public static String toHexString(int i) {
+        return "0x" + Integer.toHexString(i);
+    }
+    
+    /**
      * Convert index to String.
      * Examples:
      * maxIndex index result
