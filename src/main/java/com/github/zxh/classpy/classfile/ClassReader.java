@@ -9,6 +9,7 @@ import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.common.BytesReader;
+import com.github.zxh.classpy.common.IntValue;
 import java.nio.ByteOrder;
 
 /**
@@ -74,16 +75,8 @@ public class ClassReader extends BytesReader {
         return constantPool;
     }
     
-    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, U1 length) {
-        return readTable(classOfT, length.getValue());
-    }
-    
-    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, U2 length) {
-        return readTable(classOfT, length.getValue());
-    }
-    
-    private <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, int length) {
-        Table<T> table = new Table<>(classOfT, length);
+    public <T extends ClassComponent> Table<T> readTable(Class<T> classOfT, IntValue length) {
+        Table<T> table = new Table<>(classOfT, length.getValue());
         table.read(this);
         return table;
     }
