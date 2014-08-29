@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.pecoff;
 
 import com.github.zxh.classpy.pecoff.header.MsDosStub;
+import com.github.zxh.classpy.pecoff.header.Signature;
 import java.util.Arrays;
 import java.util.List;
 
@@ -13,17 +14,20 @@ import java.util.List;
 public class PeFile extends PeComponent {
 
     private MsDosStub dosStub;
+    private Signature signature;
     
     @Override
     protected void readContent(PeReader reader) {
         dosStub = new MsDosStub();
         dosStub.read(reader);
+        signature = new Signature();
+        signature.read(reader);
         // todo
     }
 
     @Override
     public List<? extends PeComponent> getSubComponents() {
-        return Arrays.asList(dosStub);
+        return Arrays.asList(dosStub, signature);
     }
     
 }
