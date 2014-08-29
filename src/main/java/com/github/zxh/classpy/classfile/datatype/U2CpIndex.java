@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile.datatype;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 
 /**
@@ -8,18 +7,10 @@ import com.github.zxh.classpy.classfile.ClassReader;
  *
  * @author zxh
  */
-public class U2CpIndex extends ClassComponent {
+public class U2CpIndex extends U2 {
 
-    private int value;
-
-    public int getValue() {
-        return value;
-    }
-    
     @Override
-    protected void readContent(ClassReader reader) {
-        short s = reader.getByteBuffer().getShort();
-        value = Short.toUnsignedInt(s);
+    protected void describe(int value, ClassReader reader) {
         if (value > 0) {
             String constantDesc = reader.getConstantPool().getConstantDesc(value);
             setDesc("#" + value + "->" + constantDesc);

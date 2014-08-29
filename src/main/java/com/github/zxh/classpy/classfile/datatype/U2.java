@@ -22,6 +22,10 @@ public class U2 extends ClassComponent implements IntValue {
     protected void readContent(ClassReader reader) {
         short s = reader.getByteBuffer().getShort();
         value = Short.toUnsignedInt(s);
+        describe(value, reader);
+    }
+    
+    protected void describe(int value, ClassReader reader) {
         setDesc(String.valueOf(value));
     }
     
