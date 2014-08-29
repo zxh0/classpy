@@ -9,15 +9,9 @@ import com.github.zxh.classpy.classfile.ClassReader;
  */
 public class U4Float extends ClassComponent {
 
-    private float value;
-
-    public float getValue() {
-        return value;
-    }
-    
     @Override
     protected void readContent(ClassReader reader) {
-        value = reader.getByteBuffer().getFloat();
+        float value = reader.getByteBuffer().getFloat();
         setDesc(String.valueOf(value));
     }
     

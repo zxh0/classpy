@@ -18,13 +18,12 @@ public class ConstantFloatInfo extends ConstantInfo {
 
     @Override
     protected void readInfo(ClassReader reader) {
-        bytes = new U4Float();
-        bytes.read(reader);
+        bytes = reader.readU4Float();
     }
     
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return String.valueOf(bytes.getValue());
+        return bytes.getDesc();
     }
     
     @Override
