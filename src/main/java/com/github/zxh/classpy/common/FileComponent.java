@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author zxh
  */
-public abstract class FileComponent {
+public class FileComponent {
     
     private String name;
     private String desc; // description

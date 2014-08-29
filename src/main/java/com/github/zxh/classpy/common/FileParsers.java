@@ -20,7 +20,7 @@ public class FileParsers {
     }
     
     private static final FileParser UNSUPPORTED_FILE_PARSER = f -> {
-        FileComponent fc = new FileComponent() {};
+        FileComponent fc = new FileComponent();
         fc.setName("UnsupportedFile");
         return fc;
     };
