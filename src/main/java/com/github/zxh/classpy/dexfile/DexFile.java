@@ -5,6 +5,7 @@ import com.github.zxh.classpy.dexfile.body.ClassDefItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem.EncodedMethod;
 import com.github.zxh.classpy.dexfile.body.data.CodeItem;
+import com.github.zxh.classpy.dexfile.body.data.DebugInfoItem;
 import com.github.zxh.classpy.dexfile.body.data.MapItem;
 import com.github.zxh.classpy.dexfile.body.data.StringDataItem;
 import com.github.zxh.classpy.dexfile.body.data.TypeItem;
@@ -44,6 +45,7 @@ public class DexFile extends DexComponent {
     private OffsetsKnownList<ClassDataItem> classDataList;
     private OffsetsKnownList<SizeHeaderList<TypeItem>> typeList;
     private OffsetsKnownList<CodeItem> codeList;
+    private OffsetsKnownList<DebugInfoItem> debugInfoList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -91,6 +93,7 @@ public class DexFile extends DexComponent {
         
         readTypeList(reader);
         readCodeList(reader);
+        readDebugInfoList(reader);
     }
     
     private void readTypeList(DexReader reader) {
@@ -110,7 +113,6 @@ public class DexFile extends DexComponent {
         typeList = reader.readOffsetsKnownList(factory, Arrays.stream(offArr));
     }
     
-    // todo
     private void readCodeList(DexReader reader) {
         List<Uleb128> codeOffsets = new ArrayList<>();
         for (ClassDataItem classData : classDataList) {
@@ -131,11 +133,26 @@ public class DexFile extends DexComponent {
                 codeOffsets.stream().mapToInt(Uleb128::getValue));
     }
     
+    private void readDebugInfoList(DexReader reader) {
+        int[] offArr = codeList.stream()
+                .map(codeItem -> codeItem.getDebugInfoOff())
+                .filter(off -> off.getValue() > 0)
+                .mapToInt(x -> x.getValue())
+                .toArray();
+        
+        if (offArr.length > 0) {
+            reader.setPosition(offArr[0]);
+        }
+        debugInfoList = reader.readOffsetsKnownList(DebugInfoItem::new,
+                Arrays.stream(offArr));
+    }
+    
     @Override
     public List<? extends DexComponent> getSubComponents() {
         return Arrays.asList(header,
                 stringIds, typeIds, protoIds, fieldIds, methodIds, classDefs,
-                mapList, stringDataList, classDataList, typeList, codeList);
+                mapList, stringDataList, classDataList, typeList, codeList,
+                debugInfoList);
     }
     
     public String getString(IntValue index) {

@@ -30,6 +30,10 @@ public class CodeItem extends DexComponent {
     private UShort padding; // optional
     private SizeKnownList<TryItem> tries; // optional
     private EncodedCatchHandlerList handlers; // optional
+
+    public UIntHex getDebugInfoOff() {
+        return debugInfoOff;
+    }
     
     @Override
     protected void readContent(DexReader reader) {
