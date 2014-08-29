@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.body.data;
 
+import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
@@ -12,9 +13,6 @@ import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  *
@@ -69,11 +67,8 @@ public class CodeItem extends DexComponent {
     
     @Override
     public List<? extends DexComponent> getSubComponents() {
-        Stream<DexComponent> all = Stream.of(registersSize, insSize, outsSize,
+        return Util.listWithoutNulls(registersSize, insSize, outsSize,
                 triesSize, debugInfoOff, insnsSize, padding, tries, handlers);
-        
-        return all.filter(Objects::nonNull)
-                .collect(Collectors.toList());
     }
     
     
@@ -133,10 +128,7 @@ public class CodeItem extends DexComponent {
         
         @Override
         public List<? extends DexComponent> getSubComponents() {
-            Stream<DexComponent> all = Stream.of(size, handlers, catchAllAddr);
-            
-            return all.filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+            return Util.listWithoutNulls(size, handlers, catchAllAddr);
         }
         
     }

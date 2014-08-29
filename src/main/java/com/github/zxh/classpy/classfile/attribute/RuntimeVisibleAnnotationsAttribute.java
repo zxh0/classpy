@@ -7,11 +7,9 @@ import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
+import com.github.zxh.classpy.common.Util;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /*
 RuntimeVisibleAnnotations_attribute {
@@ -166,11 +164,8 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
         @Override
         public List<ClassComponent> getSubComponents() {
-            Stream<ClassComponent> all = Stream.of(tag, constValueIndex,
+            return Util.listWithoutNulls(tag, constValueIndex,
                     enumConstValue, classInfoIndex, annotationValue, arrayValue);
-            
-            return all.filter(Objects::nonNull)
-                    .collect(Collectors.toList());
         }
         
     }

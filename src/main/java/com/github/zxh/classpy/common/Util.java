@@ -1,5 +1,10 @@
 package com.github.zxh.classpy.common;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  *
  * @author zxh
@@ -46,6 +51,13 @@ public class Util {
         } else {
             return str.substring(0, cutPos) + "...";
         }
+    }
+    
+    @SafeVarargs
+    public static <T> List<T> listWithoutNulls(T... values) {
+        return Stream.of(values)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
     
 }
