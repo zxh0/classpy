@@ -40,7 +40,13 @@ public class FileComponent {
      */
     @SuppressWarnings("unchecked")
     public List<? extends FileComponent> getSubComponents() {
-        return Collections.EMPTY_LIST;
+        //return Collections.EMPTY_LIST;
+        try {
+            return FileComponentHelper2.getSubComponents(this);
+        } catch (ReflectiveOperationException e) {
+            e.printStackTrace(System.err);
+            return Collections.EMPTY_LIST;
+        }
     }
     
     /**
