@@ -8,8 +8,6 @@ import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -51,11 +49,4 @@ public class ClassDefItem extends DexComponent {
         setDesc(typeDesc);
     }
 
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(classIdx, accessFlags, superclassIdx,
-                interfacesOff, sourceFileIdx, annotationsOff, classDataOff,
-                staticValuesOff);
-    }
-    
 }

@@ -6,8 +6,6 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntStringIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -33,11 +31,6 @@ public class ProtoIdItem extends DexComponent {
     protected void postRead(DexFile dexFile) {
         super.postRead(dexFile);
         setDesc(dexFile.getString(shortyIdx));
-    }
-
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(shortyIdx, returnTypeIdx, parametersOff);
     }
     
 }
