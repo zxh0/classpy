@@ -11,7 +11,7 @@ import java.util.List;
 public class FileComponentHelper {
     
     // todo
-    public static List<FileComponent> getSubComponents(FileComponent fcObj)
+    public static List<FileComponent> findSubComponents(FileComponent fcObj)
             throws ReflectiveOperationException {
         
         List<FileComponent> subComponents = new ArrayList<>();

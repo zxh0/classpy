@@ -39,7 +39,7 @@ public class FileComponent {
     @SuppressWarnings("unchecked")
     public List<? extends FileComponent> getSubComponents() {
         try {
-            return FileComponentHelper.getSubComponents(this);
+            return FileComponentHelper.findSubComponents(this);
         } catch (ReflectiveOperationException e) {
             // todo
             e.printStackTrace(System.err);
