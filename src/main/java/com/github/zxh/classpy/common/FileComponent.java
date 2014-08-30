@@ -23,11 +23,11 @@ public class FileComponent {
     public final int getOffset() {return offset;}
     public final int getLength() {return length;}
     
-    protected void startRead(int position) {
+    protected final void startRead(int position) {
         offset = position;
     }
     
-    protected void endRead(int position) {
+    protected final void endRead(int position) {
         length = position - offset;
     }
     
