@@ -10,6 +10,7 @@ import java.util.List;
  */
 public class FileComponentHelper2 {
     
+    // todo
     public static List<FileComponent> getSubComponents(FileComponent fcObj)
             throws ReflectiveOperationException {
         

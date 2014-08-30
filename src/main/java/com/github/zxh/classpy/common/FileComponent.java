@@ -33,17 +33,15 @@ public class FileComponent {
     
     /**
      * Returns sub-components.
-     * This is the default implementation, subclass that really has sub-components
-     * should override this.
      * 
      * @return 
      */
     @SuppressWarnings("unchecked")
     public List<? extends FileComponent> getSubComponents() {
-        //return Collections.EMPTY_LIST;
         try {
             return FileComponentHelper2.getSubComponents(this);
         } catch (ReflectiveOperationException e) {
+            // todo
             e.printStackTrace(System.err);
             return Collections.EMPTY_LIST;
         }
