@@ -1,8 +1,6 @@
 package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.FileComponent;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * Abstract base class for all .dex file components.
@@ -30,14 +28,10 @@ public abstract class DexComponent extends FileComponent {
     // todo
     protected void postRead(DexFile dexFile) {
         getSubComponents().forEach(sub -> {
-            sub.postRead(dexFile);
+            if (sub instanceof DexComponent) {
+                ((DexComponent) sub).postRead(dexFile);
+            }
         });
-    }
-    
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<? extends DexComponent> getSubComponents() {
-        return Collections.EMPTY_LIST;
     }
     
 }

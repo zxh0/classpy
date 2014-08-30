@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.dexfile;
 
-import com.github.zxh.classpy.common.FileParseException;
-import com.github.zxh.classpy.common.FileComponentHelper;
 import com.github.zxh.classpy.common.FileParser;
 
 /**
@@ -11,16 +9,9 @@ import com.github.zxh.classpy.common.FileParser;
 public class DexParser implements FileParser {
 
     @Override
-    public DexFile parse(byte[] bytes) throws FileParseException {
+    public DexFile parse(byte[] bytes) {
         DexFile dex = new DexFile();
         dex.read(new DexReader(bytes));
-        
-        try {
-            FileComponentHelper.inferSubComponentName(dex);
-        } catch (ReflectiveOperationException e) {
-            throw new FileParseException(e);
-        }
-        
         return dex;
     }
     

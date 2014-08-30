@@ -164,14 +164,6 @@ public class DexFile extends DexComponent {
                 AnnotationsDirectoryItem::new, Arrays.stream(offArr));
     }
     
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(header,
-                stringIds, typeIds, protoIds, fieldIds, methodIds, classDefs,
-                mapList, stringDataList, classDataList, typeList, codeList,
-                debugInfoList, annotationsDirectoryList);
-    }
-    
     public String getString(IntValue index) {
         return getString(index.getValue());
     }
