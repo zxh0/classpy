@@ -15,13 +15,15 @@ public class FileComponentHelper2 {
         
         List<FileComponent> subComponents = new ArrayList<>();
         
-        for (Field field : fcObj.getClass().getDeclaredFields()) {
-            field.setAccessible(true);
-            Object fieldVal = field.get(fcObj);
-            if (fieldVal instanceof FileComponent) {
-                FileComponent fcSub = (FileComponent) fieldVal;
-                fcSub.setName(field.getName());
-                subComponents.add(fcSub);
+        for (Class<?> fcClass = fcObj.getClass(); fcClass != null; fcClass = fcClass.getSuperclass()) {
+            for (Field field : fcClass.getDeclaredFields()) {
+                field.setAccessible(true);
+                Object fieldVal = field.get(fcObj);
+                if (fieldVal instanceof FileComponent) {
+                    FileComponent fcSub = (FileComponent) fieldVal;
+                    fcSub.setName(field.getName());
+                    subComponents.add(fcSub);
+                }
             }
         }
         

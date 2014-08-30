@@ -3,8 +3,6 @@ package com.github.zxh.classpy.classfile;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 field_info {
@@ -36,12 +34,6 @@ public class FieldInfo extends ClassComponent {
     
     protected void afterRead() {
         AccessFlags.describeFieldFlags(accessFlags);
-    }
-
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(accessFlags, nameIndex, descriptorIndex,
-                attributesCount, attributes);
     }
     
 }
