@@ -1,10 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U4;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 CONSTANT_Integer_info {
@@ -24,11 +21,6 @@ public class ConstantIntegerInfo extends ConstantInfo {
     @Override
     protected String loadDesc(ConstantPool pool) {
         return String.valueOf(bytes.getValue());
-    }
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(tag, bytes);
     }
     
 }

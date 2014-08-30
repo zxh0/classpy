@@ -1,10 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 CONSTANT_NameAndType_info {
@@ -33,11 +30,6 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
         String name = pool.getUtf8String(nameIndex);
         String type = pool.getUtf8String(descriptorIndex);
         return name + "&" + type;
-    }
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(tag, nameIndex, descriptorIndex);
     }
     
 }

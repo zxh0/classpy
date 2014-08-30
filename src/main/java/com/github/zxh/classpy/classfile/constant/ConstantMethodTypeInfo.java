@@ -1,10 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 CONSTANT_MethodType_info {
@@ -24,11 +21,6 @@ public class ConstantMethodTypeInfo extends ConstantInfo {
     @Override
     protected String loadDesc(ConstantPool pool) {
         return pool.getUtf8String(descriptorIndex);
-    }
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(tag, descriptorIndex);
     }
     
 }

@@ -1,10 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U4Hex;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 CONSTANT_Double_info {
@@ -29,11 +26,6 @@ public class ConstantDoubleInfo extends ConstantInfo {
     @Override
     protected String loadDesc(ConstantPool pool) {
         return String.valueOf(value);
-    }
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(tag, highBytes, lowBytes);
     }
     
 }
