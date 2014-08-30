@@ -3,8 +3,6 @@ package com.github.zxh.classpy.dexfile.list;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
-import java.util.Arrays;
-import java.util.List;
 import java.util.function.Supplier;
 
 /**
@@ -27,11 +25,6 @@ public class SizeHeaderList<E extends DexComponent> extends DexComponent {
     protected void readContent(DexReader reader) {
         size = reader.readUInt();
         list = reader.readSizeKnownList(size, factory);
-    }
-
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(size, list);
     }
     
 }

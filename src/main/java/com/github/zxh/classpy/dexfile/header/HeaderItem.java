@@ -5,8 +5,6 @@ import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -79,16 +77,6 @@ public class HeaderItem extends DexComponent {
         classDefsOff = reader.readUIntHex();
         dataSize = reader.readUInt();
         dataOff = reader.readUIntHex();
-    }
-
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(magic, checksum, signature,
-                fileSize, headerSize, endianTag, linkSize, linkOff, mapOff,
-                stringIdsSize, stringIdsOff, typeIdsSize, typeIdsOff,
-                protoIdsSize, protoIdsOff, fieldIdsSize, fieldIdsOff,
-                methodIdsSize, methodIdsOff, classDefsSize, classDefsOff,
-                dataSize, dataOff);
     }
     
 }
