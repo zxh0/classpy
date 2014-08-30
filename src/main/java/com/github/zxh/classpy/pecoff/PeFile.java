@@ -3,8 +3,6 @@ package com.github.zxh.classpy.pecoff;
 import com.github.zxh.classpy.pecoff.header.CoffHeader;
 import com.github.zxh.classpy.pecoff.header.MsDosStub;
 import com.github.zxh.classpy.pecoff.header.Signature;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * The parse result of PE/COFF file.
@@ -27,11 +25,6 @@ public class PeFile extends PeComponent {
         coffHeader = new CoffHeader();
         coffHeader.read(reader);
         // todo
-    }
-
-    @Override
-    public List<? extends PeComponent> getSubComponents() {
-        return Arrays.asList(dosStub, signature, coffHeader);
     }
     
 }

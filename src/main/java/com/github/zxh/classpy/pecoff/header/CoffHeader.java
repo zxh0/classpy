@@ -6,8 +6,6 @@ import com.github.zxh.classpy.pecoff.PeReader;
 import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
 import com.github.zxh.classpy.pecoff.datatype.Int32;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -53,11 +51,6 @@ public class CoffHeader extends PeComponent {
             case 0x169: return "IMAGE_FILE_MACHINE_WCEMIPSV2";
             default: throw new FileParseException("Invalid Machine Type: " + value);
         }
-    }
-
-    @Override
-    public List<? extends PeComponent> getSubComponents() {
-        return Arrays.asList(machine, numberOfSections, timeDateStamp);
     }
     
 }

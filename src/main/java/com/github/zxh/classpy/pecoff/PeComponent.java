@@ -1,8 +1,6 @@
 package com.github.zxh.classpy.pecoff;
 
 import com.github.zxh.classpy.common.FileComponent;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * 
@@ -25,11 +23,5 @@ public abstract class PeComponent extends FileComponent {
      * @param reader 
      */
     protected abstract void readContent(PeReader reader);
-    
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<? extends PeComponent> getSubComponents() {
-        return Collections.EMPTY_LIST;
-    }
     
 }
