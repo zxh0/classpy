@@ -6,8 +6,6 @@ import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 RuntimeVisibleParameterAnnotations_attribute {
@@ -31,12 +29,6 @@ public class RuntimeVisibleParameterAnnotationsAttribute extends AttributeInfo {
                 numParameters);
     }
     
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                numParameters, parameterAnnotations);
-    }
-    
     
     public static class ParameterAnnotationInfo extends ClassComponent {
         
@@ -47,11 +39,6 @@ public class RuntimeVisibleParameterAnnotationsAttribute extends AttributeInfo {
         protected void readContent(ClassReader reader) {
             numAnnotations = reader.readU2();
             annotations = reader.readTable(AnnotationInfo.class, numAnnotations);
-        }
-        
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(numAnnotations, annotations);
         }
         
     }

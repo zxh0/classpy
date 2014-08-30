@@ -1,10 +1,7 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 StackMapTable_attribute {
@@ -24,12 +21,6 @@ public class StackMapTableAttribute extends AttributeInfo {
         
         // todo
         reader.skipBytes(attributeLength.getValue() - 2);
-    }
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                numberOfEntries);
     }
     
     

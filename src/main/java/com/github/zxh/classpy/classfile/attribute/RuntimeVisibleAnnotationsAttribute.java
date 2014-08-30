@@ -7,9 +7,6 @@ import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
-import com.github.zxh.classpy.common.Util;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 RuntimeVisibleAnnotations_attribute {
@@ -28,12 +25,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     protected void readInfo(ClassReader reader) {
         numAnnotations = reader.readU2();
         annotations = reader.readTable(AnnotationInfo.class, numAnnotations);
-    }
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                numAnnotations, annotations);
     }
     
     /*
@@ -60,12 +51,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
             setDesc(reader.getConstantPool().getUtf8String(typeIndex));
         }
         
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(typeIndex, numElementValuePairs,
-                    elementValuePairs);
-        }
-        
     }
     
     public static class ElementValuePair extends ClassComponent {
@@ -79,11 +64,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
             value = new ElementValue();
             value.read(reader);
             setDesc(reader.getConstantPool().getUtf8String(elementNameIndex));
-        }
-        
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(elementNameIndex, value);
         }
         
     }
@@ -162,12 +142,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
             }
         }
         
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Util.listWithoutNulls(tag, constValueIndex,
-                    enumConstValue, classInfoIndex, annotationValue, arrayValue);
-        }
-        
     }
     
     public static class EnumConstValue extends ClassComponent {
@@ -181,11 +155,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
             constNameIndex = reader.readU2CpIndex();
         }
         
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(typeNameIndex, constNameIndex);
-        }
-        
     }
     
     public static class ArrayValue extends  ClassComponent {
@@ -197,11 +166,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         protected void readContent(ClassReader reader) {
             numValues = reader.readU2();
             values = reader.readTable(ElementValue.class, numValues);
-        }
-        
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(numValues, values);
         }
         
     }

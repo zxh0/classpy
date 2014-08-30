@@ -5,8 +5,6 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 MethodParameters_attribute {
@@ -29,12 +27,6 @@ public class MethodParametersAttribute extends AttributeInfo {
         parameters = reader.readTable(ParameterInfo.class, parametersCount);
     }
     
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                parametersCount, parameters);
-    }
-    
     
     public static class ParameterInfo extends ClassComponent {
 
@@ -47,11 +39,6 @@ public class MethodParametersAttribute extends AttributeInfo {
             accessFlags = reader.readU2();
         }
         
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(nameIndex, accessFlags);
-        }
-
     }
     
 }

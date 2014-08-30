@@ -27,6 +27,10 @@ public class FileComponentHelper2 {
             }
         }
         
+        subComponents.sort((a, b) -> {
+            return Integer.compare(a.getOffset(), b.getOffset());
+        });
+        
         return subComponents;
     }
 //    

@@ -6,8 +6,6 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 InnerClasses_attribute {
@@ -32,12 +30,6 @@ public class InnerClassesAttribute extends AttributeInfo {
         classes = reader.readTable(InnerClassInfo.class, numberOfClasses);
     }
     
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                numberOfClasses, classes);
-    }
-    
     
     public static class InnerClassInfo extends ClassComponent {
         
@@ -53,12 +45,6 @@ public class InnerClassesAttribute extends AttributeInfo {
             innerNameIndex = reader.readU2CpIndex();
             innerClassAccessFlags = reader.readU2();
             AccessFlags.describeInnerClassFlags(innerClassAccessFlags);
-        }
-        
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(innerClassInfoIndex, outerClassInfoIndex,
-                    innerNameIndex, innerClassAccessFlags);
         }
         
     }

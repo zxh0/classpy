@@ -1,10 +1,7 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.ElementValue;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 AnnotationDefault_attribute {
@@ -21,11 +18,6 @@ public class AnnotationDefaultAttribute extends AttributeInfo {
     protected void readInfo(ClassReader reader) {
         defaultValue = new ElementValue();
         defaultValue.read(reader);
-    }
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength, defaultValue);
     }
     
 }

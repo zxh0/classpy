@@ -5,8 +5,6 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 LocalVariableTable_attribute {
@@ -33,12 +31,6 @@ public class LocalVariableTableAttribute extends AttributeInfo {
                 localVariableTableLength);
     }
     
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                localVariableTableLength, localVariableTable);
-    }
-    
     
     public static class LocalVariableTableEntry extends ClassComponent {
         
@@ -56,11 +48,6 @@ public class LocalVariableTableAttribute extends AttributeInfo {
             descriptorIndex = reader.readU2CpIndex();
             index = reader.readU2();
             setDesc(reader.getConstantPool().getConstantDesc(nameIndex.getValue()));
-        }
-        
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(startPc, length, nameIndex, descriptorIndex, index);
         }
     
     }

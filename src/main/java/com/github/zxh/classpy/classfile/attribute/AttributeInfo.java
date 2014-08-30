@@ -4,8 +4,6 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U4;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 attribute_info {
@@ -28,11 +26,6 @@ public abstract class AttributeInfo extends ClassComponent {
     }
     
     protected abstract void readInfo(ClassReader reader);
-    
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength);
-    }
     
     
     /**

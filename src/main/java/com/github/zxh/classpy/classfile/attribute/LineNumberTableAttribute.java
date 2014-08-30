@@ -4,8 +4,6 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 LineNumberTable_attribute {
@@ -33,12 +31,6 @@ public class LineNumberTableAttribute extends AttributeInfo {
         });
     }
     
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                lineNumberTableLength, lineNumberTable);
-    }
-    
     
     public static class LineNumberTableEntry extends ClassComponent {
         
@@ -49,11 +41,6 @@ public class LineNumberTableAttribute extends AttributeInfo {
         protected void readContent(ClassReader reader) {
             startPc = reader.readU2();
             lineNumber = reader.readU2();
-        }
-        
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(startPc, lineNumber);
         }
         
     }

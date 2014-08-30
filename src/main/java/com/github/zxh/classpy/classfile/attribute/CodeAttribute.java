@@ -6,8 +6,6 @@ import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.datatype.U4;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 Code_attribute {
@@ -52,14 +50,6 @@ public class CodeAttribute extends AttributeInfo {
         attributes = reader.readTable(AttributeInfo.class, attributesCount);
     }
     
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                maxStack, maxLocals, codeLength, code,
-                exceptionTableLength, exceptionTable,
-                attributesCount, attributes);
-    }
-    
     
     public static class ExceptionTableEntry extends ClassComponent {
         
@@ -74,11 +64,6 @@ public class CodeAttribute extends AttributeInfo {
             endPc = reader.readU2();
             handlerPc = reader.readU2();
             catchType = reader.readU2CpIndex();
-        }
-        
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(startPc, endPc, handlerPc, catchType);
         }
     
     }

@@ -5,8 +5,6 @@ import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
-import java.util.Arrays;
-import java.util.List;
 
 /*
 BootstrapMethods_attribute {
@@ -31,12 +29,6 @@ public class BootstrapMethodsAttribute extends AttributeInfo {
                 numBootstrapMethods);
     }
     
-    @Override
-    public List<ClassComponent> getSubComponents() {
-        return Arrays.asList(attributeNameIndex, attributeLength,
-                numBootstrapMethods, bootstrapMethods);
-    }
-    
     
     public static class BootstrapMethodInfo extends ClassComponent {
         
@@ -53,12 +45,6 @@ public class BootstrapMethodsAttribute extends AttributeInfo {
             //setDesc(bootstrapMethodRef.getDesc());
         }
         
-        @Override
-        public List<ClassComponent> getSubComponents() {
-            return Arrays.asList(bootstrapMethodRef, numBootstrapArguments,
-                    bootstrapArguments);
-        }
-    
     }
     
 }
