@@ -8,7 +8,7 @@ import java.util.List;
  *
  * @author zxh
  */
-public class FileComponentHelper2 {
+public class FileComponentHelper {
     
     // todo
     public static List<FileComponent> getSubComponents(FileComponent fcObj)
