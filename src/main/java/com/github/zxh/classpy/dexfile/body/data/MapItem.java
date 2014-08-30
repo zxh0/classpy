@@ -6,8 +6,6 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -27,11 +25,6 @@ public class MapItem extends DexComponent {
         size = reader.readUInt();
         offset = reader.readUIntHex();
         setDesc(getTypeCode(type.getValue()));
-    }
-
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(type, unused, size, offset);
     }
     
     private static String getTypeCode(int type) {

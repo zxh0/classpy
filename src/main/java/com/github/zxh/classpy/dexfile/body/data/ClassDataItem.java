@@ -8,8 +8,6 @@ import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.body.ids.FieldIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.MethodIdItem;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128Hex;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -70,14 +68,6 @@ public class ClassDataItem extends DexComponent {
             method.setDesc(methodId.getDesc());
         }
     }
-
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(staticFieldsSize, instanceFieldsSize,
-                directMethodsSize, virtualMethodsSize,
-                staticFields, instanceFields,
-                directMethods, virtualMethods);
-    }
     
     
     public static class EncodedField extends DexComponent {
@@ -89,11 +79,6 @@ public class ClassDataItem extends DexComponent {
         protected void readContent(DexReader reader) {
             fieldIdxDiff = reader.readUleb128();
             accessFlags = reader.readUleb128();
-        }
-        
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(fieldIdxDiff, accessFlags);
         }
     
     }
@@ -113,11 +98,6 @@ public class ClassDataItem extends DexComponent {
             methodIdxDiff = reader.readUleb128();
             accessFlags = reader.readUleb128();
             codeOff = reader.readUleb128Hex();
-        }
-        
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(methodIdxDiff, accessFlags, codeOff);
         }
         
     }

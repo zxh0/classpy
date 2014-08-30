@@ -7,8 +7,6 @@ import com.github.zxh.classpy.dexfile.datatype.UIntFieldIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntMethodIdIndex;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -34,13 +32,6 @@ public class AnnotationsDirectoryItem extends DexComponent {
         methodAnnotations = reader.readSizeKnownList(annotatedMethodsSize, MethodAnnotation::new);
         parameterAnnotations = reader.readSizeKnownList(annotatedParametersSize, ParameterAnnotation::new);
     }
-
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(classAnnotationsOff, fieldsSize,
-                annotatedMethodsSize, annotatedParametersSize,
-                fieldAnnotations, methodAnnotations, parameterAnnotations);
-    }
     
     
     public static class FieldAnnotation extends DexComponent {
@@ -54,11 +45,6 @@ public class AnnotationsDirectoryItem extends DexComponent {
             annotationsOff = reader.readUIntHex();
         }
         
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(fieldIdx, annotationsOff);
-        }
-        
     }
     
     public static class MethodAnnotation extends DexComponent {
@@ -70,11 +56,6 @@ public class AnnotationsDirectoryItem extends DexComponent {
         protected void readContent(DexReader reader) {
             methodIdx = reader.readUIntMethodIdIndex();
             annotationsOff = reader.readUIntHex();
-        }
-        
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(methodIdx, annotationsOff);
         }
         
     }

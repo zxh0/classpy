@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.dexfile.body.data;
 
-import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
@@ -11,8 +10,6 @@ import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -69,12 +66,6 @@ public class CodeItem extends DexComponent {
         }
     }
     
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Util.listWithoutNulls(registersSize, insSize, outsSize,
-                triesSize, debugInfoOff, insnsSize, padding, tries, handlers);
-    }
-    
     
     public static class TryItem extends DexComponent {
 
@@ -89,11 +80,6 @@ public class CodeItem extends DexComponent {
             handlerOff = reader.readUShort();
         }
         
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(startAddr, insnCount, handlerOff);
-        }
-        
     }
     
     public static class EncodedCatchHandlerList extends DexComponent {
@@ -105,11 +91,6 @@ public class CodeItem extends DexComponent {
         protected void readContent(DexReader reader) {
             size = reader.readUleb128();
             list = reader.readSizeKnownList(size, EncodedCatchHandler::new);
-        }
-        
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(size, list);
         }
         
     }
@@ -128,11 +109,6 @@ public class CodeItem extends DexComponent {
             if (size.getValue() <= 0) {
                 catchAllAddr = reader.readUleb128();
             }
-        }
-        
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Util.listWithoutNulls(size, handlers, catchAllAddr);
         }
         
     }
@@ -154,11 +130,6 @@ public class CodeItem extends DexComponent {
             String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
             
             typeIdx.setDesc(typeIdx.getValue() + "->" + typeDesc);
-        }
-        
-        @Override
-        public List<? extends DexComponent> getSubComponents() {
-            return Arrays.asList(typeIdx, addr);
         }
         
     }

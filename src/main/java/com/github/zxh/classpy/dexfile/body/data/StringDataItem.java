@@ -5,8 +5,6 @@ import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.datatype.Mutf8;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  *
@@ -26,11 +24,6 @@ public class StringDataItem extends DexComponent {
         utf16Size = reader.readUleb128();
         data = reader.readUtf8String();
         setDesc(Util.cutAndAppendEllipsis(data.getDesc(), 100));
-    }
-
-    @Override
-    public List<? extends DexComponent> getSubComponents() {
-        return Arrays.asList(utf16Size, data);
     }
     
 }
