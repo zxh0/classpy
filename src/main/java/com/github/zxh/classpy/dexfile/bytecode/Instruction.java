@@ -18,14 +18,23 @@ public class Instruction extends DexComponent {
         switch (insnInfo.format) {
             case _00x:
                 reader.readByte();
+                setName(insnInfo.simpleMnemonic);
                 break;
-            case _10x:
-            case _12x:
+            case _10x: // op
+                reader.readByte();
+                setName(insnInfo.simpleMnemonic);
+                break;
+            case _12x: // op vA, vB
+                int operand = reader.readUByte();
+                int vA = operand & 0b1111;
+                int vB = operand >> 4;
+                setName(insnInfo.simpleMnemonic + " v" + vA + ", v" + vB);
+                break;
             case _11n:
             case _11x:
             case _10t:
                 reader.readByte();
-                setName(insnInfo.mnemonic);
+                setName(insnInfo.simpleMnemonic);
                 break;
             case _20t:
             case _20bc:
@@ -42,7 +51,7 @@ public class Instruction extends DexComponent {
             case _22cs:
                 reader.readByte();
                 reader.readUShort();
-                setName(insnInfo.mnemonic);
+                setName(insnInfo.simpleMnemonic);
                 break;
             default:
                 throw new FileParseException("XXX");

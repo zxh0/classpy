@@ -263,10 +263,12 @@ public class InstructionSet {
         
         public final InstructionFormat format;
         public final String mnemonic;
+        public final String simpleMnemonic;
 
         public InstructionInfo(InstructionFormat format, String mnemonic) {
             this.format = format;
             this.mnemonic = mnemonic;
+            simpleMnemonic = mnemonic.replaceAll("\\s+.*", "");
         }
     
     }
