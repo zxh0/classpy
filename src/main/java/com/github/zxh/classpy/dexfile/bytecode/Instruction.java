@@ -62,7 +62,8 @@ public class Instruction extends DexComponent {
                 bbbb = reader.readUShort().getValue();
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bbbb);
                 break;
-            case _21t:
+            case _21t: // op vAA, +BBBB
+                // todo
             case _21s:
             case _21h:
             case _21c:
