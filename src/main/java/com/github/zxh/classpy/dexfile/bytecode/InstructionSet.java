@@ -21,49 +21,41 @@ public class InstructionSet {
     static final Instruction[] iset = new Instruction[256];
     static {
         iset[0x00] = new Instruction(_10x); // nop
-iset[0x01] = new Instruction(_12x); // move vA, vB
-iset[0x02] = new Instruction(_22x); // move/from16 vAA, vBBBB
-iset[0x03] = new Instruction(_32x); // move/16 vAAAA, vBBBB
-iset[0x04] = new Instruction(_12x); // move-wide vA, vB
-iset[0x05] = new Instruction(_22x); // move-wide/from16 vAA, vBBBB
-iset[0x06] = new Instruction(_32x); // move-wide/16 vAAAA, vBBBB
-iset[0x07] = new Instruction(_12x); // move-object vA, vB
-iset[0x08] = new Instruction(_22x); // move-object/from16 vAA, vBBBB
-iset[0x09] = new Instruction(_32x); // move-object/16 vAAAA, vBBBB
-iset[0x0a] = new Instruction(_11x); // move-result vAA
-iset[0x0b] = new Instruction(_11x); // move-result-wide vAA
-iset[0x0c] = new Instruction(_11x); // move-result-object vAA
-iset[0x0d] = new Instruction(_11x); // move-exception vAA
-iset[0x0f] = new Instruction(_11x); // return vAA
-iset[0x10] = new Instruction(_11x); // return-wide vAA
-iset[0x11] = new Instruction(_11x); // return-object vAA
-iset[0x12] = new Instruction(_11n); // const/4 vA, #+B
-iset[0x13] = new Instruction(_21s); // const/16 vAA, #+BBBB
-iset[0x14] = new Instruction(_31i); // const vAA, #+BBBBBBBB
-iset[0x15] = new Instruction(_21h); // const/high16 vAA, #+BBBB0000
-iset[0x16] = new Instruction(_21s); // const-wide/16 vAA, #+BBBB
-iset[0x17] = new Instruction(_31i); // const-wide/32 vAA, #+BBBBBBBB
-iset[0x18] = new Instruction(_51l); // const-wide vAA, #+BBBBBBBBBBBBBBBB
-iset[0x19] = new Instruction(_21h); // const-wide/high16 vAA, #+BBBB000000000000
-iset[0x1a] = new Instruction(_21c); // const-string vAA, string@BBBB
-iset[0x1b] = new Instruction(_31c); // const-string/jumbo vAA, string@BBBBBBBB
-iset[0x1c] = new Instruction(_21c); // const-class vAA, type@BBBB
-iset[0x1d] = new Instruction(_11x); // monitor-enter vAA
-iset[0x1e] = new Instruction(_11x); // monitor-exit vAA
-iset[0x1f] = new Instruction(_21c); // check-cast vAA, type@BBBB
-//B: type index (16 bits) 	Throw a ClassCastException if the reference in the given register cannot be cast to the indicated type.
-//
-//Note: Since A must always be a reference (and not a primitive value), this will necessarily fail at runtime (that is, it will throw an exception) if B refers to a primitive type.
-//20 22c 	instance-of vA, vB, type@CCCC 	A: destination register (4 bits)
-//B: reference-bearing register (4 bits)
-//C: type index (16 bits) 	Store in the given destination register 1 if the indicated reference is an instance of the given type, or 0 if not.
-//
-//Note: Since B must always be a reference (and not a primitive value), this will always result in 0 being stored if C refers to a primitive type.
-//21 12x 	array-length vA, vB 	A: destination register (4 bits)
-//B: array reference-bearing register (4 bits) 	Store in the given destination register the length of the indicated array, in entries
-//22 21c 	new-instance vAA, type@BBBB 	A: destination register (8 bits)
-//B: type index 	Construct a new instance of the indicated type, storing a reference to it in the destination. The type must refer to a non-array class.
-//23 22c 	new-array vA, vB, type@CCCC 	A: destination register (8 bits)
+        iset[0x01] = new Instruction(_12x); // move vA, vB
+        iset[0x02] = new Instruction(_22x); // move/from16 vAA, vBBBB
+        iset[0x03] = new Instruction(_32x); // move/16 vAAAA, vBBBB
+        iset[0x04] = new Instruction(_12x); // move-wide vA, vB
+        iset[0x05] = new Instruction(_22x); // move-wide/from16 vAA, vBBBB
+        iset[0x06] = new Instruction(_32x); // move-wide/16 vAAAA, vBBBB
+        iset[0x07] = new Instruction(_12x); // move-object vA, vB
+        iset[0x08] = new Instruction(_22x); // move-object/from16 vAA, vBBBB
+        iset[0x09] = new Instruction(_32x); // move-object/16 vAAAA, vBBBB
+        iset[0x0a] = new Instruction(_11x); // move-result vAA
+        iset[0x0b] = new Instruction(_11x); // move-result-wide vAA
+        iset[0x0c] = new Instruction(_11x); // move-result-object vAA
+        iset[0x0d] = new Instruction(_11x); // move-exception vAA
+        iset[0x0e] = new Instruction(_10x); // return-void
+        iset[0x0f] = new Instruction(_11x); // return vAA
+        iset[0x10] = new Instruction(_11x); // return-wide vAA
+        iset[0x11] = new Instruction(_11x); // return-object vAA
+        iset[0x12] = new Instruction(_11n); // const/4 vA, #+B
+        iset[0x13] = new Instruction(_21s); // const/16 vAA, #+BBBB
+        iset[0x14] = new Instruction(_31i); // const vAA, #+BBBBBBBB
+        iset[0x15] = new Instruction(_21h); // const/high16 vAA, #+BBBB0000
+        iset[0x16] = new Instruction(_21s); // const-wide/16 vAA, #+BBBB
+        iset[0x17] = new Instruction(_31i); // const-wide/32 vAA, #+BBBBBBBB
+        iset[0x18] = new Instruction(_51l); // const-wide vAA, #+BBBBBBBBBBBBBBBB
+        iset[0x19] = new Instruction(_21h); // const-wide/high16 vAA, #+BBBB000000000000
+        iset[0x1a] = new Instruction(_21c); // const-string vAA, string@BBBB
+        iset[0x1b] = new Instruction(_31c); // const-string/jumbo vAA, string@BBBBBBBB
+        iset[0x1c] = new Instruction(_21c); // const-class vAA, type@BBBB
+        iset[0x1d] = new Instruction(_11x); // monitor-enter vAA
+        iset[0x1e] = new Instruction(_11x); // monitor-exit vAA
+        iset[0x1f] = new Instruction(_21c); // check-cast vAA, type@BBBB
+        iset[0x20] = new Instruction(_22c); // instance-of vA, vB, type@CCCC
+        iset[0x21] = new Instruction(_12x); // array-length vA, vB
+        iset[0x22] = new Instruction(_21c); // new-instance vAA, type@BBBB
+        iset[0x23] = new Instruction(_22c); // new-array vA, vB, type@CCCC
 //B: size register
 //C: type index 	Construct a new array of the indicated type and size. The type must be an array type.
 //24 35c 	filled-new-array {vC, vD, vE, vF, vG}, type@BBBB 	A: array size and argument word count (4 bits)
@@ -73,9 +65,9 @@ iset[0x1f] = new Instruction(_21c); // check-cast vAA, type@BBBB
 //B: type index (16 bits)
 //C: first argument register (16 bits)
 //N = A + C - 1 	Construct an array of the given type and size, filling it with the supplied contents. Clarifications and restrictions are the same as filled-new-array, described above.
-//26 31t 	fill-array-data vAA, +BBBBBBBB (with supplemental data as specified below in "fill-array-data-payload Format") 	A: array reference (8 bits)
+iset[0x26] = new Instruction(_31t); // fill-array-data vAA, +BBBBBBBB
 //B: signed "branch" offset to table data pseudo-instruction (32 bits) 	Fill the given array with the indicated data. The reference must be to an array of primitives, and the data table must match it in type and must contain no more elements than will fit in the array. That is, the array may be larger than the table, and if so, only the initial elements of the array are set, leaving the remainder alone.
-//27 11x 	throw vAA 	A: exception-bearing register (8 bits)
+iset[0x27] = new Instruction(_11x); // throw vAA
 //	Throw the indicated exception.
 //28 10t 	goto +AA 	A: signed branch offset (8 bits) 	Unconditionally jump to the indicated instruction.
 //
@@ -86,9 +78,9 @@ iset[0x1f] = new Instruction(_21c); // check-cast vAA, type@BBBB
 //Note: The branch offset must not be 0. (A spin loop may be legally constructed either with goto/32 or by including a nop as a target before the branch.)
 //2a 30t 	goto/32 +AAAAAAAA 	A: signed branch offset (32 bits)
 //	Unconditionally jump to the indicated instruction.
-//2b 31t 	packed-switch vAA, +BBBBBBBB (with supplemental data as specified below in "packed-switch-payload Format") 	A: register to test
+iset[0x2b] = new Instruction(_31t); // packed-switch vAA, +BBBBBBBB
 //B: signed "branch" offset to table data pseudo-instruction (32 bits) 	Jump to a new instruction based on the value in the given register, using a table of offsets corresponding to each value in a particular integral range, or fall through to the next instruction if there is no match.
-//2c 31t 	sparse-switch vAA, +BBBBBBBB (with supplemental data as specified below in "sparse-switch-payload Format") 	A: register to test
+iset[0x2c] = new Instruction(_31t); // sparse-switch vAA, +BBBBBBBB
 //B: signed "branch" offset to table data pseudo-instruction (32 bits) 	Jump to a new instruction based on the value in the given register, using an ordered table of value-offset pairs, or fall through to the next instruction if there is no match.
 //2d..31 23x 	cmpkind vAA, vBB, vCC
 //2d: cmpl-float (lt bias)
