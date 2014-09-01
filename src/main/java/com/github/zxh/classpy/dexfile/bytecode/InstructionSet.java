@@ -146,128 +146,115 @@ public class InstructionSet {
         iset[0x78] = new Instruction(_3rc); // invoke-interface/range 	A: argument word count (8 bits)
         //79..7a 10x 	(unused) 	  	(unused)
         //7b..8f 12x 	unop vA, vB
-//7b: neg-int
-//7c: not-int
-//7d: neg-long
-//7e: not-long
-//7f: neg-float
-//80: neg-double
-//81: int-to-long
-//82: int-to-float
-//83: int-to-double
-//84: long-to-int
-//85: long-to-float
-//86: long-to-double
-//87: float-to-int
-//88: float-to-long
-//89: float-to-double
-//8a: double-to-int
-//8b: double-to-long
-//8c: double-to-float
-//8d: int-to-byte
-//8e: int-to-char
-//8f: int-to-short 	A: destination register or pair (4 bits)
-//B: source register or pair (4 bits) 	Perform the identified unary operation on the source register, storing the result in the destination register.
-//90..af 23x 	binop vAA, vBB, vCC
-//90: add-int
-//91: sub-int
-//92: mul-int
-//93: div-int
-//94: rem-int
-//95: and-int
-//96: or-int
-//97: xor-int
-//98: shl-int
-//99: shr-int
-//9a: ushr-int
-//9b: add-long
-//9c: sub-long
-//9d: mul-long
-//9e: div-long
-//9f: rem-long
-//a0: and-long
-//a1: or-long
-//a2: xor-long
-//a3: shl-long
-//a4: shr-long
-//a5: ushr-long
-//a6: add-float
-//a7: sub-float
-//a8: mul-float
-//a9: div-float
-//aa: rem-float
-//ab: add-double
-//ac: sub-double
-//ad: mul-double
-//ae: div-double
-//af: rem-double 	A: destination register or pair (8 bits)
-//B: first source register or pair (8 bits)
-//C: second source register or pair (8 bits) 	Perform the identified binary operation on the two source registers, storing the result in the first source register.
-//b0..cf 12x 	binop/2addr vA, vB
-//b0: add-int/2addr
-//b1: sub-int/2addr
-//b2: mul-int/2addr
-//b3: div-int/2addr
-//b4: rem-int/2addr
-//b5: and-int/2addr
-//b6: or-int/2addr
-//b7: xor-int/2addr
-//b8: shl-int/2addr
-//b9: shr-int/2addr
-//ba: ushr-int/2addr
-//bb: add-long/2addr
-//bc: sub-long/2addr
-//bd: mul-long/2addr
-//be: div-long/2addr
-//bf: rem-long/2addr
-//c0: and-long/2addr
-//c1: or-long/2addr
-//c2: xor-long/2addr
-//c3: shl-long/2addr
-//c4: shr-long/2addr
-//c5: ushr-long/2addr
-//c6: add-float/2addr
-//c7: sub-float/2addr
-//c8: mul-float/2addr
-//c9: div-float/2addr
-//ca: rem-float/2addr
-//cb: add-double/2addr
-//cc: sub-double/2addr
-//cd: mul-double/2addr
-//ce: div-double/2addr
-//cf: rem-double/2addr 	A: destination and first source register or pair (4 bits)
-//B: second source register or pair (4 bits) 	Perform the identified binary operation on the two source registers, storing the result in the first source register.
-//d0..d7 22s 	binop/lit16 vA, vB, #+CCCC
-//d0: add-int/lit16
-//d1: rsub-int (reverse subtract)
-//d2: mul-int/lit16
-//d3: div-int/lit16
-//d4: rem-int/lit16
-//d5: and-int/lit16
-//d6: or-int/lit16
-//d7: xor-int/lit16 	A: destination register (4 bits)
-//B: source register (4 bits)
-//C: signed int constant (16 bits) 	Perform the indicated binary op on the indicated register (first argument) and literal value (second argument), storing the result in the destination register.
-//
-//Note: rsub-int does not have a suffix since this version is the main opcode of its family. Also, see below for details on its semantics.
-//d8..e2 22b 	binop/lit8 vAA, vBB, #+CC
-//d8: add-int/lit8
-//d9: rsub-int/lit8
-//da: mul-int/lit8
-//db: div-int/lit8
-//dc: rem-int/lit8
-//dd: and-int/lit8
-//de: or-int/lit8
-//df: xor-int/lit8
-//e0: shl-int/lit8
-//e1: shr-int/lit8
-//e2: ushr-int/lit8 	A: destination register (8 bits)
-//B: source register (8 bits)
-//C: signed int constant (8 bits) 	Perform the indicated binary op on the indicated register (first argument) and literal value (second argument), storing the result in the destination register.
-//
-//Note: See below for details on the semantics of rsub-int.
-//e3..ff 10x 	(unused) 	  	(unused)
+        iset[0x7b] = new Instruction(_12x); // neg-int
+        iset[0x7c] = new Instruction(_12x); // not-int
+        iset[0x7d] = new Instruction(_12x); // neg-long
+        iset[0x7e] = new Instruction(_12x); // not-long
+        iset[0x7f] = new Instruction(_12x); // neg-float
+        iset[0x80] = new Instruction(_12x); // neg-double
+        iset[0x81] = new Instruction(_12x); // int-to-long
+        iset[0x82] = new Instruction(_12x); // int-to-float
+        iset[0x83] = new Instruction(_12x); // int-to-double
+        iset[0x84] = new Instruction(_12x); // long-to-int
+        iset[0x85] = new Instruction(_12x); // long-to-float
+        iset[0x86] = new Instruction(_12x); // long-to-double
+        iset[0x87] = new Instruction(_12x); // float-to-int
+        iset[0x88] = new Instruction(_12x); // float-to-long
+        iset[0x89] = new Instruction(_12x); // float-to-double
+        iset[0x8a] = new Instruction(_12x); // double-to-int
+        iset[0x8b] = new Instruction(_12x); // double-to-long
+        iset[0x8c] = new Instruction(_12x); // double-to-float
+        iset[0x8d] = new Instruction(_12x); // int-to-byte
+        iset[0x8e] = new Instruction(_12x); // int-to-char
+        iset[0x8f] = new Instruction(_12x); // int-to-short 	A: destination register or pair (4 bits)
+        //90..af 23x 	binop vAA, vBB, vCC
+        iset[0x90] = new Instruction(_23x); // add-int
+        iset[0x91] = new Instruction(_23x); // sub-int
+        iset[0x92] = new Instruction(_23x); // mul-int
+        iset[0x93] = new Instruction(_23x); // div-int
+        iset[0x94] = new Instruction(_23x); // rem-int
+        iset[0x95] = new Instruction(_23x); // and-int
+        iset[0x96] = new Instruction(_23x); // or-int
+        iset[0x97] = new Instruction(_23x); // xor-int
+        iset[0x98] = new Instruction(_23x); // shl-int
+        iset[0x99] = new Instruction(_23x); // shr-int
+        iset[0x9a] = new Instruction(_23x); // ushr-int
+        iset[0x9b] = new Instruction(_23x); // add-long
+        iset[0x9c] = new Instruction(_23x); // sub-long
+        iset[0x9d] = new Instruction(_23x); // mul-long
+        iset[0x9e] = new Instruction(_23x); // div-long
+        iset[0x9f] = new Instruction(_23x); // rem-long
+        iset[0xa0] = new Instruction(_23x); // and-long
+        iset[0xa1] = new Instruction(_23x); // or-long
+        iset[0xa2] = new Instruction(_23x); // xor-long
+        iset[0xa3] = new Instruction(_23x); // shl-long
+        iset[0xa4] = new Instruction(_23x); // shr-long
+        iset[0xa5] = new Instruction(_23x); // ushr-long
+        iset[0xa6] = new Instruction(_23x); // add-float
+        iset[0xa7] = new Instruction(_23x); // sub-float
+        iset[0xa8] = new Instruction(_23x); // mul-float
+        iset[0xa9] = new Instruction(_23x); // div-float
+        iset[0xaa] = new Instruction(_23x); // rem-float
+        iset[0xab] = new Instruction(_23x); // add-double
+        iset[0xac] = new Instruction(_23x); // sub-double
+        iset[0xad] = new Instruction(_23x); // mul-double
+        iset[0xae] = new Instruction(_23x); // div-double
+        iset[0xaf] = new Instruction(_23x); // rem-double 	A: destination register or pair (8 bits)
+        //b0..cf 12x 	binop/2addr vA, vB
+        iset[0xb0] = new Instruction(_12x); // add-int/2addr
+        iset[0xb1] = new Instruction(_12x); // sub-int/2addr
+        iset[0xb2] = new Instruction(_12x); // mul-int/2addr
+        iset[0xb3] = new Instruction(_12x); // div-int/2addr
+        iset[0xb4] = new Instruction(_12x); // rem-int/2addr
+        iset[0xb5] = new Instruction(_12x); // and-int/2addr
+        iset[0xb6] = new Instruction(_12x); // or-int/2addr
+        iset[0xb7] = new Instruction(_12x); // xor-int/2addr
+        iset[0xb8] = new Instruction(_12x); // shl-int/2addr
+        iset[0xb9] = new Instruction(_12x); // shr-int/2addr
+        iset[0xba] = new Instruction(_12x); // ushr-int/2addr
+        iset[0xbb] = new Instruction(_12x); // add-long/2addr
+        iset[0xbc] = new Instruction(_12x); // sub-long/2addr
+        iset[0xbd] = new Instruction(_12x); // mul-long/2addr
+        iset[0xbe] = new Instruction(_12x); // div-long/2addr
+        iset[0xbf] = new Instruction(_12x); // rem-long/2addr
+        iset[0xc0] = new Instruction(_12x); // and-long/2addr
+        iset[0xc1] = new Instruction(_12x); // or-long/2addr
+        iset[0xc2] = new Instruction(_12x); // xor-long/2addr
+        iset[0xc3] = new Instruction(_12x); // shl-long/2addr
+        iset[0xc4] = new Instruction(_12x); // shr-long/2addr
+        iset[0xc5] = new Instruction(_12x); // ushr-long/2addr
+        iset[0xc6] = new Instruction(_12x); // add-float/2addr
+        iset[0xc7] = new Instruction(_12x); // sub-float/2addr
+        iset[0xc8] = new Instruction(_12x); // mul-float/2addr
+        iset[0xc9] = new Instruction(_12x); // div-float/2addr
+        iset[0xca] = new Instruction(_12x); // rem-float/2addr
+        iset[0xcb] = new Instruction(_12x); // add-double/2addr
+        iset[0xcc] = new Instruction(_12x); // sub-double/2addr
+        iset[0xcd] = new Instruction(_12x); // mul-double/2addr
+        iset[0xce] = new Instruction(_12x); // div-double/2addr
+        iset[0xcf] = new Instruction(_12x); // rem-double/2addr 	A: destination and first source register or pair (4 bits)
+        //d0..d7 22s 	binop/lit16 vA, vB, #+CCCC
+        iset[0xd0] = new Instruction(_22s); // add-int/lit16
+        iset[0xd1] = new Instruction(_22s); // rsub-int (reverse subtract)
+        iset[0xd2] = new Instruction(_22s); // mul-int/lit16
+        iset[0xd3] = new Instruction(_22s); // div-int/lit16
+        iset[0xd4] = new Instruction(_22s); // rem-int/lit16
+        iset[0xd5] = new Instruction(_22s); // and-int/lit16
+        iset[0xd6] = new Instruction(_22s); // or-int/lit16
+        iset[0xd7] = new Instruction(_22s); // xor-int/lit16 	A: destination register (4 bits)
+        //d8..e2 22b 	binop/lit8 vAA, vBB, #+CC
+        iset[0xd8] = new Instruction(_22b); // add-int/lit8
+        iset[0xd9] = new Instruction(_22b); // rsub-int/lit8
+        iset[0xda] = new Instruction(_22b); // mul-int/lit8
+        iset[0xdb] = new Instruction(_22b); // div-int/lit8
+        iset[0xdc] = new Instruction(_22b); // rem-int/lit8
+        iset[0xdd] = new Instruction(_22b); // and-int/lit8
+        iset[0xde] = new Instruction(_22b); // or-int/lit8
+        iset[0xdf] = new Instruction(_22b); // xor-int/lit8
+        iset[0xe0] = new Instruction(_22b); // shl-int/lit8
+        iset[0xe1] = new Instruction(_22b); // shr-int/lit8
+        iset[0xe2] = new Instruction(_22b); // ushr-int/lit8 	A: destination register (8 bits)
+        //e3..ff 10x 	(unused) 	  	(unused)
     }
-
     
 }
