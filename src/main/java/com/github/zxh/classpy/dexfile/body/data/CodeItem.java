@@ -87,7 +87,21 @@ public class CodeItem extends DexComponent {
         @Override
         protected void readContent(DexReader reader) {
             if (insnsSize > 0) {
-                reader.skipBytes(insnsSize * 2);
+                final int startPosition = reader.getPosition();
+                final int endPosition = startPosition + 2 * insnsSize;
+                
+                try {
+                    int position;
+                    while ((position = reader.getPosition()) < endPosition) {
+                        Instruction insn = new Instruction();
+                        insn.read(reader);
+                        insns.add(insn);
+                    }
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                    // todo
+                    reader.setPosition(endPosition);
+                }
             }
         }
 
