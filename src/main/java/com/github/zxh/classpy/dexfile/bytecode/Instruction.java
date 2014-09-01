@@ -20,7 +20,28 @@ public class Instruction extends DexComponent {
                 reader.readByte();
                 break;
             case _10x:
+            case _12x:
+            case _11n:
+            case _11x:
+            case _10t:
                 reader.readByte();
+                setName(insnInfo.mnemonic);
+                break;
+            case _20t:
+            case _20bc:
+            case _22x:
+            case _21t:
+            case _21s:
+            case _21h:
+            case _21c:
+            case _23x:
+            case _22b:
+            case _22t:
+            case _22s:
+            case _22c:
+            case _22cs:
+                reader.readByte();
+                reader.readUShort();
                 setName(insnInfo.mnemonic);
                 break;
             default:
