@@ -16,6 +16,10 @@ public class CoffHeader extends PeComponent {
     private UInt16Hex machine;
     private UInt16 numberOfSections;
     private Int32 timeDateStamp;
+    private Int32 pointerToSymbolTable;
+    private Int32 numberOfSymbols;
+    private UInt16 sizeOfOptionalHeader;
+    private UInt16 characteristics;
     
     @Override
     protected void readContent(PeReader reader) {
@@ -23,6 +27,10 @@ public class CoffHeader extends PeComponent {
         machine.setDesc(machine.getDesc() + "(" + getMachineType(machine.getValue()) + ")");
         numberOfSections = reader.readUInt16();
         timeDateStamp = reader.readInt32();
+        pointerToSymbolTable = reader.readInt32();
+        numberOfSymbols = reader.readInt32();
+        sizeOfOptionalHeader = reader.readUInt16();
+        characteristics = reader.readUInt16();
     }
     
     private static String getMachineType(int value) {
