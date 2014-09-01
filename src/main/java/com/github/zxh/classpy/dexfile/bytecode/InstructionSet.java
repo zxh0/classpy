@@ -85,93 +85,67 @@ public class InstructionSet {
         iset[0x3b] = new Instruction(_21t); // if-gez
         iset[0x3c] = new Instruction(_21t); // if-gtz
         iset[0x3d] = new Instruction(_21t); // if-lez
-//3e..43 10x 	(unused) 	  	(unused)
-//44..51 23x 	arrayop vAA, vBB, vCC
-//44: aget
-//45: aget-wide
-//46: aget-object
-//47: aget-boolean
-//48: aget-byte
-//49: aget-char
-//4a: aget-short
-//4b: aput
-//4c: aput-wide
-//4d: aput-object
-//4e: aput-boolean
-//4f: aput-byte
-//50: aput-char
-//51: aput-short 	A: value register or pair; may be source or dest (8 bits)
-//B: array register (8 bits)
-//C: index register (8 bits) 	Perform the identified array operation at the identified index of the given array, loading or storing into the value register.
-//52..5f 22c 	iinstanceop vA, vB, field@CCCC
-//52: iget
-//53: iget-wide
-//54: iget-object
-//55: iget-boolean
-//56: iget-byte
-//57: iget-char
-//58: iget-short
-//59: iput
-//5a: iput-wide
-//5b: iput-object
-//5c: iput-boolean
-//5d: iput-byte
-//5e: iput-char
-//5f: iput-short 	A: value register or pair; may be source or dest (4 bits)
-//B: object register (4 bits)
-//C: instance field reference index (16 bits) 	Perform the identified object instance field operation with the identified field, loading or storing into the value register.
-//
-//Note: These opcodes are reasonable candidates for static linking, altering the field argument to be a more direct offset.
-//60..6d 21c 	sstaticop vAA, field@BBBB
-//60: sget
-//61: sget-wide
-//62: sget-object
-//63: sget-boolean
-//64: sget-byte
-//65: sget-char
-//66: sget-short
-//67: sput
-//68: sput-wide
-//69: sput-object
-//6a: sput-boolean
-//6b: sput-byte
-//6c: sput-char
-//6d: sput-short 	A: value register or pair; may be source or dest (8 bits)
-//B: static field reference index (16 bits) 	Perform the identified object static field operation with the identified static field, loading or storing into the value register.
-//
-//Note: These opcodes are reasonable candidates for static linking, altering the field argument to be a more direct offset.
-//6e..72 35c 	invoke-kind {vC, vD, vE, vF, vG}, meth@BBBB
-//6e: invoke-virtual
-//6f: invoke-super
-//70: invoke-direct
-//71: invoke-static
-//72: invoke-interface 	A: argument word count (4 bits)
-//B: method reference index (16 bits)
-//C..G: argument registers (4 bits each) 	Call the indicated method. The result (if any) may be stored with an appropriate move-result* variant as the immediately subsequent instruction.
-//
-//invoke-virtual is used to invoke a normal virtual method (a method that is not private, static, or final, and is also not a constructor).
-//
-//invoke-super is used to invoke the closest superclass's virtual method (as opposed to the one with the same method_id in the calling class). The same method restrictions hold as for invoke-virtual.
-//
-//invoke-direct is used to invoke a non-static direct method (that is, an instance method that is by its nature non-overridable, namely either a private instance method or a constructor).
-//
-//invoke-static is used to invoke a static method (which is always considered a direct method).
-//
-//invoke-interface is used to invoke an interface method, that is, on an object whose concrete class isn't known, using a method_id that refers to an interface.
-//
-//Note: These opcodes are reasonable candidates for static linking, altering the method argument to be a more direct offset (or pair thereof).
-//73 10x 	(unused) 	  	(unused)
-//74..78 3rc 	invoke-kind/range {vCCCC .. vNNNN}, meth@BBBB
-//74: invoke-virtual/range
-//75: invoke-super/range
-//76: invoke-direct/range
-//77: invoke-static/range
-//78: invoke-interface/range 	A: argument word count (8 bits)
-//B: method reference index (16 bits)
-//C: first argument register (16 bits)
-//N = A + C - 1 	Call the indicated method. See first invoke-kind description above for details, caveats, and suggestions.
-//79..7a 10x 	(unused) 	  	(unused)
-//7b..8f 12x 	unop vA, vB
+        //3e..43 10x 	(unused) 	  	(unused)
+        //44..51 23x 	arrayop vAA, vBB, vCC
+        iset[0x44] = new Instruction(_23x); // aget
+        iset[0x45] = new Instruction(_23x); // aget-wide
+        iset[0x46] = new Instruction(_23x); // aget-object
+        iset[0x47] = new Instruction(_23x); // aget-boolean
+        iset[0x48] = new Instruction(_23x); // aget-byte
+        iset[0x49] = new Instruction(_23x); // aget-char
+        iset[0x4a] = new Instruction(_23x); // aget-short
+        iset[0x4b] = new Instruction(_23x); // aput
+        iset[0x4c] = new Instruction(_23x); // aput-wide
+        iset[0x4d] = new Instruction(_23x); // aput-object
+        iset[0x4e] = new Instruction(_23x); // aput-boolean
+        iset[0x4f] = new Instruction(_23x); // aput-byte
+        iset[0x50] = new Instruction(_23x); // aput-char
+        iset[0x51] = new Instruction(_23x); // aput-short 	A: value register or pair; may be source or dest (8 bits)
+        //52..5f 22c 	iinstanceop vA, vB, field@CCCC
+        iset[0x52] = new Instruction(_22c); // iget
+        iset[0x53] = new Instruction(_22c); // iget-wide
+        iset[0x54] = new Instruction(_22c); // iget-object
+        iset[0x55] = new Instruction(_22c); // iget-boolean
+        iset[0x56] = new Instruction(_22c); // iget-byte
+        iset[0x57] = new Instruction(_22c); // iget-char
+        iset[0x58] = new Instruction(_22c); // iget-short
+        iset[0x59] = new Instruction(_22c); // iput
+        iset[0x5a] = new Instruction(_22c); // iput-wide
+        iset[0x5b] = new Instruction(_22c); // iput-object
+        iset[0x5c] = new Instruction(_22c); // iput-boolean
+        iset[0x5d] = new Instruction(_22c); // iput-byte
+        iset[0x5e] = new Instruction(_22c); // iput-char
+        iset[0x5f] = new Instruction(_22c); // iput-short 	A: value register or pair; may be source or dest (4 bits)
+        //60..6d 21c 	sstaticop vAA, field@BBBB
+        iset[0x60] = new Instruction(_21c); // sget
+        iset[0x61] = new Instruction(_21c); // sget-wide
+        iset[0x62] = new Instruction(_21c); // sget-object
+        iset[0x63] = new Instruction(_21c); // sget-boolean
+        iset[0x64] = new Instruction(_21c); // sget-byte
+        iset[0x65] = new Instruction(_21c); // sget-char
+        iset[0x66] = new Instruction(_21c); // sget-short
+        iset[0x67] = new Instruction(_21c); // sput
+        iset[0x68] = new Instruction(_21c); // sput-wide
+        iset[0x69] = new Instruction(_21c); // sput-object
+        iset[0x6a] = new Instruction(_21c); // sput-boolean
+        iset[0x6b] = new Instruction(_21c); // sput-byte
+        iset[0x6c] = new Instruction(_21c); // sput-char
+        iset[0x6d] = new Instruction(_21c); // sput-short 	A: value register or pair; may be source or dest (8 bits)
+        //6e..72 35c 	invoke-kind {vC, vD, vE, vF, vG}, meth@BBBB
+        iset[0x6e] = new Instruction(_35c); // invoke-virtual
+        iset[0x6f] = new Instruction(_35c); // invoke-super
+        iset[0x70] = new Instruction(_35c); // invoke-direct
+        iset[0x71] = new Instruction(_35c); // invoke-static
+        iset[0x72] = new Instruction(_35c); // invoke-interface 	A: argument word count (4 bits)
+        //73 10x 	(unused) 	  	(unused)
+        //74..78 3rc 	invoke-kind/range {vCCCC .. vNNNN}, meth@BBBB
+        iset[0x74] = new Instruction(_3rc); // invoke-virtual/range
+        iset[0x75] = new Instruction(_3rc); // invoke-super/range
+        iset[0x76] = new Instruction(_3rc); // invoke-direct/range
+        iset[0x77] = new Instruction(_3rc); // invoke-static/range
+        iset[0x78] = new Instruction(_3rc); // invoke-interface/range 	A: argument word count (8 bits)
+        //79..7a 10x 	(unused) 	  	(unused)
+        //7b..8f 12x 	unop vA, vB
 //7b: neg-int
 //7c: not-int
 //7d: neg-long
