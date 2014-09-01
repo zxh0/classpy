@@ -21,68 +21,36 @@ public class InstructionSet {
     static final Instruction[] iset = new Instruction[256];
     static {
         iset[0x00] = new Instruction(_10x); // nop
-    
-//
-//Note: Data-bearing pseudo-instructions are tagged with this opcode, in which case the high-order byte of the opcode unit indicates the nature of the data. See "packed-switch-payload Format", "sparse-switch-payload Format", and "fill-array-data-payload Format" below.
-//01 12x 	move vA, vB 	A: destination register (4 bits)
-//B: source register (4 bits) 	Move the contents of one non-object register to another.
-//02 22x 	move/from16 vAA, vBBBB 	A: destination register (8 bits)
-//B: source register (16 bits) 	Move the contents of one non-object register to another.
-//03 32x 	move/16 vAAAA, vBBBB 	A: destination register (16 bits)
-//B: source register (16 bits) 	Move the contents of one non-object register to another.
-//04 12x 	move-wide vA, vB 	A: destination register pair (4 bits)
-//B: source register pair (4 bits) 	Move the contents of one register-pair to another.
-//
-//Note: It is legal to move from vN to either vN-1 or vN+1, so implementations must arrange for both halves of a register pair to be read before anything is written.
-//05 22x 	move-wide/from16 vAA, vBBBB 	A: destination register pair (8 bits)
-//B: source register pair (16 bits) 	Move the contents of one register-pair to another.
-//
-//Note: Implementation considerations are the same as move-wide, above.
-//06 32x 	move-wide/16 vAAAA, vBBBB 	A: destination register pair (16 bits)
-//B: source register pair (16 bits) 	Move the contents of one register-pair to another.
-//
-//Note: Implementation considerations are the same as move-wide, above.
-//07 12x 	move-object vA, vB 	A: destination register (4 bits)
-//B: source register (4 bits) 	Move the contents of one object-bearing register to another.
-//08 22x 	move-object/from16 vAA, vBBBB 	A: destination register (8 bits)
-//B: source register (16 bits) 	Move the contents of one object-bearing register to another.
-//09 32x 	move-object/16 vAAAA, vBBBB 	A: destination register (16 bits)
-//B: source register (16 bits) 	Move the contents of one object-bearing register to another.
-//0a 11x 	move-result vAA 	A: destination register (8 bits) 	Move the single-word non-object result of the most recent invoke-kind into the indicated register. This must be done as the instruction immediately after an invoke-kind whose (single-word, non-object) result is not to be ignored; anywhere else is invalid.
-//0b 11x 	move-result-wide vAA 	A: destination register pair (8 bits) 	Move the double-word result of the most recent invoke-kind into the indicated register pair. This must be done as the instruction immediately after an invoke-kind whose (double-word) result is not to be ignored; anywhere else is invalid.
-//0c 11x 	move-result-object vAA 	A: destination register (8 bits) 	Move the object result of the most recent invoke-kind into the indicated register. This must be done as the instruction immediately after an invoke-kind or filled-new-array whose (object) result is not to be ignored; anywhere else is invalid.
-//0d 11x 	move-exception vAA 	A: destination register (8 bits) 	Save a just-caught exception into the given register. This must be the first instruction of any exception handler whose caught exception is not to be ignored, and this instruction must only ever occur as the first instruction of an exception handler; anywhere else is invalid.
-//0e 10x 	return-void 	  	Return from a void method.
-//0f 11x 	return vAA 	A: return value register (8 bits) 	Return from a single-width (32-bit) non-object value-returning method.
-//10 11x 	return-wide vAA 	A: return value register-pair (8 bits) 	Return from a double-width (64-bit) value-returning method.
-//11 11x 	return-object vAA 	A: return value register (8 bits) 	Return from an object-returning method.
-//12 11n 	const/4 vA, #+B 	A: destination register (4 bits)
-//B: signed int (4 bits) 	Move the given literal value (sign-extended to 32 bits) into the specified register.
-//13 21s 	const/16 vAA, #+BBBB 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (sign-extended to 32 bits) into the specified register.
-//14 31i 	const vAA, #+BBBBBBBB 	A: destination register (8 bits)
-//B: arbitrary 32-bit constant 	Move the given literal value into the specified register.
-//15 21h 	const/high16 vAA, #+BBBB0000 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (right-zero-extended to 32 bits) into the specified register.
-//16 21s 	const-wide/16 vAA, #+BBBB 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (sign-extended to 64 bits) into the specified register-pair.
-//17 31i 	const-wide/32 vAA, #+BBBBBBBB 	A: destination register (8 bits)
-//B: signed int (32 bits) 	Move the given literal value (sign-extended to 64 bits) into the specified register-pair.
-//18 51l 	const-wide vAA, #+BBBBBBBBBBBBBBBB 	A: destination register (8 bits)
-//B: arbitrary double-width (64-bit) constant 	Move the given literal value into the specified register-pair.
-//19 21h 	const-wide/high16 vAA, #+BBBB000000000000 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (right-zero-extended to 64 bits) into the specified register-pair.
-//1a 21c 	const-string vAA, string@BBBB 	A: destination register (8 bits)
-//B: string index 	Move a reference to the string specified by the given index into the specified register.
-//1b 31c 	const-string/jumbo vAA, string@BBBBBBBB 	A: destination register (8 bits)
-//B: string index 	Move a reference to the string specified by the given index into the specified register.
-//1c 21c 	const-class vAA, type@BBBB 	A: destination register (8 bits)
-//B: type index 	Move a reference to the class specified by the given index into the specified register. In the case where the indicated type is primitive, this will store a reference to the primitive type's degenerate class.
-//1d 11x 	monitor-enter vAA 	A: reference-bearing register (8 bits) 	Acquire the monitor for the indicated object.
-//1e 11x 	monitor-exit vAA 	A: reference-bearing register (8 bits) 	Release the monitor for the indicated object.
-//
-//Note: If this instruction needs to throw an exception, it must do so as if the pc has already advanced past the instruction. It may be useful to think of this as the instruction successfully executing (in a sense), and the exception getting thrown after the instruction but before the next one gets a chance to run. This definition makes it possible for a method to use a monitor cleanup catch-all (e.g., finally) block as the monitor cleanup for that block itself, as a way to handle the arbitrary exceptions that might get thrown due to the historical implementation of Thread.stop(), while still managing to have proper monitor hygiene.
-//1f 21c 	check-cast vAA, type@BBBB 	A: reference-bearing register (8 bits)
+iset[0x01] = new Instruction(_12x); // move vA, vB
+iset[0x02] = new Instruction(_22x); // move/from16 vAA, vBBBB
+iset[0x03] = new Instruction(_32x); // move/16 vAAAA, vBBBB
+iset[0x04] = new Instruction(_12x); // move-wide vA, vB
+iset[0x05] = new Instruction(_22x); // move-wide/from16 vAA, vBBBB
+iset[0x06] = new Instruction(_32x); // move-wide/16 vAAAA, vBBBB
+iset[0x07] = new Instruction(_12x); // move-object vA, vB
+iset[0x08] = new Instruction(_22x); // move-object/from16 vAA, vBBBB
+iset[0x09] = new Instruction(_32x); // move-object/16 vAAAA, vBBBB
+iset[0x0a] = new Instruction(_11x); // move-result vAA
+iset[0x0b] = new Instruction(_11x); // move-result-wide vAA
+iset[0x0c] = new Instruction(_11x); // move-result-object vAA
+iset[0x0d] = new Instruction(_11x); // move-exception vAA
+iset[0x0f] = new Instruction(_11x); // return vAA
+iset[0x10] = new Instruction(_11x); // return-wide vAA
+iset[0x11] = new Instruction(_11x); // return-object vAA
+iset[0x12] = new Instruction(_11n); // const/4 vA, #+B
+iset[0x13] = new Instruction(_21s); // const/16 vAA, #+BBBB
+iset[0x14] = new Instruction(_31i); // const vAA, #+BBBBBBBB
+iset[0x15] = new Instruction(_21h); // const/high16 vAA, #+BBBB0000
+iset[0x16] = new Instruction(_21s); // const-wide/16 vAA, #+BBBB
+iset[0x17] = new Instruction(_31i); // const-wide/32 vAA, #+BBBBBBBB
+iset[0x18] = new Instruction(_51l); // const-wide vAA, #+BBBBBBBBBBBBBBBB
+iset[0x19] = new Instruction(_21h); // const-wide/high16 vAA, #+BBBB000000000000
+iset[0x1a] = new Instruction(_21c); // const-string vAA, string@BBBB
+iset[0x1b] = new Instruction(_31c); // const-string/jumbo vAA, string@BBBBBBBB
+iset[0x1c] = new Instruction(_21c); // const-class vAA, type@BBBB
+iset[0x1d] = new Instruction(_11x); // monitor-enter vAA
+iset[0x1e] = new Instruction(_11x); // monitor-exit vAA
+iset[0x1f] = new Instruction(_21c); // check-cast vAA, type@BBBB
 //B: type index (16 bits) 	Throw a ClassCastException if the reference in the given register cannot be cast to the indicated type.
 //
 //Note: Since A must always be a reference (and not a primitive value), this will necessarily fail at runtime (that is, it will throw an exception) if B refers to a primitive type.
