@@ -13,72 +13,37 @@ public enum InstructionSet {
     move_vA_vB           (0x01, _12x), // move vA, vB
     move_from16_vAA_vBBBB(0x02, _22x), // move/from16 vAA, vBBBB
     move_16_vAAAA_vBBBB(0x03, _32x), // move/16 vAAAA, vBBBB
-//B: source register (16 bits) 	Move the contents of one non-object register to another.
-//04 12x 	move-wide vA, vB 	A: destination register pair (4 bits)
-//B: source register pair (4 bits) 	Move the contents of one register-pair to another.
-//
-//Note: It is legal to move from vN to either vN-1 or vN+1, so implementations must arrange for both halves of a register pair to be read before anything is written.
-//05 22x 	move-wide/from16 vAA, vBBBB 	A: destination register pair (8 bits)
-//B: source register pair (16 bits) 	Move the contents of one register-pair to another.
-//
-//Note: Implementation considerations are the same as move-wide, above.
-//06 32x 	move-wide/16 vAAAA, vBBBB 	A: destination register pair (16 bits)
-//B: source register pair (16 bits) 	Move the contents of one register-pair to another.
-//
-//Note: Implementation considerations are the same as move-wide, above.
-//07 12x 	move-object vA, vB 	A: destination register (4 bits)
-//B: source register (4 bits) 	Move the contents of one object-bearing register to another.
-//08 22x 	move-object/from16 vAA, vBBBB 	A: destination register (8 bits)
-//B: source register (16 bits) 	Move the contents of one object-bearing register to another.
-//09 32x 	move-object/16 vAAAA, vBBBB 	A: destination register (16 bits)
-//B: source register (16 bits) 	Move the contents of one object-bearing register to another.
-//0a 11x 	move-result vAA 	A: destination register (8 bits) 	Move the single-word non-object result of the most recent invoke-kind into the indicated register. This must be done as the instruction immediately after an invoke-kind whose (single-word, non-object) result is not to be ignored; anywhere else is invalid.
-//0b 11x 	move-result-wide vAA 	A: destination register pair (8 bits) 	Move the double-word result of the most recent invoke-kind into the indicated register pair. This must be done as the instruction immediately after an invoke-kind whose (double-word) result is not to be ignored; anywhere else is invalid.
-//0c 11x 	move-result-object vAA 	A: destination register (8 bits) 	Move the object result of the most recent invoke-kind into the indicated register. This must be done as the instruction immediately after an invoke-kind or filled-new-array whose (object) result is not to be ignored; anywhere else is invalid.
-//0d 11x 	move-exception vAA 	A: destination register (8 bits) 	Save a just-caught exception into the given register. This must be the first instruction of any exception handler whose caught exception is not to be ignored, and this instruction must only ever occur as the first instruction of an exception handler; anywhere else is invalid.
-//0e 10x 	return-void 	  	Return from a void method.
-//0f 11x 	return vAA 	A: return value register (8 bits) 	Return from a single-width (32-bit) non-object value-returning method.
-//10 11x 	return-wide vAA 	A: return value register-pair (8 bits) 	Return from a double-width (64-bit) value-returning method.
-//11 11x 	return-object vAA 	A: return value register (8 bits) 	Return from an object-returning method.
-//12 11n 	const/4 vA, #+B 	A: destination register (4 bits)
-//B: signed int (4 bits) 	Move the given literal value (sign-extended to 32 bits) into the specified register.
+    move_wide_vA_vB(0x04, _12x), // move-wide vA, vB
+    move_wide_from16_vAA_vBBBB(0x05, _22x), // move-wide/from16 vAA, vBBBB
+    move_wide_16_vAAAA_vBBBB(0x06, _32x), // move-wide/16 vAAAA, vBBBB
+    move_object_vA_vB(0x07, _12x), // move-object vA, vB
+    move_object_from16_vAA_vBBBB(0x08, _22x), // move-object/from16 vAA, vBBBB
+    move_object_16_vAAAA_vBBBB(0x09, _32x), // move-object/16 vAAAA, vBBBB
+    move_result_vAA(0x0a, _11x), // move-result vAA
+    move_result_wide_vAA(0x0b, _11x), // move-result-wide vAA
+    move_result_object_vAA(0x0c, _11x), // move-result-object vAA
+    move_exception_vAA(0x0d, _11x), // move-exception vAA
+    return_void(0x0e, _10x), // return-void
+    return_vAA(0x0f, _11x), // return vAA
+    return_wide_vAA(0x10, _11x), // return-wide vAA
+    return_object_vAA(0x11, _11x), // return-object vAA
+    const_4_vA(0x12, _11n), // const/4 vA
 //13 21s 	const/16 vAA, #+BBBB 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (sign-extended to 32 bits) into the specified register.
 //14 31i 	const vAA, #+BBBBBBBB 	A: destination register (8 bits)
-//B: arbitrary 32-bit constant 	Move the given literal value into the specified register.
 //15 21h 	const/high16 vAA, #+BBBB0000 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (right-zero-extended to 32 bits) into the specified register.
 //16 21s 	const-wide/16 vAA, #+BBBB 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (sign-extended to 64 bits) into the specified register-pair.
 //17 31i 	const-wide/32 vAA, #+BBBBBBBB 	A: destination register (8 bits)
-//B: signed int (32 bits) 	Move the given literal value (sign-extended to 64 bits) into the specified register-pair.
 //18 51l 	const-wide vAA, #+BBBBBBBBBBBBBBBB 	A: destination register (8 bits)
-//B: arbitrary double-width (64-bit) constant 	Move the given literal value into the specified register-pair.
 //19 21h 	const-wide/high16 vAA, #+BBBB000000000000 	A: destination register (8 bits)
-//B: signed int (16 bits) 	Move the given literal value (right-zero-extended to 64 bits) into the specified register-pair.
 //1a 21c 	const-string vAA, string@BBBB 	A: destination register (8 bits)
-//B: string index 	Move a reference to the string specified by the given index into the specified register.
 //1b 31c 	const-string/jumbo vAA, string@BBBBBBBB 	A: destination register (8 bits)
-//B: string index 	Move a reference to the string specified by the given index into the specified register.
 //1c 21c 	const-class vAA, type@BBBB 	A: destination register (8 bits)
-//B: type index 	Move a reference to the class specified by the given index into the specified register. In the case where the indicated type is primitive, this will store a reference to the primitive type's degenerate class.
 //1d 11x 	monitor-enter vAA 	A: reference-bearing register (8 bits) 	Acquire the monitor for the indicated object.
 //1e 11x 	monitor-exit vAA 	A: reference-bearing register (8 bits) 	Release the monitor for the indicated object.
-//
-//Note: If this instruction needs to throw an exception, it must do so as if the pc has already advanced past the instruction. It may be useful to think of this as the instruction successfully executing (in a sense), and the exception getting thrown after the instruction but before the next one gets a chance to run. This definition makes it possible for a method to use a monitor cleanup catch-all (e.g., finally) block as the monitor cleanup for that block itself, as a way to handle the arbitrary exceptions that might get thrown due to the historical implementation of Thread.stop(), while still managing to have proper monitor hygiene.
 //1f 21c 	check-cast vAA, type@BBBB 	A: reference-bearing register (8 bits)
-//B: type index (16 bits) 	Throw a ClassCastException if the reference in the given register cannot be cast to the indicated type.
-//
-//Note: Since A must always be a reference (and not a primitive value), this will necessarily fail at runtime (that is, it will throw an exception) if B refers to a primitive type.
 //20 22c 	instance-of vA, vB, type@CCCC 	A: destination register (4 bits)
-//B: reference-bearing register (4 bits)
-//C: type index (16 bits) 	Store in the given destination register 1 if the indicated reference is an instance of the given type, or 0 if not.
-//
-//Note: Since B must always be a reference (and not a primitive value), this will always result in 0 being stored if C refers to a primitive type.
 //21 12x 	array-length vA, vB 	A: destination register (4 bits)
-//B: array reference-bearing register (4 bits) 	Store in the given destination register the length of the indicated array, in entries
 //22 21c 	new-instance vAA, type@BBBB 	A: destination register (8 bits)
-//B: type index 	Construct a new instance of the indicated type, storing a reference to it in the destination. The type must refer to a non-array class.
 //23 22c 	new-array vA, vB, type@CCCC 	A: destination register (8 bits)
 //B: size register
 //C: type index 	Construct a new array of the indicated type and size. The type must be an array type.
