@@ -66,24 +66,19 @@ public class InstructionSet {
         iset[0x2b] = new Instruction(_31t); // packed-switch vAA, +BBBBBBBB
         iset[0x2c] = new Instruction(_31t); // sparse-switch vAA, +BBBBBBBB
         //2d..31 23x 	cmpkind vAA, vBB, vCC
-        iset[0x2d] = new Instruction(_23x); //  cmpl-float (lt bias)
-        iset[0x2e] = new Instruction(_23x); //  cmpg-float (gt bias)
-        iset[0x2f] = new Instruction(_23x); //  cmpl-double (lt bias)
-        iset[0x30] = new Instruction(_23x); //  cmpg-double (gt bias)
-        iset[0x31] = new Instruction(_23x); //  cmp-long
+        iset[0x2d] = new Instruction(_23x); // cmpl-float (lt bias)
+        iset[0x2e] = new Instruction(_23x); // cmpg-float (gt bias)
+        iset[0x2f] = new Instruction(_23x); // cmpl-double (lt bias)
+        iset[0x30] = new Instruction(_23x); // cmpg-double (gt bias)
+        iset[0x31] = new Instruction(_23x); // cmp-long
         //32..37 22t 	if-test vA, vB, +CCCC
-//32: if-eq
-//33: if-ne
-//34: if-lt
-//35: if-ge
-//36: if-gt
-//37: if-le
-//	A: first register to test (4 bits)
-//B: second register to test (4 bits)
-//C: signed branch offset (16 bits) 	Branch to the given destination if the given two registers' values compare as specified.
-//
-//Note: The branch offset must not be 0. (A spin loop may be legally constructed either by branching around a backward goto or by including a nop as a target before the branch.)
-//38..3d 21t 	if-testz vAA, +BBBB
+        iset[0x32] = new Instruction(_22t); // if-eq
+        iset[0x33] = new Instruction(_22t); // if-ne
+        iset[0x34] = new Instruction(_22t); // if-lt
+        iset[0x35] = new Instruction(_22t); // if-ge
+        iset[0x36] = new Instruction(_22t); // if-gt
+        iset[0x37] = new Instruction(_22t); // if-le
+        //38..3d 21t 	if-testz vAA, +BBBB
 //38: if-eqz
 //39: if-nez
 //3a: if-ltz
