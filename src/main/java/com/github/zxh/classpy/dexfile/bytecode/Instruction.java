@@ -14,6 +14,9 @@ public class Instruction extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         int opcode = reader.readUByte();
+        int operand;
+        int vA, vB;
+        
         InstructionInfo insnInfo = InstructionSet.getInstructionInfo(opcode);
         switch (insnInfo.format) {
             case _00x:
@@ -25,12 +28,17 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic);
                 break;
             case _12x: // op vA, vB
-                int operand = reader.readUByte();
-                int vA = operand & 0b1111;
-                int vB = operand >> 4;
+                operand = reader.readUByte();
+                vA = operand & 0b1111;
+                vB = operand >> 4;
                 setName(insnInfo.simpleMnemonic + " v" + vA + ", v" + vB);
                 break;
-            case _11n:
+            case _11n: // const/4 vA, #+B
+                operand = reader.readUByte();
+                vA = operand & 0b1111;
+                vB = operand >> 4;
+                setName(insnInfo.simpleMnemonic + " v" + vA + ", #+" + vB);
+                break;
             case _11x:
             case _10t:
                 reader.readByte();
