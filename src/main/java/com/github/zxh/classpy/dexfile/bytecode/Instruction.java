@@ -39,10 +39,13 @@ public class Instruction extends DexComponent {
                 vB = operand >> 4;
                 setName(insnInfo.simpleMnemonic + " v" + vA + ", #+" + vB);
                 break;
-            case _11x:
-            case _10t:
-                reader.readByte();
-                setName(insnInfo.simpleMnemonic);
+            case _11x: // op vAA
+                operand = reader.readUByte();
+                setName(insnInfo.simpleMnemonic + " v" + operand);
+                break;
+            case _10t: // op +AA
+                operand = reader.readUByte();
+                setName(insnInfo.simpleMnemonic + " +" + operand);
                 break;
             case _20t:
             case _20bc:
