@@ -79,16 +79,12 @@ public class InstructionSet {
         iset[0x36] = new Instruction(_22t); // if-gt
         iset[0x37] = new Instruction(_22t); // if-le
         //38..3d 21t 	if-testz vAA, +BBBB
-//38: if-eqz
-//39: if-nez
-//3a: if-ltz
-//3b: if-gez
-//3c: if-gtz
-//3d: if-lez
-//	A: register to test (8 bits)
-//B: signed branch offset (16 bits) 	Branch to the given destination if the given register's value compares with 0 as specified.
-//
-//Note: The branch offset must not be 0. (A spin loop may be legally constructed either by branching around a backward goto or by including a nop as a target before the branch.)
+        iset[0x38] = new Instruction(_21t); // if-eqz
+        iset[0x39] = new Instruction(_21t); // if-nez
+        iset[0x3a] = new Instruction(_21t); // if-ltz
+        iset[0x3b] = new Instruction(_21t); // if-gez
+        iset[0x3c] = new Instruction(_21t); // if-gtz
+        iset[0x3d] = new Instruction(_21t); // if-lez
 //3e..43 10x 	(unused) 	  	(unused)
 //44..51 23x 	arrayop vAA, vBB, vCC
 //44: aget
