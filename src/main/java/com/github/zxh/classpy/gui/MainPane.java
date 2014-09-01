@@ -70,8 +70,10 @@ public class MainPane extends BorderPane {
                         if (node != null && node.getParent() != null) {
                             FileComponent fc = node.getValue();
                             //System.out.println("select " + cc);
-                            hexPane.select(fc);
                             statusBar.setText(" " + fc.getClass().getSimpleName());
+                            if (fc.getLength() > 0) {
+                                hexPane.select(fc);
+                            }
                         }
                     }
                 }

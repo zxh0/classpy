@@ -1,8 +1,5 @@
 package com.github.zxh.classpy.pecoff.header;
 
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 /**
  *
  * @author zxh
@@ -28,17 +25,10 @@ public enum CharacteristicFlags {
     IMAGE_FILE_BYTES_REVERSED_HI      (0x8000);
 
     
-    private final int value;
+    public final int value;
 
     private CharacteristicFlags(int value) {
         this.value = value;
-    }
-    
-    public static String describe(int flags) {
-        return Stream.of(values())
-                .filter(c -> (c.value & flags) != 0)
-                .map(CharacteristicFlags::toString)
-                .collect(Collectors.joining("|", "(", ")"));
     }
     
 }
