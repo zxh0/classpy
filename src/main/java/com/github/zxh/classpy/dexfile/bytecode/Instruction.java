@@ -15,7 +15,7 @@ public class Instruction extends DexComponent {
     protected void readContent(DexReader reader) {
         int opcode = reader.readUByte();
         int operand;
-        int vA, vB;
+        int a, b, aa, aaaa, bbbb;
         
         InstructionInfo insnInfo = InstructionSet.getInstructionInfo(opcode);
         switch (insnInfo.format) {
@@ -29,27 +29,39 @@ public class Instruction extends DexComponent {
                 break;
             case _12x: // op vA, vB
                 operand = reader.readUByte();
-                vA = operand & 0b1111;
-                vB = operand >> 4;
-                setName(insnInfo.simpleMnemonic + " v" + vA + ", v" + vB);
+                a = operand & 0b1111;
+                b = operand >> 4;
+                setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b);
                 break;
             case _11n: // const/4 vA, #+B
                 operand = reader.readUByte();
-                vA = operand & 0b1111;
-                vB = operand >> 4;
-                setName(insnInfo.simpleMnemonic + " v" + vA + ", #+" + vB);
+                a = operand & 0b1111;
+                b = operand >> 4; // todo
+                setName(insnInfo.simpleMnemonic + " v" + a + ", #+" + b);
                 break;
             case _11x: // op vAA
-                operand = reader.readUByte();
-                setName(insnInfo.simpleMnemonic + " v" + operand);
+                aa = reader.readUByte();
+                setName(insnInfo.simpleMnemonic + " v" + aa);
                 break;
             case _10t: // op +AA
-                operand = reader.readUByte();
-                setName(insnInfo.simpleMnemonic + " +" + operand);
+                aa = reader.readByte();
+                setName(insnInfo.simpleMnemonic + " +" + aa);
                 break;
-            case _20t:
-            case _20bc:
-            case _22x:
+            case _20t: // op +AAAA
+                reader.readByte();
+                aaaa = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " +" + aaaa);
+                break;
+            case _20bc: // todo
+                reader.readByte();
+                reader.readUShort();
+                setName(insnInfo.simpleMnemonic);
+                break;
+            case _22x: // op vAA, vBBBB
+                aa = reader.readUByte();
+                bbbb = reader.readUShort().getValue();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bbbb);
+                break;
             case _21t:
             case _21s:
             case _21h:
