@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.bytecode;
 
+import com.github.zxh.classpy.common.FileParseException;
 import static com.github.zxh.classpy.dexfile.bytecode.InstructionFormat.*;
 /**
  *
@@ -9,16 +10,7 @@ import static com.github.zxh.classpy.dexfile.bytecode.InstructionFormat.*;
  */
 public class InstructionSet {
     
-    static class Instruction {
-        
-        public final InstructionFormat format;
-
-        private Instruction(InstructionFormat format) {
-            this.format = format;
-        }
-    }
-    
-    static final Instruction[] iset = new Instruction[256];
+    private static final Instruction[] iset = new Instruction[256];
     static {
         iset[0x00] = new Instruction(_10x); // nop
         iset[0x01] = new Instruction(_12x); // move vA, vB
@@ -255,6 +247,25 @@ public class InstructionSet {
         iset[0xe1] = new Instruction(_22b); // shr-int/lit8
         iset[0xe2] = new Instruction(_22b); // ushr-int/lit8 	A: destination register (8 bits)
         //e3..ff 10x 	(unused) 	  	(unused)
+    }
+    
+    public static Instruction getInstruction(int op) {
+        if (iset[op] != null) {
+            return iset[op];
+        } else {
+            throw new FileParseException("Unused op: " + op);
+        }
+    }
+    
+    
+    public static class Instruction {
+        
+        public final InstructionFormat format;
+
+        private Instruction(InstructionFormat format) {
+            this.format = format;
+        }
+        
     }
     
 }
