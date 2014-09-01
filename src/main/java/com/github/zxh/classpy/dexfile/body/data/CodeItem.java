@@ -1,15 +1,20 @@
 package com.github.zxh.classpy.dexfile.body.data;
 
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
+import com.github.zxh.classpy.dexfile.bytecode.Instruction;
 import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 /**
  *
@@ -23,7 +28,7 @@ public class CodeItem extends DexComponent {
     private UShort triesSize;
     private UIntHex debugInfoOff; // todo
     private UInt insnsSize;
-    // insns
+    private Instructions insns;
     private UShort padding; // optional
     private SizeKnownList<TryItem> tries; // optional
     private EncodedCatchHandlerList handlers; // optional
@@ -40,7 +45,8 @@ public class CodeItem extends DexComponent {
         triesSize = reader.readUShort();
         debugInfoOff = reader.readUIntHex();
         insnsSize = reader.readUInt();
-        reader.skipBytes(insnsSize.getValue() * 2); // insns
+        insns = new Instructions(insnsSize.getValue());
+        insns.read(reader);
         readPadding(reader);
         readTries(reader);
         readHandlers(reader);
@@ -66,6 +72,31 @@ public class CodeItem extends DexComponent {
         }
     }
     
+    
+    public static class Instructions extends DexComponent {
+
+        private final int insnsSize;
+        private final List<Instruction> insns;
+
+        @SuppressWarnings("unchecked")
+        public Instructions(int insnsSize) {
+            this.insnsSize = insnsSize;
+            insns = insnsSize > 0 ? new ArrayList<>() : Collections.EMPTY_LIST;
+        }
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            if (insnsSize > 0) {
+                reader.skipBytes(insnsSize * 2);
+            }
+        }
+
+        @Override
+        public List<? extends FileComponent> getSubComponents() {
+            return insns;
+        }
+        
+    }
     
     public static class TryItem extends DexComponent {
 
