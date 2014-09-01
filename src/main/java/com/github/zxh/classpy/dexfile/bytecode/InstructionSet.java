@@ -62,20 +62,16 @@ public class InstructionSet {
         iset[0x27] = new Instruction(_11x); // throw vAA
         iset[0x28] = new Instruction(_10t); // goto +AA
         iset[0x29] = new Instruction(_20t); // goto/16 +AAAA
-        iset[0x2a] = new Instruction(_30t); //goto/32 +AAAAAAAA
+        iset[0x2a] = new Instruction(_30t); // goto/32 +AAAAAAAA
         iset[0x2b] = new Instruction(_31t); // packed-switch vAA, +BBBBBBBB
         iset[0x2c] = new Instruction(_31t); // sparse-switch vAA, +BBBBBBBB
-//2d..31 23x 	cmpkind vAA, vBB, vCC
-//2d: cmpl-float (lt bias)
-//2e: cmpg-float (gt bias)
-//2f: cmpl-double (lt bias)
-//30: cmpg-double (gt bias)
-//31: cmp-long 	A: destination register (8 bits)
-//B: first source register or pair
-//C: second source register or pair 	Perform the indicated floating point or long comparison, setting a to 0 if b == c, 1 if b > c, or -1 if b < c. The "bias" listed for the floating point operations indicates how NaN comparisons are treated: "gt bias" instructions return 1 for NaN comparisons, and "lt bias" instructions return -1.
-//
-//For example, to check to see if floating point x < y it is advisable to use cmpg-float; a result of -1 indicates that the test was true, and the other values indicate it was false either due to a valid comparison or because one of the values was NaN.
-//32..37 22t 	if-test vA, vB, +CCCC
+        //2d..31 23x 	cmpkind vAA, vBB, vCC
+        iset[0x2d] = new Instruction(_23x); //  cmpl-float (lt bias)
+        iset[0x2e] = new Instruction(_23x); //  cmpg-float (gt bias)
+        iset[0x2f] = new Instruction(_23x); //  cmpl-double (lt bias)
+        iset[0x30] = new Instruction(_23x); //  cmpg-double (gt bias)
+        iset[0x31] = new Instruction(_23x); //  cmp-long
+        //32..37 22t 	if-test vA, vB, +CCCC
 //32: if-eq
 //33: if-ne
 //34: if-lt
