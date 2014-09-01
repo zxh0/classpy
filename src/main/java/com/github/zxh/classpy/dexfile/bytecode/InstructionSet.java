@@ -56,32 +56,15 @@ public class InstructionSet {
         iset[0x21] = new Instruction(_12x); // array-length vA, vB
         iset[0x22] = new Instruction(_21c); // new-instance vAA, type@BBBB
         iset[0x23] = new Instruction(_22c); // new-array vA, vB, type@CCCC
-//B: size register
-//C: type index 	Construct a new array of the indicated type and size. The type must be an array type.
-//24 35c 	filled-new-array {vC, vD, vE, vF, vG}, type@BBBB 	A: array size and argument word count (4 bits)
-//B: type index (16 bits)
-//C..G: argument registers (4 bits each) 	Construct an array of the given type and size, filling it with the supplied contents. The type must be an array type. The array's contents must be single-word (that is, no arrays of long or double, but reference types are acceptable). The constructed instance is stored as a "result" in the same way that the method invocation instructions store their results, so the constructed instance must be moved to a register with an immediately subsequent move-result-object instruction (if it is to be used).
-//25 3rc 	filled-new-array/range {vCCCC .. vNNNN}, type@BBBB 	A: array size and argument word count (8 bits)
-//B: type index (16 bits)
-//C: first argument register (16 bits)
-//N = A + C - 1 	Construct an array of the given type and size, filling it with the supplied contents. Clarifications and restrictions are the same as filled-new-array, described above.
-iset[0x26] = new Instruction(_31t); // fill-array-data vAA, +BBBBBBBB
-//B: signed "branch" offset to table data pseudo-instruction (32 bits) 	Fill the given array with the indicated data. The reference must be to an array of primitives, and the data table must match it in type and must contain no more elements than will fit in the array. That is, the array may be larger than the table, and if so, only the initial elements of the array are set, leaving the remainder alone.
-iset[0x27] = new Instruction(_11x); // throw vAA
-//	Throw the indicated exception.
-//28 10t 	goto +AA 	A: signed branch offset (8 bits) 	Unconditionally jump to the indicated instruction.
-//
-//Note: The branch offset must not be 0. (A spin loop may be legally constructed either with goto/32 or by including a nop as a target before the branch.)
-//29 20t 	goto/16 +AAAA 	A: signed branch offset (16 bits)
-//	Unconditionally jump to the indicated instruction.
-//
-//Note: The branch offset must not be 0. (A spin loop may be legally constructed either with goto/32 or by including a nop as a target before the branch.)
-//2a 30t 	goto/32 +AAAAAAAA 	A: signed branch offset (32 bits)
-//	Unconditionally jump to the indicated instruction.
-iset[0x2b] = new Instruction(_31t); // packed-switch vAA, +BBBBBBBB
-//B: signed "branch" offset to table data pseudo-instruction (32 bits) 	Jump to a new instruction based on the value in the given register, using a table of offsets corresponding to each value in a particular integral range, or fall through to the next instruction if there is no match.
-iset[0x2c] = new Instruction(_31t); // sparse-switch vAA, +BBBBBBBB
-//B: signed "branch" offset to table data pseudo-instruction (32 bits) 	Jump to a new instruction based on the value in the given register, using an ordered table of value-offset pairs, or fall through to the next instruction if there is no match.
+        iset[0x24] = new Instruction(_35c); // filled-new-array {vC, vD, vE, vF, vG}, type@BBBB
+        iset[0x25] = new Instruction(_3rc); // filled-new-array/range {vCCCC .. vNNNN}, type@BBBB
+        iset[0x26] = new Instruction(_31t); // fill-array-data vAA, +BBBBBBBB
+        iset[0x27] = new Instruction(_11x); // throw vAA
+        iset[0x28] = new Instruction(_10t); // goto +AA
+        iset[0x29] = new Instruction(_20t); // goto/16 +AAAA
+        iset[0x2a] = new Instruction(_30t); //goto/32 +AAAAAAAA
+        iset[0x2b] = new Instruction(_31t); // packed-switch vAA, +BBBBBBBB
+        iset[0x2c] = new Instruction(_31t); // sparse-switch vAA, +BBBBBBBB
 //2d..31 23x 	cmpkind vAA, vBB, vCC
 //2d: cmpl-float (lt bias)
 //2e: cmpg-float (gt bias)
