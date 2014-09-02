@@ -17,6 +17,7 @@ public class Instruction extends DexComponent {
         int operand;
         int a, b, aa, bb, cc, aaaa, bbbb, cccc;
         int aaaaLo, aaaaHi;
+        int bbbbLo, bbbbHi;
         
         InstructionInfo insnInfo = InstructionSet.getInstructionInfo(opcode);
         switch (insnInfo.format) {
@@ -155,8 +156,33 @@ public class Instruction extends DexComponent {
                 bbbb = reader.readUShort().getValue();
                 setName(insnInfo.simpleMnemonic + " v" + aaaa + ", v" + bbbb);
                 break;
+            case _31i: // op vAA, #+BBBBBBBB
+                aa = reader.readUByte();
+                bbbbLo = reader.readShort();
+                bbbbHi = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + ((bbbbHi << 16) | bbbbLo));
+                break;
+            case _31t: // op vAA, +BBBBBBBB
+                aa = reader.readUByte();
+                bbbbLo = reader.readShort();
+                bbbbHi = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", +" + ((bbbbHi << 16) | bbbbLo));
+                break;
+            case _31c: // op vAA, string@BBBBBBBB
+                aa = reader.readUByte();
+                bbbbLo = reader.readShort();
+                bbbbHi = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + ((bbbbHi << 16) | bbbbLo));
+                break;
+            case _35c:
+            case _35ms:
+            case _35mi:
+            case _3rc:
+            case _3rms:
+            case _3rmi:
+            case _51l:
             default:
-                throw new FileParseException("XXX");
+                throw new FileParseException("XXX" + insnInfo.format);
         }
     }
     
