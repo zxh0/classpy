@@ -3,6 +3,7 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.common.FileHex;
 import com.github.zxh.classpy.common.FileComponent;
 import javafx.scene.control.TextArea;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -16,6 +17,8 @@ public class HexPane extends TextArea {
         super(hex.getHexText());
         this.hex = hex;
         setEditable(false);
+        // http://stackoverflow.com/questions/24983841/format-text-output-in-javafx
+        setFont(Font.font("Courier New", 14));
     }
     
     public void select(FileComponent fc) {

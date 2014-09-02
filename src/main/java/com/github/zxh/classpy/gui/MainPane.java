@@ -8,7 +8,6 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Font;
 
 /**
  * Container of TreeView, HexPane and StatusBar.
@@ -33,7 +32,7 @@ public class MainPane extends BorderPane {
     
     private static SplitPane buildSplitPane(FileComponent file, FileHex hex, Label statusBar) {
         TreeView<FileComponent> tree = buildClassTree(file);
-        HexPane hexPane = buildHexPane(hex);
+        HexPane hexPane = new HexPane(hex);
         listenTreeItemSelection(tree, hexPane, statusBar);
         
         SplitPane sp = new SplitPane();
@@ -52,13 +51,6 @@ public class MainPane extends BorderPane {
         tree.setMinWidth(200);
         
         return tree;
-    }
-    
-    private static HexPane buildHexPane(FileHex hex) {
-        HexPane pane = new HexPane(hex);
-        // http://stackoverflow.com/questions/24983841/format-text-output-in-javafx
-        pane.setFont(Font.font("Courier New", 14));
-        return pane;
     }
     
     private static void listenTreeItemSelection(TreeView<FileComponent> tree, HexPane hexPane, Label statusBar) {
