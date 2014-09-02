@@ -84,7 +84,19 @@ public class Instruction extends DexComponent {
                     setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + ((long)bbbb << 48));
                 }
                 break;
-            case _21c:
+            case _21c: // op vAA, type@BBBB
+                       // op vAA, field@BBBB
+                       // op vAA, string@BBBB 
+                aa = reader.readUByte();
+                bbbb = reader.readUShort().getValue();
+                if (insnInfo.mnemonic.contains("type")) {
+                    setName(insnInfo.simpleMnemonic + " v" + aa + ", type@" + bbbb);
+                } else if (insnInfo.mnemonic.contains("field")) {
+                    setName(insnInfo.simpleMnemonic + " v" + aa + ", field@" + bbbb);
+                } else {
+                    setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + bbbb);
+                }
+                break;
             case _23x:
             case _22b:
             case _22t:
