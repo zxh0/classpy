@@ -11,10 +11,13 @@ public class UShortProtoIdIndex extends UShort {
 
     @Override
     protected void postRead(DexFile dexFile) {
-        ProtoIdItem protoId = dexFile.getProtoIdItem(getValue());
-        String protoDesc = dexFile.getString(protoId.getShortyIdx());
-        
-        setDesc(getValue() + "->" + protoDesc);
+        int index = getValue();
+        if (index > 0) {
+            ProtoIdItem protoId = dexFile.getProtoIdItem(index);
+            String protoDesc = dexFile.getString(protoId.getShortyIdx());
+
+            setDesc(index + "->" + protoDesc);
+        }
     }
     
 }

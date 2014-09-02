@@ -11,11 +11,14 @@ public class UIntFieldIdIndex extends UInt {
 
     @Override
     protected void postRead(DexFile dexFile) {
-        FieldIdItem fieldId = dexFile.getFieldIdItem(getValue());
-        String fieldName = fieldId.getDesc();
-        String className = dexFile.getTypeIdItem(fieldId.getClassIdx()).getDesc();
-        
-        setDesc(getValue() + "->" + className + "." + fieldName);
+        int index = getValue();
+        if (index > 0) {
+            FieldIdItem fieldId = dexFile.getFieldIdItem(index);
+            String fieldName = fieldId.getDesc();
+            String className = dexFile.getTypeIdItem(fieldId.getClassIdx()).getDesc();
+
+            setDesc(index + "->" + className + "." + fieldName);
+        }
     }
     
 }

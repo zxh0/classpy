@@ -13,8 +13,6 @@ public class UIntStringIdIndex extends UInt {
         int index = getValue();
         if (index > 0) {
             setDesc(index + "->" + dexFile.getString(index));
-        } else {
-            setDesc(String.valueOf(index));
         }
     }
     

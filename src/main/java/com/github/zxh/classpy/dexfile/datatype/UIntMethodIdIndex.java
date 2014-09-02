@@ -11,11 +11,14 @@ public class UIntMethodIdIndex extends UInt {
 
     @Override
     protected void postRead(DexFile dexFile) {
-        MethodIdItem methodId = dexFile.getMethodIdItem(getValue());
-        String methodName = methodId.getDesc();
-        String className = dexFile.getTypeIdItem(methodId.getClassIdx()).getDesc();
-        
-        setDesc(getValue() + "->" + className + "." + methodName);
+        int index = getValue();
+        if (index > 0) {
+            MethodIdItem methodId = dexFile.getMethodIdItem(index);
+            String methodName = methodId.getDesc();
+            String className = dexFile.getTypeIdItem(methodId.getClassIdx()).getDesc();
+
+            setDesc(index + "->" + className + "." + methodName);
+        }
     }
     
 }

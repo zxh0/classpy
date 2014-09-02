@@ -17,8 +17,6 @@ public class UIntTypeIdIndex extends UInt {
             String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
 
             setDesc(index + "->" + typeDesc);
-        } else {
-            setDesc(String.valueOf(index));
         }
     }
     
