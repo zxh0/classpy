@@ -15,7 +15,7 @@ public class Instruction extends DexComponent {
     protected void readContent(DexReader reader) {
         int opcode = reader.readUByte();
         int operand;
-        int a, b, aa, bb, cc, aaaa, bbbb;
+        int a, b, aa, bb, cc, aaaa, bbbb, cccc;
         
         InstructionInfo insnInfo = InstructionSet.getInstructionInfo(opcode);
         switch (insnInfo.format) {
@@ -89,12 +89,12 @@ public class Instruction extends DexComponent {
                        // op vAA, string@BBBB 
                 aa = reader.readUByte();
                 bbbb = reader.readUShort().getValue();
-                if (insnInfo.mnemonic.contains("type")) {
-                    setName(insnInfo.simpleMnemonic + " v" + aa + ", type@" + bbbb);
-                } else if (insnInfo.mnemonic.contains("field")) {
-                    setName(insnInfo.simpleMnemonic + " v" + aa + ", field@" + bbbb);
-                } else {
+                if (insnInfo.mnemonic.contains("string")) {
                     setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + bbbb);
+                } else if (insnInfo.mnemonic.contains("type")) {
+                    setName(insnInfo.simpleMnemonic + " v" + aa + ", type@" + bbbb);
+                } else {
+                    setName(insnInfo.simpleMnemonic + " v" + aa + ", field@" + bbbb);
                 }
                 break;
             case _23x: // op vAA, vBB, vCC
@@ -109,9 +109,32 @@ public class Instruction extends DexComponent {
                 cc = reader.readByte();
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bb + ", #+" + cc);
                 break;
-            case _22t:
-            case _22s:
-            case _22c:
+            case _22t: // op vA, vB, +CCCC
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4;
+                cccc = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", +" + cccc);
+                break;
+            case _22s: // op vA, vB, #+CCCC
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4;
+                cccc = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", #+" + cccc);
+                break;
+            case _22c: // op vA, vB, type@CCCC
+                       // op vA, vB, field@CCCC 
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4;
+                cccc = reader.readUShort().getValue();
+                if (insnInfo.mnemonic.contains("type")) {
+                    setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", type@" + cccc);
+                } else {
+                    setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", field@" + cccc);
+                }
+                break;
             case _22cs:
                 reader.readByte();
                 reader.readUShort();
