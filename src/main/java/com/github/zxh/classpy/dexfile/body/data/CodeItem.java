@@ -53,6 +53,7 @@ public class CodeItem extends DexComponent {
     }
     
     private void readPadding(DexReader reader) {
+        // two bytes of padding to make tries four-byte aligned. 
         // This element is only present if tries_size is non-zero and insns_size is odd. 
         if ((triesSize.getValue() > 0) && (insnsSize.getValue() %2 == 1)) {
             padding = reader.readUShort();
@@ -103,6 +104,8 @@ public class CodeItem extends DexComponent {
                     insn.read(reader);
                     insns.add(insn);
                 }
+                
+                reader.setPosition(endPosition);
             }
         }
 
@@ -174,7 +177,7 @@ public class CodeItem extends DexComponent {
         protected void postRead(DexFile dexFile) {
             TypeIdItem typeId = dexFile.getTypeIdItem(typeIdx);
             String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
-            
+
             typeIdx.setDesc(typeIdx.getValue() + "->" + typeDesc);
         }
         
