@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.dexfile.bytecode;
 
 import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.bytecode.InstructionSet.InstructionInfo;
@@ -170,6 +171,7 @@ public class Instruction extends DexComponent {
                 aa = reader.readUByte();
                 bbbb_bbbb = reader.readUShort().getValue() | (reader.readShort() << 16);
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", +" + bbbb_bbbb);
+                readPayload(opcode, bbbb_bbbb, reader);
                 break;
             case _31c: // op vAA, string@BBBBBBBB
                 aa = reader.readUByte();
@@ -241,12 +243,16 @@ public class Instruction extends DexComponent {
             default:
                 throw new FileParseException("XXX" + insnInfo.format);
         }
-
-        // _31t
+    }
+    
+    private void readPayload(int opcode, int bbbb_bbbb, DexReader reader) {
         if (opcode == 0x26) {
             // fill-array-data vAA, +BBBBBBBB
-//            fillArrayDataPayload = new FillArrayDataPayload();
-//            fillArrayDataPayload.read(reader);
+            int oldPosition = reader.getPosition();
+            reader.setPosition(reader.getPosition() + bbbb_bbbb * 2 - 6);
+            fillArrayDataPayload = new FillArrayDataPayload();
+            fillArrayDataPayload.read(reader);
+            reader.setPosition(oldPosition);
         }
     }
     
@@ -261,10 +267,10 @@ public class Instruction extends DexComponent {
         @Override
         protected void readContent(DexReader reader) {
             ident = reader.readUShort();
+            ident.setDesc(Util.toHexString(ident.getValue()));
             elementWidth = reader.readUShort();
             size = reader.readUInt();
-            // The total number of code units for an instance of this table is (size * element_width + 1) / 2 + 4.
-            reader.skipBytes((size.getValue() * elementWidth.getValue() + 1) / 2 + 4);
+            reader.skipBytes(size.getValue() * elementWidth.getValue());
         }
         
     }
