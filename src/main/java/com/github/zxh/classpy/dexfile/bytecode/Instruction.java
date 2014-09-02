@@ -15,7 +15,7 @@ public class Instruction extends DexComponent {
     protected void readContent(DexReader reader) {
         int opcode = reader.readUByte();
         int operand;
-        int a, b, c, d, e, f, g;
+        int a, b, c, d, e, f, g, fedc;
         int aa, bb, cc;
         int aaaa, bbbb, cccc;
         int aaaaLo, aaaaHi;
@@ -177,12 +177,44 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + ((bbbbHi << 16) | bbbbLo));
                 break;
             case _35c:
+                /*
+                [A=5] op {vC, vD, vE, vF, vG}, meth@BBBB
+                [A=5] op {vC, vD, vE, vF, vG}, type@BBBB
+                [A=4] op {vC, vD, vE, vF}, kind@BBBB
+                [A=3] op {vC, vD, vE}, kind@BBBB
+                [A=2] op {vC, vD}, kind@BBBB
+                [A=1] op {vC}, kind@BBBB
+                [A=0] op {}, kind@BBBB
+                */
                 operand = reader.readUByte();
                 g = operand & 0b1111;
                 a = operand >> 4;
                 bbbb = reader.readUShort().getValue();
-//                operand
-                // todo
+                fedc = reader.readUShort().getValue();
+                c = fedc & 0b1111;
+                d = (fedc >> 4) & 0b1111;
+                e = (fedc >> 8) & 0b1111;
+                f = (fedc >> 12) & 0b1111;
+                if (a == 5) {
+                    if (opcode == 0x24) {
+                        // filled-new-array {vC, vD, vE, vF, vG}, type@BBBB
+                        setName(String.format("%s {v%d, v%d, v%d, v%d, v%d}, type@%d", insnInfo.simpleMnemonic, c, d, e, f, g, bbbb));
+                    } else {
+                        // invoke-kind {vC, vD, vE, vF, vG}, meth@BBBB
+                        setName(String.format("%s {v%d, v%d, v%d, v%d, v%d}, type@%d", insnInfo.simpleMnemonic, c, d, e, f, g, bbbb));
+                    }
+                } else if (a == 4) {
+                    setName(String.format("%s {v%d, v%d, v%d, v%d}, kind@%d", insnInfo.simpleMnemonic, c, d, e, f, bbbb));
+                } else if (a == 3) {
+                    setName(String.format("%s {v%d, v%d, v%d}, kind@%d", insnInfo.simpleMnemonic, c, d, e, bbbb));
+                } else if (a == 2) {
+                    setName(String.format("%s {v%d, v%d}, kind@%d", insnInfo.simpleMnemonic, c, d, bbbb));
+                } else if (a == 1) {
+                    setName(String.format("%s {v%d}, kind@%d", insnInfo.simpleMnemonic, c, bbbb));
+                } else {
+                    setName(String.format("%s {}, kind@%d", insnInfo.simpleMnemonic, bbbb));
+                }
+                break;
             case _35ms:
             case _35mi:
             case _3rc:

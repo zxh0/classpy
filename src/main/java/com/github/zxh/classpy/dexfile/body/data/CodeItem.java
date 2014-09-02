@@ -98,7 +98,7 @@ public class CodeItem extends DexComponent {
                         insns.add(insn);
                     }
                 } catch (Exception e) {
-                    System.out.println(e.getMessage());
+                    System.out.println(e.getMessage() + "  offset:" +  Integer.toHexString(reader.getPosition()));
                     // todo
                     reader.setPosition(endPosition);
                 }
