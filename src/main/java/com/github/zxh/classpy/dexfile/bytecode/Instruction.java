@@ -230,7 +230,14 @@ public class Instruction extends DexComponent {
                 break;
             //case _3rms:
             //case _3rmi:
-            case _51l:
+            case _51l: // op vAA, #+BBBBBBBBBBBBBBBB
+                aa = reader.readUByte();
+                long b8 = reader.readShort();
+                b8 |= (reader.readShort() << 16);
+                b8 |= (reader.readShort() << 32);
+                b8 |= (reader.readShort() << 48);
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + b8);
+                break;
             default:
                 throw new FileParseException("XXX" + insnInfo.format);
         }
