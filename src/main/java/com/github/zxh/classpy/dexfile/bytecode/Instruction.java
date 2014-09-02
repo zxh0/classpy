@@ -201,7 +201,7 @@ public class Instruction extends DexComponent {
                         setName(String.format("%s {v%d, v%d, v%d, v%d, v%d}, type@%d", insnInfo.simpleMnemonic, c, d, e, f, g, bbbb));
                     } else {
                         // invoke-kind {vC, vD, vE, vF, vG}, meth@BBBB
-                        setName(String.format("%s {v%d, v%d, v%d, v%d, v%d}, type@%d", insnInfo.simpleMnemonic, c, d, e, f, g, bbbb));
+                        setName(String.format("%s {v%d, v%d, v%d, v%d, v%d}, meth@%d", insnInfo.simpleMnemonic, c, d, e, f, g, bbbb));
                     }
                 } else if (a == 4) {
                     setName(String.format("%s {v%d, v%d, v%d, v%d}, kind@%d", insnInfo.simpleMnemonic, c, d, e, f, bbbb));
@@ -215,11 +215,21 @@ public class Instruction extends DexComponent {
                     setName(String.format("%s {}, kind@%d", insnInfo.simpleMnemonic, bbbb));
                 }
                 break;
-            case _35ms:
-            case _35mi:
-            case _3rc:
-            case _3rms:
-            case _3rmi:
+            //case _35ms:
+            //case _35mi:
+            case _3rc: // op {vCCCC .. vNNNN}, meth@BBBB
+                       // op {vCCCC .. vNNNN}, type@BBBB
+                aa = reader.readUByte();
+                bbbb = reader.readUShort().getValue();
+                cccc = reader.readUShort().getValue();
+                if (opcode == 0x25) { // filled-new-array/range {vCCCC .. vNNNN}, type@BBBB
+                    setName(String.format("%s {v%d .. v%d}, type@%d", insnInfo.simpleMnemonic, cccc, cccc+aa-1, bbbb));
+                } else {
+                    setName(String.format("%s {v%d .. v%d}, meth@%d", insnInfo.simpleMnemonic, cccc, cccc+aa-1, bbbb));
+                }
+                break;
+            //case _3rms:
+            //case _3rmi:
             case _51l:
             default:
                 throw new FileParseException("XXX" + insnInfo.format);
