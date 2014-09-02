@@ -14,7 +14,7 @@ public class Instruction extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         int opcode = reader.readUByte();
-        int operand1, operand2;
+        int operand;
         int a, b, c, d, e, f, g;
         int aa, bb, cc;
         int aaaa, bbbb, cccc;
@@ -32,15 +32,15 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic);
                 break;
             case _12x: // op vA, vB
-                operand1 = reader.readUByte();
-                a = operand1 & 0b1111;
-                b = operand1 >> 4;
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4;
                 setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b);
                 break;
             case _11n: // const/4 vA, #+B
-                operand1 = reader.readUByte();
-                a = operand1 & 0b1111;
-                b = operand1 >> 4; // todo
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4; // todo
                 setName(insnInfo.simpleMnemonic + " v" + a + ", #+" + b);
                 break;
             case _11x: // op vAA
@@ -115,24 +115,24 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bb + ", #+" + cc);
                 break;
             case _22t: // op vA, vB, +CCCC
-                operand1 = reader.readUByte();
-                a = operand1 & 0b1111;
-                b = operand1 >> 4;
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4;
                 cccc = reader.readShort();
                 setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", +" + cccc);
                 break;
             case _22s: // op vA, vB, #+CCCC
-                operand1 = reader.readUByte();
-                a = operand1 & 0b1111;
-                b = operand1 >> 4;
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4;
                 cccc = reader.readShort();
                 setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", #+" + cccc);
                 break;
             case _22c: // op vA, vB, type@CCCC
                        // op vA, vB, field@CCCC 
-                operand1 = reader.readUByte();
-                a = operand1 & 0b1111;
-                b = operand1 >> 4;
+                operand = reader.readUByte();
+                a = operand & 0b1111;
+                b = operand >> 4;
                 cccc = reader.readUShort().getValue();
                 if (insnInfo.mnemonic.contains("type")) {
                     setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", type@" + cccc);
@@ -177,10 +177,11 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + ((bbbbHi << 16) | bbbbLo));
                 break;
             case _35c:
-                operand1 = reader.readUByte();
-                g = operand1 & 0b1111;
-                a = operand1 >> 4;
+                operand = reader.readUByte();
+                g = operand & 0b1111;
+                a = operand >> 4;
                 bbbb = reader.readUShort().getValue();
+//                operand
                 // todo
             case _35ms:
             case _35mi:
