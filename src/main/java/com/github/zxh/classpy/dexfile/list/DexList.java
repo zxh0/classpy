@@ -30,6 +30,7 @@ public abstract class DexList<E extends DexComponent> extends DexComponent imple
     @Override
     protected final void readContent(DexReader reader) {
         readList(reader);
+        setDesc("(" + list.size() + ")");
         setElementName();
     }
     
