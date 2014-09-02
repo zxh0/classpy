@@ -16,6 +16,7 @@ public class Instruction extends DexComponent {
         int opcode = reader.readUByte();
         int operand;
         int a, b, aa, bb, cc, aaaa, bbbb, cccc;
+        int aaaaLo, aaaaHi;
         
         InstructionInfo insnInfo = InstructionSet.getInstructionInfo(opcode);
         switch (insnInfo.format) {
@@ -52,9 +53,10 @@ public class Instruction extends DexComponent {
                 aaaa = reader.readShort();
                 setName(insnInfo.simpleMnemonic + " +" + aaaa);
                 break;
-            case _20bc: // todo
+            case _20bc: // op AA, kind@BBBB
+                // todo
                 reader.readByte();
-                reader.readUShort();
+                reader.readShort();
                 setName(insnInfo.simpleMnemonic);
                 break;
             case _22x: // op vAA, vBBBB
@@ -135,10 +137,23 @@ public class Instruction extends DexComponent {
                     setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", field@" + cccc);
                 }
                 break;
-            case _22cs:
+            case _22cs: // op vA, vB, fieldoff@CCCC
+                // todo
                 reader.readByte();
-                reader.readUShort();
+                reader.readShort();
                 setName(insnInfo.simpleMnemonic);
+                break;
+            case _30t: // op +AAAAAAAA
+                reader.readByte();
+                aaaaLo = reader.readShort();
+                aaaaHi = reader.readShort();
+                setName(insnInfo.simpleMnemonic + "+" + ((aaaaHi << 16) | aaaaLo));
+                break;
+            case _32x: // op vAAAA, vBBBB
+                reader.readByte();
+                aaaa = reader.readUShort().getValue();
+                bbbb = reader.readUShort().getValue();
+                setName(insnInfo.simpleMnemonic + " v" + aaaa + ", v" + bbbb);
                 break;
             default:
                 throw new FileParseException("XXX");
