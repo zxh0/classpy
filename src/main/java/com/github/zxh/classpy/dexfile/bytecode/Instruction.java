@@ -22,8 +22,8 @@ public class Instruction extends DexComponent {
         int a, b, c, d, e, f, g, fedc;
         int aa, bb, cc;
         int aaaa, bbbb, cccc;
-        int aaaaLo, aaaaHi;
-        int bbbbLo, bbbbHi;
+        int aaaa_aaaa;
+        int bbbb_bbbb;
         
         InstructionInfo insnInfo = InstructionSet.getInstructionInfo(opcode);
         switch (insnInfo.format) {
@@ -152,9 +152,8 @@ public class Instruction extends DexComponent {
                 break;
             case _30t: // op +AAAAAAAA
                 reader.readByte();
-                aaaaLo = reader.readShort();
-                aaaaHi = reader.readShort();
-                setName(insnInfo.simpleMnemonic + "+" + ((aaaaHi << 16) | aaaaLo));
+                aaaa_aaaa = reader.readUShort().getValue() | (reader.readShort() << 16);
+                setName(insnInfo.simpleMnemonic + "+" + aaaa_aaaa);
                 break;
             case _32x: // op vAAAA, vBBBB
                 reader.readByte();
@@ -164,21 +163,18 @@ public class Instruction extends DexComponent {
                 break;
             case _31i: // op vAA, #+BBBBBBBB
                 aa = reader.readUByte();
-                bbbbLo = reader.readShort();
-                bbbbHi = reader.readShort();
-                setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + ((bbbbHi << 16) | bbbbLo));
+                bbbb_bbbb = reader.readUShort().getValue() | (reader.readShort() << 16);
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + bbbb_bbbb);
                 break;
             case _31t: // op vAA, +BBBBBBBB
                 aa = reader.readUByte();
-                bbbbLo = reader.readShort();
-                bbbbHi = reader.readShort();
-                setName(insnInfo.simpleMnemonic + " v" + aa + ", +" + ((bbbbHi << 16) | bbbbLo));
+                bbbb_bbbb = reader.readUShort().getValue() | (reader.readShort() << 16);
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", +" + bbbb_bbbb);
                 break;
             case _31c: // op vAA, string@BBBBBBBB
                 aa = reader.readUByte();
-                bbbbLo = reader.readShort();
-                bbbbHi = reader.readShort();
-                setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + ((bbbbHi << 16) | bbbbLo));
+                bbbb_bbbb = reader.readUShort().getValue() | (reader.readShort() << 16);
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + bbbb_bbbb);
                 break;
             case _35c:
                 /*
@@ -245,12 +241,13 @@ public class Instruction extends DexComponent {
             default:
                 throw new FileParseException("XXX" + insnInfo.format);
         }
-        
-//        if (opcode == 0x26) {
-//            // fill-array-data vAA, +BBBBBBBB
+
+        // _31t
+        if (opcode == 0x26) {
+            // fill-array-data vAA, +BBBBBBBB
 //            fillArrayDataPayload = new FillArrayDataPayload();
 //            fillArrayDataPayload.read(reader);
-//        }
+        }
     }
     
     
