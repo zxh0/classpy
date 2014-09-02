@@ -16,6 +16,8 @@ import com.github.zxh.classpy.dexfile.datatype.UShort;
 public class Instruction extends DexComponent {
 
     private FillArrayDataPayload fillArrayDataPayload;
+    private PackedSwitchPayload packedSwitchPayload;
+    private SparseSwitchPayload sparseSwitchPayload;
     
     @Override
     protected void readContent(DexReader reader) {
@@ -247,14 +249,24 @@ public class Instruction extends DexComponent {
     }
     
     private void readPayload(int opcode, int bbbb_bbbb, DexReader reader) {
+        int oldPosition = reader.getPosition();
+        reader.setPosition(reader.getPosition() + bbbb_bbbb * 2 - 6);
+        
         if (opcode == 0x26) {
             // fill-array-data vAA, +BBBBBBBB
-            int oldPosition = reader.getPosition();
-            reader.setPosition(reader.getPosition() + bbbb_bbbb * 2 - 6);
             fillArrayDataPayload = new FillArrayDataPayload();
             fillArrayDataPayload.read(reader);
-            reader.setPosition(oldPosition);
+        } else if (opcode == 0x2b) {
+            // packed-switch vAA, +BBBBBBBB
+            packedSwitchPayload = new PackedSwitchPayload();
+            packedSwitchPayload.read(reader);
+        } else if (opcode == 0x2c) {
+            // sparse-switch vAA, +BBBBBBBB
+            sparseSwitchPayload = new SparseSwitchPayload();
+            sparseSwitchPayload.read(reader);
         }
+        
+        reader.setPosition(oldPosition);
     }
     
     
@@ -285,6 +297,24 @@ public class Instruction extends DexComponent {
         
         @Override
         protected void readContent(DexReader reader) {
+            ident = reader.readUShort();
+            size = reader.readUShort();
+            // todo
+        }
+        
+    }
+    
+    public static class SparseSwitchPayload extends DexComponent {
+
+        private UShort ident; // identifying pseudo-opcode
+        private UShort size; // number of entries in the table
+        // keys int[]
+        // targets int[]
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            ident = reader.readUShort();
+            size = reader.readUShort();
             // todo
         }
         
