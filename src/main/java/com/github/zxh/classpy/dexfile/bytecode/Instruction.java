@@ -4,6 +4,8 @@ import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.bytecode.InstructionSet.InstructionInfo;
+import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UShort;
 
 /**
  *
@@ -11,6 +13,8 @@ import com.github.zxh.classpy.dexfile.bytecode.InstructionSet.InstructionInfo;
  */
 public class Instruction extends DexComponent {
 
+    private FillArrayDataPayload fillArrayDataPayload;
+    
     @Override
     protected void readContent(DexReader reader) {
         int opcode = reader.readUByte();
@@ -241,6 +245,31 @@ public class Instruction extends DexComponent {
             default:
                 throw new FileParseException("XXX" + insnInfo.format);
         }
+        
+//        if (opcode == 0x26) {
+//            // fill-array-data vAA, +BBBBBBBB
+//            fillArrayDataPayload = new FillArrayDataPayload();
+//            fillArrayDataPayload.read(reader);
+//        }
+    }
+    
+    
+    public static class FillArrayDataPayload extends DexComponent {
+
+        private UShort ident; // identifying pseudo-opcode
+        private UShort elementWidth; // number of bytes in each element
+        private UInt size; // number of elements in the table
+        //private Hex data; // data values
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            ident = reader.readUShort();
+            elementWidth = reader.readUShort();
+            size = reader.readUInt();
+            // The total number of code units for an instance of this table is (size * element_width + 1) / 2 + 4.
+            reader.skipBytes((size.getValue() * elementWidth.getValue() + 1) / 2 + 4);
+        }
+        
     }
     
 }

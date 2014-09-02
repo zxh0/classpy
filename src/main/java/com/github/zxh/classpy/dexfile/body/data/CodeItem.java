@@ -90,17 +90,18 @@ public class CodeItem extends DexComponent {
                 final int startPosition = reader.getPosition();
                 final int endPosition = startPosition + 2 * insnsSize;
                 
-                try {
-                    int position;
-                    while ((position = reader.getPosition()) < endPosition) {
-                        Instruction insn = new Instruction();
-                        insn.read(reader);
-                        insns.add(insn);
+                int position;
+                while ((position = reader.getPosition()) < endPosition) {
+                    int opcode = reader.getByteBuffer().get(position);
+                    if (opcode == 0) { // nop
+                        // Data-bearing pseudo-instructions are tagged with this opcode,
+                        // in which case the high-order byte of the opcode unit indicates the nature of the data. 
+                        break;
                     }
-                } catch (Exception e) {
-                    System.out.println(e.getMessage() + "  offset:" +  Integer.toHexString(reader.getPosition()));
-                    // todo
-                    reader.setPosition(endPosition);
+                    
+                    Instruction insn = new Instruction();
+                    insn.read(reader);
+                    insns.add(insn);
                 }
             }
         }
