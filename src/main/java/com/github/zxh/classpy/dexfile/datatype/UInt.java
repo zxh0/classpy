@@ -22,7 +22,7 @@ public class UInt extends DexComponent implements IntValue {
     
     @Override
     protected void readContent(DexReader reader) {
-        value = reader.readInt(); // todo
+        value = reader.getByteBuffer().getInt(); // todo
         describe(value);
     }
     

@@ -7,6 +7,7 @@ import com.github.zxh.classpy.dexfile.datatype.Mutf8;
 import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.common.IntValue;
+import com.github.zxh.classpy.dexfile.datatype.SInt;
 import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UIntFieldIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
@@ -81,8 +82,10 @@ public class DexReader extends BytesReader {
     }
     
     // 32-bit signed int, little-endian
-    public int readInt() {
-        return buf.getInt();
+    public SInt readSInt() {
+        SInt sint = new SInt();
+        sint.read(this);
+        return sint;
     }
     
     // 32-bit unsigned int, little-endian
@@ -120,21 +123,6 @@ public class DexReader extends BytesReader {
         UIntMethodIdIndex uint = new UIntMethodIdIndex();
         uint.read(this);
         return uint;
-    }
-    
-    // 64-bit signed int, little-endian
-    public long readLong() {
-        return buf.getLong();
-    }
-    
-    // 64-bit unsigned int, little-endian
-    public long readULong() {
-        long ulong = buf.getLong();
-        if (ulong < 0) {
-            // todo
-        }
-        
-        return ulong;
     }
     
     // Unsigned Little-Endian Base 128.

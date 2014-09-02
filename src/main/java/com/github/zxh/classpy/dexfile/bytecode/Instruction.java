@@ -5,6 +5,7 @@ import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.bytecode.InstructionSet.InstructionInfo;
+import com.github.zxh.classpy.dexfile.datatype.SInt;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
 
@@ -271,6 +272,20 @@ public class Instruction extends DexComponent {
             elementWidth = reader.readUShort();
             size = reader.readUInt();
             reader.skipBytes(size.getValue() * elementWidth.getValue());
+        }
+        
+    }
+    
+    public static class PackedSwitchPayload extends DexComponent {
+
+        private UShort ident; // identifying pseudo-opcode
+        private UShort size; // number of entries in the table
+        private SInt firstKey; // first (and lowest) switch case value
+        // targets int[]
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            // todo
         }
         
     }
