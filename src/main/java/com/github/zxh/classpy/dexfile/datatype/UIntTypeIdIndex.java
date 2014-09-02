@@ -11,10 +11,15 @@ public class UIntTypeIdIndex extends UInt {
 
     @Override
     protected void postRead(DexFile dexFile) {
-        TypeIdItem typeId = dexFile.getTypeIdItem(getValue());
-        String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
-        
-        setDesc(getValue() + "->" + typeDesc);
+        int index = getValue();
+        if (index > 0) {
+            TypeIdItem typeId = dexFile.getTypeIdItem(index);
+            String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
+
+            setDesc(index + "->" + typeDesc);
+        } else {
+            setDesc(String.valueOf(index));
+        }
     }
     
 }
