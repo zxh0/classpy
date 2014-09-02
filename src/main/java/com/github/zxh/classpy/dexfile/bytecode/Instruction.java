@@ -15,7 +15,7 @@ public class Instruction extends DexComponent {
     protected void readContent(DexReader reader) {
         int opcode = reader.readUByte();
         int operand;
-        int a, b, aa, aaaa, bbbb;
+        int a, b, aa, bb, cc, aaaa, bbbb;
         
         InstructionInfo insnInfo = InstructionSet.getInstructionInfo(opcode);
         switch (insnInfo.format) {
@@ -97,8 +97,18 @@ public class Instruction extends DexComponent {
                     setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + bbbb);
                 }
                 break;
-            case _23x:
-            case _22b:
+            case _23x: // op vAA, vBB, vCC
+                aa = reader.readUByte();
+                bb = reader.readUByte();
+                cc = reader.readUByte();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bb + ", v" + cc);
+                break;
+            case _22b: // op vAA, vBB, #+CC
+                aa = reader.readUByte();
+                bb = reader.readUByte();
+                cc = reader.readByte();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bb + ", #+" + cc);
+                break;
             case _22t:
             case _22s:
             case _22c:
