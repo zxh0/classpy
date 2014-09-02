@@ -63,9 +63,27 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bbbb);
                 break;
             case _21t: // op vAA, +BBBB
-                // todo
-            case _21s:
-            case _21h:
+                aa = reader.readUByte();
+                bbbb = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", +" + bbbb);
+                break;
+            case _21s: // op vAA, #+BBBB
+                aa = reader.readUByte();
+                bbbb = reader.readShort();
+                setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + bbbb);
+                break;
+            case _21h: // op vAA, #+BBBB0000
+                       // op vAA, #+BBBB000000000000 
+                aa = reader.readUByte();
+                bbbb = reader.readShort();
+                if (opcode == 0x15) {
+                    // const/high16 vAA, #+BBBB0000
+                    setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + (bbbb << 16));
+                } else {
+                    // const-wide/high16 vAA, #+BBBB000000000000
+                    setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + ((long)bbbb << 48));
+                }
+                break;
             case _21c:
             case _23x:
             case _22b:
