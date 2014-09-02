@@ -8,6 +8,7 @@ import com.github.zxh.classpy.dexfile.bytecode.InstructionSet.InstructionInfo;
 import com.github.zxh.classpy.dexfile.datatype.SInt;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
+import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 
 /**
  *
@@ -293,13 +294,16 @@ public class Instruction extends DexComponent {
         private UShort ident; // identifying pseudo-opcode
         private UShort size; // number of entries in the table
         private SInt firstKey; // first (and lowest) switch case value
-        // targets int[]
+        // list of 'size' relative branch targets. 
+        // The targets are relative to the address of the switch opcode, not of this table. 
+        private SizeKnownList<SInt> targets;
         
         @Override
         protected void readContent(DexReader reader) {
             ident = reader.readUShort();
             size = reader.readUShort();
-            // todo
+            firstKey = reader.readSInt();
+            targets = reader.readSizeKnownList(size, SInt::new);
         }
         
     }
@@ -308,14 +312,17 @@ public class Instruction extends DexComponent {
 
         private UShort ident; // identifying pseudo-opcode
         private UShort size; // number of entries in the table
-        // keys int[]
-        // targets int[]
+        private SizeKnownList<SInt> keys; // list of 'size' key values, sorted low-to-high
+        // list of size relative branch targets, each corresponding to the key value at the same index.
+        // The targets are relative to the address of the switch opcode, not of this table. 
+        private SizeKnownList<SInt> targets;
         
         @Override
         protected void readContent(DexReader reader) {
             ident = reader.readUShort();
             size = reader.readUShort();
-            // todo
+            keys = reader.readSizeKnownList(size, SInt::new);
+            targets = reader.readSizeKnownList(size, SInt::new);
         }
         
     }
