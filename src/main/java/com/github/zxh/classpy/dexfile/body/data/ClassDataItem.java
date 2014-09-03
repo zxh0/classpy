@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.body.data;
 
+import com.github.zxh.classpy.common.java.AccessFlags;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
@@ -79,6 +80,7 @@ public class ClassDataItem extends DexComponent {
         protected void readContent(DexReader reader) {
             fieldIdxDiff = reader.readUleb128();
             accessFlags = reader.readUleb128();
+            AccessFlags.describeFieldFlags(accessFlags);
         }
     
     }
@@ -97,6 +99,7 @@ public class ClassDataItem extends DexComponent {
         protected void readContent(DexReader reader) {
             methodIdxDiff = reader.readUleb128();
             accessFlags = reader.readUleb128();
+            AccessFlags.describeMethodFlags(accessFlags);
             codeOff = reader.readUleb128Hex();
         }
         
