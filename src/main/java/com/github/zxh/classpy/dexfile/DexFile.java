@@ -89,14 +89,22 @@ public class DexFile extends DexComponent {
         stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
                 stringIds.stream().mapToInt(stringId -> stringId.getStringDataOff().getValue()));
         
-        reader.setPosition(classDefs.get(0).getClassDataOff());
-        classDataList = reader.readOffsetsKnownList(ClassDataItem::new,
-                classDefs.stream().mapToInt(classDef -> classDef.getClassDataOff().getValue()));
-        
+        readClassDataList(reader);
         readTypeList(reader);
         readCodeList(reader);
         readDebugInfoList(reader);
         readAnnotationsDirectoryList(reader);
+    }
+    
+    private void readClassDataList(DexReader reader) {
+        int[] offArr = classDefs.stream()
+                .mapToInt(classDef -> classDef.getClassDataOff().getValue())
+                .filter(off -> off > 0)
+                .toArray();
+        
+        reader.setPosition(offArr[0]);
+        classDataList = reader.readOffsetsKnownList(ClassDataItem::new,
+                Arrays.stream(offArr));
     }
     
     private void readTypeList(DexReader reader) {
