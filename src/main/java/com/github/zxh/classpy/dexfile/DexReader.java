@@ -8,7 +8,9 @@ import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.datatype.ByteArray;
+import com.github.zxh.classpy.dexfile.datatype.SByte;
 import com.github.zxh.classpy.dexfile.datatype.SInt;
+import com.github.zxh.classpy.dexfile.datatype.SShort;
 import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.datatype.UIntFieldIdIndex;
@@ -65,9 +67,21 @@ public class DexReader extends BytesReader {
         return ubyte;
     }
     
+    public SByte readSByte() {
+        SByte ubyte = new SByte();
+        ubyte.read(this);
+        return ubyte;
+    }
+    
     // 16-bit unsigned int, little-endian
     public UShort readUShort() {
         UShort ushort = new UShort();
+        ushort.read(this);
+        return ushort;
+    }
+    
+    public SShort readSShort() {
+        SShort ushort = new SShort();
         ushort.read(this);
         return ushort;
     }
