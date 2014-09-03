@@ -12,7 +12,7 @@ public class UIntMethodIdIndex extends UInt {
     @Override
     protected void postRead(DexFile dexFile) {
         int index = getValue();
-        if (index > 0) {
+        if (index >= 0) {
             MethodIdItem methodId = dexFile.getMethodIdItem(index);
             String methodName = methodId.getDesc();
             String className = dexFile.getTypeIdItem(methodId.getClassIdx()).getDesc();

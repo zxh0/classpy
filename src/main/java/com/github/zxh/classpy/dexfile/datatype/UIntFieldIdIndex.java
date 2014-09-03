@@ -12,7 +12,7 @@ public class UIntFieldIdIndex extends UInt {
     @Override
     protected void postRead(DexFile dexFile) {
         int index = getValue();
-        if (index > 0) {
+        if (index >= 0) {
             FieldIdItem fieldId = dexFile.getFieldIdItem(index);
             String fieldName = fieldId.getDesc();
             String className = dexFile.getTypeIdItem(fieldId.getClassIdx()).getDesc();

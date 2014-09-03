@@ -11,7 +11,7 @@ public class UIntStringIdIndex extends UInt {
     @Override
     protected void postRead(DexFile dexFile) {
         int index = getValue();
-        if (index > 0) {
+        if (index >= 0) {
             setDesc(index + "->" + dexFile.getString(index));
         }
     }

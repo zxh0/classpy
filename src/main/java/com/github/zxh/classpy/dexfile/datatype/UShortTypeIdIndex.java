@@ -12,7 +12,7 @@ public class UShortTypeIdIndex extends UShort {
     @Override
     protected void postRead(DexFile dexFile) {
         int index = getValue();
-        if (index > 0) {
+        if (index >= 0) {
             TypeIdItem typeId = dexFile.getTypeIdItem(index);
             String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
 
