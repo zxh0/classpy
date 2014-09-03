@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.common.java.AccessFlags;
+
 /*
 method_info {
     u2             access_flags;

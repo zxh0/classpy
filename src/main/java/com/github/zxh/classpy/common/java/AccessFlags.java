@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile;
+package com.github.zxh.classpy.common.java;
 
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.IntValue;
