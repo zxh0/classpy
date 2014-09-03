@@ -99,11 +99,14 @@ public class DexFile extends DexComponent {
     }
     
     private void readStringDataList(DexReader reader) {
-        IntStream offStream = stringIds.stream()
-                .mapToInt(stringId -> stringId.getStringDataOff().getValue());
+        int[] offArr = stringIds.stream()
+                .mapToInt(stringId -> stringId.getStringDataOff().getValue())
+                .sorted()
+                .toArray();
         
-        reader.setPosition(stringIds.get(0).getStringDataOff());
-        stringDataList = reader.readOffsetsKnownList(StringDataItem::new, offStream);
+        reader.setPosition(offArr[0]);
+        stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
+                Arrays.stream(offArr));
     }
     
     private void readClassDataList(DexReader reader) {

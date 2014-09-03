@@ -10,14 +10,19 @@ import com.github.zxh.classpy.dexfile.DexReader;
 public class ByteArray extends DexComponent {
 
     private final int byteCount;
+    private byte[] bytes;
 
+    public byte[] getBytes() {
+        return bytes;
+    }
+    
     public ByteArray(int byteCount) {
         this.byteCount = byteCount;
     }
     
     @Override
     protected void readContent(DexReader reader) {
-        reader.skipBytes(byteCount);
+        bytes = reader.readBytes(byteCount);
     }
     
 }
