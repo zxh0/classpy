@@ -3,7 +3,6 @@ package com.github.zxh.classpy.dexfile.list;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import java.util.function.Supplier;
-import java.util.stream.IntStream;
 
 /**
  *
@@ -13,22 +12,22 @@ import java.util.stream.IntStream;
  */
 public class OffsetsKnownList<E extends DexComponent> extends DexList<E> {
 
-    private final IntStream offStream;
+    private final int[] offsets;
     private final Supplier<E> factory;
 
-    public OffsetsKnownList(IntStream offStream, Supplier<E> factory) {
-        this.offStream = offStream;
+    public OffsetsKnownList(int[] offsets, Supplier<E> factory) {
+        this.offsets = offsets;
         this.factory = factory;
     }
     
     @Override
     protected void readList(DexReader reader) {
-        offStream.forEach(offset -> {
+        for (int offset : offsets) {
             E e = factory.get();
             reader.setPosition(offset);
             e.read(reader);
             list.add(e);
-        });
+        }
     }
     
     @Override

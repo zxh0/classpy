@@ -21,9 +21,7 @@ import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 import java.util.stream.IntStream;
 
 /**
@@ -101,23 +99,22 @@ public class DexFile extends DexComponent {
     private void readStringDataList(DexReader reader) {
         int[] offArr = stringIds.stream()
                 .mapToInt(stringId -> stringId.getStringDataOff().getValue())
-                .sorted()
+                //.sorted()
                 .toArray();
         
         reader.setPosition(offArr[0]);
-        stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
-                Arrays.stream(offArr));
+        stringDataList = reader.readOffsetsKnownList(offArr, StringDataItem::new);
     }
     
     private void readClassDataList(DexReader reader) {
         int[] offArr = classDefs.stream()
                 .mapToInt(classDef -> classDef.getClassDataOff().getValue())
                 .filter(off -> off > 0)
+                //.sorted()
                 .toArray();
         
         reader.setPosition(offArr[0]);
-        classDataList = reader.readOffsetsKnownList(ClassDataItem::new,
-                Arrays.stream(offArr));
+        classDataList = reader.readOffsetsKnownList(offArr, ClassDataItem::new);
     }
     
     private void readTypeList(DexReader reader) {
@@ -127,12 +124,14 @@ public class DexFile extends DexComponent {
         IntStream off2 = protoIds.stream()
                 .mapToInt(protoId -> protoId.getParametersOff().getValue())
                 .filter(off -> off > 0);
-        int[] offArr = IntStream.concat(off1, off2).distinct().toArray();
-        
-        Supplier<SizeHeaderList<TypeItem>> factory = () -> new SizeHeaderList<>(TypeItem::new);
+        int[] offArr = IntStream.concat(off1, off2)
+                .distinct()
+                //.sorted()
+                .toArray();
         
         reader.setPosition(offArr[0]);
-        typeList = reader.readOffsetsKnownList(factory, Arrays.stream(offArr));
+        typeList = reader.readOffsetsKnownList(offArr, 
+                () -> new SizeHeaderList<>(TypeItem::new));
     }
     
     private void readCodeList(DexReader reader) {
@@ -150,35 +149,40 @@ public class DexFile extends DexComponent {
             }
         }
         
+        int[] offArr = codeOffsets.stream()
+                .mapToInt(Uleb128::getValue)
+                //.sorted()
+                .toArray();
+        
         reader.setPosition(codeOffsets.get(0));
-        codeList = reader.readOffsetsKnownList(CodeItem::new,
-                codeOffsets.stream().mapToInt(Uleb128::getValue));
+        codeList = reader.readOffsetsKnownList(offArr, CodeItem::new);
     }
     
     private void readDebugInfoList(DexReader reader) {
         int[] offArr = codeList.stream()
                 .mapToInt(codeItem -> codeItem.getDebugInfoOff().getValue())
                 .filter(off -> off > 0)
+                //.sorted()
                 .toArray();
         
         if (offArr.length > 0) {
             reader.setPosition(offArr[0]);
         }
-        debugInfoList = reader.readOffsetsKnownList(
-                DebugInfoItem::new, Arrays.stream(offArr));
+        debugInfoList = reader.readOffsetsKnownList(offArr, DebugInfoItem::new);
     }
     
     private void readAnnotationsDirectoryList(DexReader reader) {
         int[] offArr = classDefs.stream()
                 .mapToInt(classDef -> classDef.getAnnotationsOff().getValue())
                 .filter(off -> off > 0)
+                //.sorted()
                 .toArray();
         
         if (offArr.length > 0) {
             reader.setPosition(offArr[0]);
         }
-        annotationsDirectoryList = reader.readOffsetsKnownList(
-                AnnotationsDirectoryItem::new, Arrays.stream(offArr));
+        annotationsDirectoryList = reader.readOffsetsKnownList(offArr,
+                AnnotationsDirectoryItem::new);
     }
     
     public String getString(IntValue index) {
