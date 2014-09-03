@@ -3,6 +3,7 @@ package com.github.zxh.classpy.dexfile.body.data;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
+import com.github.zxh.classpy.dexfile.datatype.ByteArray;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
@@ -39,22 +40,22 @@ public class EncodedArrayItem extends DexComponent {
     public static class EncodedValue extends DexComponent {
 
         private UByte typeAndArg; // (value_arg << 5) | value_type
-        private DexComponent value;
+        private ByteArray value;
         
         @Override
         protected void readContent(DexReader reader) {
             typeAndArg = reader.readUByte();
-            readValue(typeAndArg, reader);
+            decodeValue(typeAndArg, reader);
         }
         
-        private void readValue(UByte typeAndArg, DexReader reader) {
-            int valueArg = typeAndArg.getValue() >> 5;
+        private void decodeValue(UByte typeAndArg, DexReader reader) {
             int valueType = typeAndArg.getValue() & 0b11111;
-            int size = valueArg;
+            int valueArg = typeAndArg.getValue() >> 5;
             
             switch (valueType) {
                 case 0x00: // signed one-byte integer value
                     typeAndArg.setDesc("VALUE_BYTE(0x00)|" + valueArg);
+                    value = reader.readByteArray(1);
                     //value = reader.readSByte();
                     break;
                 case 0x02: // signed two-byte integer value, sign-extended
@@ -109,5 +110,25 @@ public class EncodedArrayItem extends DexComponent {
         }
         
     }
+    
+//    private static class EncodedValueDecoder extends DataInputStream {
+//        
+//        private EncodedValueDecoder(byte[] buf, int extendedByteCount) {
+//            super(new ByteArrayInputStream(buf));
+//        }
+//        
+//        private byte[] signExtend(byte[] buf, int extendedByteCount) {
+//            if (buf.length < 2) {
+//                return buf;
+//            }
+//            if (buf.length == extendedByteCount) {
+//                //
+//                return buf;
+//            }
+//            
+//            
+//        }
+//        
+//    }
     
 }
