@@ -50,20 +50,22 @@ public class EncodedArrayItem extends DexComponent {
         private void readValue(UByte typeAndArg, DexReader reader) {
             int valueArg = typeAndArg.getValue() >> 5;
             int valueType = typeAndArg.getValue() & 0b11111;
+            int size = valueArg;
             
             switch (valueType) {
-                case 0x00:
+                case 0x00: // signed one-byte integer value
                     typeAndArg.setDesc("VALUE_BYTE(0x00)|" + valueArg);
-                    value = reader.readSByte();
+                    //value = reader.readSByte();
                     break;
-                case 0x02:
+                case 0x02: // signed two-byte integer value, sign-extended
                     typeAndArg.setDesc("VALUE_SHORT(0x02)|" + valueArg);
-                    value = reader.readSShort();
+                    //value = size == 0 ? reader.readSByte() : reader.readSShort();
                     break;
-                case 0x03:
+                case 0x03: // unsigned two-byte integer value, zero-extended
                     typeAndArg.setDesc("VALUE_CHAR(0x03)|" + valueArg);
+                    //value = size == 0 ? reader.readUByte() : reader.readUShort();
                     break;
-                case 0x04:
+                case 0x04: // signed four-byte integer value, sign-extended
                     typeAndArg.setDesc("VALUE_INT(0x04)|" + valueArg);
                     break;
                 case 0x06:
