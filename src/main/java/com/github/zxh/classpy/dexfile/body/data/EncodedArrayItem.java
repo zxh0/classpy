@@ -2,6 +2,8 @@ package com.github.zxh.classpy.dexfile.body.data;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
+import com.github.zxh.classpy.dexfile.datatype.ByteArray;
+import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 
@@ -36,8 +38,12 @@ public class EncodedArrayItem extends DexComponent {
     
     public static class EncodedValue extends DexComponent {
 
+        private UByte x; // todo
+        private ByteArray value;
+        
         @Override
         protected void readContent(DexReader reader) {
+            x = reader.readUByte();
             // todo
         }
         

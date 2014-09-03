@@ -59,15 +59,10 @@ public class DexReader extends BytesReader {
         return bytes;
     }
     
-//    public UByte readUByte() {
-//        UByte ubyte = new UByte();
-//        ubyte.read(this);
-//        return ubyte;
-//    }
-    
-    // 16-bit signed int, little-endian
-    public short readShort() {
-        return buf.getShort();
+    public UByte readUByte() {
+        UByte ubyte = new UByte();
+        ubyte.read(this);
+        return ubyte;
     }
     
     // 16-bit unsigned int, little-endian
