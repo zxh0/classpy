@@ -99,9 +99,11 @@ public class DexFile extends DexComponent {
     }
     
     private void readStringDataList(DexReader reader) {
+        IntStream offStream = stringIds.stream()
+                .mapToInt(stringId -> stringId.getStringDataOff().getValue());
+        
         reader.setPosition(stringIds.get(0).getStringDataOff());
-        stringDataList = reader.readOffsetsKnownList(StringDataItem::new,
-                stringIds.stream().mapToInt(stringId -> stringId.getStringDataOff().getValue()));
+        stringDataList = reader.readOffsetsKnownList(StringDataItem::new, offStream);
     }
     
     private void readClassDataList(DexReader reader) {
@@ -117,12 +119,10 @@ public class DexFile extends DexComponent {
     
     private void readTypeList(DexReader reader) {
         IntStream off1 = classDefs.stream()
-                .map(ClassDefItem::getInterfacesOff)
-                .mapToInt(off -> off.getValue())
+                .mapToInt(classDef -> classDef.getInterfacesOff().getValue())
                 .filter(off -> off > 0);
         IntStream off2 = protoIds.stream()
-                .map(ProtoIdItem::getParametersOff)
-                .mapToInt(off -> off.getValue())
+                .mapToInt(protoId -> protoId.getParametersOff().getValue())
                 .filter(off -> off > 0);
         int[] offArr = IntStream.concat(off1, off2).distinct().toArray();
         
@@ -154,9 +154,8 @@ public class DexFile extends DexComponent {
     
     private void readDebugInfoList(DexReader reader) {
         int[] offArr = codeList.stream()
-                .map(codeItem -> codeItem.getDebugInfoOff())
-                .filter(off -> off.getValue() > 0)
-                .mapToInt(x -> x.getValue())
+                .mapToInt(codeItem -> codeItem.getDebugInfoOff().getValue())
+                .filter(off -> off > 0)
                 .toArray();
         
         if (offArr.length > 0) {
@@ -168,9 +167,8 @@ public class DexFile extends DexComponent {
     
     private void readAnnotationsDirectoryList(DexReader reader) {
         int[] offArr = classDefs.stream()
-                .map(classDef -> classDef.getAnnotationsOff())
-                .filter(off -> off.getValue() > 0)
-                .mapToInt(x -> x.getValue())
+                .mapToInt(classDef -> classDef.getAnnotationsOff().getValue())
+                .filter(off -> off > 0)
                 .toArray();
         
         if (offArr.length > 0) {
