@@ -45,7 +45,7 @@ public class BytesReader {
     }
     
     // 8-bit unsigned int
-    public int readUByte() {
+    public int readUnsignedByte() {
         return Byte.toUnsignedInt(buf.get());
     }
     

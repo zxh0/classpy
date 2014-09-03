@@ -23,7 +23,7 @@ public class Instruction extends DexComponent {
     
     @Override
     protected void readContent(DexReader reader) {
-        int opcode = reader.readUByte();
+        int opcode = reader.readUnsignedByte();
         int operand;
         int a, b, c, d, e, f, g, fedc;
         int aa, bb, cc;
@@ -42,19 +42,19 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic);
                 break;
             case _12x: // op vA, vB
-                operand = reader.readUByte();
+                operand = reader.readUnsignedByte();
                 a = operand & 0b1111;
                 b = operand >> 4;
                 setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b);
                 break;
             case _11n: // const/4 vA, #+B
-                operand = reader.readUByte();
+                operand = reader.readUnsignedByte();
                 a = operand & 0b1111;
                 b = operand >> 4; // todo
                 setName(insnInfo.simpleMnemonic + " v" + a + ", #+" + b);
                 break;
             case _11x: // op vAA
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 setName(insnInfo.simpleMnemonic + " v" + aa);
                 break;
             case _10t: // op +AA
@@ -73,23 +73,23 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic);
                 break;
             case _22x: // op vAA, vBBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb = reader.readUShort().getValue();
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bbbb);
                 break;
             case _21t: // op vAA, +BBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb = reader.readShort();
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", +" + bbbb);
                 break;
             case _21s: // op vAA, #+BBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb = reader.readShort();
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + bbbb);
                 break;
             case _21h: // op vAA, #+BBBB0000
                        // op vAA, #+BBBB000000000000 
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb = reader.readShort();
                 if (opcode == 0x15) {
                     // const/high16 vAA, #+BBBB0000
@@ -102,7 +102,7 @@ public class Instruction extends DexComponent {
             case _21c: // op vAA, type@BBBB
                        // op vAA, field@BBBB
                        // op vAA, string@BBBB 
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb = reader.readUShort().getValue();
                 if (insnInfo.mnemonic.contains("string")) {
                     setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + bbbb);
@@ -113,26 +113,26 @@ public class Instruction extends DexComponent {
                 }
                 break;
             case _23x: // op vAA, vBB, vCC
-                aa = reader.readUByte();
-                bb = reader.readUByte();
-                cc = reader.readUByte();
+                aa = reader.readUnsignedByte();
+                bb = reader.readUnsignedByte();
+                cc = reader.readUnsignedByte();
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bb + ", v" + cc);
                 break;
             case _22b: // op vAA, vBB, #+CC
-                aa = reader.readUByte();
-                bb = reader.readUByte();
+                aa = reader.readUnsignedByte();
+                bb = reader.readUnsignedByte();
                 cc = reader.readByte();
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", v" + bb + ", #+" + cc);
                 break;
             case _22t: // op vA, vB, +CCCC
-                operand = reader.readUByte();
+                operand = reader.readUnsignedByte();
                 a = operand & 0b1111;
                 b = operand >> 4;
                 cccc = reader.readShort();
                 setName(insnInfo.simpleMnemonic + " v" + a + ", v" + b + ", +" + cccc);
                 break;
             case _22s: // op vA, vB, #+CCCC
-                operand = reader.readUByte();
+                operand = reader.readUnsignedByte();
                 a = operand & 0b1111;
                 b = operand >> 4;
                 cccc = reader.readShort();
@@ -140,7 +140,7 @@ public class Instruction extends DexComponent {
                 break;
             case _22c: // op vA, vB, type@CCCC
                        // op vA, vB, field@CCCC 
-                operand = reader.readUByte();
+                operand = reader.readUnsignedByte();
                 a = operand & 0b1111;
                 b = operand >> 4;
                 cccc = reader.readUShort().getValue();
@@ -168,18 +168,18 @@ public class Instruction extends DexComponent {
                 setName(insnInfo.simpleMnemonic + " v" + aaaa + ", v" + bbbb);
                 break;
             case _31i: // op vAA, #+BBBBBBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb_bbbb = reader.readUShort().getValue() | (reader.readShort() << 16);
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", #+" + bbbb_bbbb);
                 break;
             case _31t: // op vAA, +BBBBBBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb_bbbb = reader.readUShort().getValue() | (reader.readShort() << 16);
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", +" + bbbb_bbbb);
                 readPayload(opcode, bbbb_bbbb, reader);
                 break;
             case _31c: // op vAA, string@BBBBBBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb_bbbb = reader.readUShort().getValue() | (reader.readShort() << 16);
                 setName(insnInfo.simpleMnemonic + " v" + aa + ", string@" + bbbb_bbbb);
                 break;
@@ -193,7 +193,7 @@ public class Instruction extends DexComponent {
                 [A=1] op {vC}, kind@BBBB
                 [A=0] op {}, kind@BBBB
                 */
-                operand = reader.readUByte();
+                operand = reader.readUnsignedByte();
                 g = operand & 0b1111;
                 a = operand >> 4;
                 bbbb = reader.readUShort().getValue();
@@ -226,7 +226,7 @@ public class Instruction extends DexComponent {
             //case _35mi:
             case _3rc: // op {vCCCC .. vNNNN}, meth@BBBB
                        // op {vCCCC .. vNNNN}, type@BBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 bbbb = reader.readUShort().getValue();
                 cccc = reader.readUShort().getValue();
                 if (opcode == 0x25) { // filled-new-array/range {vCCCC .. vNNNN}, type@BBBB
@@ -238,7 +238,7 @@ public class Instruction extends DexComponent {
             //case _3rms:
             //case _3rmi:
             case _51l: // op vAA, #+BBBBBBBBBBBBBBBB
-                aa = reader.readUByte();
+                aa = reader.readUnsignedByte();
                 long b8 = reader.readShort();
                 b8 |= (reader.readShort() << 16);
                 b8 |= (reader.readShort() << 32);

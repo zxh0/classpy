@@ -19,7 +19,7 @@ public class Hex extends DexComponent {
     protected void readContent(DexReader reader) {
         StringBuilder hex = new StringBuilder("0x");
         for (int i = 0; i < n; i++) {
-            hex.append(Integer.toHexString(reader.readUByte()));
+            hex.append(Integer.toHexString(reader.readUnsignedByte()));
         }
         
         setDesc(hex.toString());

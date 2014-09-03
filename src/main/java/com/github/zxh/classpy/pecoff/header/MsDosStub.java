@@ -12,7 +12,7 @@ public class MsDosStub extends PeComponent {
     @Override
     protected void readContent(PeReader reader) {
         reader.skipBytes(0x3c);
-        int peSignatureOffset = reader.readUByte();
+        int peSignatureOffset = reader.readUnsignedByte();
         reader.skipBytes(peSignatureOffset - 0x3c - 1);
     }
     
