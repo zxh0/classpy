@@ -5,6 +5,7 @@ import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.bytecode.InstructionSet.InstructionInfo;
+import com.github.zxh.classpy.dexfile.datatype.ByteArray;
 import com.github.zxh.classpy.dexfile.datatype.SInt;
 import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.UShort;
@@ -276,7 +277,7 @@ public class Instruction extends DexComponent {
         private UShort ident; // identifying pseudo-opcode
         private UShort elementWidth; // number of bytes in each element
         private UInt size; // number of elements in the table
-        //private Hex data; // data values
+        private ByteArray data; // data values
         
         @Override
         protected void readContent(DexReader reader) {
@@ -284,7 +285,7 @@ public class Instruction extends DexComponent {
             ident.setDesc(Util.toHexString(ident.getValue()));
             elementWidth = reader.readUShort();
             size = reader.readUInt();
-            reader.skipBytes(size.getValue() * elementWidth.getValue());
+            data = reader.readByteArray(size.getValue() * elementWidth.getValue());
         }
         
     }

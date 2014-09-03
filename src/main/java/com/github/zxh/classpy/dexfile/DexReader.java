@@ -7,6 +7,7 @@ import com.github.zxh.classpy.dexfile.datatype.Mutf8;
 import com.github.zxh.classpy.dexfile.datatype.Hex;
 import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.common.IntValue;
+import com.github.zxh.classpy.dexfile.datatype.ByteArray;
 import com.github.zxh.classpy.dexfile.datatype.SInt;
 import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UIntFieldIdIndex;
@@ -155,6 +156,12 @@ public class DexReader extends BytesReader {
         Hex hex = new Hex(n);
         hex.read(this);
         return hex;
+    }
+    
+    public ByteArray readByteArray(int n) {
+        ByteArray array = new ByteArray(n);
+        array.read(this);
+        return array;
     }
     
     public <E extends DexComponent> SizeKnownList<E> readSizeKnownList(IntValue size, Supplier<E> factory) {
