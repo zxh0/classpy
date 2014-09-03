@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.body;
 
+import com.github.zxh.classpy.common.java.AccessFlags;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
@@ -16,7 +17,7 @@ import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
 public class ClassDefItem extends DexComponent {
 
     private UIntTypeIdIndex classIdx;
-    private UInt accessFlags; // todo
+    private UInt accessFlags;
     private UIntTypeIdIndex superclassIdx;
     private UIntHex interfacesOff; // -> type_list
     private UIntStringIdIndex sourceFileIdx;
@@ -32,6 +33,7 @@ public class ClassDefItem extends DexComponent {
     protected void readContent(DexReader reader) {
         classIdx = reader.readUIntTypeIdIndex();
         accessFlags = reader.readUInt();
+        AccessFlags.describeClassOrInnerClassFlags(accessFlags);
         superclassIdx = reader.readUIntTypeIdIndex();
         interfacesOff = reader.readUIntHex();
         sourceFileIdx = reader.readUIntStringIdIndex();

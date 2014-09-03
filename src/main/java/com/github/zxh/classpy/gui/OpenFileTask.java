@@ -28,7 +28,7 @@ public class OpenFileTask extends Task<Object> {
         System.out.println("loading " + file.getAbsolutePath() + "...");
         
         if (Files.size(file.toPath()) > 512 * 1024) {
-            //throw new FileParseException("File is too large!");
+            throw new FileParseException("File is too large!");
         }
         
         String fileType = getExtension(file.getName());
