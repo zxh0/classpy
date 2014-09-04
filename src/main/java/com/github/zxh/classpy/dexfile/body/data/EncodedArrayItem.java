@@ -3,11 +3,11 @@ package com.github.zxh.classpy.dexfile.body.data;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.datatype.ByteArray;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.helper.EncodedValueDecoder;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
+import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.io.IOException;
 
 /**
@@ -128,7 +128,8 @@ public class EncodedArrayItem extends DexComponent {
                     break;
                 case 0x1d: // a sub-annotation, in the format specified by "encoded_annotation Format" below. The size of the value is implicit in the encoding. 
                     typeAndArg.setDesc("VALUE_ANNOTATION(0x1d)|" + valueArg);
-                    // todo
+                    value = new EncodedAnnotation();
+                    value.read(reader);
                     break;
                 case 0x1e: // null reference value
                     typeAndArg.setDesc("VALUE_NULL(0x1e)|" + valueArg);
@@ -140,6 +141,35 @@ public class EncodedArrayItem extends DexComponent {
                     break;
                 default: throw new FileParseException("Invalid EncodedValue Type: " + valueType);
             }
+        }
+        
+    }
+    
+    public static class EncodedAnnotation extends DexComponent {
+
+        private Uleb128 typeIdx;
+        private Uleb128 size;
+        private SizeKnownList<AnnotationElement> elements;
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            typeIdx = reader.readUleb128();
+            size = reader.readUleb128();
+            elements = reader.readSizeKnownList(size, AnnotationElement::new);
+        }
+        
+    }
+    
+    public static class AnnotationElement extends DexComponent {
+
+        private Uleb128 nameIdx;
+        private EncodedValue value;
+        
+        @Override
+        protected void readContent(DexReader reader) {
+            nameIdx = reader.readUleb128();
+            value = new EncodedValue();
+            value.read(reader);
         }
         
     }
