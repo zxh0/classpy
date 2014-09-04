@@ -83,17 +83,17 @@ public class EncodedArrayItem extends DexComponent {
                 case 0x06: // signed eight-byte integer value, sign-extended
                     typeAndArg.setDesc("VALUE_LONG(0x06)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 8, true).readLong()));
+                    value.setDesc(new EncodedValueDecoder(value, 8, true).readLong());
                     break;
                 case 0x10: // four-byte bit pattern, zero-extended to the right, and interpreted as an IEEE754 32-bit floating point value 
                     typeAndArg.setDesc("VALUE_FLOAT(0x10)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 4, false).readFloat()));
+                    value.setDesc(new EncodedValueDecoder(value, 4, false).readFloat());
                     break;
                 case 0x11: // eight-byte bit pattern, zero-extended to the right, and interpreted as an IEEE754 64-bit floating point value 
                     typeAndArg.setDesc("VALUE_DOUBLE(0x11)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 8, false).readDouble()));
+                    value.setDesc(new EncodedValueDecoder(value, 8, false).readDouble());
                     break;
                 case 0x17: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the string_ids section and representing a string value 
                     typeAndArg.setDesc("VALUE_STRING(0x17)|" + valueArg);
