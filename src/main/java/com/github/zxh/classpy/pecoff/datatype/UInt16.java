@@ -19,7 +19,7 @@ public class UInt16 extends PeComponent implements IntValue {
 
     @Override
     protected void readContent(PeReader reader) {
-        value = Short.toUnsignedInt(reader.getByteBuffer().getShort());
+        value = Short.toUnsignedInt(reader.readShort());
         describe(value);
     }
     

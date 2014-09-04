@@ -14,7 +14,7 @@ public class Branch extends Instruction {
     
     @Override
     protected void readOperands(ClassReader reader) {
-        short offset = reader.getByteBuffer().getShort();
+        short offset = reader.readShort();
         offset += pc;
         setDesc(getDesc() + " " + offset);
     }
