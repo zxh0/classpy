@@ -23,6 +23,9 @@ public class FileComponent {
     public final int getOffset() {return offset;}
     public final int getLength() {return length;}
     
+    public final void setDesc(boolean value) {
+        desc = Boolean.toString(value);
+    }
     public final void setDesc(char value) {
         desc = Character.toString(value);
     }

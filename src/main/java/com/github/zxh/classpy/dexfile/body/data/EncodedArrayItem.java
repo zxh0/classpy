@@ -106,26 +106,36 @@ public class EncodedArrayItem extends DexComponent {
                     value = reader.readByteArray(size);
                     value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
                     break;
-                case 0x19:
+                case 0x19: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the field_ids section and representing a reflective field value 
                     typeAndArg.setDesc("VALUE_FIELD(0x19)|" + valueArg);
+                    value = reader.readByteArray(size);
+                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
                     break;
-                case 0x1a:
+                case 0x1a: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the method_ids section and representing a reflective method value 
                     typeAndArg.setDesc("VALUE_METHOD(0x1a)|" + valueArg);
+                    value = reader.readByteArray(size);
+                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
                     break;
-                case 0x1b:
+                case 0x1b: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the field_ids section and representing the value of an enumerated type constant 
                     typeAndArg.setDesc("VALUE_ENUM(0x1b)|" + valueArg);
+                    value = reader.readByteArray(size);
+                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
                     break;
-                case 0x1c:
+                case 0x1c: // an array of values, in the format specified by "encoded_array Format" below. The size of the value is implicit in the encoding. 
                     typeAndArg.setDesc("VALUE_ARRAY(0x1c)|" + valueArg);
+                    // todo
                     break;
-                case 0x1d:
+                case 0x1d: // a sub-annotation, in the format specified by "encoded_annotation Format" below. The size of the value is implicit in the encoding. 
                     typeAndArg.setDesc("VALUE_ANNOTATION(0x1d)|" + valueArg);
+                    // todo
                     break;
-                case 0x1e:
+                case 0x1e: // null reference value
                     typeAndArg.setDesc("VALUE_NULL(0x1e)|" + valueArg);
+                    value.setDesc("null");
                     break;
-                case 0x1f:
+                case 0x1f: // one-bit value; 0 for false and 1 for true. The bit is represented in the value_arg. 
                     typeAndArg.setDesc("VALUE_BOOLEAN(0x1f)|" + valueArg);
+                    value.setDesc(valueArg == 1);
                     break;
                 default: throw new FileParseException("Invalid EncodedValue Type: " + valueType);
             }
