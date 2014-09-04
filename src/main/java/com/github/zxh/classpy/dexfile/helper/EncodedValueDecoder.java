@@ -24,16 +24,17 @@ public class EncodedValueDecoder extends DataInputStream {
             extendedBuf = buf;
         } else {
             extendedBuf = Arrays.copyOf(buf, extendedByteCount);
-            if (signExtend && buf[extendedByteCount - 1] < 0) {
-                Arrays.fill(extendedBuf, extendedByteCount, buf.length, (byte) 0xFF);
+            if (signExtend && extendedBuf[buf.length - 1] < 0) {
+                Arrays.fill(extendedBuf, buf.length, extendedBuf.length, (byte) 0xFF);
             }
         }
 
         // little-endian to big-endian
-        for (int i = 0; i < buf.length / 2; i++) {
-            byte tmp = buf[i];
-            buf[i] = buf[buf.length - i];
-            buf[buf.length - i] = tmp;
+        for (int i = 0; i < extendedBuf.length / 2; i++) {
+            int j = extendedBuf.length -1 - i;
+            byte tmp = extendedBuf[i];
+            extendedBuf[i] = extendedBuf[j];
+            extendedBuf[j] = tmp;
         }
 
         return extendedBuf;
