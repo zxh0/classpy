@@ -24,7 +24,7 @@ public class U4 extends ClassComponent implements IntValue {
         if (value < 0) {
             // todo
         }
-        setDesc(String.valueOf(value));
+        setDesc(value);
     }
     
 }

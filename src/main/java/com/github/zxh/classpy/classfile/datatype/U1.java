@@ -25,7 +25,7 @@ public class U1 extends ClassComponent implements IntValue {
     }
     
     protected void describe(int value, ClassReader reader) {
-        setDesc(String.valueOf(value));
+        setDesc(value);
     }
     
 }

@@ -58,7 +58,7 @@ public class TableSwitch extends Instruction {
         JumpOffset offset = new JumpOffset();
         offset.read(reader);
         offset.setName(name);
-        offset.setDesc(String.valueOf(pc + offset.offset));
+        offset.setDesc(pc + offset.offset);
         return offset;
     }
     

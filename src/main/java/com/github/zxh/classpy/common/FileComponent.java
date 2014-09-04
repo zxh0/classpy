@@ -23,6 +23,10 @@ public class FileComponent {
     public final int getOffset() {return offset;}
     public final int getLength() {return length;}
     
+    public final void setDesc(int value) {
+        desc = Integer.toString(value);
+    }
+    
     protected final void startRead(int position) {
         offset = position;
     }

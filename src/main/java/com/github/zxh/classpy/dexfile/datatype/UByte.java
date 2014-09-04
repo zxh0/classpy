@@ -20,7 +20,7 @@ public class UByte extends DexComponent implements IntValue {
     @Override
     protected void readContent(DexReader reader) {
         value = reader.readUnsignedByte();
-        setDesc(String.valueOf(value));
+        setDesc(value);
     }
     
 }

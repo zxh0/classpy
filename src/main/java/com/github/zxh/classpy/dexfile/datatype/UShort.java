@@ -20,7 +20,7 @@ public class UShort extends DexComponent implements IntValue {
     @Override
     protected void readContent(DexReader reader) {
         value = reader.readUnsignedShort();
-        setDesc(String.valueOf(value));
+        setDesc(value);
     }
     
 }
