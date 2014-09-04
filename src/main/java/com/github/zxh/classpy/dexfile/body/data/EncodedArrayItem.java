@@ -42,7 +42,7 @@ public class EncodedArrayItem extends DexComponent {
     public static class EncodedValue extends DexComponent {
 
         private UByte typeAndArg; // (value_arg << 5) | value_type
-        private ByteArray value;
+        private DexComponent value;
         
         @Override
         protected void readContent(DexReader reader) {
@@ -123,7 +123,8 @@ public class EncodedArrayItem extends DexComponent {
                     break;
                 case 0x1c: // an array of values, in the format specified by "encoded_array Format" below. The size of the value is implicit in the encoding. 
                     typeAndArg.setDesc("VALUE_ARRAY(0x1c)|" + valueArg);
-                    // todo
+                    value = new EncodedArray();
+                    value.read(reader);
                     break;
                 case 0x1d: // a sub-annotation, in the format specified by "encoded_annotation Format" below. The size of the value is implicit in the encoding. 
                     typeAndArg.setDesc("VALUE_ANNOTATION(0x1d)|" + valueArg);
