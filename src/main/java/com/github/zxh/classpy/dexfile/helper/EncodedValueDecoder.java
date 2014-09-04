@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.dexfile.helper;
 
+import com.github.zxh.classpy.dexfile.datatype.ByteArray;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 import java.util.Arrays;
@@ -9,6 +10,10 @@ import java.util.Arrays;
  * @author pc
  */
 public class EncodedValueDecoder extends DataInputStream {
+    
+    public EncodedValueDecoder(ByteArray buf, int extendedByteCount, boolean signExtend) {
+        this(buf.getBytes(), extendedByteCount, signExtend);
+    }
     
     public EncodedValueDecoder(byte[] buf, int extendedByteCount, boolean signExtend) {
         super(new ByteArrayInputStream(extend(buf, extendedByteCount, signExtend)));
