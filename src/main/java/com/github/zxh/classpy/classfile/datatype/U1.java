@@ -20,8 +20,7 @@ public class U1 extends ClassComponent implements IntValue {
     
     @Override
     protected void readContent(ClassReader reader) {
-        byte b = reader.readByte();
-        value = Byte.toUnsignedInt(b);
+        value = reader.readUnsignedByte();
         describe(value, reader);
     }
     
