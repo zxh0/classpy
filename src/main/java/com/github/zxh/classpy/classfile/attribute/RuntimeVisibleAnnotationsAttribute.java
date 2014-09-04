@@ -110,7 +110,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         @Override
         protected void readContent(ClassReader reader) {
             tag = reader.readU1();
-            tag.setDesc(Character.toString((char) tag.getValue()));
+            tag.setDesc((char) tag.getValue());
             switch (tag.getValue()) {
                 case 'B':
                 case 'C':

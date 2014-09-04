@@ -26,6 +26,9 @@ public class FileComponent {
     public final void setDesc(int value) {
         desc = Integer.toString(value);
     }
+    public final void setDesc(char value) {
+        desc = Character.toString(value);
+    }
     
     protected final void startRead(int position) {
         offset = position;

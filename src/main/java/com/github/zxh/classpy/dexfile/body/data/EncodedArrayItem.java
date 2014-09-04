@@ -73,7 +73,7 @@ public class EncodedArrayItem extends DexComponent {
                 case 0x03: // unsigned two-byte integer value, zero-extended
                     typeAndArg.setDesc("VALUE_CHAR(0x03)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 2, false).readChar()));
+                    value.setDesc(new EncodedValueDecoder(value, 2, false).readChar());
                     break;
                 case 0x04: // signed four-byte integer value, sign-extended
                     typeAndArg.setDesc("VALUE_INT(0x04)|" + valueArg);
