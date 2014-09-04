@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.common.java.AccessFlags;
 
 /*
@@ -14,7 +15,7 @@ method_info {
 public class MethodInfo extends FieldInfo {
     
     @Override
-    protected void afterRead() {
+    protected void describe(U2 accessFlags) {
         AccessFlags.describeMethodFlags(accessFlags);
     }
     

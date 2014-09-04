@@ -16,7 +16,7 @@ field_info {
  */
 public class FieldInfo extends ClassComponent {
 
-    protected U2 accessFlags;
+    private U2 accessFlags;
     private U2CpIndex nameIndex;
     private U2CpIndex descriptorIndex;
     private U2 attributesCount;
@@ -30,10 +30,10 @@ public class FieldInfo extends ClassComponent {
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount);
         setDesc(reader.getConstantPool().getUtf8String(nameIndex));
-        afterRead();
+        describe(accessFlags);
     }
     
-    protected void afterRead() {
+    protected void describe(U2 accessFlags) {
         AccessFlags.describeFieldFlags(accessFlags);
     }
     

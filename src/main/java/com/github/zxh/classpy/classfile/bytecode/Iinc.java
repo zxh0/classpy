@@ -15,7 +15,7 @@ public class Iinc extends Instruction {
     @Override
     protected void readOperands(ClassReader reader) {
         int index = reader.readU1().getValue();
-        int _const = reader.getByteBuffer().get();
+        int _const = reader.readByte();
         setDesc(getDesc() + " " + index + ", " + _const);
     }
     

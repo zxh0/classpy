@@ -50,7 +50,7 @@ public class TableSwitch extends Instruction {
     
     private void skipPadding(ClassReader reader) {
         for (int i = 1; (pc + i) %4 != 0; i++) {
-            reader.getByteBuffer().get();
+            reader.readByte();
         }
     }
     

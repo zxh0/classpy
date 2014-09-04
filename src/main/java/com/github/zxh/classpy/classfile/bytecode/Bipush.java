@@ -14,7 +14,7 @@ public class Bipush extends Instruction {
 
     @Override
     protected void readOperands(ClassReader reader) {
-        byte operand = reader.getByteBuffer().get();
+        byte operand = reader.readByte();
         setDesc(getDesc() + " " + operand);
     }
     
