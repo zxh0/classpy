@@ -24,7 +24,7 @@ public class Int32 extends PeComponent implements IntValue {
     }
     
     protected void describe(int value) {
-        setDesc(Integer.toString(value));
+        setDesc(value);
     }
     
 }

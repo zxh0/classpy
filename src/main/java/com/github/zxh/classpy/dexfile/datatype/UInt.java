@@ -30,7 +30,7 @@ public class UInt extends DexComponent implements IntValue {
         if (value < 0) {
             setDesc(Integer.toUnsignedString(value));
         } else {
-            setDesc(Integer.toString(value));
+            setDesc(value);
         }
     }
     

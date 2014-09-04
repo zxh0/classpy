@@ -20,7 +20,7 @@ public class SInt extends DexComponent implements IntValue {
     @Override
     protected void readContent(DexReader reader) {
         value = reader.readInt();
-        setDesc(Integer.toString(value));
+        setDesc(value);
     }
     
 }
