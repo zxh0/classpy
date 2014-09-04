@@ -99,7 +99,6 @@ public class DexFile extends DexComponent {
     private void readStringDataList(DexReader reader) {
         int[] offArr = stringIds.stream()
                 .mapToInt(stringId -> stringId.getStringDataOff().getValue())
-                //.sorted()
                 .toArray();
         
         reader.setPosition(offArr[0]);
@@ -110,7 +109,6 @@ public class DexFile extends DexComponent {
         int[] offArr = classDefs.stream()
                 .mapToInt(classDef -> classDef.getClassDataOff().getValue())
                 .filter(off -> off > 0)
-                //.sorted()
                 .toArray();
         
         reader.setPosition(offArr[0]);
@@ -126,7 +124,6 @@ public class DexFile extends DexComponent {
                 .filter(off -> off > 0);
         int[] offArr = IntStream.concat(off1, off2)
                 .distinct()
-                //.sorted()
                 .toArray();
         
         reader.setPosition(offArr[0]);
@@ -151,7 +148,6 @@ public class DexFile extends DexComponent {
         
         int[] offArr = codeOffsets.stream()
                 .mapToInt(Uleb128::getValue)
-                //.sorted()
                 .toArray();
         
         reader.setPosition(codeOffsets.get(0));
@@ -162,7 +158,6 @@ public class DexFile extends DexComponent {
         int[] offArr = codeList.stream()
                 .mapToInt(codeItem -> codeItem.getDebugInfoOff().getValue())
                 .filter(off -> off > 0)
-                //.sorted()
                 .toArray();
         
         if (offArr.length > 0) {
@@ -175,7 +170,6 @@ public class DexFile extends DexComponent {
         int[] offArr = classDefs.stream()
                 .mapToInt(classDef -> classDef.getAnnotationsOff().getValue())
                 .filter(off -> off > 0)
-                //.sorted()
                 .toArray();
         
         if (offArr.length > 0) {

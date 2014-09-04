@@ -22,11 +22,29 @@ public class OffsetsKnownList<E extends DexComponent> extends DexList<E> {
     
     @Override
     protected void readList(DexReader reader) {
-        for (int offset : offsets) {
-            E e = factory.get();
-            reader.setPosition(offset);
-            e.read(reader);
-            list.add(e);
+        if (offsets.length > 0) {
+            // offsets may not ordered
+            int minPosition = offsets[0];
+            int maxPosition = offsets[0];
+            
+            for (int offset : offsets) {
+                if (minPosition > offset) {
+                    minPosition = offset;
+                }
+                
+                E e = factory.get();
+                reader.setPosition(offset);
+                e.read(reader);
+                list.add(e);
+                
+                if (maxPosition < reader.getPosition()) {
+                    maxPosition = reader.getPosition();
+                }
+            }
+            
+            // correct offset and length
+            super.startRead(minPosition);
+            reader.setPosition(maxPosition);
         }
     }
     
