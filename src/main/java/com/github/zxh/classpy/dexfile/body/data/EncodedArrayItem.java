@@ -111,24 +111,4 @@ public class EncodedArrayItem extends DexComponent {
         
     }
     
-//    private static class EncodedValueDecoder extends DataInputStream {
-//        
-//        private EncodedValueDecoder(byte[] buf, int extendedByteCount) {
-//            super(new ByteArrayInputStream(buf));
-//        }
-//        
-//        private byte[] signExtend(byte[] buf, int extendedByteCount) {
-//            if (buf.length < 2) {
-//                return buf;
-//            }
-//            if (buf.length == extendedByteCount) {
-//                //
-//                return buf;
-//            }
-//            
-//            
-//        }
-//        
-//    }
-    
 }
