@@ -63,12 +63,12 @@ public class EncodedArrayItem extends DexComponent {
                 case 0x00: // signed one-byte integer value
                     typeAndArg.setDesc("VALUE_BYTE(0x00)|" + valueArg);
                     value = reader.readByteArray(1);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 1, true).readByte()));
+                    value.setDesc(new EncodedValueDecoder(value, 1, true).readByte());
                     break;
                 case 0x02: // signed two-byte integer value, sign-extended
                     typeAndArg.setDesc("VALUE_SHORT(0x02)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 2, true).readShort()));
+                    value.setDesc(new EncodedValueDecoder(value, 2, true).readShort());
                     break;
                 case 0x03: // unsigned two-byte integer value, zero-extended
                     typeAndArg.setDesc("VALUE_CHAR(0x03)|" + valueArg);
@@ -78,7 +78,7 @@ public class EncodedArrayItem extends DexComponent {
                 case 0x04: // signed four-byte integer value, sign-extended
                     typeAndArg.setDesc("VALUE_INT(0x04)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 4, true).readInt()));
+                    value.setDesc(new EncodedValueDecoder(value, 4, true).readInt());
                     break;
                 case 0x06: // signed eight-byte integer value, sign-extended
                     typeAndArg.setDesc("VALUE_LONG(0x06)|" + valueArg);
@@ -98,13 +98,13 @@ public class EncodedArrayItem extends DexComponent {
                 case 0x17: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the string_ids section and representing a string value 
                     typeAndArg.setDesc("VALUE_STRING(0x17)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 4, false).readInt()));
+                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
                     // todo
                     break;
                 case 0x18: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the type_ids section and representing a reflective type/class value 
                     typeAndArg.setDesc("VALUE_TYPE(0x18)|" + valueArg);
                     value = reader.readByteArray(size);
-                    value.setDesc(String.valueOf(new EncodedValueDecoder(value, 4, false).readInt()));
+                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
                     break;
                 case 0x19:
                     typeAndArg.setDesc("VALUE_FIELD(0x19)|" + valueArg);
