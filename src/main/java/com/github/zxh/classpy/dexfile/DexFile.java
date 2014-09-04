@@ -7,6 +7,7 @@ import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem.EncodedMethod;
 import com.github.zxh.classpy.dexfile.body.data.CodeItem;
 import com.github.zxh.classpy.dexfile.body.data.DebugInfoItem;
+import com.github.zxh.classpy.dexfile.body.data.EncodedArrayItem;
 import com.github.zxh.classpy.dexfile.body.data.MapItem;
 import com.github.zxh.classpy.dexfile.body.data.StringDataItem;
 import com.github.zxh.classpy.dexfile.body.data.TypeItem;
@@ -46,6 +47,7 @@ public class DexFile extends DexComponent {
     private OffsetsKnownList<CodeItem> codeList;
     private OffsetsKnownList<DebugInfoItem> debugInfoList;
     private OffsetsKnownList<AnnotationsDirectoryItem> annotationsDirectoryList;
+    private OffsetsKnownList<EncodedArrayItem> encodedArrayList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -87,6 +89,7 @@ public class DexFile extends DexComponent {
         readCodeList(reader);
         readDebugInfoList(reader);
         readAnnotationsDirectoryList(reader);
+        readEncodedArrayList(reader);
     }
     
     private void readMapList(DexReader reader) {
@@ -101,7 +104,6 @@ public class DexFile extends DexComponent {
                 .mapToInt(stringId -> stringId.getStringDataOff().getValue())
                 .toArray();
         
-        reader.setPosition(offArr[0]);
         stringDataList = reader.readOffsetsKnownList(offArr, StringDataItem::new);
     }
     
@@ -111,7 +113,6 @@ public class DexFile extends DexComponent {
                 .filter(off -> off > 0)
                 .toArray();
         
-        reader.setPosition(offArr[0]);
         classDataList = reader.readOffsetsKnownList(offArr, ClassDataItem::new);
     }
     
@@ -126,7 +127,6 @@ public class DexFile extends DexComponent {
                 .distinct()
                 .toArray();
         
-        reader.setPosition(offArr[0]);
         typeList = reader.readOffsetsKnownList(offArr, 
                 () -> new SizeHeaderList<>(TypeItem::new));
     }
@@ -150,7 +150,6 @@ public class DexFile extends DexComponent {
                 .mapToInt(Uleb128::getValue)
                 .toArray();
         
-        reader.setPosition(codeOffsets.get(0));
         codeList = reader.readOffsetsKnownList(offArr, CodeItem::new);
     }
     
@@ -160,9 +159,6 @@ public class DexFile extends DexComponent {
                 .filter(off -> off > 0)
                 .toArray();
         
-        if (offArr.length > 0) {
-            reader.setPosition(offArr[0]);
-        }
         debugInfoList = reader.readOffsetsKnownList(offArr, DebugInfoItem::new);
     }
     
@@ -172,11 +168,17 @@ public class DexFile extends DexComponent {
                 .filter(off -> off > 0)
                 .toArray();
         
-        if (offArr.length > 0) {
-            reader.setPosition(offArr[0]);
-        }
         annotationsDirectoryList = reader.readOffsetsKnownList(offArr,
                 AnnotationsDirectoryItem::new);
+    }
+    
+    private void readEncodedArrayList(DexReader reader) {
+        int[] offArr = classDefs.stream()
+                .mapToInt(classDef -> classDef.getStaticValuesOff().getValue())
+                .filter(off -> off > 0)
+                .toArray();
+        
+        //encodedArrayList = reader.readOffsetsKnownList(offArr, EncodedArrayItem::new);
     }
     
     public String getString(IntValue index) {

@@ -22,12 +22,14 @@ public class ClassDefItem extends DexComponent {
     private UIntHex interfacesOff; // -> type_list
     private UIntStringIdIndex sourceFileIdx;
     private UIntHex annotationsOff; // -> annotations_directory_item
-    private UIntHex classDataOff;
-    private UIntHex staticValuesOff; // todo encoded_array_item
+    private UIntHex classDataOff; // -> class_data_item
+    private UIntHex staticValuesOff; // -> encoded_array_item
 
+    // Getters
     public UIntHex getClassDataOff() {return classDataOff;}
     public UIntHex getInterfacesOff() {return interfacesOff;}
     public UIntHex getAnnotationsOff() {return annotationsOff;}
+    public UIntHex getStaticValuesOff() {return staticValuesOff;}
 
     @Override
     protected void readContent(DexReader reader) {
