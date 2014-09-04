@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.dexfile.body.data;
 
 import com.github.zxh.classpy.common.FileParseException;
-import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
@@ -93,22 +92,9 @@ public class EncodedArrayItem extends DexComponent {
                     value.setDesc(new EncodedValueDecoder(value, 8, false).readDouble());
                     break;
                 case 0x17: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the string_ids section and representing a string value 
-                    value = reader.readByteArray(size);
-                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
-                    // todo
-                    break;
                 case 0x18: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the type_ids section and representing a reflective type/class value 
-                    value = reader.readByteArray(size);
-                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
-                    break;
                 case 0x19: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the field_ids section and representing a reflective field value 
-                    value = reader.readByteArray(size);
-                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
-                    break;
                 case 0x1a: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the method_ids section and representing a reflective method value 
-                    value = reader.readByteArray(size);
-                    value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
-                    break;
                 case 0x1b: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the field_ids section and representing the value of an enumerated type constant 
                     value = reader.readByteArray(size);
                     value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
@@ -122,10 +108,8 @@ public class EncodedArrayItem extends DexComponent {
                     value.read(reader);
                     break;
                 case 0x1e: // null reference value
-                    //value.setDesc("null");
                     break;
                 case 0x1f: // one-bit value; 0 for false and 1 for true. The bit is represented in the value_arg. 
-                    //value.setDesc(valueArg == 1);
                     break;
             }
         }
