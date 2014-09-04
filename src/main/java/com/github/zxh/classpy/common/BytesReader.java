@@ -54,4 +54,9 @@ public class BytesReader {
         return buf.getShort();
     }
     
+    // 16-bit unsigned int
+    public int readUnsignedShort() {
+        return Short.toUnsignedInt(buf.getShort());
+    }
+    
 }

@@ -20,8 +20,7 @@ public class U2 extends ClassComponent implements IntValue {
     
     @Override
     protected void readContent(ClassReader reader) {
-        short s = reader.readShort();
-        value = Short.toUnsignedInt(s);
+        value = reader.readUnsignedShort();
         describe(value, reader);
     }
     
