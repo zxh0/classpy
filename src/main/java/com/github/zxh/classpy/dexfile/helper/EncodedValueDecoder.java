@@ -29,6 +29,7 @@ public class EncodedValueDecoder extends DataInputStream {
             }
         }
 
+        // little-endian to big-endian
         for (int i = 0; i < buf.length / 2; i++) {
             byte tmp = buf[i];
             buf[i] = buf[buf.length - i];
