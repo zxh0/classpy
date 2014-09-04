@@ -64,4 +64,8 @@ public class BytesReader {
         return buf.getInt();
     }
     
+    public float readFloat() {
+        return buf.getFloat();
+    }
+    
 }
