@@ -18,6 +18,11 @@ public class EncodedValueDecoderTest {
         
         assertEquals((short)0xbbaa, new EncodedValueDecoder(new byte[] {(byte)0xaa, (byte)0xbb}, 2, true).readShort());
         assertEquals((short)0xffff, new EncodedValueDecoder(new byte[] {(byte)0xff}, 2, true).readShort());
+        assertEquals((short)0xff, new EncodedValueDecoder(new byte[] {(byte)0xff}, 2, false).readShort());
+        assertEquals((short)0xff, new EncodedValueDecoder(new byte[] {(byte)0xff}, 2, false).readChar());
+        
+        assertEquals(0xffffffff, new EncodedValueDecoder(new byte[] {(byte)0xff}, 4, true).readInt());
+        assertEquals(0xff, new EncodedValueDecoder(new byte[] {(byte)0xff}, 4, false).readInt());
     }
     
 }
