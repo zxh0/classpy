@@ -33,7 +33,7 @@ public class LookupSwitch extends Instruction {
         MatchOffset defaultOffset = new MatchOffset(true, pc);
         defaultOffset.read(reader);
         
-        int npairs = reader.getByteBuffer().getInt();
+        int npairs = reader.readInt();
         for (int i = 0; i < npairs; i++) {
             MatchOffset offset = new MatchOffset(false, pc);
             offset.read(reader);
@@ -70,13 +70,13 @@ public class LookupSwitch extends Instruction {
         @Override
         protected void readContent(ClassReader reader) {
             if (!isDefault) {
-                match = reader.getByteBuffer().getInt();
+                match = reader.readInt();
                 setName(String.valueOf(match));
             } else {
                 setName("default");
             }
             
-            offset = reader.getByteBuffer().getInt();
+            offset = reader.readInt();
             setDesc(String.valueOf(basePc + offset));
         }
         

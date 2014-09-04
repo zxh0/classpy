@@ -20,7 +20,7 @@ public class U4 extends ClassComponent implements IntValue {
     
     @Override
     protected void readContent(ClassReader reader) {
-        value = reader.getByteBuffer().getInt();
+        value = reader.readInt();
         if (value < 0) {
             // todo
         }

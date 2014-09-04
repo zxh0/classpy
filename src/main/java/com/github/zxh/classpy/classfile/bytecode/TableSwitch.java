@@ -36,8 +36,8 @@ public class TableSwitch extends Instruction {
         
         JumpOffset defaultOffset = readJumpOffset(reader, "default");
         
-        int low = reader.getByteBuffer().getInt();
-        int high = reader.getByteBuffer().getInt();
+        int low = reader.readInt();
+        int high = reader.readInt();
         
         // high - low + 1 signed 32-bit offsets
         for (int i = low; i <= high; i++) {
@@ -74,7 +74,7 @@ public class TableSwitch extends Instruction {
         
         @Override
         protected void readContent(ClassReader reader) {
-            offset = reader.getByteBuffer().getInt();
+            offset = reader.readInt();
         }
         
     }

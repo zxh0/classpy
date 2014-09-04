@@ -12,7 +12,7 @@ public class U4Hex extends ClassComponent {
 
     @Override
     protected void readContent(ClassReader reader) {
-        int value = reader.getByteBuffer().getInt();
+        int value = reader.readInt();
         setDesc(Util.toHexString(value));
     }
     

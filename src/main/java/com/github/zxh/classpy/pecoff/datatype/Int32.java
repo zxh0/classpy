@@ -19,7 +19,7 @@ public class Int32 extends PeComponent implements IntValue {
 
     @Override
     protected void readContent(PeReader reader) {
-        value = reader.getByteBuffer().getInt();
+        value = reader.readInt();
         describe(value);
     }
     

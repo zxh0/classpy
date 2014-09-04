@@ -59,4 +59,9 @@ public class BytesReader {
         return Short.toUnsignedInt(buf.getShort());
     }
     
+    // 32-bit signed int
+    public int readInt() {
+        return buf.getInt();
+    }
+    
 }
