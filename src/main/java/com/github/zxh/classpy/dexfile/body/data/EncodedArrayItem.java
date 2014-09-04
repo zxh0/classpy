@@ -6,7 +6,6 @@ import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.helper.EncodedValueDecoder;
-import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.io.IOException;
 
@@ -29,12 +28,12 @@ public class EncodedArrayItem extends DexComponent {
     public static class EncodedArray extends DexComponent {
 
         private Uleb128 size;
-        private SizeHeaderList<EncodedValue> values;
+        private SizeKnownList<EncodedValue> values;
         
         @Override
         protected void readContent(DexReader reader) {
             size = reader.readUleb128();
-            values = reader.readSizeHeaderList(EncodedValue::new);
+            values = reader.readSizeKnownList(size, EncodedValue::new);
         }
         
     }
@@ -133,11 +132,11 @@ public class EncodedArrayItem extends DexComponent {
                     break;
                 case 0x1e: // null reference value
                     typeAndArg.setDesc("VALUE_NULL(0x1e)|" + valueArg);
-                    value.setDesc("null");
+                    //value.setDesc("null");
                     break;
                 case 0x1f: // one-bit value; 0 for false and 1 for true. The bit is represented in the value_arg. 
                     typeAndArg.setDesc("VALUE_BOOLEAN(0x1f)|" + valueArg);
-                    value.setDesc(valueArg == 1);
+                    //value.setDesc(valueArg == 1);
                     break;
                 default: throw new FileParseException("Invalid EncodedValue Type: " + valueType);
             }

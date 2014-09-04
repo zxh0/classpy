@@ -178,7 +178,7 @@ public class DexFile extends DexComponent {
                 .filter(off -> off > 0)
                 .toArray();
         
-        //encodedArrayList = reader.readOffsetsKnownList(offArr, EncodedArrayItem::new);
+        encodedArrayList = reader.readOffsetsKnownList(offArr, EncodedArrayItem::new);
     }
     
     public String getString(IntValue index) {
