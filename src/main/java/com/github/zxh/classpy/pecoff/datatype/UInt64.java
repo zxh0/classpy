@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.pecoff.datatype;
 
-import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.pecoff.PeComponent;
 import com.github.zxh.classpy.pecoff.PeReader;
 
