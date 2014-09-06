@@ -30,9 +30,10 @@ public class OptionalHeader extends PeComponent {
             throw new FileParseException("Invalid optional header magic number!");
         }
         
-        standardFields = new StandardFields(magic.getValue());
+        boolean isPE32Plus = (magic.getValue() == PE32_PLUS);
+        standardFields = new StandardFields(isPE32Plus);
         standardFields.read(reader);
-        windowsSpecificFields = new WindowsSpecificFields();
+        windowsSpecificFields = new WindowsSpecificFields(isPE32Plus);
         windowsSpecificFields.read(reader);
     }
     
@@ -48,8 +49,8 @@ public class OptionalHeader extends PeComponent {
         private UInt32Hex baseOfCode;
         private UInt32Hex baseOfData; // absent in PE32+
 
-        public StandardFields(int magicNumber) {
-            isPE32Plus = magicNumber == PE32_PLUS;
+        public StandardFields(boolean isPE32Plus) {
+            this.isPE32Plus = isPE32Plus;
         }
         
         @Override
@@ -69,11 +70,16 @@ public class OptionalHeader extends PeComponent {
     
     public static class WindowsSpecificFields extends PeComponent {
 
+        private final boolean isPE32Plus;
         private PeComponent imageBase;
         private UInt32 sectionAlignment;
         private UInt32 fileAlignment;
         private UInt16 majorOperatingSystemVersion;
         private UInt16 minorOperatingSystemVersion;
+        
+        public WindowsSpecificFields(boolean isPE32Plus) {
+            this.isPE32Plus = isPE32Plus;
+        }
         
         @Override
         protected void readContent(PeReader reader) {
