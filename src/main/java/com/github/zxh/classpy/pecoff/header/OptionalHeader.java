@@ -19,6 +19,7 @@ public class OptionalHeader extends PeComponent {
     
     private UInt16Hex magic;
     private StandardFields standardFields;
+    private WindowsSpecificFields windowsSpecificFields;
     
     @Override
     protected void readContent(PeReader reader) {
@@ -29,7 +30,10 @@ public class OptionalHeader extends PeComponent {
         
         standardFields = new StandardFields(magic.getValue());
         standardFields.read(reader);
+        windowsSpecificFields = new WindowsSpecificFields();
+        windowsSpecificFields.read(reader);
     }
+    
     
     public static class StandardFields extends PeComponent {
 
@@ -65,7 +69,7 @@ public class OptionalHeader extends PeComponent {
 
         @Override
         protected void readContent(PeReader reader) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            // todo
         }
         
     }
@@ -74,7 +78,7 @@ public class OptionalHeader extends PeComponent {
 
         @Override
         protected void readContent(PeReader reader) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            // todo
         }
         
     }
