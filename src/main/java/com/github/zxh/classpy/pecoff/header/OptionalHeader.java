@@ -83,6 +83,13 @@ public class OptionalHeader extends PeComponent {
         
         @Override
         protected void readContent(PeReader reader) {
+            imageBase = isPE32Plus
+                    ? reader.readUInt64Hex()
+                    : reader.readUInt32Hex();
+            sectionAlignment = reader.readUInt32();
+            fileAlignment = reader.readUInt32();
+            majorOperatingSystemVersion = reader.readUInt16();
+            minorOperatingSystemVersion = reader.readUInt16();
             // todo
         }
         
