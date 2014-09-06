@@ -64,6 +64,11 @@ public class BytesReader {
         return buf.getInt();
     }
     
+    // 64-bit signed int
+    public long readLong() {
+        return buf.getLong();
+    }
+    
     public float readFloat() {
         return buf.getFloat();
     }

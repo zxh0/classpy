@@ -3,6 +3,7 @@ package com.github.zxh.classpy.pecoff.header;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.pecoff.PeComponent;
 import com.github.zxh.classpy.pecoff.PeReader;
+import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
 import com.github.zxh.classpy.pecoff.datatype.UInt32;
 import com.github.zxh.classpy.pecoff.datatype.UInt32Hex;
@@ -68,6 +69,12 @@ public class OptionalHeader extends PeComponent {
     
     public static class WindowsSpecificFields extends PeComponent {
 
+        private PeComponent imageBase;
+        private UInt32 sectionAlignment;
+        private UInt32 fileAlignment;
+        private UInt16 majorOperatingSystemVersion;
+        private UInt16 minorOperatingSystemVersion;
+        
         @Override
         protected void readContent(PeReader reader) {
             // todo
