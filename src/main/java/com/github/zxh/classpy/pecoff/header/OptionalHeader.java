@@ -5,6 +5,7 @@ import com.github.zxh.classpy.pecoff.PeComponent;
 import com.github.zxh.classpy.pecoff.PeReader;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
 import com.github.zxh.classpy.pecoff.datatype.UInt32;
+import com.github.zxh.classpy.pecoff.datatype.UInt32Hex;
 import com.github.zxh.classpy.pecoff.datatype.UInt8;
 
 /**
@@ -42,9 +43,9 @@ public class OptionalHeader extends PeComponent {
         private UInt8 minorLinkerVersion;
         private UInt32 sizeOfCode;
         private UInt32 sizeOfUninitializedData;
-        private UInt32 addressOfEntryPoint;
-        private UInt32 baseOfCode;
-        private UInt32 baseOfData; // absent in PE32+
+        private UInt32Hex addressOfEntryPoint;
+        private UInt32Hex baseOfCode;
+        private UInt32Hex baseOfData; // absent in PE32+
 
         public StandardFields(int magicNumber) {
             this.magicNumber = magicNumber;
@@ -56,10 +57,10 @@ public class OptionalHeader extends PeComponent {
             minorLinkerVersion = reader.readUInt8();
             sizeOfCode = reader.readUInt32();
             sizeOfUninitializedData = reader.readUInt32();
-            addressOfEntryPoint = reader.readUInt32();
-            baseOfCode = reader.readUInt32();
+            addressOfEntryPoint = reader.readUInt32Hex();
+            baseOfCode = reader.readUInt32Hex();
             if (magicNumber != PE32_PLUS) {
-                baseOfData = reader.readUInt32();
+                baseOfData = reader.readUInt32Hex();
             }
         }
         

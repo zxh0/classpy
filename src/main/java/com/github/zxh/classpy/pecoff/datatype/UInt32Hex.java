@@ -6,7 +6,7 @@ import com.github.zxh.classpy.common.Util;
  *
  * @author zxh
  */
-public class UInt32Hex extends UInt16 {
+public class UInt32Hex extends UInt32 {
 
     @Override
     protected void describe(int value) {
