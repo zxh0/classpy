@@ -4,6 +4,7 @@ import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
 import com.github.zxh.classpy.pecoff.datatype.UInt32;
+import com.github.zxh.classpy.pecoff.datatype.UInt8;
 import java.nio.ByteOrder;
 
 /**
@@ -14,6 +15,13 @@ public class PeReader extends BytesReader {
 
     public PeReader(byte[] bytes) {
         super(bytes, ByteOrder.LITTLE_ENDIAN, true);
+    }
+    
+    // todo
+    public UInt8 readUInt8() {
+        UInt8 uint = new UInt8();
+        uint.read(this);
+        return uint;
     }
     
     // todo
