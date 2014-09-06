@@ -18,6 +18,14 @@ public class Leb128Test {
     }
     
     @Test
+    public void uleb128p1() {
+        Assert.assertEquals(-1, new DexReader(new byte[] {0}).readUleb128p1().getValue());
+        Assert.assertEquals(0, new DexReader(new byte[] {1}).readUleb128p1().getValue());
+        Assert.assertEquals(126, new DexReader(new byte[] {0x7f}).readUleb128p1().getValue());
+        Assert.assertEquals(16255, new DexReader(new byte[] {(byte)0x80, 0x7f}).readUleb128p1().getValue());
+    }
+    
+    @Test
     public void sleb128() {
         Assert.assertEquals(0, new DexReader(new byte[] {0}).readSleb128().getValue());
         Assert.assertEquals(1, new DexReader(new byte[] {1}).readSleb128().getValue());
