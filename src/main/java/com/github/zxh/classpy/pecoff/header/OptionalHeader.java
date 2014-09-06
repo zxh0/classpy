@@ -27,13 +27,13 @@ public class OptionalHeader extends PeComponent {
             throw new FileParseException("Invalid optional header magic number!");
         }
         
-        standardFields = new StandardFields(magic);
+        standardFields = new StandardFields(magic.getValue());
         standardFields.read(reader);
     }
     
     public static class StandardFields extends PeComponent {
 
-        private final UInt16Hex magic;
+        private final int magicNumber;
         private UInt8 majorLinkerVersion;
         private UInt8 minorLinkerVersion;
         private UInt32 sizeOfCode;
@@ -42,8 +42,8 @@ public class OptionalHeader extends PeComponent {
         private UInt32 baseOfCode;
         private UInt32 baseOfData; // absent in PE32+
 
-        public StandardFields(UInt16Hex magic) {
-            this.magic = magic;
+        public StandardFields(int magicNumber) {
+            this.magicNumber = magicNumber;
         }
         
         @Override
@@ -54,7 +54,7 @@ public class OptionalHeader extends PeComponent {
             sizeOfUninitializedData = reader.readUInt32();
             addressOfEntryPoint = reader.readUInt32();
             baseOfCode = reader.readUInt32();
-            if (magic.getValue() != PE32_PLUS) {
+            if (magicNumber != PE32_PLUS) {
                 baseOfData = reader.readUInt32();
             }
         }
