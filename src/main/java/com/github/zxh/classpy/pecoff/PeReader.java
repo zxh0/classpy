@@ -3,7 +3,7 @@ package com.github.zxh.classpy.pecoff;
 import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
-import com.github.zxh.classpy.pecoff.datatype.Int32;
+import com.github.zxh.classpy.pecoff.datatype.UInt32;
 import java.nio.ByteOrder;
 
 /**
@@ -31,8 +31,8 @@ public class PeReader extends BytesReader {
     }
     
     // todo
-    public Int32 readInt32() {
-        Int32 uint = new Int32();
+    public UInt32 readUInt32() {
+        UInt32 uint = new UInt32();
         uint.read(this);
         return uint;
     }

@@ -8,7 +8,7 @@ import com.github.zxh.classpy.pecoff.PeReader;
  *
  * @author zxh
  */
-public class Int32 extends PeComponent implements IntValue {
+public class UInt32 extends PeComponent implements IntValue {
     
     private int value;
 
