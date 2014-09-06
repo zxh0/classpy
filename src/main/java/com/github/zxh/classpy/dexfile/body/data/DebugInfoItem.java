@@ -19,13 +19,15 @@ public class DebugInfoItem extends DexComponent {
     private Uleb128 lineStart;
     private Uleb128 parametersSize;
     private SizeKnownList<Uleb128p1> parameterNames;
-    // bytecodes todo
+    private Bytecodes bytecodes; // todo
     
     @Override
     protected void readContent(DexReader reader) {
         lineStart = reader.readUleb128();
         parametersSize = reader.readUleb128();
         parameterNames = reader.readSizeKnownList(parametersSize, Uleb128p1::new);
+        bytecodes = new Bytecodes();
+        bytecodes.read(reader);
     }
 
     @Override
@@ -36,6 +38,21 @@ public class DebugInfoItem extends DexComponent {
                 index.setDesc(index.getValue() + "->" + name);
             }
         }
+    }
+    
+    
+    public static class Bytecodes extends DexComponent {
+
+        @Override
+        protected void readContent(DexReader reader) {
+            while (true) {
+                byte b = reader.readByte();
+                if (b == 0) {
+                    break;
+                }
+            }
+        }
+        
     }
     
 }
