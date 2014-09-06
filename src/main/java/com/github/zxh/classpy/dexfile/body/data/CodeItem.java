@@ -120,7 +120,7 @@ public class CodeItem extends DexComponent {
 
         private UInt startAddr;
         private UShort insnCount;
-        private UShort handlerOff;
+        private UShort handlerOff; // todo
         
         @Override
         protected void readContent(DexReader reader) {

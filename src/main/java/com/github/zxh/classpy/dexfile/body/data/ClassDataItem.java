@@ -25,6 +25,7 @@ public class ClassDataItem extends DexComponent {
     private SizeKnownList<EncodedMethod> directMethods;
     private SizeKnownList<EncodedMethod> virtualMethods;
 
+    // Getters
     public SizeKnownList<EncodedMethod> getDirectMethods() {return directMethods;}
     public SizeKnownList<EncodedMethod> getVirtualMethods() {return virtualMethods;}
     
@@ -89,7 +90,7 @@ public class ClassDataItem extends DexComponent {
 
         private Uleb128 methodIdxDiff;
         private Uleb128 accessFlags;
-        private Uleb128Hex codeOff; // todo
+        private Uleb128Hex codeOff; // -> code_item
 
         public Uleb128 getCodeOff() {
             return codeOff;
