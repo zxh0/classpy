@@ -39,7 +39,7 @@ public class OptionalHeader extends PeComponent {
     
     public static class StandardFields extends PeComponent {
 
-        private final int magicNumber;
+        private final boolean isPE32Plus;
         private UInt8 majorLinkerVersion;
         private UInt8 minorLinkerVersion;
         private UInt32 sizeOfCode;
@@ -49,7 +49,7 @@ public class OptionalHeader extends PeComponent {
         private UInt32Hex baseOfData; // absent in PE32+
 
         public StandardFields(int magicNumber) {
-            this.magicNumber = magicNumber;
+            isPE32Plus = magicNumber == PE32_PLUS;
         }
         
         @Override
@@ -60,7 +60,7 @@ public class OptionalHeader extends PeComponent {
             sizeOfUninitializedData = reader.readUInt32();
             addressOfEntryPoint = reader.readUInt32Hex();
             baseOfCode = reader.readUInt32Hex();
-            if (magicNumber != PE32_PLUS) {
+            if (!isPE32Plus) {
                 baseOfData = reader.readUInt32Hex();
             }
         }
