@@ -61,7 +61,7 @@ public class AnnotationsDirectoryItem extends DexComponent {
     }
     
     public static class ParameterAnnotation extends MethodAnnotation {
-        
+        // annotationsOff -> annotation_set_ref_list
     }
     
 }
