@@ -87,10 +87,18 @@ public class OptionalHeader extends PeComponent {
                     ? reader.readUInt64Hex()
                     : reader.readUInt32Hex();
             sectionAlignment = reader.readUInt32();
+            describeAlignment(sectionAlignment);
             fileAlignment = reader.readUInt32();
+            describeAlignment(fileAlignment);
             majorOperatingSystemVersion = reader.readUInt16();
             minorOperatingSystemVersion = reader.readUInt16();
             // todo
+        }
+        
+        private void describeAlignment(UInt32 alignment) {
+            if (alignment.getValue() > 1024) {
+                alignment.setDesc((alignment.getValue() / 1024) + "K");
+            }
         }
         
     }
