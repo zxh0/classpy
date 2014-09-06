@@ -14,8 +14,8 @@ import com.github.zxh.classpy.dexfile.list.SizeKnownList;
  */
 public class AnnotationsDirectoryItem extends DexComponent {
 
-    private UIntHex classAnnotationsOff;
-    private UInt fieldsSize;
+    private UIntHex classAnnotationsOff; // -> annotation_set_item
+    private UInt annotatedFieldsSize;
     private UInt annotatedMethodsSize;
     private UInt annotatedParametersSize;
     private SizeKnownList<FieldAnnotation> fieldAnnotations;
@@ -25,10 +25,10 @@ public class AnnotationsDirectoryItem extends DexComponent {
     @Override
     protected void readContent(DexReader reader) {
         classAnnotationsOff = reader.readUIntHex();
-        fieldsSize = reader.readUInt();
+        annotatedFieldsSize = reader.readUInt();
         annotatedMethodsSize = reader.readUInt();
         annotatedParametersSize = reader.readUInt();
-        fieldAnnotations = reader.readSizeKnownList(fieldsSize, FieldAnnotation::new);
+        fieldAnnotations = reader.readSizeKnownList(annotatedFieldsSize, FieldAnnotation::new);
         methodAnnotations = reader.readSizeKnownList(annotatedMethodsSize, MethodAnnotation::new);
         parameterAnnotations = reader.readSizeKnownList(annotatedParametersSize, ParameterAnnotation::new);
     }
@@ -37,7 +37,7 @@ public class AnnotationsDirectoryItem extends DexComponent {
     public static class FieldAnnotation extends DexComponent {
 
         private UIntFieldIdIndex fieldIdx;
-        private UIntHex annotationsOff;
+        private UIntHex annotationsOff; // -> annotation_set_item
         
         @Override
         protected void readContent(DexReader reader) {
@@ -50,7 +50,7 @@ public class AnnotationsDirectoryItem extends DexComponent {
     public static class MethodAnnotation extends DexComponent {
 
         private UIntMethodIdIndex methodIdx;
-        private UIntHex annotationsOff;
+        private UIntHex annotationsOff; // -> annotation_set_item
         
         @Override
         protected void readContent(DexReader reader) {

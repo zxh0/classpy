@@ -26,7 +26,7 @@ public class CodeItem extends DexComponent {
     private UShort insSize;
     private UShort outsSize;
     private UShort triesSize;
-    private UIntHex debugInfoOff; // todo
+    private UIntHex debugInfoOff; // -> debug_info_item
     private UInt insnsSize;
     private Instructions insns;
     private UShort padding; // optional
