@@ -2,6 +2,7 @@ package com.github.zxh.classpy.pecoff;
 
 import com.github.zxh.classpy.pecoff.header.CoffHeader;
 import com.github.zxh.classpy.pecoff.header.MsDosStub;
+import com.github.zxh.classpy.pecoff.header.OptionalHeader;
 import com.github.zxh.classpy.pecoff.header.Signature;
 
 /**
@@ -15,6 +16,7 @@ public class PeFile extends PeComponent {
     private MsDosStub dosStub;
     private Signature signature;
     private CoffHeader coffHeader;
+    private OptionalHeader optionalHeader;
     
     @Override
     protected void readContent(PeReader reader) {
@@ -24,6 +26,8 @@ public class PeFile extends PeComponent {
         signature.read(reader);
         coffHeader = new CoffHeader();
         coffHeader.read(reader);
+        optionalHeader = new OptionalHeader();
+        optionalHeader.read(reader);
         // todo
     }
     

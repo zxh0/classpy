@@ -15,12 +15,12 @@ public class OptionalHeader extends PeComponent {
     private static final int PE32 = 0x10b;
     private static final int PE32_PLUS = 0x20b;
     
-    private UInt16Hex magicNumber;
+    private UInt16Hex magic;
     
     @Override
     protected void readContent(PeReader reader) {
-        magicNumber = reader.readUInt16Hex();
-        if (magicNumber.getValue() != PE32 || magicNumber.getValue() != PE32_PLUS) {
+        magic = reader.readUInt16Hex();
+        if (magic.getValue() != PE32 || magic.getValue() != PE32_PLUS) {
             throw new FileParseException("Invalid optional header magic number!");
         }
     }
