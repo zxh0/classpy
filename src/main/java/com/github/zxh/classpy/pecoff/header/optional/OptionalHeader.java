@@ -18,6 +18,7 @@ public class OptionalHeader extends PeComponent {
     private UInt16Hex magic;
     private StandardFields standardFields;
     private WindowsSpecificFields windowsSpecificFields;
+    private DataDirectories dataDirectories;
     
     @Override
     protected void readContent(PeReader reader) {
@@ -31,6 +32,8 @@ public class OptionalHeader extends PeComponent {
         standardFields.read(reader);
         windowsSpecificFields = new WindowsSpecificFields(isPE32Plus);
         windowsSpecificFields.read(reader);
+        dataDirectories = new DataDirectories();
+        dataDirectories.read(reader);
     }
     
 }
