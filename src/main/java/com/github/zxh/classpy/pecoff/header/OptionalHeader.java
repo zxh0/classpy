@@ -76,6 +76,11 @@ public class OptionalHeader extends PeComponent {
         private UInt32 fileAlignment;
         private UInt16 majorOperatingSystemVersion;
         private UInt16 minorOperatingSystemVersion;
+        private UInt16 majorImageVersion;
+        private UInt16 minorImageVersion;
+        private UInt16 majorSubsystemVersion;
+        private UInt16 minorSubsystemVersion;
+        private UInt32 win32VersionValue;
         
         public WindowsSpecificFields(boolean isPE32Plus) {
             this.isPE32Plus = isPE32Plus;
@@ -92,6 +97,11 @@ public class OptionalHeader extends PeComponent {
             describeAlignment(fileAlignment);
             majorOperatingSystemVersion = reader.readUInt16();
             minorOperatingSystemVersion = reader.readUInt16();
+            majorImageVersion = reader.readUInt16();
+            minorImageVersion = reader.readUInt16();
+            majorSubsystemVersion = reader.readUInt16();
+            minorSubsystemVersion = reader.readUInt16();
+            win32VersionValue = reader.readUInt32();
             // todo
         }
         
