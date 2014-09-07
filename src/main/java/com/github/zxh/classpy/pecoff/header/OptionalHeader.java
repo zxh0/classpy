@@ -108,6 +108,9 @@ public class OptionalHeader extends PeComponent {
             majorSubsystemVersion = reader.readUInt16();
             minorSubsystemVersion = reader.readUInt16();
             win32VersionValue = reader.readUInt32();
+            if (win32VersionValue.getValue() != 0) {
+                throw new FileParseException("Win32VersionValue is not 0!");
+            }
             sizeOfImage = reader.readUInt32();
             sizeOfHeaders = reader.readUInt32();
             checkSum = reader.readUInt32();
