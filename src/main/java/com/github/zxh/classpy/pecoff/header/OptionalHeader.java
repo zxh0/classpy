@@ -44,6 +44,7 @@ public class OptionalHeader extends PeComponent {
         private UInt8 majorLinkerVersion;
         private UInt8 minorLinkerVersion;
         private UInt32 sizeOfCode;
+        private UInt32 sizeOfInitializedData;
         private UInt32 sizeOfUninitializedData;
         private UInt32Hex addressOfEntryPoint;
         private UInt32Hex baseOfCode;
@@ -58,6 +59,7 @@ public class OptionalHeader extends PeComponent {
             majorLinkerVersion = reader.readUInt8();
             minorLinkerVersion = reader.readUInt8();
             sizeOfCode = reader.readUInt32();
+            sizeOfInitializedData = reader.readUInt32();
             sizeOfUninitializedData = reader.readUInt32();
             addressOfEntryPoint = reader.readUInt32Hex();
             baseOfCode = reader.readUInt32Hex();
@@ -80,7 +82,11 @@ public class OptionalHeader extends PeComponent {
         private UInt16 minorImageVersion;
         private UInt16 majorSubsystemVersion;
         private UInt16 minorSubsystemVersion;
-        private UInt32 win32VersionValue;
+        private UInt32 win32VersionValue; // Reserved, must be zero.
+        private UInt32 sizeOfImage;
+        private UInt32 sizeOfHeaders;
+        private UInt32 checkSum;
+        // todo
         
         public WindowsSpecificFields(boolean isPE32Plus) {
             this.isPE32Plus = isPE32Plus;
@@ -102,7 +108,9 @@ public class OptionalHeader extends PeComponent {
             majorSubsystemVersion = reader.readUInt16();
             minorSubsystemVersion = reader.readUInt16();
             win32VersionValue = reader.readUInt32();
-            // todo
+            sizeOfImage = reader.readUInt32();
+            sizeOfHeaders = reader.readUInt32();
+            checkSum = reader.readUInt32();
         }
         
         private void describeAlignment(UInt32 alignment) {
