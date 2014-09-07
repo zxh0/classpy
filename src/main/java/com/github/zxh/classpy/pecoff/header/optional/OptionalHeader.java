@@ -33,15 +33,4 @@ public class OptionalHeader extends PeComponent {
         windowsSpecificFields.read(reader);
     }
     
-    
-    
-    public static class DataDirectories extends PeComponent {
-
-        @Override
-        protected void readContent(PeReader reader) {
-            // todo
-        }
-        
-    }
-    
 }
