@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.pecoff.header;
+package com.github.zxh.classpy.pecoff.header.coff;
 
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.Util;

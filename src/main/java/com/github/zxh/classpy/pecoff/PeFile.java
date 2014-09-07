@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.pecoff;
 
-import com.github.zxh.classpy.pecoff.header.CoffHeader;
+import com.github.zxh.classpy.pecoff.header.coff.CoffHeader;
 import com.github.zxh.classpy.pecoff.header.MsDosStub;
 import com.github.zxh.classpy.pecoff.header.OptionalHeader;
 import com.github.zxh.classpy.pecoff.header.Signature;
