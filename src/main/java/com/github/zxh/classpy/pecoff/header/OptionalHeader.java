@@ -87,7 +87,13 @@ public class OptionalHeader extends PeComponent {
         private UInt32 sizeOfHeaders;
         private UInt32 checkSum;
         private UInt16 subsystem;
-        private UInt16Hex dllCharacteristics;
+        private UInt16Hex dllCharacteristics; // todo
+        private PeComponent sizeOfStackReserve;
+        private PeComponent sizeOfStackCommit;
+        private PeComponent sizeOfHeapReserve;
+        private PeComponent sizeOfHeapCommit;
+        private UInt32 loaderFlags; // Reserved, must be zero.
+        private UInt32 numberOfRvaAndSizes;
         // todo
         
         public WindowsSpecificFields(boolean isPE32Plus) {
@@ -119,6 +125,15 @@ public class OptionalHeader extends PeComponent {
             subsystem = reader.readUInt16();
             subsystem.setDesc(subsystem.getDesc() + "(" + getSubsystem(subsystem.getValue()) + ")");
             dllCharacteristics = reader.readUInt16Hex();
+            sizeOfStackReserve = isPE32Plus ? reader.readUInt64() : reader.readUInt32();
+            sizeOfStackCommit = isPE32Plus ? reader.readUInt64() : reader.readUInt32();
+            sizeOfHeapReserve = isPE32Plus ? reader.readUInt64() : reader.readUInt32();
+            sizeOfHeapCommit = isPE32Plus ? reader.readUInt64() : reader.readUInt32();
+            loaderFlags = reader.readUInt32();
+            if (loaderFlags.getValue() != 0) {
+                throw new FileParseException("LoaderFlags is not 0!");
+            }
+            numberOfRvaAndSizes = reader.readUInt32();
         }
         
         private void describeAlignment(UInt32 alignment) {
