@@ -1,9 +1,6 @@
 package com.github.zxh.classpy.pecoff;
 
-import com.github.zxh.classpy.pecoff.header.coff.CoffHeader;
-import com.github.zxh.classpy.pecoff.header.MsDosStub;
-import com.github.zxh.classpy.pecoff.header.optional.OptionalHeader;
-import com.github.zxh.classpy.pecoff.header.Signature;
+import com.github.zxh.classpy.pecoff.header.FileHeaders;
 
 /**
  * The parse result of PE/COFF file.
@@ -13,21 +10,12 @@ import com.github.zxh.classpy.pecoff.header.Signature;
  */
 public class PeFile extends PeComponent {
 
-    private MsDosStub dosStub;
-    private Signature signature;
-    private CoffHeader coffHeader;
-    private OptionalHeader optionalHeader;
+    private FileHeaders fileHeaders;
     
     @Override
     protected void readContent(PeReader reader) {
-        dosStub = new MsDosStub();
-        dosStub.read(reader);
-        signature = new Signature();
-        signature.read(reader);
-        coffHeader = new CoffHeader();
-        coffHeader.read(reader);
-        optionalHeader = new OptionalHeader();
-        optionalHeader.read(reader);
+        fileHeaders = new FileHeaders();
+        fileHeaders.read(reader);
         // todo
     }
     
