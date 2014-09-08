@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.pecoff;
 
 import com.github.zxh.classpy.pecoff.header.file.FileHeaders;
+import com.github.zxh.classpy.pecoff.header.section.SectionTable;
 
 /**
  * The parse result of PE/COFF file.
@@ -11,11 +12,14 @@ import com.github.zxh.classpy.pecoff.header.file.FileHeaders;
 public class PeFile extends PeComponent {
 
     private FileHeaders fileHeaders;
+    private SectionTable sectionTable; // section headers
     
     @Override
     protected void readContent(PeReader reader) {
         fileHeaders = new FileHeaders();
         fileHeaders.read(reader);
+        sectionTable = new SectionTable();
+        sectionTable.read(reader);
         // todo
     }
     
