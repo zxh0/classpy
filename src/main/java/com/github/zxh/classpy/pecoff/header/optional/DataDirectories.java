@@ -25,7 +25,7 @@ public class DataDirectories extends PeComponent {
     private DataDirectory iat;
     private DataDirectory delayImportDescriptor;
     private DataDirectory clrRuntimeHeader;
-    // Reserved, must be zero
+    private DataDirectory reserved; // Reserved, must be zero
     
     @Override
     protected void readContent(PeReader reader) {
@@ -44,6 +44,7 @@ public class DataDirectories extends PeComponent {
         iat = readDataDirectory(reader);
         delayImportDescriptor = readDataDirectory(reader);
         clrRuntimeHeader = readDataDirectory(reader);
+        reserved = readDataDirectory(reader); // todo
     }
     
     private static DataDirectory readDataDirectory(PeReader reader) {
