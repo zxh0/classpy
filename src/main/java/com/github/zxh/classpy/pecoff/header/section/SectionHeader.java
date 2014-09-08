@@ -7,7 +7,7 @@ import com.github.zxh.classpy.pecoff.PeReader;
  *
  * @author zxh
  */
-public class SectionTable extends PeComponent {
+public class SectionHeader extends PeComponent {
 
     @Override
     protected void readContent(PeReader reader) {
