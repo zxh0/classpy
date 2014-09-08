@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.pecoff.header.coff;
+package com.github.zxh.classpy.pecoff.header.file.coff;
 
 /**
  *

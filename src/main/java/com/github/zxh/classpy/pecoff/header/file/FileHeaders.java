@@ -1,9 +1,9 @@
-package com.github.zxh.classpy.pecoff.header;
+package com.github.zxh.classpy.pecoff.header.file;
 
 import com.github.zxh.classpy.pecoff.PeComponent;
 import com.github.zxh.classpy.pecoff.PeReader;
-import com.github.zxh.classpy.pecoff.header.coff.CoffHeader;
-import com.github.zxh.classpy.pecoff.header.optional.OptionalHeader;
+import com.github.zxh.classpy.pecoff.header.file.coff.CoffHeader;
+import com.github.zxh.classpy.pecoff.header.file.optional.OptionalHeader;
 
 /**
  *

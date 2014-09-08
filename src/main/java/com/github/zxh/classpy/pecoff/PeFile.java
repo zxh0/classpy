@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.pecoff;
 
-import com.github.zxh.classpy.pecoff.header.FileHeaders;
+import com.github.zxh.classpy.pecoff.header.file.FileHeaders;
 
 /**
  * The parse result of PE/COFF file.
