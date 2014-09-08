@@ -20,6 +20,10 @@ public class CoffHeader extends PeComponent {
     private UInt32 numberOfSymbols;
     private UInt16 sizeOfOptionalHeader;
     private Characteristics characteristics;
+
+    public UInt16 getNumberOfSections() {
+        return numberOfSections;
+    }
     
     @Override
     protected void readContent(PeReader reader) {

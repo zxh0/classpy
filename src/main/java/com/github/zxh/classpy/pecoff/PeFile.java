@@ -18,7 +18,8 @@ public class PeFile extends PeComponent {
     protected void readContent(PeReader reader) {
         fileHeaders = new FileHeaders();
         fileHeaders.read(reader);
-        sectionTable = new SectionTable();
+        sectionTable = new SectionTable(
+                fileHeaders.getCoffHeader().getNumberOfSections().getValue());
         sectionTable.read(reader);
         // todo
     }

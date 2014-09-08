@@ -15,6 +15,10 @@ public class FileHeaders extends PeComponent{
     private Signature signature;
     private CoffHeader coffHeader;
     private OptionalHeader optionalHeader;
+
+    public CoffHeader getCoffHeader() {
+        return coffHeader;
+    }
     
     @Override
     protected void readContent(PeReader reader) {
