@@ -9,8 +9,12 @@ import com.github.zxh.classpy.pecoff.PeReader;
  */
 public class SectionHeader extends PeComponent {
 
+    private SectionName name;
+    
     @Override
     protected void readContent(PeReader reader) {
+        name = new SectionName();
+        name.read(reader);
         // todo
     }
     
