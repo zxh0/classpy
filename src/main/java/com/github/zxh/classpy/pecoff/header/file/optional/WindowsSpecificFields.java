@@ -27,7 +27,7 @@ public class WindowsSpecificFields extends PeComponent {
     private UInt32 sizeOfImage;
     private UInt32 sizeOfHeaders;
     private UInt32 checkSum;
-    private UInt16 subsystem;
+    private UInt16 subsystem; // todo
     private UInt16Hex dllCharacteristics; // todo
     private PeComponent sizeOfStackReserve;
     private PeComponent sizeOfStackCommit;
