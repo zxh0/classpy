@@ -38,5 +38,4 @@ public class CoffHeader extends PeComponent {
         characteristics.read(reader);
     }
     
-    
 }
