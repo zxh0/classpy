@@ -6,6 +6,7 @@ import com.github.zxh.classpy.pecoff.PeReader;
 import com.github.zxh.classpy.pecoff.datatype.UInt16;
 import com.github.zxh.classpy.pecoff.datatype.UInt16Hex;
 import com.github.zxh.classpy.pecoff.datatype.UInt32;
+import com.github.zxh.classpy.pecoff.datatype.UInt32Hex;
 
 /**
  *
@@ -16,7 +17,7 @@ public class CoffHeader extends PeComponent {
     private UInt16Hex machine;
     private UInt16 numberOfSections;
     private UInt32 timeDateStamp;
-    private UInt32 pointerToSymbolTable;
+    private UInt32Hex pointerToSymbolTable;
     private UInt32 numberOfSymbols;
     private UInt16 sizeOfOptionalHeader;
     private Characteristics characteristics;
@@ -31,7 +32,7 @@ public class CoffHeader extends PeComponent {
         machine.setDesc(machine.getDesc() + "(" + getMachineType(machine.getValue()) + ")");
         numberOfSections = reader.readUInt16();
         timeDateStamp = reader.readUInt32();
-        pointerToSymbolTable = reader.readUInt32();
+        pointerToSymbolTable = reader.readUInt32Hex();
         numberOfSymbols = reader.readUInt32();
         sizeOfOptionalHeader = reader.readUInt16();
         characteristics = new Characteristics();

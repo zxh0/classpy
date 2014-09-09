@@ -23,7 +23,11 @@ public class OptionalHeader extends PeComponent {
     @Override
     protected void readContent(PeReader reader) {
         magic = reader.readUInt16Hex();
-        if (magic.getValue() != PE32 && magic.getValue() != PE32_PLUS) {
+        if (magic.getValue() == PE32) {
+            magic.setDesc(magic.getDesc() + "(PE32)");
+        } else if (magic.getValue() == PE32_PLUS) {
+            magic.setDesc(magic.getDesc() + "(PE32+)");
+        } else {
             throw new FileParseException("Invalid optional header magic number!");
         }
         
