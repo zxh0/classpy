@@ -9,9 +9,9 @@ import com.github.zxh.classpy.pecoff.header.file.optional.OptionalHeader;
  *
  * @author zxh
  */
-public class FileHeaders extends PeComponent{
+public class FileHeaders extends PeComponent {
 
-    private MsDosStub dosStub;
+    private MsDosStub msDosStub;
     private Signature signature;
     private CoffHeader coffHeader;
     private OptionalHeader optionalHeader;
@@ -22,8 +22,8 @@ public class FileHeaders extends PeComponent{
     
     @Override
     protected void readContent(PeReader reader) {
-        dosStub = new MsDosStub();
-        dosStub.read(reader);
+        msDosStub = new MsDosStub();
+        msDosStub.read(reader);
         signature = new Signature();
         signature.read(reader);
         coffHeader = new CoffHeader();

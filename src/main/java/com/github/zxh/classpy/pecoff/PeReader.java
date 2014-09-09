@@ -8,6 +8,7 @@ import com.github.zxh.classpy.pecoff.datatype.UInt32Hex;
 import com.github.zxh.classpy.pecoff.datatype.UInt64;
 import com.github.zxh.classpy.pecoff.datatype.UInt64Hex;
 import com.github.zxh.classpy.pecoff.datatype.UInt8;
+import com.github.zxh.classpy.pecoff.datatype.UInt8Hex;
 import java.nio.ByteOrder;
 
 /**
@@ -22,6 +23,12 @@ public class PeReader extends BytesReader {
     
     public UInt8 readUInt8() {
         UInt8 uint = new UInt8();
+        uint.read(this);
+        return uint;
+    }
+    
+    public UInt8Hex readUInt8Hex() {
+        UInt8Hex uint = new UInt8Hex();
         uint.read(this);
         return uint;
     }
