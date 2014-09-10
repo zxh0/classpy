@@ -2,7 +2,7 @@ package com.github.zxh.classpy.dexfile.body.data;
 
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.datatype.UInt;
+import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 
 /**
@@ -11,15 +11,15 @@ import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
  */
 public class AnnotationSetRefItem extends DexComponent{
 
-    private UInt annotationsOff; // -> annotation_set_item
+    private UIntHex annotationsOff; // -> annotation_set_item
 
-    public UInt getAnnotationsOff() {
+    public UIntHex getAnnotationsOff() {
         return annotationsOff;
     }
     
     @Override
     protected void readContent(DexReader reader) {
-        annotationsOff = reader.readUInt();
+        annotationsOff = reader.readUIntHex();
     }
     
     
