@@ -4,7 +4,7 @@ import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.Util;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.body.data.EncodedArrayItem.EncodedAnnotation;
+import com.github.zxh.classpy.dexfile.body.data.encoded.EncodedAnnotation;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 
 /**

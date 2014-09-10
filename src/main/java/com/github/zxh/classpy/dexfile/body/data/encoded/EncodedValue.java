@@ -3,7 +3,6 @@ package com.github.zxh.classpy.dexfile.body.data.encoded;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
-import com.github.zxh.classpy.dexfile.body.data.EncodedArrayItem;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.helper.EncodedValueDecoder;
 import java.io.IOException;
@@ -78,7 +77,7 @@ public class EncodedValue extends DexComponent {
                 value.read(reader);
                 break;
             case 0x1d: // a sub-annotation, in the format specified by "encoded_annotation Format" below. The size of the value is implicit in the encoding. 
-                value = new EncodedArrayItem.EncodedAnnotation();
+                value = new EncodedAnnotation();
                 value.read(reader);
                 break;
             case 0x1e: // null reference value
