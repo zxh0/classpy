@@ -44,12 +44,12 @@ public class DexFile extends DexComponent {
     private SizeHeaderList<MapItem> mapList;
     private OffsetsKnownList<StringDataItem> stringDataList;
     private OffsetsKnownList<ClassDataItem> classDataList;
-    private OffsetsKnownList<TypeList> typeListList;
+    private OffsetsKnownList<TypeList> typeLists;
     private OffsetsKnownList<CodeItem> codeList;
     private OffsetsKnownList<DebugInfoItem> debugInfoList;
     private OffsetsKnownList<AnnotationsDirectoryItem> annotationsDirectoryList;
     private OffsetsKnownList<EncodedArrayItem> encodedArrayList;
-    private OffsetsKnownList<AnnotationSetRefList> annotationSetRefListList;
+    private OffsetsKnownList<AnnotationSetRefList> annotationSetRefLists;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -87,12 +87,12 @@ public class DexFile extends DexComponent {
         readMapList(reader);
         readStringDataList(reader);
         readClassDataList(reader);
-        readTypeListList(reader);
+        readTypeLists(reader);
         readCodeList(reader);
         readDebugInfoList(reader);
         readAnnotationsDirectoryList(reader);
         readEncodedArrayList(reader);
-        readAnnotationSetRefListList(reader);
+        readAnnotationSetRefLists(reader);
     }
     
     private void readMapList(DexReader reader) {
@@ -119,7 +119,7 @@ public class DexFile extends DexComponent {
         classDataList = reader.readOffsetsKnownList(offArr, ClassDataItem::new);
     }
     
-    private void readTypeListList(DexReader reader) {
+    private void readTypeLists(DexReader reader) {
         IntStream off1 = classDefs.stream()
                 .mapToInt(classDef -> classDef.getInterfacesOff().getValue())
                 .filter(off -> off > 0);
@@ -130,7 +130,7 @@ public class DexFile extends DexComponent {
                 .distinct()
                 .toArray();
         
-        typeListList = reader.readOffsetsKnownList(offArr, TypeList::new);
+        typeLists = reader.readOffsetsKnownList(offArr, TypeList::new);
     }
     
     private void readCodeList(DexReader reader) {
@@ -183,14 +183,14 @@ public class DexFile extends DexComponent {
         encodedArrayList = reader.readOffsetsKnownList(offArr, EncodedArrayItem::new);
     }
     
-    private void readAnnotationSetRefListList(DexReader reader) {
+    private void readAnnotationSetRefLists(DexReader reader) {
         int[] offArr = annotationsDirectoryList.stream()
                 .flatMap(d -> d.getParameterAnnotations().stream())
                 .mapToInt(a -> a.getAnnotationsOff().getValue())
                 .filter(off -> off > 0)
                 .toArray();
         
-        annotationSetRefListList = reader.readOffsetsKnownList(offArr,
+        annotationSetRefLists = reader.readOffsetsKnownList(offArr,
                 AnnotationSetRefList::new);
     }
     
