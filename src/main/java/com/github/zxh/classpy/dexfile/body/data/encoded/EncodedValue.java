@@ -2,7 +2,11 @@ package com.github.zxh.classpy.dexfile.body.data.encoded;
 
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.dexfile.DexComponent;
+import com.github.zxh.classpy.dexfile.DexFile;
 import com.github.zxh.classpy.dexfile.DexReader;
+import com.github.zxh.classpy.dexfile.body.ids.FieldIdItem;
+import com.github.zxh.classpy.dexfile.body.ids.MethodIdItem;
+import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.helper.EncodedValueDecoder;
 import java.io.IOException;
@@ -15,6 +19,9 @@ public class EncodedValue extends DexComponent {
 
     private UByte typeAndArg; // (value_arg << 5) | value_type
     private DexComponent value;
+    
+    private int valueType;
+    private int index;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -27,7 +34,7 @@ public class EncodedValue extends DexComponent {
     }
 
     private void decodeValue(UByte typeAndArg, DexReader reader) throws IOException {
-        int valueType = typeAndArg.getValue() & 0b11111;
+        valueType = typeAndArg.getValue() & 0b11111;
         int valueArg = typeAndArg.getValue() >> 5;
         int size = valueArg + 1;
 
@@ -70,7 +77,8 @@ public class EncodedValue extends DexComponent {
             case 0x1a: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the method_ids section and representing a reflective method value 
             case 0x1b: // unsigned (zero-extended) four-byte integer value, interpreted as an index into the field_ids section and representing the value of an enumerated type constant 
                 value = reader.readByteArray(size);
-                value.setDesc(new EncodedValueDecoder(value, 4, false).readInt());
+                index = new EncodedValueDecoder(value, 4, false).readInt();
+                value.setDesc(index);
                 break;
             case 0x1c: // an array of values, in the format specified by "encoded_array Format" below. The size of the value is implicit in the encoding. 
                 value = new EncodedArray();
@@ -107,6 +115,30 @@ public class EncodedValue extends DexComponent {
             case 0x1f: return "0x1f(VALUE_BOOLEAN)";
             default: throw new FileParseException("Invalid EncodedValue Type: " + valueType);
         }
+    }
+
+    @Override
+    protected void postRead(DexFile dexFile) {
+        super.postRead(dexFile);
+        if (valueType == 0x17) { // VALUE_STRING
+            value.setDesc(index + "->" + dexFile.getString(index));
+        } else if (valueType == 0x18) { // VALUE_TYPE
+            TypeIdItem typeId = dexFile.getTypeIdItem(index);
+            String typeDesc = dexFile.getString(typeId.getDescriptorIdx());
+            value.setDesc(index + "->" + typeDesc);
+        } else if (valueType == 0x19 // VALUE_FIELD
+                || valueType == 0x1b) { // VALUE_ENUM
+            FieldIdItem fieldId = dexFile.getFieldIdItem(index);
+            String fieldName = fieldId.getDesc();
+            String className = dexFile.getTypeIdItem(fieldId.getClassIdx()).getDesc();
+            value.setDesc(index + "->" + className + "." + fieldName);
+        } else if (valueType == 0x1a) { // VALUE_METHOD
+            MethodIdItem methodId = dexFile.getMethodIdItem(index);
+            String methodName = methodId.getDesc();
+            String className = dexFile.getTypeIdItem(methodId.getClassIdx()).getDesc();
+            value.setDesc(index + "->" + className + "." + methodName);
+        }
+        // todo
     }
 
 }
