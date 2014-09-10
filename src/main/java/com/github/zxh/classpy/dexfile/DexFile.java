@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.body.ClassDefItem;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationSetRefItem;
 import com.github.zxh.classpy.dexfile.body.data.AnnotationsDirectoryItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem.EncodedMethod;
@@ -43,11 +44,12 @@ public class DexFile extends DexComponent {
     private SizeHeaderList<MapItem> mapList;
     private OffsetsKnownList<StringDataItem> stringDataList;
     private OffsetsKnownList<ClassDataItem> classDataList;
-    private OffsetsKnownList<SizeHeaderList<TypeItem>> typeList;
+    private OffsetsKnownList<SizeHeaderList<TypeItem>> typeListList;
     private OffsetsKnownList<CodeItem> codeList;
     private OffsetsKnownList<DebugInfoItem> debugInfoList;
     private OffsetsKnownList<AnnotationsDirectoryItem> annotationsDirectoryList;
     private OffsetsKnownList<EncodedArrayItem> encodedArrayList;
+    private OffsetsKnownList<SizeHeaderList<AnnotationSetRefItem>> annotationSetRefList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -85,7 +87,7 @@ public class DexFile extends DexComponent {
         readMapList(reader);
         readStringDataList(reader);
         readClassDataList(reader);
-        readTypeList(reader);
+        readTypeListList(reader);
         readCodeList(reader);
         readDebugInfoList(reader);
         readAnnotationsDirectoryList(reader);
@@ -116,7 +118,7 @@ public class DexFile extends DexComponent {
         classDataList = reader.readOffsetsKnownList(offArr, ClassDataItem::new);
     }
     
-    private void readTypeList(DexReader reader) {
+    private void readTypeListList(DexReader reader) {
         IntStream off1 = classDefs.stream()
                 .mapToInt(classDef -> classDef.getInterfacesOff().getValue())
                 .filter(off -> off > 0);
@@ -127,7 +129,7 @@ public class DexFile extends DexComponent {
                 .distinct()
                 .toArray();
         
-        typeList = reader.readOffsetsKnownList(offArr, 
+        typeListList = reader.readOffsetsKnownList(offArr, 
                 () -> new SizeHeaderList<>(TypeItem::new));
     }
     
