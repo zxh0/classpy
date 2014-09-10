@@ -2,6 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.body.ClassDefItem;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationItem;
 import com.github.zxh.classpy.dexfile.body.data.AnnotationOffItem.AnnotationSetItem;
 import com.github.zxh.classpy.dexfile.body.data.AnnotationSetRefItem;
 import com.github.zxh.classpy.dexfile.body.data.AnnotationSetRefItem.AnnotationSetRefList;
@@ -56,6 +57,7 @@ public class DexFile extends DexComponent {
     private OffsetsKnownList<EncodedArrayItem> encodedArrayList;
     private OffsetsKnownList<AnnotationSetRefList> annotationSetRefLists;
     private OffsetsKnownList<AnnotationSetItem> annotationSetItemList;
+    private OffsetsKnownList<AnnotationItem> annotationList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -100,6 +102,7 @@ public class DexFile extends DexComponent {
         readEncodedArrayList(reader);
         readAnnotationSetRefLists(reader);
         readAnnotationSetItemList(reader);
+        readAnnotationList(reader);
     }
     
     private void readMapList(DexReader reader) {
@@ -227,6 +230,17 @@ public class DexFile extends DexComponent {
         
         annotationSetItemList = reader.readOffsetsKnownList(offArr,
                 AnnotationSetItem::new);
+    }
+    
+    private void readAnnotationList(DexReader reader) {
+        int[] offArr = annotationSetItemList.stream()
+                .flatMap(setItem -> setItem.getList().stream())
+                .mapToInt(offItem -> offItem.getAnnotationOff().getValue())
+                .filter(off -> off > 0)
+                .distinct()
+                .toArray();
+        
+        annotationList = reader.readOffsetsKnownList(offArr, AnnotationItem::new);
     }
     
     public String getString(IntValue index) {

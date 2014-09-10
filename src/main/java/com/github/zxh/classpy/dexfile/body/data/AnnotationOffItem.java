@@ -12,6 +12,10 @@ import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
 public class AnnotationOffItem extends DexComponent {
 
     private UIntHex annotationOff;
+
+    public UIntHex getAnnotationOff() {
+        return annotationOff;
+    }
     
     @Override
     protected void readContent(DexReader reader) {
