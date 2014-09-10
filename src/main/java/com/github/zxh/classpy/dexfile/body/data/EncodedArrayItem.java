@@ -118,22 +118,22 @@ public class EncodedArrayItem extends DexComponent {
         
         private static String getTypeName(int valueType) {
             switch (valueType) {
-                case 0x00: return "VALUE_BYTE(0x00)";
-                case 0x02: return "VALUE_SHORT(0x02)";
-                case 0x03: return "VALUE_CHAR(0x03)";
-                case 0x04: return "VALUE_INT(0x04)";
-                case 0x06: return "VALUE_LONG(0x06)";
-                case 0x10: return "VALUE_FLOAT(0x10)";
-                case 0x11: return "VALUE_DOUBLE(0x11)";
-                case 0x17: return "VALUE_STRING(0x17)";
-                case 0x18: return "VALUE_TYPE(0x18)";
-                case 0x19: return "VALUE_FIELD(0x19)";
-                case 0x1a: return "VALUE_METHOD(0x1a)";
-                case 0x1b: return "VALUE_ENUM(0x1b)";
-                case 0x1c: return "VALUE_ARRAY(0x1c)";
-                case 0x1d: return "VALUE_ANNOTATION(0x1d)";
-                case 0x1e: return "VALUE_NULL(0x1e)";
-                case 0x1f: return "VALUE_BOOLEAN(0x1f)";
+                case 0x00: return "0x00(VALUE_BYTE)";
+                case 0x02: return "0x02(VALUE_SHORT)";
+                case 0x03: return "0x03(VALUE_CHAR)";
+                case 0x04: return "0x04(VALUE_INT)";
+                case 0x06: return "0x06(VALUE_LONG)";
+                case 0x10: return "0x10(VALUE_FLOAT)";
+                case 0x11: return "0x11(VALUE_DOUBLE)";
+                case 0x17: return "0x17(VALUE_STRING)";
+                case 0x18: return "0x18(VALUE_TYPE)";
+                case 0x19: return "0x19(VALUE_FIELD)";
+                case 0x1a: return "0x1a(VALUE_METHOD)";
+                case 0x1b: return "0x1b(VALUE_ENUM)";
+                case 0x1c: return "0x1c(VALUE_ARRAY)";
+                case 0x1d: return "0x1d(VALUE_ANNOTATION)";
+                case 0x1e: return "0x1e(VALUE_NULL)";
+                case 0x1f: return "0x1f(VALUE_BOOLEAN)";
                 default: throw new FileParseException("Invalid EncodedValue Type: " + valueType);
             }
         }
