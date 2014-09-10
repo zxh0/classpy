@@ -22,9 +22,11 @@ public class AnnotationsDirectoryItem extends DexComponent {
     private SizeKnownList<MethodAnnotation> methodAnnotations;
     private SizeKnownList<ParameterAnnotation> parameterAnnotations;
 
-    public SizeKnownList<ParameterAnnotation> getParameterAnnotations() {
-        return parameterAnnotations;
-    }
+    // Getters
+    public UIntHex getClassAnnotationsOff() {return classAnnotationsOff;}
+    public SizeKnownList<FieldAnnotation> getFieldAnnotations() {return fieldAnnotations;}
+    public SizeKnownList<MethodAnnotation> getMethodAnnotations() {return methodAnnotations;}
+    public SizeKnownList<ParameterAnnotation> getParameterAnnotations() {return parameterAnnotations;}
     
     @Override
     protected void readContent(DexReader reader) {
@@ -42,6 +44,10 @@ public class AnnotationsDirectoryItem extends DexComponent {
 
         private UIntFieldIdIndex fieldIdx;
         private UIntHex annotationsOff; // -> annotation_set_item
+
+        public UIntHex getAnnotationsOff() {
+            return annotationsOff;
+        }
         
         @Override
         protected void readContent(DexReader reader) {

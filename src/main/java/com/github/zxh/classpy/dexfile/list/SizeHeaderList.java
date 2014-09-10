@@ -17,6 +17,10 @@ public class SizeHeaderList<E extends DexComponent> extends DexComponent {
     private UInt size;
     private SizeKnownList<E> list;
 
+    public SizeKnownList<E> getList() {
+        return list;
+    }
+
     public SizeHeaderList(Supplier<E> factory) {
         this.factory = factory;
     }

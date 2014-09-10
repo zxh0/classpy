@@ -11,7 +11,11 @@ import com.github.zxh.classpy.dexfile.list.SizeHeaderList;
  */
 public class AnnotationSetRefItem extends DexComponent{
 
-    private UInt annotationsOff;
+    private UInt annotationsOff; // -> annotation_set_item
+
+    public UInt getAnnotationsOff() {
+        return annotationsOff;
+    }
     
     @Override
     protected void readContent(DexReader reader) {

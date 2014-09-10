@@ -2,8 +2,12 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.body.ClassDefItem;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationOffItem.AnnotationSetItem;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationSetRefItem;
 import com.github.zxh.classpy.dexfile.body.data.AnnotationSetRefItem.AnnotationSetRefList;
 import com.github.zxh.classpy.dexfile.body.data.AnnotationsDirectoryItem;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationsDirectoryItem.FieldAnnotation;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationsDirectoryItem.MethodAnnotation;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem.EncodedMethod;
 import com.github.zxh.classpy.dexfile.body.data.CodeItem;
@@ -18,6 +22,7 @@ import com.github.zxh.classpy.dexfile.body.ids.MethodIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.ProtoIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.StringIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.TypeIdItem;
+import com.github.zxh.classpy.dexfile.datatype.UInt;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
@@ -50,6 +55,7 @@ public class DexFile extends DexComponent {
     private OffsetsKnownList<AnnotationsDirectoryItem> annotationsDirectoryList;
     private OffsetsKnownList<EncodedArrayItem> encodedArrayList;
     private OffsetsKnownList<AnnotationSetRefList> annotationSetRefLists;
+    private OffsetsKnownList<AnnotationSetItem> annotationSetItemList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -93,6 +99,7 @@ public class DexFile extends DexComponent {
         readAnnotationsDirectoryList(reader);
         readEncodedArrayList(reader);
         readAnnotationSetRefLists(reader);
+        readAnnotationSetItemList(reader);
     }
     
     private void readMapList(DexReader reader) {
@@ -193,6 +200,33 @@ public class DexFile extends DexComponent {
         
         annotationSetRefLists = reader.readOffsetsKnownList(offArr,
                 AnnotationSetRefList::new);
+    }
+    
+    private void readAnnotationSetItemList(DexReader reader) {
+        List<UInt> offList = new ArrayList<>();
+        for (AnnotationsDirectoryItem d : annotationsDirectoryList) {
+            offList.add(d.getClassAnnotationsOff());
+            for (FieldAnnotation a : d.getFieldAnnotations()) {
+                offList.add(a.getAnnotationsOff());
+            }
+            for (MethodAnnotation a : d.getMethodAnnotations()) {
+                offList.add(a.getAnnotationsOff());
+            }
+        }
+        for (AnnotationSetRefList list : annotationSetRefLists) {
+            for (AnnotationSetRefItem item : list.getList()) {
+                offList.add(item.getAnnotationsOff());
+            }
+        }
+        
+        int[] offArr = offList.stream()
+                .mapToInt(off -> off.getValue())
+                .filter(off -> off > 0)
+                .distinct()
+                .toArray();
+        
+        annotationSetItemList = reader.readOffsetsKnownList(offArr,
+                AnnotationSetItem::new);
     }
     
     public String getString(IntValue index) {
