@@ -19,6 +19,8 @@ import com.github.zxh.classpy.dexfile.datatype.UIntTypeIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UShortProtoIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UShortTypeIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128Hex;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128StringIdIndex;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128TypeIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128p1;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import com.github.zxh.classpy.dexfile.list.OffsetsKnownList;
@@ -131,6 +133,18 @@ public class DexReader extends BytesReader {
     // Unsigned Little-Endian Base 128.
     public Uleb128 readUleb128() {
         Uleb128 uleb = new Uleb128();
+        uleb.read(this);
+        return uleb;
+    }
+    
+    public Uleb128TypeIdIndex readUleb128TypeIdIndex() {
+        Uleb128TypeIdIndex uleb = new Uleb128TypeIdIndex();
+        uleb.read(this);
+        return uleb;
+    }
+    
+    public Uleb128StringIdIndex readUleb128StringIdIndex() {
+        Uleb128StringIdIndex uleb = new Uleb128StringIdIndex();
         uleb.read(this);
         return uleb;
     }

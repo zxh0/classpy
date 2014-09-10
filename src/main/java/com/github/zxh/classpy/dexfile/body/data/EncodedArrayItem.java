@@ -5,6 +5,8 @@ import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128StringIdIndex;
+import com.github.zxh.classpy.dexfile.datatype.Uleb128TypeIdIndex;
 import com.github.zxh.classpy.dexfile.helper.EncodedValueDecoder;
 import com.github.zxh.classpy.dexfile.list.SizeKnownList;
 import java.io.IOException;
@@ -140,13 +142,13 @@ public class EncodedArrayItem extends DexComponent {
     
     public static class EncodedAnnotation extends DexComponent {
 
-        private Uleb128 typeIdx;
+        private Uleb128TypeIdIndex typeIdx;
         private Uleb128 size;
         private SizeKnownList<AnnotationElement> elements;
         
         @Override
         protected void readContent(DexReader reader) {
-            typeIdx = reader.readUleb128();
+            typeIdx = reader.readUleb128TypeIdIndex();
             size = reader.readUleb128();
             elements = reader.readSizeKnownList(size, AnnotationElement::new);
         }
@@ -155,12 +157,12 @@ public class EncodedArrayItem extends DexComponent {
     
     public static class AnnotationElement extends DexComponent {
 
-        private Uleb128 nameIdx;
+        private Uleb128StringIdIndex nameIdx;
         private EncodedValue value;
         
         @Override
         protected void readContent(DexReader reader) {
-            nameIdx = reader.readUleb128();
+            nameIdx = reader.readUleb128StringIdIndex();
             value = new EncodedValue();
             value.read(reader);
         }
