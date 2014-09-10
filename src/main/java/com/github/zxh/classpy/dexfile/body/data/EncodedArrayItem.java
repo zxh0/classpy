@@ -3,6 +3,7 @@ package com.github.zxh.classpy.dexfile.body.data;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.dexfile.DexComponent;
 import com.github.zxh.classpy.dexfile.DexReader;
+import com.github.zxh.classpy.dexfile.body.data.encoded.EncodedArray;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128;
 import com.github.zxh.classpy.dexfile.datatype.Uleb128StringIdIndex;
@@ -27,18 +28,7 @@ public class EncodedArrayItem extends DexComponent {
     
     
     // todo
-    public static class EncodedArray extends DexComponent {
 
-        private Uleb128 size;
-        private SizeKnownList<EncodedValue> values;
-        
-        @Override
-        protected void readContent(DexReader reader) {
-            size = reader.readUleb128();
-            values = reader.readSizeKnownList(size, EncodedValue::new);
-        }
-        
-    }
     
     public static class EncodedValue extends DexComponent {
 
