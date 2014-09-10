@@ -11,7 +11,7 @@ import com.github.zxh.classpy.dexfile.body.data.DebugInfoItem;
 import com.github.zxh.classpy.dexfile.body.data.EncodedArrayItem;
 import com.github.zxh.classpy.dexfile.body.data.MapItem;
 import com.github.zxh.classpy.dexfile.body.data.StringDataItem;
-import com.github.zxh.classpy.dexfile.body.data.TypeItem;
+import com.github.zxh.classpy.dexfile.body.data.TypeList;
 import com.github.zxh.classpy.dexfile.header.HeaderItem;
 import com.github.zxh.classpy.dexfile.body.ids.FieldIdItem;
 import com.github.zxh.classpy.dexfile.body.ids.MethodIdItem;
@@ -44,7 +44,7 @@ public class DexFile extends DexComponent {
     private SizeHeaderList<MapItem> mapList;
     private OffsetsKnownList<StringDataItem> stringDataList;
     private OffsetsKnownList<ClassDataItem> classDataList;
-    private OffsetsKnownList<SizeHeaderList<TypeItem>> typeListList;
+    private OffsetsKnownList<TypeList> typeListList;
     private OffsetsKnownList<CodeItem> codeList;
     private OffsetsKnownList<DebugInfoItem> debugInfoList;
     private OffsetsKnownList<AnnotationsDirectoryItem> annotationsDirectoryList;
@@ -129,8 +129,7 @@ public class DexFile extends DexComponent {
                 .distinct()
                 .toArray();
         
-        typeListList = reader.readOffsetsKnownList(offArr, 
-                () -> new SizeHeaderList<>(TypeItem::new));
+        typeListList = reader.readOffsetsKnownList(offArr, TypeList::new);
     }
     
     private void readCodeList(DexReader reader) {
