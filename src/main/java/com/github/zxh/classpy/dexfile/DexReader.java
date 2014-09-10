@@ -11,7 +11,6 @@ import com.github.zxh.classpy.dexfile.datatype.ByteArray;
 import com.github.zxh.classpy.dexfile.datatype.SInt;
 import com.github.zxh.classpy.dexfile.datatype.Sleb128;
 import com.github.zxh.classpy.dexfile.datatype.UByte;
-import com.github.zxh.classpy.dexfile.datatype.UByteHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntFieldIdIndex;
 import com.github.zxh.classpy.dexfile.datatype.UIntHex;
 import com.github.zxh.classpy.dexfile.datatype.UIntMethodIdIndex;
@@ -62,12 +61,6 @@ public class DexReader extends BytesReader {
     
     public UByte readUByte() {
         UByte ubyte = new UByte();
-        ubyte.read(this);
-        return ubyte;
-    }
-    
-    public UByteHex readUByteHex() {
-        UByteHex ubyte = new UByteHex();
         ubyte.read(this);
         return ubyte;
     }
