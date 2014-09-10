@@ -188,6 +188,7 @@ public class DexFile extends DexComponent {
                 .flatMap(d -> d.getParameterAnnotations().stream())
                 .mapToInt(a -> a.getAnnotationsOff().getValue())
                 .filter(off -> off > 0)
+                .distinct()
                 .toArray();
         
         annotationSetRefLists = reader.readOffsetsKnownList(offArr,
