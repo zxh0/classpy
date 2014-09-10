@@ -2,7 +2,7 @@ package com.github.zxh.classpy.dexfile;
 
 import com.github.zxh.classpy.common.IntValue;
 import com.github.zxh.classpy.dexfile.body.ClassDefItem;
-import com.github.zxh.classpy.dexfile.body.data.AnnotationSetRefItem;
+import com.github.zxh.classpy.dexfile.body.data.AnnotationSetRefItem.AnnotationSetRefList;
 import com.github.zxh.classpy.dexfile.body.data.AnnotationsDirectoryItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem;
 import com.github.zxh.classpy.dexfile.body.data.ClassDataItem.EncodedMethod;
@@ -49,7 +49,7 @@ public class DexFile extends DexComponent {
     private OffsetsKnownList<DebugInfoItem> debugInfoList;
     private OffsetsKnownList<AnnotationsDirectoryItem> annotationsDirectoryList;
     private OffsetsKnownList<EncodedArrayItem> encodedArrayList;
-    private OffsetsKnownList<SizeHeaderList<AnnotationSetRefItem>> annotationSetRefList;
+    private OffsetsKnownList<AnnotationSetRefList> annotationSetRefListList;
 
     @Override
     protected void readContent(DexReader reader) {
@@ -92,6 +92,7 @@ public class DexFile extends DexComponent {
         readDebugInfoList(reader);
         readAnnotationsDirectoryList(reader);
         readEncodedArrayList(reader);
+        readAnnotationSetRefListList(reader);
     }
     
     private void readMapList(DexReader reader) {
@@ -180,6 +181,17 @@ public class DexFile extends DexComponent {
                 .toArray();
         
         encodedArrayList = reader.readOffsetsKnownList(offArr, EncodedArrayItem::new);
+    }
+    
+    private void readAnnotationSetRefListList(DexReader reader) {
+        int[] offArr = annotationsDirectoryList.stream()
+                .flatMap(d -> d.getParameterAnnotations().stream())
+                .mapToInt(a -> a.getAnnotationsOff().getValue())
+                .filter(off -> off > 0)
+                .toArray();
+        
+        annotationSetRefListList = reader.readOffsetsKnownList(offArr,
+                AnnotationSetRefList::new);
     }
     
     public String getString(IntValue index) {
