@@ -1,5 +1,8 @@
 package com.github.zxh.classpy.protobuf;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * http://code.google.com/p/protobuf/
  * 
@@ -7,17 +10,20 @@ package com.github.zxh.classpy.protobuf;
  */
 public class PbMessage extends PbComponent {
 
-//    private FileHeaders fileHeaders;
-//    private SectionTable sectionTable; // section headers
+    private final List<KeyValuePair> pairs = new ArrayList<>();
     
     @Override
     protected void readContent(PbReader reader) {
-//        fileHeaders = new FileHeaders();
-//        fileHeaders.read(reader);
-//        sectionTable = new SectionTable(
-//                fileHeaders.getCoffHeader().getNumberOfSections().getValue());
-//        sectionTable.read(reader);
-        // todo
+        while (reader.getRemaining() > 0) {
+            KeyValuePair pair = new KeyValuePair();
+            pair.read(reader);
+            pairs.add(pair);
+        }
+    }
+
+    @Override
+    public List<KeyValuePair> getSubComponents() {
+        return pairs;
     }
     
 }
