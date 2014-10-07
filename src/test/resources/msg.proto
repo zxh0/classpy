@@ -2,5 +2,13 @@
 option java_package = "com.github.zxh.classpy.protobuf";
 
 message MyMsg {
-    required int32 x = 1;
+    required int32  f_int32  = 1;
+    optional uint32 f_uint32 = 2;
+    optional sint32 f_sint32 = 3;
+    optional int64  f_int64  = 4;
+    optional uint64 f_uint64 = 5;
+    optional sint64 f_sint64 = 6;
+    optional bool   f_bool   = 7;
+    optional float  f_float  = 8;
+    optional double f_double = 9;
 }

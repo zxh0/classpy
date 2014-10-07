@@ -11,15 +11,95 @@ public final class Msg {
   public interface MyMsgOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // required int32 x = 1;
+    // required int32 f_int32 = 1;
     /**
-     * <code>required int32 x = 1;</code>
+     * <code>required int32 f_int32 = 1;</code>
      */
-    boolean hasX();
+    boolean hasFInt32();
     /**
-     * <code>required int32 x = 1;</code>
+     * <code>required int32 f_int32 = 1;</code>
      */
-    int getX();
+    int getFInt32();
+
+    // optional uint32 f_uint32 = 2;
+    /**
+     * <code>optional uint32 f_uint32 = 2;</code>
+     */
+    boolean hasFUint32();
+    /**
+     * <code>optional uint32 f_uint32 = 2;</code>
+     */
+    int getFUint32();
+
+    // optional sint32 f_sint32 = 3;
+    /**
+     * <code>optional sint32 f_sint32 = 3;</code>
+     */
+    boolean hasFSint32();
+    /**
+     * <code>optional sint32 f_sint32 = 3;</code>
+     */
+    int getFSint32();
+
+    // optional int64 f_int64 = 4;
+    /**
+     * <code>optional int64 f_int64 = 4;</code>
+     */
+    boolean hasFInt64();
+    /**
+     * <code>optional int64 f_int64 = 4;</code>
+     */
+    long getFInt64();
+
+    // optional uint64 f_uint64 = 5;
+    /**
+     * <code>optional uint64 f_uint64 = 5;</code>
+     */
+    boolean hasFUint64();
+    /**
+     * <code>optional uint64 f_uint64 = 5;</code>
+     */
+    long getFUint64();
+
+    // optional sint64 f_sint64 = 6;
+    /**
+     * <code>optional sint64 f_sint64 = 6;</code>
+     */
+    boolean hasFSint64();
+    /**
+     * <code>optional sint64 f_sint64 = 6;</code>
+     */
+    long getFSint64();
+
+    // optional bool f_bool = 7;
+    /**
+     * <code>optional bool f_bool = 7;</code>
+     */
+    boolean hasFBool();
+    /**
+     * <code>optional bool f_bool = 7;</code>
+     */
+    boolean getFBool();
+
+    // optional float f_float = 8;
+    /**
+     * <code>optional float f_float = 8;</code>
+     */
+    boolean hasFFloat();
+    /**
+     * <code>optional float f_float = 8;</code>
+     */
+    float getFFloat();
+
+    // optional double f_double = 9;
+    /**
+     * <code>optional double f_double = 9;</code>
+     */
+    boolean hasFDouble();
+    /**
+     * <code>optional double f_double = 9;</code>
+     */
+    double getFDouble();
   }
   /**
    * Protobuf type {@code MyMsg}
@@ -74,7 +154,47 @@ public final class Msg {
             }
             case 8: {
               bitField0_ |= 0x00000001;
-              x_ = input.readInt32();
+              fInt32_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              fUint32_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              fSint32_ = input.readSInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              fInt64_ = input.readInt64();
+              break;
+            }
+            case 40: {
+              bitField0_ |= 0x00000010;
+              fUint64_ = input.readUInt64();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              fSint64_ = input.readSInt64();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
+              fBool_ = input.readBool();
+              break;
+            }
+            case 69: {
+              bitField0_ |= 0x00000080;
+              fFloat_ = input.readFloat();
+              break;
+            }
+            case 73: {
+              bitField0_ |= 0x00000100;
+              fDouble_ = input.readDouble();
               break;
             }
           }
@@ -117,31 +237,167 @@ public final class Msg {
     }
 
     private int bitField0_;
-    // required int32 x = 1;
-    public static final int X_FIELD_NUMBER = 1;
-    private int x_;
+    // required int32 f_int32 = 1;
+    public static final int F_INT32_FIELD_NUMBER = 1;
+    private int fInt32_;
     /**
-     * <code>required int32 x = 1;</code>
+     * <code>required int32 f_int32 = 1;</code>
      */
-    public boolean hasX() {
+    public boolean hasFInt32() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required int32 x = 1;</code>
+     * <code>required int32 f_int32 = 1;</code>
      */
-    public int getX() {
-      return x_;
+    public int getFInt32() {
+      return fInt32_;
+    }
+
+    // optional uint32 f_uint32 = 2;
+    public static final int F_UINT32_FIELD_NUMBER = 2;
+    private int fUint32_;
+    /**
+     * <code>optional uint32 f_uint32 = 2;</code>
+     */
+    public boolean hasFUint32() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 f_uint32 = 2;</code>
+     */
+    public int getFUint32() {
+      return fUint32_;
+    }
+
+    // optional sint32 f_sint32 = 3;
+    public static final int F_SINT32_FIELD_NUMBER = 3;
+    private int fSint32_;
+    /**
+     * <code>optional sint32 f_sint32 = 3;</code>
+     */
+    public boolean hasFSint32() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional sint32 f_sint32 = 3;</code>
+     */
+    public int getFSint32() {
+      return fSint32_;
+    }
+
+    // optional int64 f_int64 = 4;
+    public static final int F_INT64_FIELD_NUMBER = 4;
+    private long fInt64_;
+    /**
+     * <code>optional int64 f_int64 = 4;</code>
+     */
+    public boolean hasFInt64() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional int64 f_int64 = 4;</code>
+     */
+    public long getFInt64() {
+      return fInt64_;
+    }
+
+    // optional uint64 f_uint64 = 5;
+    public static final int F_UINT64_FIELD_NUMBER = 5;
+    private long fUint64_;
+    /**
+     * <code>optional uint64 f_uint64 = 5;</code>
+     */
+    public boolean hasFUint64() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional uint64 f_uint64 = 5;</code>
+     */
+    public long getFUint64() {
+      return fUint64_;
+    }
+
+    // optional sint64 f_sint64 = 6;
+    public static final int F_SINT64_FIELD_NUMBER = 6;
+    private long fSint64_;
+    /**
+     * <code>optional sint64 f_sint64 = 6;</code>
+     */
+    public boolean hasFSint64() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional sint64 f_sint64 = 6;</code>
+     */
+    public long getFSint64() {
+      return fSint64_;
+    }
+
+    // optional bool f_bool = 7;
+    public static final int F_BOOL_FIELD_NUMBER = 7;
+    private boolean fBool_;
+    /**
+     * <code>optional bool f_bool = 7;</code>
+     */
+    public boolean hasFBool() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional bool f_bool = 7;</code>
+     */
+    public boolean getFBool() {
+      return fBool_;
+    }
+
+    // optional float f_float = 8;
+    public static final int F_FLOAT_FIELD_NUMBER = 8;
+    private float fFloat_;
+    /**
+     * <code>optional float f_float = 8;</code>
+     */
+    public boolean hasFFloat() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional float f_float = 8;</code>
+     */
+    public float getFFloat() {
+      return fFloat_;
+    }
+
+    // optional double f_double = 9;
+    public static final int F_DOUBLE_FIELD_NUMBER = 9;
+    private double fDouble_;
+    /**
+     * <code>optional double f_double = 9;</code>
+     */
+    public boolean hasFDouble() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    /**
+     * <code>optional double f_double = 9;</code>
+     */
+    public double getFDouble() {
+      return fDouble_;
     }
 
     private void initFields() {
-      x_ = 0;
+      fInt32_ = 0;
+      fUint32_ = 0;
+      fSint32_ = 0;
+      fInt64_ = 0L;
+      fUint64_ = 0L;
+      fSint64_ = 0L;
+      fBool_ = false;
+      fFloat_ = 0F;
+      fDouble_ = 0D;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
-      if (!hasX()) {
+      if (!hasFInt32()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -153,7 +409,31 @@ public final class Msg {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, x_);
+        output.writeInt32(1, fInt32_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, fUint32_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeSInt32(3, fSint32_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt64(4, fInt64_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeUInt64(5, fUint64_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeSInt64(6, fSint64_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBool(7, fBool_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeFloat(8, fFloat_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeDouble(9, fDouble_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -166,7 +446,39 @@ public final class Msg {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, x_);
+          .computeInt32Size(1, fInt32_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, fUint32_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(3, fSint32_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(4, fInt64_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(5, fUint64_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(6, fSint64_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(7, fBool_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(8, fFloat_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(9, fDouble_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -284,8 +596,24 @@ public final class Msg {
 
       public Builder clear() {
         super.clear();
-        x_ = 0;
+        fInt32_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
+        fUint32_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        fSint32_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        fInt64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        fUint64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        fSint64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fBool_ = false;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fFloat_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        fDouble_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
 
@@ -317,7 +645,39 @@ public final class Msg {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.x_ = x_;
+        result.fInt32_ = fInt32_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.fUint32_ = fUint32_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.fSint32_ = fSint32_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.fInt64_ = fInt64_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.fUint64_ = fUint64_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.fSint64_ = fSint64_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.fBool_ = fBool_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.fFloat_ = fFloat_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.fDouble_ = fDouble_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -334,15 +694,39 @@ public final class Msg {
 
       public Builder mergeFrom(com.github.zxh.classpy.protobuf.Msg.MyMsg other) {
         if (other == com.github.zxh.classpy.protobuf.Msg.MyMsg.getDefaultInstance()) return this;
-        if (other.hasX()) {
-          setX(other.getX());
+        if (other.hasFInt32()) {
+          setFInt32(other.getFInt32());
+        }
+        if (other.hasFUint32()) {
+          setFUint32(other.getFUint32());
+        }
+        if (other.hasFSint32()) {
+          setFSint32(other.getFSint32());
+        }
+        if (other.hasFInt64()) {
+          setFInt64(other.getFInt64());
+        }
+        if (other.hasFUint64()) {
+          setFUint64(other.getFUint64());
+        }
+        if (other.hasFSint64()) {
+          setFSint64(other.getFSint64());
+        }
+        if (other.hasFBool()) {
+          setFBool(other.getFBool());
+        }
+        if (other.hasFFloat()) {
+          setFFloat(other.getFFloat());
+        }
+        if (other.hasFDouble()) {
+          setFDouble(other.getFDouble());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasX()) {
+        if (!hasFInt32()) {
           
           return false;
         }
@@ -368,35 +752,299 @@ public final class Msg {
       }
       private int bitField0_;
 
-      // required int32 x = 1;
-      private int x_ ;
+      // required int32 f_int32 = 1;
+      private int fInt32_ ;
       /**
-       * <code>required int32 x = 1;</code>
+       * <code>required int32 f_int32 = 1;</code>
        */
-      public boolean hasX() {
+      public boolean hasFInt32() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required int32 x = 1;</code>
+       * <code>required int32 f_int32 = 1;</code>
        */
-      public int getX() {
-        return x_;
+      public int getFInt32() {
+        return fInt32_;
       }
       /**
-       * <code>required int32 x = 1;</code>
+       * <code>required int32 f_int32 = 1;</code>
        */
-      public Builder setX(int value) {
+      public Builder setFInt32(int value) {
         bitField0_ |= 0x00000001;
-        x_ = value;
+        fInt32_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>required int32 x = 1;</code>
+       * <code>required int32 f_int32 = 1;</code>
        */
-      public Builder clearX() {
+      public Builder clearFInt32() {
         bitField0_ = (bitField0_ & ~0x00000001);
-        x_ = 0;
+        fInt32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 f_uint32 = 2;
+      private int fUint32_ ;
+      /**
+       * <code>optional uint32 f_uint32 = 2;</code>
+       */
+      public boolean hasFUint32() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 f_uint32 = 2;</code>
+       */
+      public int getFUint32() {
+        return fUint32_;
+      }
+      /**
+       * <code>optional uint32 f_uint32 = 2;</code>
+       */
+      public Builder setFUint32(int value) {
+        bitField0_ |= 0x00000002;
+        fUint32_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 f_uint32 = 2;</code>
+       */
+      public Builder clearFUint32() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        fUint32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional sint32 f_sint32 = 3;
+      private int fSint32_ ;
+      /**
+       * <code>optional sint32 f_sint32 = 3;</code>
+       */
+      public boolean hasFSint32() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional sint32 f_sint32 = 3;</code>
+       */
+      public int getFSint32() {
+        return fSint32_;
+      }
+      /**
+       * <code>optional sint32 f_sint32 = 3;</code>
+       */
+      public Builder setFSint32(int value) {
+        bitField0_ |= 0x00000004;
+        fSint32_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional sint32 f_sint32 = 3;</code>
+       */
+      public Builder clearFSint32() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        fSint32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int64 f_int64 = 4;
+      private long fInt64_ ;
+      /**
+       * <code>optional int64 f_int64 = 4;</code>
+       */
+      public boolean hasFInt64() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional int64 f_int64 = 4;</code>
+       */
+      public long getFInt64() {
+        return fInt64_;
+      }
+      /**
+       * <code>optional int64 f_int64 = 4;</code>
+       */
+      public Builder setFInt64(long value) {
+        bitField0_ |= 0x00000008;
+        fInt64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 f_int64 = 4;</code>
+       */
+      public Builder clearFInt64() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        fInt64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional uint64 f_uint64 = 5;
+      private long fUint64_ ;
+      /**
+       * <code>optional uint64 f_uint64 = 5;</code>
+       */
+      public boolean hasFUint64() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional uint64 f_uint64 = 5;</code>
+       */
+      public long getFUint64() {
+        return fUint64_;
+      }
+      /**
+       * <code>optional uint64 f_uint64 = 5;</code>
+       */
+      public Builder setFUint64(long value) {
+        bitField0_ |= 0x00000010;
+        fUint64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint64 f_uint64 = 5;</code>
+       */
+      public Builder clearFUint64() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        fUint64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional sint64 f_sint64 = 6;
+      private long fSint64_ ;
+      /**
+       * <code>optional sint64 f_sint64 = 6;</code>
+       */
+      public boolean hasFSint64() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional sint64 f_sint64 = 6;</code>
+       */
+      public long getFSint64() {
+        return fSint64_;
+      }
+      /**
+       * <code>optional sint64 f_sint64 = 6;</code>
+       */
+      public Builder setFSint64(long value) {
+        bitField0_ |= 0x00000020;
+        fSint64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional sint64 f_sint64 = 6;</code>
+       */
+      public Builder clearFSint64() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fSint64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional bool f_bool = 7;
+      private boolean fBool_ ;
+      /**
+       * <code>optional bool f_bool = 7;</code>
+       */
+      public boolean hasFBool() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional bool f_bool = 7;</code>
+       */
+      public boolean getFBool() {
+        return fBool_;
+      }
+      /**
+       * <code>optional bool f_bool = 7;</code>
+       */
+      public Builder setFBool(boolean value) {
+        bitField0_ |= 0x00000040;
+        fBool_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool f_bool = 7;</code>
+       */
+      public Builder clearFBool() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fBool_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional float f_float = 8;
+      private float fFloat_ ;
+      /**
+       * <code>optional float f_float = 8;</code>
+       */
+      public boolean hasFFloat() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional float f_float = 8;</code>
+       */
+      public float getFFloat() {
+        return fFloat_;
+      }
+      /**
+       * <code>optional float f_float = 8;</code>
+       */
+      public Builder setFFloat(float value) {
+        bitField0_ |= 0x00000080;
+        fFloat_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional float f_float = 8;</code>
+       */
+      public Builder clearFFloat() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        fFloat_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      // optional double f_double = 9;
+      private double fDouble_ ;
+      /**
+       * <code>optional double f_double = 9;</code>
+       */
+      public boolean hasFDouble() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      /**
+       * <code>optional double f_double = 9;</code>
+       */
+      public double getFDouble() {
+        return fDouble_;
+      }
+      /**
+       * <code>optional double f_double = 9;</code>
+       */
+      public Builder setFDouble(double value) {
+        bitField0_ |= 0x00000100;
+        fDouble_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double f_double = 9;</code>
+       */
+      public Builder clearFDouble() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        fDouble_ = 0D;
         onChanged();
         return this;
       }
@@ -426,8 +1074,12 @@ public final class Msg {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tmsg.proto\"\022\n\005MyMsg\022\t\n\001x\030\001 \002(\005B!\n\037com.g" +
-      "ithub.zxh.classpy.protobuf"
+      "\n\tmsg.proto\"\244\001\n\005MyMsg\022\017\n\007f_int32\030\001 \002(\005\022\020" +
+      "\n\010f_uint32\030\002 \001(\r\022\020\n\010f_sint32\030\003 \001(\021\022\017\n\007f_" +
+      "int64\030\004 \001(\003\022\020\n\010f_uint64\030\005 \001(\004\022\020\n\010f_sint6" +
+      "4\030\006 \001(\022\022\016\n\006f_bool\030\007 \001(\010\022\017\n\007f_float\030\010 \001(\002" +
+      "\022\020\n\010f_double\030\t \001(\001B!\n\037com.github.zxh.cla" +
+      "sspy.protobuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -439,7 +1091,7 @@ public final class Msg {
           internal_static_MyMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_MyMsg_descriptor,
-              new java.lang.String[] { "X", });
+              new java.lang.String[] { "FInt32", "FUint32", "FSint32", "FInt64", "FUint64", "FSint64", "FBool", "FFloat", "FDouble", });
           return null;
         }
       };
