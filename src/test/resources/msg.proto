@@ -1,6 +1,6 @@
-// protoc my_msg.proto --java_out=../java
+// protoc msg.proto --java_out=../java
 option java_package = "com.github.zxh.classpy.protobuf";
 
-message c {
+message MyMsg {
     required int32 x = 1;
 }
