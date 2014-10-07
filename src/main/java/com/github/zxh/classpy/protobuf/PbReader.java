@@ -9,8 +9,8 @@ import java.nio.ByteOrder;
  */
 public class PbReader extends BytesReader {
 
-    public PbReader(byte[] bytes, ByteOrder order) {
-        super(bytes, order, true);
+    public PbReader(byte[] bytes) {
+        super(bytes, ByteOrder.BIG_ENDIAN, true);
     }
     
 }
