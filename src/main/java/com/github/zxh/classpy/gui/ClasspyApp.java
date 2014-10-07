@@ -96,7 +96,6 @@ public class ClasspyApp extends Application {
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("CLASS", "*.class"),
             new FileChooser.ExtensionFilter("DEX", "*.dex"),
-            new FileChooser.ExtensionFilter("PROTOBUF", "*.pb"),
             new FileChooser.ExtensionFilter("PE/COFF", "*.exe")
         );
     }
