@@ -2,11 +2,11 @@
 option java_package = "com.github.zxh.classpy.protobuf";
 
 message MyMsg {
-    required Scalars non_ints        = 1;
-    required Scalars small_ints      = 2;
-    required Scalars big_ints        = 3;
-    required Scalars optional_fields = 4;
-    required MyEnum  my_enum         = 5;
+    required Scalars no_optionals = 1;
+    required Scalars non_ints     = 2;
+    required Scalars small_ints   = 3;
+    required Scalars big_ints     = 4;
+    required MyEnum  my_enum      = 5;
 }
 
 message Scalars {

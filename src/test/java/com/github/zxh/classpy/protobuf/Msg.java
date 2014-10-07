@@ -102,61 +102,61 @@ public final class Msg {
   public interface MyMsgOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // required .Scalars non_ints = 1;
+    // required .Scalars no_optionals = 1;
     /**
-     * <code>required .Scalars non_ints = 1;</code>
+     * <code>required .Scalars no_optionals = 1;</code>
+     */
+    boolean hasNoOptionals();
+    /**
+     * <code>required .Scalars no_optionals = 1;</code>
+     */
+    com.github.zxh.classpy.protobuf.Msg.Scalars getNoOptionals();
+    /**
+     * <code>required .Scalars no_optionals = 1;</code>
+     */
+    com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getNoOptionalsOrBuilder();
+
+    // required .Scalars non_ints = 2;
+    /**
+     * <code>required .Scalars non_ints = 2;</code>
      */
     boolean hasNonInts();
     /**
-     * <code>required .Scalars non_ints = 1;</code>
+     * <code>required .Scalars non_ints = 2;</code>
      */
     com.github.zxh.classpy.protobuf.Msg.Scalars getNonInts();
     /**
-     * <code>required .Scalars non_ints = 1;</code>
+     * <code>required .Scalars non_ints = 2;</code>
      */
     com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getNonIntsOrBuilder();
 
-    // required .Scalars small_ints = 2;
+    // required .Scalars small_ints = 3;
     /**
-     * <code>required .Scalars small_ints = 2;</code>
+     * <code>required .Scalars small_ints = 3;</code>
      */
     boolean hasSmallInts();
     /**
-     * <code>required .Scalars small_ints = 2;</code>
+     * <code>required .Scalars small_ints = 3;</code>
      */
     com.github.zxh.classpy.protobuf.Msg.Scalars getSmallInts();
     /**
-     * <code>required .Scalars small_ints = 2;</code>
+     * <code>required .Scalars small_ints = 3;</code>
      */
     com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getSmallIntsOrBuilder();
 
-    // required .Scalars big_ints = 3;
+    // required .Scalars big_ints = 4;
     /**
-     * <code>required .Scalars big_ints = 3;</code>
+     * <code>required .Scalars big_ints = 4;</code>
      */
     boolean hasBigInts();
     /**
-     * <code>required .Scalars big_ints = 3;</code>
+     * <code>required .Scalars big_ints = 4;</code>
      */
     com.github.zxh.classpy.protobuf.Msg.Scalars getBigInts();
     /**
-     * <code>required .Scalars big_ints = 3;</code>
+     * <code>required .Scalars big_ints = 4;</code>
      */
     com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getBigIntsOrBuilder();
-
-    // required .Scalars optional_fields = 4;
-    /**
-     * <code>required .Scalars optional_fields = 4;</code>
-     */
-    boolean hasOptionalFields();
-    /**
-     * <code>required .Scalars optional_fields = 4;</code>
-     */
-    com.github.zxh.classpy.protobuf.Msg.Scalars getOptionalFields();
-    /**
-     * <code>required .Scalars optional_fields = 4;</code>
-     */
-    com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getOptionalFieldsOrBuilder();
 
     // required .MyEnum my_enum = 5;
     /**
@@ -222,12 +222,12 @@ public final class Msg {
             case 10: {
               com.github.zxh.classpy.protobuf.Msg.Scalars.Builder subBuilder = null;
               if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                subBuilder = nonInts_.toBuilder();
+                subBuilder = noOptionals_.toBuilder();
               }
-              nonInts_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
+              noOptionals_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(nonInts_);
-                nonInts_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(noOptionals_);
+                noOptionals_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000001;
               break;
@@ -235,12 +235,12 @@ public final class Msg {
             case 18: {
               com.github.zxh.classpy.protobuf.Msg.Scalars.Builder subBuilder = null;
               if (((bitField0_ & 0x00000002) == 0x00000002)) {
-                subBuilder = smallInts_.toBuilder();
+                subBuilder = nonInts_.toBuilder();
               }
-              smallInts_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
+              nonInts_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(smallInts_);
-                smallInts_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(nonInts_);
+                nonInts_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000002;
               break;
@@ -248,12 +248,12 @@ public final class Msg {
             case 26: {
               com.github.zxh.classpy.protobuf.Msg.Scalars.Builder subBuilder = null;
               if (((bitField0_ & 0x00000004) == 0x00000004)) {
-                subBuilder = bigInts_.toBuilder();
+                subBuilder = smallInts_.toBuilder();
               }
-              bigInts_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
+              smallInts_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(bigInts_);
-                bigInts_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(smallInts_);
+                smallInts_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000004;
               break;
@@ -261,12 +261,12 @@ public final class Msg {
             case 34: {
               com.github.zxh.classpy.protobuf.Msg.Scalars.Builder subBuilder = null;
               if (((bitField0_ & 0x00000008) == 0x00000008)) {
-                subBuilder = optionalFields_.toBuilder();
+                subBuilder = bigInts_.toBuilder();
               }
-              optionalFields_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
+              bigInts_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(optionalFields_);
-                optionalFields_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(bigInts_);
+                bigInts_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000008;
               break;
@@ -322,92 +322,92 @@ public final class Msg {
     }
 
     private int bitField0_;
-    // required .Scalars non_ints = 1;
-    public static final int NON_INTS_FIELD_NUMBER = 1;
-    private com.github.zxh.classpy.protobuf.Msg.Scalars nonInts_;
+    // required .Scalars no_optionals = 1;
+    public static final int NO_OPTIONALS_FIELD_NUMBER = 1;
+    private com.github.zxh.classpy.protobuf.Msg.Scalars noOptionals_;
     /**
-     * <code>required .Scalars non_ints = 1;</code>
+     * <code>required .Scalars no_optionals = 1;</code>
      */
-    public boolean hasNonInts() {
+    public boolean hasNoOptionals() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required .Scalars non_ints = 1;</code>
+     * <code>required .Scalars no_optionals = 1;</code>
+     */
+    public com.github.zxh.classpy.protobuf.Msg.Scalars getNoOptionals() {
+      return noOptionals_;
+    }
+    /**
+     * <code>required .Scalars no_optionals = 1;</code>
+     */
+    public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getNoOptionalsOrBuilder() {
+      return noOptionals_;
+    }
+
+    // required .Scalars non_ints = 2;
+    public static final int NON_INTS_FIELD_NUMBER = 2;
+    private com.github.zxh.classpy.protobuf.Msg.Scalars nonInts_;
+    /**
+     * <code>required .Scalars non_ints = 2;</code>
+     */
+    public boolean hasNonInts() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required .Scalars non_ints = 2;</code>
      */
     public com.github.zxh.classpy.protobuf.Msg.Scalars getNonInts() {
       return nonInts_;
     }
     /**
-     * <code>required .Scalars non_ints = 1;</code>
+     * <code>required .Scalars non_ints = 2;</code>
      */
     public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getNonIntsOrBuilder() {
       return nonInts_;
     }
 
-    // required .Scalars small_ints = 2;
-    public static final int SMALL_INTS_FIELD_NUMBER = 2;
+    // required .Scalars small_ints = 3;
+    public static final int SMALL_INTS_FIELD_NUMBER = 3;
     private com.github.zxh.classpy.protobuf.Msg.Scalars smallInts_;
     /**
-     * <code>required .Scalars small_ints = 2;</code>
+     * <code>required .Scalars small_ints = 3;</code>
      */
     public boolean hasSmallInts() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required .Scalars small_ints = 2;</code>
+     * <code>required .Scalars small_ints = 3;</code>
      */
     public com.github.zxh.classpy.protobuf.Msg.Scalars getSmallInts() {
       return smallInts_;
     }
     /**
-     * <code>required .Scalars small_ints = 2;</code>
+     * <code>required .Scalars small_ints = 3;</code>
      */
     public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getSmallIntsOrBuilder() {
       return smallInts_;
     }
 
-    // required .Scalars big_ints = 3;
-    public static final int BIG_INTS_FIELD_NUMBER = 3;
+    // required .Scalars big_ints = 4;
+    public static final int BIG_INTS_FIELD_NUMBER = 4;
     private com.github.zxh.classpy.protobuf.Msg.Scalars bigInts_;
     /**
-     * <code>required .Scalars big_ints = 3;</code>
+     * <code>required .Scalars big_ints = 4;</code>
      */
     public boolean hasBigInts() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>required .Scalars big_ints = 3;</code>
+     * <code>required .Scalars big_ints = 4;</code>
      */
     public com.github.zxh.classpy.protobuf.Msg.Scalars getBigInts() {
       return bigInts_;
     }
     /**
-     * <code>required .Scalars big_ints = 3;</code>
+     * <code>required .Scalars big_ints = 4;</code>
      */
     public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getBigIntsOrBuilder() {
       return bigInts_;
-    }
-
-    // required .Scalars optional_fields = 4;
-    public static final int OPTIONAL_FIELDS_FIELD_NUMBER = 4;
-    private com.github.zxh.classpy.protobuf.Msg.Scalars optionalFields_;
-    /**
-     * <code>required .Scalars optional_fields = 4;</code>
-     */
-    public boolean hasOptionalFields() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>required .Scalars optional_fields = 4;</code>
-     */
-    public com.github.zxh.classpy.protobuf.Msg.Scalars getOptionalFields() {
-      return optionalFields_;
-    }
-    /**
-     * <code>required .Scalars optional_fields = 4;</code>
-     */
-    public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getOptionalFieldsOrBuilder() {
-      return optionalFields_;
     }
 
     // required .MyEnum my_enum = 5;
@@ -427,10 +427,10 @@ public final class Msg {
     }
 
     private void initFields() {
+      noOptionals_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
       nonInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
       smallInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
       bigInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
-      optionalFields_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
       myEnum_ = com.github.zxh.classpy.protobuf.Msg.MyEnum.ONE;
     }
     private byte memoizedIsInitialized = -1;
@@ -438,6 +438,10 @@ public final class Msg {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
+      if (!hasNoOptionals()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasNonInts()) {
         memoizedIsInitialized = 0;
         return false;
@@ -450,11 +454,11 @@ public final class Msg {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasOptionalFields()) {
+      if (!hasMyEnum()) {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!hasMyEnum()) {
+      if (!getNoOptionals().isInitialized()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -470,10 +474,6 @@ public final class Msg {
         memoizedIsInitialized = 0;
         return false;
       }
-      if (!getOptionalFields().isInitialized()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -482,16 +482,16 @@ public final class Msg {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, nonInts_);
+        output.writeMessage(1, noOptionals_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, smallInts_);
+        output.writeMessage(2, nonInts_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, bigInts_);
+        output.writeMessage(3, smallInts_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, optionalFields_);
+        output.writeMessage(4, bigInts_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeEnum(5, myEnum_.getNumber());
@@ -507,19 +507,19 @@ public final class Msg {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, nonInts_);
+          .computeMessageSize(1, noOptionals_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, smallInts_);
+          .computeMessageSize(2, nonInts_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, bigInts_);
+          .computeMessageSize(3, smallInts_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, optionalFields_);
+          .computeMessageSize(4, bigInts_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -633,10 +633,10 @@ public final class Msg {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getNoOptionalsFieldBuilder();
           getNonIntsFieldBuilder();
           getSmallIntsFieldBuilder();
           getBigIntsFieldBuilder();
-          getOptionalFieldsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -645,28 +645,28 @@ public final class Msg {
 
       public Builder clear() {
         super.clear();
+        if (noOptionalsBuilder_ == null) {
+          noOptionals_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+        } else {
+          noOptionalsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
         if (nonIntsBuilder_ == null) {
           nonInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
         } else {
           nonIntsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (smallIntsBuilder_ == null) {
           smallInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
         } else {
           smallIntsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (bigIntsBuilder_ == null) {
           bigInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
         } else {
           bigIntsBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000004);
-        if (optionalFieldsBuilder_ == null) {
-          optionalFields_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
-        } else {
-          optionalFieldsBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         myEnum_ = com.github.zxh.classpy.protobuf.Msg.MyEnum.ONE;
@@ -702,34 +702,34 @@ public final class Msg {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        if (noOptionalsBuilder_ == null) {
+          result.noOptionals_ = noOptionals_;
+        } else {
+          result.noOptionals_ = noOptionalsBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         if (nonIntsBuilder_ == null) {
           result.nonInts_ = nonInts_;
         } else {
           result.nonInts_ = nonIntsBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         if (smallIntsBuilder_ == null) {
           result.smallInts_ = smallInts_;
         } else {
           result.smallInts_ = smallIntsBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         if (bigIntsBuilder_ == null) {
           result.bigInts_ = bigInts_;
         } else {
           result.bigInts_ = bigIntsBuilder_.build();
-        }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        if (optionalFieldsBuilder_ == null) {
-          result.optionalFields_ = optionalFields_;
-        } else {
-          result.optionalFields_ = optionalFieldsBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
@@ -751,6 +751,9 @@ public final class Msg {
 
       public Builder mergeFrom(com.github.zxh.classpy.protobuf.Msg.MyMsg other) {
         if (other == com.github.zxh.classpy.protobuf.Msg.MyMsg.getDefaultInstance()) return this;
+        if (other.hasNoOptionals()) {
+          mergeNoOptionals(other.getNoOptionals());
+        }
         if (other.hasNonInts()) {
           mergeNonInts(other.getNonInts());
         }
@@ -760,9 +763,6 @@ public final class Msg {
         if (other.hasBigInts()) {
           mergeBigInts(other.getBigInts());
         }
-        if (other.hasOptionalFields()) {
-          mergeOptionalFields(other.getOptionalFields());
-        }
         if (other.hasMyEnum()) {
           setMyEnum(other.getMyEnum());
         }
@@ -771,6 +771,10 @@ public final class Msg {
       }
 
       public final boolean isInitialized() {
+        if (!hasNoOptionals()) {
+          
+          return false;
+        }
         if (!hasNonInts()) {
           
           return false;
@@ -783,11 +787,11 @@ public final class Msg {
           
           return false;
         }
-        if (!hasOptionalFields()) {
+        if (!hasMyEnum()) {
           
           return false;
         }
-        if (!hasMyEnum()) {
+        if (!getNoOptionals().isInitialized()) {
           
           return false;
         }
@@ -800,10 +804,6 @@ public final class Msg {
           return false;
         }
         if (!getBigInts().isInitialized()) {
-          
-          return false;
-        }
-        if (!getOptionalFields().isInitialized()) {
           
           return false;
         }
@@ -829,18 +829,135 @@ public final class Msg {
       }
       private int bitField0_;
 
-      // required .Scalars non_ints = 1;
+      // required .Scalars no_optionals = 1;
+      private com.github.zxh.classpy.protobuf.Msg.Scalars noOptionals_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> noOptionalsBuilder_;
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public boolean hasNoOptionals() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.Scalars getNoOptionals() {
+        if (noOptionalsBuilder_ == null) {
+          return noOptionals_;
+        } else {
+          return noOptionalsBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public Builder setNoOptionals(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (noOptionalsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          noOptionals_ = value;
+          onChanged();
+        } else {
+          noOptionalsBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public Builder setNoOptionals(
+          com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
+        if (noOptionalsBuilder_ == null) {
+          noOptionals_ = builderForValue.build();
+          onChanged();
+        } else {
+          noOptionalsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public Builder mergeNoOptionals(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (noOptionalsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              noOptionals_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
+            noOptionals_ =
+              com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(noOptionals_).mergeFrom(value).buildPartial();
+          } else {
+            noOptionals_ = value;
+          }
+          onChanged();
+        } else {
+          noOptionalsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public Builder clearNoOptionals() {
+        if (noOptionalsBuilder_ == null) {
+          noOptionals_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+          onChanged();
+        } else {
+          noOptionalsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getNoOptionalsBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getNoOptionalsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getNoOptionalsOrBuilder() {
+        if (noOptionalsBuilder_ != null) {
+          return noOptionalsBuilder_.getMessageOrBuilder();
+        } else {
+          return noOptionals_;
+        }
+      }
+      /**
+       * <code>required .Scalars no_optionals = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
+          getNoOptionalsFieldBuilder() {
+        if (noOptionalsBuilder_ == null) {
+          noOptionalsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder>(
+                  noOptionals_,
+                  getParentForChildren(),
+                  isClean());
+          noOptionals_ = null;
+        }
+        return noOptionalsBuilder_;
+      }
+
+      // required .Scalars non_ints = 2;
       private com.github.zxh.classpy.protobuf.Msg.Scalars nonInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> nonIntsBuilder_;
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public boolean hasNonInts() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.Scalars getNonInts() {
         if (nonIntsBuilder_ == null) {
@@ -850,7 +967,7 @@ public final class Msg {
         }
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public Builder setNonInts(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
         if (nonIntsBuilder_ == null) {
@@ -862,11 +979,11 @@ public final class Msg {
         } else {
           nonIntsBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public Builder setNonInts(
           com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
@@ -876,15 +993,15 @@ public final class Msg {
         } else {
           nonIntsBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public Builder mergeNonInts(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
         if (nonIntsBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
               nonInts_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
             nonInts_ =
               com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(nonInts_).mergeFrom(value).buildPartial();
@@ -895,11 +1012,11 @@ public final class Msg {
         } else {
           nonIntsBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public Builder clearNonInts() {
         if (nonIntsBuilder_ == null) {
@@ -908,19 +1025,19 @@ public final class Msg {
         } else {
           nonIntsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getNonIntsBuilder() {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return getNonIntsFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getNonIntsOrBuilder() {
         if (nonIntsBuilder_ != null) {
@@ -930,7 +1047,7 @@ public final class Msg {
         }
       }
       /**
-       * <code>required .Scalars non_ints = 1;</code>
+       * <code>required .Scalars non_ints = 2;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
@@ -946,18 +1063,18 @@ public final class Msg {
         return nonIntsBuilder_;
       }
 
-      // required .Scalars small_ints = 2;
+      // required .Scalars small_ints = 3;
       private com.github.zxh.classpy.protobuf.Msg.Scalars smallInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> smallIntsBuilder_;
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public boolean hasSmallInts() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.Scalars getSmallInts() {
         if (smallIntsBuilder_ == null) {
@@ -967,7 +1084,7 @@ public final class Msg {
         }
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public Builder setSmallInts(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
         if (smallIntsBuilder_ == null) {
@@ -979,11 +1096,11 @@ public final class Msg {
         } else {
           smallIntsBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public Builder setSmallInts(
           com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
@@ -993,15 +1110,15 @@ public final class Msg {
         } else {
           smallIntsBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public Builder mergeSmallInts(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
         if (smallIntsBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               smallInts_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
             smallInts_ =
               com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(smallInts_).mergeFrom(value).buildPartial();
@@ -1012,11 +1129,11 @@ public final class Msg {
         } else {
           smallIntsBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public Builder clearSmallInts() {
         if (smallIntsBuilder_ == null) {
@@ -1025,19 +1142,19 @@ public final class Msg {
         } else {
           smallIntsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getSmallIntsBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getSmallIntsFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getSmallIntsOrBuilder() {
         if (smallIntsBuilder_ != null) {
@@ -1047,7 +1164,7 @@ public final class Msg {
         }
       }
       /**
-       * <code>required .Scalars small_ints = 2;</code>
+       * <code>required .Scalars small_ints = 3;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
@@ -1063,18 +1180,18 @@ public final class Msg {
         return smallIntsBuilder_;
       }
 
-      // required .Scalars big_ints = 3;
+      // required .Scalars big_ints = 4;
       private com.github.zxh.classpy.protobuf.Msg.Scalars bigInts_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> bigIntsBuilder_;
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public boolean hasBigInts() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.Scalars getBigInts() {
         if (bigIntsBuilder_ == null) {
@@ -1084,7 +1201,7 @@ public final class Msg {
         }
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public Builder setBigInts(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
         if (bigIntsBuilder_ == null) {
@@ -1096,11 +1213,11 @@ public final class Msg {
         } else {
           bigIntsBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public Builder setBigInts(
           com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
@@ -1110,15 +1227,15 @@ public final class Msg {
         } else {
           bigIntsBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public Builder mergeBigInts(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
         if (bigIntsBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
               bigInts_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
             bigInts_ =
               com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(bigInts_).mergeFrom(value).buildPartial();
@@ -1129,11 +1246,11 @@ public final class Msg {
         } else {
           bigIntsBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public Builder clearBigInts() {
         if (bigIntsBuilder_ == null) {
@@ -1142,19 +1259,19 @@ public final class Msg {
         } else {
           bigIntsBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getBigIntsBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getBigIntsFieldBuilder().getBuilder();
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getBigIntsOrBuilder() {
         if (bigIntsBuilder_ != null) {
@@ -1164,7 +1281,7 @@ public final class Msg {
         }
       }
       /**
-       * <code>required .Scalars big_ints = 3;</code>
+       * <code>required .Scalars big_ints = 4;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
@@ -1178,123 +1295,6 @@ public final class Msg {
           bigInts_ = null;
         }
         return bigIntsBuilder_;
-      }
-
-      // required .Scalars optional_fields = 4;
-      private com.github.zxh.classpy.protobuf.Msg.Scalars optionalFields_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
-      private com.google.protobuf.SingleFieldBuilder<
-          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> optionalFieldsBuilder_;
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public boolean hasOptionalFields() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public com.github.zxh.classpy.protobuf.Msg.Scalars getOptionalFields() {
-        if (optionalFieldsBuilder_ == null) {
-          return optionalFields_;
-        } else {
-          return optionalFieldsBuilder_.getMessage();
-        }
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public Builder setOptionalFields(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
-        if (optionalFieldsBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          optionalFields_ = value;
-          onChanged();
-        } else {
-          optionalFieldsBuilder_.setMessage(value);
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public Builder setOptionalFields(
-          com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
-        if (optionalFieldsBuilder_ == null) {
-          optionalFields_ = builderForValue.build();
-          onChanged();
-        } else {
-          optionalFieldsBuilder_.setMessage(builderForValue.build());
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public Builder mergeOptionalFields(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
-        if (optionalFieldsBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              optionalFields_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
-            optionalFields_ =
-              com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(optionalFields_).mergeFrom(value).buildPartial();
-          } else {
-            optionalFields_ = value;
-          }
-          onChanged();
-        } else {
-          optionalFieldsBuilder_.mergeFrom(value);
-        }
-        bitField0_ |= 0x00000008;
-        return this;
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public Builder clearOptionalFields() {
-        if (optionalFieldsBuilder_ == null) {
-          optionalFields_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
-          onChanged();
-        } else {
-          optionalFieldsBuilder_.clear();
-        }
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getOptionalFieldsBuilder() {
-        bitField0_ |= 0x00000008;
-        onChanged();
-        return getOptionalFieldsFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getOptionalFieldsOrBuilder() {
-        if (optionalFieldsBuilder_ != null) {
-          return optionalFieldsBuilder_.getMessageOrBuilder();
-        } else {
-          return optionalFields_;
-        }
-      }
-      /**
-       * <code>required .Scalars optional_fields = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
-          getOptionalFieldsFieldBuilder() {
-        if (optionalFieldsBuilder_ == null) {
-          optionalFieldsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder>(
-                  optionalFields_,
-                  getParentForChildren(),
-                  isClean());
-          optionalFields_ = null;
-        }
-        return optionalFieldsBuilder_;
       }
 
       // required .MyEnum my_enum = 5;
@@ -2979,20 +2979,19 @@ public final class Msg {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tmsg.proto\"\232\001\n\005MyMsg\022\032\n\010non_ints\030\001 \002(\0132" +
-      "\010.Scalars\022\034\n\nsmall_ints\030\002 \002(\0132\010.Scalars\022" +
-      "\032\n\010big_ints\030\003 \002(\0132\010.Scalars\022!\n\017optional_" +
-      "fields\030\004 \002(\0132\010.Scalars\022\030\n\007my_enum\030\005 \002(\0162" +
-      "\007.MyEnum\"\227\002\n\007Scalars\022\016\n\006f_bool\030\001 \002(\010\022\017\n\007" +
-      "f_int32\030\002 \001(\005\022\020\n\010f_uint32\030\003 \001(\r\022\020\n\010f_sin" +
-      "t32\030\004 \001(\021\022\021\n\tf_fixed32\030\005 \001(\007\022\022\n\nf_sfixed" +
-      "32\030\006 \001(\017\022\017\n\007f_int64\030\007 \001(\003\022\020\n\010f_uint64\030\010 " +
-      "\001(\004\022\020\n\010f_sint64\030\t \001(\022\022\021\n\tf_fixed64\030\n \001(\006" +
-      "\022\022\n\nf_sfixed64\030\013 \001(\020\022\017\n\007f_float\030\014 \001(\002\022\020\n",
-      "\010f_double\030\r \001(\001\022\020\n\010f_string\030\016 \001(\t\022\017\n\007f_b" +
-      "ytes\030\017 \001(\014*#\n\006MyEnum\022\007\n\003ONE\020\001\022\007\n\003TWO\020\002\022\007" +
-      "\n\003SIX\020\006B!\n\037com.github.zxh.classpy.protob" +
-      "uf"
+      "\n\tmsg.proto\"\227\001\n\005MyMsg\022\036\n\014no_optionals\030\001 " +
+      "\002(\0132\010.Scalars\022\032\n\010non_ints\030\002 \002(\0132\010.Scalar" +
+      "s\022\034\n\nsmall_ints\030\003 \002(\0132\010.Scalars\022\032\n\010big_i" +
+      "nts\030\004 \002(\0132\010.Scalars\022\030\n\007my_enum\030\005 \002(\0162\007.M" +
+      "yEnum\"\227\002\n\007Scalars\022\016\n\006f_bool\030\001 \002(\010\022\017\n\007f_i" +
+      "nt32\030\002 \001(\005\022\020\n\010f_uint32\030\003 \001(\r\022\020\n\010f_sint32" +
+      "\030\004 \001(\021\022\021\n\tf_fixed32\030\005 \001(\007\022\022\n\nf_sfixed32\030" +
+      "\006 \001(\017\022\017\n\007f_int64\030\007 \001(\003\022\020\n\010f_uint64\030\010 \001(\004" +
+      "\022\020\n\010f_sint64\030\t \001(\022\022\021\n\tf_fixed64\030\n \001(\006\022\022\n" +
+      "\nf_sfixed64\030\013 \001(\020\022\017\n\007f_float\030\014 \001(\002\022\020\n\010f_",
+      "double\030\r \001(\001\022\020\n\010f_string\030\016 \001(\t\022\017\n\007f_byte" +
+      "s\030\017 \001(\014*#\n\006MyEnum\022\007\n\003ONE\020\001\022\007\n\003TWO\020\002\022\007\n\003S" +
+      "IX\020\006B!\n\037com.github.zxh.classpy.protobuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -3004,7 +3003,7 @@ public final class Msg {
           internal_static_MyMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_MyMsg_descriptor,
-              new java.lang.String[] { "NonInts", "SmallInts", "BigInts", "OptionalFields", "MyEnum", });
+              new java.lang.String[] { "NoOptionals", "NonInts", "SmallInts", "BigInts", "MyEnum", });
           internal_static_Scalars_descriptor =
             getDescriptor().getMessageTypes().get(1);
           internal_static_Scalars_fieldAccessorTable = new
