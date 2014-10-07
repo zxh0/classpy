@@ -8,98 +8,151 @@ public final class Msg {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  /**
+   * Protobuf enum {@code MyEnum}
+   */
+  public enum MyEnum
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>ONE = 1;</code>
+     */
+    ONE(0, 1),
+    /**
+     * <code>TWO = 2;</code>
+     */
+    TWO(1, 2),
+    /**
+     * <code>SIX = 6;</code>
+     */
+    SIX(2, 6),
+    ;
+
+    /**
+     * <code>ONE = 1;</code>
+     */
+    public static final int ONE_VALUE = 1;
+    /**
+     * <code>TWO = 2;</code>
+     */
+    public static final int TWO_VALUE = 2;
+    /**
+     * <code>SIX = 6;</code>
+     */
+    public static final int SIX_VALUE = 6;
+
+
+    public final int getNumber() { return value; }
+
+    public static MyEnum valueOf(int value) {
+      switch (value) {
+        case 1: return ONE;
+        case 2: return TWO;
+        case 6: return SIX;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<MyEnum>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<MyEnum>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<MyEnum>() {
+            public MyEnum findValueByNumber(int number) {
+              return MyEnum.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.github.zxh.classpy.protobuf.Msg.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final MyEnum[] VALUES = values();
+
+    public static MyEnum valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private MyEnum(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:MyEnum)
+  }
+
   public interface MyMsgOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
-    // required int32 f_int32 = 1;
+    // required .Scalars small_scalars = 1;
     /**
-     * <code>required int32 f_int32 = 1;</code>
+     * <code>required .Scalars small_scalars = 1;</code>
      */
-    boolean hasFInt32();
+    boolean hasSmallScalars();
     /**
-     * <code>required int32 f_int32 = 1;</code>
+     * <code>required .Scalars small_scalars = 1;</code>
      */
-    int getFInt32();
+    com.github.zxh.classpy.protobuf.Msg.Scalars getSmallScalars();
+    /**
+     * <code>required .Scalars small_scalars = 1;</code>
+     */
+    com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getSmallScalarsOrBuilder();
 
-    // optional uint32 f_uint32 = 2;
+    // required .Scalars big_scalars = 2;
     /**
-     * <code>optional uint32 f_uint32 = 2;</code>
+     * <code>required .Scalars big_scalars = 2;</code>
      */
-    boolean hasFUint32();
+    boolean hasBigScalars();
     /**
-     * <code>optional uint32 f_uint32 = 2;</code>
+     * <code>required .Scalars big_scalars = 2;</code>
      */
-    int getFUint32();
+    com.github.zxh.classpy.protobuf.Msg.Scalars getBigScalars();
+    /**
+     * <code>required .Scalars big_scalars = 2;</code>
+     */
+    com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getBigScalarsOrBuilder();
 
-    // optional sint32 f_sint32 = 3;
+    // required .Scalars optional_scalars = 3;
     /**
-     * <code>optional sint32 f_sint32 = 3;</code>
+     * <code>required .Scalars optional_scalars = 3;</code>
      */
-    boolean hasFSint32();
+    boolean hasOptionalScalars();
     /**
-     * <code>optional sint32 f_sint32 = 3;</code>
+     * <code>required .Scalars optional_scalars = 3;</code>
      */
-    int getFSint32();
+    com.github.zxh.classpy.protobuf.Msg.Scalars getOptionalScalars();
+    /**
+     * <code>required .Scalars optional_scalars = 3;</code>
+     */
+    com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getOptionalScalarsOrBuilder();
 
-    // optional int64 f_int64 = 4;
+    // required .MyEnum my_enum = 4;
     /**
-     * <code>optional int64 f_int64 = 4;</code>
+     * <code>required .MyEnum my_enum = 4;</code>
      */
-    boolean hasFInt64();
+    boolean hasMyEnum();
     /**
-     * <code>optional int64 f_int64 = 4;</code>
+     * <code>required .MyEnum my_enum = 4;</code>
      */
-    long getFInt64();
-
-    // optional uint64 f_uint64 = 5;
-    /**
-     * <code>optional uint64 f_uint64 = 5;</code>
-     */
-    boolean hasFUint64();
-    /**
-     * <code>optional uint64 f_uint64 = 5;</code>
-     */
-    long getFUint64();
-
-    // optional sint64 f_sint64 = 6;
-    /**
-     * <code>optional sint64 f_sint64 = 6;</code>
-     */
-    boolean hasFSint64();
-    /**
-     * <code>optional sint64 f_sint64 = 6;</code>
-     */
-    long getFSint64();
-
-    // optional bool f_bool = 7;
-    /**
-     * <code>optional bool f_bool = 7;</code>
-     */
-    boolean hasFBool();
-    /**
-     * <code>optional bool f_bool = 7;</code>
-     */
-    boolean getFBool();
-
-    // optional float f_float = 8;
-    /**
-     * <code>optional float f_float = 8;</code>
-     */
-    boolean hasFFloat();
-    /**
-     * <code>optional float f_float = 8;</code>
-     */
-    float getFFloat();
-
-    // optional double f_double = 9;
-    /**
-     * <code>optional double f_double = 9;</code>
-     */
-    boolean hasFDouble();
-    /**
-     * <code>optional double f_double = 9;</code>
-     */
-    double getFDouble();
+    com.github.zxh.classpy.protobuf.Msg.MyEnum getMyEnum();
   }
   /**
    * Protobuf type {@code MyMsg}
@@ -152,49 +205,54 @@ public final class Msg {
               }
               break;
             }
-            case 8: {
+            case 10: {
+              com.github.zxh.classpy.protobuf.Msg.Scalars.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                subBuilder = smallScalars_.toBuilder();
+              }
+              smallScalars_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(smallScalars_);
+                smallScalars_ = subBuilder.buildPartial();
+              }
               bitField0_ |= 0x00000001;
-              fInt32_ = input.readInt32();
               break;
             }
-            case 16: {
+            case 18: {
+              com.github.zxh.classpy.protobuf.Msg.Scalars.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = bigScalars_.toBuilder();
+              }
+              bigScalars_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(bigScalars_);
+                bigScalars_ = subBuilder.buildPartial();
+              }
               bitField0_ |= 0x00000002;
-              fUint32_ = input.readUInt32();
               break;
             }
-            case 24: {
+            case 26: {
+              com.github.zxh.classpy.protobuf.Msg.Scalars.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
+                subBuilder = optionalScalars_.toBuilder();
+              }
+              optionalScalars_ = input.readMessage(com.github.zxh.classpy.protobuf.Msg.Scalars.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(optionalScalars_);
+                optionalScalars_ = subBuilder.buildPartial();
+              }
               bitField0_ |= 0x00000004;
-              fSint32_ = input.readSInt32();
               break;
             }
             case 32: {
-              bitField0_ |= 0x00000008;
-              fInt64_ = input.readInt64();
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              fUint64_ = input.readUInt64();
-              break;
-            }
-            case 48: {
-              bitField0_ |= 0x00000020;
-              fSint64_ = input.readSInt64();
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
-              fBool_ = input.readBool();
-              break;
-            }
-            case 69: {
-              bitField0_ |= 0x00000080;
-              fFloat_ = input.readFloat();
-              break;
-            }
-            case 73: {
-              bitField0_ |= 0x00000100;
-              fDouble_ = input.readDouble();
+              int rawValue = input.readEnum();
+              com.github.zxh.classpy.protobuf.Msg.MyEnum value = com.github.zxh.classpy.protobuf.Msg.MyEnum.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(4, rawValue);
+              } else {
+                bitField0_ |= 0x00000008;
+                myEnum_ = value;
+              }
               break;
             }
           }
@@ -237,167 +295,124 @@ public final class Msg {
     }
 
     private int bitField0_;
-    // required int32 f_int32 = 1;
-    public static final int F_INT32_FIELD_NUMBER = 1;
-    private int fInt32_;
+    // required .Scalars small_scalars = 1;
+    public static final int SMALL_SCALARS_FIELD_NUMBER = 1;
+    private com.github.zxh.classpy.protobuf.Msg.Scalars smallScalars_;
     /**
-     * <code>required int32 f_int32 = 1;</code>
+     * <code>required .Scalars small_scalars = 1;</code>
      */
-    public boolean hasFInt32() {
+    public boolean hasSmallScalars() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required int32 f_int32 = 1;</code>
+     * <code>required .Scalars small_scalars = 1;</code>
      */
-    public int getFInt32() {
-      return fInt32_;
+    public com.github.zxh.classpy.protobuf.Msg.Scalars getSmallScalars() {
+      return smallScalars_;
+    }
+    /**
+     * <code>required .Scalars small_scalars = 1;</code>
+     */
+    public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getSmallScalarsOrBuilder() {
+      return smallScalars_;
     }
 
-    // optional uint32 f_uint32 = 2;
-    public static final int F_UINT32_FIELD_NUMBER = 2;
-    private int fUint32_;
+    // required .Scalars big_scalars = 2;
+    public static final int BIG_SCALARS_FIELD_NUMBER = 2;
+    private com.github.zxh.classpy.protobuf.Msg.Scalars bigScalars_;
     /**
-     * <code>optional uint32 f_uint32 = 2;</code>
+     * <code>required .Scalars big_scalars = 2;</code>
      */
-    public boolean hasFUint32() {
+    public boolean hasBigScalars() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional uint32 f_uint32 = 2;</code>
+     * <code>required .Scalars big_scalars = 2;</code>
      */
-    public int getFUint32() {
-      return fUint32_;
+    public com.github.zxh.classpy.protobuf.Msg.Scalars getBigScalars() {
+      return bigScalars_;
+    }
+    /**
+     * <code>required .Scalars big_scalars = 2;</code>
+     */
+    public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getBigScalarsOrBuilder() {
+      return bigScalars_;
     }
 
-    // optional sint32 f_sint32 = 3;
-    public static final int F_SINT32_FIELD_NUMBER = 3;
-    private int fSint32_;
+    // required .Scalars optional_scalars = 3;
+    public static final int OPTIONAL_SCALARS_FIELD_NUMBER = 3;
+    private com.github.zxh.classpy.protobuf.Msg.Scalars optionalScalars_;
     /**
-     * <code>optional sint32 f_sint32 = 3;</code>
+     * <code>required .Scalars optional_scalars = 3;</code>
      */
-    public boolean hasFSint32() {
+    public boolean hasOptionalScalars() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional sint32 f_sint32 = 3;</code>
+     * <code>required .Scalars optional_scalars = 3;</code>
      */
-    public int getFSint32() {
-      return fSint32_;
+    public com.github.zxh.classpy.protobuf.Msg.Scalars getOptionalScalars() {
+      return optionalScalars_;
+    }
+    /**
+     * <code>required .Scalars optional_scalars = 3;</code>
+     */
+    public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getOptionalScalarsOrBuilder() {
+      return optionalScalars_;
     }
 
-    // optional int64 f_int64 = 4;
-    public static final int F_INT64_FIELD_NUMBER = 4;
-    private long fInt64_;
+    // required .MyEnum my_enum = 4;
+    public static final int MY_ENUM_FIELD_NUMBER = 4;
+    private com.github.zxh.classpy.protobuf.Msg.MyEnum myEnum_;
     /**
-     * <code>optional int64 f_int64 = 4;</code>
+     * <code>required .MyEnum my_enum = 4;</code>
      */
-    public boolean hasFInt64() {
+    public boolean hasMyEnum() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     /**
-     * <code>optional int64 f_int64 = 4;</code>
+     * <code>required .MyEnum my_enum = 4;</code>
      */
-    public long getFInt64() {
-      return fInt64_;
-    }
-
-    // optional uint64 f_uint64 = 5;
-    public static final int F_UINT64_FIELD_NUMBER = 5;
-    private long fUint64_;
-    /**
-     * <code>optional uint64 f_uint64 = 5;</code>
-     */
-    public boolean hasFUint64() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>optional uint64 f_uint64 = 5;</code>
-     */
-    public long getFUint64() {
-      return fUint64_;
-    }
-
-    // optional sint64 f_sint64 = 6;
-    public static final int F_SINT64_FIELD_NUMBER = 6;
-    private long fSint64_;
-    /**
-     * <code>optional sint64 f_sint64 = 6;</code>
-     */
-    public boolean hasFSint64() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>optional sint64 f_sint64 = 6;</code>
-     */
-    public long getFSint64() {
-      return fSint64_;
-    }
-
-    // optional bool f_bool = 7;
-    public static final int F_BOOL_FIELD_NUMBER = 7;
-    private boolean fBool_;
-    /**
-     * <code>optional bool f_bool = 7;</code>
-     */
-    public boolean hasFBool() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
-    }
-    /**
-     * <code>optional bool f_bool = 7;</code>
-     */
-    public boolean getFBool() {
-      return fBool_;
-    }
-
-    // optional float f_float = 8;
-    public static final int F_FLOAT_FIELD_NUMBER = 8;
-    private float fFloat_;
-    /**
-     * <code>optional float f_float = 8;</code>
-     */
-    public boolean hasFFloat() {
-      return ((bitField0_ & 0x00000080) == 0x00000080);
-    }
-    /**
-     * <code>optional float f_float = 8;</code>
-     */
-    public float getFFloat() {
-      return fFloat_;
-    }
-
-    // optional double f_double = 9;
-    public static final int F_DOUBLE_FIELD_NUMBER = 9;
-    private double fDouble_;
-    /**
-     * <code>optional double f_double = 9;</code>
-     */
-    public boolean hasFDouble() {
-      return ((bitField0_ & 0x00000100) == 0x00000100);
-    }
-    /**
-     * <code>optional double f_double = 9;</code>
-     */
-    public double getFDouble() {
-      return fDouble_;
+    public com.github.zxh.classpy.protobuf.Msg.MyEnum getMyEnum() {
+      return myEnum_;
     }
 
     private void initFields() {
-      fInt32_ = 0;
-      fUint32_ = 0;
-      fSint32_ = 0;
-      fInt64_ = 0L;
-      fUint64_ = 0L;
-      fSint64_ = 0L;
-      fBool_ = false;
-      fFloat_ = 0F;
-      fDouble_ = 0D;
+      smallScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      bigScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      optionalScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      myEnum_ = com.github.zxh.classpy.protobuf.Msg.MyEnum.ONE;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
 
-      if (!hasFInt32()) {
+      if (!hasSmallScalars()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasBigScalars()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasOptionalScalars()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasMyEnum()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getSmallScalars().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getBigScalars().isInitialized()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!getOptionalScalars().isInitialized()) {
         memoizedIsInitialized = 0;
         return false;
       }
@@ -409,31 +424,16 @@ public final class Msg {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeInt32(1, fInt32_);
+        output.writeMessage(1, smallScalars_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, fUint32_);
+        output.writeMessage(2, bigScalars_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeSInt32(3, fSint32_);
+        output.writeMessage(3, optionalScalars_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeInt64(4, fInt64_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeUInt64(5, fUint64_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeSInt64(6, fSint64_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBool(7, fBool_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeFloat(8, fFloat_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeDouble(9, fDouble_);
+        output.writeEnum(4, myEnum_.getNumber());
       }
       getUnknownFields().writeTo(output);
     }
@@ -446,39 +446,19 @@ public final class Msg {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(1, fInt32_);
+          .computeMessageSize(1, smallScalars_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, fUint32_);
+          .computeMessageSize(2, bigScalars_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeSInt32Size(3, fSint32_);
+          .computeMessageSize(3, optionalScalars_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(4, fInt64_);
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt64Size(5, fUint64_);
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeSInt64Size(6, fSint64_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBoolSize(7, fBool_);
-      }
-      if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeFloatSize(8, fFloat_);
-      }
-      if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(9, fDouble_);
+          .computeEnumSize(4, myEnum_.getNumber());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -588,6 +568,9 @@ public final class Msg {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSmallScalarsFieldBuilder();
+          getBigScalarsFieldBuilder();
+          getOptionalScalarsFieldBuilder();
         }
       }
       private static Builder create() {
@@ -596,24 +579,26 @@ public final class Msg {
 
       public Builder clear() {
         super.clear();
-        fInt32_ = 0;
+        if (smallScalarsBuilder_ == null) {
+          smallScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+        } else {
+          smallScalarsBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000001);
-        fUint32_ = 0;
+        if (bigScalarsBuilder_ == null) {
+          bigScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+        } else {
+          bigScalarsBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
-        fSint32_ = 0;
+        if (optionalScalarsBuilder_ == null) {
+          optionalScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+        } else {
+          optionalScalarsBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000004);
-        fInt64_ = 0L;
+        myEnum_ = com.github.zxh.classpy.protobuf.Msg.MyEnum.ONE;
         bitField0_ = (bitField0_ & ~0x00000008);
-        fUint64_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        fSint64_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        fBool_ = false;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        fFloat_ = 0F;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        fDouble_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000100);
         return this;
       }
 
@@ -645,39 +630,31 @@ public final class Msg {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.fInt32_ = fInt32_;
+        if (smallScalarsBuilder_ == null) {
+          result.smallScalars_ = smallScalars_;
+        } else {
+          result.smallScalars_ = smallScalarsBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.fUint32_ = fUint32_;
+        if (bigScalarsBuilder_ == null) {
+          result.bigScalars_ = bigScalars_;
+        } else {
+          result.bigScalars_ = bigScalarsBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.fSint32_ = fSint32_;
+        if (optionalScalarsBuilder_ == null) {
+          result.optionalScalars_ = optionalScalars_;
+        } else {
+          result.optionalScalars_ = optionalScalarsBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.fInt64_ = fInt64_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.fUint64_ = fUint64_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.fSint64_ = fSint64_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.fBool_ = fBool_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.fFloat_ = fFloat_;
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
-        }
-        result.fDouble_ = fDouble_;
+        result.myEnum_ = myEnum_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -694,39 +671,48 @@ public final class Msg {
 
       public Builder mergeFrom(com.github.zxh.classpy.protobuf.Msg.MyMsg other) {
         if (other == com.github.zxh.classpy.protobuf.Msg.MyMsg.getDefaultInstance()) return this;
-        if (other.hasFInt32()) {
-          setFInt32(other.getFInt32());
+        if (other.hasSmallScalars()) {
+          mergeSmallScalars(other.getSmallScalars());
         }
-        if (other.hasFUint32()) {
-          setFUint32(other.getFUint32());
+        if (other.hasBigScalars()) {
+          mergeBigScalars(other.getBigScalars());
         }
-        if (other.hasFSint32()) {
-          setFSint32(other.getFSint32());
+        if (other.hasOptionalScalars()) {
+          mergeOptionalScalars(other.getOptionalScalars());
         }
-        if (other.hasFInt64()) {
-          setFInt64(other.getFInt64());
-        }
-        if (other.hasFUint64()) {
-          setFUint64(other.getFUint64());
-        }
-        if (other.hasFSint64()) {
-          setFSint64(other.getFSint64());
-        }
-        if (other.hasFBool()) {
-          setFBool(other.getFBool());
-        }
-        if (other.hasFFloat()) {
-          setFFloat(other.getFFloat());
-        }
-        if (other.hasFDouble()) {
-          setFDouble(other.getFDouble());
+        if (other.hasMyEnum()) {
+          setMyEnum(other.getMyEnum());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
       public final boolean isInitialized() {
-        if (!hasFInt32()) {
+        if (!hasSmallScalars()) {
+          
+          return false;
+        }
+        if (!hasBigScalars()) {
+          
+          return false;
+        }
+        if (!hasOptionalScalars()) {
+          
+          return false;
+        }
+        if (!hasMyEnum()) {
+          
+          return false;
+        }
+        if (!getSmallScalars().isInitialized()) {
+          
+          return false;
+        }
+        if (!getBigScalars().isInitialized()) {
+          
+          return false;
+        }
+        if (!getOptionalScalars().isInitialized()) {
           
           return false;
         }
@@ -752,299 +738,389 @@ public final class Msg {
       }
       private int bitField0_;
 
-      // required int32 f_int32 = 1;
-      private int fInt32_ ;
+      // required .Scalars small_scalars = 1;
+      private com.github.zxh.classpy.protobuf.Msg.Scalars smallScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> smallScalarsBuilder_;
       /**
-       * <code>required int32 f_int32 = 1;</code>
+       * <code>required .Scalars small_scalars = 1;</code>
        */
-      public boolean hasFInt32() {
+      public boolean hasSmallScalars() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required int32 f_int32 = 1;</code>
+       * <code>required .Scalars small_scalars = 1;</code>
        */
-      public int getFInt32() {
-        return fInt32_;
+      public com.github.zxh.classpy.protobuf.Msg.Scalars getSmallScalars() {
+        if (smallScalarsBuilder_ == null) {
+          return smallScalars_;
+        } else {
+          return smallScalarsBuilder_.getMessage();
+        }
       }
       /**
-       * <code>required int32 f_int32 = 1;</code>
+       * <code>required .Scalars small_scalars = 1;</code>
        */
-      public Builder setFInt32(int value) {
+      public Builder setSmallScalars(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (smallScalarsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          smallScalars_ = value;
+          onChanged();
+        } else {
+          smallScalarsBuilder_.setMessage(value);
+        }
         bitField0_ |= 0x00000001;
-        fInt32_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>required int32 f_int32 = 1;</code>
+       * <code>required .Scalars small_scalars = 1;</code>
        */
-      public Builder clearFInt32() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        fInt32_ = 0;
-        onChanged();
+      public Builder setSmallScalars(
+          com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
+        if (smallScalarsBuilder_ == null) {
+          smallScalars_ = builderForValue.build();
+          onChanged();
+        } else {
+          smallScalarsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
         return this;
+      }
+      /**
+       * <code>required .Scalars small_scalars = 1;</code>
+       */
+      public Builder mergeSmallScalars(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (smallScalarsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              smallScalars_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
+            smallScalars_ =
+              com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(smallScalars_).mergeFrom(value).buildPartial();
+          } else {
+            smallScalars_ = value;
+          }
+          onChanged();
+        } else {
+          smallScalarsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>required .Scalars small_scalars = 1;</code>
+       */
+      public Builder clearSmallScalars() {
+        if (smallScalarsBuilder_ == null) {
+          smallScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+          onChanged();
+        } else {
+          smallScalarsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>required .Scalars small_scalars = 1;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getSmallScalarsBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getSmallScalarsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>required .Scalars small_scalars = 1;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getSmallScalarsOrBuilder() {
+        if (smallScalarsBuilder_ != null) {
+          return smallScalarsBuilder_.getMessageOrBuilder();
+        } else {
+          return smallScalars_;
+        }
+      }
+      /**
+       * <code>required .Scalars small_scalars = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
+          getSmallScalarsFieldBuilder() {
+        if (smallScalarsBuilder_ == null) {
+          smallScalarsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder>(
+                  smallScalars_,
+                  getParentForChildren(),
+                  isClean());
+          smallScalars_ = null;
+        }
+        return smallScalarsBuilder_;
       }
 
-      // optional uint32 f_uint32 = 2;
-      private int fUint32_ ;
+      // required .Scalars big_scalars = 2;
+      private com.github.zxh.classpy.protobuf.Msg.Scalars bigScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> bigScalarsBuilder_;
       /**
-       * <code>optional uint32 f_uint32 = 2;</code>
+       * <code>required .Scalars big_scalars = 2;</code>
        */
-      public boolean hasFUint32() {
+      public boolean hasBigScalars() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional uint32 f_uint32 = 2;</code>
+       * <code>required .Scalars big_scalars = 2;</code>
        */
-      public int getFUint32() {
-        return fUint32_;
+      public com.github.zxh.classpy.protobuf.Msg.Scalars getBigScalars() {
+        if (bigScalarsBuilder_ == null) {
+          return bigScalars_;
+        } else {
+          return bigScalarsBuilder_.getMessage();
+        }
       }
       /**
-       * <code>optional uint32 f_uint32 = 2;</code>
+       * <code>required .Scalars big_scalars = 2;</code>
        */
-      public Builder setFUint32(int value) {
+      public Builder setBigScalars(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (bigScalarsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          bigScalars_ = value;
+          onChanged();
+        } else {
+          bigScalarsBuilder_.setMessage(value);
+        }
         bitField0_ |= 0x00000002;
-        fUint32_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 f_uint32 = 2;</code>
+       * <code>required .Scalars big_scalars = 2;</code>
        */
-      public Builder clearFUint32() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        fUint32_ = 0;
-        onChanged();
+      public Builder setBigScalars(
+          com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
+        if (bigScalarsBuilder_ == null) {
+          bigScalars_ = builderForValue.build();
+          onChanged();
+        } else {
+          bigScalarsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
         return this;
+      }
+      /**
+       * <code>required .Scalars big_scalars = 2;</code>
+       */
+      public Builder mergeBigScalars(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (bigScalarsBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              bigScalars_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
+            bigScalars_ =
+              com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(bigScalars_).mergeFrom(value).buildPartial();
+          } else {
+            bigScalars_ = value;
+          }
+          onChanged();
+        } else {
+          bigScalarsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>required .Scalars big_scalars = 2;</code>
+       */
+      public Builder clearBigScalars() {
+        if (bigScalarsBuilder_ == null) {
+          bigScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+          onChanged();
+        } else {
+          bigScalarsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>required .Scalars big_scalars = 2;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getBigScalarsBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getBigScalarsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>required .Scalars big_scalars = 2;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getBigScalarsOrBuilder() {
+        if (bigScalarsBuilder_ != null) {
+          return bigScalarsBuilder_.getMessageOrBuilder();
+        } else {
+          return bigScalars_;
+        }
+      }
+      /**
+       * <code>required .Scalars big_scalars = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
+          getBigScalarsFieldBuilder() {
+        if (bigScalarsBuilder_ == null) {
+          bigScalarsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder>(
+                  bigScalars_,
+                  getParentForChildren(),
+                  isClean());
+          bigScalars_ = null;
+        }
+        return bigScalarsBuilder_;
       }
 
-      // optional sint32 f_sint32 = 3;
-      private int fSint32_ ;
+      // required .Scalars optional_scalars = 3;
+      private com.github.zxh.classpy.protobuf.Msg.Scalars optionalScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> optionalScalarsBuilder_;
       /**
-       * <code>optional sint32 f_sint32 = 3;</code>
+       * <code>required .Scalars optional_scalars = 3;</code>
        */
-      public boolean hasFSint32() {
+      public boolean hasOptionalScalars() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional sint32 f_sint32 = 3;</code>
+       * <code>required .Scalars optional_scalars = 3;</code>
        */
-      public int getFSint32() {
-        return fSint32_;
+      public com.github.zxh.classpy.protobuf.Msg.Scalars getOptionalScalars() {
+        if (optionalScalarsBuilder_ == null) {
+          return optionalScalars_;
+        } else {
+          return optionalScalarsBuilder_.getMessage();
+        }
       }
       /**
-       * <code>optional sint32 f_sint32 = 3;</code>
+       * <code>required .Scalars optional_scalars = 3;</code>
        */
-      public Builder setFSint32(int value) {
+      public Builder setOptionalScalars(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (optionalScalarsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          optionalScalars_ = value;
+          onChanged();
+        } else {
+          optionalScalarsBuilder_.setMessage(value);
+        }
         bitField0_ |= 0x00000004;
-        fSint32_ = value;
-        onChanged();
         return this;
       }
       /**
-       * <code>optional sint32 f_sint32 = 3;</code>
+       * <code>required .Scalars optional_scalars = 3;</code>
        */
-      public Builder clearFSint32() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        fSint32_ = 0;
-        onChanged();
+      public Builder setOptionalScalars(
+          com.github.zxh.classpy.protobuf.Msg.Scalars.Builder builderForValue) {
+        if (optionalScalarsBuilder_ == null) {
+          optionalScalars_ = builderForValue.build();
+          onChanged();
+        } else {
+          optionalScalarsBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000004;
         return this;
+      }
+      /**
+       * <code>required .Scalars optional_scalars = 3;</code>
+       */
+      public Builder mergeOptionalScalars(com.github.zxh.classpy.protobuf.Msg.Scalars value) {
+        if (optionalScalarsBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              optionalScalars_ != com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) {
+            optionalScalars_ =
+              com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder(optionalScalars_).mergeFrom(value).buildPartial();
+          } else {
+            optionalScalars_ = value;
+          }
+          onChanged();
+        } else {
+          optionalScalarsBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000004;
+        return this;
+      }
+      /**
+       * <code>required .Scalars optional_scalars = 3;</code>
+       */
+      public Builder clearOptionalScalars() {
+        if (optionalScalarsBuilder_ == null) {
+          optionalScalars_ = com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+          onChanged();
+        } else {
+          optionalScalarsBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+      /**
+       * <code>required .Scalars optional_scalars = 3;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.Scalars.Builder getOptionalScalarsBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getOptionalScalarsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>required .Scalars optional_scalars = 3;</code>
+       */
+      public com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder getOptionalScalarsOrBuilder() {
+        if (optionalScalarsBuilder_ != null) {
+          return optionalScalarsBuilder_.getMessageOrBuilder();
+        } else {
+          return optionalScalars_;
+        }
+      }
+      /**
+       * <code>required .Scalars optional_scalars = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder> 
+          getOptionalScalarsFieldBuilder() {
+        if (optionalScalarsBuilder_ == null) {
+          optionalScalarsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.zxh.classpy.protobuf.Msg.Scalars, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder, com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder>(
+                  optionalScalars_,
+                  getParentForChildren(),
+                  isClean());
+          optionalScalars_ = null;
+        }
+        return optionalScalarsBuilder_;
       }
 
-      // optional int64 f_int64 = 4;
-      private long fInt64_ ;
+      // required .MyEnum my_enum = 4;
+      private com.github.zxh.classpy.protobuf.Msg.MyEnum myEnum_ = com.github.zxh.classpy.protobuf.Msg.MyEnum.ONE;
       /**
-       * <code>optional int64 f_int64 = 4;</code>
+       * <code>required .MyEnum my_enum = 4;</code>
        */
-      public boolean hasFInt64() {
+      public boolean hasMyEnum() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       /**
-       * <code>optional int64 f_int64 = 4;</code>
+       * <code>required .MyEnum my_enum = 4;</code>
        */
-      public long getFInt64() {
-        return fInt64_;
+      public com.github.zxh.classpy.protobuf.Msg.MyEnum getMyEnum() {
+        return myEnum_;
       }
       /**
-       * <code>optional int64 f_int64 = 4;</code>
+       * <code>required .MyEnum my_enum = 4;</code>
        */
-      public Builder setFInt64(long value) {
+      public Builder setMyEnum(com.github.zxh.classpy.protobuf.Msg.MyEnum value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
         bitField0_ |= 0x00000008;
-        fInt64_ = value;
+        myEnum_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional int64 f_int64 = 4;</code>
+       * <code>required .MyEnum my_enum = 4;</code>
        */
-      public Builder clearFInt64() {
+      public Builder clearMyEnum() {
         bitField0_ = (bitField0_ & ~0x00000008);
-        fInt64_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      // optional uint64 f_uint64 = 5;
-      private long fUint64_ ;
-      /**
-       * <code>optional uint64 f_uint64 = 5;</code>
-       */
-      public boolean hasFUint64() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      /**
-       * <code>optional uint64 f_uint64 = 5;</code>
-       */
-      public long getFUint64() {
-        return fUint64_;
-      }
-      /**
-       * <code>optional uint64 f_uint64 = 5;</code>
-       */
-      public Builder setFUint64(long value) {
-        bitField0_ |= 0x00000010;
-        fUint64_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional uint64 f_uint64 = 5;</code>
-       */
-      public Builder clearFUint64() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        fUint64_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      // optional sint64 f_sint64 = 6;
-      private long fSint64_ ;
-      /**
-       * <code>optional sint64 f_sint64 = 6;</code>
-       */
-      public boolean hasFSint64() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>optional sint64 f_sint64 = 6;</code>
-       */
-      public long getFSint64() {
-        return fSint64_;
-      }
-      /**
-       * <code>optional sint64 f_sint64 = 6;</code>
-       */
-      public Builder setFSint64(long value) {
-        bitField0_ |= 0x00000020;
-        fSint64_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional sint64 f_sint64 = 6;</code>
-       */
-      public Builder clearFSint64() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        fSint64_ = 0L;
-        onChanged();
-        return this;
-      }
-
-      // optional bool f_bool = 7;
-      private boolean fBool_ ;
-      /**
-       * <code>optional bool f_bool = 7;</code>
-       */
-      public boolean hasFBool() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
-      }
-      /**
-       * <code>optional bool f_bool = 7;</code>
-       */
-      public boolean getFBool() {
-        return fBool_;
-      }
-      /**
-       * <code>optional bool f_bool = 7;</code>
-       */
-      public Builder setFBool(boolean value) {
-        bitField0_ |= 0x00000040;
-        fBool_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional bool f_bool = 7;</code>
-       */
-      public Builder clearFBool() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        fBool_ = false;
-        onChanged();
-        return this;
-      }
-
-      // optional float f_float = 8;
-      private float fFloat_ ;
-      /**
-       * <code>optional float f_float = 8;</code>
-       */
-      public boolean hasFFloat() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
-      }
-      /**
-       * <code>optional float f_float = 8;</code>
-       */
-      public float getFFloat() {
-        return fFloat_;
-      }
-      /**
-       * <code>optional float f_float = 8;</code>
-       */
-      public Builder setFFloat(float value) {
-        bitField0_ |= 0x00000080;
-        fFloat_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional float f_float = 8;</code>
-       */
-      public Builder clearFFloat() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        fFloat_ = 0F;
-        onChanged();
-        return this;
-      }
-
-      // optional double f_double = 9;
-      private double fDouble_ ;
-      /**
-       * <code>optional double f_double = 9;</code>
-       */
-      public boolean hasFDouble() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
-      }
-      /**
-       * <code>optional double f_double = 9;</code>
-       */
-      public double getFDouble() {
-        return fDouble_;
-      }
-      /**
-       * <code>optional double f_double = 9;</code>
-       */
-      public Builder setFDouble(double value) {
-        bitField0_ |= 0x00000100;
-        fDouble_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>optional double f_double = 9;</code>
-       */
-      public Builder clearFDouble() {
-        bitField0_ = (bitField0_ & ~0x00000100);
-        fDouble_ = 0D;
+        myEnum_ = com.github.zxh.classpy.protobuf.Msg.MyEnum.ONE;
         onChanged();
         return this;
       }
@@ -1060,11 +1136,1632 @@ public final class Msg {
     // @@protoc_insertion_point(class_scope:MyMsg)
   }
 
+  public interface ScalarsOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required bool f_bool = 1;
+    /**
+     * <code>required bool f_bool = 1;</code>
+     */
+    boolean hasFBool();
+    /**
+     * <code>required bool f_bool = 1;</code>
+     */
+    boolean getFBool();
+
+    // optional int32 f_int32 = 2;
+    /**
+     * <code>optional int32 f_int32 = 2;</code>
+     */
+    boolean hasFInt32();
+    /**
+     * <code>optional int32 f_int32 = 2;</code>
+     */
+    int getFInt32();
+
+    // optional uint32 f_uint32 = 3;
+    /**
+     * <code>optional uint32 f_uint32 = 3;</code>
+     */
+    boolean hasFUint32();
+    /**
+     * <code>optional uint32 f_uint32 = 3;</code>
+     */
+    int getFUint32();
+
+    // optional sint32 f_sint32 = 4;
+    /**
+     * <code>optional sint32 f_sint32 = 4;</code>
+     */
+    boolean hasFSint32();
+    /**
+     * <code>optional sint32 f_sint32 = 4;</code>
+     */
+    int getFSint32();
+
+    // optional fixed32 f_fixed32 = 5;
+    /**
+     * <code>optional fixed32 f_fixed32 = 5;</code>
+     */
+    boolean hasFFixed32();
+    /**
+     * <code>optional fixed32 f_fixed32 = 5;</code>
+     */
+    int getFFixed32();
+
+    // optional sfixed32 f_sfixed32 = 6;
+    /**
+     * <code>optional sfixed32 f_sfixed32 = 6;</code>
+     */
+    boolean hasFSfixed32();
+    /**
+     * <code>optional sfixed32 f_sfixed32 = 6;</code>
+     */
+    int getFSfixed32();
+
+    // optional int64 f_int64 = 7;
+    /**
+     * <code>optional int64 f_int64 = 7;</code>
+     */
+    boolean hasFInt64();
+    /**
+     * <code>optional int64 f_int64 = 7;</code>
+     */
+    long getFInt64();
+
+    // optional uint64 f_uint64 = 8;
+    /**
+     * <code>optional uint64 f_uint64 = 8;</code>
+     */
+    boolean hasFUint64();
+    /**
+     * <code>optional uint64 f_uint64 = 8;</code>
+     */
+    long getFUint64();
+
+    // optional sint64 f_sint64 = 9;
+    /**
+     * <code>optional sint64 f_sint64 = 9;</code>
+     */
+    boolean hasFSint64();
+    /**
+     * <code>optional sint64 f_sint64 = 9;</code>
+     */
+    long getFSint64();
+
+    // optional fixed64 f_fixed64 = 10;
+    /**
+     * <code>optional fixed64 f_fixed64 = 10;</code>
+     */
+    boolean hasFFixed64();
+    /**
+     * <code>optional fixed64 f_fixed64 = 10;</code>
+     */
+    long getFFixed64();
+
+    // optional sfixed64 f_sfixed64 = 11;
+    /**
+     * <code>optional sfixed64 f_sfixed64 = 11;</code>
+     */
+    boolean hasFSfixed64();
+    /**
+     * <code>optional sfixed64 f_sfixed64 = 11;</code>
+     */
+    long getFSfixed64();
+
+    // optional float f_float = 12;
+    /**
+     * <code>optional float f_float = 12;</code>
+     */
+    boolean hasFFloat();
+    /**
+     * <code>optional float f_float = 12;</code>
+     */
+    float getFFloat();
+
+    // optional double f_double = 13;
+    /**
+     * <code>optional double f_double = 13;</code>
+     */
+    boolean hasFDouble();
+    /**
+     * <code>optional double f_double = 13;</code>
+     */
+    double getFDouble();
+
+    // optional string f_string = 14;
+    /**
+     * <code>optional string f_string = 14;</code>
+     */
+    boolean hasFString();
+    /**
+     * <code>optional string f_string = 14;</code>
+     */
+    java.lang.String getFString();
+    /**
+     * <code>optional string f_string = 14;</code>
+     */
+    com.google.protobuf.ByteString
+        getFStringBytes();
+
+    // optional bytes f_bytes = 15;
+    /**
+     * <code>optional bytes f_bytes = 15;</code>
+     */
+    boolean hasFBytes();
+    /**
+     * <code>optional bytes f_bytes = 15;</code>
+     */
+    com.google.protobuf.ByteString getFBytes();
+  }
+  /**
+   * Protobuf type {@code Scalars}
+   */
+  public static final class Scalars extends
+      com.google.protobuf.GeneratedMessage
+      implements ScalarsOrBuilder {
+    // Use Scalars.newBuilder() to construct.
+    private Scalars(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Scalars(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Scalars defaultInstance;
+    public static Scalars getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Scalars getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Scalars(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              fBool_ = input.readBool();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              fInt32_ = input.readInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              fUint32_ = input.readUInt32();
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              fSint32_ = input.readSInt32();
+              break;
+            }
+            case 45: {
+              bitField0_ |= 0x00000010;
+              fFixed32_ = input.readFixed32();
+              break;
+            }
+            case 53: {
+              bitField0_ |= 0x00000020;
+              fSfixed32_ = input.readSFixed32();
+              break;
+            }
+            case 56: {
+              bitField0_ |= 0x00000040;
+              fInt64_ = input.readInt64();
+              break;
+            }
+            case 64: {
+              bitField0_ |= 0x00000080;
+              fUint64_ = input.readUInt64();
+              break;
+            }
+            case 72: {
+              bitField0_ |= 0x00000100;
+              fSint64_ = input.readSInt64();
+              break;
+            }
+            case 81: {
+              bitField0_ |= 0x00000200;
+              fFixed64_ = input.readFixed64();
+              break;
+            }
+            case 89: {
+              bitField0_ |= 0x00000400;
+              fSfixed64_ = input.readSFixed64();
+              break;
+            }
+            case 101: {
+              bitField0_ |= 0x00000800;
+              fFloat_ = input.readFloat();
+              break;
+            }
+            case 105: {
+              bitField0_ |= 0x00001000;
+              fDouble_ = input.readDouble();
+              break;
+            }
+            case 114: {
+              bitField0_ |= 0x00002000;
+              fString_ = input.readBytes();
+              break;
+            }
+            case 122: {
+              bitField0_ |= 0x00004000;
+              fBytes_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.zxh.classpy.protobuf.Msg.internal_static_Scalars_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.zxh.classpy.protobuf.Msg.internal_static_Scalars_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.zxh.classpy.protobuf.Msg.Scalars.class, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Scalars> PARSER =
+        new com.google.protobuf.AbstractParser<Scalars>() {
+      public Scalars parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Scalars(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Scalars> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // required bool f_bool = 1;
+    public static final int F_BOOL_FIELD_NUMBER = 1;
+    private boolean fBool_;
+    /**
+     * <code>required bool f_bool = 1;</code>
+     */
+    public boolean hasFBool() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required bool f_bool = 1;</code>
+     */
+    public boolean getFBool() {
+      return fBool_;
+    }
+
+    // optional int32 f_int32 = 2;
+    public static final int F_INT32_FIELD_NUMBER = 2;
+    private int fInt32_;
+    /**
+     * <code>optional int32 f_int32 = 2;</code>
+     */
+    public boolean hasFInt32() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 f_int32 = 2;</code>
+     */
+    public int getFInt32() {
+      return fInt32_;
+    }
+
+    // optional uint32 f_uint32 = 3;
+    public static final int F_UINT32_FIELD_NUMBER = 3;
+    private int fUint32_;
+    /**
+     * <code>optional uint32 f_uint32 = 3;</code>
+     */
+    public boolean hasFUint32() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional uint32 f_uint32 = 3;</code>
+     */
+    public int getFUint32() {
+      return fUint32_;
+    }
+
+    // optional sint32 f_sint32 = 4;
+    public static final int F_SINT32_FIELD_NUMBER = 4;
+    private int fSint32_;
+    /**
+     * <code>optional sint32 f_sint32 = 4;</code>
+     */
+    public boolean hasFSint32() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional sint32 f_sint32 = 4;</code>
+     */
+    public int getFSint32() {
+      return fSint32_;
+    }
+
+    // optional fixed32 f_fixed32 = 5;
+    public static final int F_FIXED32_FIELD_NUMBER = 5;
+    private int fFixed32_;
+    /**
+     * <code>optional fixed32 f_fixed32 = 5;</code>
+     */
+    public boolean hasFFixed32() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    /**
+     * <code>optional fixed32 f_fixed32 = 5;</code>
+     */
+    public int getFFixed32() {
+      return fFixed32_;
+    }
+
+    // optional sfixed32 f_sfixed32 = 6;
+    public static final int F_SFIXED32_FIELD_NUMBER = 6;
+    private int fSfixed32_;
+    /**
+     * <code>optional sfixed32 f_sfixed32 = 6;</code>
+     */
+    public boolean hasFSfixed32() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional sfixed32 f_sfixed32 = 6;</code>
+     */
+    public int getFSfixed32() {
+      return fSfixed32_;
+    }
+
+    // optional int64 f_int64 = 7;
+    public static final int F_INT64_FIELD_NUMBER = 7;
+    private long fInt64_;
+    /**
+     * <code>optional int64 f_int64 = 7;</code>
+     */
+    public boolean hasFInt64() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    /**
+     * <code>optional int64 f_int64 = 7;</code>
+     */
+    public long getFInt64() {
+      return fInt64_;
+    }
+
+    // optional uint64 f_uint64 = 8;
+    public static final int F_UINT64_FIELD_NUMBER = 8;
+    private long fUint64_;
+    /**
+     * <code>optional uint64 f_uint64 = 8;</code>
+     */
+    public boolean hasFUint64() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional uint64 f_uint64 = 8;</code>
+     */
+    public long getFUint64() {
+      return fUint64_;
+    }
+
+    // optional sint64 f_sint64 = 9;
+    public static final int F_SINT64_FIELD_NUMBER = 9;
+    private long fSint64_;
+    /**
+     * <code>optional sint64 f_sint64 = 9;</code>
+     */
+    public boolean hasFSint64() {
+      return ((bitField0_ & 0x00000100) == 0x00000100);
+    }
+    /**
+     * <code>optional sint64 f_sint64 = 9;</code>
+     */
+    public long getFSint64() {
+      return fSint64_;
+    }
+
+    // optional fixed64 f_fixed64 = 10;
+    public static final int F_FIXED64_FIELD_NUMBER = 10;
+    private long fFixed64_;
+    /**
+     * <code>optional fixed64 f_fixed64 = 10;</code>
+     */
+    public boolean hasFFixed64() {
+      return ((bitField0_ & 0x00000200) == 0x00000200);
+    }
+    /**
+     * <code>optional fixed64 f_fixed64 = 10;</code>
+     */
+    public long getFFixed64() {
+      return fFixed64_;
+    }
+
+    // optional sfixed64 f_sfixed64 = 11;
+    public static final int F_SFIXED64_FIELD_NUMBER = 11;
+    private long fSfixed64_;
+    /**
+     * <code>optional sfixed64 f_sfixed64 = 11;</code>
+     */
+    public boolean hasFSfixed64() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    /**
+     * <code>optional sfixed64 f_sfixed64 = 11;</code>
+     */
+    public long getFSfixed64() {
+      return fSfixed64_;
+    }
+
+    // optional float f_float = 12;
+    public static final int F_FLOAT_FIELD_NUMBER = 12;
+    private float fFloat_;
+    /**
+     * <code>optional float f_float = 12;</code>
+     */
+    public boolean hasFFloat() {
+      return ((bitField0_ & 0x00000800) == 0x00000800);
+    }
+    /**
+     * <code>optional float f_float = 12;</code>
+     */
+    public float getFFloat() {
+      return fFloat_;
+    }
+
+    // optional double f_double = 13;
+    public static final int F_DOUBLE_FIELD_NUMBER = 13;
+    private double fDouble_;
+    /**
+     * <code>optional double f_double = 13;</code>
+     */
+    public boolean hasFDouble() {
+      return ((bitField0_ & 0x00001000) == 0x00001000);
+    }
+    /**
+     * <code>optional double f_double = 13;</code>
+     */
+    public double getFDouble() {
+      return fDouble_;
+    }
+
+    // optional string f_string = 14;
+    public static final int F_STRING_FIELD_NUMBER = 14;
+    private java.lang.Object fString_;
+    /**
+     * <code>optional string f_string = 14;</code>
+     */
+    public boolean hasFString() {
+      return ((bitField0_ & 0x00002000) == 0x00002000);
+    }
+    /**
+     * <code>optional string f_string = 14;</code>
+     */
+    public java.lang.String getFString() {
+      java.lang.Object ref = fString_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          fString_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string f_string = 14;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFStringBytes() {
+      java.lang.Object ref = fString_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        fString_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional bytes f_bytes = 15;
+    public static final int F_BYTES_FIELD_NUMBER = 15;
+    private com.google.protobuf.ByteString fBytes_;
+    /**
+     * <code>optional bytes f_bytes = 15;</code>
+     */
+    public boolean hasFBytes() {
+      return ((bitField0_ & 0x00004000) == 0x00004000);
+    }
+    /**
+     * <code>optional bytes f_bytes = 15;</code>
+     */
+    public com.google.protobuf.ByteString getFBytes() {
+      return fBytes_;
+    }
+
+    private void initFields() {
+      fBool_ = false;
+      fInt32_ = 0;
+      fUint32_ = 0;
+      fSint32_ = 0;
+      fFixed32_ = 0;
+      fSfixed32_ = 0;
+      fInt64_ = 0L;
+      fUint64_ = 0L;
+      fSint64_ = 0L;
+      fFixed64_ = 0L;
+      fSfixed64_ = 0L;
+      fFloat_ = 0F;
+      fDouble_ = 0D;
+      fString_ = "";
+      fBytes_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasFBool()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBool(1, fBool_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, fInt32_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(3, fUint32_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeSInt32(4, fSint32_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeFixed32(5, fFixed32_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeSFixed32(6, fSfixed32_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeInt64(7, fInt64_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeUInt64(8, fUint64_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        output.writeSInt64(9, fSint64_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        output.writeFixed64(10, fFixed64_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeSFixed64(11, fSfixed64_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        output.writeFloat(12, fFloat_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        output.writeDouble(13, fDouble_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        output.writeBytes(14, getFStringBytes());
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        output.writeBytes(15, fBytes_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, fBool_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, fInt32_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, fUint32_);
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt32Size(4, fSint32_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed32Size(5, fFixed32_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSFixed32Size(6, fSfixed32_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(7, fInt64_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt64Size(8, fUint64_);
+      }
+      if (((bitField0_ & 0x00000100) == 0x00000100)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSInt64Size(9, fSint64_);
+      }
+      if (((bitField0_ & 0x00000200) == 0x00000200)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFixed64Size(10, fFixed64_);
+      }
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeSFixed64Size(11, fSfixed64_);
+      }
+      if (((bitField0_ & 0x00000800) == 0x00000800)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeFloatSize(12, fFloat_);
+      }
+      if (((bitField0_ & 0x00001000) == 0x00001000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(13, fDouble_);
+      }
+      if (((bitField0_ & 0x00002000) == 0x00002000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(14, getFStringBytes());
+      }
+      if (((bitField0_ & 0x00004000) == 0x00004000)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(15, fBytes_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.zxh.classpy.protobuf.Msg.Scalars parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.zxh.classpy.protobuf.Msg.Scalars prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Scalars}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.zxh.classpy.protobuf.Msg.ScalarsOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.zxh.classpy.protobuf.Msg.internal_static_Scalars_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.zxh.classpy.protobuf.Msg.internal_static_Scalars_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.zxh.classpy.protobuf.Msg.Scalars.class, com.github.zxh.classpy.protobuf.Msg.Scalars.Builder.class);
+      }
+
+      // Construct using com.github.zxh.classpy.protobuf.Msg.Scalars.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        fBool_ = false;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        fInt32_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        fUint32_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        fSint32_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        fFixed32_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        fSfixed32_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fInt64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fUint64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000080);
+        fSint64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000100);
+        fFixed64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000200);
+        fSfixed64_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000400);
+        fFloat_ = 0F;
+        bitField0_ = (bitField0_ & ~0x00000800);
+        fDouble_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00001000);
+        fString_ = "";
+        bitField0_ = (bitField0_ & ~0x00002000);
+        fBytes_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00004000);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.zxh.classpy.protobuf.Msg.internal_static_Scalars_descriptor;
+      }
+
+      public com.github.zxh.classpy.protobuf.Msg.Scalars getDefaultInstanceForType() {
+        return com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance();
+      }
+
+      public com.github.zxh.classpy.protobuf.Msg.Scalars build() {
+        com.github.zxh.classpy.protobuf.Msg.Scalars result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.zxh.classpy.protobuf.Msg.Scalars buildPartial() {
+        com.github.zxh.classpy.protobuf.Msg.Scalars result = new com.github.zxh.classpy.protobuf.Msg.Scalars(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.fBool_ = fBool_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.fInt32_ = fInt32_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.fUint32_ = fUint32_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.fSint32_ = fSint32_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.fFixed32_ = fFixed32_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.fSfixed32_ = fSfixed32_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.fInt64_ = fInt64_;
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        result.fUint64_ = fUint64_;
+        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
+          to_bitField0_ |= 0x00000100;
+        }
+        result.fSint64_ = fSint64_;
+        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
+          to_bitField0_ |= 0x00000200;
+        }
+        result.fFixed64_ = fFixed64_;
+        if (((from_bitField0_ & 0x00000400) == 0x00000400)) {
+          to_bitField0_ |= 0x00000400;
+        }
+        result.fSfixed64_ = fSfixed64_;
+        if (((from_bitField0_ & 0x00000800) == 0x00000800)) {
+          to_bitField0_ |= 0x00000800;
+        }
+        result.fFloat_ = fFloat_;
+        if (((from_bitField0_ & 0x00001000) == 0x00001000)) {
+          to_bitField0_ |= 0x00001000;
+        }
+        result.fDouble_ = fDouble_;
+        if (((from_bitField0_ & 0x00002000) == 0x00002000)) {
+          to_bitField0_ |= 0x00002000;
+        }
+        result.fString_ = fString_;
+        if (((from_bitField0_ & 0x00004000) == 0x00004000)) {
+          to_bitField0_ |= 0x00004000;
+        }
+        result.fBytes_ = fBytes_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.zxh.classpy.protobuf.Msg.Scalars) {
+          return mergeFrom((com.github.zxh.classpy.protobuf.Msg.Scalars)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.zxh.classpy.protobuf.Msg.Scalars other) {
+        if (other == com.github.zxh.classpy.protobuf.Msg.Scalars.getDefaultInstance()) return this;
+        if (other.hasFBool()) {
+          setFBool(other.getFBool());
+        }
+        if (other.hasFInt32()) {
+          setFInt32(other.getFInt32());
+        }
+        if (other.hasFUint32()) {
+          setFUint32(other.getFUint32());
+        }
+        if (other.hasFSint32()) {
+          setFSint32(other.getFSint32());
+        }
+        if (other.hasFFixed32()) {
+          setFFixed32(other.getFFixed32());
+        }
+        if (other.hasFSfixed32()) {
+          setFSfixed32(other.getFSfixed32());
+        }
+        if (other.hasFInt64()) {
+          setFInt64(other.getFInt64());
+        }
+        if (other.hasFUint64()) {
+          setFUint64(other.getFUint64());
+        }
+        if (other.hasFSint64()) {
+          setFSint64(other.getFSint64());
+        }
+        if (other.hasFFixed64()) {
+          setFFixed64(other.getFFixed64());
+        }
+        if (other.hasFSfixed64()) {
+          setFSfixed64(other.getFSfixed64());
+        }
+        if (other.hasFFloat()) {
+          setFFloat(other.getFFloat());
+        }
+        if (other.hasFDouble()) {
+          setFDouble(other.getFDouble());
+        }
+        if (other.hasFString()) {
+          bitField0_ |= 0x00002000;
+          fString_ = other.fString_;
+          onChanged();
+        }
+        if (other.hasFBytes()) {
+          setFBytes(other.getFBytes());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasFBool()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.zxh.classpy.protobuf.Msg.Scalars parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.zxh.classpy.protobuf.Msg.Scalars) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required bool f_bool = 1;
+      private boolean fBool_ ;
+      /**
+       * <code>required bool f_bool = 1;</code>
+       */
+      public boolean hasFBool() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required bool f_bool = 1;</code>
+       */
+      public boolean getFBool() {
+        return fBool_;
+      }
+      /**
+       * <code>required bool f_bool = 1;</code>
+       */
+      public Builder setFBool(boolean value) {
+        bitField0_ |= 0x00000001;
+        fBool_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required bool f_bool = 1;</code>
+       */
+      public Builder clearFBool() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        fBool_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 f_int32 = 2;
+      private int fInt32_ ;
+      /**
+       * <code>optional int32 f_int32 = 2;</code>
+       */
+      public boolean hasFInt32() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 f_int32 = 2;</code>
+       */
+      public int getFInt32() {
+        return fInt32_;
+      }
+      /**
+       * <code>optional int32 f_int32 = 2;</code>
+       */
+      public Builder setFInt32(int value) {
+        bitField0_ |= 0x00000002;
+        fInt32_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 f_int32 = 2;</code>
+       */
+      public Builder clearFInt32() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        fInt32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional uint32 f_uint32 = 3;
+      private int fUint32_ ;
+      /**
+       * <code>optional uint32 f_uint32 = 3;</code>
+       */
+      public boolean hasFUint32() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 f_uint32 = 3;</code>
+       */
+      public int getFUint32() {
+        return fUint32_;
+      }
+      /**
+       * <code>optional uint32 f_uint32 = 3;</code>
+       */
+      public Builder setFUint32(int value) {
+        bitField0_ |= 0x00000004;
+        fUint32_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 f_uint32 = 3;</code>
+       */
+      public Builder clearFUint32() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        fUint32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional sint32 f_sint32 = 4;
+      private int fSint32_ ;
+      /**
+       * <code>optional sint32 f_sint32 = 4;</code>
+       */
+      public boolean hasFSint32() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional sint32 f_sint32 = 4;</code>
+       */
+      public int getFSint32() {
+        return fSint32_;
+      }
+      /**
+       * <code>optional sint32 f_sint32 = 4;</code>
+       */
+      public Builder setFSint32(int value) {
+        bitField0_ |= 0x00000008;
+        fSint32_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional sint32 f_sint32 = 4;</code>
+       */
+      public Builder clearFSint32() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        fSint32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional fixed32 f_fixed32 = 5;
+      private int fFixed32_ ;
+      /**
+       * <code>optional fixed32 f_fixed32 = 5;</code>
+       */
+      public boolean hasFFixed32() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      /**
+       * <code>optional fixed32 f_fixed32 = 5;</code>
+       */
+      public int getFFixed32() {
+        return fFixed32_;
+      }
+      /**
+       * <code>optional fixed32 f_fixed32 = 5;</code>
+       */
+      public Builder setFFixed32(int value) {
+        bitField0_ |= 0x00000010;
+        fFixed32_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional fixed32 f_fixed32 = 5;</code>
+       */
+      public Builder clearFFixed32() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        fFixed32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional sfixed32 f_sfixed32 = 6;
+      private int fSfixed32_ ;
+      /**
+       * <code>optional sfixed32 f_sfixed32 = 6;</code>
+       */
+      public boolean hasFSfixed32() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional sfixed32 f_sfixed32 = 6;</code>
+       */
+      public int getFSfixed32() {
+        return fSfixed32_;
+      }
+      /**
+       * <code>optional sfixed32 f_sfixed32 = 6;</code>
+       */
+      public Builder setFSfixed32(int value) {
+        bitField0_ |= 0x00000020;
+        fSfixed32_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional sfixed32 f_sfixed32 = 6;</code>
+       */
+      public Builder clearFSfixed32() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        fSfixed32_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int64 f_int64 = 7;
+      private long fInt64_ ;
+      /**
+       * <code>optional int64 f_int64 = 7;</code>
+       */
+      public boolean hasFInt64() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      /**
+       * <code>optional int64 f_int64 = 7;</code>
+       */
+      public long getFInt64() {
+        return fInt64_;
+      }
+      /**
+       * <code>optional int64 f_int64 = 7;</code>
+       */
+      public Builder setFInt64(long value) {
+        bitField0_ |= 0x00000040;
+        fInt64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int64 f_int64 = 7;</code>
+       */
+      public Builder clearFInt64() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        fInt64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional uint64 f_uint64 = 8;
+      private long fUint64_ ;
+      /**
+       * <code>optional uint64 f_uint64 = 8;</code>
+       */
+      public boolean hasFUint64() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional uint64 f_uint64 = 8;</code>
+       */
+      public long getFUint64() {
+        return fUint64_;
+      }
+      /**
+       * <code>optional uint64 f_uint64 = 8;</code>
+       */
+      public Builder setFUint64(long value) {
+        bitField0_ |= 0x00000080;
+        fUint64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint64 f_uint64 = 8;</code>
+       */
+      public Builder clearFUint64() {
+        bitField0_ = (bitField0_ & ~0x00000080);
+        fUint64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional sint64 f_sint64 = 9;
+      private long fSint64_ ;
+      /**
+       * <code>optional sint64 f_sint64 = 9;</code>
+       */
+      public boolean hasFSint64() {
+        return ((bitField0_ & 0x00000100) == 0x00000100);
+      }
+      /**
+       * <code>optional sint64 f_sint64 = 9;</code>
+       */
+      public long getFSint64() {
+        return fSint64_;
+      }
+      /**
+       * <code>optional sint64 f_sint64 = 9;</code>
+       */
+      public Builder setFSint64(long value) {
+        bitField0_ |= 0x00000100;
+        fSint64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional sint64 f_sint64 = 9;</code>
+       */
+      public Builder clearFSint64() {
+        bitField0_ = (bitField0_ & ~0x00000100);
+        fSint64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional fixed64 f_fixed64 = 10;
+      private long fFixed64_ ;
+      /**
+       * <code>optional fixed64 f_fixed64 = 10;</code>
+       */
+      public boolean hasFFixed64() {
+        return ((bitField0_ & 0x00000200) == 0x00000200);
+      }
+      /**
+       * <code>optional fixed64 f_fixed64 = 10;</code>
+       */
+      public long getFFixed64() {
+        return fFixed64_;
+      }
+      /**
+       * <code>optional fixed64 f_fixed64 = 10;</code>
+       */
+      public Builder setFFixed64(long value) {
+        bitField0_ |= 0x00000200;
+        fFixed64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional fixed64 f_fixed64 = 10;</code>
+       */
+      public Builder clearFFixed64() {
+        bitField0_ = (bitField0_ & ~0x00000200);
+        fFixed64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional sfixed64 f_sfixed64 = 11;
+      private long fSfixed64_ ;
+      /**
+       * <code>optional sfixed64 f_sfixed64 = 11;</code>
+       */
+      public boolean hasFSfixed64() {
+        return ((bitField0_ & 0x00000400) == 0x00000400);
+      }
+      /**
+       * <code>optional sfixed64 f_sfixed64 = 11;</code>
+       */
+      public long getFSfixed64() {
+        return fSfixed64_;
+      }
+      /**
+       * <code>optional sfixed64 f_sfixed64 = 11;</code>
+       */
+      public Builder setFSfixed64(long value) {
+        bitField0_ |= 0x00000400;
+        fSfixed64_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional sfixed64 f_sfixed64 = 11;</code>
+       */
+      public Builder clearFSfixed64() {
+        bitField0_ = (bitField0_ & ~0x00000400);
+        fSfixed64_ = 0L;
+        onChanged();
+        return this;
+      }
+
+      // optional float f_float = 12;
+      private float fFloat_ ;
+      /**
+       * <code>optional float f_float = 12;</code>
+       */
+      public boolean hasFFloat() {
+        return ((bitField0_ & 0x00000800) == 0x00000800);
+      }
+      /**
+       * <code>optional float f_float = 12;</code>
+       */
+      public float getFFloat() {
+        return fFloat_;
+      }
+      /**
+       * <code>optional float f_float = 12;</code>
+       */
+      public Builder setFFloat(float value) {
+        bitField0_ |= 0x00000800;
+        fFloat_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional float f_float = 12;</code>
+       */
+      public Builder clearFFloat() {
+        bitField0_ = (bitField0_ & ~0x00000800);
+        fFloat_ = 0F;
+        onChanged();
+        return this;
+      }
+
+      // optional double f_double = 13;
+      private double fDouble_ ;
+      /**
+       * <code>optional double f_double = 13;</code>
+       */
+      public boolean hasFDouble() {
+        return ((bitField0_ & 0x00001000) == 0x00001000);
+      }
+      /**
+       * <code>optional double f_double = 13;</code>
+       */
+      public double getFDouble() {
+        return fDouble_;
+      }
+      /**
+       * <code>optional double f_double = 13;</code>
+       */
+      public Builder setFDouble(double value) {
+        bitField0_ |= 0x00001000;
+        fDouble_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional double f_double = 13;</code>
+       */
+      public Builder clearFDouble() {
+        bitField0_ = (bitField0_ & ~0x00001000);
+        fDouble_ = 0D;
+        onChanged();
+        return this;
+      }
+
+      // optional string f_string = 14;
+      private java.lang.Object fString_ = "";
+      /**
+       * <code>optional string f_string = 14;</code>
+       */
+      public boolean hasFString() {
+        return ((bitField0_ & 0x00002000) == 0x00002000);
+      }
+      /**
+       * <code>optional string f_string = 14;</code>
+       */
+      public java.lang.String getFString() {
+        java.lang.Object ref = fString_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          fString_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string f_string = 14;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFStringBytes() {
+        java.lang.Object ref = fString_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          fString_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string f_string = 14;</code>
+       */
+      public Builder setFString(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00002000;
+        fString_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string f_string = 14;</code>
+       */
+      public Builder clearFString() {
+        bitField0_ = (bitField0_ & ~0x00002000);
+        fString_ = getDefaultInstance().getFString();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string f_string = 14;</code>
+       */
+      public Builder setFStringBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00002000;
+        fString_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional bytes f_bytes = 15;
+      private com.google.protobuf.ByteString fBytes_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>optional bytes f_bytes = 15;</code>
+       */
+      public boolean hasFBytes() {
+        return ((bitField0_ & 0x00004000) == 0x00004000);
+      }
+      /**
+       * <code>optional bytes f_bytes = 15;</code>
+       */
+      public com.google.protobuf.ByteString getFBytes() {
+        return fBytes_;
+      }
+      /**
+       * <code>optional bytes f_bytes = 15;</code>
+       */
+      public Builder setFBytes(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00004000;
+        fBytes_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bytes f_bytes = 15;</code>
+       */
+      public Builder clearFBytes() {
+        bitField0_ = (bitField0_ & ~0x00004000);
+        fBytes_ = getDefaultInstance().getFBytes();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:Scalars)
+    }
+
+    static {
+      defaultInstance = new Scalars(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:Scalars)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_MyMsg_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_MyMsg_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Scalars_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Scalars_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -1074,12 +2771,19 @@ public final class Msg {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\tmsg.proto\"\244\001\n\005MyMsg\022\017\n\007f_int32\030\001 \002(\005\022\020" +
-      "\n\010f_uint32\030\002 \001(\r\022\020\n\010f_sint32\030\003 \001(\021\022\017\n\007f_" +
-      "int64\030\004 \001(\003\022\020\n\010f_uint64\030\005 \001(\004\022\020\n\010f_sint6" +
-      "4\030\006 \001(\022\022\016\n\006f_bool\030\007 \001(\010\022\017\n\007f_float\030\010 \001(\002" +
-      "\022\020\n\010f_double\030\t \001(\001B!\n\037com.github.zxh.cla" +
-      "sspy.protobuf"
+      "\n\tmsg.proto\"\205\001\n\005MyMsg\022\037\n\rsmall_scalars\030\001" +
+      " \002(\0132\010.Scalars\022\035\n\013big_scalars\030\002 \002(\0132\010.Sc" +
+      "alars\022\"\n\020optional_scalars\030\003 \002(\0132\010.Scalar" +
+      "s\022\030\n\007my_enum\030\004 \002(\0162\007.MyEnum\"\227\002\n\007Scalars\022" +
+      "\016\n\006f_bool\030\001 \002(\010\022\017\n\007f_int32\030\002 \001(\005\022\020\n\010f_ui" +
+      "nt32\030\003 \001(\r\022\020\n\010f_sint32\030\004 \001(\021\022\021\n\tf_fixed3" +
+      "2\030\005 \001(\007\022\022\n\nf_sfixed32\030\006 \001(\017\022\017\n\007f_int64\030\007" +
+      " \001(\003\022\020\n\010f_uint64\030\010 \001(\004\022\020\n\010f_sint64\030\t \001(\022" +
+      "\022\021\n\tf_fixed64\030\n \001(\006\022\022\n\nf_sfixed64\030\013 \001(\020\022" +
+      "\017\n\007f_float\030\014 \001(\002\022\020\n\010f_double\030\r \001(\001\022\020\n\010f_",
+      "string\030\016 \001(\t\022\017\n\007f_bytes\030\017 \001(\014*#\n\006MyEnum\022" +
+      "\007\n\003ONE\020\001\022\007\n\003TWO\020\002\022\007\n\003SIX\020\006B!\n\037com.github" +
+      ".zxh.classpy.protobuf"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -1091,7 +2795,13 @@ public final class Msg {
           internal_static_MyMsg_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_MyMsg_descriptor,
-              new java.lang.String[] { "FInt32", "FUint32", "FSint32", "FInt64", "FUint64", "FSint64", "FBool", "FFloat", "FDouble", });
+              new java.lang.String[] { "SmallScalars", "BigScalars", "OptionalScalars", "MyEnum", });
+          internal_static_Scalars_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_Scalars_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Scalars_descriptor,
+              new java.lang.String[] { "FBool", "FInt32", "FUint32", "FSint32", "FFixed32", "FSfixed32", "FInt64", "FUint64", "FSint64", "FFixed64", "FSfixed64", "FFloat", "FDouble", "FString", "FBytes", });
           return null;
         }
       };

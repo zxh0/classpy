@@ -2,13 +2,32 @@
 option java_package = "com.github.zxh.classpy.protobuf";
 
 message MyMsg {
-    required int32  f_int32  = 1;
-    optional uint32 f_uint32 = 2;
-    optional sint32 f_sint32 = 3;
-    optional int64  f_int64  = 4;
-    optional uint64 f_uint64 = 5;
-    optional sint64 f_sint64 = 6;
-    optional bool   f_bool   = 7;
-    optional float  f_float  = 8;
-    optional double f_double = 9;
+    required Scalars small_scalars    = 1;
+    required Scalars big_scalars      = 2;
+    required Scalars optional_scalars = 3;
+    required MyEnum  my_enum          = 4;
+}
+
+message Scalars {
+    required bool     f_bool     =  1;
+    optional int32    f_int32    =  2;
+    optional uint32   f_uint32   =  3;
+    optional sint32   f_sint32   =  4;
+    optional fixed32  f_fixed32  =  5;
+    optional sfixed32 f_sfixed32 =  6;
+    optional int64    f_int64    =  7;
+    optional uint64   f_uint64   =  8;
+    optional sint64   f_sint64   =  9;
+    optional fixed64  f_fixed64  = 10;
+    optional sfixed64 f_sfixed64 = 11;
+    optional float    f_float    = 12;
+    optional double   f_double   = 13;
+    optional string   f_string   = 14;
+    optional bytes    f_bytes    = 15;
+}
+
+enum MyEnum {
+    ONE = 1;
+    TWO = 2;
+    SIX = 6;
 }
