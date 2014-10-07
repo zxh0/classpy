@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.protobuf;
 
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileParser;
 
 /**
@@ -10,10 +9,10 @@ import com.github.zxh.classpy.common.FileParser;
 public class PbParser implements FileParser {
 
     @Override
-    public FileComponent parse(byte[] bytes) {
-        PbFile pb = new PbFile();
-        pb.read(new PbReader(bytes));
-        return pb;
+    public PbMessage parse(byte[] bytes) {
+        PbMessage msg = new PbMessage();
+        msg.read(new PbReader(bytes));
+        return msg;
     }
     
 }

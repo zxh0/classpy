@@ -5,7 +5,7 @@ package com.github.zxh.classpy.protobuf;
  * 
  * @author zxh
  */
-public class PbFile extends PbComponent {
+public class PbMessage extends PbComponent {
 
 //    private FileHeaders fileHeaders;
 //    private SectionTable sectionTable; // section headers
