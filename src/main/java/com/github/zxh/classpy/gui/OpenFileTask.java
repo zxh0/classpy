@@ -36,6 +36,7 @@ public class OpenFileTask extends Task<Object> {
         
         byte[] bytes = Files.readAllBytes(file.toPath());
         FileComponent fc = parser.parse(bytes);
+        fc.setName(file.getName());
         FileHex hex = new FileHex(bytes);
         
         System.out.println("finish loading");
