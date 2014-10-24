@@ -20,7 +20,7 @@ public class BytesBar extends Pane {
     public void select(FileComponent fc) {
         getChildren().clear();
         
-        final double w = getWidth();
+        final double w = getWidth() - 4;
         final double h = getHeight();
         
         getChildren().add(new Line(0, h / 2, w, h / 2));
