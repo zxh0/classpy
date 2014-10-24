@@ -12,10 +12,12 @@ public class MyMenuBar extends MenuBar {
 
     private MenuItem openMenuItem;
     private MenuItem reloadMenuItem;
+    private MenuItem newWinMenuItem;
     private MenuItem aboutMenuItem;
     
     public MyMenuBar() {
         getMenus().add(createFileMenu());
+        getMenus().add(createWindowMenu());
         getMenus().add(createHelpMenu());
     }
     
@@ -30,6 +32,15 @@ public class MyMenuBar extends MenuBar {
         return fileMenu;
     }
     
+    private Menu createWindowMenu() {
+        newWinMenuItem = new MenuItem("New Window");
+        
+        Menu winMenu = new Menu("Window");
+        winMenu.getItems().add(newWinMenuItem);
+        
+        return winMenu;
+    }
+    
     private Menu createHelpMenu() {
         aboutMenuItem = new MenuItem("About");
         
@@ -38,17 +49,11 @@ public class MyMenuBar extends MenuBar {
         
         return helpMenu;
     }
-
-    public MenuItem getOpenMenuItem() {
-        return openMenuItem;
-    }
-
-    public MenuItem getReloadMenuItem() {
-        return reloadMenuItem;
-    }
-
-    public MenuItem getAboutMenuItem() {
-        return aboutMenuItem;
-    }
+    
+    // Getters
+    public MenuItem getOpenMenuItem() {return openMenuItem;}
+    public MenuItem getReloadMenuItem() {return reloadMenuItem;}
+    public MenuItem getNewWinMenuItem() {return newWinMenuItem;}
+    public MenuItem getAboutMenuItem() {return aboutMenuItem;}
     
 }

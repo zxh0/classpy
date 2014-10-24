@@ -27,7 +27,7 @@ public class ClasspyApp extends Application {
     private File lastOpenFile;
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) {
         this.stage = stage;
         
         root = new BorderPane();
@@ -43,6 +43,7 @@ public class ClasspyApp extends Application {
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
         menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
+        menuBar.getNewWinMenuItem().setOnAction(e -> openNewWindow());
         menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         
         return menuBar;
@@ -107,6 +108,11 @@ public class ClasspyApp extends Application {
                 // todo
             }
         }
+    }
+    
+    private void openNewWindow() {
+        // is this correct?
+        new ClasspyApp().start(new Stage());
     }
     
     
