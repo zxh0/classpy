@@ -23,24 +23,31 @@ import javafx.scene.layout.BorderPane;
 public class MainPane extends BorderPane {
     
     public MainPane(FileComponent file, FileHex hex) {
-        Label statusBar = new Label(" ");
-        super.setBottom(statusBar);
-        
-        SplitPane splitPane = buildSplitPane(file, hex, statusBar);
-        super.setCenter(splitPane);
-    }
-    
-    private static SplitPane buildSplitPane(FileComponent file, FileHex hex, Label statusBar) {
         TreeView<FileComponent> tree = buildClassTree(file);
         HexPane hexPane = new HexPane(hex);
-        listenTreeItemSelection(tree, hexPane, statusBar);
+        Label statusLabel = new Label(" ");
+        BytesBar bytesBar = new BytesBar(file.getLength());
+        bytesBar.setMaxHeight(statusLabel.getPrefHeight());
+        bytesBar.setPrefWidth(100);
         
+        listenTreeItemSelection(tree, hexPane, statusLabel, bytesBar);
+        super.setCenter(buildSplitPane(tree, hexPane));
+        super.setBottom(buildStatusBar(statusLabel, bytesBar));
+    }
+    
+    private static SplitPane buildSplitPane(TreeView<FileComponent> tree, HexPane hexPane) {
         SplitPane sp = new SplitPane();
         sp.getItems().add(tree);
         sp.getItems().add(hexPane);
         sp.setDividerPositions(0.1, 0.9);
-        
         return sp;
+    }
+    
+    private static BorderPane buildStatusBar(Label statusLabel, BytesBar bytesBar) {
+        BorderPane statusBar = new BorderPane();
+        statusBar.setLeft(statusLabel);
+        statusBar.setRight(bytesBar);
+        return statusBar;
     }
     
     private static TreeView<FileComponent> buildClassTree(FileComponent file) {
@@ -53,7 +60,9 @@ public class MainPane extends BorderPane {
         return tree;
     }
     
-    private static void listenTreeItemSelection(TreeView<FileComponent> tree, HexPane hexPane, Label statusBar) {
+    private static void listenTreeItemSelection(TreeView<FileComponent> tree,
+            HexPane hexPane, Label statusBar, BytesBar bytesBar) {
+        
         tree.getSelectionModel().getSelectedItems().addListener(
             (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
                 if (c.next()) {
@@ -65,6 +74,7 @@ public class MainPane extends BorderPane {
                             statusBar.setText(" " + fc.getClass().getSimpleName());
                             if (fc.getLength() > 0) {
                                 hexPane.select(fc);
+                                bytesBar.select(fc);
                             }
                         }
                     }
