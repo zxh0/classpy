@@ -5,9 +5,7 @@ import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
@@ -41,36 +39,12 @@ public class ClasspyApp extends Application {
     }
     
     private MenuBar createMenuBar() {
-        MenuBar menuBar = new MenuBar();
+        MyMenuBar menuBar = new MyMenuBar();
         
-        menuBar.getMenus().add(createFileMenu());
-        menuBar.getMenus().add(createHelpMenu());
+        menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
+        menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         
         return menuBar;
-    }
-    
-    private Menu createFileMenu() {
-        MenuItem openMenuItem = new MenuItem("Open...");
-        openMenuItem.setOnAction(e -> {
-            showFileChooser();
-        });
-        
-        Menu fileMenu = new Menu("File");
-        fileMenu.getItems().add(openMenuItem);
-        
-        return fileMenu;
-    }
-    
-    private Menu createHelpMenu() {
-        MenuItem aboutMenuItem = new MenuItem("About");
-        aboutMenuItem.setOnAction(e -> {
-            AboutDialog.showDialog();
-        });
-        
-        Menu helpMenu = new Menu("Help");
-        helpMenu.getItems().add(aboutMenuItem);
-        
-        return helpMenu;
     }
     
     private void showFileChooser() {
