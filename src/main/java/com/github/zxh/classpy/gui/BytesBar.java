@@ -19,9 +19,13 @@ public class BytesBar extends Pane {
     
     public void select(FileComponent fc) {
         getChildren().clear();
-        getChildren().add(new Line(0, getHeight()/2, getWidth(), getHeight()/2));
-        getChildren().add(new Rectangle(getWidth() * fc.getOffset() / byteCount, 2,
-                getWidth() * fc.getLength() / byteCount, getHeight() - 4));
+        
+        final double w = getWidth();
+        final double h = getHeight();
+        
+        getChildren().add(new Line(0, h / 2, w, h / 2));
+        getChildren().add(new Rectangle(w * fc.getOffset() / byteCount, 2,
+                w * fc.getLength() / byteCount, h - 4));
     }
     
 }
