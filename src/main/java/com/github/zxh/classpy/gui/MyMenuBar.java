@@ -11,6 +11,7 @@ import javafx.scene.control.MenuItem;
 public class MyMenuBar extends MenuBar {
 
     private MenuItem openMenuItem;
+    private MenuItem reloadMenuItem;
     private MenuItem aboutMenuItem;
     
     public MyMenuBar() {
@@ -20,9 +21,11 @@ public class MyMenuBar extends MenuBar {
     
     private Menu createFileMenu() {
         openMenuItem = new MenuItem("Open...");
+        reloadMenuItem = new MenuItem("Reload");
         
         Menu fileMenu = new Menu("File");
         fileMenu.getItems().add(openMenuItem);
+        fileMenu.getItems().add(reloadMenuItem);
         
         return fileMenu;
     }
@@ -38,6 +41,10 @@ public class MyMenuBar extends MenuBar {
 
     public MenuItem getOpenMenuItem() {
         return openMenuItem;
+    }
+
+    public MenuItem getReloadMenuItem() {
+        return reloadMenuItem;
     }
 
     public MenuItem getAboutMenuItem() {

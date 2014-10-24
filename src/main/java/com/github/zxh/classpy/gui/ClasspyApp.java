@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  */
 public class ClasspyApp extends Application {
 
-    private static final String TITLE = "Classpy 8";
+    private static final String TITLE = "Classpy";
     
     private FileChooser fileChooser;
     private Stage stage;
@@ -42,6 +42,7 @@ public class ClasspyApp extends Application {
         MyMenuBar menuBar = new MyMenuBar();
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
+        menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
         menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         
         return menuBar;
@@ -50,10 +51,12 @@ public class ClasspyApp extends Application {
     private void showFileChooser() {
         if (fileChooser == null) {
             initFileChooser();
-        } else if (lastOpenFile != null) {
-            fileChooser.setInitialDirectory(lastOpenFile.getParentFile());
+        } else {
+            if (lastOpenFile != null && lastOpenFile.getParentFile().isDirectory()) {
+                fileChooser.setInitialDirectory(lastOpenFile.getParentFile());
+            }
         }
-
+        
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             // todo
@@ -94,6 +97,16 @@ public class ClasspyApp extends Application {
         });
 
         task.startInNewThread();
+    }
+    
+    private void reloadFile() {
+        if (lastOpenFile != null) {
+            if (lastOpenFile.exists()) {
+                openFile(lastOpenFile, () -> {});
+            } else {
+                // todo
+            }
+        }
     }
     
     
