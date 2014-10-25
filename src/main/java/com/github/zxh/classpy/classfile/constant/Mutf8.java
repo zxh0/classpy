@@ -4,7 +4,6 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.Mutf8Decoder;
-import com.github.zxh.classpy.common.Util;
 import java.io.IOException;
 
 /**
@@ -34,7 +33,7 @@ public class Mutf8 extends ClassComponent {
             throw new FileParseException(e);
         }
         
-        setDesc(Util.cutAndAppendEllipsis(value, 100));
+        setDesc(value);
     }
     
 }

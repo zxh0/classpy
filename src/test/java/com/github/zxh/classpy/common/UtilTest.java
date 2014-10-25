@@ -15,6 +15,9 @@ public class UtilTest {
         assertEquals("aa...", Util.cutAndAppendEllipsis("aaaaaa", 5));
         assertEquals("aa...", Util.cutAndAppendEllipsis("aa\ud801\udc00aa", 5));
         assertEquals("a...", Util.cutAndAppendEllipsis("a\ud801\udc00aaa", 5));
+        
+        assertEquals("...", Util.cutAndAppendEllipsis("\naaa", 5));
+        assertEquals("a...", Util.cutAndAppendEllipsis("a\naaa", 5));
     }
     
 }

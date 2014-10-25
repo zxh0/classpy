@@ -38,12 +38,14 @@ public class Util {
     }
     
     /**
-     * Cut the string and append ellipsis if it is too long.
+     * Cut the string and append ellipsis.
      * @param str
      * @param maxLength
      * @return 
      */
     public static String cutAndAppendEllipsis(String str, int maxLength) {
+        str = str.replaceAll("\\r|\\n", "");
+        
         if (str.length() <= maxLength) {
             return str;
         }
