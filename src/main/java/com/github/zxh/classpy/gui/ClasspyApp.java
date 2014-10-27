@@ -43,6 +43,7 @@ public class ClasspyApp extends Application {
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
         menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
+        menuBar.getPlayBytecodeMenuItem().setOnAction(e -> playBytecode());
         menuBar.getNewWinMenuItem().setOnAction(e -> openNewWindow());
         menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         
@@ -108,6 +109,10 @@ public class ClasspyApp extends Application {
                 // todo
             }
         }
+    }
+    
+    private void playBytecode() {
+        // todo
     }
     
     private void openNewWindow() {

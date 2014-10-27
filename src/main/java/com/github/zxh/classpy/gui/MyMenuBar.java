@@ -12,11 +12,13 @@ public class MyMenuBar extends MenuBar {
 
     private MenuItem openMenuItem;
     private MenuItem reloadMenuItem;
+    private MenuItem playBytecodeMenuItem;
     private MenuItem newWinMenuItem;
     private MenuItem aboutMenuItem;
     
     public MyMenuBar() {
         getMenus().add(createFileMenu());
+        getMenus().add(createToolsMenu());
         getMenus().add(createWindowMenu());
         getMenus().add(createHelpMenu());
     }
@@ -30,6 +32,15 @@ public class MyMenuBar extends MenuBar {
         fileMenu.getItems().add(reloadMenuItem);
         
         return fileMenu;
+    }
+    
+    private Menu createToolsMenu() {
+        playBytecodeMenuItem = new MenuItem("Play bytecode...");
+        
+        Menu toolsMenu = new Menu("Tools");
+        toolsMenu.getItems().add(playBytecodeMenuItem);
+        
+        return toolsMenu;
     }
     
     private Menu createWindowMenu() {
@@ -53,6 +64,7 @@ public class MyMenuBar extends MenuBar {
     // Getters
     public MenuItem getOpenMenuItem() {return openMenuItem;}
     public MenuItem getReloadMenuItem() {return reloadMenuItem;}
+    public MenuItem getPlayBytecodeMenuItem() {return playBytecodeMenuItem;}
     public MenuItem getNewWinMenuItem() {return newWinMenuItem;}
     public MenuItem getAboutMenuItem() {return aboutMenuItem;}
     
