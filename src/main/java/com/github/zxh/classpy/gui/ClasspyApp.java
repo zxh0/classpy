@@ -1,9 +1,11 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ProgressBar;
@@ -112,8 +114,15 @@ public class ClasspyApp extends Application {
     }
     
     private void playBytecode() {
-        // todo
-        System.out.println(root.getCenter());
+        Node node = root.getCenter();
+        if (node != null) {
+            MainPane mainPane = (MainPane) node;
+            MethodInfo method = mainPane.getSelectedMethodInfo();
+            if (method != null) {
+                // todo
+                System.out.println(method);
+            }
+        }
     }
     
     private void openNewWindow() {
