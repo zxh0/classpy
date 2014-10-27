@@ -5,7 +5,12 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
 /**
- *
+ * Classpy menu bar.
+ * 
+ * File       Tools            Window        Help
+ *  |-Open...  |-Play bytecode  |-New Window  |-About
+ *  |-Reload
+ * 
  * @author zxh
  */
 public class MyMenuBar extends MenuBar {
@@ -35,7 +40,7 @@ public class MyMenuBar extends MenuBar {
     }
     
     private Menu createToolsMenu() {
-        playBytecodeMenuItem = new MenuItem("Play bytecode...");
+        playBytecodeMenuItem = new MenuItem("Play bytecode");
         
         Menu toolsMenu = new Menu("Tools");
         toolsMenu.getItems().add(playBytecodeMenuItem);
