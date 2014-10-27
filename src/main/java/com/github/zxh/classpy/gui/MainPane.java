@@ -12,43 +12,39 @@ import javafx.scene.layout.BorderPane;
 /**
  * Container of TreeView, HexPane and StatusBar.
  * 
- * |--------------------|
- * | TreeView | HexPane |
- * |--------------------|
- * | StatusBar          |
- * |--------------------|
+ * |------------------------------|
+ * | TreeView      |      HexPane |
+ * |               |              |
+ * |------------------------------|
+ * | StatusLabel          BytesBar|
+ * |------------------------------|
  * 
  * @author zxh
  */
 public class MainPane extends BorderPane {
     
+    private final TreeView<FileComponent> tree;
+    private final HexPane hexPane;
+    private final Label statusLabel;
+    private final BytesBar bytesBar;
+    
     public MainPane(FileComponent file, FileHex hex) {
-        TreeView<FileComponent> tree = buildClassTree(file);
-        HexPane hexPane = new HexPane(hex);
-        Label statusLabel = new Label(" ");
-        BytesBar bytesBar = new BytesBar(file.getLength());
+        tree = buildClassTree(file);
+        hexPane = new HexPane(hex);
+        statusLabel = new Label(" ");
+        bytesBar = new BytesBar(file.getLength());
         bytesBar.setMaxHeight(statusLabel.getPrefHeight());
         bytesBar.setPrefWidth(100);
         
-        listenTreeItemSelection(tree, hexPane, statusLabel, bytesBar);
-        super.setCenter(buildSplitPane(tree, hexPane));
-        super.setBottom(buildStatusBar(statusLabel, bytesBar));
+        super.setCenter(buildSplitPane());
+        super.setBottom(buildStatusBar());
+        listenTreeItemSelection();
     }
     
-    private static SplitPane buildSplitPane(TreeView<FileComponent> tree, HexPane hexPane) {
-        SplitPane sp = new SplitPane();
-        sp.getItems().add(tree);
-        sp.getItems().add(hexPane);
-        sp.setDividerPositions(0.1, 0.9);
-        return sp;
-    }
-    
-    private static BorderPane buildStatusBar(Label statusLabel, BytesBar bytesBar) {
-        BorderPane statusBar = new BorderPane();
-        statusBar.setLeft(statusLabel);
-        statusBar.setRight(bytesBar);
-        return statusBar;
-    }
+//    public Object getSelectedFileComponent() {
+//        
+//        tree.getSelectionModel().getSelectedItem();
+//    }
     
     private static TreeView<FileComponent> buildClassTree(FileComponent file) {
         FileComponentTreeItem root = new FileComponentTreeItem(file);
@@ -60,9 +56,22 @@ public class MainPane extends BorderPane {
         return tree;
     }
     
-    private static void listenTreeItemSelection(TreeView<FileComponent> tree,
-            HexPane hexPane, Label statusBar, BytesBar bytesBar) {
-        
+    private SplitPane buildSplitPane() {
+        SplitPane sp = new SplitPane();
+        sp.getItems().add(tree);
+        sp.getItems().add(hexPane);
+        sp.setDividerPositions(0.1, 0.9);
+        return sp;
+    }
+    
+    private BorderPane buildStatusBar() {
+        BorderPane statusBar = new BorderPane();
+        statusBar.setLeft(statusLabel);
+        statusBar.setRight(bytesBar);
+        return statusBar;
+    }
+    
+    private void listenTreeItemSelection() {
         tree.getSelectionModel().getSelectedItems().addListener(
             (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
                 if (c.next()) {
@@ -71,7 +80,7 @@ public class MainPane extends BorderPane {
                         if (node != null && node.getParent() != null) {
                             FileComponent fc = node.getValue();
                             //System.out.println("select " + cc);
-                            statusBar.setText(" " + fc.getClass().getSimpleName());
+                            statusLabel.setText(" " + fc.getClass().getSimpleName());
                             if (fc.getLength() > 0) {
                                 hexPane.select(fc);
                                 bytesBar.select(fc);

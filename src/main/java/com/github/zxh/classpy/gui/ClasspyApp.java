@@ -113,6 +113,7 @@ public class ClasspyApp extends Application {
     
     private void playBytecode() {
         // todo
+        System.out.println(root.getCenter());
     }
     
     private void openNewWindow() {
