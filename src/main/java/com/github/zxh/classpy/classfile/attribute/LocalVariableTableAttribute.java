@@ -47,9 +47,16 @@ public class LocalVariableTableAttribute extends AttributeInfo {
             nameIndex = reader.readU2CpIndex();
             descriptorIndex = reader.readU2CpIndex();
             index = reader.readU2();
-            setDesc(reader.getConstantPool().getConstantDesc(nameIndex.getValue()));
+            setDesc(reader);
         }
-    
+        
+        private void setDesc(ClassReader reader) {
+            String varName = reader.getConstantPool().getConstantDesc(nameIndex.getValue());
+            int fromPc = startPc.getValue();
+            int toPc = fromPc + length.getValue() - 1;
+            setDesc(String.format("%s(%d~%d)", varName, fromPc, toPc));
+        }
+        
     }
     
 }
