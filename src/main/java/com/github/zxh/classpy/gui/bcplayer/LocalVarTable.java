@@ -16,13 +16,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author zxh
  */
-public class LocalVarTable extends TableView<LocalVar> {
+public class LocalVarTable extends TableView<VarSlot> {
 
     public LocalVarTable(MethodInfo method) {
-        TableColumn<LocalVar, String> slotCol = new TableColumn<>("Slot");
+        TableColumn<VarSlot, String> slotCol = new TableColumn<>("Slot");
         slotCol.setCellValueFactory(new PropertyValueFactory<>("slot"));
         
-        TableColumn<LocalVar, String> valCol = new TableColumn<>("Value");
+        TableColumn<VarSlot, String> valCol = new TableColumn<>("Value");
         //valCol.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getDesc()));
         
         super.getColumns().add(slotCol);
@@ -39,9 +39,9 @@ public class LocalVarTable extends TableView<LocalVar> {
         }
     }
     
-    private static ObservableList<LocalVar> createVars(int maxLocals) {
-        List<LocalVar> vars = IntStream.range(0, maxLocals)
-                .mapToObj(i -> new LocalVar(i))
+    private static ObservableList<VarSlot> createVars(int maxLocals) {
+        List<VarSlot> vars = IntStream.range(0, maxLocals)
+                .mapToObj(i -> new VarSlot(i))
                 .collect(Collectors.toList());
         return FXCollections.observableArrayList(vars);
     }
