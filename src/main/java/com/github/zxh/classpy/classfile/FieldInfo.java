@@ -4,7 +4,6 @@ import com.github.zxh.classpy.common.java.AccessFlags;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
-import com.github.zxh.classpy.classfile.attribute.CodeAttribute;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -40,9 +39,9 @@ public class FieldInfo extends ClassComponent {
         AccessFlags.describeFieldFlags(accessFlags);
     }
     
-    public CodeAttribute findCodeAttribute() {
-        Optional<AttributeInfo> codeAttr = findAttribute(a -> a instanceof CodeAttribute);
-        return (CodeAttribute) codeAttr.orElse(null);
+    public <T extends AttributeInfo> T findAttribute(Class<T> attrClass) {
+        Optional<AttributeInfo> codeAttr = findAttribute(attrClass::isInstance);
+        return attrClass.cast(codeAttr.orElse(null));
     }
     
     private Optional<AttributeInfo> findAttribute(Predicate<AttributeInfo> predicate) {

@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui.bcplayer;
 
 import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.classfile.attribute.CodeAttribute;
+import com.github.zxh.classpy.classfile.attribute.LocalVariableTableAttribute;
 import com.github.zxh.classpy.classfile.bytecode.Instruction;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -50,7 +51,7 @@ public class ByteCodePlayer extends Stage {
         table.getColumns().add(instCol);
         table.setSortPolicy(t -> false); // no sort
         
-        CodeAttribute codeAttr = method.findCodeAttribute();
+        CodeAttribute codeAttr = method.findAttribute(CodeAttribute.class);
         if (codeAttr != null) {
             List<Instruction> insts = codeAttr.getCode().getSubComponents();
             table.setItems(FXCollections.observableArrayList(insts));
@@ -62,7 +63,7 @@ public class ByteCodePlayer extends Stage {
 //    private TableView<?> createLocalVarTable() {
 //        
 //        
-//        LocalVariableTableAttribute localVarTableAttr = 
+//        LocalVariableTableAttribute localVarTableAttr = method.findCodeAttribute()
 //    }
     
 }
