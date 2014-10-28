@@ -35,6 +35,10 @@ public class CodeAttribute extends AttributeInfo {
     private Table<ExceptionTableEntry> exceptionTable;
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
+
+    public Code getCode() {
+        return code;
+    }
     
     @Override
     protected void readInfo(ClassReader reader) {

@@ -21,6 +21,10 @@ public class FieldInfo extends ClassComponent {
     private U2CpIndex descriptorIndex;
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
+
+    public Table<AttributeInfo> getAttributes() {
+        return attributes;
+    }
     
     @Override
     protected void readContent(ClassReader reader) {
