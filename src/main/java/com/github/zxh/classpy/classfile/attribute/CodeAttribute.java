@@ -25,7 +25,7 @@ Code_attribute {
     attribute_info attributes[attributes_count];
 }
  */
-public class CodeAttribute extends AttributeInfo {
+public class CodeAttribute extends AttributeInfo implements AttributeContainer {
 
     private U2 maxStack;
     private U2 maxLocals;
@@ -38,6 +38,11 @@ public class CodeAttribute extends AttributeInfo {
 
     public Code getCode() {
         return code;
+    }
+
+    @Override
+    public Table<AttributeInfo> getAttributes() {
+        return attributes;
     }
     
     @Override
