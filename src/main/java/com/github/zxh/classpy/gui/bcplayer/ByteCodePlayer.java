@@ -2,11 +2,8 @@ package com.github.zxh.classpy.gui.bcplayer;
 
 import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.classfile.attribute.CodeAttribute;
-import com.github.zxh.classpy.classfile.attribute.LocalVariableTableAttribute;
-import com.github.zxh.classpy.classfile.attribute.LocalVariableTableAttribute.LocalVariableTableEntry;
 import com.github.zxh.classpy.classfile.bytecode.Instruction;
 import java.util.List;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.scene.Scene;
 import javafx.scene.control.SplitPane;
@@ -33,7 +30,7 @@ public class ByteCodePlayer extends Stage {
         
         SplitPane sp = new SplitPane();
         sp.getItems().add(createBytecodeTable());
-        sp.getItems().add(createLocalVarTable());
+        sp.getItems().add(new LocalVarTable(method));
         //sp.getItems().add(new Label("a"));
         root.setCenter(sp);
         
@@ -56,30 +53,6 @@ public class ByteCodePlayer extends Stage {
         if (codeAttr != null) {
             List<Instruction> insts = codeAttr.getCode().getSubComponents();
             table.setItems(FXCollections.observableArrayList(insts));
-        }
-        
-        return table;
-    }
-    
-    private TableView<LocalVariableTableEntry> createLocalVarTable() {
-        TableColumn<LocalVariableTableEntry, String> slotCol = new TableColumn<>("Slot");
-        slotCol.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(""+cell.getValue().getIndex().getValue()));
-        
-        TableColumn<LocalVariableTableEntry, String> valCol = new TableColumn<>("Value");
-        //valCol.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getDesc()));
-        
-        TableView<LocalVariableTableEntry> table = new TableView<>();
-        table.getColumns().add(slotCol);
-        table.getColumns().add(valCol);
-        table.setSortPolicy(t -> false); // no sort
-        
-        CodeAttribute codeAttr = method.findAttribute(CodeAttribute.class);
-        if (codeAttr != null) {
-            LocalVariableTableAttribute localVarTableAttr = codeAttr.findAttribute(LocalVariableTableAttribute.class);
-            if (localVarTableAttr != null) {
-                List<LocalVariableTableEntry> vars = localVarTableAttr.getLocalVariableTable().getSubComponents();
-                table.setItems(FXCollections.observableArrayList(vars));
-            }
         }
         
         return table;

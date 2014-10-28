@@ -36,9 +36,10 @@ public class CodeAttribute extends AttributeInfo implements AttributeContainer {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
 
-    public Code getCode() {
-        return code;
-    }
+    // Getters
+    public U2 getMaxStack() {return maxStack;}
+    public U2 getMaxLocals() {return maxLocals;}
+    public Code getCode() {return code;}
 
     @Override
     public Table<AttributeInfo> getAttributes() {
