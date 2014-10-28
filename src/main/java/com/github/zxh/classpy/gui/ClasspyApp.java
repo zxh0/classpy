@@ -3,6 +3,7 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
+import com.github.zxh.classpy.gui.bcplayer.ByteCodePlayer;
 import java.io.File;
 import javafx.application.Application;
 import javafx.scene.Node;
@@ -45,7 +46,7 @@ public class ClasspyApp extends Application {
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
         menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
-        //menuBar.getPlayBytecodeMenuItem().setOnAction(e -> playBytecode());
+        menuBar.getPlayBytecodeMenuItem().setOnAction(e -> playBytecode());
         menuBar.getNewWinMenuItem().setOnAction(e -> openNewWindow());
         menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         
@@ -119,8 +120,8 @@ public class ClasspyApp extends Application {
             MainPane mainPane = (MainPane) node;
             MethodInfo method = mainPane.getSelectedMethodInfo();
             if (method != null) {
-                // todo
-                System.out.println(method);
+                //System.out.println(method);
+                new ByteCodePlayer(method).show();
             }
         }
     }
