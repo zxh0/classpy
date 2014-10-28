@@ -44,9 +44,12 @@ public class LocalVariableTableAttribute extends AttributeInfo {
         private U2CpIndex descriptorIndex;
         private U2 index;
 
-        public U2 getIndex() {
-            return index;
-        }
+        // Getters
+        public U2 getStartPc() {return startPc;}
+        public U2 getIndex() {return index;}
+        
+        // can not override getLength()
+        public U2 length() {return length;}
 
         @Override
         protected void readContent(ClassReader reader) {

@@ -3,6 +3,7 @@ package com.github.zxh.classpy.gui.bcplayer;
 import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.classfile.attribute.CodeAttribute;
 import com.github.zxh.classpy.classfile.attribute.LocalVariableTableAttribute;
+import com.github.zxh.classpy.classfile.attribute.LocalVariableTableAttribute.LocalVariableTableEntry;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -18,15 +19,19 @@ import javafx.scene.control.cell.PropertyValueFactory;
  */
 public class LocalVarTable extends TableView<VarSlot> {
 
+    private List<LocalVariableTableEntry> vars;
+    
     public LocalVarTable(MethodInfo method) {
         TableColumn<VarSlot, String> slotCol = new TableColumn<>("Slot");
-        slotCol.setMinWidth(64);
         slotCol.setCellValueFactory(new PropertyValueFactory<>("slot"));
+        slotCol.setMinWidth(64);
         
         TableColumn<VarSlot, String> nameCol = new TableColumn<>("Name");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         nameCol.setMinWidth(64);
         
         TableColumn<VarSlot, String> valCol = new TableColumn<>("Value");
+        valCol.setCellValueFactory(new PropertyValueFactory<>("value"));
         valCol.setMinWidth(64);
         
         super.getColumns().add(slotCol);
@@ -36,12 +41,15 @@ public class LocalVarTable extends TableView<VarSlot> {
         
         CodeAttribute codeAttr = method.findAttribute(CodeAttribute.class);
         if (codeAttr != null) {
-            LocalVariableTableAttribute localVarTableAttr = codeAttr.findAttribute(LocalVariableTableAttribute.class);
-            if (localVarTableAttr != null) {
-                int maxLocals = codeAttr.getMaxLocals().getValue();
-                super.setItems(createVars(maxLocals));
+            int maxLocals = codeAttr.getMaxLocals().getValue();
+            super.setItems(createVars(maxLocals));
+            LocalVariableTableAttribute varTableAttr = codeAttr.findAttribute(LocalVariableTableAttribute.class);
+            if (varTableAttr != null) {
+                vars = varTableAttr.getLocalVariableTable().getSubComponents();
             }
         }
+        
+        setVarNames(super.getItems(), 0);
     }
     
     private static ObservableList<VarSlot> createVars(int maxLocals) {
@@ -49,6 +57,18 @@ public class LocalVarTable extends TableView<VarSlot> {
                 .mapToObj(i -> new VarSlot(i))
                 .collect(Collectors.toList());
         return FXCollections.observableArrayList(vars);
+    }
+    
+    private void setVarNames(ObservableList<VarSlot> slots, int pc) {
+        if (vars != null) {
+            vars.stream().forEach((var) -> {
+                int startPc = var.getStartPc().getValue();
+                int endPc = startPc + var.length().getValue() - 1;
+                if (pc >= startPc && pc <= endPc) {
+                    slots.get(var.getIndex().getValue()).setName(var.getDesc());
+                }
+            });
+        }
     }
     
 }
