@@ -23,7 +23,7 @@ public class MyMenuBar extends MenuBar {
     
     public MyMenuBar() {
         getMenus().add(createFileMenu());
-        getMenus().add(createToolsMenu());
+        //getMenus().add(createToolsMenu());
         getMenus().add(createWindowMenu());
         getMenus().add(createHelpMenu());
     }
