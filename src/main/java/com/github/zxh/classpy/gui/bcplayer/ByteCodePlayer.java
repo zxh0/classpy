@@ -3,6 +3,7 @@ package com.github.zxh.classpy.gui.bcplayer;
 import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.classfile.attribute.CodeAttribute;
 import com.github.zxh.classpy.classfile.attribute.LocalVariableTableAttribute;
+import com.github.zxh.classpy.classfile.attribute.LocalVariableTableAttribute.LocalVariableTableEntry;
 import com.github.zxh.classpy.classfile.bytecode.Instruction;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -32,8 +33,8 @@ public class ByteCodePlayer extends Stage {
         
         SplitPane sp = new SplitPane();
         sp.getItems().add(createBytecodeTable());
-        sp.getItems().add(new Label("a"));
-        sp.getItems().add(new Label("a"));
+        sp.getItems().add(createLocalVarTable());
+        //sp.getItems().add(new Label("a"));
         root.setCenter(sp);
         
         super.setScene(new Scene(root, 400, 300));
@@ -60,10 +61,25 @@ public class ByteCodePlayer extends Stage {
         return table;
     }
     
-//    private TableView<?> createLocalVarTable() {
-//        
-//        
-//        LocalVariableTableAttribute localVarTableAttr = method.findCodeAttribute()
-//    }
+    private TableView<?> createLocalVarTable() {
+        TableColumn<LocalVariableTableEntry, String> slotCol = new TableColumn<>("Slot");
+        slotCol.setCellValueFactory(new PropertyValueFactory<>("index"));
+        
+        TableColumn<LocalVariableTableEntry, String> valCol = new TableColumn<>("Value");
+        //instCol.setCellValueFactory(new PropertyValueFactory<>("desc"));
+        
+        TableView<LocalVariableTableEntry> table = new TableView<>();
+        table.getColumns().add(slotCol);
+        table.getColumns().add(valCol);
+        table.setSortPolicy(t -> false); // no sort
+        
+        LocalVariableTableAttribute localVarTableAttr = method.findAttribute(LocalVariableTableAttribute.class);
+        if (localVarTableAttr != null) {
+            List<LocalVariableTableEntry> vars = localVarTableAttr.getLocalVariableTable().getSubComponents();
+            table.setItems(FXCollections.observableArrayList(vars));
+        }
+        
+        return table;
+    }
     
 }

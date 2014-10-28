@@ -23,6 +23,10 @@ public class LocalVariableTableAttribute extends AttributeInfo {
 
     private U2 localVariableTableLength;
     private Table<LocalVariableTableEntry> localVariableTable;
+
+    public Table<LocalVariableTableEntry> getLocalVariableTable() {
+        return localVariableTable;
+    }
     
     @Override
     protected void readInfo(ClassReader reader) {
@@ -39,6 +43,10 @@ public class LocalVariableTableAttribute extends AttributeInfo {
         private U2CpIndex nameIndex;
         private U2CpIndex descriptorIndex;
         private U2 index;
+
+        public U2 getIndex() {
+            return index;
+        }
 
         @Override
         protected void readContent(ClassReader reader) {

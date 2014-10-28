@@ -1,11 +1,10 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.attribute.AttributeContainer;
 import com.github.zxh.classpy.common.java.AccessFlags;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
-import java.util.Optional;
-import java.util.function.Predicate;
 
 /*
 field_info {
@@ -16,13 +15,18 @@ field_info {
     attribute_info attributes[attributes_count];
 }
  */
-public class FieldInfo extends ClassComponent {
+public class FieldInfo extends ClassComponent implements AttributeContainer {
 
     private U2 accessFlags;
     private U2CpIndex nameIndex;
     private U2CpIndex descriptorIndex;
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
+
+    @Override
+    public Table<AttributeInfo> getAttributes() {
+        return attributes;
+    }
 
     @Override
     protected void readContent(ClassReader reader) {
@@ -37,17 +41,6 @@ public class FieldInfo extends ClassComponent {
     
     protected void describe(U2 accessFlags) {
         AccessFlags.describeFieldFlags(accessFlags);
-    }
-    
-    public <T extends AttributeInfo> T findAttribute(Class<T> attrClass) {
-        Optional<AttributeInfo> codeAttr = findAttribute(attrClass::isInstance);
-        return attrClass.cast(codeAttr.orElse(null));
-    }
-    
-    private Optional<AttributeInfo> findAttribute(Predicate<AttributeInfo> predicate) {
-        return attributes.getSubComponents().stream()
-                .filter(predicate)
-                .findAny();
     }
     
 }
