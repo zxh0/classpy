@@ -20,12 +20,17 @@ public class LocalVarTable extends TableView<VarSlot> {
 
     public LocalVarTable(MethodInfo method) {
         TableColumn<VarSlot, String> slotCol = new TableColumn<>("Slot");
+        slotCol.setMinWidth(64);
         slotCol.setCellValueFactory(new PropertyValueFactory<>("slot"));
         
+        TableColumn<VarSlot, String> nameCol = new TableColumn<>("Name");
+        nameCol.setMinWidth(64);
+        
         TableColumn<VarSlot, String> valCol = new TableColumn<>("Value");
-        //valCol.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getDesc()));
+        valCol.setMinWidth(64);
         
         super.getColumns().add(slotCol);
+        super.getColumns().add(nameCol);
         super.getColumns().add(valCol);
         super.setSortPolicy(t -> false); // no sort
         

@@ -19,9 +19,11 @@ public class StackTable extends TableView<VarSlot> {
 
     public StackTable(MethodInfo method) {
         TableColumn<VarSlot, String> slotCol = new TableColumn<>("Slot");
+        slotCol.setMinWidth(64);
         slotCol.setCellValueFactory(new PropertyValueFactory<>("slot"));
         
         TableColumn<VarSlot, String> valCol = new TableColumn<>("Value");
+        valCol.setMinWidth(64);
         //valCol.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getDesc()));
         
         super.getColumns().add(slotCol);
