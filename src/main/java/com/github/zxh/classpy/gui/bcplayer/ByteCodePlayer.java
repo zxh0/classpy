@@ -39,7 +39,7 @@ public class ByteCodePlayer extends Stage {
         BorderPane root = new BorderPane();
         root.setCenter(sp2);
         
-        super.setScene(new Scene(root, 400, 300));
+        super.setScene(new Scene(root, 600, 400));
     }
     
     private TableView<Instruction> createBytecodeTable() {
