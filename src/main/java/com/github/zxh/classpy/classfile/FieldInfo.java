@@ -4,6 +4,9 @@ import com.github.zxh.classpy.common.java.AccessFlags;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
+import com.github.zxh.classpy.classfile.attribute.CodeAttribute;
+import java.util.Optional;
+import java.util.function.Predicate;
 
 /*
 field_info {
@@ -22,10 +25,6 @@ public class FieldInfo extends ClassComponent {
     private U2 attributesCount;
     private Table<AttributeInfo> attributes;
 
-    public Table<AttributeInfo> getAttributes() {
-        return attributes;
-    }
-    
     @Override
     protected void readContent(ClassReader reader) {
         accessFlags = reader.readU2();
@@ -39,6 +38,17 @@ public class FieldInfo extends ClassComponent {
     
     protected void describe(U2 accessFlags) {
         AccessFlags.describeFieldFlags(accessFlags);
+    }
+    
+    public CodeAttribute findCodeAttribute() {
+        Optional<AttributeInfo> codeAttr = findAttribute(a -> a instanceof CodeAttribute);
+        return (CodeAttribute) codeAttr.orElse(null);
+    }
+    
+    private Optional<AttributeInfo> findAttribute(Predicate<AttributeInfo> predicate) {
+        return attributes.getSubComponents().stream()
+                .filter(predicate)
+                .findAny();
     }
     
 }
