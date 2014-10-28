@@ -38,17 +38,22 @@ public class Table<E extends ClassComponent> extends ClassComponent {
         
         try {
             for (int i = 0; i < length; i++) {
-                if (classOfE == AttributeInfo.class) {
-                    @SuppressWarnings("unchecked")
-                    E e = (E) readAttributeInfo(reader);
-                    table[i] = e;
-                } else {
-                    table[i] = classOfE.newInstance();
-                    table[i].read(reader);
-                }
+                table[i] = readEntry(reader);
             }
         } catch (ReflectiveOperationException e) {
             throw new FileParseException(e);
+        }
+    }
+    
+    private E readEntry(ClassReader reader) throws ReflectiveOperationException {
+        if (classOfE == AttributeInfo.class) {
+            @SuppressWarnings("unchecked")
+            E e = (E) readAttributeInfo(reader);
+            return e;
+        } else {
+            E e = classOfE.newInstance();
+            e.read(reader);
+            return e;
         }
     }
     
