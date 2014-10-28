@@ -12,6 +12,7 @@ import com.github.zxh.classpy.classfile.datatype.U4Float;
 import com.github.zxh.classpy.common.BytesReader;
 import com.github.zxh.classpy.common.IntValue;
 import java.nio.ByteOrder;
+import java.util.function.Supplier;
 
 /**
  * Convenience class for reading class files.
@@ -34,46 +35,38 @@ public class ClassReader extends BytesReader {
         }
     }
     
+    private <T extends ClassComponent> T readCC(Supplier<T> factory) {
+        T cc = factory.get();
+        cc.read(this);
+        return cc;
+    }
+    
     public U1 readU1() {
-        U1 u1 = new U1();
-        u1.read(this);
-        return u1;
+        return readCC(U1::new);
     }
     
     public U1CpIndex readU1CpIndex() {
-        U1CpIndex u1 = new U1CpIndex();
-        u1.read(this);
-        return u1;
+        return readCC(U1CpIndex::new);
     }
     
     public U2 readU2() {
-        U2 u2 = new U2();
-        u2.read(this);
-        return u2;
+        return readCC(U2::new);
     }
     
     public U2CpIndex readU2CpIndex() {
-        U2CpIndex u2 = new U2CpIndex();
-        u2.read(this);
-        return u2;
+        return readCC(U2CpIndex::new);
     }
     
     public U4 readU4() {
-        U4 u4 = new U4();
-        u4.read(this);
-        return u4;
+        return readCC(U4::new);
     }
     
     public U4Float readU4Float() {
-        U4Float u4 = new U4Float();
-        u4.read(this);
-        return u4;
+        return readCC(U4Float::new);
     }
     
     public U4Hex readU4Hex() {
-        U4Hex u4 = new U4Hex();
-        u4.read(this);
-        return u4;
+        return readCC(U4Hex::new);
     }
     
     public ConstantPool readConstantPool(int cpCount) {
