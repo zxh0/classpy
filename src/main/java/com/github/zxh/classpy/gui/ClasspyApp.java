@@ -36,7 +36,7 @@ public class ClasspyApp extends Application {
         root = new BorderPane();
         root.setTop(createMenuBar());
         
-        stage.setScene(new Scene(root, 900, 600));
+        stage.setScene(new Scene(root, 960, 540));
         stage.setTitle(TITLE);
         stage.show();
     }
@@ -46,7 +46,7 @@ public class ClasspyApp extends Application {
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
         menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
-        menuBar.getPlayBytecodeMenuItem().setOnAction(e -> playBytecode());
+        //menuBar.getPlayBytecodeMenuItem().setOnAction(e -> playBytecode());
         menuBar.getNewWinMenuItem().setOnAction(e -> openNewWindow());
         menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         

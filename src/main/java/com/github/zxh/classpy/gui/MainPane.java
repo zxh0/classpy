@@ -68,7 +68,7 @@ public class MainPane extends BorderPane {
         SplitPane sp = new SplitPane();
         sp.getItems().add(tree);
         sp.getItems().add(hexPane);
-        sp.setDividerPositions(0.1, 0.9);
+        sp.setDividerPositions(0.3, 0.7);
         return sp;
     }
     
