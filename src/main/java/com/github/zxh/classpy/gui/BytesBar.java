@@ -24,8 +24,8 @@ public class BytesBar extends Pane {
         final double h = getHeight();
         
         getChildren().add(new Line(0, h / 2, w, h / 2));
-        getChildren().add(new Rectangle(w * fc.getOffset() / byteCount, 2,
-                w * fc.getLength() / byteCount, h - 4));
+        getChildren().add(new Rectangle(w * fc.getOffset() / byteCount, 4,
+                w * fc.getLength() / byteCount, h - 8));
     }
     
 }
