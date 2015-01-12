@@ -64,7 +64,11 @@ public class ClasspyApp extends Application {
         
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            openFile(file);
+            if (file.getName().endsWith(".jar") || file.getName().endsWith(".JAR")) {
+                openJar(file);
+            } else {
+                openFile(file);
+            }
         }
     }
     
@@ -72,14 +76,18 @@ public class ClasspyApp extends Application {
         fileChooser = new FileChooser();
         fileChooser.setTitle("Open file");
         fileChooser.getExtensionFilters().addAll(
+            new FileChooser.ExtensionFilter("JAR", "*.jar"),
             new FileChooser.ExtensionFilter("CLASS", "*.class"),
             new FileChooser.ExtensionFilter("DEX", "*.dex")
         );
     }
     
+    private void openJar(File jar) {
+        // todo
+    }
+    
     private void openFile(File file) {
-        ProgressBar pb = new ProgressBar();
-        root.setCenter(pb);
+        root.setCenter(new ProgressBar());
         
         OpenFileTask task = new OpenFileTask(file);
         
