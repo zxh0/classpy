@@ -3,7 +3,6 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
-import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
@@ -57,7 +56,6 @@ public class ClasspyApp extends Application {
         menuBar = new MyMenuBar();
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
-        menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
         menuBar.getNewWinMenuItem().setOnAction(e -> openNewWindow());
         menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         
@@ -152,16 +150,6 @@ public class ClasspyApp extends Application {
         menuBar.updateRecentFiles(recentFiles, file -> {
             openFile(file);
         });
-    }
-    
-    private void reloadFile() {
-        if (lastOpenFile != null) {
-            if (lastOpenFile.exists()) {
-                openFile(lastOpenFile);
-            } else {
-                // todo
-            }
-        }
     }
     
     private void openNewWindow() {
