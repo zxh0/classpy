@@ -1,12 +1,9 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
-import com.github.zxh.classpy.gui.bcplayer.ByteCodePlayer;
 import java.io.File;
 import javafx.application.Application;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ProgressBar;
@@ -46,7 +43,6 @@ public class ClasspyApp extends Application {
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
         menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
-        //menuBar.getPlayBytecodeMenuItem().setOnAction(e -> playBytecode());
         menuBar.getNewWinMenuItem().setOnAction(e -> openNewWindow());
         menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
         
@@ -77,8 +73,7 @@ public class ClasspyApp extends Application {
         fileChooser.setTitle("Open file");
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("CLASS", "*.class"),
-            new FileChooser.ExtensionFilter("DEX", "*.dex"),
-            new FileChooser.ExtensionFilter("PE/COFF", "*.exe")
+            new FileChooser.ExtensionFilter("DEX", "*.dex")
         );
     }
     
@@ -110,18 +105,6 @@ public class ClasspyApp extends Application {
                 openFile(lastOpenFile, () -> {});
             } else {
                 // todo
-            }
-        }
-    }
-    
-    private void playBytecode() {
-        Node node = root.getCenter();
-        if (node != null) {
-            MainPane mainPane = (MainPane) node;
-            MethodInfo method = mainPane.getSelectedMethodInfo();
-            if (method != null) {
-                //System.out.println(method);
-                new ByteCodePlayer(method).show();
             }
         }
     }
