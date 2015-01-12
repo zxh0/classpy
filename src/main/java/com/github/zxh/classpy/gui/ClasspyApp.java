@@ -3,6 +3,7 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
+import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
@@ -24,7 +25,10 @@ public class ClasspyApp extends Application {
     private FileChooser fileChooser;
     private Stage stage;
     private BorderPane root;
+    private MyMenuBar menuBar;
+    
     private File lastOpenFile;
+    private final LinkedList<File> recentFiles = new LinkedList<>();
     
     @Override
     public void start(Stage stage) {
@@ -39,7 +43,7 @@ public class ClasspyApp extends Application {
     }
     
     private MenuBar createMenuBar() {
-        MyMenuBar menuBar = new MyMenuBar();
+        menuBar = new MyMenuBar();
         
         menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
         menuBar.getReloadMenuItem().setOnAction(e -> reloadFile());
@@ -60,11 +64,7 @@ public class ClasspyApp extends Application {
         
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            // todo
-            openFile(file, () -> {
-                // todo
-                lastOpenFile = file;
-            });
+            openFile(file);
         }
     }
     
@@ -77,7 +77,7 @@ public class ClasspyApp extends Application {
         );
     }
     
-    private void openFile(File file, Runnable succeededCallback) {
+    private void openFile(File file) {
         ProgressBar pb = new ProgressBar();
         root.setCenter(pb);
         
@@ -88,7 +88,9 @@ public class ClasspyApp extends Application {
             root.setCenter(mainPane);
             stage.setTitle(TITLE + " - " + file.getAbsolutePath());
             
-            succeededCallback.run();
+            // todo
+            lastOpenFile = file;
+            addRecentFile(file);
         });
         
         task.setOnFailed((Throwable err) -> {
@@ -99,10 +101,18 @@ public class ClasspyApp extends Application {
         task.startInNewThread();
     }
     
+    private void addRecentFile(File newFile) {
+        recentFiles.remove(newFile);
+        recentFiles.addFirst(newFile);
+        menuBar.updateRecentFiles(recentFiles, file -> {
+            openFile(file);
+        });
+    }
+    
     private void reloadFile() {
         if (lastOpenFile != null) {
             if (lastOpenFile.exists()) {
-                openFile(lastOpenFile, () -> {});
+                openFile(lastOpenFile);
             } else {
                 // todo
             }

@@ -1,5 +1,8 @@
 package com.github.zxh.classpy.gui;
 
+import java.io.File;
+import java.util.List;
+import java.util.function.Consumer;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -15,6 +18,7 @@ import javafx.scene.control.MenuItem;
  */
 public class MyMenuBar extends MenuBar {
 
+    private Menu recentMenu;
     private MenuItem reloadMenuItem;
     private MenuItem openMenuItem;
     private MenuItem newWinMenuItem;
@@ -34,7 +38,7 @@ public class MyMenuBar extends MenuBar {
         fileMenu.getItems().add(reloadMenuItem);
         fileMenu.getItems().add(openMenuItem);
         
-        Menu recentMenu = new Menu("Open Recent");
+        recentMenu = new Menu("Open Recent");
         fileMenu.getItems().add(recentMenu);
         
         return fileMenu;
@@ -63,5 +67,16 @@ public class MyMenuBar extends MenuBar {
     public MenuItem getReloadMenuItem() {return reloadMenuItem;}
     public MenuItem getNewWinMenuItem() {return newWinMenuItem;}
     public MenuItem getAboutMenuItem() {return aboutMenuItem;}
+    
+    public void updateRecentFiles(List<File> files, Consumer<File> onOpenRecentFileAction) {
+        recentMenu.getItems().clear();
+        files.stream().forEach((file) -> {
+            MenuItem menuItem = new MenuItem(file.getAbsolutePath());
+            recentMenu.getItems().add(menuItem);
+            menuItem.setOnAction(e -> {
+                onOpenRecentFileAction.accept(file);
+            });
+        });
+    }
     
 }
