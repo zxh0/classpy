@@ -15,37 +15,29 @@ import javafx.scene.control.MenuItem;
  */
 public class MyMenuBar extends MenuBar {
 
-    private MenuItem openMenuItem;
     private MenuItem reloadMenuItem;
-    private MenuItem playBytecodeMenuItem;
+    private MenuItem openMenuItem;
     private MenuItem newWinMenuItem;
     private MenuItem aboutMenuItem;
     
     public MyMenuBar() {
         getMenus().add(createFileMenu());
-        //getMenus().add(createToolsMenu());
         getMenus().add(createWindowMenu());
         getMenus().add(createHelpMenu());
     }
     
     private Menu createFileMenu() {
-        openMenuItem = new MenuItem("Open...");
         reloadMenuItem = new MenuItem("Reload");
+        openMenuItem = new MenuItem("Open...");
         
         Menu fileMenu = new Menu("File");
-        fileMenu.getItems().add(openMenuItem);
         fileMenu.getItems().add(reloadMenuItem);
+        fileMenu.getItems().add(openMenuItem);
+        
+        Menu recentMenu = new Menu("Open Recent");
+        fileMenu.getItems().add(recentMenu);
         
         return fileMenu;
-    }
-    
-    private Menu createToolsMenu() {
-        playBytecodeMenuItem = new MenuItem("Play bytecode");
-        
-        Menu toolsMenu = new Menu("Tools");
-        toolsMenu.getItems().add(playBytecodeMenuItem);
-        
-        return toolsMenu;
     }
     
     private Menu createWindowMenu() {
@@ -69,7 +61,6 @@ public class MyMenuBar extends MenuBar {
     // Getters
     public MenuItem getOpenMenuItem() {return openMenuItem;}
     public MenuItem getReloadMenuItem() {return reloadMenuItem;}
-    public MenuItem getPlayBytecodeMenuItem() {return playBytecodeMenuItem;}
     public MenuItem getNewWinMenuItem() {return newWinMenuItem;}
     public MenuItem getAboutMenuItem() {return aboutMenuItem;}
     
