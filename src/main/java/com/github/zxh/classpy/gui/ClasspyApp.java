@@ -3,7 +3,12 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
+import java.net.URI;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
@@ -65,7 +70,12 @@ public class ClasspyApp extends Application {
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             if (file.getName().endsWith(".jar") || file.getName().endsWith(".JAR")) {
-                openJar(file);
+                try {
+                    openJar(file);
+                } catch (Exception e) {
+                    // todo
+                    e.printStackTrace(System.err);
+                }
             } else {
                 openFile(file);
             }
@@ -82,8 +92,14 @@ public class ClasspyApp extends Application {
         );
     }
     
-    private void openJar(File jar) {
-        // todo
+    private void openJar(File jar) throws Exception {
+        URI uri = new URI("jar", jar.toPath().toUri().toString(), null);  
+        Map<String, String> attributes = new HashMap<>();  
+        //attributes.put("create", "true");  
+
+        try (FileSystem zipFs = FileSystems.newFileSystem(uri, attributes)) {  
+            //scan(zipFs.getPath("/"));  
+        }  
     }
     
     private void openFile(File file) {
