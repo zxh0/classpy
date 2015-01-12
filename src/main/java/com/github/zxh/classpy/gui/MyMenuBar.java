@@ -10,9 +10,9 @@ import javafx.scene.control.MenuItem;
 /**
  * Classpy menu bar.
  * 
- * File       Tools            Window        Help
- *  |-Open...  |-Play bytecode  |-New Window  |-About
- *  |-Reload
+ * File             Window        Help
+ *  |-Open File...   |-New Window  |-About
+ *  |-Open Recent
  * 
  * @author zxh
  */
