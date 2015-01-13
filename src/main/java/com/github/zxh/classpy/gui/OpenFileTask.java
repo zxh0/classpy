@@ -5,8 +5,8 @@ import com.github.zxh.classpy.common.FileHex;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.FileParser;
 import com.github.zxh.classpy.common.FileParsers;
-import java.io.File;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import javafx.concurrent.Task;
@@ -17,26 +17,26 @@ import javafx.concurrent.Task;
  */
 public class OpenFileTask extends Task<Object> {
 
-    private final File file;
+    private final Path file;
 
-    public OpenFileTask(File file) {
+    public OpenFileTask(Path file) {
         this.file = file;
     }
     
     @Override
     protected Object call() throws Exception {
-        System.out.println("loading " + file.getAbsolutePath() + "...");
+        System.out.println("loading " + file + "...");
         
-        if (Files.size(file.toPath()) > 512 * 1024) {
+        if (Files.size(file) > 512 * 1024) {
             throw new FileParseException("File is too large!");
         }
         
-        String fileType = getExtension(file.getName());
+        String fileType = getExtension(file.toString());
         FileParser parser = FileParsers.getParser(fileType);
         
-        byte[] bytes = Files.readAllBytes(file.toPath());
+        byte[] bytes = Files.readAllBytes(file);
         FileComponent fc = parser.parse(bytes);
-        fc.setName(file.getName());
+        fc.setName(file.getFileName().toString());
         FileHex hex = new FileHex(bytes);
         
         System.out.println("finish loading");

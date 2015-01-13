@@ -93,7 +93,7 @@ public class ClasspyApp extends Application {
     private void openFile(File file) {
         root.setCenter(new ProgressBar());
         
-        OpenFileTask task = new OpenFileTask(file);
+        OpenFileTask task = new OpenFileTask(file.toPath());
         
         task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
             MainPane mainPane = new MainPane(fc, hex);
