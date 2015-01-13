@@ -7,10 +7,12 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -30,8 +32,10 @@ public class JarDialog {
             TreeView<Path> jarTree = createTreeView(rootPath);
             Button openButton = new Button("Open");
             openButton.setOnAction(e -> stage.close());
+            Button cancelButton = new Button("Cancel");
+            cancelButton.setOnAction(e -> stage.close());
             
-            BorderPane rootPane = createRootPane(jarTree, openButton);
+            BorderPane rootPane = createRootPane(jarTree, openButton, cancelButton);
             Scene scene = new Scene(rootPane, 500, 300);
             
             stage.setScene(scene);
@@ -50,14 +54,19 @@ public class JarDialog {
         return tree;
     }
     
-    private static BorderPane createRootPane(TreeView<Path> jarTree, Button openButton) {
-        BorderPane buttonPane = new BorderPane();
-        buttonPane.setRight(openButton);
-        buttonPane.setPadding(new Insets(4, 4, 4, 4));
+    private static BorderPane createRootPane(TreeView<Path> jarTree,
+            Button openButton, Button cancelButton) {
+        
+        HBox buttonBox = new HBox();
+        buttonBox.getChildren().add(openButton);
+        buttonBox.getChildren().add(cancelButton);
+        buttonBox.setAlignment(Pos.CENTER_RIGHT);
+        buttonBox.setPadding(new Insets(4, 4, 4, 4));
+        buttonBox.setSpacing(4);
         
         BorderPane rootPane = new BorderPane();
         rootPane.setCenter(jarTree);
-        rootPane.setBottom(buttonPane);
+        rootPane.setBottom(buttonBox);
         return rootPane;
     }
     
