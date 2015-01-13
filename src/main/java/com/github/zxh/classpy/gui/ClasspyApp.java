@@ -67,8 +67,10 @@ public class ClasspyApp extends Application {
         if (file != null) {
             try {
                 if (file.getName().endsWith(".jar") || file.getName().endsWith(".JAR")) {
-                        URL pathToClass = JarDialog.showDialog(file);
-                        openFile(pathToClass);
+                    URL classUrl = JarDialog.showDialog(file);
+                    if (classUrl != null) {
+                        openFile(classUrl);
+                    }
                 } else {
                     openFile(file);
                 }
