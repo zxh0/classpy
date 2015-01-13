@@ -38,6 +38,7 @@ public class ClasspyApp extends Application {
         
         root = new BorderPane();
         root.setTop(createMenuBar());
+        updateRecentFiles();
         
         stage.setScene(new Scene(root, 960, 540));
         stage.setTitle(TITLE);
@@ -127,14 +128,22 @@ public class ClasspyApp extends Application {
     private void addRecentFile(URL newFile) {
         recentFiles.remove(newFile);
         recentFiles.addFirst(newFile);
+        updateRecentFiles();
+    }
+    
+    private void updateRecentFiles() {
         menuBar.updateRecentFiles(recentFiles, file -> {
             openFile(file);
         });
     }
     
     private void openNewWindow() {
+        ClasspyApp newApp = new ClasspyApp();
+        if (!recentFiles.isEmpty()) {
+            newApp.recentFiles.addAll(recentFiles);
+        }
         // is this correct?
-        new ClasspyApp().start(new Stage());
+        newApp.start(new Stage());
     }
     
     

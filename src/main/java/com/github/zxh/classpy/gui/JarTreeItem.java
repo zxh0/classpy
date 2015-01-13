@@ -49,7 +49,7 @@ public class JarTreeItem extends TreeItem<Path> {
         try {
             Files.walkFileTree(getValue(), EnumSet.noneOf(FileVisitOption.class), 1, new SimpleFileVisitor<Path>() {  
 
-                @Override  
+                @Override
                 public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {  
                     children.add(new JarTreeItem(file));
 
