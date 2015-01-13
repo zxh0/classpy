@@ -26,7 +26,7 @@ public class JarTreeItem extends TreeItem<Path> {
 
     @Override
     public boolean isLeaf() {
-        return false;
+        return !getValue().toString().endsWith("/");
     }
     
     @Override
@@ -59,6 +59,7 @@ public class JarTreeItem extends TreeItem<Path> {
             });  
         } catch (IOException e) {
             // todo
+            e.printStackTrace(System.err);
         }
         
         return children;

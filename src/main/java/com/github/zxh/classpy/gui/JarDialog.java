@@ -7,7 +7,9 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -24,8 +26,12 @@ public class JarDialog {
         URI uri = new URI("jar", jar.toPath().toUri().toString(), null);  
         try (FileSystem zipFs = FileSystems.newFileSystem(uri, new HashMap<>())) {
             Path rootPath = zipFs.getPath("/");
-            TreeView<Path> tree = createTreeView(rootPath);
-            Scene scene = new Scene(tree, 300, 180);
+            TreeView<Path> jarTree = createTreeView(rootPath);
+            Button openButton = new Button("Open");
+            openButton.setOnAction(e -> stage.close());
+            
+            BorderPane rootPane = createRootPane(jarTree, openButton);
+            Scene scene = new Scene(rootPane, 500, 300);
             
             stage.setScene(scene);
             stage.setTitle("Jar");
@@ -41,6 +47,13 @@ public class JarDialog {
         tree.setMinWidth(200);
         
         return tree;
+    }
+    
+    private static BorderPane createRootPane(TreeView<Path> jarTree, Button openButton) {
+        BorderPane rootPane = new BorderPane();
+        rootPane.setCenter(jarTree);
+        rootPane.setBottom(openButton);
+        return rootPane;
     }
     
 }
