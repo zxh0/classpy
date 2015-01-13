@@ -6,6 +6,7 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeView;
@@ -50,9 +51,13 @@ public class JarDialog {
     }
     
     private static BorderPane createRootPane(TreeView<Path> jarTree, Button openButton) {
+        BorderPane buttonPane = new BorderPane();
+        buttonPane.setRight(openButton);
+        buttonPane.setPadding(new Insets(4, 4, 4, 4));
+        
         BorderPane rootPane = new BorderPane();
         rootPane.setCenter(jarTree);
-        rootPane.setBottom(openButton);
+        rootPane.setBottom(buttonPane);
         return rootPane;
     }
     
