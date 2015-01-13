@@ -6,7 +6,6 @@ import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
-import java.util.Map;
 import javafx.scene.Scene;
 import javafx.scene.control.TreeView;
 import javafx.stage.Modality;
@@ -23,22 +22,15 @@ public class JarDialog {
         stage.initModality(Modality.APPLICATION_MODAL);
         
         URI uri = new URI("jar", jar.toPath().toUri().toString(), null);  
-        Map<String, String> attributes = new HashMap<>();  
-        //attributes.put("create", "true");  
-
-        FileSystem zipFs = FileSystems.newFileSystem(uri, attributes);
-        Path rootPath = zipFs.getPath("/");
-        
-        
-        TreeView<Path> tree = createTreeView(rootPath);
-        Scene scene = new Scene(tree, 300, 180);
-        
-        stage.setScene(scene);
-        stage.setTitle("Jar");
-        stage.show();
-        
-        // todo
-        zipFs.close();
+        try (FileSystem zipFs = FileSystems.newFileSystem(uri, new HashMap<>())) {
+            Path rootPath = zipFs.getPath("/");
+            TreeView<Path> tree = createTreeView(rootPath);
+            Scene scene = new Scene(tree, 300, 180);
+            
+            stage.setScene(scene);
+            stage.setTitle("Jar");
+            stage.showAndWait();
+        }
     }
     
     private static TreeView<Path> createTreeView(Path rootPath) {
