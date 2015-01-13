@@ -38,7 +38,7 @@ public class OpenFileTask extends Task<Object> {
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
             FileComponent fc = parser.parse(bytes);
-            fc.setName(url.toString());
+            fc.setName(getFileName(url.toString()));
             FileHex hex = new FileHex(bytes);
 
             System.out.println("finish loading");
@@ -46,9 +46,14 @@ public class OpenFileTask extends Task<Object> {
         }
     }
     
-    private static String getExtension(String fileName) {
-        int idxOfDot = fileName.lastIndexOf('.');
-        return idxOfDot < 0 ? fileName : fileName.substring(idxOfDot);
+    private static String getExtension(String url) {
+        int idxOfDot = url.lastIndexOf('.');
+        return idxOfDot < 0 ? url : url.substring(idxOfDot);
+    }
+    
+    private static String getFileName(String url) {
+        int idxOfDot = url.lastIndexOf('/');
+        return idxOfDot < 0 ? url : url.substring(idxOfDot + 1);
     }
     
     public void setOnSucceeded(BiConsumer<FileComponent, FileHex> callback) {
