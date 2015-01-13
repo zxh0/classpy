@@ -6,11 +6,7 @@ import java.io.File;
 import java.net.URI;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -103,21 +99,7 @@ public class ClasspyApp extends Application {
 
         try (FileSystem zipFs = FileSystems.newFileSystem(uri, attributes)) {
             Path rootPath = zipFs.getPath("/");
-            Files.walkFileTree(rootPath, new SimpleFileVisitor<Path>() {  
-
-                @Override  
-                public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) {  
-                    String fileName = rootPath.relativize(file).toString();  
-                    if (fileName.endsWith(".class")) {  
-                        //String className = fileNameToClassName(fileName);  
-                        //validateClass(className);  
-                        System.out.println(fileName);
-                    }  
-
-                    return FileVisitResult.CONTINUE;  
-                }  
-
-            });  
+            JarDialog.showDialog(rootPath);
         }  
     }
     
