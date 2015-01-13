@@ -1,14 +1,11 @@
 package com.github.zxh.classpy.gui;
 
 import java.io.File;
-import java.io.InputStream;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javafx.geometry.Insets;
@@ -28,7 +25,7 @@ import javafx.stage.Stage;
  */
 public class JarDialog {
     
-    public static File showDialog(File jar) throws Exception {
+    public static URL showDialog(File jar) throws Exception {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         
@@ -62,14 +59,7 @@ public class JarDialog {
                         String classUrl = String.format("jar:file:/%s!%s", jar.getAbsolutePath(), path.toAbsolutePath());
                         classUrl = classUrl.replace('\\', '/');
                         System.out.println(classUrl);
-                        
-                        URI classUri = new URL(classUrl).toURI();
-                        System.out.println(classUri);
-                        
-                        Files.readAllBytes(Paths.get(classUri));
-                        
-                        File x = new File(classUri);
-                        return x;
+                        return new URL(classUrl);
                     }
                 }
             }

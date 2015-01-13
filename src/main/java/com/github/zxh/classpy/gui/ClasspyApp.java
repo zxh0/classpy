@@ -3,6 +3,8 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -28,7 +30,7 @@ public class ClasspyApp extends Application {
     private MyMenuBar menuBar;
     
     private File lastOpenFile;
-    private final LinkedList<File> recentFiles = new LinkedList<>();
+    private final LinkedList<URL> recentFiles = new LinkedList<>();
     
     @Override
     public void start(Stage stage) {
@@ -63,15 +65,16 @@ public class ClasspyApp extends Application {
         
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
-            if (file.getName().endsWith(".jar") || file.getName().endsWith(".JAR")) {
-                try {
-                    openJar(file);
-                } catch (Exception e) {
-                    // todo
-                    e.printStackTrace(System.err);
+            try {
+                if (file.getName().endsWith(".jar") || file.getName().endsWith(".JAR")) {
+                        URL pathToClass = JarDialog.showDialog(file);
+                        openFile(pathToClass);
+                } else {
+                    openFile(file);
                 }
-            } else {
-                openFile(file);
+            } catch (Exception e) {
+                // todo
+                e.printStackTrace(System.err);
             }
         }
     }
@@ -86,23 +89,29 @@ public class ClasspyApp extends Application {
         );
     }
     
-    private void openJar(File jar) throws Exception {
-        JarDialog.showDialog(jar);
+    private void openFile(File file) throws MalformedURLException {
+        openFile(file, file.toURI().toURL());
     }
     
-    private void openFile(File file) {
+    private void openFile(URL url) {
+        openFile(null, url);
+    }
+    
+    private void openFile(File file, URL url) {
         root.setCenter(new ProgressBar());
         
-        OpenFileTask task = new OpenFileTask(file.toPath());
+        OpenFileTask task = new OpenFileTask(url);
         
         task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
             MainPane mainPane = new MainPane(fc, hex);
             root.setCenter(mainPane);
-            stage.setTitle(TITLE + " - " + file.getAbsolutePath());
+            stage.setTitle(TITLE + " - " + url);
             
             // todo
-            lastOpenFile = file;
-            addRecentFile(file);
+            addRecentFile(url);
+            if (file != null) {
+                lastOpenFile = file;
+            }
         });
         
         task.setOnFailed((Throwable err) -> {
@@ -113,7 +122,7 @@ public class ClasspyApp extends Application {
         task.startInNewThread();
     }
     
-    private void addRecentFile(File newFile) {
+    private void addRecentFile(URL newFile) {
         recentFiles.remove(newFile);
         recentFiles.addFirst(newFile);
         menuBar.updateRecentFiles(recentFiles, file -> {

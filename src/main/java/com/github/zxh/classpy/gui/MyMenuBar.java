@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui;
 
-import java.io.File;
+import java.net.URL;
 import java.util.List;
 import java.util.function.Consumer;
 import javafx.scene.control.Menu;
@@ -64,10 +64,10 @@ public class MyMenuBar extends MenuBar {
     public MenuItem getNewWinMenuItem() {return newWinMenuItem;}
     public MenuItem getAboutMenuItem() {return aboutMenuItem;}
     
-    public void updateRecentFiles(List<File> files, Consumer<File> onOpenRecentFileAction) {
+    public void updateRecentFiles(List<URL> files, Consumer<URL> onOpenRecentFileAction) {
         recentMenu.getItems().clear();
         files.stream().forEach((file) -> {
-            MenuItem menuItem = new MenuItem(file.getAbsolutePath());
+            MenuItem menuItem = new MenuItem(file.toString());
             recentMenu.getItems().add(menuItem);
             menuItem.setOnAction(e -> {
                 onOpenRecentFileAction.accept(file);

@@ -5,8 +5,8 @@ import com.github.zxh.classpy.common.FileHex;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.common.FileParser;
 import com.github.zxh.classpy.common.FileParsers;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import javafx.concurrent.Task;
@@ -17,30 +17,33 @@ import javafx.concurrent.Task;
  */
 public class OpenFileTask extends Task<Object> {
 
-    private final Path file;
+    private final URL url;
 
-    public OpenFileTask(Path file) {
-        this.file = file;
+    public OpenFileTask(URL url) {
+        this.url = url;
     }
     
     @Override
     protected Object call() throws Exception {
-        System.out.println("loading " + file + "...");
+        System.out.println("loading " + url + "...");
         
-        if (Files.size(file) > 512 * 1024) {
-            throw new FileParseException("File is too large!");
+        try (InputStream is = url.openStream()) {
+            if (is.available() > 512 * 1024) {
+                throw new FileParseException("File is too large!");
+            }
+
+            String fileType = getExtension(url.toString());
+            FileParser parser = FileParsers.getParser(fileType);
+
+            byte[] bytes = new byte[is.available()];
+            is.read(bytes);
+            FileComponent fc = parser.parse(bytes);
+            fc.setName(url.toString());
+            FileHex hex = new FileHex(bytes);
+
+            System.out.println("finish loading");
+            return new Object[] {fc, hex};
         }
-        
-        String fileType = getExtension(file.toString());
-        FileParser parser = FileParsers.getParser(fileType);
-        
-        byte[] bytes = Files.readAllBytes(file);
-        FileComponent fc = parser.parse(bytes);
-        fc.setName(file.getFileName().toString());
-        FileHex hex = new FileHex(bytes);
-        
-        System.out.println("finish loading");
-        return new Object[] {fc, hex};
     }
     
     private static String getExtension(String fileName) {
