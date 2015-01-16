@@ -29,19 +29,19 @@ public class JarDialog {
         Stage stage = new Stage();
         stage.initModality(Modality.APPLICATION_MODAL);
         
+        Button openButton = new Button("Open");
+        Button cancelButton = new Button("Cancel");
+        
+        AtomicBoolean openButtonClicked = new AtomicBoolean(false);
+        cancelButton.setOnAction(e -> stage.close());
+        openButton.setOnAction(e -> {
+            openButtonClicked.set(true);
+            stage.close();
+        });
+        
         URI jarUri = new URI("jar", jar.toPath().toUri().toString(), null);  
         try (FileSystem zipFs = FileSystems.newFileSystem(jarUri, new HashMap<>())) {
-            AtomicBoolean openButtonClicked = new AtomicBoolean(false);
-            Path rootPath = zipFs.getPath("/");
-            TreeView<Path> jarTree = createTreeView(rootPath);
-            Button openButton = new Button("Open");
-            openButton.setOnAction(e -> {
-                stage.close();
-                openButtonClicked.set(true);
-            });
-            Button cancelButton = new Button("Cancel");
-            cancelButton.setOnAction(e -> stage.close());
-            
+            TreeView<Path> jarTree = createTreeView(zipFs.getPath("/"));
             BorderPane rootPane = createRootPane(jarTree, openButton, cancelButton);
             Scene scene = new Scene(rootPane, 500, 300);
             
@@ -56,7 +56,8 @@ public class JarDialog {
                     
                     if (path.toString().endsWith(".class")) {
                         // "jar:file:/absolute/location/of/yourJar.jar!/1.txt"
-                        String classUrl = String.format("jar:file:/%s!%s", jar.getAbsolutePath(), path.toAbsolutePath());
+                        // todo
+                        String classUrl = String.format("jar:file:%s!%s", jar.getAbsolutePath(), path.toAbsolutePath());
                         classUrl = classUrl.replace('\\', '/');
                         System.out.println(classUrl);
                         return new URL(classUrl);
