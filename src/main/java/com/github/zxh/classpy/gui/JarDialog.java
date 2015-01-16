@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.gui;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 import java.nio.file.FileSystem;
@@ -50,22 +51,10 @@ public class JarDialog {
             stage.showAndWait();
             
             if (openButtonClicked.get()) {
-                TreeItem<Path> selectedItem = jarTree.getSelectionModel().getSelectedItem();
-                if (selectedItem != null) {
-                    Path path = selectedItem.getValue();
-                    
-                    if (path.toString().endsWith(".class")) {
-                        // "jar:file:/absolute/location/of/yourJar.jar!/1.txt"
-                        // todo
-                        String classUrl = String.format("jar:file:%s!%s", jar.getAbsolutePath(), path.toAbsolutePath());
-                        classUrl = classUrl.replace('\\', '/');
-                        System.out.println(classUrl);
-                        return new URL(classUrl);
-                    }
-                }
+                return getSelectedClass(jar, jarTree);
+            } else {
+                return null;
             }
-            
-            return null;
         }
     }
     
@@ -93,6 +82,22 @@ public class JarDialog {
         rootPane.setCenter(jarTree);
         rootPane.setBottom(buttonBox);
         return rootPane;
+    }
+    
+    private static URL getSelectedClass(File jar, TreeView<Path> jarTree) throws MalformedURLException {
+        TreeItem<Path> selectedItem = jarTree.getSelectionModel().getSelectedItem();
+        if (selectedItem != null) {
+            Path path = selectedItem.getValue();
+            if (path.toString().endsWith(".class")) {
+                // "jar:file:/absolute/location/of/yourJar.jar!/1.txt"
+                // todo
+                String classUrl = String.format("jar:file:%s!%s", jar.getAbsolutePath(), path.toAbsolutePath());
+                classUrl = classUrl.replace('\\', '/');
+                System.out.println(classUrl);
+                return new URL(classUrl);
+            }
+        }
+        return null;
     }
     
 }
