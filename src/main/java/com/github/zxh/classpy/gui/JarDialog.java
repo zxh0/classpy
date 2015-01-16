@@ -91,8 +91,11 @@ public class JarDialog {
             Path selectedPath = selectedItem.getValue();
             if (selectedPath.toString().endsWith(".class")) {
                 String jarPath = jar.getAbsolutePath();
+                if (!jarPath.startsWith("/")) {
+                    // windows
+                    jarPath = "/" + jarPath;
+                }
                 String classPath = selectedPath.toAbsolutePath().toString();
-                // todo
                 String classUrl = String.format("jar:file:%s!%s", jarPath, classPath);
                 classUrl = classUrl.replace('\\', '/');
                 System.out.println(classUrl);
