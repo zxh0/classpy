@@ -84,14 +84,16 @@ public class JarDialog {
         return rootPane;
     }
     
+    // jar:file:/absolute/location/of/yourJar.jar!/path/to/ClassName.class
     private static URL getSelectedClass(File jar, TreeView<Path> jarTree) throws MalformedURLException {
         TreeItem<Path> selectedItem = jarTree.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            Path path = selectedItem.getValue();
-            if (path.toString().endsWith(".class")) {
-                // "jar:file:/absolute/location/of/yourJar.jar!/1.txt"
+            Path selectedPath = selectedItem.getValue();
+            if (selectedPath.toString().endsWith(".class")) {
+                String jarPath = jar.getAbsolutePath();
+                String classPath = selectedPath.toAbsolutePath().toString();
                 // todo
-                String classUrl = String.format("jar:file:%s!%s", jar.getAbsolutePath(), path.toAbsolutePath());
+                String classUrl = String.format("jar:file:%s!%s", jarPath, classPath);
                 classUrl = classUrl.replace('\\', '/');
                 System.out.println(classUrl);
                 return new URL(classUrl);
