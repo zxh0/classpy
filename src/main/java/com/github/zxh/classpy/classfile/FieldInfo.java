@@ -35,7 +35,10 @@ public class FieldInfo extends ClassComponent implements AttributeContainer {
         descriptorIndex = reader.readU2CpIndex();
         attributesCount = reader.readU2();
         attributes = reader.readTable(AttributeInfo.class, attributesCount);
-        setDesc(reader.getConstantPool().getUtf8String(nameIndex));
+        if (nameIndex.getValue() > 0) {
+            // todo fix loading java.lang.String from rt.jar
+            setDesc(reader.getConstantPool().getUtf8String(nameIndex));
+        }
         describe(accessFlags);
     }
     
