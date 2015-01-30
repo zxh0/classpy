@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.LinkedList;
 import javafx.application.Application;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ProgressBar;
@@ -41,12 +42,23 @@ public class ClasspyApp extends Application {
         
         root = new BorderPane();
         root.setTop(createMenuBar());
-        root.setCenter(new TabPane());
+        root.setCenter(createTabPane());
         updateRecentFiles();
-                
+        
         stage.setScene(new Scene(root, 960, 540));
         stage.setTitle(TITLE);
         stage.show();
+    }
+    
+    private TabPane createTabPane() {
+        TabPane tp = new TabPane();
+        tp.getSelectionModel().selectedItemProperty().addListener(
+                (ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) -> {
+            
+                    URL url = (URL) newTab.getUserData();
+                    stage.setTitle(TITLE + " - " + url);
+        });
+        return tp;
     }
     
     private MenuBar createMenuBar() {
@@ -107,6 +119,7 @@ public class ClasspyApp extends Application {
     private void openFile(File file, URL url) {
         Tab tab = new Tab();
         tab.setText(file.getName());
+        tab.setUserData(url);
         tab.setContent(new BorderPane(new ProgressBar()));
         ((TabPane) root.getCenter()).getTabs().add(tab);
         
