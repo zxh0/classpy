@@ -10,6 +10,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
@@ -28,6 +30,7 @@ public class ClasspyApp extends Application {
     private Stage stage;
     private BorderPane root;
     private MyMenuBar menuBar;
+//    private TabPane tabPane;
     
     private File lastOpenFile;
     private final LinkedList<URL> recentFiles = new LinkedList<>();
@@ -38,8 +41,9 @@ public class ClasspyApp extends Application {
         
         root = new BorderPane();
         root.setTop(createMenuBar());
+        root.setCenter(new TabPane());
         updateRecentFiles();
-        
+                
         stage.setScene(new Scene(root, 960, 540));
         stage.setTitle(TITLE);
         stage.show();
@@ -101,13 +105,17 @@ public class ClasspyApp extends Application {
     }
     
     private void openFile(File file, URL url) {
-        root.setCenter(new ProgressBar());
+        Tab tab = new Tab();
+        tab.setText(file.getName());
+        tab.setContent(new BorderPane(new ProgressBar()));
+        ((TabPane) root.getCenter()).getTabs().add(tab);
         
         OpenFileTask task = new OpenFileTask(url);
         
         task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
             MainPane mainPane = new MainPane(fc, hex);
-            root.setCenter(mainPane);
+            tab.setContent(mainPane);
+            
             stage.setTitle(TITLE + " - " + url);
             
             // todo
