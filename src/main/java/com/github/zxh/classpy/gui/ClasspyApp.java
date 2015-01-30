@@ -31,7 +31,6 @@ public class ClasspyApp extends Application {
     private Stage stage;
     private BorderPane root;
     private MyMenuBar menuBar;
-//    private TabPane tabPane;
     
     private File lastOpenFile;
     private final LinkedList<URL> recentFiles = new LinkedList<>();
@@ -118,7 +117,7 @@ public class ClasspyApp extends Application {
     
     private void openFile(File file, URL url) {
         Tab tab = new Tab();
-        tab.setText(file.getName());
+        tab.setText(UrlHelper.getFileName(url));
         tab.setUserData(url);
         tab.setContent(new BorderPane(new ProgressBar()));
         ((TabPane) root.getCenter()).getTabs().add(tab);
@@ -140,7 +139,7 @@ public class ClasspyApp extends Application {
         
         task.setOnFailed((Throwable err) -> {
             Text errMsg = new Text(err.toString());
-            root.setCenter(errMsg);
+            tab.setContent(errMsg);
         });
 
         task.startInNewThread();

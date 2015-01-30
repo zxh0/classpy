@@ -32,28 +32,18 @@ public class OpenFileTask extends Task<Object> {
                 throw new FileParseException("File is too large!");
             }
 
-            String fileType = getExtension(url.toString());
+            String fileType = UrlHelper.getExtension(url);
             FileParser parser = FileParsers.getParser(fileType);
 
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
             FileComponent fc = parser.parse(bytes);
-            fc.setName(getFileName(url.toString()));
+            fc.setName(UrlHelper.getFileName(url));
             FileHex hex = new FileHex(bytes);
 
             System.out.println("finish loading");
             return new Object[] {fc, hex};
         }
-    }
-    
-    private static String getExtension(String url) {
-        int idxOfDot = url.lastIndexOf('.');
-        return idxOfDot < 0 ? url : url.substring(idxOfDot);
-    }
-    
-    private static String getFileName(String url) {
-        int idxOfDot = url.lastIndexOf('/');
-        return idxOfDot < 0 ? url : url.substring(idxOfDot + 1);
     }
     
     public void setOnSucceeded(BiConsumer<FileComponent, FileHex> callback) {
