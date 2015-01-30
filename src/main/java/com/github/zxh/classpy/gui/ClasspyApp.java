@@ -53,9 +53,10 @@ public class ClasspyApp extends Application {
         TabPane tp = new TabPane();
         tp.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) -> {
-            
-                    URL url = (URL) newTab.getUserData();
-                    stage.setTitle(TITLE + " - " + url);
+                    if (newTab != null) {
+                        URL url = (URL) newTab.getUserData();
+                        stage.setTitle(TITLE + " - " + url);
+                    }
         });
         return tp;
     }
@@ -116,19 +117,12 @@ public class ClasspyApp extends Application {
     }
     
     private void openFile(File file, URL url) {
-        Tab tab = new Tab();
-        tab.setText(UrlHelper.getFileName(url));
-        tab.setUserData(url);
-        tab.setContent(new BorderPane(new ProgressBar()));
-        ((TabPane) root.getCenter()).getTabs().add(tab);
-        
+        Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
         
         task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
             MainPane mainPane = new MainPane(fc, hex);
             tab.setContent(mainPane);
-            
-            stage.setTitle(TITLE + " - " + url);
             
             // todo
             addRecentFile(url);
@@ -143,6 +137,15 @@ public class ClasspyApp extends Application {
         });
 
         task.startInNewThread();
+    }
+    
+    private Tab createTab(URL url) {
+        Tab tab = new Tab();
+        tab.setText(UrlHelper.getFileName(url));
+        tab.setUserData(url);
+        tab.setContent(new BorderPane(new ProgressBar()));
+        ((TabPane) root.getCenter()).getTabs().add(tab);
+        return tab;
     }
     
     private void addRecentFile(URL newFile) {
