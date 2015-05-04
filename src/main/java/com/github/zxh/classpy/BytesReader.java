@@ -26,10 +26,6 @@ public class BytesReader {
         return buf.position();
     }
     
-    public int getRemaining() {
-        return buf.remaining();
-    }
-    
     public void skipBytes(int n) {
         for (int i = 0; i < n; i++) {
             buf.get();
@@ -66,11 +62,6 @@ public class BytesReader {
     // 32-bit signed int
     public int readInt() {
         return buf.getInt();
-    }
-    
-    // 64-bit signed int
-    public long readLong() {
-        return buf.getLong();
     }
     
     // float
