@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.classfile.datatype.IntValue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

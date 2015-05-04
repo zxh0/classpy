@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile.datatype;
 
+import com.github.zxh.classpy.classfile.IntValue;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 

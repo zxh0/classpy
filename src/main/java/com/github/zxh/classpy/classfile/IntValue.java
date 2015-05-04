@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile.datatype;
+package com.github.zxh.classpy.classfile;
 
 /**
  *
