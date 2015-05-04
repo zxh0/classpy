@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.ClassParser;
-import com.github.zxh.classpy.classfile.FileHex;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import java.io.InputStream;
 import java.net.URL;

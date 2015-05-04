@@ -2,8 +2,8 @@ package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
-import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.classfile.Util;
+import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.helper.Util;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import java.lang.reflect.Array;
 import java.util.Arrays;

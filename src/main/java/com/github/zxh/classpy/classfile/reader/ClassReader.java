@@ -1,5 +1,7 @@
-package com.github.zxh.classpy.classfile;
+package com.github.zxh.classpy.classfile.reader;
 
+import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.datatype.IntValue;
 import com.github.zxh.classpy.classfile.datatype.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;

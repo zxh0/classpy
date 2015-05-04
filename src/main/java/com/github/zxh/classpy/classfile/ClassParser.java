@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.reader.ClassReader;
+
 /**
  *
  * @author zxh

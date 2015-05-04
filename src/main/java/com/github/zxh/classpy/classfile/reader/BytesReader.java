@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.classfile;
+package com.github.zxh.classpy.classfile.reader;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

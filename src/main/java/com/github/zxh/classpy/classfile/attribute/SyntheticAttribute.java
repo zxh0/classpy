@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.reader.ClassReader;
 
 /*
 Synthetic_attribute {

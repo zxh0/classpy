@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.FileHex;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import java.io.File;
 import java.net.MalformedURLException;
