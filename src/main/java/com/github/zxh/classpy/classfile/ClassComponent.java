@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.ClassComponentHelper;
 import java.util.Collections;
 import java.util.List;
 

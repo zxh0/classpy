@@ -1,6 +1,5 @@
-package com.github.zxh.classpy;
+package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
