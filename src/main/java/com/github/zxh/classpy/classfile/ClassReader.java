@@ -6,10 +6,8 @@ import com.github.zxh.classpy.classfile.datatype.U4;
 import com.github.zxh.classpy.classfile.datatype.U1CpIndex;
 import com.github.zxh.classpy.classfile.datatype.U4Hex;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
-import com.github.zxh.classpy.ClassParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U4Float;
-import com.github.zxh.classpy.BytesReader;
 import java.nio.ByteOrder;
 import java.util.function.Supplier;
 

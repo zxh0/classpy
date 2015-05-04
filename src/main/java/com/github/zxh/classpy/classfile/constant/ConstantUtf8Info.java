@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.Util;
+import com.github.zxh.classpy.classfile.Util;
 
 /*
 CONSTANT_Utf8_info {

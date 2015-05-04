@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.Util;
-import com.github.zxh.classpy.ClassParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import java.lang.reflect.Array;
 import java.util.Arrays;

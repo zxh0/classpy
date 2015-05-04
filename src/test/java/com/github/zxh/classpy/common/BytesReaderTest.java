@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.common;
 
-import com.github.zxh.classpy.BytesReader;
+import com.github.zxh.classpy.classfile.BytesReader;
 import java.nio.ByteOrder;
 import java.util.stream.Stream;
 import org.junit.Test;

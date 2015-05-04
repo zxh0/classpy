@@ -1,4 +1,4 @@
-package com.github.zxh.classpy;
+package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 

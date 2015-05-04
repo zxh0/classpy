@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.ClassParseException;
+import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 
 /**
