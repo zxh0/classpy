@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.IntValue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -49,23 +48,23 @@ public class AccessFlags {
         
     }
     
-    public static <T extends FileComponent & IntValue> void describeClassFlags(T flags) {
+    public static <T extends ClassComponent & IntValue> void describeClassFlags(T flags) {
         flags.setDesc(describe(TYPE_CLASS, flags.getValue()));
     }
     
-    public static <T extends FileComponent & IntValue> void describeFieldFlags(T flags) {
+    public static <T extends ClassComponent & IntValue> void describeFieldFlags(T flags) {
         flags.setDesc(describe(TYPE_FIELD, flags.getValue()));
     }
     
-    public static <T extends FileComponent & IntValue> void describeMethodFlags(T flags) {
+    public static <T extends ClassComponent & IntValue> void describeMethodFlags(T flags) {
         flags.setDesc(describe(TYPE_METHOD, flags.getValue()));
     }
     
-    public static <T extends FileComponent & IntValue> void describeInnerClassFlags(T flags) {
+    public static <T extends ClassComponent & IntValue> void describeInnerClassFlags(T flags) {
         flags.setDesc(describe(TYPE_NESTED_CLASS, flags.getValue()));
     }
     
-    public static <T extends FileComponent & IntValue> void describeClassOrInnerClassFlags(T flags) {
+    public static <T extends ClassComponent & IntValue> void describeClassOrInnerClassFlags(T flags) {
         flags.setDesc(describe(TYPE_CLASS | TYPE_NESTED_CLASS, flags.getValue()));
     }
     

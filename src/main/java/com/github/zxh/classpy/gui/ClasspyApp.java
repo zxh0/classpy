@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.FileHex;
+import com.github.zxh.classpy.classfile.ClassComponent;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -119,7 +119,7 @@ public class ClasspyApp extends Application {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
         
-        task.setOnSucceeded((FileComponent fc, FileHex hex) -> {
+        task.setOnSucceeded((ClassComponent fc, FileHex hex) -> {
             MainPane mainPane = new MainPane(fc, hex);
             tab.setContent(mainPane);
             

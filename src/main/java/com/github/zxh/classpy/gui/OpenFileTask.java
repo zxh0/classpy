@@ -1,8 +1,8 @@
 package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.ClassParser;
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.FileHex;
+import com.github.zxh.classpy.classfile.ClassComponent;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.function.BiConsumer;
@@ -28,7 +28,7 @@ public class OpenFileTask extends Task<Object> {
         try (InputStream is = url.openStream()) {
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
-            FileComponent fc = ClassParser.parse(bytes);
+            ClassComponent fc = ClassParser.parse(bytes);
             fc.setName(UrlHelper.getFileName(url));
             FileHex hex = new FileHex(bytes);
 
@@ -37,10 +37,10 @@ public class OpenFileTask extends Task<Object> {
         }
     }
     
-    public void setOnSucceeded(BiConsumer<FileComponent, FileHex> callback) {
+    public void setOnSucceeded(BiConsumer<ClassComponent, FileHex> callback) {
         super.setOnSucceeded(e -> {
             Object[] arr = (Object[]) e.getSource().getValue();
-            FileComponent fc = (FileComponent) arr[0];
+            ClassComponent fc = (ClassComponent) arr[0];
             FileHex hex = (FileHex) arr[1];
             
             callback.accept(fc, hex);

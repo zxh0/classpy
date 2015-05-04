@@ -1,8 +1,8 @@
 package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.MethodInfo;
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.FileHex;
+import com.github.zxh.classpy.classfile.ClassComponent;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
@@ -24,12 +24,12 @@ import javafx.scene.layout.BorderPane;
  */
 public class MainPane extends BorderPane {
     
-    private final TreeView<FileComponent> tree;
+    private final TreeView<ClassComponent> tree;
     private final HexPane hexPane;
     private final Label statusLabel;
     private final BytesBar bytesBar;
     
-    public MainPane(FileComponent file, FileHex hex) {
+    public MainPane(ClassComponent file, FileHex hex) {
         tree = buildClassTree(file);
         hexPane = new HexPane(hex);
         statusLabel = new Label(" ");
@@ -43,9 +43,9 @@ public class MainPane extends BorderPane {
     }
     
     public MethodInfo getSelectedMethodInfo() {
-        TreeItem<FileComponent> fcItem = tree.getSelectionModel().getSelectedItem();
+        TreeItem<ClassComponent> fcItem = tree.getSelectionModel().getSelectedItem();
         if (fcItem != null) {
-            FileComponent fc = fcItem.getValue();
+            ClassComponent fc = fcItem.getValue();
             if (fc instanceof MethodInfo) {
                 return (MethodInfo) fc;
             }
@@ -54,11 +54,11 @@ public class MainPane extends BorderPane {
         return null;
     }
     
-    private static TreeView<FileComponent> buildClassTree(FileComponent file) {
-        FileComponentTreeItem root = new FileComponentTreeItem(file);
+    private static TreeView<ClassComponent> buildClassTree(ClassComponent file) {
+        ClassComponentTreeItem root = new ClassComponentTreeItem(file);
         root.setExpanded(true);
         
-        TreeView<FileComponent> tree = new TreeView<>(root);
+        TreeView<ClassComponent> tree = new TreeView<>(root);
         tree.setMinWidth(200);
         
         return tree;
@@ -81,12 +81,12 @@ public class MainPane extends BorderPane {
     
     private void listenTreeItemSelection() {
         tree.getSelectionModel().getSelectedItems().addListener(
-            (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
+            (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
                 if (c.next()) {
                     if (c.wasAdded()) {
-                        TreeItem<FileComponent> node = c.getList().get(c.getFrom());
+                        TreeItem<ClassComponent> node = c.getList().get(c.getFrom());
                         if (node != null && node.getParent() != null) {
-                            FileComponent fc = node.getValue();
+                            ClassComponent fc = node.getValue();
                             //System.out.println("select " + cc);
                             statusLabel.setText(" " + fc.getClass().getSimpleName());
                             if (fc.getLength() > 0) {

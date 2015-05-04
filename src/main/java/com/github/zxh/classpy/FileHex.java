@@ -1,6 +1,6 @@
 package com.github.zxh.classpy;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.classfile.ClassComponent;
 
 /**
  * Displayed by HexPane.
@@ -71,7 +71,7 @@ public class FileHex {
     }
     
     // todo
-    public Selection select(FileComponent fc) {
+    public Selection select(ClassComponent fc) {
         Selection selection = new Selection();
         selection.startPosition = calcTextPosition(fc.getOffset());
         selection.endPosition = calcTextPosition(fc.getOffset() + fc.getLength()) - 1;
