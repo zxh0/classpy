@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.common.FileHex;
+import com.github.zxh.classpy.FileHex;
 import com.github.zxh.classpy.common.FileComponent;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;

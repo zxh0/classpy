@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.common.IntValue;
+import com.github.zxh.classpy.IntValue;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 

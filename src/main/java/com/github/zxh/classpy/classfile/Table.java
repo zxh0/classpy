@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.common.Util;
+import com.github.zxh.classpy.Util;
 import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import java.lang.reflect.Array;

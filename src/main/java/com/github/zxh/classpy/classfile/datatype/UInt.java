@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
-import com.github.zxh.classpy.common.IntValue;
+import com.github.zxh.classpy.IntValue;
 
 /**
  * 

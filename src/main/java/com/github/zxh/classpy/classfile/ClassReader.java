@@ -10,7 +10,7 @@ import com.github.zxh.classpy.common.FileParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U4Float;
 import com.github.zxh.classpy.common.BytesReader;
-import com.github.zxh.classpy.common.IntValue;
+import com.github.zxh.classpy.IntValue;
 import java.nio.ByteOrder;
 import java.util.function.Supplier;
 

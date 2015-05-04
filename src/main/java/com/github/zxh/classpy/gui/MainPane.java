@@ -2,7 +2,7 @@ package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.common.FileHex;
+import com.github.zxh.classpy.FileHex;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;

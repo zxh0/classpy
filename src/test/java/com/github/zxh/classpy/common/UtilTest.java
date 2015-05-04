@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.common;
 
+import com.github.zxh.classpy.Util;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 

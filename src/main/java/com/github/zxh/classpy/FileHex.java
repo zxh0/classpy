@@ -1,4 +1,6 @@
-package com.github.zxh.classpy.common;
+package com.github.zxh.classpy;
+
+import com.github.zxh.classpy.common.FileComponent;
 
 /**
  * Displayed by HexPane.

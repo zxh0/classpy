@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.constant;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.common.FileParseException;
-import com.github.zxh.classpy.common.Mutf8Decoder;
+import com.github.zxh.classpy.Mutf8Decoder;
 import java.io.IOException;
 
 /**
