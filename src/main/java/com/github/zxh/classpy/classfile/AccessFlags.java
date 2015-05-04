@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.common.java;
+package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.IntValue;
@@ -37,9 +37,7 @@ public class AccessFlags {
         ACC_STRICT      (0x0800, TYPE_METHOD),
         ACC_SYNTHETIC   (0x1000, TYPE_ALL),
         ACC_ANNOTATION  (0x2000, TYPE_CLASS | TYPE_NESTED_CLASS),
-        ACC_ENUM        (0x4000, TYPE_CLASS | TYPE_FIELD | TYPE_NESTED_CLASS),
-        ACC_CONSTRUCTOR           (0x10000, TYPE_FIELD), // dex
-        ACC_DECLARED_SYNCHRONIZED (0x20000, TYPE_FIELD); // dex
+        ACC_ENUM        (0x4000, TYPE_CLASS | TYPE_FIELD | TYPE_NESTED_CLASS);
         
         private final int flag;
         private final int type;

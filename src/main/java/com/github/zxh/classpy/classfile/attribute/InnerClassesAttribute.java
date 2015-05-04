@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.common.java.AccessFlags;
+import com.github.zxh.classpy.classfile.AccessFlags;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
