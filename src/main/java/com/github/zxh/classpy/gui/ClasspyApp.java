@@ -103,8 +103,7 @@ public class ClasspyApp extends Application {
         fileChooser.setTitle("Open file");
         fileChooser.getExtensionFilters().addAll(
             new FileChooser.ExtensionFilter("JAR", "*.jar"),
-            new FileChooser.ExtensionFilter("CLASS", "*.class"),
-            new FileChooser.ExtensionFilter("DEX", "*.dex")
+            new FileChooser.ExtensionFilter("CLASS", "*.class")
         );
     }
     
