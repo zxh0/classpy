@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.datatype.IntValue;
+import com.github.zxh.classpy.classfile.datatype.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U4;
