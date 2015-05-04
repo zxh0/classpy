@@ -3,7 +3,6 @@ package com.github.zxh.classpy.gui;
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileHex;
-import com.github.zxh.classpy.common.FileParser;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.function.BiConsumer;
@@ -27,11 +26,9 @@ public class OpenFileTask extends Task<Object> {
         System.out.println("loading " + url + "...");
         
         try (InputStream is = url.openStream()) {
-            FileParser parser = new ClassParser();
-
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
-            FileComponent fc = parser.parse(bytes);
+            FileComponent fc = ClassParser.parse(bytes);
             fc.setName(UrlHelper.getFileName(url));
             FileHex hex = new FileHex(bytes);
 

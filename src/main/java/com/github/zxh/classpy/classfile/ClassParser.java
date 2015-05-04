@@ -1,15 +1,12 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.common.FileParser;
-
 /**
  *
  * @author zxh
  */
-public class ClassParser implements FileParser {
+public class ClassParser {
     
-    @Override
-    public ClassFile parse(byte[] bytes) {
+    public static ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();
         cf.read(new ClassReader(bytes));
         return cf;
