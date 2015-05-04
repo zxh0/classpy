@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.Util;
@@ -112,7 +112,7 @@ public class ConstantPool extends ClassComponent {
     private <T> T getConstant(Class<T> classOfT, int index) {
         ConstantInfo c = constants[index];
         if (c.getClass() != classOfT) {
-            throw new FileParseException("Constant#" + index + " is not " + classOfT.getSimpleName() + "!");
+            throw new ClassParseException("Constant#" + index + " is not " + classOfT.getSimpleName() + "!");
         }
         return classOfT.cast(c);
     }

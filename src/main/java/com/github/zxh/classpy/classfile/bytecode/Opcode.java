@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.ClassParseException;
 
 /**
  *
@@ -239,7 +239,7 @@ public enum Opcode {
         if (opcode < 0xca) {
             return values()[opcode];
         } else {
-            throw new FileParseException("Invalid opcode: " + opcode);
+            throw new ClassParseException("Invalid opcode: " + opcode);
         }
     }
     

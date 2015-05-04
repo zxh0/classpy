@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
@@ -175,7 +175,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
                     offset = reader.readU2();
                     typeArgumentIndex = reader.readU1();
                     break;
-                default: throw new FileParseException("Invalid target_type: " + targetType);
+                default: throw new ClassParseException("Invalid target_type: " + targetType);
             }
         }
         

@@ -6,7 +6,7 @@ import com.github.zxh.classpy.classfile.datatype.U4;
 import com.github.zxh.classpy.classfile.datatype.U1CpIndex;
 import com.github.zxh.classpy.classfile.datatype.U4Hex;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
-import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.ClassParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U4Float;
 import com.github.zxh.classpy.common.BytesReader;
@@ -29,7 +29,7 @@ public class ClassReader extends BytesReader {
     
     public ConstantPool getConstantPool() {
         if (constantPool == null) {
-            throw new FileParseException("ConstantPool is not ready!");
+            throw new ClassParseException("ConstantPool is not ready!");
         } else {
             return constantPool;
         }

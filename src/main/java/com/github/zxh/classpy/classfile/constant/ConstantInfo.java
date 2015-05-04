@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.common.FileParseException;
+import com.github.zxh.classpy.ClassParseException;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U1;
 
@@ -48,7 +48,7 @@ public abstract class ConstantInfo extends ClassComponent {
             case 18: return new ConstantInvokeDynamicInfo();
         }
         
-        throw new FileParseException("Invalid Constant Type: " + tag);
+        throw new ClassParseException("Invalid Constant Type: " + tag);
     }
     
 }
