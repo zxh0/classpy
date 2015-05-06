@@ -4,7 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.helper.Util;
+import com.github.zxh.classpy.classfile.helper.StringUtil;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -55,7 +55,7 @@ public class ConstantPool extends ClassComponent {
     
     // like #32: (Utf8)
     private void setConstantName(ConstantInfo constant, int idx) {
-        String idxStr = Util.formatIndex(cpCount, idx);
+        String idxStr = StringUtil.formatIndex(cpCount, idx);
         String constantName = constant.getClass().getSimpleName()
                 .replace("Constant", "")
                 .replace("Info", "");

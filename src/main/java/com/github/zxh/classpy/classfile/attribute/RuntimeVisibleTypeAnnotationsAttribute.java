@@ -7,7 +7,7 @@ import com.github.zxh.classpy.classfile.datatype.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
-import com.github.zxh.classpy.classfile.helper.Util;
+import com.github.zxh.classpy.classfile.helper.StringUtil;
 
 /*
 RuntimeVisibleTypeAnnotations_attribute {
@@ -62,7 +62,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         @Override
         protected void readContent(ClassReader reader) {
             targetType = reader.readU1();
-            targetType.setDesc(Util.toHexString(targetType.getValue()));
+            targetType.setDesc(StringUtil.toHexString(targetType.getValue()));
             targetInfo = new TargetInfo(targetType.getValue());
             targetInfo.read(reader);
             targetPath = new TypePath();

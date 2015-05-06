@@ -4,7 +4,7 @@ package com.github.zxh.classpy.classfile.helper;
  *
  * @author zxh
  */
-public class Util {
+public class StringUtil {
     
     /**
      * Convert i to HEX string.

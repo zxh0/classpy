@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.datatype;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.helper.Util;
+import com.github.zxh.classpy.classfile.helper.StringUtil;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import java.lang.reflect.Array;
 import java.util.Arrays;
@@ -71,7 +71,7 @@ public class Table<E extends ClassComponent> extends ClassComponent {
     
     private void setEntryName() {
         for (int i = 0; i < table.length; i++) {
-            String newName = Util.formatIndex(length, i);
+            String newName = StringUtil.formatIndex(length, i);
             String oldName = table[i].getName();
             if (oldName != null) {
                 newName += " (" + oldName + ")";
