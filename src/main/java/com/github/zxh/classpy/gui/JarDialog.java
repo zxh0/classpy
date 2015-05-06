@@ -20,10 +20,6 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- *
- * @author zxh
- */
 public class JarDialog {
     
     public static URL showDialog(File jar) throws Exception {

@@ -4,8 +4,6 @@ import com.github.zxh.classpy.classfile.reader.ClassReader;
 
 /**
  * Unsigned four-byte quantity.
- * 
- * @author zxh
  */
 public class U4 extends UInt {
 

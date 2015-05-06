@@ -4,10 +4,6 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 
-/**
- *
- * @author zxh
- */
 public class HexPane extends TextArea {
     
     private final FileHex hex;

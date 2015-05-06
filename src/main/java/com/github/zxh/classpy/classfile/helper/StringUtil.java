@@ -1,9 +1,5 @@
 package com.github.zxh.classpy.classfile.helper;
 
-/**
- *
- * @author zxh
- */
 public class StringUtil {
     
     /**

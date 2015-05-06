@@ -7,8 +7,6 @@ import java.util.List;
 
 /**
  * Abstract base class for all class file components.
- * 
- * @author zxh
  */
 public abstract class ClassComponent {
     

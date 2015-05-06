@@ -2,8 +2,6 @@ package com.github.zxh.classpy.classfile.constant;
 
 /**
  * http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4.3.5
- *
- * @author zxh
  */
 public enum RefKind {
     

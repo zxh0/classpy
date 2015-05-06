@@ -5,10 +5,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 
-/**
- *
- * @author zxh
- */
 public class BytesBar extends Pane {
     
     private final int byteCount;

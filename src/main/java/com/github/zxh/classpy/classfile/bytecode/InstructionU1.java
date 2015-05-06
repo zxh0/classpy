@@ -5,8 +5,6 @@ import com.github.zxh.classpy.classfile.datatype.U1;
 
 /**
  * The instruction whose operand is U1.
- *
- * @author zxh
  */
 public class InstructionU1 extends Instruction {
 

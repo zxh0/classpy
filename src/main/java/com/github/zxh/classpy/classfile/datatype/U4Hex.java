@@ -4,10 +4,6 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.helper.StringUtil;
 
-/**
- *
- * @author zxh
- */
 public class U4Hex extends ClassComponent {
 
     @Override

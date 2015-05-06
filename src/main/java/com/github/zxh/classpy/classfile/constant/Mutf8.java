@@ -8,8 +8,6 @@ import java.io.IOException;
 
 /**
  * UTF8 String in constant pool.
- * 
- * @author zxh
  */
 public class Mutf8 extends ClassComponent {
 

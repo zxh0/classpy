@@ -6,8 +6,6 @@ import java.util.stream.Stream;
 
 /**
  * Access and property flags of class, field, method and nested class.
- * 
- * @author zxh
  */
 public class AccessFlags {
     

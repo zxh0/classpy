@@ -17,8 +17,6 @@ import java.util.function.Supplier;
 
 /**
  * Convenience class for reading class files.
- * 
- * @author zxh
  */
 public class ClassReader extends BytesReader {
 

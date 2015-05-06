@@ -5,8 +5,6 @@ import com.github.zxh.classpy.classfile.datatype.U1CpIndex;
 
 /**
  * The instruction whose operand is U1CpIndex.
- *
- * @author zxh
  */
 public class InstructionCp1 extends Instruction {
 

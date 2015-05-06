@@ -3,10 +3,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
-/**
- *
- * @author zxh
- */
 public class InvokeInterface extends Instruction {
 
     public InvokeInterface(Opcode opcode, int pc) {

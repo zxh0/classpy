@@ -6,10 +6,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-/**
- *
- * @author zxh
- */
 public class Mutf8Decoder {
     
     /**

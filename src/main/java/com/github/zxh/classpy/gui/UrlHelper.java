@@ -2,10 +2,6 @@ package com.github.zxh.classpy.gui;
 
 import java.net.URL;
 
-/**
- *
- * @author zxh
- */
 public class UrlHelper {
     
     public static String getFileName(URL url) {

@@ -13,8 +13,6 @@ import java.util.List;
  * Array of class components.
  * 
  * @param <E> the type of entry in this table
- * 
- * @author zxh
  */
 public class Table<E extends ClassComponent> extends ClassComponent {
 

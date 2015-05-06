@@ -11,10 +11,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
- *
- * @author zxh
- */
 public class AboutDialog {
     
     private static final String HOME_URL = "https://github.com/zxh0/classpy";

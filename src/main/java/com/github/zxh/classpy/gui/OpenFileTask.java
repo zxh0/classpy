@@ -8,10 +8,6 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import javafx.concurrent.Task;
 
-/**
- *
- * @author zxh
- */
 public class OpenFileTask extends Task<Object> {
 
     private final URL url;

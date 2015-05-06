@@ -4,8 +4,6 @@ import com.github.zxh.classpy.classfile.reader.ClassReader;
 
 /**
  * Same as U2, but used as index of ConstantPool.
- *
- * @author zxh
  */
 public class U2CpIndex extends U2 {
 

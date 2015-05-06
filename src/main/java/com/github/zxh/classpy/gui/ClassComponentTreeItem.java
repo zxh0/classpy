@@ -8,8 +8,6 @@ import javafx.scene.control.TreeItem;
 /**
  * Build children lazily.
  * http://download.java.net/jdk8/jfxdocs/javafx/scene/control/TreeItem.html
- * 
- * @author zxh
  */
 public class ClassComponentTreeItem extends TreeItem<ClassComponent> {
 

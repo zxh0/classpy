@@ -3,10 +3,6 @@ package com.github.zxh.classpy.classfile.reader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
-/**
- *
- * @author zxh
- */
 public class BytesReader {
     
     protected final ByteBuffer buf;

@@ -2,10 +2,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 
-/**
- *
- * @author zxh
- */
 public class Iinc extends Instruction {
 
     public Iinc(Opcode opcode, int pc) {

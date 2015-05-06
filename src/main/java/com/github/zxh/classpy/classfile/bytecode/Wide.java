@@ -2,10 +2,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 
-/**
- *
- * @author zxh
- */
 public class Wide extends Instruction {
 
     public Wide(Opcode opcode, int pc) {

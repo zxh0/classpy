@@ -2,10 +2,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 
-/**
- *
- * @author zxh
- */
 public class Sipush extends Instruction {
 
     public Sipush(Opcode opcode, int pc) {

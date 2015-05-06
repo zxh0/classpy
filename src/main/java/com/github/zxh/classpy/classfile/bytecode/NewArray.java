@@ -3,10 +3,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 
-/**
- *
- * @author zxh
- */
 public class NewArray extends Instruction {
 
     public NewArray(Opcode opcode, int pc) {

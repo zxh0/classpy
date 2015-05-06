@@ -12,8 +12,6 @@ import java.util.stream.Collectors;
 
 /**
  * The constant pool in class file.
- * 
- * @author zxh
  */
 public class ConstantPool extends ClassComponent {
     

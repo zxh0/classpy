@@ -3,10 +3,6 @@ package com.github.zxh.classpy.classfile.datatype;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 
-/**
- *
- * @author zxh
- */
 public class U4Float extends ClassComponent {
 
     @Override

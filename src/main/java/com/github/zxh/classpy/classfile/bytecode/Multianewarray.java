@@ -3,10 +3,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
-/**
- *
- * @author zxh
- */
 public class Multianewarray extends Instruction {
 
     public Multianewarray(Opcode opcode, int pc) {

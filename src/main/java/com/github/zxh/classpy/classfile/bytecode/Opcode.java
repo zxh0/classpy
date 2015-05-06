@@ -2,10 +2,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassParseException;
 
-/**
- *
- * @author zxh
- */
 public enum Opcode {
     
     // Constants

@@ -19,8 +19,6 @@ import javafx.stage.Stage;
 
 /**
  * Main class.
- * 
- * @author zxh
  */
 public class ClasspyApp extends Application {
 

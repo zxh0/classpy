@@ -18,8 +18,6 @@ import javafx.scene.layout.BorderPane;
  * |------------------------------|
  * | StatusLabel          BytesBar|
  * |------------------------------|
- * 
- * @author zxh
  */
 public class MainPane extends BorderPane {
     

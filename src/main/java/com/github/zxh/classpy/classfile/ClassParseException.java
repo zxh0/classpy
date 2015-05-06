@@ -1,9 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-/**
- *
- * @author zxh
- */
 @SuppressWarnings("serial")
 public class ClassParseException extends RuntimeException {
 

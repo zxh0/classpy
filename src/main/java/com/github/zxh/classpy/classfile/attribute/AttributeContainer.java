@@ -4,10 +4,6 @@ import com.github.zxh.classpy.classfile.datatype.Table;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-/**
- *
- * @author zxh
- */
 public interface AttributeContainer {
     
     public Table<AttributeInfo> getAttributes();

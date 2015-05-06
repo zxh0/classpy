@@ -13,8 +13,6 @@ import javafx.scene.control.MenuItem;
  * File             Window        Help
  *  |-Open File...   |-New Window  |-About
  *  |-Open Recent
- * 
- * @author zxh
  */
 public class MyMenuBar extends MenuBar {
 

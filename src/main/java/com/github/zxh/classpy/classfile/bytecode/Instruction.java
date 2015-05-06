@@ -5,8 +5,6 @@ import com.github.zxh.classpy.classfile.reader.ClassReader;
 
 /**
  * Base class for all instructions.
- * 
- * @author zxh
  */
 public class Instruction extends ClassComponent {
 

@@ -7,10 +7,6 @@ import com.github.zxh.classpy.classfile.bytecode.Opcode;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author zxh
- */
 public class Code extends ClassComponent {
 
     private final int codeLength;

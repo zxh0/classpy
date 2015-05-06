@@ -12,10 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-/**
- * 
- * @author zxh
- */
 public class JarTreeItem extends TreeItem<Path> {
 
     private boolean isFirstTimeChildren = true;
