@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.common;
+package com.github.zxh.classpy;
 
 import java.io.ByteArrayOutputStream;
 import java.io.DataOutput;
