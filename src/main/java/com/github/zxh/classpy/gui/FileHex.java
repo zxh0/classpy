@@ -5,7 +5,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 /**
  * Displayed by HexPane.
  * 
- * The formatted hex string is looks like this:
+ * The formatted hex string looks like this:
  * 00000000| CA FE BA BE 00 00 00 34 00 2C 0A 00 06 00 27 07 |.......4.,....'.
  * 00000010| 00 28 07 00 29 0A 00 03 00 27 07 00 2A 07 00 2B |.(..)....'..*..+
  * ...
