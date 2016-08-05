@@ -2,11 +2,6 @@
 
 Classpy is a GUI tool for investigating Java class files.
 
-## Screenshots
-
-![Screenshot1](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot.png)
-![Screenshot2](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot2.png)
-
 ## Inspiration
 
 This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javap.html) and [JavaClassViewer](http://www.codeproject.com/Articles/35915/Java-Class-Viewer). I reinvent the wheel for the following two reasons:
@@ -19,3 +14,8 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 * Is able to parse class files described by [JVMS8](http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html)
 * Displays class file as tree and hex text
 * The corresponding hex text is highlighted when you select a tree node
+
+## Screenshots
+
+![Screenshot1](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot.png)
+![Screenshot2](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot2.png)
