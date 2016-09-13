@@ -1,19 +1,22 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 
 public class InvokeDynamic extends Instruction {
+
+    {
+        u1  ("opcode");
+        u2cp("index");
+        u2  ("zero");
+    }
 
     public InvokeDynamic(Opcode opcode, int pc) {
         super(opcode, pc);
     }
     
     @Override
-    protected void readOperands(ClassReader reader) {
-        U2CpIndex cpIdx = reader.readU2CpIndex();
-        reader.skipBytes(2);
-        setDesc(getDesc() + " " + cpIdx.getDesc());
+    protected void afterRead(ConstantPool cp) {
+        setDesc(getDesc() + " " + super.get("index").getDesc());
     }
     
 }

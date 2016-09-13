@@ -8,12 +8,11 @@ import com.github.zxh.classpy.classfile.reader.ClassReader;
 public class U4 extends UInt {
 
     @Override
-    protected int readUInt(ClassReader reader) {
-        int value = reader.readInt();
+    protected void readContent(ClassReader reader) {
+        value = reader.readInt();
         if (value < 0) {
             // todo
         }
-        return value;
     }
     
 }

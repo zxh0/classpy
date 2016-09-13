@@ -1,9 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
-import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
 /*
@@ -19,30 +16,18 @@ BootstrapMethods_attribute {
  */
 public class BootstrapMethodsAttribute extends AttributeInfo {
 
-    private U2 numBootstrapMethods;
-    private Table<BootstrapMethodInfo> bootstrapMethods;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        numBootstrapMethods = reader.readU2();
-        bootstrapMethods = reader.readTable(BootstrapMethodInfo.class,
-                numBootstrapMethods);
+    {
+        u2   ("num_bootstrap_methods");
+        table("bootstrap_methods", BootstrapMethodInfo.class);
     }
-    
+
     
     public static class BootstrapMethodInfo extends ClassComponent {
-        
-        private U2CpIndex bootstrapMethodRef;
-        private U2 numBootstrapArguments;
-        private Table<U2CpIndex> bootstrapArguments;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            bootstrapMethodRef = reader.readU2CpIndex();
-            numBootstrapArguments = reader.readU2();
-            bootstrapArguments = reader.readTable(U2CpIndex.class,
-                    numBootstrapArguments);
-            //setDesc(bootstrapMethodRef.getDesc());
+
+        {
+            u2cp ("bootstrap_method_ref");
+            u2   ("num_bootstrap_arguments");
+            table("bootstrap_arguments", U2CpIndex.class);
         }
         
     }

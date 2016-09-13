@@ -1,7 +1,10 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.classfile.helper.ClassComponentHelper;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
+import com.github.zxh.classpy.classfile.datatype.*;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
+
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,8 +15,9 @@ public abstract class ClassComponent {
     
     private String name;
     private String desc; // description
-    private int offset; // the position of this FileComponent in the file
-    private int length; // how many bytes this FileComponent has
+    private int offset; // the position of this ClassComponent in the file
+    private int length; // how many bytes this ClassComponent has
+    private List<ClassComponent> subComponents;
     
     // Getters & Setters
     public final String getName() {return name;}
@@ -22,54 +26,112 @@ public abstract class ClassComponent {
     public final void setDesc(String desc) {this.desc = desc;}
     public final int getOffset() {return offset;}
     public final int getLength() {return length;}
-    
-    public final void setDesc(boolean value) {
-        desc = Boolean.toString(value);
+
+    public List<ClassComponent> getSubComponents() {
+        return subComponents == null
+                ? Collections.EMPTY_LIST
+                : Collections.unmodifiableList(subComponents);
     }
-    public final void setDesc(char value) {
-        desc = Character.toString(value);
+
+    /**
+     * Find sub-component by name.
+     * @param name
+     * @return
+     */
+    protected final ClassComponent get(String name) {
+        for (ClassComponent c : subComponents) {
+            if (name.equals(c.getName())) {
+                return c;
+            }
+        }
+        return null;
     }
-    public final void setDesc(int value) {
-        desc = Integer.toString(value);
+
+    protected int getUInt(String name) {
+        return ((UInt) get(name)).getValue();
     }
-    public final void setDesc(long value) {
-        desc = Long.toString(value);
+
+    protected final void u1(String name) {
+        this.add(name, new U1());
     }
-    public final void setDesc(float value) {
-        desc = Float.toString(value);
+
+    protected final void u1cp(String name) {
+        this.add(name, new U1CpIndex());
     }
-    public final void setDesc(double value) {
-        desc = Double.toString(value);
+
+    protected final void u2(String name) {
+        this.add(name, new U2());
     }
-    
-    protected final void startRead(int position) {
-        offset = position;
+
+    protected final void u2cp(String name) {
+        this.add(name, new U2CpIndex());
     }
-    
-    protected final void endRead(int position) {
-        length = position - offset;
+
+    protected final void u4(String name) {
+        this.add(name, new U4());
+    }
+
+    protected final void u4hex(String name) {
+        this.add(name, new U4Hex());
+    }
+
+    protected final void table(String name,
+                               Class<? extends ClassComponent> entryClass) {
+        UInt length = (UInt) subComponents.get(subComponents.size() - 1);
+        Table table = new Table(length, entryClass);
+        this.add(name, table);
+    }
+
+    protected final void bytes(String name) {
+        UInt count = (UInt) subComponents.get(subComponents.size() - 1);
+        Bytes bytes = new Bytes(count);
+        this.add(name, bytes);
+    }
+
+    protected final void add(ClassComponent subComponent) {
+        this.add(null, subComponent);
+    }
+
+    protected final void add(String name, ClassComponent subComponent) {
+        if (name != null) {
+            subComponent.setName(name);
+        }
+        if (subComponents == null) {
+            subComponents = new ArrayList<>();
+        }
+        subComponents.add(subComponent);
+    }
+
+    /**
+     * Reads content, records offset and length.
+     * @param reader 
+     */
+    public final void read(ClassReader reader) {
+        offset = reader.getPosition();
+        readContent(reader);
+        length = reader.getPosition() - offset;
     }
     
     /**
-     * Returns sub-components.
-     * 
-     * @return 
+     * Reads content using ClassReader.
+     * @param reader 
      */
-    @SuppressWarnings("unchecked")
-    public List<? extends ClassComponent> getSubComponents() {
-        try {
-            return ClassComponentHelper.findSubComponents(this);
-        } catch (ReflectiveOperationException e) {
-            // todo
-            e.printStackTrace(System.err);
-            return Collections.EMPTY_LIST;
+    protected void readContent(ClassReader reader) {
+        if (subComponents != null) {
+            for (ClassComponent cc : subComponents) {
+                cc.read(reader);
+            }
         }
     }
-    
+
+    protected void afterRead(ConstantPool cp) {
+
+    }
+
     /**
-     * The returned string will be displayed by FileComponentTreeItem.
-     * 
-     * @return 
+     * The returned string will be displayed by ClassComponentTreeItem.
+     *
+     * @return
      */
     @Override
     public final String toString() {
@@ -82,24 +144,8 @@ public abstract class ClassComponent {
         if (desc != null) {
             return desc;
         }
-        
+
         return getClass().getSimpleName();
     }
-    
-    /**
-     * Reads content, records offset and length.
-     * @param reader 
-     */
-    public final void read(ClassReader reader) {
-        startRead(reader.getPosition());
-        readContent(reader);
-        endRead(reader.getPosition());
-    }
-    
-    /**
-     * Reads content using ClassReader.
-     * @param reader 
-     */
-    protected abstract void readContent(ClassReader reader);
-    
+
 }

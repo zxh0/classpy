@@ -1,10 +1,8 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
 /*
 LocalVariableTable_attribute {
@@ -21,50 +19,31 @@ LocalVariableTable_attribute {
  */
 public class LocalVariableTableAttribute extends AttributeInfo {
 
-    private U2 localVariableTableLength;
-    private Table<LocalVariableTableEntry> localVariableTable;
+    {
+        u2   ("local_variable_table_length");
+        table("local_variable_table", LocalVariableTableEntry.class);
+    }
 
-    public Table<LocalVariableTableEntry> getLocalVariableTable() {
-        return localVariableTable;
-    }
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        localVariableTableLength = reader.readU2();
-        localVariableTable = reader.readTable(LocalVariableTableEntry.class,
-                localVariableTableLength);
-    }
-    
     
     public static class LocalVariableTableEntry extends ClassComponent {
-        
-        private U2 startPc;
-        private U2 length;
-        private U2CpIndex nameIndex;
-        private U2CpIndex descriptorIndex;
-        private U2 index;
 
-        // Getters
-        public U2 getStartPc() {return startPc;}
-        public U2 getIndex() {return index;}
-        
-        // can not override getLength()
-        public U2 length() {return length;}
+        {
+            u2  ("start_pc");
+            u2  ("length");
+            u2cp("name_index");
+            u2cp("descriptor_index");
+            u2  ("index");
+        }
 
         @Override
-        protected void readContent(ClassReader reader) {
-            startPc = reader.readU2();
-            length = reader.readU2();
-            nameIndex = reader.readU2CpIndex();
-            descriptorIndex = reader.readU2CpIndex();
-            index = reader.readU2();
-            setDesc(reader);
-        }
-        
-        private void setDesc(ClassReader reader) {
-            String varName = reader.getConstantPool().getConstantDesc(nameIndex.getValue());
-            int fromPc = startPc.getValue();
-            int toPc = fromPc + length.getValue() - 1;
+        protected void afterRead(ConstantPool cp) {
+            int startPc = ((U2) super.get("start_pc")).getValue();
+            int length = ((U2) super.get("length")).getValue();
+            int nameIndex = ((U2) super.get("name_index")).getValue();
+
+            int fromPc = startPc;
+            int toPc = fromPc + length - 1;
+            String varName = cp.getConstantDesc(nameIndex);
             setDesc(String.format("%s(%d~%d)", varName, fromPc, toPc));
         }
         

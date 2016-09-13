@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.datatype;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 
 /**
  * Same as U1, but used as index of ConstantPool.
@@ -8,9 +8,9 @@ import com.github.zxh.classpy.classfile.reader.ClassReader;
 public class U1CpIndex extends U1 {
 
     @Override
-    protected void describe(int value, ClassReader reader) {
+    protected void afterRead(ConstantPool cp) {
         if (value > 0) {
-            String constantDesc = reader.getConstantPool().getConstantDesc(value);
+            String constantDesc = cp.getConstantDesc(value);
             setDesc("#" + value + "->" + constantDesc);
         } else {
             setDesc("#" + value);

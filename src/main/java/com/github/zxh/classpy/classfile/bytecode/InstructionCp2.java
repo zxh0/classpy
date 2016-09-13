@@ -1,21 +1,23 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 
 /**
  * The instruction whose operand is U2CpIndex.
  */
 public class InstructionCp2 extends Instruction {
 
+    {
+        u1  ("opcode");
+        u2cp("operand");
+    }
+
     public InstructionCp2(Opcode opcode, int pc) {
         super(opcode, pc);
     }
 
-    @Override
-    protected void readOperands(ClassReader reader) {
-        U2CpIndex operand = reader.readU2CpIndex();
-        setDesc(getDesc() + " " + operand.getDesc());
+    protected void afterRead(ConstantPool cp) {
+        setDesc(getDesc() + " " + super.get("operand").getDesc());
     }
     
 }

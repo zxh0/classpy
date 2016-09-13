@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
 StackMapTable_attribute {
@@ -13,24 +12,15 @@ StackMapTable_attribute {
  */
 public class StackMapTableAttribute extends AttributeInfo {
 
-    private U2 numberOfEntries;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        numberOfEntries = reader.readU2();
-        
-        // todo
-        reader.skipBytes(attributeLength.getValue() - 2);
+    {
+        u2("number_of_entries");
     }
-    
-    
-//    public static class StackMapFrame extends ClassComponent {
-//
-//        @Override
-//        protected void readContent(ClassReader reader) {
-//            // todo
-//        }
-//        
-//    }
-    
+
+    @Override
+    protected void readContent(ClassReader reader) {
+        super.readContent(reader);
+        // todo
+        reader.skipBytes(super.getUInt("attribute_length") - 2);
+    }
+
 }

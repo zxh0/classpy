@@ -2,8 +2,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 lookupswitch
@@ -20,7 +18,7 @@ match-offset pairs...
  */
 public class LookupSwitch extends Instruction {
 
-    private final List<MatchOffset> matchOffsets = new ArrayList<>();
+    //private final List<MatchOffset> matchOffsets = new ArrayList<>();
     
     public LookupSwitch(Opcode opcode, int pc) {
         super(opcode, pc);
@@ -37,10 +35,10 @@ public class LookupSwitch extends Instruction {
         for (int i = 0; i < npairs; i++) {
             MatchOffset offset = new MatchOffset(false, pc);
             offset.read(reader);
-            matchOffsets.add(offset);
+            add(offset);
         }
         
-        matchOffsets.add(defaultOffset);
+        add(defaultOffset);
     }
     
     private void skipPadding(ClassReader reader) {
@@ -48,12 +46,7 @@ public class LookupSwitch extends Instruction {
             reader.readByte();
         }
     }
-    
-    @Override
-    public final List<MatchOffset> getSubComponents() {
-        return matchOffsets;
-    }
-    
+
     
     public static class MatchOffset extends ClassComponent {
 
@@ -77,7 +70,7 @@ public class LookupSwitch extends Instruction {
             }
             
             offset = reader.readInt();
-            setDesc(basePc + offset);
+            setDesc(Integer.toString(basePc + offset));
         }
         
     }

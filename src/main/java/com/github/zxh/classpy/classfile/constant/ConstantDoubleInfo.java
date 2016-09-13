@@ -1,8 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.U4Hex;
-
 /*
 CONSTANT_Double_info {
     u1 tag;
@@ -12,20 +9,17 @@ CONSTANT_Double_info {
 */
 public class ConstantDoubleInfo extends ConstantInfo {
 
-    private U4Hex highBytes;
-    private U4Hex lowBytes;
-    private double value;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        value = reader.getByteBuffer().getDouble(reader.getPosition());
-        highBytes = reader.readU4Hex();
-        lowBytes = reader.readU4Hex();
+    {
+        u4hex("high_bytes");
+        u4hex("low_bytes");
     }
 
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return String.valueOf(value);
+        long high = super.getUInt("high_bytes");
+        long low = super.getUInt("low_bytes");
+        double d = Double.longBitsToDouble(high << 32 | low);
+        return String.valueOf(d);
     }
     
 }

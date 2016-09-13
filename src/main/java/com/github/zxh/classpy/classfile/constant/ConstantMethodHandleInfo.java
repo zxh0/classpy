@@ -1,9 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.U1;
-import com.github.zxh.classpy.classfile.datatype.U2;
-
 /*
 CONSTANT_MethodHandle_info {
     u1 tag;
@@ -13,18 +9,17 @@ CONSTANT_MethodHandle_info {
 */
 public class ConstantMethodHandleInfo extends ConstantInfo {
 
-    private U1 referenceKind;
-    private U2 referenceIndex;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        referenceKind = reader.readU1();
-        referenceIndex = reader.readU2();
+    {
+        u1("reference_kind");
+        u2("reference_index");
     }
-    
+
     @Override
     protected String loadDesc(ConstantPool pool) {
-        RefKind refKind = RefKind.valueOf(referenceKind.getValue());
+        int referenceKind = super.getUInt("reference_kind");
+        int referenceIndex = super.getUInt("reference_index");
+
+        RefKind refKind = RefKind.valueOf(referenceKind);
         switch (refKind) {
             case REF_getField:
             case REF_getStatic:

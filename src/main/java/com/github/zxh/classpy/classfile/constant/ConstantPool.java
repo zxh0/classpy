@@ -15,18 +15,18 @@ import java.util.stream.Collectors;
  */
 public class ConstantPool extends ClassComponent {
     
-    private final int cpCount;
-    private final ConstantInfo[] constants;
+    private final U2 cpCount;
+    private ConstantInfo[] constants;
 
-    public ConstantPool(int cpCount) {
+    public ConstantPool(U2 cpCount) {
         this.cpCount = cpCount;
-        constants = new ConstantInfo[cpCount];
     }
     
     @Override
     protected void readContent(ClassReader reader) {
+        constants = new ConstantInfo[cpCount.getValue()];
         // The constant_pool table is indexed from 1 to constant_pool_count - 1. 
-        for (int i = 1; i < cpCount; i++) {
+        for (int i = 1; i < cpCount.getValue(); i++) {
             ConstantInfo c = readConstantInfo(reader);
             setConstantName(c, i);
             constants[i] = c;
@@ -40,12 +40,13 @@ public class ConstantPool extends ClassComponent {
             }
         }
         loadConstantDesc();
+        reader.setConstantPool(this);
     }
     
     private ConstantInfo readConstantInfo(ClassReader reader) {
         byte tag = reader.getByteBuffer().get(reader.getPosition());
         
-        ConstantInfo ci = ConstantInfo.create(tag);
+        ConstantInfo ci = ConstantFactory.create(tag);
         ci.read(reader);
         
         return ci;
@@ -53,7 +54,7 @@ public class ConstantPool extends ClassComponent {
     
     // like #32: (Utf8)
     private void setConstantName(ConstantInfo constant, int idx) {
-        String idxStr = StringUtil.formatIndex(cpCount, idx);
+        String idxStr = StringUtil.formatIndex(cpCount.getValue(), idx);
         String constantName = constant.getClass().getSimpleName()
                 .replace("Constant", "")
                 .replace("Info", "");
@@ -74,43 +75,40 @@ public class ConstantPool extends ClassComponent {
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
-    
-    public String getUtf8String(U2 index) {
-        return getUtf8String(index.getValue());
-    }
-    
+
     public String getUtf8String(int index) {
         return getConstant(ConstantUtf8Info.class, index).getString();
     }
     
-    public ConstantUtf8Info getUtf8Info(U2 index) {
-        return getConstant(ConstantUtf8Info.class, index.getValue());
+    public ConstantUtf8Info getUtf8Info(int index) {
+        return getConstant(ConstantUtf8Info.class, index);
     }
     
-    public ConstantClassInfo getClassInfo(U2 index) {
-        return getConstant(ConstantClassInfo.class, index.getValue());
+    public ConstantClassInfo getClassInfo(int index) {
+        return getConstant(ConstantClassInfo.class, index);
     }
     
-    public ConstantNameAndTypeInfo getNameAndTypeInfo(U2 index) {
-        return getConstant(ConstantNameAndTypeInfo.class, index.getValue());
+    public ConstantNameAndTypeInfo getNameAndTypeInfo(int index) {
+        return getConstant(ConstantNameAndTypeInfo.class, index);
     }
     
-    public ConstantFieldrefInfo getFieldrefInfo(U2 index) {
-        return getConstant(ConstantFieldrefInfo.class, index.getValue());
+    public ConstantFieldrefInfo getFieldrefInfo(int index) {
+        return getConstant(ConstantFieldrefInfo.class, index);
     }
     
-    public ConstantMethodrefInfo getMethodrefInfo(U2 index) {
-        return getConstant(ConstantMethodrefInfo.class, index.getValue());
+    public ConstantMethodrefInfo getMethodrefInfo(int index) {
+        return getConstant(ConstantMethodrefInfo.class, index);
     }
     
-    public ConstantInterfaceMethodrefInfo getInterfaceMethodrefInfo(U2 index) {
-        return getConstant(ConstantInterfaceMethodrefInfo.class, index.getValue());
+    public ConstantInterfaceMethodrefInfo getInterfaceMethodrefInfo(int index) {
+        return getConstant(ConstantInterfaceMethodrefInfo.class, index);
     }
     
     private <T> T getConstant(Class<T> classOfT, int index) {
         ConstantInfo c = constants[index];
         if (c.getClass() != classOfT) {
-            throw new ClassParseException("Constant#" + index + " is not " + classOfT.getSimpleName() + "!");
+            throw new ClassParseException("Constant#" + index
+                    + " is not " + classOfT.getSimpleName() + "!");
         }
         return classOfT.cast(c);
     }

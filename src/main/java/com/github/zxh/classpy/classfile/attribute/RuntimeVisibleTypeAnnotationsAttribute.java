@@ -2,10 +2,9 @@ package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
-import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 import com.github.zxh.classpy.classfile.helper.StringUtil;
 
@@ -19,13 +18,9 @@ RuntimeVisibleTypeAnnotations_attribute {
  */
 public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
 
-    private U2 numAnnotations;
-    private Table<TypeAnnotationInfo> annotations;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        numAnnotations = reader.readU2();
-        annotations = reader.readTable(TypeAnnotationInfo.class, numAnnotations);
+    {
+        u2   ("num_annotations");
+        table("annotations", TypeAnnotationInfo.class);
     }
     
     
@@ -54,21 +49,19 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
     */
     public static class TypeAnnotationInfo extends ClassComponent {
 
-        private U1 targetType;
-        private TargetInfo targetInfo;
-        private TypePath targetPath;
-        private AnnotationInfo annotation;
-        
+        {
+            U1 targetType = new U1();
+
+            add("target_type", targetType);
+            add("target_info", new TargetInfo(targetType));
+            add("target_path", new TypePath());
+            add("annotation", new AnnotationInfo());
+        }
+
         @Override
-        protected void readContent(ClassReader reader) {
-            targetType = reader.readU1();
+        protected void afterRead(ConstantPool cp) {
+            U1 targetType = (U1) super.get("target_type");
             targetType.setDesc(StringUtil.toHexString(targetType.getValue()));
-            targetInfo = new TargetInfo(targetType.getValue());
-            targetInfo.read(reader);
-            targetPath = new TypePath();
-            targetPath.read(reader);
-            annotation = new AnnotationInfo();
-            annotation.read(reader);
         }
     
     }
@@ -112,86 +105,72 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
     */
     public static class TargetInfo extends ClassComponent {
 
-        private final int targetType;
-        private U1 typeParameterIndex; // type_parameter_target & type_parameter_bound_target
-        private U2 supertypeIndex; // supertype_target
-        private U1 boundIndex; // type_parameter_bound_target
-        private U1 formalParameterIndex; // formal_parameter_target
-        private U2 throwsTypeIndex; // throws_target
-        private U2 tableLength; // localvar_target
-        private Table<LocalVarInfo> table; // localvar_target
-        private U2 exceptionTableIndex; // catch_target
-        private U2 offset; // offset_target & type_argument_target
-        private U1 typeArgumentIndex; // type_argument_target
+        private final U1 targetType;
 
-        public TargetInfo(int targetType) {
+        public TargetInfo(U1 targetType) {
             this.targetType = targetType;
         }
         
         @Override
         protected void readContent(ClassReader reader) {
-            switch (targetType) {
+            switch (targetType.getValue()) {
                 case 0x00:
                 case 0x01:
-                    typeParameterIndex = reader.readU1();
+                    u1("typeParameterIndex");
                     break;
                 case 0x10:
-                    supertypeIndex = reader.readU2();
+                    u2("supertypeIndex");
                     break;
                 case 0x11:
                 case 0x12:
-                    typeParameterIndex = reader.readU1();
-                    boundIndex = reader.readU1();
+                    u1("typeParameterIndex");
+                    u1("boundIndex");
                     break;
                 case 0x13:
                 case 0x14:
                 case 0x15:
                     break;
                 case 0x16:
-                    formalParameterIndex = reader.readU1();
+                    u1("formalParameterIndex");
                     break;
                 case 0x17:
-                    throwsTypeIndex = reader.readU2();
+                    u2("throwsTypeIndex");
                     break;
                 case 0x40:
                 case 0x41:
-                    tableLength = reader.readU2();
-                    table = reader.readTable(LocalVarInfo.class, tableLength);
+                    u2("tableLength");
+                    table("table", LocalVarInfo.class);
                     break;
                 case 0x42:
-                    exceptionTableIndex = reader.readU2();
+                    u2("exceptionTableIndex");
                     break;
                 case 0x43:
                 case 0x44:
                 case 0x45:
                 case 0x46:
-                    offset = reader.readU2();
+                    u2("offset");
                     break;
                 case 0x47:
                 case 0x48:
                 case 0x49:
                 case 0x4A:
                 case 0x4B:
-                    offset = reader.readU2();
-                    typeArgumentIndex = reader.readU1();
+                    u2("offset");
+                    u1("typeArgumentIndex");
                     break;
                 default: throw new ClassParseException("Invalid target_type: " + targetType);
             }
+            super.readContent(reader);
         }
         
     }
     
     public static class LocalVarInfo extends ClassComponent {
-        
-        private U2 startPc;
-        private U2 length;
-        private U2 index;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            startPc = reader.readU2();
-            length = reader.readU2();
-            index = reader.readU2();
+
+        {
+            u2("start_pc");
+            u2("length");
+            u2("index");
         }
         
     }
@@ -206,26 +185,18 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
     */
     public static class TypePath extends ClassComponent {
 
-        private U1 pathLength;
-        private Table<PathInfo> path;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            pathLength = reader.readU1();
-            path = reader.readTable(PathInfo.class, pathLength);
+        {
+            u1   ("path_length");
+            table("path", PathInfo.class);
         }
         
     }
     
     public static class PathInfo extends ClassComponent {
 
-        private U1 typePathKind;
-        private U1 typeArgumentIndex;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            typePathKind = reader.readU1();
-            typeArgumentIndex = reader.readU1();
+        {
+            u1("type_path_kind");
+            u1("type_argument_index");
         }
         
     }

@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.classfile;
 
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
@@ -14,8 +15,10 @@ method_info {
 public class MethodInfo extends FieldInfo {
     
     @Override
-    protected void describe(U2 accessFlags) {
-        AccessFlags.describeMethodFlags(accessFlags);
+    protected void afterRead(ConstantPool cp) {
+        super.afterRead(cp);
+        AccessFlags.describeMethodFlags(
+                (U2) super.get("access_flags"));
     }
     
 }

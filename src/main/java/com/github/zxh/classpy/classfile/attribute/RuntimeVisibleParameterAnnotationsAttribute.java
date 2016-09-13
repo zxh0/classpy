@@ -1,8 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
@@ -19,26 +17,17 @@ RuntimeVisibleParameterAnnotations_attribute {
  */
 public class RuntimeVisibleParameterAnnotationsAttribute extends AttributeInfo {
 
-    private U1 numParameters;
-    private Table<ParameterAnnotationInfo> parameterAnnotations;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        numParameters = reader.readU1();
-        parameterAnnotations = reader.readTable(ParameterAnnotationInfo.class,
-                numParameters);
+    {
+        u1   ("num_parameters");
+        table("parameter_annotations", ParameterAnnotationInfo.class);
     }
     
     
     public static class ParameterAnnotationInfo extends ClassComponent {
-        
-        private U2 numAnnotations;
-        private Table<AnnotationInfo> annotations;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            numAnnotations = reader.readU2();
-            annotations = reader.readTable(AnnotationInfo.class, numAnnotations);
+
+        {
+            u2   ("num_annotations");
+            table("annotations", AnnotationInfo.class);
         }
         
     }
