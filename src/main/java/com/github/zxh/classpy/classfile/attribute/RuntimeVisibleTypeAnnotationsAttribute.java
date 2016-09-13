@@ -6,7 +6,7 @@ import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
-import com.github.zxh.classpy.helper.StringUtil;
+import com.github.zxh.classpy.helper.StringHelper;
 
 /*
 RuntimeVisibleTypeAnnotations_attribute {
@@ -61,7 +61,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         @Override
         protected void afterRead(ConstantPool cp) {
             U1 targetType = (U1) super.get("target_type");
-            targetType.setDesc(StringUtil.toHexString(targetType.getValue()));
+            targetType.setDesc(StringHelper.toHexString(targetType.getValue()));
         }
     
     }

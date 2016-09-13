@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.helper.StringUtil;
+import com.github.zxh.classpy.helper.StringHelper;
 
 /*
 CONSTANT_Utf8_info {
@@ -26,7 +26,7 @@ public class ConstantUtf8Info extends ConstantInfo {
     @Override
     protected String loadDesc(ConstantPool pool) {
         Mutf8 bytes = (Mutf8) super.get("bytes");
-        return StringUtil.cutAndAppendEllipsis(bytes.getDesc(), 100);
+        return StringHelper.cutAndAppendEllipsis(bytes.getDesc(), 100);
     }
     
 }

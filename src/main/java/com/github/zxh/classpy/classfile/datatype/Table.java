@@ -6,7 +6,7 @@ import com.github.zxh.classpy.classfile.attribute.AttributeFactory;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
-import com.github.zxh.classpy.helper.StringUtil;
+import com.github.zxh.classpy.helper.StringHelper;
 
 /**
  * Array of class components.
@@ -57,7 +57,7 @@ public class Table extends ClassComponent {
     protected void afterRead(ConstantPool cp) {
         int i = 0;
         for (ClassComponent entry : super.getSubComponents()) {
-            String newName = StringUtil.formatIndex(length.getValue(), i++);
+            String newName = StringHelper.formatIndex(length.getValue(), i++);
             String oldName = entry.getName();
             if (oldName != null) {
                 newName += " (" + oldName + ")";

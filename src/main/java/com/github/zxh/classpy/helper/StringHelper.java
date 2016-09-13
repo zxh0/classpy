@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.helper;
 
-public class StringUtil {
+public class StringHelper {
     
     /**
      * Convert i to HEX string.
