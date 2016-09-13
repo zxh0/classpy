@@ -129,7 +129,7 @@ public abstract class ClassComponent {
     }
 
     /**
-     * The returned string will be displayed by ClassComponentTreeItem.
+     * The returned string will be displayed by ClassTreeItem.
      *
      * @return
      */

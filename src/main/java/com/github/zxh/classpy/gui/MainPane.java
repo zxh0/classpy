@@ -52,7 +52,7 @@ public class MainPane extends BorderPane {
     }
     
     private static TreeView<ClassComponent> buildClassTree(ClassComponent file) {
-        ClassComponentTreeItem root = new ClassComponentTreeItem(file);
+        ClassTreeItem root = new ClassTreeItem(file);
         root.setExpanded(true);
         
         TreeView<ClassComponent> tree = new TreeView<>(root);
