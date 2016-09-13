@@ -6,7 +6,6 @@ import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
 /*
 RuntimeVisibleAnnotations_attribute {
@@ -86,28 +85,29 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     */
     public static class ElementValue extends ClassComponent {
 
-        private U1 tag;
-        
-        // tag=B,C,D,F,I,J,S,Z,s
-        private U2CpIndex constValueIndex;
-
-        // tag=e
-        private EnumConstValue enumConstValue;
-
-        // tag=c
-        private U2CpIndex classInfoIndex;
-
-        // tag=@
-        private AnnotationInfo annotationValue;
-
-        // tag=[
-        private ArrayValue arrayValue;
+//        private U1 tag;
+//
+//        // tag=B,C,D,F,I,J,S,Z,s
+//        private U2CpIndex constValueIndex;
+//
+//        // tag=e
+//        private EnumConstValue enumConstValue;
+//
+//        // tag=c
+//        private U2CpIndex classInfoIndex;
+//
+//        // tag=@
+//        private AnnotationInfo annotationValue;
+//
+//        // tag=[
+//        private ArrayValue arrayValue;
         
         @Override
         protected void readContent(ClassReader reader) {
-            tag = reader.readU1();
-            tag.setDesc(Character.toString((char) tag.getValue()));
-            switch (tag.getValue()) {
+            u1("tag");
+
+            byte tag = reader.getByteBuffer().get(reader.getPosition());
+            switch (tag) {
                 case 'B':
                 case 'C':
                 case 'D':
@@ -116,28 +116,32 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                 case 'J':
                 case 'S':
                 case 'Z':
-                case 's': 
-                    constValueIndex = reader.readU2CpIndex();
+                case 's':
+                    u2cp("const_value_index");
                     break;
-                case 'e': 
-                    enumConstValue = new EnumConstValue();
-                    enumConstValue.read(reader);
+                case 'e':
+                    add("enum_const_value", new EnumConstValue());
                     break;
                 case 'c':
-                    classInfoIndex = reader.readU2CpIndex();
+                    u2cp("class_info_index");
                     break;
                 case '@':
-                    annotationValue = new AnnotationInfo();
-                    annotationValue.read(reader);
+                    add("annotation_value", new AnnotationInfo());
                     break;
                 case '[':
-                    arrayValue = new ArrayValue();
-                    arrayValue.read(reader);
+                    add("array_value", new ArrayValue());
                     break;
-                default: throw new ClassParseException("Invalid element_value tag: " + tag.getDesc());
+                default: throw new ClassParseException("Invalid element_value tag: " + tag);
             }
+            super.readContent(reader);
         }
-        
+
+        @Override
+        protected void afterRead(ConstantPool cp) {
+            U1 tag = (U1) super.get("tag");
+            tag.setDesc(Character.toString((char) tag.getValue()));
+        }
+
     }
     
     public static class EnumConstValue extends ClassComponent {
