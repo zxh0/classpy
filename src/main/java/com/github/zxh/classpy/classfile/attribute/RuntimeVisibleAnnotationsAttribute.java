@@ -84,29 +84,16 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     }
     */
     public static class ElementValue extends ClassComponent {
-
-//        private U1 tag;
-//
-//        // tag=B,C,D,F,I,J,S,Z,s
-//        private U2CpIndex constValueIndex;
-//
-//        // tag=e
-//        private EnumConstValue enumConstValue;
-//
-//        // tag=c
-//        private U2CpIndex classInfoIndex;
-//
-//        // tag=@
-//        private AnnotationInfo annotationValue;
-//
-//        // tag=[
-//        private ArrayValue arrayValue;
         
         @Override
         protected void readContent(ClassReader reader) {
-            u1("tag");
-
             byte tag = reader.getByteBuffer().get(reader.getPosition());
+            preRead(tag);
+            super.readContent(reader);
+        }
+
+        private void preRead(byte tag) {
+            u1("tag");
             switch (tag) {
                 case 'B':
                 case 'C':
@@ -133,7 +120,6 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                     break;
                 default: throw new ClassParseException("Invalid element_value tag: " + tag);
             }
-            super.readContent(reader);
         }
 
         @Override
