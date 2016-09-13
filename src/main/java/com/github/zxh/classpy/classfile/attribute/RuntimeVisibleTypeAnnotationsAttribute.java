@@ -158,7 +158,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
                     u2("offset");
                     u1("typeArgumentIndex");
                     break;
-                default: throw new ClassParseException("Invalid target_type: " + targetType);
+                default: throw new ClassParseException("Invalid target_type: " + targetType.getValue());
             }
             super.readContent(reader);
         }
