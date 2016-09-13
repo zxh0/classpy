@@ -14,6 +14,6 @@ public abstract class ConstantInfo extends ClassComponent {
         u1("tag");
     }
 
-    protected abstract String loadDesc(ConstantPool pool);
+    protected abstract String loadDesc(ConstantPool cp);
     
 }

@@ -24,7 +24,7 @@ public class ConstantUtf8Info extends ConstantInfo {
     }
 
     @Override
-    protected String loadDesc(ConstantPool pool) {
+    protected String loadDesc(ConstantPool cp) {
         Mutf8 bytes = (Mutf8) super.get("bytes");
         return StringHelper.cutAndAppendEllipsis(bytes.getDesc(), 100);
     }

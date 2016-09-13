@@ -17,8 +17,8 @@ public class ConstantClassInfo extends ConstantInfo {
     }
 
     @Override
-    protected String loadDesc(ConstantPool pool) {
-        return pool.getUtf8String(getNameIndex());
+    protected String loadDesc(ConstantPool cp) {
+        return cp.getUtf8String(getNameIndex());
     }
     
 }

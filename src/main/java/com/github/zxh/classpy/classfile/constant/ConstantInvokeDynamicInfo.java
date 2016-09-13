@@ -17,9 +17,9 @@ public class ConstantInvokeDynamicInfo extends ConstantInfo {
     }
     
     @Override
-    protected String loadDesc(ConstantPool pool) {
+    protected String loadDesc(ConstantPool cp) {
         int nameAndTypeIndex = super.getUInt("name_and_type_index");
-        return pool.getNameAndTypeInfo(nameAndTypeIndex).loadDesc(pool);
+        return cp.getNameAndTypeInfo(nameAndTypeIndex).loadDesc(cp);
     }
     
 }

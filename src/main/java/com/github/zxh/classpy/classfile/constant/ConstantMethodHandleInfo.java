@@ -15,7 +15,7 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
     }
 
     @Override
-    protected String loadDesc(ConstantPool pool) {
+    protected String loadDesc(ConstantPool cp) {
         int referenceKind = super.getUInt("reference_kind");
         int referenceIndex = super.getUInt("reference_index");
 
@@ -25,19 +25,19 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
             case REF_getStatic:
             case REF_putField:
             case REF_putStatic:
-                return refKind + "->" + pool.getFieldrefInfo(referenceIndex).loadDesc(pool);
+                return refKind + "->" + cp.getFieldrefInfo(referenceIndex).loadDesc(cp);
             case REF_invokeVirtual:
             case REF_newInvokeSpecial:
-                return refKind + "->" + pool.getMethodrefInfo(referenceIndex).loadDesc(pool);
+                return refKind + "->" + cp.getMethodrefInfo(referenceIndex).loadDesc(cp);
             case REF_invokeStatic:
             case REF_invokeSpecial:
                 try {
-                    return refKind + "->" + pool.getMethodrefInfo(referenceIndex).loadDesc(pool); 
+                    return refKind + "->" + cp.getMethodrefInfo(referenceIndex).loadDesc(cp);
                 } catch (Exception e) {
-                    return refKind + "->" + pool.getInterfaceMethodrefInfo(referenceIndex).loadDesc(pool);
+                    return refKind + "->" + cp.getInterfaceMethodrefInfo(referenceIndex).loadDesc(cp);
                 }
             case REF_invokeInterface:
-                return refKind + "->" + pool.getInterfaceMethodrefInfo(referenceIndex).loadDesc(pool);
+                return refKind + "->" + cp.getInterfaceMethodrefInfo(referenceIndex).loadDesc(cp);
         }
         
         return null;

@@ -15,7 +15,7 @@ public class ConstantLongInfo extends ConstantInfo {
     }
 
     @Override
-    protected String loadDesc(ConstantPool pool) {
+    protected String loadDesc(ConstantPool cp) {
         long high = super.getUInt("high_bytes");
         long low = super.getUInt("low_bytes");
         long l = high << 32 | low;

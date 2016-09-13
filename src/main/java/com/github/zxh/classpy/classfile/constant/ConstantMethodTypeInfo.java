@@ -13,9 +13,9 @@ public class ConstantMethodTypeInfo extends ConstantInfo {
     }
     
     @Override
-    protected String loadDesc(ConstantPool pool) {
+    protected String loadDesc(ConstantPool cp) {
         int descriptorIndex = super.getUInt("descriptor_index");
-        return pool.getUtf8String(descriptorIndex);
+        return cp.getUtf8String(descriptorIndex);
     }
     
 }

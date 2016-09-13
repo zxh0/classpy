@@ -13,7 +13,7 @@ public class ConstantFloatInfo extends ConstantInfo {
     }
     
     @Override
-    protected String loadDesc(ConstantPool pool) {
+    protected String loadDesc(ConstantPool cp) {
         float f = Float.intBitsToFloat(super.getUInt("bytes"));
         return Float.toString(f);
     }
