@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.helper.StringUtil;
+import com.github.zxh.classpy.helper.StringUtil;
 
 /*
 CONSTANT_Utf8_info {

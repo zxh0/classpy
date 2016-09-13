@@ -1,7 +1,7 @@
 package com.github.zxh.classpy;
 
-import com.github.zxh.classpy.classfile.helper.StringUtil;
-import org.junit.Test;
+import com.github.zxh.classpy.helper.StringUtil;
+
 import static org.junit.Assert.assertEquals;
 
 /**

@@ -6,7 +6,7 @@ import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
-import com.github.zxh.classpy.classfile.helper.StringUtil;
+import com.github.zxh.classpy.helper.StringUtil;
 
 /*
 RuntimeVisibleTypeAnnotations_attribute {

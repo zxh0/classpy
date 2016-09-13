@@ -5,8 +5,8 @@ import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeFactory;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.helper.StringUtil;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
+import com.github.zxh.classpy.helper.StringUtil;
 
 /**
  * Array of class components.

@@ -4,7 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.helper.StringUtil;
+import com.github.zxh.classpy.helper.StringUtil;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;

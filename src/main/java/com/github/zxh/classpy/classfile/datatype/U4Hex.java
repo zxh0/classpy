@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.helper.StringUtil;
+import com.github.zxh.classpy.helper.StringUtil;
 
 public class U4Hex extends U4 {
 
