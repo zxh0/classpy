@@ -9,7 +9,7 @@ object StringHelper {
      * @return 
      */
     @JvmStatic fun toHexString(i: Int): String {
-        return "0x" + Integer.toHexString(i).toUpperCase();
+        return "0x" + Integer.toHexString(i).toUpperCase()
     }
     
     /**
@@ -28,9 +28,9 @@ object StringHelper {
      * @return 
      */
     @JvmStatic fun formatIndex(maxIndex: Int, index: Int): String {
-        val idxWidth = maxIndex.toString().length;
-        val fmtStr = "#%0" + idxWidth + "d";
-        return String.format(fmtStr, index);
+        val idxWidth = maxIndex.toString().length
+        val fmtStr = "#%0" + idxWidth + "d"
+        return String.format(fmtStr, index)
     }
     
     /**
@@ -40,19 +40,19 @@ object StringHelper {
      * @return 
      */
     @JvmStatic fun cutAndAppendEllipsis(str: String, maxLength: Int): String {
-        //str = str.replaceAll("\\r|\\n", "");
+        val str = str.replace("\\r|\\n".toRegex(), "")
         
         if (str.length <= maxLength) {
             return str;
         }
         
-        val cutPos = maxLength - 3;
-        val firstCutChar = str[cutPos];
+        val cutPos = maxLength - 3
+        val firstCutChar = str[cutPos]
         
         if (Character.isLowSurrogate(firstCutChar)) {
-            return str.substring(0, cutPos - 1) + "...";
+            return str.substring(0, cutPos - 1) + "..."
         } else {
-            return str.substring(0, cutPos) + "...";
+            return str.substring(0, cutPos) + "..."
         }
     }
     
