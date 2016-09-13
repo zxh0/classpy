@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.helper.UrlHelper;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.function.BiConsumer;

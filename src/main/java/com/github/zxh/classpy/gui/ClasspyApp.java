@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.helper.UrlHelper;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;

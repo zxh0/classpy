@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui;
+package com.github.zxh.classpy.helper;
 
 import java.net.URL;
 
