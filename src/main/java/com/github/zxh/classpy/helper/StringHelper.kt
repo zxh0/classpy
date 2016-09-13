@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.helper;
 
-public class StringHelper {
+object StringHelper {
     
     /**
      * Convert i to HEX string.
@@ -8,7 +8,7 @@ public class StringHelper {
      * @param i
      * @return 
      */
-    public static String toHexString(int i) {
+    @JvmStatic fun toHexString(i: Int): String {
         return "0x" + Integer.toHexString(i).toUpperCase();
     }
     
@@ -27,9 +27,9 @@ public class StringHelper {
      * @param index
      * @return 
      */
-    public static String formatIndex(int maxIndex, int index) {
-        int idxWidth = String.valueOf(maxIndex).length();
-        String fmtStr = "#%0" + idxWidth + "d";
+    @JvmStatic fun formatIndex(maxIndex: Int, index: Int): String {
+        val idxWidth = maxIndex.toString().length;
+        val fmtStr = "#%0" + idxWidth + "d";
         return String.format(fmtStr, index);
     }
     
@@ -39,15 +39,15 @@ public class StringHelper {
      * @param maxLength
      * @return 
      */
-    public static String cutAndAppendEllipsis(String str, int maxLength) {
-        str = str.replaceAll("\\r|\\n", "");
+    @JvmStatic fun cutAndAppendEllipsis(str: String, maxLength: Int): String {
+        //str = str.replaceAll("\\r|\\n", "");
         
-        if (str.length() <= maxLength) {
+        if (str.length <= maxLength) {
             return str;
         }
         
-        int cutPos = maxLength - 3;
-        char firstCutChar = str.charAt(cutPos);
+        val cutPos = maxLength - 3;
+        val firstCutChar = str[cutPos];
         
         if (Character.isLowSurrogate(firstCutChar)) {
             return str.substring(0, cutPos - 1) + "...";
