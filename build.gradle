@@ -1,4 +1,5 @@
 apply plugin: 'java'
+apply plugin: 'kotlin'
 apply plugin: 'application'
 
 sourceCompatibility = '1.8'
@@ -29,6 +30,7 @@ dependencies {
     // You can read more about how to add dependency here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
     testCompile 'junit:junit:4.10'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 
 // http://stackoverflow.com/questions/9749032/create-a-groovy-executable-jar-with-gradle
@@ -39,4 +41,16 @@ task uberjar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'com.github.zxh.classpy.gui.ClasspyApp'
     }
+}
+buildscript {
+    ext.kotlin_version = '1.0.3'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+sourceSets {
+    main.java.srcDirs += 'src/main/kotlin'
 }
