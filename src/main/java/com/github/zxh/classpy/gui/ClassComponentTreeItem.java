@@ -13,8 +13,8 @@ public class ClassComponentTreeItem extends TreeItem<ClassComponent> {
 
     private boolean isFirstTimeChildren = true;
     
-    public ClassComponentTreeItem(ClassComponent fc) {
-        super(fc);
+    public ClassComponentTreeItem(ClassComponent cc) {
+        super(cc);
     }
 
     @Override

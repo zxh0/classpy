@@ -117,8 +117,8 @@ public class ClasspyApp extends Application {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
         
-        task.setOnSucceeded((ClassComponent fc, FileHex hex) -> {
-            MainPane mainPane = new MainPane(fc, hex);
+        task.setOnSucceeded((ClassComponent cc, FileHex hex) -> {
+            MainPane mainPane = new MainPane(cc, hex);
             tab.setContent(mainPane);
             
             // todo

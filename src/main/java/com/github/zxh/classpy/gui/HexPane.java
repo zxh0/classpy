@@ -16,8 +16,8 @@ public class HexPane extends TextArea {
         setFont(Font.font("Courier New", 14));
     }
     
-    public void select(ClassComponent fc) {
-        FileHex.Selection selection = hex.select(fc);
+    public void select(ClassComponent cc) {
+        FileHex.Selection selection = hex.select(cc);
         positionCaret(selection.getStartPosition());
         selectPositionCaret(selection.getEndPosition());
     }

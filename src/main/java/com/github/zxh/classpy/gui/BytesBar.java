@@ -13,15 +13,15 @@ public class BytesBar extends Pane {
         this.byteCount = byteCount;
     }
     
-    public void select(ClassComponent fc) {
+    public void select(ClassComponent cc) {
         getChildren().clear();
         
         final double w = getWidth() - 4;
         final double h = getHeight();
         
         getChildren().add(new Line(0, h / 2, w, h / 2));
-        getChildren().add(new Rectangle(w * fc.getOffset() / byteCount, 4,
-                w * fc.getLength() / byteCount, h - 8));
+        getChildren().add(new Rectangle(w * cc.getOffset() / byteCount, 4,
+                w * cc.getLength() / byteCount, h - 8));
     }
     
 }

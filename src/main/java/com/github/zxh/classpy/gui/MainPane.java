@@ -42,9 +42,9 @@ public class MainPane extends BorderPane {
     public MethodInfo getSelectedMethodInfo() {
         TreeItem<ClassComponent> fcItem = tree.getSelectionModel().getSelectedItem();
         if (fcItem != null) {
-            ClassComponent fc = fcItem.getValue();
-            if (fc instanceof MethodInfo) {
-                return (MethodInfo) fc;
+            ClassComponent cc = fcItem.getValue();
+            if (cc instanceof MethodInfo) {
+                return (MethodInfo) cc;
             }
         }
         
@@ -83,12 +83,12 @@ public class MainPane extends BorderPane {
                     if (c.wasAdded()) {
                         TreeItem<ClassComponent> node = c.getList().get(c.getFrom());
                         if (node != null && node.getParent() != null) {
-                            ClassComponent fc = node.getValue();
+                            ClassComponent cc = node.getValue();
                             //System.out.println("select " + cc);
-                            statusLabel.setText(" " + fc.getClass().getSimpleName());
-                            if (fc.getLength() > 0) {
-                                hexPane.select(fc);
-                                bytesBar.select(fc);
+                            statusLabel.setText(" " + cc.getClass().getSimpleName());
+                            if (cc.getLength() > 0) {
+                                hexPane.select(cc);
+                                bytesBar.select(cc);
                             }
                         }
                     }

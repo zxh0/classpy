@@ -69,10 +69,10 @@ public class FileHex {
     }
     
     // todo
-    public Selection select(ClassComponent fc) {
+    public Selection select(ClassComponent cc) {
         Selection selection = new Selection();
-        selection.startPosition = calcTextPosition(fc.getOffset());
-        selection.endPosition = calcTextPosition(fc.getOffset() + fc.getLength()) - 1;
+        selection.startPosition = calcTextPosition(cc.getOffset());
+        selection.endPosition = calcTextPosition(cc.getOffset() + cc.getLength()) - 1;
         return selection;
     }
     

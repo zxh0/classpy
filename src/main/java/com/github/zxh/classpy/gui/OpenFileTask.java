@@ -24,22 +24,22 @@ public class OpenFileTask extends Task<Object> {
         try (InputStream is = url.openStream()) {
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
-            ClassComponent fc = ClassParser.parse(bytes);
-            fc.setName(UrlHelper.getFileName(url));
+            ClassComponent cc = ClassParser.parse(bytes);
+            cc.setName(UrlHelper.getFileName(url));
             FileHex hex = new FileHex(bytes);
 
             System.out.println("finish loading");
-            return new Object[] {fc, hex};
+            return new Object[] {cc, hex};
         }
     }
     
     public void setOnSucceeded(BiConsumer<ClassComponent, FileHex> callback) {
         super.setOnSucceeded(e -> {
             Object[] arr = (Object[]) e.getSource().getValue();
-            ClassComponent fc = (ClassComponent) arr[0];
+            ClassComponent cc = (ClassComponent) arr[0];
             FileHex hex = (FileHex) arr[1];
             
-            callback.accept(fc, hex);
+            callback.accept(cc, hex);
         });
     }
     
