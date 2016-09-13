@@ -1,10 +1,8 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
 /*
 LocalVariableTypeTable_attribute {
@@ -21,33 +19,26 @@ LocalVariableTypeTable_attribute {
  */
 public class LocalVariableTypeTableAttribute extends AttributeInfo {
 
-    private U2 localVariableTypeTableLength;
-    private Table<LocalVariableTypeTableEntry> localVariableTypeTable;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        localVariableTypeTableLength = reader.readU2();
-        localVariableTypeTable = reader.readTable(LocalVariableTypeTableEntry.class,
-                localVariableTypeTableLength);
+    {
+        u2   ("local_variable_type_table_length");
+        table("local_variable_type_table", LocalVariableTypeTableEntry.class);
     }
-    
-    
+
+
     public static class LocalVariableTypeTableEntry extends ClassComponent {
-        
-        private U2 startPc;
-        private U2 length;
-        private U2CpIndex nameIndex;
-        private U2CpIndex signatureIndex;
-        private U2 index;
+
+        {
+            u2  ("start_pc");
+            u2  ("length");
+            u2cp("name_index");
+            u2cp("signature_index");
+            u2  ("index");
+        }
 
         @Override
-        protected void readContent(ClassReader reader) {
-            startPc = reader.readU2();
-            length = reader.readU2();
-            nameIndex = reader.readU2CpIndex();
-            signatureIndex = reader.readU2CpIndex();
-            index = reader.readU2();
-            setDesc(reader.getConstantPool().getUtf8String(nameIndex));
+        protected void afterRead(ConstantPool cp) {
+            int nameIndex = ((U2) super.get("name_index")).getValue();
+            setDesc(cp.getUtf8String(nameIndex));
         }
     
     }

@@ -1,17 +1,22 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassParseException;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 
 public class NewArray extends Instruction {
+
+    {
+        u1("opcode");
+        u1("atype");
+    }
 
     public NewArray(Opcode opcode, int pc) {
         super(opcode, pc);
     }
     
     @Override
-    protected void readOperands(ClassReader reader) {
-        int atype = reader.readU1().getValue();
+    protected void afterRead(ConstantPool cp) {
+        int atype = super.getUInt("atype");
         setDesc(getDesc() + " " + getArrayType(atype));
     }
     

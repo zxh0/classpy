@@ -1,10 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
-import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.datatype.U4;
 
 /*
@@ -25,57 +21,31 @@ Code_attribute {
     attribute_info attributes[attributes_count];
 }
  */
-public class CodeAttribute extends AttributeInfo implements AttributeContainer {
+public class CodeAttribute extends AttributeInfo {
 
-    private U2 maxStack;
-    private U2 maxLocals;
-    private U4 codeLength;
-    private Code code;
-    private U2 exceptionTableLength;
-    private Table<ExceptionTableEntry> exceptionTable;
-    private U2 attributesCount;
-    private Table<AttributeInfo> attributes;
+    {
+        U4 codeLength = new U4();
 
-    // Getters
-    public U2 getMaxStack() {return maxStack;}
-    public U2 getMaxLocals() {return maxLocals;}
-    public Code getCode() {return code;}
-
-    @Override
-    public Table<AttributeInfo> getAttributes() {
-        return attributes;
+        u2   ("max_stack");
+        u2   ("max_locals");
+        add  ("code_length", codeLength);
+        add  ("code", new Code(codeLength));
+        u2   ("exception_table_length");
+        table("exception_table", ExceptionTableEntry.class);
+        u2   ("attributes_count");
+        table("attributes", AttributeInfo.class);
     }
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        maxStack = reader.readU2();
-        maxLocals = reader.readU2();
-        codeLength = reader.readU4();
-        code = new Code(codeLength.getValue());
-        code.read(reader);
-        exceptionTableLength = reader.readU2();
-        exceptionTable = reader.readTable(ExceptionTableEntry.class,
-                exceptionTableLength);
-        attributesCount = reader.readU2();
-        attributes = reader.readTable(AttributeInfo.class, attributesCount);
-    }
-    
-    
+
+
     public static class ExceptionTableEntry extends ClassComponent {
-        
-        private U2 startPc;
-        private U2 endPc;
-        private U2 handlerPc;
-        private U2CpIndex catchType;
 
-        @Override
-        protected void readContent(ClassReader reader) {
-            startPc = reader.readU2();
-            endPc = reader.readU2();
-            handlerPc = reader.readU2();
-            catchType = reader.readU2CpIndex();
+        {
+            u2  ("start_pc");
+            u2  ("end_pc");
+            u2  ("handler_pc");
+            u2cp("catch_type");
         }
-    
+
     }
     
 }

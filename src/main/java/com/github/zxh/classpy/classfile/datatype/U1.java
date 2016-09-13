@@ -8,8 +8,8 @@ import com.github.zxh.classpy.classfile.reader.ClassReader;
 public class U1 extends UInt {
 
     @Override
-    protected int readUInt(ClassReader reader) {
-        return reader.readUnsignedByte();
+    protected void readContent(ClassReader reader) {
+        value = reader.readUnsignedByte();
     }
     
 }

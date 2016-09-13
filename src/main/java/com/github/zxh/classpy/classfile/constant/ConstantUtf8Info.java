@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.helper.StringUtil;
 
@@ -13,22 +12,20 @@ CONSTANT_Utf8_info {
 */
 public class ConstantUtf8Info extends ConstantInfo {
 
-    private U2 length;
-    private Mutf8 bytes;
-    
+    {
+        U2 length = new U2();
+
+        add("length", length);
+        add("bytes", new Mutf8(length));
+    }
+
     public String getString() {
-        return bytes.getValue();
+        return ((Mutf8) super.get("bytes")).getValue();
     }
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        length = reader.readU2();
-        bytes = new Mutf8(length.getValue());
-        bytes.read(reader);
-    }
-    
+
     @Override
     protected String loadDesc(ConstantPool pool) {
+        Mutf8 bytes = (Mutf8) super.get("bytes");
         return StringUtil.cutAndAppendEllipsis(bytes.getDesc(), 100);
     }
     

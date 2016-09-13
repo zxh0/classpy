@@ -59,10 +59,5 @@ public class BytesReader {
     public int readInt() {
         return buf.getInt();
     }
-    
-    // float
-    public float readFloat() {
-        return buf.getFloat();
-    }
-    
+
 }

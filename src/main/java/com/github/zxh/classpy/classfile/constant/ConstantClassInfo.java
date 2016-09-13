@@ -1,8 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.U2;
-
 /*
 CONSTANT_Class_info {
     u1 tag;
@@ -11,20 +8,17 @@ CONSTANT_Class_info {
 */
 public class ConstantClassInfo extends ConstantInfo {
 
-    private U2 nameIndex;
-
-    public U2 getNameIndex() {
-        return nameIndex;
+    {
+        u2("name_index");
     }
 
-    @Override
-    protected void readInfo(ClassReader reader) {
-        nameIndex = reader.readU2();
+    public int getNameIndex() {
+        return super.getUInt("name_index");
     }
 
     @Override
     protected String loadDesc(ConstantPool pool) {
-        return pool.getUtf8String(nameIndex);
+        return pool.getUtf8String(getNameIndex());
     }
     
 }

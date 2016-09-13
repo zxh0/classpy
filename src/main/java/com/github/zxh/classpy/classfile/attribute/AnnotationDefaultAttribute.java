@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.ElementValue;
 
 /*
@@ -12,12 +11,8 @@ AnnotationDefault_attribute {
  */
 public class AnnotationDefaultAttribute extends AttributeInfo {
 
-    private ElementValue defaultValue;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        defaultValue = new ElementValue();
-        defaultValue.read(reader);
+    {
+        add("default_value", new ElementValue());
     }
-    
+
 }

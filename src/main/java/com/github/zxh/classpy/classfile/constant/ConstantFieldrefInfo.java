@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
@@ -12,17 +11,16 @@ CONSTANT_Fieldref_info {
 */
 public class ConstantFieldrefInfo extends ConstantInfo {
 
-    private U2 classIndex;
-    private U2 nameAndTypeIndex;
-
-    @Override
-    protected void readInfo(ClassReader reader) {
-        classIndex = reader.readU2();
-        nameAndTypeIndex = reader.readU2();
+    {
+        u2("class_index");
+        u2("name_and_type_index");
     }
     
     @Override
     protected String loadDesc(ConstantPool pool) {
+        int classIndex = super.getUInt("class_index");
+        int nameAndTypeIndex = super.getUInt("name_and_type_index");
+
         ConstantClassInfo classInfo = pool.getClassInfo(classIndex);
         String className = pool.getUtf8String(classInfo.getNameIndex());
         ConstantNameAndTypeInfo nameAndTypeInfo = pool.getNameAndTypeInfo(nameAndTypeIndex);

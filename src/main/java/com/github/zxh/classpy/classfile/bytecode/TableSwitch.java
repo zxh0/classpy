@@ -2,8 +2,6 @@ package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import java.util.ArrayList;
-import java.util.List;
 
 /*
     tableswitch
@@ -24,7 +22,7 @@ import java.util.List;
  */
 public class TableSwitch extends Instruction {
 
-    private final List<JumpOffset> jumpOffsets = new ArrayList<>();
+    //private final List<JumpOffset> jumpOffsets = new ArrayList<>();
     
     public TableSwitch(Opcode opcode, int pc) {
         super(opcode, pc);
@@ -42,10 +40,10 @@ public class TableSwitch extends Instruction {
         // high - low + 1 signed 32-bit offsets
         for (int i = low; i <= high; i++) {
             JumpOffset offset = readJumpOffset(reader, String.valueOf(i));
-            jumpOffsets.add(offset);
+            add(offset);
         }
-        
-        jumpOffsets.add(defaultOffset);
+
+        add(defaultOffset);
     }
     
     private void skipPadding(ClassReader reader) {
@@ -58,15 +56,10 @@ public class TableSwitch extends Instruction {
         JumpOffset offset = new JumpOffset();
         offset.read(reader);
         offset.setName(name);
-        offset.setDesc(pc + offset.offset);
+        offset.setDesc(Integer.toString(pc + offset.offset));
         return offset;
     }
-    
-    @Override
-    public final List<JumpOffset> getSubComponents() {
-        return jumpOffsets;
-    }
-    
+
     
     public static class JumpOffset extends ClassComponent {
 

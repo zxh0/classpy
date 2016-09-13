@@ -9,7 +9,7 @@ public class StringUtil {
      * @return 
      */
     public static String toHexString(int i) {
-        return "0x" + Integer.toHexString(i);
+        return "0x" + Integer.toHexString(i).toUpperCase();
     }
     
     /**

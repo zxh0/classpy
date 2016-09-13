@@ -1,8 +1,7 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
@@ -17,32 +16,27 @@ LineNumberTable_attribute {
  */
 public class LineNumberTableAttribute extends AttributeInfo {
 
-    private U2 lineNumberTableLength;
-    private Table<LineNumberTableEntry> lineNumberTable;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        lineNumberTableLength = reader.readU2();
-        lineNumberTable = reader.readTable(LineNumberTableEntry.class,
-                lineNumberTableLength);
-        lineNumberTable.getSubComponents().forEach(entry -> {
-            entry.setName("line " + entry.lineNumber.getValue());
-            entry.setDesc(entry.startPc.getValue());
-        });
+    {
+        u2   ("line_number_table_length");
+        table("line_number_table", LineNumberTableEntry.class);
     }
-    
+
     
     public static class LineNumberTableEntry extends ClassComponent {
-        
-        private U2 startPc;
-        private U2 lineNumber;
+
+        {
+            u2("start_pc");
+            u2("line_number");
+        }
 
         @Override
-        protected void readContent(ClassReader reader) {
-            startPc = reader.readU2();
-            lineNumber = reader.readU2();
+        protected void afterRead(ConstantPool cp) {
+            int lineNumber = ((U2) super.get("line_number")).getValue();
+            int startPc = ((U2) super.get("start_pc")).getValue();
+            setName("line " + lineNumber);
+            setDesc(Integer.toString(startPc));
         }
-        
+
     }
     
 }

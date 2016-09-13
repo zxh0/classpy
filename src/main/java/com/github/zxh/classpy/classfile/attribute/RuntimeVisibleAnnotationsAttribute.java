@@ -2,8 +2,8 @@ package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.Table;
 import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
@@ -18,13 +18,9 @@ RuntimeVisibleAnnotations_attribute {
  */
 public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
 
-    private U2 numAnnotations;
-    private Table<AnnotationInfo> annotations;
-    
-    @Override
-    protected void readInfo(ClassReader reader) {
-        numAnnotations = reader.readU2();
-        annotations = reader.readTable(AnnotationInfo.class, numAnnotations);
+    {
+        u2   ("num_annotations");
+        table("annotations", AnnotationInfo.class);
     }
     
     /*
@@ -37,33 +33,33 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     }
     */
     public static class AnnotationInfo extends ClassComponent {
-        
-        private U2CpIndex typeIndex;
-        private U2 numElementValuePairs;
-        private Table<ElementValuePair> elementValuePairs;
+
+        {
+            u2cp ("type_index");
+            u2   ("num_element_value_pairs");
+            table("element_value_pairs", ElementValuePair.class);
+        }
+
         
         @Override
-        protected void readContent(ClassReader reader) {
-            typeIndex = reader.readU2CpIndex();
-            numElementValuePairs = reader.readU2();
-            elementValuePairs = reader.readTable(ElementValuePair.class,
-                    numElementValuePairs);
-            setDesc(reader.getConstantPool().getUtf8String(typeIndex));
+        protected void afterRead(ConstantPool cp) {
+            int typeIndex = ((U2) super.get("type_index")).getValue();
+            setDesc(cp.getUtf8String(typeIndex));
         }
         
     }
     
     public static class ElementValuePair extends ClassComponent {
-        
-        private U2CpIndex elementNameIndex;
-        private ElementValue value;
-        
+
+        {
+            u2cp("element_name_index");
+            add ("value", new ElementValue());
+        }
+
         @Override
-        protected void readContent(ClassReader reader) {
-            elementNameIndex = reader.readU2CpIndex();
-            value = new ElementValue();
-            value.read(reader);
-            setDesc(reader.getConstantPool().getUtf8String(elementNameIndex));
+        protected void afterRead(ConstantPool cp) {
+            int elementNameIndex = super.getUInt("element_name_index");
+            setDesc(cp.getUtf8String(elementNameIndex));
         }
         
     }
@@ -110,7 +106,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         @Override
         protected void readContent(ClassReader reader) {
             tag = reader.readU1();
-            tag.setDesc((char) tag.getValue());
+            tag.setDesc(Character.toString((char) tag.getValue()));
             switch (tag.getValue()) {
                 case 'B':
                 case 'C':
@@ -146,26 +142,18 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     
     public static class EnumConstValue extends ClassComponent {
 
-        private U2CpIndex typeNameIndex;
-        private U2CpIndex constNameIndex;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            typeNameIndex = reader.readU2CpIndex();
-            constNameIndex = reader.readU2CpIndex();
+        {
+            u2cp("type_name_index");
+            u2cp("const_name_index");
         }
         
     }
     
     public static class ArrayValue extends  ClassComponent {
-        
-        private U2 numValues;
-        private Table<ElementValue> values;
-        
-        @Override
-        protected void readContent(ClassReader reader) {
-            numValues = reader.readU2();
-            values = reader.readTable(ElementValue.class, numValues);
+
+        {
+            u2   ("num_values");
+            table("values", ElementValue.class);
         }
         
     }
