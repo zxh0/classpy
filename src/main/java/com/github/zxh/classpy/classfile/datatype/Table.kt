@@ -1,68 +1,63 @@
-package com.github.zxh.classpy.classfile.datatype;
+package com.github.zxh.classpy.classfile.datatype
 
-import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassParseException;
-import com.github.zxh.classpy.classfile.attribute.AttributeFactory;
-import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
-import com.github.zxh.classpy.helper.StringHelper;
+import com.github.zxh.classpy.classfile.ClassComponent
+import com.github.zxh.classpy.classfile.ClassParseException
+import com.github.zxh.classpy.classfile.attribute.AttributeFactory
+import com.github.zxh.classpy.classfile.constant.ConstantPool
+import com.github.zxh.classpy.classfile.reader.ClassReader
+import com.github.zxh.classpy.classfile.attribute.AttributeInfo
+import com.github.zxh.classpy.helper.StringHelper
 
 /**
  * Array of class components.
  */
-public class Table extends ClassComponent {
+class Table(length: UInt, entryClass: Class<out ClassComponent>) : ClassComponent() {
 
-    private final UInt length;
-    private final Class<? extends ClassComponent> entryClass;
-
-    public Table(UInt length, Class<? extends ClassComponent> entryClass) {
-        this.length = length;
-        this.entryClass = entryClass;
-    }
+    private val length = length;
+    private val entryClass = entryClass;
     
-    @Override
-    protected void readContent(ClassReader reader) {
+    override fun readContent(reader: ClassReader) {
         try {
-            for (int i = 0; i < length.getValue(); i++) {
-                super.add(readEntry(reader));
+            for (i in 0..length.value-1) {
+                super.add(readEntry(reader))
             }
-        } catch (ReflectiveOperationException e) {
-            throw new ClassParseException(e);
+        } catch (e: ReflectiveOperationException) {
+            throw ClassParseException(e)
         }
     }
 
-    private ClassComponent readEntry(ClassReader reader) throws ReflectiveOperationException {
-        if (entryClass == AttributeInfo.class) {
+    //@Throws(ReflectiveOperationException::class)
+    private fun readEntry(reader: ClassReader): ClassComponent {
+        if (entryClass == AttributeInfo::class.java) {
             return readAttributeInfo(reader);
         } else {
-            ClassComponent c = entryClass.newInstance();
-            c.read(reader);
-            return c;
+            println(entryClass)
+            val c = entryClass.newInstance()
+            c.read(reader)
+            return c
         }
     }
     
-    private AttributeInfo readAttributeInfo(ClassReader reader) {
-        int attrNameIndex = reader.getShort(reader.getPosition());
-        String attrName = reader.getConstantPool().getUtf8String(attrNameIndex);
+    private fun readAttributeInfo(reader: ClassReader): AttributeInfo {
+        val attrNameIndex = reader.getShort(reader.position).toInt()
+        val attrName = reader.constantPool!!.getUtf8String(attrNameIndex)
         
-        AttributeInfo attr = AttributeFactory.create(attrName);
-        attr.setName(attrName);
-        attr.read(reader);
+        val attr = AttributeFactory.create(attrName)
+        attr.name = attrName
+        attr.read(reader)
         
-        return attr;
+        return attr
     }
 
-    @Override
-    protected void afterRead(ConstantPool cp) {
-        int i = 0;
-        for (ClassComponent entry : super.getSubComponents()) {
-            String newName = StringHelper.formatIndex(length.getValue(), i++);
-            String oldName = entry.getName();
+    override fun afterRead(cp: ConstantPool) {
+        var i = 0
+        for (entry in super.getSubComponents()) {
+            var newName = StringHelper.formatIndex(length.value, i++)
+            val oldName = entry.getName()
             if (oldName != null) {
-                newName += " (" + oldName + ")";
+                newName += " (" + oldName + ")"
             }
-            entry.setName(newName);
+            entry.setName(newName)
         }
     }
 

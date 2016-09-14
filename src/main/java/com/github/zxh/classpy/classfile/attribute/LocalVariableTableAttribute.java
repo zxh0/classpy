@@ -2,7 +2,6 @@ package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
 LocalVariableTable_attribute {
@@ -37,9 +36,9 @@ public class LocalVariableTableAttribute extends AttributeInfo {
 
         @Override
         protected void afterRead(ConstantPool cp) {
-            int startPc = ((U2) super.get("start_pc")).getValue();
-            int length = ((U2) super.get("length")).getValue();
-            int nameIndex = ((U2) super.get("name_index")).getValue();
+            int startPc = super.getUInt("start_pc");
+            int length = super.getUInt("length");
+            int nameIndex = super.getUInt("name_index");
 
             int fromPc = startPc;
             int toPc = fromPc + length - 1;
