@@ -7,11 +7,10 @@ public class BytesReader {
     
     private final ByteBuffer buf;
 
-    public BytesReader(byte[] bytes, ByteOrder order, boolean readOnly) {
-        ByteBuffer _buf = ByteBuffer.wrap(bytes);
-        this.buf = readOnly
-                ? _buf.asReadOnlyBuffer().order(order)
-                : _buf.order(order);
+    public BytesReader(byte[] bytes) {
+        this.buf = ByteBuffer.wrap(bytes)
+                .asReadOnlyBuffer()
+                .order(ByteOrder.BIG_ENDIAN);
     }
     
     public byte getByte(int index) {
