@@ -8,55 +8,44 @@ class BytesReader(bytes: ByteArray) {
     private val buf: ByteBuffer = ByteBuffer.wrap(bytes)
             .asReadOnlyBuffer()
             .order(ByteOrder.BIG_ENDIAN)
-    
-    public byte getByte(int index) {
-        return buf.get(index);
-    }
 
-    public short getShort(int index) {
-        return buf.getShort(index);
-    }
+    val position: Int
+        get() = buf.position()
+
+    fun getByte(index: Int): Byte  = buf.get(index)
+    fun getShort(index: Int): Short  = buf.getShort(index)
     
-    public int getPosition() {
-        return buf.position();
-    }
-    
-    public void skipBytes(int n) {
-        for (int i = 0; i < n; i++) {
+    fun skipBytes(n: Int) {
+        for (i in 0..n-1) {
             buf.get();
         }
     }
     
     // byte[]
-    public byte[] readBytes(int n) {
-        byte[] bytes = new byte[n];
+    fun readBytes(n: Int): ByteArray {
+        val bytes = ByteArray(n);
         buf.get(bytes);
         return bytes;
     }
     
     // 8-bit signed int
-    public byte readByte() {
-        return buf.get();
-    }
+    fun readByte(): Byte = buf.get()
+
     
     // 8-bit unsigned int
-    public int readUnsignedByte() {
-        return Byte.toUnsignedInt(buf.get());
-    }
+    fun readUnsignedByte(): Int = java.lang.Byte.toUnsignedInt(buf.get())
+
     
     // 16-bit signed int
-    public short readShort() {
-        return buf.getShort();
-    }
+    fun readShort(): Short = buf.getShort()
+
     
     // 16-bit unsigned int
-    public int readUnsignedShort() {
-        return Short.toUnsignedInt(buf.getShort());
-    }
+    fun readUnsignedShort(): Int = java.lang.Short.toUnsignedInt(buf.getShort())
+
     
     // 32-bit signed int
-    public int readInt() {
-        return buf.getInt();
-    }
+    fun readInt(): Int = buf.getInt()
+
 
 }

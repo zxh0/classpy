@@ -5,7 +5,7 @@ import com.github.zxh.classpy.classfile.constant.ConstantPool;
 /**
  * Convenience class for reading class files.
  */
-public class ClassReader extends BytesReader {
+class ClassReader extends BytesReader {
 
     private ConstantPool constantPool;
 
