@@ -1,22 +1,17 @@
-package com.github.zxh.classpy.classfile.datatype;
+package com.github.zxh.classpy.classfile.datatype
 
-import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.ClassComponent
+import com.github.zxh.classpy.classfile.reader.ClassReader
 
 /**
  * Unparsed bytes.
  */
-public class Bytes extends ClassComponent {
+class Bytes(count: UInt) : ClassComponent() {
 
-    private UInt count;
+    private val count = count;
 
-    public Bytes(UInt count) {
-        this.count = count;
-    }
-
-    @Override
-    protected void readContent(ClassReader reader) {
-        reader.skipBytes(count.getValue());
+    override fun readContent(reader: ClassReader) {
+        reader.skipBytes(count.value);
     }
 
 }

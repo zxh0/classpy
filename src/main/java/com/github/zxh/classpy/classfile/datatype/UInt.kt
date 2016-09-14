@@ -1,7 +1,7 @@
-package com.github.zxh.classpy.classfile.datatype;
+package com.github.zxh.classpy.classfile.datatype
 
-import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.constant.ConstantPool;
+import com.github.zxh.classpy.classfile.ClassComponent
+import com.github.zxh.classpy.classfile.constant.ConstantPool
 import com.github.zxh.classpy.classfile.reader.ClassReader
 
 open class UInt(
