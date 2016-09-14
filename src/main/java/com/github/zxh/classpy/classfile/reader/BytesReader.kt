@@ -22,14 +22,14 @@ open class BytesReader(bytes: ByteArray) {
     fun readInt(): Int = buf.getInt()
 
     fun readBytes(n: Int): ByteArray {
-        val bytes = ByteArray(n);
-        buf.get(bytes);
-        return bytes;
+        val bytes = ByteArray(n)
+        buf.get(bytes)
+        return bytes
     }
 
     fun skipBytes(n: Int) {
         for (i in 0..n-1) {
-            buf.get();
+            buf.get()
         }
     }
 
