@@ -10,7 +10,7 @@ public class Wide extends Instruction {
     
     @Override
     protected void readOperands(ClassReader reader) {
-        int wideOpcode = reader.readU1().getValue();
+        int wideOpcode = reader.readUnsignedByte();
         if (wideOpcode == Opcode.iinc.opcode) {
             reader.skipBytes(4);
         } else {

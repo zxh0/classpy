@@ -10,7 +10,7 @@ public class Iinc extends Instruction {
     
     @Override
     protected void readOperands(ClassReader reader) {
-        int index = reader.readU1().getValue();
+        int index = reader.readUnsignedByte();
         int _const = reader.readByte();
         setDesc(getDesc() + " " + index + ", " + _const);
     }

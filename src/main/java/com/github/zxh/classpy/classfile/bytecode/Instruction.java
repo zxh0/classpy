@@ -26,7 +26,7 @@ public class Instruction extends ClassComponent {
         if (!super.getSubComponents().isEmpty()) {
             super.readContent(reader);
         } else {
-            reader.readU1(); // opcode
+            reader.readUnsignedByte(); // opcode
             readOperands(reader);
         }
     }
