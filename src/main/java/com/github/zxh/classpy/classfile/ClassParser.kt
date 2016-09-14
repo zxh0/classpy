@@ -14,10 +14,7 @@ object ClassParser {
     }
 
     fun afterRead(cc: ClassComponent, cp: ConstantPool) {
-        //cc.subComponents.forEach { c -> afterRead(c, cp) }
-        for (c in cc.getSubComponents()) {
-            afterRead(c, cp)
-        }
+        cc.subComponents.forEach { c -> afterRead(c, cp) }
         cc.afterRead(cp)
     }
 
