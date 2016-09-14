@@ -15,23 +15,22 @@ open class BytesReader(bytes: ByteArray) {
     fun getByte(index: Int): Byte  = buf.get(index)
     fun getShort(index: Int): Short  = buf.getShort(index)
     
-    fun skipBytes(n: Int) {
-        for (i in 0..n-1) {
-            buf.get();
-        }
-    }
-    
-    // byte[]
-    fun readBytes(n: Int): ByteArray {
-        val bytes = ByteArray(n);
-        buf.get(bytes);
-        return bytes;
-    }
-    
     fun readByte(): Byte = buf.get()
     fun readUnsignedByte(): Int = java.lang.Byte.toUnsignedInt(buf.get())
     fun readShort(): Short = buf.getShort()
     fun readUnsignedShort(): Int = java.lang.Short.toUnsignedInt(buf.getShort())
     fun readInt(): Int = buf.getInt()
+
+    fun readBytes(n: Int): ByteArray {
+        val bytes = ByteArray(n);
+        buf.get(bytes);
+        return bytes;
+    }
+
+    fun skipBytes(n: Int) {
+        for (i in 0..n-1) {
+            buf.get();
+        }
+    }
 
 }
