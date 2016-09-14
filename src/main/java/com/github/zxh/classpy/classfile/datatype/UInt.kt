@@ -3,7 +3,6 @@ package com.github.zxh.classpy.classfile.datatype;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.reader.ClassReader
-import com.github.zxh.classpy.helper.StringHelper
 
 open class UInt(
         readInt: (reader: ClassReader) -> Int,
@@ -24,9 +23,9 @@ open class UInt(
     
 }
 
-fun int2String(i: Int, cp: ConstantPool): String = Integer.toString(i)
-fun int2Hex(i: Int, cp: ConstantPool): String = "0x" + Integer.toHexString(i).toUpperCase()
-fun int2CpIndex(i: Int, cp: ConstantPool): String {
+private fun int2String(i: Int, cp: ConstantPool): String = Integer.toString(i)
+private fun int2Hex(i: Int, cp: ConstantPool): String = "0x" + Integer.toHexString(i).toUpperCase()
+private fun int2CpIndex(i: Int, cp: ConstantPool): String {
     return if (i > 0) "#$i->${cp.getConstantDesc(i)}" else "#$i"
 }
 
