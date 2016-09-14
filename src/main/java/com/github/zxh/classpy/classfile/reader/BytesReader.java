@@ -5,7 +5,7 @@ import java.nio.ByteOrder;
 
 public class BytesReader {
     
-    protected final ByteBuffer buf;
+    private final ByteBuffer buf;
 
     public BytesReader(byte[] bytes, ByteOrder order, boolean readOnly) {
         ByteBuffer _buf = ByteBuffer.wrap(bytes);
@@ -14,8 +14,12 @@ public class BytesReader {
                 : _buf.order(order);
     }
     
-    public ByteBuffer getByteBuffer() {
-        return buf;
+    public byte getByte(int index) {
+        return buf.get(index);
+    }
+
+    public short getShort(int index) {
+        return buf.getShort(index);
     }
     
     public int getPosition() {

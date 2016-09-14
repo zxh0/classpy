@@ -26,7 +26,7 @@ public class Code extends ClassComponent {
         int position;
         while ((position = reader.getPosition()) < endPosition) {
             int pc = position - startPosition;
-            byte b = reader.getByteBuffer().get(position);
+            byte b = reader.getByte(position);
             Opcode opcode = Opcode.valueOf(Byte.toUnsignedInt(b));
             Instruction instruction = InstructionFactory.create(opcode, pc);
             instruction.read(reader);
