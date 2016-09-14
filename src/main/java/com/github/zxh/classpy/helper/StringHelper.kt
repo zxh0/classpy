@@ -3,17 +3,6 @@ package com.github.zxh.classpy.helper;
 object StringHelper {
     
     /**
-     * Convert i to HEX string.
-     * 
-     * @param i
-     * @return 
-     */
-    @JvmStatic
-    fun toHexString(i: Int): String {
-        return "0x" + Integer.toHexString(i).toUpperCase()
-    }
-    
-    /**
      * Convert index to String.
      * Examples:
      * maxIndex index result
