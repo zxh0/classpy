@@ -1,12 +1,12 @@
-package com.github.zxh.classpy.helper;
+package com.github.zxh.classpy.helper
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.DataInputStream
+import java.io.DataOutputStream
+import java.io.IOException
 
-public class Mutf8Decoder {
+object Mutf8Decoder {
     
     /**
      * Decode modified UTF-8 string from byte[].
@@ -16,14 +16,16 @@ public class Mutf8Decoder {
      * @return 
      * @throws java.io.IOException 
      */
-    public static String decodeMutf8(byte[] bytes) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream(bytes.length + 2);
-        DataOutputStream dos = new DataOutputStream(baos);
-        dos.writeShort(bytes.length);
+    @Throws(IOException::class)
+    @JvmStatic
+    fun decodeMutf8(bytes: ByteArray): String {
+        val baos = ByteArrayOutputStream(bytes.size + 2);
+        val dos = DataOutputStream(baos)
+        dos.writeShort(bytes.size);
         dos.write(bytes);
 
-        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-        DataInputStream dis = new DataInputStream(bais);
+        val bais = ByteArrayInputStream(baos.toByteArray());
+        val dis = DataInputStream(bais);
         return dis.readUTF();
     }
     

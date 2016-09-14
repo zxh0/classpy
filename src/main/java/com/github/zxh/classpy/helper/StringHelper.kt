@@ -8,7 +8,8 @@ object StringHelper {
      * @param i
      * @return 
      */
-    @JvmStatic fun toHexString(i: Int): String {
+    @JvmStatic
+    fun toHexString(i: Int): String {
         return "0x" + Integer.toHexString(i).toUpperCase()
     }
     
@@ -27,7 +28,8 @@ object StringHelper {
      * @param index
      * @return 
      */
-    @JvmStatic fun formatIndex(maxIndex: Int, index: Int): String {
+    @JvmStatic
+    fun formatIndex(maxIndex: Int, index: Int): String {
         val idxWidth = maxIndex.toString().length
         val fmtStr = "#%0" + idxWidth + "d"
         return String.format(fmtStr, index)
@@ -39,7 +41,8 @@ object StringHelper {
      * @param maxLength
      * @return 
      */
-    @JvmStatic fun cutAndAppendEllipsis(str: String, maxLength: Int): String {
+    @JvmStatic
+    fun cutAndAppendEllipsis(str: String, maxLength: Int): String {
         val str = str.replace("\\r|\\n".toRegex(), "")
         
         if (str.length <= maxLength) {
