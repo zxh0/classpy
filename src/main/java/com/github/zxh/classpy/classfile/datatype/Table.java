@@ -43,7 +43,7 @@ public class Table extends ClassComponent {
     }
     
     private AttributeInfo readAttributeInfo(ClassReader reader) {
-        int attrNameIndex = reader.getByteBuffer().getShort(reader.getPosition());
+        int attrNameIndex = reader.getShort(reader.getPosition());
         String attrName = reader.getConstantPool().getUtf8String(attrNameIndex);
         
         AttributeInfo attr = AttributeFactory.create(attrName);
