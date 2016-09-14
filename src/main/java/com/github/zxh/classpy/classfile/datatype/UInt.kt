@@ -9,16 +9,16 @@ open class UInt(
         describeInt: (i: Int, cp: ConstantPool) -> String
     ) : ClassComponent() {
 
-    private val _readInt = readInt
-    private val _describeInt = describeInt
+    private val readInt = readInt
+    private val describeInt = describeInt
     var value: Int = 0
 
     override fun readContent(reader: ClassReader) {
-        value = _readInt(reader)
+        value = readInt(reader)
     }
 
     override fun afterRead(cp: ConstantPool) {
-        desc = _describeInt(value, cp)
+        desc = describeInt(value, cp)
     }
     
 }
