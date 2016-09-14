@@ -5,20 +5,8 @@ import com.github.zxh.classpy.classfile.constant.ConstantPool;
 /**
  * Convenience class for reading class files.
  */
-class ClassReader extends BytesReader {
+class ClassReader(bytes: ByteArray) : BytesReader(bytes) {
 
-    private ConstantPool constantPool;
-
-    public ClassReader(byte[] bytes) {
-        super(bytes);
-    }
-
-    public ConstantPool getConstantPool() {
-        return constantPool;
-    }
-
-    public void setConstantPool(ConstantPool constantPool) {
-        this.constantPool = constantPool;
-    }
+    var constantPool: ConstantPool? = null;
 
 }

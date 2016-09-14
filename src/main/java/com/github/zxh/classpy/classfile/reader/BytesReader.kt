@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.reader
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
-class BytesReader(bytes: ByteArray) {
+open class BytesReader(bytes: ByteArray) {
     
     private val buf: ByteBuffer = ByteBuffer.wrap(bytes)
             .asReadOnlyBuffer()
@@ -28,24 +28,10 @@ class BytesReader(bytes: ByteArray) {
         return bytes;
     }
     
-    // 8-bit signed int
     fun readByte(): Byte = buf.get()
-
-    
-    // 8-bit unsigned int
     fun readUnsignedByte(): Int = java.lang.Byte.toUnsignedInt(buf.get())
-
-    
-    // 16-bit signed int
     fun readShort(): Short = buf.getShort()
-
-    
-    // 16-bit unsigned int
     fun readUnsignedShort(): Int = java.lang.Short.toUnsignedInt(buf.getShort())
-
-    
-    // 32-bit signed int
     fun readInt(): Int = buf.getInt()
-
 
 }
