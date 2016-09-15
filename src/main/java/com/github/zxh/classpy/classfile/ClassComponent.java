@@ -51,6 +51,10 @@ public abstract class ClassComponent {
         return ((IntType) get(name)).getValue();
     }
 
+    protected final void s1(String name) {
+        this.add(name, new S1());
+    }
+
     protected final void u1(String name) {
         this.add(name, new U1());
     }

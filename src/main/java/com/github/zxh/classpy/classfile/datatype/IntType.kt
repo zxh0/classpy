@@ -38,5 +38,6 @@ class U1Hex:     IntType(ClassReader::readUnsignedByte,  ::int2Hex    )
 class U1CpIndex: IntType(ClassReader::readUnsignedByte,  ::int2CpIndex)
 class U2:        IntType(ClassReader::readUnsignedShort, ::int2String )
 class U2CpIndex: IntType(ClassReader::readUnsignedShort, ::int2CpIndex)
-class U4:        IntType(ClassReader::readInt,           ::int2String ) // TODO
+class U4:        IntType(ClassReader::readInt,           ::int2String )
 class U4Hex:     IntType(ClassReader::readInt,           ::int2Hex    )
+class S1:        IntType(ClassReader::readByte,          ::int2String )
