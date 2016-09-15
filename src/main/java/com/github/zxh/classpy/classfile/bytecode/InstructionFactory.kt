@@ -8,6 +8,7 @@ object InstructionFactory {
      * @param pc
      * @return
      */
+    @JvmStatic
     fun create(opcode: Opcode, pc: Int): Instruction {
         return when (opcode) {
             Opcode.ldc_w,

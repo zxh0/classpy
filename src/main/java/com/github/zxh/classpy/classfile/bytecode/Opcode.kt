@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassParseException;
 
-public enum Opcode {
+enum class Opcode(val opcode: Int, val operandCount: Int) {
     
     // Constants
     nop             (0x00, 0),
@@ -220,23 +220,17 @@ public enum Opcode {
     breakpoint      (0xca, 0),
     impdep1         (0xfe, 0),
     impdep2         (0xff, 0);
-    
-    
-    public final int opcode;
-    public final int operandCount;
 
-    private Opcode(int opcode, int operandCount) {
-        this.opcode = opcode;
-        this.operandCount = operandCount;
-    }
-    
-    
-    public static Opcode valueOf(int opcode) {
-        if (opcode < 0xca) {
-            return values()[opcode];
-        } else {
-            throw new ClassParseException("Invalid opcode: " + opcode);
+
+    // todo
+    companion object XXX {
+        fun valueOf(opcode: Int): Opcode {
+            if (opcode < 0xca) {
+                return values()[opcode];
+            } else {
+                throw ClassParseException("Invalid opcode: $opcode");
+            }
         }
     }
-    
+
 }
