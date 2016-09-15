@@ -55,6 +55,10 @@ public abstract class ClassComponent {
         this.add(name, new S1());
     }
 
+    protected final void s2(String name) {
+        this.add(name, new S2());
+    }
+
     protected final void u1(String name) {
         this.add(name, new U1());
     }

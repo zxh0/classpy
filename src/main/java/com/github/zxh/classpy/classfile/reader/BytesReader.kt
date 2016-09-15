@@ -17,7 +17,7 @@ open class BytesReader(bytes: ByteArray) {
     
     fun readByte(): Int = buf.get().toInt()
     fun readUnsignedByte(): Int = java.lang.Byte.toUnsignedInt(buf.get())
-    fun readShort(): Short = buf.getShort()
+    fun readShort(): Int = buf.getShort().toInt()
     fun readUnsignedShort(): Int = java.lang.Short.toUnsignedInt(buf.getShort())
     fun readInt(): Int = buf.getInt()
 
