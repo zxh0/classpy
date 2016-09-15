@@ -1,31 +1,18 @@
-package com.github.zxh.classpy.classfile.bytecode;
+package com.github.zxh.classpy.classfile.bytecode
 
-import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
-
-import java.util.List;
+import com.github.zxh.classpy.classfile.ClassComponent
+import com.github.zxh.classpy.classfile.constant.ConstantPool
+import com.github.zxh.classpy.classfile.reader.ClassReader
 
 /**
  * Base class for all instructions.
  */
-public class Instruction extends ClassComponent {
+class Instruction(opcode: Opcode, pc: Int) : ClassComponent() {
 
-    protected final Opcode opcode;
-    protected final int pc;
+    protected val opcode = opcode
+    protected val pc = pc
 
-    public Instruction(Opcode opcode, int pc) {
-        this.opcode = opcode;
-        this.pc = pc;
-        setDesc(opcode.name());
-    }
-
-    public int getPc() {
-        return pc;
-    }
-    
-    @Override
-    protected final void readContent(ClassReader reader) {
+    override fun readContent(reader: ClassReader) {
         if (!super.getSubComponents().isEmpty()) {
             super.readContent(reader);
         } else {
@@ -34,20 +21,20 @@ public class Instruction extends ClassComponent {
         }
     }
     
-    protected void readOperands(ClassReader reader) {
+    protected fun readOperands(reader: ClassReader) {
         if (opcode.operandCount > 0) {
             reader.skipBytes(opcode.operandCount);
         }
     }
 
-    @Override
-    protected void afterRead(ConstantPool cp) {
-        List<ClassComponent> subComponents = super.getSubComponents();
-        if (subComponents.size() == 2) {
-            ClassComponent operand = subComponents.get(1);
-            setDesc(opcode.name() + operand.getDesc());
+    override fun afterRead(cp: ConstantPool) {
+        val subComponents = super.getSubComponents();
+        if (subComponents.size == 2) {
+            val operand = subComponents[1]
+            desc = opcode.name + operand.desc;
         } else {
             // todo
+            desc = opcode.name
         }
     }
 
