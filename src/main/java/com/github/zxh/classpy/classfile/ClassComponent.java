@@ -47,7 +47,7 @@ public abstract class ClassComponent {
         return null;
     }
 
-    protected int getUInt(String name) {
+    protected int getInt(String name) {
         return ((IntType) get(name)).getValue();
     }
 

@@ -15,13 +15,13 @@ public class ConstantNameAndTypeInfo extends ConstantInfo {
     }
 
     public int getNameIndex() {
-        return super.getUInt("name_index");
+        return super.getInt("name_index");
     }
 
     @Override
     protected String loadDesc(ConstantPool cp) {
-        String name = cp.getUtf8String(super.getUInt("name_index"));
-        String type = cp.getUtf8String(super.getUInt("descriptor_index"));
+        String name = cp.getUtf8String(super.getInt("name_index"));
+        String type = cp.getUtf8String(super.getInt("descriptor_index"));
         return name + "&" + type;
     }
     

@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.datatype.U2;
-
 /*
 CONSTANT_InvokeDynamic_info {
     u1 tag;
@@ -18,7 +16,7 @@ public class ConstantInvokeDynamicInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool cp) {
-        int nameAndTypeIndex = super.getUInt("name_and_type_index");
+        int nameAndTypeIndex = super.getInt("name_and_type_index");
         return cp.getNameAndTypeInfo(nameAndTypeIndex).loadDesc(cp);
     }
     

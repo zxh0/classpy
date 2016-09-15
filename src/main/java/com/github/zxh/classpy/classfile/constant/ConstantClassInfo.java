@@ -13,7 +13,7 @@ public class ConstantClassInfo extends ConstantInfo {
     }
 
     public int getNameIndex() {
-        return super.getUInt("name_index");
+        return super.getInt("name_index");
     }
 
     @Override

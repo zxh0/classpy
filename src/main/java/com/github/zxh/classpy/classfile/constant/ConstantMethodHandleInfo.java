@@ -16,8 +16,8 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
 
     @Override
     protected String loadDesc(ConstantPool cp) {
-        int referenceKind = super.getUInt("reference_kind");
-        int referenceIndex = super.getUInt("reference_index");
+        int referenceKind = super.getInt("reference_kind");
+        int referenceIndex = super.getInt("reference_index");
 
         RefKind refKind = RefKind.valueOf(referenceKind);
         switch (refKind) {

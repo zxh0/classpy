@@ -20,7 +20,7 @@ public class StackMapTableAttribute extends AttributeInfo {
     protected void readContent(ClassReader reader) {
         super.readContent(reader);
         // todo
-        reader.skipBytes(super.getUInt("attribute_length") - 2);
+        reader.skipBytes(super.getInt("attribute_length") - 2);
     }
 
 }

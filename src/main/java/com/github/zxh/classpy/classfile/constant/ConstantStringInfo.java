@@ -14,7 +14,7 @@ public class ConstantStringInfo extends ConstantInfo {
 
     @Override
     protected String loadDesc(ConstantPool cp) {
-        int stringIndex = super.getUInt("string_index");
+        int stringIndex = super.getInt("string_index");
         return cp.getUtf8Info(stringIndex).loadDesc(cp);
     }
     

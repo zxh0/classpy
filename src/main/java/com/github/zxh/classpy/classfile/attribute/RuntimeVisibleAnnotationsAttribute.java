@@ -57,7 +57,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
 
         @Override
         protected void afterRead(ConstantPool cp) {
-            int elementNameIndex = super.getUInt("element_name_index");
+            int elementNameIndex = super.getInt("element_name_index");
             setDesc(cp.getUtf8String(elementNameIndex));
         }
         

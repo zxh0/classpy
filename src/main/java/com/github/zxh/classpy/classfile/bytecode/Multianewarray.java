@@ -18,7 +18,7 @@ public class Multianewarray extends Instruction {
     protected void readOperands(ClassReader reader) {
         setDesc(getDesc() + " "
                 + super.get("index").getDesc() + ", "
-                + super.getUInt("dimensions"));
+                + super.getInt("dimensions"));
     }
     
 }

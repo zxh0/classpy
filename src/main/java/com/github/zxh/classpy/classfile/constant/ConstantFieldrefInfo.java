@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.datatype.U2;
-
 /*
 CONSTANT_Fieldref_info {
     u1 tag;
@@ -18,8 +16,8 @@ public class ConstantFieldrefInfo extends ConstantInfo {
     
     @Override
     protected String loadDesc(ConstantPool cp) {
-        int classIndex = super.getUInt("class_index");
-        int nameAndTypeIndex = super.getUInt("name_and_type_index");
+        int classIndex = super.getInt("class_index");
+        int nameAndTypeIndex = super.getInt("name_and_type_index");
 
         ConstantClassInfo classInfo = cp.getClassInfo(classIndex);
         String className = cp.getUtf8String(classInfo.getNameIndex());

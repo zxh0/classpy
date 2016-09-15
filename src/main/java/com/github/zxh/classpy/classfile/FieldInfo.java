@@ -25,7 +25,7 @@ public class FieldInfo extends ClassComponent {
 
     @Override
     protected void afterRead(ConstantPool cp) {
-        int nameIndex = super.getUInt("name_index");
+        int nameIndex = super.getInt("name_index");
         if (nameIndex > 0) {
             // todo fix loading java.lang.String from rt.jar
             setDesc(cp.getUtf8String(nameIndex));

@@ -36,7 +36,7 @@ public class LocalVariableTypeTableAttribute extends AttributeInfo {
 
         @Override
         protected void afterRead(ConstantPool cp) {
-            int nameIndex = super.getUInt("name_index");
+            int nameIndex = super.getInt("name_index");
             setDesc(cp.getUtf8String(nameIndex));
         }
     

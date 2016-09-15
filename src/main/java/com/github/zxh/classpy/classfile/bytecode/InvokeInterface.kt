@@ -13,7 +13,7 @@ class InvokeInterface(opcode: Opcode, pc: Int) : Instruction(opcode, pc) {
 
     override fun afterRead(cp: ConstantPool) {
         val index = super.get("index").desc
-        val count = super.getUInt("count")
+        val count = super.getInt("count")
         desc = "${opcode.name} $index, $count"
     }
     

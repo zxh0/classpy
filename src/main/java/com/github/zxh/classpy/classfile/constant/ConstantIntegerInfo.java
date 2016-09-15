@@ -14,7 +14,7 @@ public class ConstantIntegerInfo extends ConstantInfo {
 
     @Override
     protected String loadDesc(ConstantPool cp) {
-        int i = super.getUInt("bytes");
+        int i = super.getInt("bytes");
         return String.valueOf(i);
     }
     
