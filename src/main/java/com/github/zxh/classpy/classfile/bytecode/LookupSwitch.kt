@@ -1,7 +1,7 @@
-package com.github.zxh.classpy.classfile.bytecode;
+package com.github.zxh.classpy.classfile.bytecode
 
-import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.ClassComponent
+import com.github.zxh.classpy.classfile.reader.ClassReader
 
 /*
 lookupswitch
@@ -20,24 +20,26 @@ class LookupSwitch(opcode: Opcode, pc: Int) : Instruction(opcode, pc) {
 
 
     override fun readOperands(reader: ClassReader) {
-        skipPadding(reader);
+        skipPadding(reader)
         
-        val defaultOffset = MatchOffset(true, pc);
-        defaultOffset.read(reader);
+        val defaultOffset = MatchOffset(true, pc)
+        defaultOffset.read(reader)
         
-        val npairs = reader.readInt();
+        val npairs = reader.readInt()
         for (i in 0..npairs-1) {
-            val offset = MatchOffset(false, pc);
-            offset.read(reader);
-            add(offset);
+            val offset = MatchOffset(false, pc)
+            offset.read(reader)
+            add(offset)
         }
         
-        add(defaultOffset);
+        add(defaultOffset)
     }
     
     private fun skipPadding(reader: ClassReader) {
-        for (int i = 1; (pc + i) %4 != 0; i++) {
-            reader.readByte();
+        var i = 1
+        while ((pc + i) % 4 !== 0) {
+            reader.readByte()
+            i++
         }
     }
     
@@ -50,14 +52,14 @@ class MatchOffset(val isDefault: Boolean, val basePc: Int) : ClassComponent() {
 
     override fun readContent(reader: ClassReader) {
         if (!isDefault) {
-            match = reader.readInt();
-            setName(match.toString());
+            match = reader.readInt()
+            setName(match.toString())
         } else {
-            setName("default");
+            setName("default")
         }
 
-        _offset = reader.readInt();
-        setDesc(Integer.toString(basePc + offset));
+        _offset = reader.readInt()
+        setDesc(Integer.toString(basePc + offset))
     }
 
 }
