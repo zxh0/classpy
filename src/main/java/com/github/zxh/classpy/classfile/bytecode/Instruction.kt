@@ -7,10 +7,7 @@ import com.github.zxh.classpy.classfile.reader.ClassReader
 /**
  * Base class for all instructions.
  */
-open class Instruction(opcode: Opcode, pc: Int) : ClassComponent() {
-
-    val opcode = opcode
-    val pc = pc
+open class Instruction(val opcode: Opcode, val pc: Int) : ClassComponent() {
 
     override fun readContent(reader: ClassReader) {
         if (!super.getSubComponents().isEmpty()) {

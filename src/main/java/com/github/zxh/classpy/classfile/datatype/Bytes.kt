@@ -6,9 +6,7 @@ import com.github.zxh.classpy.classfile.reader.ClassReader
 /**
  * Unparsed bytes.
  */
-class Bytes(count: IntType) : ClassComponent() {
-
-    private val count = count;
+class Bytes(val count: IntType) : ClassComponent() {
 
     override fun readContent(reader: ClassReader) {
         reader.skipBytes(count.value);

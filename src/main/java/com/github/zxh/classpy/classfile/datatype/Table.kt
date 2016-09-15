@@ -11,11 +11,8 @@ import com.github.zxh.classpy.helper.StringHelper
 /**
  * Array of class components.
  */
-class Table(length: IntType, entryClass: Class<out ClassComponent>) : ClassComponent() {
+class Table(val length: IntType, val entryClass: Class<out ClassComponent>) : ClassComponent() {
 
-    private val length = length;
-    private val entryClass = entryClass;
-    
     override fun readContent(reader: ClassReader) {
         try {
             for (i in 0..length.value-1) {
@@ -53,11 +50,11 @@ class Table(length: IntType, entryClass: Class<out ClassComponent>) : ClassCompo
         var i = 0
         for (entry in super.getSubComponents()) {
             var newName = StringHelper.formatIndex(length.value, i++)
-            val oldName = entry.getName()
+            val oldName = entry.name
             if (oldName != null) {
                 newName += " (" + oldName + ")"
             }
-            entry.setName(newName)
+            entry.name = newName
         }
     }
 

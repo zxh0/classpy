@@ -5,12 +5,10 @@ import com.github.zxh.classpy.classfile.constant.ConstantPool
 import com.github.zxh.classpy.classfile.reader.ClassReader
 
 open class IntType(
-        readInt: (reader: ClassReader) -> Int,
-        describeInt: (i: Int, cp: ConstantPool) -> String
+        val readInt: (reader: ClassReader) -> Int,
+        val describeInt: (i: Int, cp: ConstantPool) -> String
     ) : ClassComponent() {
 
-    private val readInt = readInt
-    private val describeInt = describeInt
     var value: Int = 0
 
     override fun readContent(reader: ClassReader) {
@@ -24,7 +22,7 @@ open class IntType(
 }
 
 private fun int2String(i: Int, cp: ConstantPool): String {
-    return Integer.toString(i)
+    return i.toString()
 }
 private fun int2Hex(i: Int, cp: ConstantPool): String {
     return "0x" + Integer.toHexString(i).toUpperCase()
