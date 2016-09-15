@@ -11,7 +11,7 @@ import com.github.zxh.classpy.helper.StringHelper
 /**
  * Array of class components.
  */
-class Table(length: UInt, entryClass: Class<out ClassComponent>) : ClassComponent() {
+class Table(length: IntType, entryClass: Class<out ClassComponent>) : ClassComponent() {
 
     private val length = length;
     private val entryClass = entryClass;

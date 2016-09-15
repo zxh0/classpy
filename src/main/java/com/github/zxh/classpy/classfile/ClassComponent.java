@@ -48,7 +48,7 @@ public abstract class ClassComponent {
     }
 
     protected int getUInt(String name) {
-        return ((UInt) get(name)).getValue();
+        return ((IntType) get(name)).getValue();
     }
 
     protected final void u1(String name) {
@@ -77,13 +77,13 @@ public abstract class ClassComponent {
 
     protected final void table(String name,
                                Class<? extends ClassComponent> entryClass) {
-        UInt length = (UInt) subComponents.get(subComponents.size() - 1);
+        IntType length = (IntType) subComponents.get(subComponents.size() - 1);
         Table table = new Table(length, entryClass);
         this.add(name, table);
     }
 
     protected final void bytes(String name) {
-        UInt count = (UInt) subComponents.get(subComponents.size() - 1);
+        IntType count = (IntType) subComponents.get(subComponents.size() - 1);
         Bytes bytes = new Bytes(count);
         this.add(name, bytes);
     }

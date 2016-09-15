@@ -4,7 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent
 import com.github.zxh.classpy.classfile.constant.ConstantPool
 import com.github.zxh.classpy.classfile.reader.ClassReader
 
-open class UInt(
+open class IntType(
         readInt: (reader: ClassReader) -> Int,
         describeInt: (i: Int, cp: ConstantPool) -> String
     ) : ClassComponent() {
@@ -33,10 +33,10 @@ private fun int2CpIndex(i: Int, cp: ConstantPool): String {
     return if (i > 0) "#$i->${cp.getConstantDesc(i)}" else "#$i"
 }
 
-class U1:        UInt(ClassReader::readUnsignedByte,  ::int2String )
-class U1Hex:     UInt(ClassReader::readUnsignedByte,  ::int2Hex    )
-class U1CpIndex: UInt(ClassReader::readUnsignedByte,  ::int2CpIndex)
-class U2:        UInt(ClassReader::readUnsignedShort, ::int2String )
-class U2CpIndex: UInt(ClassReader::readUnsignedShort, ::int2CpIndex)
-class U4:        UInt(ClassReader::readInt,           ::int2String ) // TODO
-class U4Hex:     UInt(ClassReader::readInt,           ::int2Hex    )
+class U1:        IntType(ClassReader::readUnsignedByte,  ::int2String )
+class U1Hex:     IntType(ClassReader::readUnsignedByte,  ::int2Hex    )
+class U1CpIndex: IntType(ClassReader::readUnsignedByte,  ::int2CpIndex)
+class U2:        IntType(ClassReader::readUnsignedShort, ::int2String )
+class U2CpIndex: IntType(ClassReader::readUnsignedShort, ::int2CpIndex)
+class U4:        IntType(ClassReader::readInt,           ::int2String ) // TODO
+class U4Hex:     IntType(ClassReader::readInt,           ::int2Hex    )

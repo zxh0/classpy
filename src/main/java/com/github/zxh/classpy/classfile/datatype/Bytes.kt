@@ -6,7 +6,7 @@ import com.github.zxh.classpy.classfile.reader.ClassReader
 /**
  * Unparsed bytes.
  */
-class Bytes(count: UInt) : ClassComponent() {
+class Bytes(count: IntType) : ClassComponent() {
 
     private val count = count;
 

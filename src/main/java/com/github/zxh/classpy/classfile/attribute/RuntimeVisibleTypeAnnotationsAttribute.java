@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.attribute;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.datatype.U1Hex;
-import com.github.zxh.classpy.classfile.datatype.UInt;
+import com.github.zxh.classpy.classfile.datatype.IntType;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 
@@ -98,9 +98,9 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
     */
     public static class TargetInfo extends ClassComponent {
 
-        private final UInt targetType;
+        private final IntType targetType;
 
-        public TargetInfo(UInt targetType) {
+        public TargetInfo(IntType targetType) {
             this.targetType = targetType;
         }
         
