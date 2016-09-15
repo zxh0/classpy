@@ -28,12 +28,12 @@ public class LookupSwitch extends Instruction {
     protected void readOperands(ClassReader reader) {
         skipPadding(reader);
         
-        MatchOffset defaultOffset = new MatchOffset(true, pc);
+        MatchOffset defaultOffset = new MatchOffset(true, getPc());
         defaultOffset.read(reader);
         
         int npairs = reader.readInt();
         for (int i = 0; i < npairs; i++) {
-            MatchOffset offset = new MatchOffset(false, pc);
+            MatchOffset offset = new MatchOffset(false, getPc());
             offset.read(reader);
             add(offset);
         }
@@ -42,7 +42,7 @@ public class LookupSwitch extends Instruction {
     }
     
     private void skipPadding(ClassReader reader) {
-        for (int i = 1; (pc + i) %4 != 0; i++) {
+        for (int i = 1; (getPc() + i) %4 != 0; i++) {
             reader.readByte();
         }
     }

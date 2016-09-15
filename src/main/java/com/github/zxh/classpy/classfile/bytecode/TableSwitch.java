@@ -47,7 +47,7 @@ public class TableSwitch extends Instruction {
     }
     
     private void skipPadding(ClassReader reader) {
-        for (int i = 1; (pc + i) %4 != 0; i++) {
+        for (int i = 1; (getPc() + i) %4 != 0; i++) {
             reader.readByte();
         }
     }
@@ -56,7 +56,7 @@ public class TableSwitch extends Instruction {
         JumpOffset offset = new JumpOffset();
         offset.read(reader);
         offset.setName(name);
-        offset.setDesc(Integer.toString(pc + offset.offset));
+        offset.setDesc(Integer.toString(getPc() + offset.offset));
         return offset;
     }
 
