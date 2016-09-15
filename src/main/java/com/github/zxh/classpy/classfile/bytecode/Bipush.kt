@@ -1,17 +1,12 @@
-package com.github.zxh.classpy.classfile.bytecode;
+package com.github.zxh.classpy.classfile.bytecode
 
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.reader.ClassReader
 
-public class Bipush extends Instruction {
+class Bipush(opcode: Opcode, pc: Int) : Instruction(opcode, pc) {
 
-    public Bipush(Opcode opcode, int pc) {
-        super(opcode, pc);
-    }
-
-    @Override
-    protected void readOperands(ClassReader reader) {
-        byte operand = reader.readByte();
-        setDesc(getDesc() + " " + operand);
+    override fun readOperands(reader: ClassReader) {
+        val operand = reader.readByte()
+        desc = "${opcode.name} $operand"
     }
     
 }
