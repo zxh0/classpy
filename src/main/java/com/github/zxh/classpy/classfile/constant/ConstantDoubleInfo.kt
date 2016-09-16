@@ -17,7 +17,7 @@ class ConstantDoubleInfo : ConstantInfo() {
     override fun loadDesc(cp: ConstantPool): String {
         val high = super.getInt("high_bytes").toLong();
         val low = super.getInt("low_bytes").toLong();
-        val d = java.lang.Double.longBitsToDouble(high << 32 | low);
+        val d = java.lang.Double.longBitsToDouble(high shl 32 or low);
         return d.toString();
     }
     
