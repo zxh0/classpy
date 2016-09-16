@@ -6,15 +6,14 @@ CONSTANT_MethodType_info {
     u2 descriptor_index;
 }
 */
-public class ConstantMethodTypeInfo extends ConstantInfo {
+class ConstantMethodTypeInfo : ConstantInfo() {
 
-    {
+    init {
         u2("descriptor_index");
     }
     
-    @Override
-    protected String loadDesc(ConstantPool cp) {
-        int descriptorIndex = super.getInt("descriptor_index");
+    override fun loadDesc(cp: ConstantPool): String {
+        val descriptorIndex = super.getInt("descriptor_index");
         return cp.getUtf8String(descriptorIndex);
     }
     
