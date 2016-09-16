@@ -7,6 +7,6 @@ CONSTANT_InterfaceMethodref_info {
     u2 name_and_type_index;
 }
 */
-public class ConstantInterfaceMethodrefInfo extends ConstantMethodrefInfo {
+class ConstantInterfaceMethodrefInfo : ConstantMethodrefInfo() {
 
 }
