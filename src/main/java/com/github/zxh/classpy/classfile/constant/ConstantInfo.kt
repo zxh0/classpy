@@ -8,12 +8,12 @@ cp_info {
     u1 info[];
 }
  */
-public abstract class ConstantInfo extends ClassComponent {
+abstract class ConstantInfo : ClassComponent() {
 
-    {
+    init {
         u1("tag");
     }
 
-    protected abstract String loadDesc(ConstantPool cp);
+    abstract fun loadDesc(cp: ConstantPool): String;
     
 }
