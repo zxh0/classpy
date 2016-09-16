@@ -7,21 +7,20 @@ CONSTANT_NameAndType_info {
     u2 descriptor_index;
 }
 */
-public class ConstantNameAndTypeInfo extends ConstantInfo {
+class ConstantNameAndTypeInfo : ConstantInfo() {
 
-    {
+    init {
         u2("name_index");
         u2("descriptor_index");
     }
 
-    public int getNameIndex() {
+    fun getNameIndex(): Int {
         return super.getInt("name_index");
     }
 
-    @Override
-    protected String loadDesc(ConstantPool cp) {
-        String name = cp.getUtf8String(super.getInt("name_index"));
-        String type = cp.getUtf8String(super.getInt("descriptor_index"));
+    override fun loadDesc(cp: ConstantPool): String {
+        val name = cp.getUtf8String(super.getInt("name_index"));
+        val type = cp.getUtf8String(super.getInt("descriptor_index"));
         return name + "&" + type;
     }
     
