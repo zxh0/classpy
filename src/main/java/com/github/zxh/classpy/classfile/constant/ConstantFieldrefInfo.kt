@@ -7,7 +7,7 @@ CONSTANT_Fieldref_info {
     u2 name_and_type_index;
 }
 */
-class ConstantFieldrefInfo : ConstantInfo() {
+open class ConstantFieldrefInfo : ConstantInfo() {
 
     init {
         u2("class_index");
