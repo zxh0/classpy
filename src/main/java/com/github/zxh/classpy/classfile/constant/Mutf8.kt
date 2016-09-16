@@ -10,29 +10,19 @@ import java.io.IOException;
 /**
  * UTF8 String in constant pool.
  */
-public class Mutf8 extends ClassComponent {
+class Mutf8(val length: U2) : ClassComponent() {
 
-    private final U2 length;
-    private String value;
-
-    public Mutf8(U2 length) {
-        this.length = length;
-    }
-
-    public String getValue() {
-        return value;
-    }
+    var value: String = "";
     
-    @Override
-    protected void readContent(ClassReader reader) {
-        byte[] bytes = reader.readBytes(length.getValue());
+    override fun readContent(reader: ClassReader) {
+        val bytes = reader.readBytes(length.value);
         try {
             value = Mutf8Decoder.decodeMutf8(bytes);
-        } catch (IOException e) {
-            throw new ClassParseException(e);
+        } catch (e: IOException) {
+            throw ClassParseException(e);
         }
-        
-        setDesc(value);
+
+        desc = value;
     }
     
 }

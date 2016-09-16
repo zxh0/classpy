@@ -7,6 +7,6 @@ CONSTANT_Methodref_info {
     u2 name_and_type_index;
 }
 */
-class ConstantMethodrefInfo : ConstantFieldrefInfo() {
+open class ConstantMethodrefInfo : ConstantFieldrefInfo() {
     
 }
