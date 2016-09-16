@@ -2,13 +2,14 @@ package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassParseException;
 
-object  ConstantFactory {
+object ConstantFactory {
 
     /**
      * Create concrete ConstantXxxInfo by tag.
      * @param tag
      * @return
      */
+    @JvmStatic
     fun create(tag: Byte): ConstantInfo {
         when (tag.toInt()) {
              1 -> return ConstantUtf8Info();

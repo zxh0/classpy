@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.constant;
 /**
  * http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-5.html#jvms-5.4.3.5
  */
-public enum RefKind {
+enum class RefKind(val kind: Int) {
     
     REF_getField(1),
     REF_getStatic(2),
@@ -14,21 +14,17 @@ public enum RefKind {
     REF_invokeSpecial(7),
     REF_newInvokeSpecial(8),
     REF_invokeInterface(9);
-    
-    public final int kind;
 
-    private RefKind(int kind) {
-        this.kind = kind;
-    }
-    
-    public static RefKind valueOf(int kind) {
-        for (RefKind value : values()) {
-            if (value.kind == kind) {
-                return value;
+    companion object XXX {
+        fun valueOf(kind: Int): RefKind {
+            for (value in values()) {
+                if (value.kind == kind) {
+                    return value;
+                }
             }
+
+            throw IllegalArgumentException("Invalid RefKind: " + kind);
         }
-        
-        throw new IllegalArgumentException("Invalid RefKind: " + kind);
     }
     
 }
