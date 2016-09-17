@@ -5,7 +5,6 @@ import com.github.zxh.classpy.classfile.ClassParseException;
 import com.github.zxh.classpy.classfile.datatype.U1Hex;
 import com.github.zxh.classpy.classfile.datatype.IntType;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 
 /*
 RuntimeVisibleTypeAnnotations_attribute {
