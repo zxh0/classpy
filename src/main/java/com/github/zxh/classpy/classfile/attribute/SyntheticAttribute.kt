@@ -6,6 +6,6 @@ Synthetic_attribute {
     u4 attribute_length;
 }
  */
-public class SyntheticAttribute extends AttributeInfo {
+class SyntheticAttribute : AttributeInfo() {
 
 }
