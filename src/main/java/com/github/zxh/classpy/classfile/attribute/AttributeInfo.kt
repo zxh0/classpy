@@ -9,9 +9,9 @@ attribute_info {
     u1 info[attribute_length];
 }
  */
-public abstract class AttributeInfo extends ClassComponent {
+open class AttributeInfo : ClassComponent() {
 
-    {
+    init {
         u2("attribute_name_index");
         u4("attribute_length");
     }
