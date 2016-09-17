@@ -13,26 +13,25 @@ field_info {
     attribute_info attributes[attributes_count];
 }
  */
-public class FieldInfo extends ClassComponent {
+class FieldInfo : ClassComponent() {
 
-    {
+    init {
         u2   ("access_flags");
         u2cp ("name_index");
         u2cp ("descriptor_index");
         u2   ("attributes_count");
-        table("attributes", AttributeInfo.class);
+        table("attributes", AttributeInfo::class.java);
     }
 
-    @Override
-    protected void afterRead(ConstantPool cp) {
-        int nameIndex = super.getInt("name_index");
+    override fun afterRead(cp: ConstantPool) {
+        val nameIndex = super.getInt("name_index");
         if (nameIndex > 0) {
             // todo fix loading java.lang.String from rt.jar
             setDesc(cp.getUtf8String(nameIndex));
         }
 
         AccessFlags.describeFieldFlags(
-                (U2) super.get("access_flags"));
+                super.get("access_flags") as U2);
     }
     
 }
