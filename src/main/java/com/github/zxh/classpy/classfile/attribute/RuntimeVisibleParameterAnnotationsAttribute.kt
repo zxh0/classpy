@@ -15,21 +15,20 @@ RuntimeVisibleParameterAnnotations_attribute {
     } parameter_annotations[num_parameters];
 }
  */
-public class RuntimeVisibleParameterAnnotationsAttribute extends AttributeInfo {
+class RuntimeVisibleParameterAnnotationsAttribute : AttributeInfo() {
 
-    {
+    init {
         u1   ("num_parameters");
-        table("parameter_annotations", ParameterAnnotationInfo.class);
+        table("parameter_annotations", ParameterAnnotationInfo::class.java);
     }
     
-    
-    public static class ParameterAnnotationInfo extends ClassComponent {
+}
 
-        {
-            u2   ("num_annotations");
-            table("annotations", AnnotationInfo.class);
-        }
-        
+class ParameterAnnotationInfo : ClassComponent() {
+
+    init {
+        u2   ("num_annotations");
+        table("annotations", AnnotationInfo::class.java);
     }
-    
+
 }
