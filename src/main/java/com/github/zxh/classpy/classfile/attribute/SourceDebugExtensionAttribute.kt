@@ -7,9 +7,9 @@ SourceDebugExtension_attribute {
     u1 debug_extension[attribute_length];
 }
  */
-public class SourceDebugExtensionAttribute extends AttributeInfo {
+class SourceDebugExtensionAttribute : AttributeInfo() {
 
-    {
+    init {
         bytes("debug_extension");
     }
     
