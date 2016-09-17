@@ -53,13 +53,13 @@ class MatchOffset(val isDefault: Boolean, val basePc: Int) : ClassComponent() {
     override fun readContent(reader: ClassReader) {
         if (!isDefault) {
             match = reader.readInt()
-            setName(match.toString())
+            name = match.toString()
         } else {
-            setName("default")
+            name = "default"
         }
 
         _offset = reader.readInt()
-        setDesc(Integer.toString(basePc + offset))
+        desc = Integer.toString(basePc + offset)
     }
 
 }

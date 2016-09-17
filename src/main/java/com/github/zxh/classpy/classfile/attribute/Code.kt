@@ -25,14 +25,14 @@ class Code(val codeLength: U4) : ClassComponent() {
     }
 
     override fun afterRead(cp: ConstantPool) {
-        val instructions = super.getSubComponents();
+        val instructions = super.subComponents!!;
 
         val maxPc = (instructions[instructions.size - 1] as Instruction).pc;
         val pcWidth = maxPc.toString().length;
         val fmtStr = "%0" + pcWidth + "d";
         for (c in instructions) {
             val instruction = c as Instruction;
-            instruction.setName(String.format(fmtStr, instruction.pc));
+            instruction.name = String.format(fmtStr, instruction.pc);
         }
     }
 

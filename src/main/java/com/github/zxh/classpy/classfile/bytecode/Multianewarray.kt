@@ -11,7 +11,7 @@ class Multianewarray(opcode: Opcode, pc: Int) : Instruction(opcode, pc) {
     }
 
     override fun readOperands(reader: ClassReader) {
-        val index = super.get("index").desc
+        val index = super.get("index")!!.desc
         val dimensions = super.getInt("dimensions")
         desc = "${opcode.name} $index, $dimensions"
     }

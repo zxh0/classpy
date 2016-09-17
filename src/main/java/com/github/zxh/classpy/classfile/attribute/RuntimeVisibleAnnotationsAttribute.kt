@@ -45,7 +45,7 @@ class AnnotationInfo : ClassComponent() {
 
     override fun afterRead(cp: ConstantPool) {
         val typeIndex = super.getInt("type_index")
-        setDesc(cp.getUtf8String(typeIndex));
+        desc = cp.getUtf8String(typeIndex);
     }
 
 }
@@ -59,7 +59,7 @@ class ElementValuePair : ClassComponent() {
 
     override fun afterRead(cp: ConstantPool) {
         val elementNameIndex = super.getInt("element_name_index");
-        setDesc(cp.getUtf8String(elementNameIndex));
+        desc = cp.getUtf8String(elementNameIndex)
     }
 
 }

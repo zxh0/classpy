@@ -10,7 +10,7 @@ import com.github.zxh.classpy.classfile.reader.ClassReader
 open class Instruction(val opcode: Opcode, val pc: Int) : ClassComponent() {
 
     override fun readContent(reader: ClassReader) {
-        if (!super.getSubComponents().isEmpty()) {
+        if (super.subComponents == null || super.subComponents!!.isEmpty()) {
             super.readContent(reader);
         } else {
             reader.readUnsignedByte(); // opcode
@@ -25,9 +25,9 @@ open class Instruction(val opcode: Opcode, val pc: Int) : ClassComponent() {
     }
 
     override fun afterRead(cp: ConstantPool) {
-        val subComponents = super.getSubComponents();
-        if (subComponents.size == 2) {
-            val operand = subComponents[1]
+        //val subComponents = super.subComponents;
+        if (subComponents?.size == 2) {
+            val operand = subComponents!![1]
             desc = opcode.name + operand.desc;
         } else {
             // todo

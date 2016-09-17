@@ -27,7 +27,7 @@ open class FieldInfo : ClassComponent() {
         val nameIndex = super.getInt("name_index");
         if (nameIndex > 0) {
             // todo fix loading java.lang.String from rt.jar
-            setDesc(cp.getUtf8String(nameIndex));
+            desc = cp.getUtf8String(nameIndex);
         }
 
         AccessFlags.describeFieldFlags(

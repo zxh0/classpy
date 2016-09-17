@@ -10,12 +10,12 @@ import java.io.IOException;
 /**
  * UTF8 String in constant pool.
  */
-class Mutf8(val length: U2) : ClassComponent() {
+class Mutf8(val _length: U2) : ClassComponent() {
 
     var value: String = "";
     
     override fun readContent(reader: ClassReader) {
-        val bytes = reader.readBytes(length.value);
+        val bytes = reader.readBytes(_length.value);
         try {
             value = Mutf8Decoder.decodeMutf8(bytes);
         } catch (e: IOException) {

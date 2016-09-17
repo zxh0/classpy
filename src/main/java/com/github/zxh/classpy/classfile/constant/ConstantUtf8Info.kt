@@ -25,7 +25,7 @@ class ConstantUtf8Info : ConstantInfo() {
 
     override fun loadDesc(cp: ConstantPool): String {
         val bytes = super.get("bytes") as Mutf8
-        return StringHelper.cutAndAppendEllipsis(bytes.desc, 100);
+        return StringHelper.cutAndAppendEllipsis(bytes.desc!!, 100);
     }
     
 }

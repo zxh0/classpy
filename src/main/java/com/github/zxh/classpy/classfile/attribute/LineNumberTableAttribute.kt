@@ -33,8 +33,8 @@ class LineNumberTableEntry : ClassComponent() {
     override fun afterRead(cp: ConstantPool) {
         val lineNumber = super.getInt("line_number")
         val startPc = super.getInt("start_pc")
-        setName("line " + lineNumber);
-        setDesc(Integer.toString(startPc));
+        name = "line " + lineNumber;
+        desc = Integer.toString(startPc);
     }
 
 }

@@ -11,7 +11,7 @@ class InvokeDynamic(opcode: Opcode, pc: Int) : Instruction(opcode, pc) {
     }
 
     override fun afterRead(cp: ConstantPool) {
-        val operand = super.get("index")
+        val operand = super.get("index")!!
         desc = "${opcode.name} ${operand.desc}"
     }
     

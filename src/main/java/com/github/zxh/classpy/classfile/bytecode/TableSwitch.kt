@@ -51,8 +51,8 @@ class TableSwitch(opcode: Opcode, pc: Int) : Instruction(opcode, pc) {
     private fun readJumpOffset(reader: ClassReader, name: String): JumpOffset {
         val offset = JumpOffset()
         offset.read(reader)
-        offset.setName(name)
-        offset.setDesc(Integer.toString(pc + offset._offset))
+        offset.name = name
+        offset.desc = Integer.toString(pc + offset._offset)
         return offset
     }
     

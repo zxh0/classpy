@@ -11,11 +11,11 @@ import com.github.zxh.classpy.helper.StringHelper
 /**
  * Array of class components.
  */
-class Table(val length: IntType, val entryClass: Class<out ClassComponent>) : ClassComponent() {
+class Table(val _length: IntType, val entryClass: Class<out ClassComponent>) : ClassComponent() {
 
     override fun readContent(reader: ClassReader) {
         try {
-            for (i in 0..length.value-1) {
+            for (i in 0.._length.value-1) {
                 super.add(readEntry(reader))
             }
         } catch (e: ReflectiveOperationException) {
@@ -47,14 +47,16 @@ class Table(val length: IntType, val entryClass: Class<out ClassComponent>) : Cl
     }
 
     override fun afterRead(cp: ConstantPool) {
-        var i = 0
-        for (entry in super.getSubComponents()) {
-            var newName = StringHelper.formatIndex(length.value, i++)
-            val oldName = entry.name
-            if (oldName != null) {
-                newName += " (" + oldName + ")"
+        if (subComponents != null) {
+            var i = 0
+            for (entry in subComponents!!) {
+                var newName = StringHelper.formatIndex(_length.value, i++)
+                val oldName = entry.name
+                if (oldName != null) {
+                    newName += " (" + oldName + ")"
+                }
+                entry.name = newName
             }
-            entry.name = newName
         }
     }
 

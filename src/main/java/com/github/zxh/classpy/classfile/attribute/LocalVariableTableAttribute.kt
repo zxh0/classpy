@@ -43,7 +43,7 @@ class LocalVariableTableEntry : ClassComponent() {
         val fromPc = startPc;
         val toPc = fromPc + length - 1;
         val varName = cp.getConstantDesc(nameIndex);
-        setDesc(String.format("%s(%d~%d)", varName, fromPc, toPc));
+        desc = String.format("%s(%d~%d)", varName, fromPc, toPc);
     }
 
 }
