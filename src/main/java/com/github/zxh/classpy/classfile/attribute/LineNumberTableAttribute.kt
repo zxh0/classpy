@@ -18,7 +18,7 @@ class LineNumberTableAttribute : AttributeInfo() {
 
     init {
         u2   ("line_number_table_length");
-        table("line_number_table", LineNumberTableEntry.class);
+        table("line_number_table", LineNumberTableEntry::class.java);
     }
     
 }

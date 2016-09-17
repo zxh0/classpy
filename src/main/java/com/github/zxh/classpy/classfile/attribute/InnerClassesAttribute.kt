@@ -17,29 +17,27 @@ InnerClasses_attribute {
     } classes[number_of_classes];
 }
  */
-public class InnerClassesAttribute extends AttributeInfo {
+class InnerClassesAttribute : AttributeInfo() {
 
-    {
+    init {
         u2   ("number_of_classes");
-        table("classes", InnerClassInfo.class);
+        table("classes", InnerClassInfo::class.java);
     }
     
-    
-    public static class InnerClassInfo extends ClassComponent {
+}
 
-        {
-            u2cp("inner_class_info_index");
-            u2cp("outer_class_info_index");
-            u2cp("inner_name_index");
-            u2  ("inner_class_access_flags");
-        }
+class InnerClassInfo : ClassComponent() {
 
-        @Override
-        protected void afterRead(ConstantPool cp) {
-            AccessFlags.describeInnerClassFlags(
-                    (U2) super.get("inner_class_access_flags"));
-        }
-        
+    init {
+        u2cp("inner_class_info_index");
+        u2cp("outer_class_info_index");
+        u2cp("inner_name_index");
+        u2  ("inner_class_access_flags");
     }
-    
+
+    override fun afterRead(cp: ConstantPool) {
+        AccessFlags.describeInnerClassFlags(
+                super.get("inner_class_access_flags") as U2);
+    }
+
 }
