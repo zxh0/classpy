@@ -6,6 +6,6 @@ Deprecated_attribute {
     u4 attribute_length;
 }
  */
-public class DeprecatedAttribute extends AttributeInfo {
+class DeprecatedAttribute : AttributeInfo() {
 
 }
