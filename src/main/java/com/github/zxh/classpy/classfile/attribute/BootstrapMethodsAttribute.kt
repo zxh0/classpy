@@ -18,7 +18,7 @@ class BootstrapMethodsAttribute : AttributeInfo() {
 
     init {
         u2   ("num_bootstrap_methods");
-        table("bootstrap_methods", BootstrapMethodInfo.class);
+        table("bootstrap_methods", BootstrapMethodInfo::class.java);
     }
 
 }
@@ -28,7 +28,7 @@ class BootstrapMethodInfo : ClassComponent() {
     init {
         u2cp ("bootstrap_method_ref");
         u2   ("num_bootstrap_arguments");
-        table("bootstrap_arguments", U2CpIndex.class);
+        table("bootstrap_arguments", U2CpIndex::class.java);
     }
 
 }
