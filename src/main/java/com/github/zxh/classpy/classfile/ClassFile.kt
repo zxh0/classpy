@@ -25,37 +25,36 @@ ClassFile {
     attribute_info attributes[attributes_count];
 }
 */
-public class ClassFile extends ClassComponent {
+class ClassFile : ClassComponent() {
 
-    {
-        U2 cpCount = new U2();
+    init {
+        var cpCount = U2();
 
         u4hex("magic");
         u2   ("minor_version");
         u2   ("major_version");
         add  ("constant_pool_count", cpCount);
-        add  ("constant_pool", new ConstantPool(cpCount));
+        add  ("constant_pool", ConstantPool(cpCount));
         u2   ("access_flags");
         u2cp ("this_class");
         u2cp ("super_class");
         u2   ("interfaces_count");
-        table("interfaces", U2CpIndex.class);
+        table("interfaces", U2CpIndex::class.java);
         u2   ("fields_count");
-        table("fields", FieldInfo.class);
+        table("fields", FieldInfo::class.java);
         u2   ("methods_count");
-        table("methods", MethodInfo.class);
+        table("methods", MethodInfo::class.java);
         u2   ("attributes_count");
-        table("attributes", AttributeInfo.class);
+        table("attributes", AttributeInfo::class.java);
     }
 
-    public ConstantPool getConstantPool() {
-        return (ConstantPool) super.get("constant_pool");
+    fun getConstantPool(): ConstantPool {
+        return super.get("constant_pool") as ConstantPool;
     }
 
-    @Override
-    protected void afterRead(ConstantPool cp) {
+    override fun afterRead(cp: ConstantPool) {
         AccessFlags.describeClassFlags(
-                (U2) super.get("access_flags"));
+                super.get("access_flags") as U2);
     }
 
 }

@@ -9,7 +9,7 @@ object ClassParser {
     fun parse(bytes: ByteArray): ClassFile {
         val cf = ClassFile()
         cf.read(ClassReader(bytes))
-        afterRead(cf, cf.constantPool)
+        afterRead(cf, cf.getConstantPool())
         return cf
     }
 
