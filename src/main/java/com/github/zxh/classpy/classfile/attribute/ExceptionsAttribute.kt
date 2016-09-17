@@ -10,11 +10,11 @@ Exceptions_attribute {
     u2 exception_index_table[number_of_exceptions];
 }
  */
-public class ExceptionsAttribute extends AttributeInfo {
+class ExceptionsAttribute : AttributeInfo() {
 
-    {
+    init {
         u2   ("number_of_exceptions");
-        table("exception_index_table", U2CpIndex.class);
+        table("exception_index_table", U2CpIndex::class.java);
     }
     
 }
