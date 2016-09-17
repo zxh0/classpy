@@ -7,9 +7,9 @@ SourceFile_attribute {
     u2 sourcefile_index;
 }
  */
-public class SourceFileAttribute extends AttributeInfo {
+class SourceFileAttribute : AttributeInfo() {
 
-    {
+    init {
         u2cp("source_file_index");
     }
 
