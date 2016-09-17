@@ -21,31 +21,30 @@ Code_attribute {
     attribute_info attributes[attributes_count];
 }
  */
-public class CodeAttribute extends AttributeInfo {
+class CodeAttribute : AttributeInfo() {
 
-    {
-        U4 codeLength = new U4();
+    init {
+        val codeLength = U4();
 
         u2   ("max_stack");
         u2   ("max_locals");
         add  ("code_length", codeLength);
-        add  ("code", new Code(codeLength));
+        add  ("code", Code(codeLength));
         u2   ("exception_table_length");
-        table("exception_table", ExceptionTableEntry.class);
+        table("exception_table", ExceptionTableEntry::class.java);
         u2   ("attributes_count");
-        table("attributes", AttributeInfo.class);
-    }
-
-
-    public static class ExceptionTableEntry extends ClassComponent {
-
-        {
-            u2  ("start_pc");
-            u2  ("end_pc");
-            u2  ("handler_pc");
-            u2cp("catch_type");
-        }
-
+        table("attributes", AttributeInfo::class.java);
     }
     
+}
+
+class ExceptionTableEntry : ClassComponent() {
+
+    init {
+        u2  ("start_pc");
+        u2  ("end_pc");
+        u2  ("handler_pc");
+        u2cp("catch_type");
+    }
+
 }
