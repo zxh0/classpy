@@ -7,9 +7,9 @@ ConstantValue_attribute {
     u2 constantvalue_index;
 }
  */
-public class ConstantValueAttribute extends AttributeInfo {
+class ConstantValueAttribute : AttributeInfo() {
 
-    {
+    init {
         u2cp("constant_value_index");
     }
     
