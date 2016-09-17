@@ -14,22 +14,21 @@ BootstrapMethods_attribute {
     } bootstrap_methods[num_bootstrap_methods];
 }
  */
-public class BootstrapMethodsAttribute extends AttributeInfo {
+class BootstrapMethodsAttribute : AttributeInfo() {
 
-    {
+    init {
         u2   ("num_bootstrap_methods");
         table("bootstrap_methods", BootstrapMethodInfo.class);
     }
 
-    
-    public static class BootstrapMethodInfo extends ClassComponent {
+}
 
-        {
-            u2cp ("bootstrap_method_ref");
-            u2   ("num_bootstrap_arguments");
-            table("bootstrap_arguments", U2CpIndex.class);
-        }
-        
+class BootstrapMethodInfo : ClassComponent() {
+
+    init {
+        u2cp ("bootstrap_method_ref");
+        u2   ("num_bootstrap_arguments");
+        table("bootstrap_arguments", U2CpIndex.class);
     }
-    
+
 }
