@@ -14,29 +14,27 @@ LineNumberTable_attribute {
     } line_number_table[line_number_table_length];
 }
  */
-public class LineNumberTableAttribute extends AttributeInfo {
+class LineNumberTableAttribute : AttributeInfo() {
 
-    {
+    init {
         u2   ("line_number_table_length");
         table("line_number_table", LineNumberTableEntry.class);
     }
-
     
-    public static class LineNumberTableEntry extends ClassComponent {
+}
 
-        {
-            u2("start_pc");
-            u2("line_number");
-        }
+class LineNumberTableEntry : ClassComponent() {
 
-        @Override
-        protected void afterRead(ConstantPool cp) {
-            int lineNumber = ((U2) super.get("line_number")).getValue();
-            int startPc = ((U2) super.get("start_pc")).getValue();
-            setName("line " + lineNumber);
-            setDesc(Integer.toString(startPc));
-        }
-
+    init {
+        u2("start_pc");
+        u2("line_number");
     }
-    
+
+    override fun afterRead(cp: ConstantPool) {
+        val lineNumber = super.getInt("line_number")
+        val startPc = super.getInt("start_pc")
+        setName("line " + lineNumber);
+        setDesc(Integer.toString(startPc));
+    }
+
 }
