@@ -12,21 +12,20 @@ MethodParameters_attribute {
     } parameters[parameters_count];
 }
  */
-public class MethodParametersAttribute extends AttributeInfo {
+class MethodParametersAttribute : AttributeInfo() {
 
-    {
+    init {
         u1   ("parameters_count");
-        table("parameters", ParameterInfo.class);
-    }
-
-    
-    public static class ParameterInfo extends ClassComponent {
-
-        {
-            u2("name_index");
-            u2("access_flags");
-        }
-        
+        table("parameters", ParameterInfo::class.java);
     }
     
+}
+
+class ParameterInfo : ClassComponent() {
+
+    init {
+        u2("name_index");
+        u2("access_flags");
+    }
+
 }
