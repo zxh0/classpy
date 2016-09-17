@@ -12,13 +12,12 @@ method_info {
     attribute_info attributes[attributes_count];
 }
  */
-public class MethodInfo extends FieldInfo {
+class MethodInfo : FieldInfo() {
     
-    @Override
-    protected void afterRead(ConstantPool cp) {
+    override fun afterRead(cp: ConstantPool) {
         super.afterRead(cp);
         AccessFlags.describeMethodFlags(
-                (U2) super.get("access_flags"));
+                super.get("access_flags") as U2);
     }
     
 }

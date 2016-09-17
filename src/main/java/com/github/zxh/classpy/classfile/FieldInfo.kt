@@ -13,7 +13,7 @@ field_info {
     attribute_info attributes[attributes_count];
 }
  */
-class FieldInfo : ClassComponent() {
+open class FieldInfo : ClassComponent() {
 
     init {
         u2   ("access_flags");
