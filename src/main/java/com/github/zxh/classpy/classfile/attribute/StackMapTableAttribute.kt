@@ -10,14 +10,13 @@ StackMapTable_attribute {
     stack_map_frame entries[number_of_entries];
 }
  */
-public class StackMapTableAttribute extends AttributeInfo {
+class StackMapTableAttribute : AttributeInfo() {
 
-    {
+    init {
         u2("number_of_entries");
     }
 
-    @Override
-    protected void readContent(ClassReader reader) {
+    override fun readContent(reader: ClassReader) {
         super.readContent(reader);
         // todo
         reader.skipBytes(super.getInt("attribute_length") - 2);
