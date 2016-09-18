@@ -15,17 +15,17 @@ import java.util.stream.Collectors;
  */
 class ConstantPool(val cpCount: U2) : ClassComponent() {
 
-    private var constants:Array<ConstantInfo?> = arrayOf()
+    private var constants:Array<ConstantInfo?>? = null
 
 
     override fun readContent(reader: ClassReader) {
         constants = arrayOfNulls<ConstantInfo>(cpCount.value)
         // The constant_pool table is indexed from 1 to constant_pool_count - 1.
-        for (i in 1..cpCount.value - 1)
-        {
+        var i = 1
+        while (i < cpCount.value) {
             val c = readConstantInfo(reader)
             setConstantName(c, i)
-            constants[i] = c
+            constants!![i] = c
             // http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.4.5
             // All 8-byte constants take up two entries in the constant_pool table of the class file.
             // If a CONSTANT_Long_info or CONSTANT_Double_info structure is the item in the constant_pool
@@ -59,7 +59,7 @@ class ConstantPool(val cpCount: U2) : ClassComponent() {
     }
     
     private fun loadConstantDesc() {
-        for (c in constants) {
+        for (c in constants!!) {
             if (c != null) {
                 c.desc = c.loadDesc(this)
             }
@@ -102,17 +102,16 @@ class ConstantPool(val cpCount: U2) : ClassComponent() {
     }
 
     private fun <T> getConstant(classOfT:Class<T>, index:Int):T {
-        val c = constants[index]
-        if (c.getClass() !== classOfT)
-        {
-            throw ClassParseException("Constant#" + index
-                    + " is not " + classOfT.getSimpleName() + "!")
-        }
+        val c = constants!![index]
+//        if (c.javaClass !== classOfT) {
+//            throw ClassParseException("Constant#" + index
+//                    + " is not " + classOfT.getSimpleName() + "!")
+//        }
         return classOfT.cast(c)
     }
 
     fun getConstantDesc(index:Int):String {
-        val c = constants[index]
+        val c = constants!![index]!!
         return c.desc!!
     }
     
