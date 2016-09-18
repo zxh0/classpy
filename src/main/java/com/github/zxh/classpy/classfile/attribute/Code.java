@@ -36,7 +36,7 @@ public class Code extends ClassComponent {
 
     @Override
     protected void afterRead(ConstantPool cp) {
-        List<ClassComponent> instructions = super.getSubComponents();
+        List<ClassComponent> instructions = super.getComponents();
 
         int maxPc = ((Instruction) instructions.get(instructions.size() - 1)).getPc();
         int pcWidth = String.valueOf(maxPc).length();

@@ -23,7 +23,7 @@ public class Instruction extends ClassComponent {
     
     @Override
     protected final void readContent(ClassReader reader) {
-        if (!super.getSubComponents().isEmpty()) {
+        if (!super.getComponents().isEmpty()) {
             super.readContent(reader);
         } else {
             reader.readUnsignedByte(); // opcode

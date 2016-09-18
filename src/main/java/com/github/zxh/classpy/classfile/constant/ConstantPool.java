@@ -70,7 +70,7 @@ public class ConstantPool extends ClassComponent {
     }
 
     @Override
-    public List<ClassComponent> getSubComponents() {
+    public List<ClassComponent> getComponents() {
         return Arrays.stream(constants)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());

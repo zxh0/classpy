@@ -17,7 +17,7 @@ public abstract class ClassComponent {
     private String desc; // description
     private int offset; // the position of this ClassComponent in the file
     private int length; // how many bytes this ClassComponent has
-    private List<ClassComponent> subComponents;
+    private List<ClassComponent> components;
     
     // Getters & Setters
     public final String getName() {return name;}
@@ -27,10 +27,10 @@ public abstract class ClassComponent {
     public final int getOffset() {return offset;}
     public final int getLength() {return length;}
 
-    public List<ClassComponent> getSubComponents() {
-        return subComponents == null
+    public List<ClassComponent> getComponents() {
+        return components == null
                 ? Collections.EMPTY_LIST
-                : Collections.unmodifiableList(subComponents);
+                : Collections.unmodifiableList(components);
     }
 
     /**
@@ -39,7 +39,7 @@ public abstract class ClassComponent {
      * @return
      */
     protected final ClassComponent get(String name) {
-        for (ClassComponent c : subComponents) {
+        for (ClassComponent c : components) {
             if (name.equals(c.getName())) {
                 return c;
             }
@@ -77,13 +77,13 @@ public abstract class ClassComponent {
 
     protected final void table(String name,
                                Class<? extends ClassComponent> entryClass) {
-        UInt length = (UInt) subComponents.get(subComponents.size() - 1);
+        UInt length = (UInt) components.get(components.size() - 1);
         Table table = new Table(length, entryClass);
         this.add(name, table);
     }
 
     protected final void bytes(String name) {
-        UInt count = (UInt) subComponents.get(subComponents.size() - 1);
+        UInt count = (UInt) components.get(components.size() - 1);
         Bytes bytes = new Bytes(count);
         this.add(name, bytes);
     }
@@ -96,10 +96,10 @@ public abstract class ClassComponent {
         if (name != null) {
             subComponent.setName(name);
         }
-        if (subComponents == null) {
-            subComponents = new ArrayList<>();
+        if (components == null) {
+            components = new ArrayList<>();
         }
-        subComponents.add(subComponent);
+        components.add(subComponent);
     }
 
     /**
@@ -117,8 +117,8 @@ public abstract class ClassComponent {
      * @param reader 
      */
     protected void readContent(ClassReader reader) {
-        if (subComponents != null) {
-            for (ClassComponent cc : subComponents) {
+        if (components != null) {
+            for (ClassComponent cc : components) {
                 cc.read(reader);
             }
         }

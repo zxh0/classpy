@@ -13,7 +13,7 @@ public class ClassParser {
     }
 
     private static void afterRead(ClassComponent cc, ConstantPool cp) {
-        for (ClassComponent c : cc.getSubComponents()) {
+        for (ClassComponent c : cc.getComponents()) {
             afterRead(c, cp);
         }
         cc.afterRead(cp);

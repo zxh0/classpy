@@ -19,7 +19,7 @@ public class ClassTreeItem extends TreeItem<ClassComponent> {
 
     @Override
     public boolean isLeaf() {
-        return getValue().getSubComponents().isEmpty();
+        return getValue().getComponents().isEmpty();
     }
     
     @Override
@@ -38,7 +38,7 @@ public class ClassTreeItem extends TreeItem<ClassComponent> {
 
     private ObservableList<TreeItem<ClassComponent>> buildChildren() {
         ObservableList<TreeItem<ClassComponent>> children = FXCollections.observableArrayList();
-        getValue().getSubComponents().forEach(sub -> {
+        getValue().getComponents().forEach(sub -> {
             children.add(new ClassTreeItem(sub));
         });
         return children;

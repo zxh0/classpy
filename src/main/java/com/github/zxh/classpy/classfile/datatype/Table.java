@@ -56,7 +56,7 @@ public class Table extends ClassComponent {
     @Override
     protected void afterRead(ConstantPool cp) {
         int i = 0;
-        for (ClassComponent entry : super.getSubComponents()) {
+        for (ClassComponent entry : super.getComponents()) {
             String newName = StringHelper.formatIndex(length.getValue(), i++);
             String oldName = entry.getName();
             if (oldName != null) {
