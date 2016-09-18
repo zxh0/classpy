@@ -22,13 +22,13 @@ public class ClassFileTest {
     @Test
     public void simpleClass() throws Exception {
         ClassFile cf = loadClass(SimpleClass.class);
-        assertEquals(0, ((U2) cf.get("minor_version")).getValue());
-        assertEquals(52, ((U2) cf.get("major_version")).getValue());
-        assertEquals(37, ((U2) cf.get("constant_pool_count")).getValue());
-        assertEquals(2, ((U2) cf.get("interfaces_count")).getValue());
-        assertEquals(2, ((U2) cf.get("fields_count")).getValue());
-        assertEquals(5, ((U2) cf.get("methods_count")).getValue());
-        assertEquals(2, ((U2) cf.get("attributes_count")).getValue());
+        assertEquals(0, cf.getUInt("minor_version"));
+        assertEquals(52, cf.getUInt("major_version"));
+        assertEquals(37, cf.getUInt("constant_pool_count"));
+        assertEquals(2, cf.getUInt("interfaces_count"));
+        assertEquals(2, cf.getUInt("fields_count"));
+        assertEquals(5, cf.getUInt("methods_count"));
+        assertEquals(2, cf.getUInt("attributes_count"));
     }
 
     @Test

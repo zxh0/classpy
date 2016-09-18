@@ -42,7 +42,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
         @Override
         protected void afterRead(ConstantPool cp) {
-            int typeIndex = ((U2) super.get("type_index")).getValue();
+            int typeIndex = super.getUInt("type_index");
             setDesc(cp.getUtf8String(typeIndex));
         }
         

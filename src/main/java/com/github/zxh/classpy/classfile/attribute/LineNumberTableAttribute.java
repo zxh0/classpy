@@ -31,8 +31,8 @@ public class LineNumberTableAttribute extends AttributeInfo {
 
         @Override
         protected void afterRead(ConstantPool cp) {
-            int lineNumber = ((U2) super.get("line_number")).getValue();
-            int startPc = ((U2) super.get("start_pc")).getValue();
+            int lineNumber = super.getUInt("line_number");
+            int startPc = super.getUInt("start_pc");
             setName("line " + lineNumber);
             setDesc(Integer.toString(startPc));
         }
