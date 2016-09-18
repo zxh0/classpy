@@ -67,9 +67,10 @@ public class AccessFlags {
         flags.setDesc(describe(AF_CLASS | AF_NESTED_CLASS, flags.getValue()));
     }
     
-    private static String describe(int flagType, int flags) {
+    private static String describe(int flagsType, int flagsVal) {
         return Stream.of(Flags.values())
-                .filter(flag -> (flag.type & flagType) != 0 && (flag.flag & flags) != 0)
+                .filter(flag -> (flag.type & flagsType) != 0)
+                .filter(flag -> (flag.flag & flagsVal) != 0)
                 .map(Object::toString)
                 .collect(Collectors.joining(", "));
     }
