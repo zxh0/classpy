@@ -2,11 +2,10 @@ package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.ClassParseException;
-import com.github.zxh.classpy.classfile.constant.ConstantPool;
+import com.github.zxh.classpy.classfile.datatype.U1Hex;
+import com.github.zxh.classpy.classfile.datatype.UInt;
 import com.github.zxh.classpy.classfile.reader.ClassReader;
-import com.github.zxh.classpy.classfile.datatype.U1;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
-import com.github.zxh.classpy.helper.StringHelper;
 
 /*
 RuntimeVisibleTypeAnnotations_attribute {
@@ -50,18 +49,12 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
     public static class TypeAnnotationInfo extends ClassComponent {
 
         {
-            U1 targetType = new U1();
+            U1Hex targetType = new U1Hex();
 
             add("target_type", targetType);
             add("target_info", new TargetInfo(targetType));
             add("target_path", new TypePath());
             add("annotation", new AnnotationInfo());
-        }
-
-        @Override
-        protected void afterRead(ConstantPool cp) {
-            U1 targetType = (U1) super.get("target_type");
-            targetType.setDesc(StringHelper.toHexString(targetType.getValue()));
         }
     
     }
@@ -105,9 +98,9 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
     */
     public static class TargetInfo extends ClassComponent {
 
-        private final U1 targetType;
+        private final UInt targetType;
 
-        public TargetInfo(U1 targetType) {
+        public TargetInfo(UInt targetType) {
             this.targetType = targetType;
         }
         
