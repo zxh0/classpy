@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.MethodInfo;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
@@ -37,18 +36,6 @@ public class MainPane extends BorderPane {
         super.setCenter(buildSplitPane());
         super.setBottom(buildStatusBar());
         listenTreeItemSelection();
-    }
-    
-    public MethodInfo getSelectedMethodInfo() {
-        TreeItem<ClassComponent> fcItem = tree.getSelectionModel().getSelectedItem();
-        if (fcItem != null) {
-            ClassComponent cc = fcItem.getValue();
-            if (cc instanceof MethodInfo) {
-                return (MethodInfo) cc;
-            }
-        }
-        
-        return null;
     }
     
     private static TreeView<ClassComponent> buildClassTree(ClassComponent file) {
