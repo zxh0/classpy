@@ -32,7 +32,7 @@ dependencies {
 }
 
 // http://stackoverflow.com/questions/9749032/create-a-groovy-executable-jar-with-gradle
-task uberjar(type: Jar) {
+task uberjar(type: Jar, dependsOn: 'build') {
     from files(sourceSets.main.output.classesDir)
     //from configurations.runtime.asFileTree.files.collect { zipTree(it) }
 
