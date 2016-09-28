@@ -15,6 +15,18 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 * Displays class file as tree and hex text
 * The corresponding hex text is highlighted when you select a tree node
 
+## Build
+```shell
+cd path/to/classpy
+gradle uberjar
+```
+
+## Run
+```shell
+cd path/to/classpy
+gradle run
+```
+
 ## Screenshots
 
 ![Screenshot1](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot.png)
