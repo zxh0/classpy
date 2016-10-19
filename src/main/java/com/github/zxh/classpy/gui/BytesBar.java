@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import com.github.zxh.classpy.common.BytesComponent;
 
 public class BytesBar extends Pane {
     
@@ -13,7 +13,7 @@ public class BytesBar extends Pane {
         this.byteCount = byteCount;
     }
     
-    public void select(ClassComponent cc) {
+    public void select(BytesComponent cc) {
         getChildren().clear();
         
         final double w = getWidth() - 4;

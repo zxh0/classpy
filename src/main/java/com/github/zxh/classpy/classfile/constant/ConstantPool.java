@@ -1,10 +1,12 @@
 package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassParseException;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.common.BytesParseException;
+import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
+import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.helper.StringHelper;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -70,7 +72,7 @@ public class ConstantPool extends ClassComponent {
     }
 
     @Override
-    public List<ClassComponent> getComponents() {
+    public List<BytesComponent> getComponents() {
         return Arrays.stream(constants)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
@@ -107,7 +109,7 @@ public class ConstantPool extends ClassComponent {
     private <T> T getConstant(Class<T> classOfT, int index) {
         ConstantInfo c = constants[index];
         if (c.getClass() != classOfT) {
-            throw new ClassParseException("Constant#" + index
+            throw new BytesParseException("Constant#" + index
                     + " is not " + classOfT.getSimpleName() + "!");
         }
         return classOfT.cast(c);

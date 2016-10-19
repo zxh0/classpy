@@ -1,7 +1,8 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.ClassParseException;
+import com.github.zxh.classpy.common.BytesParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
+import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 public class NewArray extends Instruction {
 
@@ -30,7 +31,7 @@ public class NewArray extends Instruction {
             case  9: return "short";
             case 10: return "int";
             case 11: return "long";
-            default: throw new ClassParseException("Invalid atype: " + atype);
+            default: throw new BytesParseException("Invalid atype: " + atype);
         }
     }
     

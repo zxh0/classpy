@@ -1,11 +1,10 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassParseException;
+import com.github.zxh.classpy.common.BytesParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.datatype.U1;
-import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
 RuntimeVisibleAnnotations_attribute {
@@ -118,7 +117,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
                 case '[':
                     add("array_value", new ArrayValue());
                     break;
-                default: throw new ClassParseException("Invalid element_value tag: " + tag);
+                default: throw new BytesParseException("Invalid element_value tag: " + tag);
             }
         }
 

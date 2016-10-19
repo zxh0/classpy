@@ -1,19 +1,19 @@
 package com.github.zxh.classpy.gui;
 
+import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import com.github.zxh.classpy.gui.support.ImageHelper;
+
 public class AboutDialog {
-    
-    private static final String HOME_URL = "https://github.com/zxh0/classpy";
     
     public static void showDialog() {
         Stage stage = new Stage();
@@ -28,31 +28,28 @@ public class AboutDialog {
     }
     
     private static BorderPane createAboutPane(Stage dialogStage) {
-        VBox vbox = new VBox();
-        vbox.getChildren().add(new Label("Classpy"));
-        vbox.getChildren().add(new Label(" "));
-        vbox.getChildren().add(createHomeLink());
-        vbox.setAlignment(Pos.CENTER);
-        
         BorderPane pane = new BorderPane();
-        pane.setCenter(vbox);
-        pane.setOnMouseClicked(e -> {
-            dialogStage.close();
-        });
+        //pane.setTop(new Label("Classpy"));
+        pane.setCenter(ImageHelper.createImageView("/spy128.png"));
+        pane.setBottom(createHomeLink());
+        pane.setOnMouseClicked(e -> dialogStage.close());
         
         return pane;
     }
     
     private static Hyperlink createHomeLink() {
-        Hyperlink link = new Hyperlink(HOME_URL);
+        String homeUrl = "https://github.com/zxh0/classpy";
+        Hyperlink link = new Hyperlink(homeUrl);
         link.setOnAction(e -> {
             try {
-                java.awt.Desktop.getDesktop().browse(URI.create(HOME_URL));
+                Desktop.getDesktop().browse(URI.create(homeUrl));
             } catch (IOException x) {
-                System.out.println(x);
+                x.printStackTrace(System.err);
             }
         });
-        
+
+        BorderPane.setAlignment(link, Pos.CENTER);
+        BorderPane.setMargin(link, new Insets(8));
         return link;
     }
     

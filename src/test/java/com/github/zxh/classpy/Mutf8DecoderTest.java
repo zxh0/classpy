@@ -6,7 +6,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.Arrays;
 import org.junit.Test;
-import static com.github.zxh.classpy.helper.Mutf8Decoder.decodeMutf8;
+import static com.github.zxh.classpy.classfile.jvm.Mutf8Decoder.decodeMutf8;
 import static org.junit.Assert.assertEquals;
 
 /**

@@ -1,10 +1,10 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassParseException;
+import com.github.zxh.classpy.common.BytesParseException;
 import com.github.zxh.classpy.classfile.datatype.U1Hex;
 import com.github.zxh.classpy.classfile.datatype.UInt;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 
 /*
@@ -151,7 +151,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
                     u2("offset");
                     u1("typeArgumentIndex");
                     break;
-                default: throw new ClassParseException("Invalid target_type: " + targetType.getValue());
+                default: throw new BytesParseException("Invalid target_type: " + targetType.getValue());
             }
             super.readContent(reader);
         }

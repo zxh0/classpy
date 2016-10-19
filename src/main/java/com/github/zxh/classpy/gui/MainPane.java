@@ -1,12 +1,13 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
+import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.gui.support.HexText;
 
 /**
  * Container of TreeView, HexPane and StatusBar.
@@ -20,12 +21,12 @@ import javafx.scene.layout.BorderPane;
  */
 public class MainPane extends BorderPane {
     
-    private final TreeView<ClassComponent> tree;
+    private final TreeView<BytesComponent> tree;
     private final HexPane hexPane;
     private final Label statusLabel;
     private final BytesBar bytesBar;
     
-    public MainPane(ClassComponent file, FileHex hex) {
+    public MainPane(BytesComponent file, HexText hex) {
         tree = buildClassTree(file);
         hexPane = new HexPane(hex);
         statusLabel = new Label(" ");
@@ -37,12 +38,12 @@ public class MainPane extends BorderPane {
         super.setBottom(buildStatusBar());
         listenTreeItemSelection();
     }
-    
-    private static TreeView<ClassComponent> buildClassTree(ClassComponent file) {
-        ClassTreeItem root = new ClassTreeItem(file);
+
+    private static TreeView<BytesComponent> buildClassTree(BytesComponent file) {
+        BytesTreeItem root = new BytesTreeItem(file);
         root.setExpanded(true);
         
-        TreeView<ClassComponent> tree = new TreeView<>(root);
+        TreeView<BytesComponent> tree = new TreeView<>(root);
         tree.setMinWidth(200);
         
         return tree;
@@ -65,12 +66,12 @@ public class MainPane extends BorderPane {
     
     private void listenTreeItemSelection() {
         tree.getSelectionModel().getSelectedItems().addListener(
-            (ListChangeListener.Change<? extends TreeItem<ClassComponent>> c) -> {
+            (ListChangeListener.Change<? extends TreeItem<BytesComponent>> c) -> {
                 if (c.next()) {
                     if (c.wasAdded()) {
-                        TreeItem<ClassComponent> node = c.getList().get(c.getFrom());
+                        TreeItem<BytesComponent> node = c.getList().get(c.getFrom());
                         if (node != null && node.getParent() != null) {
-                            ClassComponent cc = node.getValue();
+                            BytesComponent cc = node.getValue();
                             //System.out.println("select " + cc);
                             statusLabel.setText(" " + cc.getClass().getSimpleName());
                             if (cc.getLength() > 0) {

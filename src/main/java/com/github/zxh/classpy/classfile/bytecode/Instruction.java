@@ -1,7 +1,8 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 /**
  * Base class for all instructions.

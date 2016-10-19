@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
+import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 /**
  * The instruction whose operand is U2CpIndex.

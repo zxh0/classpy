@@ -1,9 +1,7 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.AccessFlags;
+import com.github.zxh.classpy.classfile.jvm.AccessFlagType;
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
 InnerClasses_attribute {
@@ -31,13 +29,7 @@ public class InnerClassesAttribute extends AttributeInfo {
             u2cp("inner_class_info_index");
             u2cp("outer_class_info_index");
             u2cp("inner_name_index");
-            u2  ("inner_class_access_flags");
-        }
-
-        @Override
-        protected void afterRead(ConstantPool cp) {
-            AccessFlags.describeInnerClassFlags(
-                    (U2) super.get("inner_class_access_flags"));
+            u2af("inner_class_access_flags", AccessFlagType.AF_NESTED_CLASS);
         }
         
     }

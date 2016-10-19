@@ -1,19 +1,20 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
+import com.github.zxh.classpy.common.BytesComponent;
 
 /**
+ * FileComponentTreeItem.
  * Build children lazily.
  * http://download.java.net/jdk8/jfxdocs/javafx/scene/control/TreeItem.html
  */
-public class ClassTreeItem extends TreeItem<ClassComponent> {
+public class BytesTreeItem extends TreeItem<BytesComponent> {
 
     private boolean isFirstTimeChildren = true;
     
-    public ClassTreeItem(ClassComponent cc) {
+    public BytesTreeItem(BytesComponent cc) {
         super(cc);
     }
 
@@ -23,7 +24,7 @@ public class ClassTreeItem extends TreeItem<ClassComponent> {
     }
     
     @Override
-    public ObservableList<TreeItem<ClassComponent>> getChildren() {
+    public ObservableList<TreeItem<BytesComponent>> getChildren() {
         if (isFirstTimeChildren) {
             isFirstTimeChildren = false;
             System.out.println("get children of " + getValue());
@@ -36,10 +37,10 @@ public class ClassTreeItem extends TreeItem<ClassComponent> {
         return super.getChildren();
     }
 
-    private ObservableList<TreeItem<ClassComponent>> buildChildren() {
-        ObservableList<TreeItem<ClassComponent>> children = FXCollections.observableArrayList();
+    private ObservableList<TreeItem<BytesComponent>> buildChildren() {
+        ObservableList<TreeItem<BytesComponent>> children = FXCollections.observableArrayList();
         getValue().getComponents().forEach(sub -> {
-            children.add(new ClassTreeItem(sub));
+            children.add(new BytesTreeItem(sub));
         });
         return children;
     }

@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
+import com.github.zxh.classpy.classfile.jvm.Opcode;
+
 public class InstructionFactory {
 
     /**

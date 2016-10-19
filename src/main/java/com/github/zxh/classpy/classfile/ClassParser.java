@@ -1,11 +1,12 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.BytesParser;
 
-public class ClassParser {
+public class ClassParser implements BytesParser {
     
-    public static ClassFile parse(byte[] bytes) {
+    public ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();
         cf.read(new ClassReader(bytes));
         afterRead(cf, cf.getConstantPool());
@@ -13,8 +14,8 @@ public class ClassParser {
     }
 
     private static void afterRead(ClassComponent cc, ConstantPool cp) {
-        for (ClassComponent c : cc.getComponents()) {
-            afterRead(c, cp);
+        for (BytesComponent c : cc.getComponents()) {
+            afterRead((ClassComponent) c, cp);
         }
         cc.afterRead(cp);
     }

@@ -3,10 +3,11 @@ package com.github.zxh.classpy.classfile.attribute;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.bytecode.Instruction;
 import com.github.zxh.classpy.classfile.bytecode.InstructionFactory;
-import com.github.zxh.classpy.classfile.bytecode.Opcode;
+import com.github.zxh.classpy.classfile.jvm.Opcode;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U4;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.common.BytesComponent;
 
 import java.util.List;
 
@@ -82,12 +83,12 @@ public class CodeAttribute extends AttributeInfo {
 
         @Override
         protected void afterRead(ConstantPool cp) {
-            List<ClassComponent> instructions = super.getComponents();
+            List<BytesComponent> instructions = super.getComponents();
 
             int maxPc = ((Instruction) instructions.get(instructions.size() - 1)).getPc();
             int pcWidth = String.valueOf(maxPc).length();
             String fmtStr = "%0" + pcWidth + "d";
-            for (ClassComponent c : instructions) {
+            for (BytesComponent c : instructions) {
                 Instruction instruction = (Instruction) c;
                 instruction.setName(String.format(fmtStr, instruction.getPc()));
             }

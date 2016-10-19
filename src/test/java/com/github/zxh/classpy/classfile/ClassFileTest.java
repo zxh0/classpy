@@ -91,7 +91,7 @@ public class ClassFileTest {
         ClassLoader cl = SimpleClass.class.getClassLoader();
         Path classFilePath = Paths.get(cl.getResource(classFileName).toURI());
         byte[] classBytes = Files.readAllBytes(classFilePath);
-        ClassFile cf = ClassParser.parse(classBytes);
+        ClassFile cf = new ClassParser().parse(classBytes);
         return cf;
     }
     

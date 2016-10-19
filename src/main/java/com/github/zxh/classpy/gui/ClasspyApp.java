@@ -1,11 +1,8 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.helper.UrlHelper;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.LinkedList;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
@@ -15,8 +12,10 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.gui.support.*;
+import com.github.zxh.classpy.helper.UrlHelper;
 
 /**
  * Main class.
@@ -24,15 +23,12 @@ import javafx.stage.Stage;
 public class ClasspyApp extends Application {
 
     private static final String TITLE = "Classpy";
-    
-    private FileChooser fileChooser;
+
+
     private Stage stage;
     private BorderPane root;
     private MyMenuBar menuBar;
-    
-    private File lastOpenFile;
-    private final LinkedList<URL> recentFiles = new LinkedList<>();
-    
+
     @Override
     public void start(Stage stage) {
         this.stage = stage;
@@ -40,10 +36,11 @@ public class ClasspyApp extends Application {
         root = new BorderPane();
         root.setTop(createMenuBar());
         root.setCenter(createTabPane());
-        updateRecentFiles();
-        
+
         stage.setScene(new Scene(root, 960, 540));
         stage.setTitle(TITLE);
+        stage.getIcons().add(ImageHelper.loadImage("/spy16.png"));
+        stage.getIcons().add(ImageHelper.loadImage("/spy32.png"));
         stage.show();
     }
     
@@ -61,31 +58,33 @@ public class ClasspyApp extends Application {
     
     private MenuBar createMenuBar() {
         menuBar = new MyMenuBar();
-        
-        menuBar.getOpenMenuItem().setOnAction(e -> showFileChooser());
-        menuBar.getNewWinMenuItem().setOnAction(e -> openNewWindow());
-        menuBar.getAboutMenuItem().setOnAction(e -> AboutDialog.showDialog());
-        
+
+        menuBar.setOnOpenFile(this::onOpenFile);
+        menuBar.setOnNewWindow(this::openNewWindow);
+
         return menuBar;
     }
-    
-    private void showFileChooser() {
-        if (fileChooser == null) {
-            initFileChooser();
-        } else {
-            if (lastOpenFile != null && lastOpenFile.getParentFile().isDirectory()) {
-                fileChooser.setInitialDirectory(lastOpenFile.getParentFile());
+
+    private void onOpenFile(FileType ft, URL url) {
+        if (url == null) {
+            showFileChooser(ft);
+        } else if (ft == FileType.JAVA_JAR) {
+            try {
+                openJar(new File(url.toURI()));
+            } catch (Exception e) {
+                e.printStackTrace(System.err);
             }
+        } else {
+            openFile(url);
         }
-        
-        File file = fileChooser.showOpenDialog(stage);
+    }
+
+    private void showFileChooser(FileType ft) {
+        File file = MyFileChooser.showFileChooser(stage, ft);
         if (file != null) {
             try {
-                if (file.getName().endsWith(".jar") || file.getName().endsWith(".JAR")) {
-                    URL classUrl = JarDialog.showDialog(file);
-                    if (classUrl != null) {
-                        openFile(classUrl);
-                    }
+                if (ft == FileType.JAVA_JAR) {
+                    openJar(file);
                 } else {
                     openFile(file);
                 }
@@ -95,37 +94,31 @@ public class ClasspyApp extends Application {
             }
         }
     }
-    
-    private void initFileChooser() {
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Open file");
-        fileChooser.getExtensionFilters().addAll(
-            new FileChooser.ExtensionFilter("JAR", "*.jar"),
-            new FileChooser.ExtensionFilter("CLASS", "*.class")
-        );
+
+    private void openJar(File jarFile) throws Exception {
+        URL classUrl = JarDialog.showDialog(jarFile);
+        RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile.toURI().toURL());
+        menuBar.updateRecentFiles();
+        if (classUrl != null) {
+            openFile(classUrl);
+        }
     }
     
     private void openFile(File file) throws MalformedURLException {
-        openFile(file, file.toURI().toURL());
+        openFile(file.toURI().toURL());
     }
     
     private void openFile(URL url) {
-        openFile(null, url);
-    }
-    
-    private void openFile(File file, URL url) {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
         
-        task.setOnSucceeded((ClassComponent cc, FileHex hex) -> {
-            MainPane mainPane = new MainPane(cc, hex);
+        task.setOnSucceeded((BytesComponent bc, HexText hex) -> {
+            MainPane mainPane = new MainPane(bc, hex);
             tab.setContent(mainPane);
             
             // todo
-            addRecentFile(url);
-            if (file != null) {
-                lastOpenFile = file;
-            }
+            RecentFiles.INSTANCE.add(FileType.typeOf(bc), url);
+            menuBar.updateRecentFiles();
         });
         
         task.setOnFailed((Throwable err) -> {
@@ -144,24 +137,9 @@ public class ClasspyApp extends Application {
         ((TabPane) root.getCenter()).getTabs().add(tab);
         return tab;
     }
-    
-    private void addRecentFile(URL newFile) {
-        recentFiles.remove(newFile);
-        recentFiles.addFirst(newFile);
-        updateRecentFiles();
-    }
-    
-    private void updateRecentFiles() {
-        menuBar.updateRecentFiles(recentFiles, file -> {
-            openFile(file);
-        });
-    }
-    
+
     private void openNewWindow() {
         ClasspyApp newApp = new ClasspyApp();
-        if (!recentFiles.isEmpty()) {
-            newApp.recentFiles.addAll(recentFiles);
-        }
         // is this correct?
         newApp.start(new Stage());
     }

@@ -1,11 +1,12 @@
 package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassParseException;
+import com.github.zxh.classpy.common.BytesParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeFactory;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.reader.ClassReader;
+import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
+import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.helper.StringHelper;
 
 /**
@@ -28,7 +29,7 @@ public class Table extends ClassComponent {
                 super.add(readEntry(reader));
             }
         } catch (ReflectiveOperationException e) {
-            throw new ClassParseException(e);
+            throw new BytesParseException(e);
         }
     }
 
@@ -56,7 +57,7 @@ public class Table extends ClassComponent {
     @Override
     protected void afterRead(ConstantPool cp) {
         int i = 0;
-        for (ClassComponent entry : super.getComponents()) {
+        for (BytesComponent entry : super.getComponents()) {
             String newName = StringHelper.formatIndex(length.getValue(), i++);
             String oldName = entry.getName();
             if (oldName != null) {

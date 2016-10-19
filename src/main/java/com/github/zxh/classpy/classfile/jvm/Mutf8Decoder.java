@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.helper;
+package com.github.zxh.classpy.classfile.jvm;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
