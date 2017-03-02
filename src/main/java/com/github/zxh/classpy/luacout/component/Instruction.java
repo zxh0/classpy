@@ -40,7 +40,7 @@ public class Instruction extends LuacOutComponent {
 
     public void expandOperands(Function func) {
         this.func = func;
-        addKid(opcode.description);
+        //addKid(opcode.description);
         switch (opcode) {
             case OP_CALL:
                 expandCall();
@@ -82,43 +82,43 @@ public class Instruction extends LuacOutComponent {
     }
 
     private void expandR(String rx, int x) {
-        if (opcode.description.contains(rx)) {
-            rx += " => R(" + x + ")";
-            rx += " => " + func.getLocVarName(x);
-            addKid(rx);
-        }
+//        if (opcode.description.contains(rx)) {
+//            rx += " => R(" + x + ")";
+//            rx += " => " + func.getLocVarName(x);
+//            addKid(rx);
+//        }
     }
 
     private void expandRK(String rkx, int x) {
-        if (opcode.description.contains(rkx)) {
-            rkx += " => RK(" + x + ")";
-
-            if (x > 0xFF) { // constant
-                rkx += " => Kst(" + (x & 0xFF) + ")";
-                rkx += " => " + func.getConstant(x & 0xFF).getDesc();
-            } else { // register
-                rkx += " => R(" + x + ")";
-                rkx += " => " + func.getLocVarName(x);
-            }
-
-            addKid(rkx);
-        }
+//        if (opcode.description.contains(rkx)) {
+//            rkx += " => RK(" + x + ")";
+//
+//            if (x > 0xFF) { // constant
+//                rkx += " => Kst(" + (x & 0xFF) + ")";
+//                rkx += " => " + func.getConstant(x & 0xFF).getDesc();
+//            } else { // register
+//                rkx += " => R(" + x + ")";
+//                rkx += " => " + func.getLocVarName(x);
+//            }
+//
+//            addKid(rkx);
+//        }
     }
 
     private void expandUpValue(String uvx, int x) {
-        if (opcode.description.contains(uvx)) {
-            uvx += " => UpValue[" + x + "]";
-            addKid(uvx);
-        }
+//        if (opcode.description.contains(uvx)) {
+//            uvx += " => UpValue[" + x + "]";
+//            addKid(uvx);
+//        }
     }
 
     private void expandKstBx() {
-        if (opcode.description.contains("Kst(Bx)")) {
-            int bx = bx();
-            String kstBx = "Kst(Bx) => Kst(" + bx + ")";
-            kstBx += " => " +func.getConstant(bx).getDesc();
-            addKid(kstBx);
-        }
+//        if (opcode.description.contains("Kst(Bx)")) {
+//            int bx = bx();
+//            String kstBx = "Kst(Bx) => Kst(" + bx + ")";
+//            kstBx += " => " +func.getConstant(bx).getDesc();
+//            addKid(kstBx);
+//        }
     }
 
     private void addKid(String name) {
