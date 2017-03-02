@@ -2,6 +2,7 @@ package com.github.zxh.classpy.luacout.component;
 
 import com.github.zxh.classpy.luacout.LuacOutComponent;
 import com.github.zxh.classpy.luacout.LuacOutReader;
+import com.github.zxh.classpy.luacout.lvm.OpArgMask;
 import com.github.zxh.classpy.luacout.lvm.OpCode;
 
 /**
@@ -45,42 +46,42 @@ public class Instruction extends LuacOutComponent {
         int sBx = sBx();
         int ax = ax();
 
+        StringBuilder desc = new StringBuilder();
         long line = debug.getLine(pc);
-        String desc = String.format("\t[%s]\t%s\t", line > 0 ? line : "-", opcode);
+        desc.append(String.format("\t[%s]\t%s\t", line > 0 ? line : "-", opcode));
 
         switch (opcode.mode) {
             case iABC:
-//                self.printf("%d", a)
-//                if i.BMode() != OpArgN {
-//                if isK(b) {
-//                    self.printf(" %d", myk(indexK(b)))
-//                } else {
-//                    self.printf(" %d", b)
-//                }
-//            }
-//            if i.CMode() != OpArgN {
-//                if isK(c) {
-//                    self.printf(" %d", myk(indexK(c)))
-//                } else {
-//                    self.printf(" %d", c)
-//                }
-//            }
+                desc.append(a);
+                if (opcode.b != OpArgMask.OpArgN) {
+                    if (isK(b)) {
+                        desc.append(" ").append(myk(indexK(b)));
+                    } else {
+                        desc.append(" ").append(b);
+                    }
+                }
+                if (opcode.c != OpArgMask.OpArgN) {
+                    if (isK(c)) {
+                        desc.append(" ").append(myk(indexK(c)));
+                    } else {
+                        desc.append(" ").append(c);
+                    }
+                }
                 break;
             case iABx:
-//                self.printf("%d", a)
-//                if i.BMode() == OpArgK {
-//                self.printf(" %d", myk(bx))
-//            }
-//            if i.BMode() == OpArgU {
-//                self.printf(" %d", bx)
-//            }
+                desc.append(a);
+                if (opcode.b == OpArgMask.OpArgK) {
+                    desc.append(" ").append(myk(bx));
+                } else if (opcode.b == OpArgMask.OpArgU) {
+                    desc.append(" ").append(bx);
+                }
                 break;
             case iAsBx:
-//                self.printf("%d %d", a, sbx)
+                desc.append(a).append(" ").append(sBx);
                 break;
             case iAx:
+                desc.append(myk(ax));
                 break;
-//                self.printf("%d", myk(ax))
         }
 
         switch (opcode) {
@@ -170,7 +171,19 @@ public class Instruction extends LuacOutComponent {
                 break;
         }
 
-        super.setDesc(desc);
+        super.setDesc(desc.toString());
+    }
+
+    private boolean isK(int x) {
+        return (x & (1 << 8)) != 0;
+    }
+
+    private int indexK(int r) {
+        return r & ~(1 << 8);
+    }
+
+    private int myk(int x) {
+        return -1 - x;
     }
 
 }
