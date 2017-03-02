@@ -44,10 +44,6 @@ public class LuacOutComponent extends BytesComponent {
         super.add(name, new LuaNum());
     }
 
-    public void literal(String name, int bytesCount) {
-        super.add(name, new Literal(bytesCount));
-    }
-
     public void str(String name) {
         super.add(name, new LuaStr());
     }
