@@ -47,7 +47,7 @@ public class Instruction extends LuacOutComponent {
         int ax = ax();
 
         StringBuilder desc = new StringBuilder();
-        
+
         long line = debug.getLine(pc);
         desc.append(String.format("\t  [%s]\t%-12s\t",
                 line > 0 ? line : "-",
