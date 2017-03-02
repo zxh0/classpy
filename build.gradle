@@ -1,6 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
+version '0.2'
+
 sourceCompatibility = '1.8'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
