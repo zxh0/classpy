@@ -1,11 +1,10 @@
 package com.github.zxh.classpy.luacout.component;
 
+import java.util.List;
 import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.luacout.LuacOutComponent;
 import com.github.zxh.classpy.luacout.datatype.CInt;
 import com.github.zxh.classpy.luacout.datatype.LuaStr;
-
-import java.util.List;
 
 /**
  * debug info.
@@ -20,12 +19,12 @@ public class Debug extends LuacOutComponent {
         table("upvalues", LuaStr::new);
     }
 
-    public String getUpvalName(int idx) {
-        List<BytesComponent> upvals = super.get("upvalues").getComponents();
-        if (idx + 1 >= upvals.size()) {
-            return "";
+    public long getLine(int pc) {
+        List<BytesComponent> locVars = super.get("line_info").getComponents();
+        if (pc + 1 >= locVars.size()) {
+            return -1;
         } else {
-            return upvals.get(idx + 1).getDesc();
+            return ((CInt) locVars.get(pc + 1)).getValue();
         }
     }
 
@@ -38,6 +37,14 @@ public class Debug extends LuacOutComponent {
         }
     }
 
+    public String getUpvalName(int idx) {
+        List<BytesComponent> upvals = super.get("upvalues").getComponents();
+        if (idx + 1 >= upvals.size()) {
+            return "";
+        } else {
+            return upvals.get(idx + 1).getDesc();
+        }
+    }
 
     public static class LocVar extends LuacOutComponent {
 

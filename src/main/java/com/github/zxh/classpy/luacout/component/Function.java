@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.luacout.component;
 
+import java.util.List;
+import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.luacout.LuacOutComponent;
 import com.github.zxh.classpy.luacout.datatype.CInt;
 import com.github.zxh.classpy.luacout.datatype.LuByte;
@@ -37,10 +39,10 @@ public class Function extends LuacOutComponent {
                 .map(c -> (UpValue) c)
                 .forEach(upval -> upval.setDesc(debug));
 
-        super.get("code").getComponents().stream()
-                .skip(1) // skip size
-                .map(c -> (Instruction) c)
-                .forEach(inst -> inst.expandOperands(this));
+        List<BytesComponent> code = super.get("code").getComponents();
+        for (int i = 1; i < code.size(); i++) {
+            ((Instruction) code.get(i)).setDesc(i - 1, this, debug);
+        }
     }
 
     public Constant getConstant(int idx) {
