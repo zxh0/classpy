@@ -1,6 +1,8 @@
 package com.github.zxh.classpy.luacout.component;
 
 import com.github.zxh.classpy.luacout.LuacOutComponent;
+import com.github.zxh.classpy.luacout.datatype.CInt;
+import com.github.zxh.classpy.luacout.datatype.LuByte;
 
 /**
  * Lua function.
@@ -25,9 +27,17 @@ public class Function extends LuacOutComponent {
 
     @Override
     public void afterRead() {
-        super.get("code")
-                .getComponents()
-                .stream()
+        long lineDefined = ((CInt) super.get("line_defined")).getValue();
+        long lastLineDefined = ((CInt) super.get("last_line_defined")).getValue();
+        super.setDesc("<" + lineDefined + "," + lastLineDefined + ">");
+
+        Debug debug = (Debug) super.get("debug");
+        super.get("upvalues").getComponents().stream()
+                .skip(1) // skip size
+                .map(c -> (UpValue) c)
+                .forEach(upval -> upval.setDesc(debug));
+
+        super.get("code").getComponents().stream()
                 .skip(1) // skip size
                 .map(c -> (Instruction) c)
                 .forEach(inst -> inst.expandOperands(this));
@@ -48,6 +58,11 @@ public class Function extends LuacOutComponent {
         {
             lu_byte("instack");
             lu_byte("idx"    );
+        }
+
+        private void setDesc(Debug debug) {
+            int idx = ((LuByte) super.get("idx")).getValue();
+            super.setDesc(debug.getUpvalName(idx));
         }
 
     }

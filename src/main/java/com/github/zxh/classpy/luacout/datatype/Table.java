@@ -45,7 +45,7 @@ public class Table extends LuacOutComponent {
                         + " (" + kid.getName() + ")");
             }
         }
-        super.setDesc("[" + maxIdx + "]");
+        super.setDesc("(" + maxIdx + ")");
     }
 
 }

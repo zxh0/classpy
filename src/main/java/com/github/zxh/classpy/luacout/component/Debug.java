@@ -20,6 +20,15 @@ public class Debug extends LuacOutComponent {
         table("upvalues", LuaStr::new);
     }
 
+    public String getUpvalName(int idx) {
+        List<BytesComponent> upvals = super.get("upvalues").getComponents();
+        if (idx + 1 >= upvals.size()) {
+            return "";
+        } else {
+            return upvals.get(idx + 1).getDesc();
+        }
+    }
+
     public String getLocVarName(int idx) {
         List<BytesComponent> locVars = super.get("loc_vars").getComponents();
         if (idx + 1 >= locVars.size()) {
