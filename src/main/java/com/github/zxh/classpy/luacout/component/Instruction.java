@@ -47,8 +47,11 @@ public class Instruction extends LuacOutComponent {
         int ax = ax();
 
         StringBuilder desc = new StringBuilder();
+        
         long line = debug.getLine(pc);
-        desc.append(String.format("\t[%s]\t%s\t", line > 0 ? line : "-", opcode));
+        desc.append(String.format("\t  [%s]\t%-12s\t",
+                line > 0 ? line : "-",
+                opcode.toString().substring(3)));
 
         switch (opcode.mode) {
             case iABC:
@@ -86,37 +89,32 @@ public class Instruction extends LuacOutComponent {
 
         switch (opcode) {
             case OP_LOADK:
-//                self.printf("\t; ")
-//                self.printConstant(f, bx)
+                desc.append("\t; ").append(func.getConstant(bx));
                 break;
             case OP_GETUPVAL:
             case OP_SETUPVAL:
-//            self.printf("\t; %s", upvalName(f, b))
+                desc.append("\t; ").append(debug.getUpvalName(b));
                 break;
             case OP_GETTABUP:
-//                self.printf("\t; %s", upvalName(f, b))
-//                if isK(c) {
-//                self.printf(" ")
-//                self.printConstant(f, indexK(c))
-//            }
+                desc.append("\t; ").append(debug.getUpvalName(b));
+                if (isK(c)) {
+                    desc.append(" ").append(func.getConstant(indexK(c)));
+                }
                 break;
             case OP_SETTABUP:
-//                self.printf("\t; %s", upvalName(f, a))
-//                if isK(b) {
-//                self.printf(" ")
-//                self.printConstant(f, indexK(b))
-//            }
-//            if isK(c) {
-//                self.printf(" ")
-//                self.printConstant(f, indexK(c))
-//            }
+                desc.append("\t; ").append(debug.getUpvalName(a));
+                if (isK(b)) {
+                    desc.append(" ").append(func.getConstant(indexK(b)));
+                }
+                if (isK(c)) {
+                    desc.append(" ").append(func.getConstant(indexK(b)));
+                }
                 break;
             case OP_GETTABLE:
             case OP_SELF:
-//                if isK(c) {
-//                self.printf("\t; ")
-//                self.printConstant(f, indexK(c))
-//            }
+                if (isK(c)) {
+                    desc.append("\t; ").append(func.getConstant(indexK(c)));
+                }
                 break;
             case OP_SETTABLE:
             case OP_ADD:
@@ -133,41 +131,40 @@ public class Instruction extends LuacOutComponent {
             case OP_EQ:
             case OP_LT:
             case OP_LE:
-//                if isK(b) || isK(c) {
-//                self.printf("\t; ")
-//                if isK(b) {
-//                    self.printConstant(f, indexK(b))
-//                } else {
-//                    self.printf("-")
-//                }
-//                self.printf(" ")
-//                if isK(c) {
-//                    self.printConstant(f, indexK(c))
-//                } else {
-//                    self.printf("-")
-//                }
-//            }
+                if (isK(b) || isK(c)) {
+                    desc.append("\t; ");
+                    if (isK(b)) {
+                        desc.append(func.getConstant(indexK(b)));
+                    } else {
+                        desc.append("-");
+                    }
+                    desc.append("-");
+                    if (isK(c)) {
+                        desc.append(func.getConstant(indexK(c)));
+                    } else {
+                        desc.append("-");
+                    }
+                }
                 break;
             case OP_JMP:
             case OP_FORLOOP:
             case OP_FORPREP:
             case OP_TFORLOOP:
-//                self.printf("\t; to %d", sbx+pc+2)
+                desc.append("\t; to ").append(sBx + pc + 2);
                 break;
             case OP_CLOSURE:
 //                // self.printf("\t; %p",VOID(f->p[bx]));
                 break;
             case OP_SETLIST:
-//                if c == 0 {
+                if (c == 0) {
 //                // self.printf("\t; %d",(int)code[++pc]);
 //                panic("todo!")
-//            } else {
-//                self.printf("\t; %d", c)
-//            }
+                } else {
+                    desc.append("\t; ").append(c);
+                }
                 break;
             case OP_EXTRAARG:
-//                self.printf("\t; ")
-//                self.printConstant(f, ax)
+                desc.append("\t; ").append(func.getConstant(ax));
                 break;
         }
 

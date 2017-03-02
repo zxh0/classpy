@@ -45,12 +45,8 @@ public class Function extends LuacOutComponent {
         }
     }
 
-    public Constant getConstant(int idx) {
-        return (Constant) super.get("constants").getComponents().get(idx + 1);
-    }
-
-    public String getLocVarName(int idx) {
-        return ((Debug) super.get("debug")).getLocVarName(idx);
+    public String getConstant(int idx) {
+        return super.get("constants").getComponents().get(idx + 1).getDesc();
     }
 
 
