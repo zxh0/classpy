@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.luacout.component;
 
 import java.util.Arrays;
-import com.github.zxh.classpy.common.BytesParseException;
+import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.luacout.LuacOutComponent;
 import com.github.zxh.classpy.luacout.datatype.Bytes;
 import com.github.zxh.classpy.luacout.datatype.LuByte;
@@ -42,7 +42,7 @@ public class Header extends LuacOutComponent {
     private void checkSignature() {
         Bytes sig = (Bytes) super.get("LUA_SIGNATURE");
         if (!Arrays.equals(sig.getBytes(), _luaSig)) {
-            throw new BytesParseException("not a precompiled chunk!");
+            throw new ParseException("not a precompiled chunk!");
         } else {
             sig.setDesc("\"\\x1bLua\"");
         }
@@ -51,7 +51,7 @@ public class Header extends LuacOutComponent {
     private void checkLuacData() {
         Bytes luacData = (Bytes) super.get("LUAC_DATA");
         if (!Arrays.equals(luacData.getBytes(), _luacData)) {
-            throw new BytesParseException("corrupted!");
+            throw new ParseException("corrupted!");
         } else {
             luacData.setDesc("\"\\x19\\x93\\r\\n\\x1a\\n\"");
         }

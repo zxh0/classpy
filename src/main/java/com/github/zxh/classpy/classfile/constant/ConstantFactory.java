@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.common.BytesParseException;
+import com.github.zxh.classpy.common.ParseException;
 
 public class ConstantFactory {
 
@@ -27,7 +27,7 @@ public class ConstantFactory {
             case 18: return new ConstantInvokeDynamicInfo();
         }
 
-        throw new BytesParseException("Invalid Constant Type: " + tag);
+        throw new ParseException("Invalid Constant Type: " + tag);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.common.BytesParseException;
+import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.jvm.Mutf8Decoder;
@@ -52,7 +52,7 @@ public class ConstantUtf8Info extends ConstantInfo {
             try {
                 str = Mutf8Decoder.decodeMutf8(bytes);
             } catch (IOException e) {
-                throw new BytesParseException(e);
+                throw new ParseException(e);
             }
 
             setDesc(str);

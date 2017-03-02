@@ -35,7 +35,7 @@ public class AttributeFactory {
             case "MethodParameters": return new MethodParametersAttribute(); // todo
         }
 
-        //throw new BytesParseException(name);
+        //throw new ParseException(name);
         return new UndefinedAttribute();
     }
 

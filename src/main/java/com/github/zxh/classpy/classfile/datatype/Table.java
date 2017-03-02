@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.common.BytesParseException;
+import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeFactory;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.ClassReader;
@@ -29,7 +29,7 @@ public class Table extends ClassComponent {
                 super.add(readEntry(reader));
             }
         } catch (ReflectiveOperationException e) {
-            throw new BytesParseException(e);
+            throw new ParseException(e);
         }
     }
 

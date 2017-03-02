@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.luacout.lvm;
 
-import com.github.zxh.classpy.common.BytesParseException;
+import com.github.zxh.classpy.common.ParseException;
 
 /**
  * Lua types.
@@ -43,7 +43,7 @@ public enum LuaType {
                 return lt;
             }
         }
-        throw new BytesParseException("Unknown lua type: " + type);
+        throw new ParseException("Unknown lua type: " + type);
     }
 
 }
