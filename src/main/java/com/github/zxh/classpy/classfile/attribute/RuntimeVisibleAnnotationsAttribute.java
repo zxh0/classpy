@@ -40,7 +40,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
 
         
         @Override
-        protected void afterRead(ConstantPool cp) {
+        protected void postRead(ConstantPool cp) {
             int typeIndex = super.getUInt("type_index");
             setDesc(cp.getUtf8String(typeIndex));
         }
@@ -55,7 +55,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         }
 
         @Override
-        protected void afterRead(ConstantPool cp) {
+        protected void postRead(ConstantPool cp) {
             int elementNameIndex = super.getUInt("element_name_index");
             setDesc(cp.getUtf8String(elementNameIndex));
         }
@@ -122,7 +122,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         }
 
         @Override
-        protected void afterRead(ConstantPool cp) {
+        protected void postRead(ConstantPool cp) {
             U1 tag = (U1) super.get("tag");
             tag.setDesc(Character.toString((char) tag.getValue()));
         }

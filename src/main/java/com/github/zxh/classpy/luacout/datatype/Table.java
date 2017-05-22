@@ -33,7 +33,7 @@ public class Table extends LuacOutComponent {
     }
 
     @Override
-    protected void afterRead() {
+    protected void postRead() {
         List<BytesComponent> kids = super.getComponents();
         int maxIdx = kids.size() - 1;
         for (int i = 1; i < kids.size(); i++) {

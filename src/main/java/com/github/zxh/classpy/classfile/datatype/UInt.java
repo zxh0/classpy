@@ -43,7 +43,7 @@ public abstract class UInt extends ClassComponent {
     }
 
     @Override
-    protected final void afterRead(ConstantPool cp) {
+    protected final void postRead(ConstantPool cp) {
         setDesc(intDescriber.apply(value, cp));
     }
     

@@ -30,7 +30,7 @@ public class LineNumberTableAttribute extends AttributeInfo {
         }
 
         @Override
-        protected void afterRead(ConstantPool cp) {
+        protected void postRead(ConstantPool cp) {
             int lineNumber = super.getUInt("line_number");
             int startPc = super.getUInt("start_pc");
             setName("line " + lineNumber);

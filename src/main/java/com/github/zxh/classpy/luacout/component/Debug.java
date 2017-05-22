@@ -55,7 +55,7 @@ public class Debug extends LuacOutComponent {
         }
 
         @Override
-        protected void afterRead() {
+        protected void postRead() {
             setName(get("var_name").getDesc());
             setDesc(get("start_pc").getDesc()
                     + " ~ " + get("end_pc").getDesc());

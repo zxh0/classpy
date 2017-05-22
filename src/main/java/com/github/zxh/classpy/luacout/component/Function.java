@@ -28,7 +28,7 @@ public class Function extends LuacOutComponent {
     }
 
     @Override
-    public void afterRead() {
+    public void postRead() {
         long lineDefined = ((CInt) super.get("line_defined")).getValue();
         long lastLineDefined = ((CInt) super.get("last_line_defined")).getValue();
         super.setDesc("<" + lineDefined + "," + lastLineDefined + ">");

@@ -24,7 +24,7 @@ public class LuacOutComponent extends BytesComponent {
         }
     }
 
-    protected void afterRead() {
+    protected void postRead() {
 
     }
 

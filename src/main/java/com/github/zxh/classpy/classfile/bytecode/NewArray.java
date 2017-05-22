@@ -16,7 +16,7 @@ public class NewArray extends Instruction {
     }
     
     @Override
-    protected void afterRead(ConstantPool cp) {
+    protected void postRead(ConstantPool cp) {
         int atype = super.getUInt("atype");
         setDesc(getDesc() + " " + getArrayType(atype));
     }

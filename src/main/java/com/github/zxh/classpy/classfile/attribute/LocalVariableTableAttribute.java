@@ -35,7 +35,7 @@ public class LocalVariableTableAttribute extends AttributeInfo {
         }
 
         @Override
-        protected void afterRead(ConstantPool cp) {
+        protected void postRead(ConstantPool cp) {
             int startPc = super.getUInt("start_pc");
             int length = super.getUInt("length");
             int nameIndex = super.getUInt("name_index");

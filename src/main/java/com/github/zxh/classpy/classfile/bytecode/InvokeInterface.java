@@ -17,7 +17,7 @@ public class InvokeInterface extends Instruction {
     }
     
     @Override
-    protected void afterRead(ConstantPool cp) {
+    protected void postRead(ConstantPool cp) {
         setDesc(getDesc() + " "
                 + super.get("index").getDesc() + ", "
                 + super.getUInt("count"));

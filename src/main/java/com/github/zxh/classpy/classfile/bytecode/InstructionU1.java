@@ -18,7 +18,7 @@ public class InstructionU1 extends Instruction {
     }
 
     @Override
-    protected void afterRead(ConstantPool cp) {
+    protected void postRead(ConstantPool cp) {
         setDesc(getDesc() + " " + super.get("operand").getDesc());
     }
 

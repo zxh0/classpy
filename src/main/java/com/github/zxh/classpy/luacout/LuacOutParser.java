@@ -13,15 +13,15 @@ public class LuacOutParser implements BytesParser {
         LuacOutReader reader = new LuacOutReader(bytes);
         LuacOutFile root = new LuacOutFile();
         root.read(reader);
-        afterRead(root);
+        postRead(root);
         return root;
     }
 
-    private static void afterRead(LuacOutComponent parent) {
+    private static void postRead(LuacOutComponent parent) {
         for (BytesComponent kid : parent.getComponents()) {
-            afterRead((LuacOutComponent) kid);
+            postRead((LuacOutComponent) kid);
         }
-        parent.afterRead();
+        parent.postRead();
     }
 
 }

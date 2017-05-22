@@ -30,7 +30,7 @@ public class Header extends LuacOutComponent {
     }
 
     @Override
-    protected void afterRead() {
+    protected void postRead() {
         checkSignature();
         checkLuacData();
         LuByte luaVersion = (LuByte) super.get("LUA_VERSION");

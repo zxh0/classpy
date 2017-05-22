@@ -31,7 +31,7 @@ public abstract class ClassComponent extends BytesComponent {
         }
     }
 
-    protected void afterRead(ConstantPool cp) {
+    protected void postRead(ConstantPool cp) {
 
     }
 

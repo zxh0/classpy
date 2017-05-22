@@ -55,7 +55,7 @@ public class Table extends ClassComponent {
     }
 
     @Override
-    protected void afterRead(ConstantPool cp) {
+    protected void postRead(ConstantPool cp) {
         int i = 0;
         for (BytesComponent entry : super.getComponents()) {
             String newName = StringHelper.formatIndex(length.getValue(), i++);

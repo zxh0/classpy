@@ -24,7 +24,7 @@ public class MethodInfo extends ClassComponent {
     }
 
     @Override
-    protected void afterRead(ConstantPool cp) {
+    protected void postRead(ConstantPool cp) {
         int nameIndex = super.getUInt("name_index");
         if (nameIndex > 0) {
             // todo fix loading java.lang.String from rt.jar

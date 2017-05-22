@@ -17,7 +17,7 @@ public class InstructionCp2 extends Instruction {
         super(opcode, pc);
     }
 
-    protected void afterRead(ConstantPool cp) {
+    protected void postRead(ConstantPool cp) {
         setDesc(getDesc() + " " + super.get("operand").getDesc());
     }
     

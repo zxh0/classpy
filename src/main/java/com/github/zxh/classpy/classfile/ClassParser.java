@@ -9,15 +9,15 @@ public class ClassParser implements BytesParser {
     public ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();
         cf.read(new ClassReader(bytes));
-        afterRead(cf, cf.getConstantPool());
+        postRead(cf, cf.getConstantPool());
         return cf;
     }
 
-    private static void afterRead(ClassComponent cc, ConstantPool cp) {
+    private static void postRead(ClassComponent cc, ConstantPool cp) {
         for (BytesComponent c : cc.getComponents()) {
-            afterRead((ClassComponent) c, cp);
+            postRead((ClassComponent) c, cp);
         }
-        cc.afterRead(cp);
+        cc.postRead(cp);
     }
 
 }
