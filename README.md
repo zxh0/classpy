@@ -11,7 +11,7 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 
 ## Features
 
-* Is able to parse class files described by [JVMS8](http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html)
+* Understands class files described by [JVMS8](http://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html)
 * Displays class file as tree and hex text
 * The corresponding hex text is highlighted when you select a tree node
 
