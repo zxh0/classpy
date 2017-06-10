@@ -8,11 +8,11 @@ import com.github.zxh.classpy.common.BytesComponent;
 /**
  * http://download.java.net/jdk8/jfxdocs/javafx/scene/control/TreeItem.html
  */
-public class BytesTreeItem extends TreeItem<BytesComponent> {
+public class ParsedTreeItem extends TreeItem<BytesComponent> {
 
     private boolean isFirstTimeChildren = true;
 
-    public BytesTreeItem(BytesComponent cc) {
+    public ParsedTreeItem(BytesComponent cc) {
                 super(cc);
     }
 
@@ -39,7 +39,7 @@ public class BytesTreeItem extends TreeItem<BytesComponent> {
     private ObservableList<TreeItem<BytesComponent>> buildChildren() {
         ObservableList<TreeItem<BytesComponent>> children = FXCollections.observableArrayList();
         getValue().getComponents().forEach(sub -> {
-            children.add(new BytesTreeItem(sub));
+            children.add(new ParsedTreeItem(sub));
         });
         return children;
     }

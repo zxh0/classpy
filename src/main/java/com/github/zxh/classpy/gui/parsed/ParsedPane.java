@@ -40,7 +40,7 @@ public class ParsedPane extends BorderPane {
     }
 
     private static TreeView<BytesComponent> buildClassTree(BytesComponent file) {
-        BytesTreeItem root = new BytesTreeItem(file);
+        ParsedTreeItem root = new ParsedTreeItem(file);
         root.setExpanded(true);
         
         TreeView<BytesComponent> tree = new TreeView<>(root);
