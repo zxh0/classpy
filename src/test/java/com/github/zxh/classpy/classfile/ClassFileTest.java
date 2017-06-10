@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.classfile;
 
-import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.testclasses.AnnotatedClass;
 import com.github.zxh.classpy.classfile.testclasses.SimpleAttr;
 import com.github.zxh.classpy.classfile.testclasses.ByteCode;
@@ -91,7 +90,7 @@ public class ClassFileTest {
         ClassLoader cl = SimpleClass.class.getClassLoader();
         Path classFilePath = Paths.get(cl.getResource(classFileName).toURI());
         byte[] classBytes = Files.readAllBytes(classFilePath);
-        ClassFile cf = new ClassParser().parse(classBytes);
+        ClassFile cf = new ClassFileParser().parse(classBytes);
         return cf;
     }
     

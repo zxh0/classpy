@@ -4,7 +4,7 @@ import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileParser;
 
-public class ClassParser implements FileParser {
+public class ClassFileParser implements FileParser {
     
     public ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();

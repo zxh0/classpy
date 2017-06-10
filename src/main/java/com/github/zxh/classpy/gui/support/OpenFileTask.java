@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui.support;
 
-import com.github.zxh.classpy.classfile.ClassParser;
+import com.github.zxh.classpy.classfile.ClassFileParser;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.helper.UrlHelper;
@@ -38,7 +38,7 @@ public class OpenFileTask extends Task<Object> {
 
     private FileComponent parse(byte[] bytes) {
         if (url.toString().endsWith(".class")) {
-            return new ClassParser().parse(bytes);
+            return new ClassFileParser().parse(bytes);
         } else {
             // todo
             return new BinaryChunkParser().parse(bytes);
