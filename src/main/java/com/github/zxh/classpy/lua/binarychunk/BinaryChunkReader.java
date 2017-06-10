@@ -1,20 +1,17 @@
-package com.github.zxh.classpy.luacout;
+package com.github.zxh.classpy.lua.binarychunk;
 
 import com.github.zxh.classpy.common.BytesReader;
 
 import java.nio.ByteOrder;
 
-/**
- * luac.out reader.
- */
-public class LuacOutReader extends BytesReader {
+public class BinaryChunkReader extends BytesReader {
 
     private int sizetSize = 4;
     private int cIntSize = 4;
     private int luaIntSize = 8;
     private int luaNumSize = 8;
 
-    public LuacOutReader(byte[] bytes) {
+    public BinaryChunkReader(byte[] bytes) {
         super(bytes, ByteOrder.LITTLE_ENDIAN);
     }
 

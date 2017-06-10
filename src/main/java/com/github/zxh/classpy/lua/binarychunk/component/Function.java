@@ -1,17 +1,17 @@
-package com.github.zxh.classpy.luacout.component;
+package com.github.zxh.classpy.lua.binarychunk.component;
 
 import java.util.List;
 import com.github.zxh.classpy.common.BytesComponent;
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.datatype.CInt;
-import com.github.zxh.classpy.luacout.datatype.LuByte;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.datatype.CInt;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
 
 /**
  * Lua function.
  *
  * @see /lua/src/ldump.c#DumpFunction()
  */
-public class Function extends LuacOutComponent {
+public class Function extends BinaryChunkComponent {
 
     {
         str    ("source"                  );
@@ -51,7 +51,7 @@ public class Function extends LuacOutComponent {
 
 
     // @see /lua/src/ldump.c#DumpUpvalues()
-    public static class UpValue extends LuacOutComponent {
+    public static class UpValue extends BinaryChunkComponent {
 
         {
             lu_byte("instack");

@@ -1,32 +1,32 @@
-package com.github.zxh.classpy.luacout.component;
+package com.github.zxh.classpy.lua.binarychunk.component;
 
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.LuacOutReader;
-import com.github.zxh.classpy.luacout.datatype.LuByte;
-import com.github.zxh.classpy.luacout.datatype.LuaInt;
-import com.github.zxh.classpy.luacout.datatype.LuaNum;
-import com.github.zxh.classpy.luacout.datatype.LuaStr;
-import com.github.zxh.classpy.luacout.lvm.LuaType;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuaInt;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuaNum;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuaStr;
+import com.github.zxh.classpy.lua.vm.LuaType;
 
 /**
  * Lua constant.
  */
-public class Constant extends LuacOutComponent {
+public class Constant extends BinaryChunkComponent {
 
     @Override
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         int t = readHead(reader);
         readBody(reader, t);
     }
 
-    private int readHead(LuacOutReader reader) {
+    private int readHead(BinaryChunkReader reader) {
         LuByte t = new LuByte();
         t.read(reader);
         super.add("t", t);
         return t.getValue();
     }
 
-    private void readBody(LuacOutReader reader, int type) {
+    private void readBody(BinaryChunkReader reader, int type) {
         LuaType lt = LuaType.valueOf(type);
         super.setName(lt.name());
         switch (lt) {
@@ -52,28 +52,28 @@ public class Constant extends LuacOutComponent {
         }
     }
 
-    private void readBoolean(LuacOutReader reader) {
+    private void readBoolean(BinaryChunkReader reader) {
         LuByte b = new LuByte();
         b.read(reader);
         super.add("k", b);
         super.setDesc(Boolean.toString(b.getValue() != 0));
     }
 
-    private void readNumber(LuacOutReader reader) {
+    private void readNumber(BinaryChunkReader reader) {
         LuaNum d = new LuaNum();
         d.read(reader);
         super.add("k", d);
         super.setDesc(d.getDesc());
     }
 
-    private void readInteger(LuacOutReader reader) {
+    private void readInteger(BinaryChunkReader reader) {
         LuaInt i = new LuaInt();
         i.read(reader);
         super.add("k", i);
         super.setDesc(i.getDesc());
     }
 
-    private void readString(LuacOutReader reader) {
+    private void readString(BinaryChunkReader reader) {
         LuaStr str = new LuaStr();
         str.read(reader);
         super.add("k", str);

@@ -1,17 +1,17 @@
-package com.github.zxh.classpy.luacout.component;
+package com.github.zxh.classpy.lua.binarychunk.component;
 
 import java.util.List;
 import com.github.zxh.classpy.common.BytesComponent;
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.datatype.CInt;
-import com.github.zxh.classpy.luacout.datatype.LuaStr;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.datatype.CInt;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuaStr;
 
 /**
  * debug info.
  *
  * @see /lua/src/ldump.c#DumpDebug()
  */
-public class Debug extends LuacOutComponent {
+public class Debug extends BinaryChunkComponent {
 
     {
         table("line_info",  CInt::new);
@@ -46,7 +46,7 @@ public class Debug extends LuacOutComponent {
         }
     }
 
-    public static class LocVar extends LuacOutComponent {
+    public static class LocVar extends BinaryChunkComponent {
 
         {
             str ("var_name");

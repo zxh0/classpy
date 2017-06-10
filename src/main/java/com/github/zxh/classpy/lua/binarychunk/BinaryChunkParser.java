@@ -1,25 +1,22 @@
-package com.github.zxh.classpy.luacout;
+package com.github.zxh.classpy.lua.binarychunk;
 
 import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.common.BytesParser;
 
-/**
- * luac.out parser.
- */
-public class LuacOutParser implements BytesParser {
+public class BinaryChunkParser implements BytesParser {
 
     @Override
     public BytesComponent parse(byte[] bytes) {
-        LuacOutReader reader = new LuacOutReader(bytes);
-        LuacOutFile root = new LuacOutFile();
+        BinaryChunkReader reader = new BinaryChunkReader(bytes);
+        BinaryChunkFile root = new BinaryChunkFile();
         root.read(reader);
         postRead(root);
         return root;
     }
 
-    private static void postRead(LuacOutComponent parent) {
+    private static void postRead(BinaryChunkComponent parent) {
         for (BytesComponent kid : parent.getComponents()) {
-            postRead((LuacOutComponent) kid);
+            postRead((BinaryChunkComponent) kid);
         }
         parent.postRead();
     }

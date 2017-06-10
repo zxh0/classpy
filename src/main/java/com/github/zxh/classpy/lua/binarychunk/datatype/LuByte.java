@@ -1,7 +1,7 @@
-package com.github.zxh.classpy.luacout.datatype;
+package com.github.zxh.classpy.lua.binarychunk.datatype;
 
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.LuacOutReader;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 /**
  * typedef unsigned char lu_byte;
@@ -9,7 +9,7 @@ import com.github.zxh.classpy.luacout.LuacOutReader;
  * @see /lua/src/llimits.h
  * @see /lua/src/ldump.c#DumpByte
  */
-public class LuByte extends LuacOutComponent {
+public class LuByte extends BinaryChunkComponent {
 
     private int value;
 
@@ -18,7 +18,7 @@ public class LuByte extends LuacOutComponent {
     }
 
     @Override
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         value = reader.readUnsignedByte();
         super.setDesc(Integer.toString(value));
 

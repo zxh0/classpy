@@ -1,16 +1,16 @@
-package com.github.zxh.classpy.luacout;
+package com.github.zxh.classpy.lua.binarychunk;
 
 import com.github.zxh.classpy.common.BytesComponent;
-import com.github.zxh.classpy.luacout.datatype.*;
+import com.github.zxh.classpy.lua.binarychunk.datatype.*;
 
 import java.util.function.Supplier;
 
 /**
- * luac.out component.
+ * Component of lua binary chunk file.
  */
-public class LuacOutComponent extends BytesComponent {
+public class BinaryChunkComponent extends BytesComponent {
 
-    public final void read(LuacOutReader reader) {
+    public final void read(BinaryChunkReader reader) {
         int offset = reader.getPosition();
         readContent(reader);
         int length = reader.getPosition() - offset;
@@ -18,9 +18,9 @@ public class LuacOutComponent extends BytesComponent {
         super.setLength(length);
     }
 
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         for (BytesComponent bc : getComponents()) {
-            ((LuacOutComponent) bc).read(reader);
+            ((BinaryChunkComponent) bc).read(reader);
         }
     }
 
@@ -52,7 +52,7 @@ public class LuacOutComponent extends BytesComponent {
         super.add(name, new Bytes(n));
     }
 
-    public void table(String name, Supplier<LuacOutComponent> componentSupplier) {
+    public void table(String name, Supplier<BinaryChunkComponent> componentSupplier) {
         super.add(name, new Table(componentSupplier));
     }
 

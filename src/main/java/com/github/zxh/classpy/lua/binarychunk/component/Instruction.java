@@ -1,9 +1,9 @@
-package com.github.zxh.classpy.luacout.component;
+package com.github.zxh.classpy.lua.binarychunk.component;
 
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.LuacOutReader;
-import com.github.zxh.classpy.luacout.lvm.OpArgMask;
-import com.github.zxh.classpy.luacout.lvm.OpCode;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
+import com.github.zxh.classpy.lua.vm.OpArgMask;
+import com.github.zxh.classpy.lua.vm.OpCode;
 
 /**
  * LuaVM instruction.
@@ -19,7 +19,7 @@ import com.github.zxh.classpy.luacout.lvm.OpCode;
  *  +-------+^------+-^-----+-^-----
  * 31      23      15       7      0
  */
-public class Instruction extends LuacOutComponent {
+public class Instruction extends BinaryChunkComponent {
 
     private int code;
     private OpCode opcode;
@@ -32,7 +32,7 @@ public class Instruction extends LuacOutComponent {
     private int sBx() {return code  >> 14;                } // 18 bits & signed
 
     @Override
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         code = reader.readInt();
         opcode = OpCode.values()[code & 0b11_1111];
         //super.setName(opcode.name());

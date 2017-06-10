@@ -1,17 +1,17 @@
-package com.github.zxh.classpy.luacout.datatype;
+package com.github.zxh.classpy.lua.binarychunk.datatype;
 
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.LuacOutReader;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 /**
- * string in luac.out
+ * string in binary chunk.
  *
  * @see /lua/src/ldump.c#DumpString()
  */
-public class LuaStr extends LuacOutComponent {
+public class LuaStr extends BinaryChunkComponent {
 
     @Override
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         LuByte size = new LuByte();
         size.read(reader);
 
@@ -28,7 +28,7 @@ public class LuaStr extends LuacOutComponent {
         }
     }
 
-    private void readStr(LuacOutReader reader, int bytesCount) {
+    private void readStr(BinaryChunkReader reader, int bytesCount) {
         Bytes bytes = new Bytes(bytesCount);
         bytes.read(reader);
         super.add("bytes", bytes);

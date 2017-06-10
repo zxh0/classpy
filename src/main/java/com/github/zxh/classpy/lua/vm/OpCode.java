@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.luacout.lvm;
+package com.github.zxh.classpy.lua.vm;
 
 /**
  * LuaVM OpCode.

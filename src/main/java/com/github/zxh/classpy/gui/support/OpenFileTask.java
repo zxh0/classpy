@@ -3,7 +3,7 @@ package com.github.zxh.classpy.gui.support;
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.helper.UrlHelper;
-import com.github.zxh.classpy.luacout.LuacOutParser;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.function.BiConsumer;
@@ -40,7 +40,7 @@ public class OpenFileTask extends Task<Object> {
             return new ClassParser().parse(bytes);
         } else {
             // todo
-            return new LuacOutParser().parse(bytes);
+            return new BinaryChunkParser().parse(bytes);
         }
     }
     

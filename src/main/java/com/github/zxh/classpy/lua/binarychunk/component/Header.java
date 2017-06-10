@@ -1,16 +1,16 @@
-package com.github.zxh.classpy.luacout.component;
+package com.github.zxh.classpy.lua.binarychunk.component;
 
 import java.util.Arrays;
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.datatype.Bytes;
-import com.github.zxh.classpy.luacout.datatype.LuByte;
-import com.github.zxh.classpy.luacout.datatype.LuaInt;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.datatype.Bytes;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
+import com.github.zxh.classpy.lua.binarychunk.datatype.LuaInt;
 
 /**
  * Header.
  */
-public class Header extends LuacOutComponent {
+public class Header extends BinaryChunkComponent {
 
     private final byte[] _luaSig = new byte[]{0x1b, 'L', 'u', 'a'};
     private final byte[] _luacData = new byte[]{0x19, (byte) 0x93, '\r', '\n', 0x1a, '\n'};

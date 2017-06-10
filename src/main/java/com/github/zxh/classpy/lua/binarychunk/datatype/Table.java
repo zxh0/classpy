@@ -1,32 +1,32 @@
-package com.github.zxh.classpy.luacout.datatype;
+package com.github.zxh.classpy.lua.binarychunk.datatype;
 
 import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.helper.StringHelper;
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.LuacOutReader;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 import java.util.List;
 import java.util.function.Supplier;
 
 /**
- * Table in luac.out
+ * Table in binary chunk.
  */
-public class Table extends LuacOutComponent {
+public class Table extends BinaryChunkComponent {
 
-    private final Supplier<LuacOutComponent> componentSupplier;
+    private final Supplier<BinaryChunkComponent> componentSupplier;
 
-    public Table(Supplier<LuacOutComponent> componentSupplier) {
+    public Table(Supplier<BinaryChunkComponent> componentSupplier) {
         this.componentSupplier = componentSupplier;
     }
 
     @Override
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         CInt size = new CInt();
         size.read(reader);
         super.add("size", size);
 
         for (int i = 0; i < size.getValue(); i++) {
-            LuacOutComponent c = componentSupplier.get();
+            BinaryChunkComponent c = componentSupplier.get();
             super.add(null, c);
             c.read(reader);
         }

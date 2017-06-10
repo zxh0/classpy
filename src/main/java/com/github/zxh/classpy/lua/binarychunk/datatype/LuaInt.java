@@ -1,7 +1,7 @@
-package com.github.zxh.classpy.luacout.datatype;
+package com.github.zxh.classpy.lua.binarychunk.datatype;
 
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.LuacOutReader;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 /**
  * typedef LUA_INTEGER lua_Integer;
@@ -14,7 +14,7 @@ import com.github.zxh.classpy.luacout.LuacOutReader;
  * @see /lua/src/luaconf.h
  * @see /lua/src/ldump.c#DumpInteger()
  */
-public class LuaInt extends LuacOutComponent {
+public class LuaInt extends BinaryChunkComponent {
 
     private long value;
 
@@ -23,7 +23,7 @@ public class LuaInt extends LuacOutComponent {
     }
 
     @Override
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         value = reader.readLuaInt();
         setDesc(Long.toString(value));
     }

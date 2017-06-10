@@ -1,7 +1,7 @@
-package com.github.zxh.classpy.luacout.datatype;
+package com.github.zxh.classpy.lua.binarychunk.datatype;
 
-import com.github.zxh.classpy.luacout.LuacOutComponent;
-import com.github.zxh.classpy.luacout.LuacOutReader;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 /**
  * Lua number.
@@ -14,12 +14,12 @@ import com.github.zxh.classpy.luacout.LuacOutReader;
  * @see /lua/src/luaconf.h
  * @see /lua/src/ldump.c#DumpNumber()
  */
-public class LuaNum extends LuacOutComponent {
+public class LuaNum extends BinaryChunkComponent {
 
     private double value;
 
     @Override
-    protected void readContent(LuacOutReader reader) {
+    protected void readContent(BinaryChunkReader reader) {
         value = reader.readLuaNum();
         setDesc(Double.toString(value));
     }
