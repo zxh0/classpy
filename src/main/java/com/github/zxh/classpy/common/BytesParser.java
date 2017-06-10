@@ -5,6 +5,6 @@ package com.github.zxh.classpy.common;
  */
 public interface BytesParser {
 
-    public BytesComponent parse(byte[] bytes);
+    public FileComponent parse(byte[] bytes);
 
 }

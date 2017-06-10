@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui.parsed;
 
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 
 /**
  * Displayed by HexPane.
@@ -64,7 +64,7 @@ public class HexText {
     }
     
     // todo
-    public Selection select(BytesComponent cc) {
+    public Selection select(FileComponent cc) {
         Selection selection = new Selection();
         selection.startPosition = calcTextPosition(cc.getOffset());
         selection.endPosition = calcTextPosition(cc.getOffset() + cc.getLength()) - 1;

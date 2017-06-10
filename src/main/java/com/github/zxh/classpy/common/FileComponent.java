@@ -7,13 +7,13 @@ import java.util.List;
 /**
  * Abstract base class for all class file components.
  */
-public abstract class BytesComponent {
+public abstract class FileComponent {
     
     private String name;
     private String desc; // description
     private int offset; // the position of this ClassComponent in the file
     private int length; // how many bytes this ClassComponent has
-    private List<BytesComponent> components;
+    private List<FileComponent> components;
     
     // Getters & Setters
     public final String getName() {return name;}
@@ -25,7 +25,7 @@ public abstract class BytesComponent {
     public final int getLength() {return length;}
     public final void setLength(int length) {this.length = length;}
 
-    public List<BytesComponent> getComponents() {
+    public List<FileComponent> getComponents() {
         return components == null
                 ? Collections.EMPTY_LIST
                 : Collections.unmodifiableList(components);
@@ -36,8 +36,8 @@ public abstract class BytesComponent {
      * @param name
      * @return
      */
-    protected final BytesComponent get(String name) {
-        for (BytesComponent c : components) {
+    protected final FileComponent get(String name) {
+        for (FileComponent c : components) {
             if (name.equals(c.getName())) {
                 return c;
             }
@@ -45,7 +45,7 @@ public abstract class BytesComponent {
         return null;
     }
 
-    protected final void add(String name, BytesComponent subComponent) {
+    protected final void add(String name, FileComponent subComponent) {
         if (name != null) {
             subComponent.setName(name);
         }

@@ -6,7 +6,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 
 /**
  * Container of TreeView, HexPane, StatusBar and BytesBar.
@@ -20,12 +20,12 @@ import com.github.zxh.classpy.common.BytesComponent;
  */
 public class ParsedViewerPane extends BorderPane {
     
-    private final TreeView<BytesComponent> tree;
+    private final TreeView<FileComponent> tree;
     private final HexPane hexPane;
     private final Label statusLabel;
     private final BytesBar bytesBar;
     
-    public ParsedViewerPane(BytesComponent file, HexText hex) {
+    public ParsedViewerPane(FileComponent file, HexText hex) {
         tree = buildClassTree(file);
         hexPane = new HexPane(hex);
         statusLabel = new Label(" ");
@@ -38,11 +38,11 @@ public class ParsedViewerPane extends BorderPane {
         listenTreeItemSelection();
     }
 
-    private static TreeView<BytesComponent> buildClassTree(BytesComponent file) {
+    private static TreeView<FileComponent> buildClassTree(FileComponent file) {
         ParsedTreeItem root = new ParsedTreeItem(file);
         root.setExpanded(true);
         
-        TreeView<BytesComponent> tree = new TreeView<>(root);
+        TreeView<FileComponent> tree = new TreeView<>(root);
         tree.setMinWidth(200);
         
         return tree;
@@ -65,11 +65,11 @@ public class ParsedViewerPane extends BorderPane {
     
     private void listenTreeItemSelection() {
         tree.getSelectionModel().getSelectedItems().addListener(
-            (ListChangeListener.Change<? extends TreeItem<BytesComponent>> c) -> {
+            (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
                 if (c.next() && c.wasAdded()) {
-                    TreeItem<BytesComponent> node = c.getList().get(c.getFrom());
+                    TreeItem<FileComponent> node = c.getList().get(c.getFrom());
                     if (node != null && node.getParent() != null) {
-                        BytesComponent cc = node.getValue();
+                        FileComponent cc = node.getValue();
                         //System.out.println("select " + cc);
                         statusLabel.setText(" " + cc.getClass().getSimpleName());
                         if (cc.getLength() > 0) {

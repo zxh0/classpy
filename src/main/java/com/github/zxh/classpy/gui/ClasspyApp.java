@@ -15,7 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.support.*;
 import com.github.zxh.classpy.helper.UrlHelper;
 
@@ -119,7 +119,7 @@ public class ClasspyApp extends Application {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
         
-        task.setOnSucceeded((BytesComponent bc, HexText hex) -> {
+        task.setOnSucceeded((FileComponent bc, HexText hex) -> {
             ParsedViewerPane viewerPane = new ParsedViewerPane(bc, hex);
             tab.setContent(viewerPane);
             

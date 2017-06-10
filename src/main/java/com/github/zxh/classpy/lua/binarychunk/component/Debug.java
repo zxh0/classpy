@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.lua.binarychunk.component;
 
 import java.util.List;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
 import com.github.zxh.classpy.lua.binarychunk.datatype.CInt;
 import com.github.zxh.classpy.lua.binarychunk.datatype.LuaStr;
@@ -20,7 +20,7 @@ public class Debug extends BinaryChunkComponent {
     }
 
     public long getLine(int pc) {
-        List<BytesComponent> locVars = super.get("line_info").getComponents();
+        List<FileComponent> locVars = super.get("line_info").getComponents();
         if (pc + 1 >= locVars.size()) {
             return -1;
         } else {
@@ -29,7 +29,7 @@ public class Debug extends BinaryChunkComponent {
     }
 
     public String getLocVarName(int idx) {
-        List<BytesComponent> locVars = super.get("loc_vars").getComponents();
+        List<FileComponent> locVars = super.get("loc_vars").getComponents();
         if (idx + 1 >= locVars.size()) {
             return "";
         } else {
@@ -38,7 +38,7 @@ public class Debug extends BinaryChunkComponent {
     }
 
     public String getUpvalName(int idx) {
-        List<BytesComponent> upvals = super.get("upvalues").getComponents();
+        List<FileComponent> upvals = super.get("upvalues").getComponents();
         if (idx + 1 >= upvals.size()) {
             return "";
         } else {

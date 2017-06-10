@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.gui.support;
 
 import com.github.zxh.classpy.classfile.ClassParser;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.helper.UrlHelper;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
@@ -27,7 +27,7 @@ public class OpenFileTask extends Task<Object> {
         try (InputStream is = url.openStream()) {
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
-            BytesComponent cc = parse(bytes);
+            FileComponent cc = parse(bytes);
             cc.setName(UrlHelper.getFileName(url));
             HexText hex = new HexText(bytes);
 
@@ -36,7 +36,7 @@ public class OpenFileTask extends Task<Object> {
         }
     }
 
-    private BytesComponent parse(byte[] bytes) {
+    private FileComponent parse(byte[] bytes) {
         if (url.toString().endsWith(".class")) {
             return new ClassParser().parse(bytes);
         } else {
@@ -45,10 +45,10 @@ public class OpenFileTask extends Task<Object> {
         }
     }
     
-    public void setOnSucceeded(BiConsumer<BytesComponent, HexText> callback) {
+    public void setOnSucceeded(BiConsumer<FileComponent, HexText> callback) {
         super.setOnSucceeded(e -> {
             Object[] arr = (Object[]) e.getSource().getValue();
-            BytesComponent cc = (BytesComponent) arr[0];
+            FileComponent cc = (FileComponent) arr[0];
             HexText hex = (HexText) arr[1];
             
             callback.accept(cc, hex);

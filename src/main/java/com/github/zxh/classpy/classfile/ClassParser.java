@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.BytesParser;
 
 public class ClassParser implements BytesParser {
@@ -14,7 +14,7 @@ public class ClassParser implements BytesParser {
     }
 
     private static void postRead(ClassComponent cc, ConstantPool cp) {
-        for (BytesComponent c : cc.getComponents()) {
+        for (FileComponent c : cc.getComponents()) {
             postRead((ClassComponent) c, cp);
         }
         cc.postRead(cp);

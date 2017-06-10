@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.lua.binarychunk.component;
 
 import java.util.List;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
 import com.github.zxh.classpy.lua.binarychunk.datatype.CInt;
 import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
@@ -39,7 +39,7 @@ public class Function extends BinaryChunkComponent {
                 .map(c -> (UpValue) c)
                 .forEach(upval -> upval.setDesc(debug));
 
-        List<BytesComponent> code = super.get("code").getComponents();
+        List<FileComponent> code = super.get("code").getComponents();
         for (int i = 1; i < code.size(); i++) {
             ((Instruction) code.get(i)).setDesc(i - 1, this, debug);
         }

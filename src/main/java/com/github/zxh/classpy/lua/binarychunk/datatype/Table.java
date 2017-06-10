@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.lua.binarychunk.datatype;
 
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.helper.StringHelper;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
@@ -34,10 +34,10 @@ public class Table extends BinaryChunkComponent {
 
     @Override
     protected void postRead() {
-        List<BytesComponent> kids = super.getComponents();
+        List<FileComponent> kids = super.getComponents();
         int maxIdx = kids.size() - 1;
         for (int i = 1; i < kids.size(); i++) {
-            BytesComponent kid = kids.get(i);
+            FileComponent kid = kids.get(i);
             if (kid.getName() == null) {
                 kid.setName(StringHelper.formatIndex(maxIdx, i - 1));
             } else {

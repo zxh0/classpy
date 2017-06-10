@@ -2,12 +2,12 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.*;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 
 /**
  * Abstract base class for all class file components.
  */
-public abstract class ClassComponent extends BytesComponent {
+public abstract class ClassComponent extends FileComponent {
 
     /**
      * Reads content, records offset and length.
@@ -26,7 +26,7 @@ public abstract class ClassComponent extends BytesComponent {
      * @param reader
      */
     protected void readContent(ClassReader reader) {
-        for (BytesComponent fc : getComponents()) {
+        for (FileComponent fc : getComponents()) {
             ((ClassComponent) fc).read(reader);
         }
     }

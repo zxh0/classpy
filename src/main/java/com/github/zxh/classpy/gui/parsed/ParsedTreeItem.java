@@ -3,16 +3,16 @@ package com.github.zxh.classpy.gui.parsed;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 
 /**
  * http://download.java.net/jdk8/jfxdocs/javafx/scene/control/TreeItem.html
  */
-public class ParsedTreeItem extends TreeItem<BytesComponent> {
+public class ParsedTreeItem extends TreeItem<FileComponent> {
 
     private boolean isFirstTimeChildren = true;
 
-    public ParsedTreeItem(BytesComponent cc) {
+    public ParsedTreeItem(FileComponent cc) {
         super(cc);
     }
 
@@ -23,7 +23,7 @@ public class ParsedTreeItem extends TreeItem<BytesComponent> {
 
     // build children lazily
     @Override
-    public ObservableList<TreeItem<BytesComponent>> getChildren() {
+    public ObservableList<TreeItem<FileComponent>> getChildren() {
         if (isFirstTimeChildren) {
             isFirstTimeChildren = false;
             System.out.println("get children of " + getValue());
@@ -36,8 +36,8 @@ public class ParsedTreeItem extends TreeItem<BytesComponent> {
         return super.getChildren();
     }
 
-    private ObservableList<TreeItem<BytesComponent>> buildChildren() {
-        ObservableList<TreeItem<BytesComponent>> children = FXCollections.observableArrayList();
+    private ObservableList<TreeItem<FileComponent>> buildChildren() {
+        ObservableList<TreeItem<FileComponent>> children = FXCollections.observableArrayList();
         getValue().getComponents().forEach(sub -> {
             children.add(new ParsedTreeItem(sub));
         });

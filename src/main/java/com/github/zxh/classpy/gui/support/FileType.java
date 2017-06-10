@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.gui.support;
 
 import com.github.zxh.classpy.classfile.ClassFile;
-import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.common.FileComponent;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -23,7 +23,7 @@ public enum FileType {
         this.filter = new ExtensionFilter(description, extension);
     }
 
-    public static FileType typeOf(BytesComponent root) {
+    public static FileType typeOf(FileComponent root) {
         if (root instanceof ClassFile) {
             return JAVA_CLASS;
         } else {
