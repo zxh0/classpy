@@ -67,17 +67,15 @@ public class ParsedViewerPane extends BorderPane {
     private void listenTreeItemSelection() {
         tree.getSelectionModel().getSelectedItems().addListener(
             (ListChangeListener.Change<? extends TreeItem<BytesComponent>> c) -> {
-                if (c.next()) {
-                    if (c.wasAdded()) {
-                        TreeItem<BytesComponent> node = c.getList().get(c.getFrom());
-                        if (node != null && node.getParent() != null) {
-                            BytesComponent cc = node.getValue();
-                            //System.out.println("select " + cc);
-                            statusLabel.setText(" " + cc.getClass().getSimpleName());
-                            if (cc.getLength() > 0) {
-                                hexPane.select(cc);
-                                bytesBar.select(cc);
-                            }
+                if (c.next() && c.wasAdded()) {
+                    TreeItem<BytesComponent> node = c.getList().get(c.getFrom());
+                    if (node != null && node.getParent() != null) {
+                        BytesComponent cc = node.getValue();
+                        //System.out.println("select " + cc);
+                        statusLabel.setText(" " + cc.getClass().getSimpleName());
+                        if (cc.getLength() > 0) {
+                            hexPane.select(cc);
+                            bytesBar.select(cc);
                         }
                     }
                 }
