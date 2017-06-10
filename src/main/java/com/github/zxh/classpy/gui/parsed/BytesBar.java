@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui;
+package com.github.zxh.classpy.gui.parsed;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Line;

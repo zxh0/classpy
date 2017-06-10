@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.github.zxh.classpy.gui.jar.JarDialog;
+import com.github.zxh.classpy.gui.parsed.MainPane;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;

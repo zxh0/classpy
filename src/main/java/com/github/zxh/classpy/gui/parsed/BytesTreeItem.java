@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui;
+package com.github.zxh.classpy.gui.parsed;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
