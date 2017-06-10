@@ -13,7 +13,7 @@ public abstract class ClassComponent extends FileComponent {
      * Reads content, records offset and length.
      * @param reader
      */
-    public final void read(ClassReader reader) {
+    public final void read(ClassFileReader reader) {
         int offset = reader.getPosition();
         readContent(reader);
         int length = reader.getPosition() - offset;
@@ -22,10 +22,10 @@ public abstract class ClassComponent extends FileComponent {
     }
 
     /**
-     * Reads content using ClassReader.
+     * Reads content using ClassFileReader.
      * @param reader
      */
-    protected void readContent(ClassReader reader) {
+    protected void readContent(ClassFileReader reader) {
         for (FileComponent fc : getComponents()) {
             ((ClassComponent) fc).read(reader);
         }

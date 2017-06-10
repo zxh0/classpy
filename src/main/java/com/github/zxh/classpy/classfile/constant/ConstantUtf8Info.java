@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.constant;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Mutf8Decoder;
 import com.github.zxh.classpy.helper.StringHelper;
 
@@ -47,7 +47,7 @@ public class ConstantUtf8Info extends ConstantInfo {
         }
 
         @Override
-        protected void readContent(ClassReader reader) {
+        protected void readContent(ClassFileReader reader) {
             byte[] bytes = reader.readBytes(length.getValue());
             try {
                 str = Mutf8Decoder.decodeMutf8(bytes);

@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 /*
@@ -26,7 +26,7 @@ public class LookupSwitch extends Instruction {
     }
     
     @Override
-    protected void readOperands(ClassReader reader) {
+    protected void readOperands(ClassFileReader reader) {
         skipPadding(reader);
         
         MatchOffset defaultOffset = new MatchOffset(true, pc);
@@ -42,7 +42,7 @@ public class LookupSwitch extends Instruction {
         add(defaultOffset);
     }
     
-    private void skipPadding(ClassReader reader) {
+    private void skipPadding(ClassFileReader reader) {
         for (int i = 1; (pc + i) %4 != 0; i++) {
             reader.readByte();
         }
@@ -62,7 +62,7 @@ public class LookupSwitch extends Instruction {
         }
         
         @Override
-        protected void readContent(ClassReader reader) {
+        protected void readContent(ClassFileReader reader) {
             if (!isDefault) {
                 match = reader.readInt();
                 setName(String.valueOf(match));

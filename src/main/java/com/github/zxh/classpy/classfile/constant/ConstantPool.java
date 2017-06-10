@@ -2,7 +2,7 @@ package com.github.zxh.classpy.classfile.constant;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.helper.StringHelper;
@@ -25,7 +25,7 @@ public class ConstantPool extends ClassComponent {
     }
     
     @Override
-    protected void readContent(ClassReader reader) {
+    protected void readContent(ClassFileReader reader) {
         constants = new ConstantInfo[cpCount.getValue()];
         // The constant_pool table is indexed from 1 to constant_pool_count - 1. 
         for (int i = 1; i < cpCount.getValue(); i++) {
@@ -45,7 +45,7 @@ public class ConstantPool extends ClassComponent {
         reader.setConstantPool(this);
     }
     
-    private ConstantInfo readConstantInfo(ClassReader reader) {
+    private ConstantInfo readConstantInfo(ClassFileReader reader) {
         byte tag = reader.getByte(reader.getPosition());
         
         ConstantInfo ci = ConstantFactory.create(tag);

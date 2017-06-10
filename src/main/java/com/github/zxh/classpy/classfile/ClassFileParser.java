@@ -8,7 +8,7 @@ public class ClassFileParser implements FileParser {
     
     public ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();
-        cf.read(new ClassReader(bytes));
+        cf.read(new ClassFileReader(bytes));
         postRead(cf, cf.getConstantPool());
         return cf;
     }

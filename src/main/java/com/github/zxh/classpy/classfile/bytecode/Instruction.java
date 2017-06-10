@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 /**
@@ -23,7 +23,7 @@ public class Instruction extends ClassComponent {
     }
     
     @Override
-    protected final void readContent(ClassReader reader) {
+    protected final void readContent(ClassFileReader reader) {
         if (!super.getComponents().isEmpty()) {
             super.readContent(reader);
         } else {
@@ -32,7 +32,7 @@ public class Instruction extends ClassComponent {
         }
     }
     
-    protected void readOperands(ClassReader reader) {
+    protected void readOperands(ClassFileReader reader) {
         if (opcode.operandCount > 0) {
             reader.skipBytes(opcode.operandCount);
         }

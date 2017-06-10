@@ -1,10 +1,10 @@
 package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeFactory;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.ClassReader;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.helper.StringHelper;
@@ -23,7 +23,7 @@ public class Table extends ClassComponent {
     }
     
     @Override
-    protected void readContent(ClassReader reader) {
+    protected void readContent(ClassFileReader reader) {
         try {
             for (int i = 0; i < length.getValue(); i++) {
                 super.add(readEntry(reader));
@@ -33,7 +33,7 @@ public class Table extends ClassComponent {
         }
     }
 
-    private ClassComponent readEntry(ClassReader reader) throws ReflectiveOperationException {
+    private ClassComponent readEntry(ClassFileReader reader) throws ReflectiveOperationException {
         if (entryClass == AttributeInfo.class) {
             return readAttributeInfo(reader);
         } else {
@@ -43,7 +43,7 @@ public class Table extends ClassComponent {
         }
     }
     
-    private AttributeInfo readAttributeInfo(ClassReader reader) {
+    private AttributeInfo readAttributeInfo(ClassFileReader reader) {
         int attrNameIndex = reader.getShort(reader.getPosition());
         String attrName = reader.getConstantPool().getUtf8String(attrNameIndex);
         

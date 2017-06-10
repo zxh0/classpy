@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 public class Branch extends Instruction {
@@ -10,7 +10,7 @@ public class Branch extends Instruction {
     }
     
     @Override
-    protected void readOperands(ClassReader reader) {
+    protected void readOperands(ClassFileReader reader) {
         short offset = reader.readShort();
         offset += pc;
         setDesc(getDesc() + " " + offset);

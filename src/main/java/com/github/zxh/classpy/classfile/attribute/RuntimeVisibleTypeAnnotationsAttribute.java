@@ -4,7 +4,7 @@ import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.datatype.U1Hex;
 import com.github.zxh.classpy.classfile.datatype.UInt;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 
 /*
@@ -105,7 +105,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         }
         
         @Override
-        protected void readContent(ClassReader reader) {
+        protected void readContent(ClassFileReader reader) {
             switch (targetType.getValue()) {
                 case 0x00:
                 case 0x01:

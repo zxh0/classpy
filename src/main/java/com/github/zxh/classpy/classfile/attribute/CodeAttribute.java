@@ -6,7 +6,7 @@ import com.github.zxh.classpy.classfile.bytecode.InstructionFactory;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U4;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.common.FileComponent;
 
 import java.util.List;
@@ -66,7 +66,7 @@ public class CodeAttribute extends AttributeInfo {
         }
 
         @Override
-        protected void readContent(ClassReader reader) {
+        protected void readContent(ClassFileReader reader) {
             final int startPosition = reader.getPosition();
             final int endPosition = startPosition + codeLength.getValue();
 

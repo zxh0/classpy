@@ -2,16 +2,16 @@ package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public abstract class UInt extends ClassComponent {
 
-    protected static final Function<ClassReader, Integer> READ_U1 = ClassReader::readUnsignedByte;
-    protected static final Function<ClassReader, Integer> READ_U2 = ClassReader::readUnsignedShort;
-    protected static final Function<ClassReader, Integer> READ_U4 = ClassReader::readInt;
+    protected static final Function<ClassFileReader, Integer> READ_U1 = ClassFileReader::readUnsignedByte;
+    protected static final Function<ClassFileReader, Integer> READ_U2 = ClassFileReader::readUnsignedShort;
+    protected static final Function<ClassFileReader, Integer> READ_U4 = ClassFileReader::readInt;
 
     protected static final BiFunction<Integer, ConstantPool, String> TO_STRING =
             (val, cp) -> val.toString();
@@ -23,11 +23,11 @@ public abstract class UInt extends ClassComponent {
                     : "#" + val;
 
 
-    private final Function<ClassReader, Integer> intReader;
+    private final Function<ClassFileReader, Integer> intReader;
     private final BiFunction<Integer, ConstantPool, String> intDescriber;
     private int value;
 
-    public UInt(Function<ClassReader, Integer> intReader,
+    public UInt(Function<ClassFileReader, Integer> intReader,
                 BiFunction<Integer, ConstantPool, String> intDescriber) {
         this.intReader = intReader;
         this.intDescriber = intDescriber;
@@ -38,7 +38,7 @@ public abstract class UInt extends ClassComponent {
     }
 
     @Override
-    protected final void readContent(ClassReader reader) {
+    protected final void readContent(ClassFileReader reader) {
         value = intReader.apply(reader);
     }
 

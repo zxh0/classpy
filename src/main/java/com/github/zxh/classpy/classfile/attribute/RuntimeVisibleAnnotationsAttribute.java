@@ -3,7 +3,7 @@ package com.github.zxh.classpy.classfile.attribute;
 import com.github.zxh.classpy.classfile.ClassComponent;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.datatype.U1;
 
 /*
@@ -85,7 +85,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
     public static class ElementValue extends ClassComponent {
         
         @Override
-        protected void readContent(ClassReader reader) {
+        protected void readContent(ClassFileReader reader) {
             byte tag = reader.getByte(reader.getPosition());
             preRead(tag);
             super.readContent(reader);

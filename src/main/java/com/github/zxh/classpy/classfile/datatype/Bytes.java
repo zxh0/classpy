@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 
 /**
  * Unparsed bytes.
@@ -15,7 +15,7 @@ public class Bytes extends ClassComponent {
     }
 
     @Override
-    protected void readContent(ClassReader reader) {
+    protected void readContent(ClassFileReader reader) {
         reader.skipBytes(count.getValue());
     }
 

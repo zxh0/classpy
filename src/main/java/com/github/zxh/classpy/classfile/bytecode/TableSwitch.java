@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
 import com.github.zxh.classpy.classfile.ClassComponent;
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 /*
@@ -30,7 +30,7 @@ public class TableSwitch extends Instruction {
     }
     
     @Override
-    protected void readOperands(ClassReader reader) {
+    protected void readOperands(ClassFileReader reader) {
         skipPadding(reader);
         
         JumpOffset defaultOffset = readJumpOffset(reader, "default");
@@ -47,13 +47,13 @@ public class TableSwitch extends Instruction {
         add(defaultOffset);
     }
     
-    private void skipPadding(ClassReader reader) {
+    private void skipPadding(ClassFileReader reader) {
         for (int i = 1; (pc + i) %4 != 0; i++) {
             reader.readByte();
         }
     }
     
-    private JumpOffset readJumpOffset(ClassReader reader, String name) {
+    private JumpOffset readJumpOffset(ClassFileReader reader, String name) {
         JumpOffset offset = new JumpOffset();
         offset.read(reader);
         offset.setName(name);
@@ -67,7 +67,7 @@ public class TableSwitch extends Instruction {
         private int offset;
         
         @Override
-        protected void readContent(ClassReader reader) {
+        protected void readContent(ClassFileReader reader) {
             offset = reader.readInt();
         }
         

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 
 /*
 StackMapTable_attribute {
@@ -17,7 +17,7 @@ public class StackMapTableAttribute extends AttributeInfo {
     }
 
     @Override
-    protected void readContent(ClassReader reader) {
+    protected void readContent(ClassFileReader reader) {
         super.readContent(reader);
         // todo
         reader.skipBytes(super.getUInt("attribute_length") - 2);

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.ClassReader;
+import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 public class Wide extends Instruction {
@@ -10,7 +10,7 @@ public class Wide extends Instruction {
     }
     
     @Override
-    protected void readOperands(ClassReader reader) {
+    protected void readOperands(ClassFileReader reader) {
         int wideOpcode = reader.readUnsignedByte();
         if (wideOpcode == Opcode.iinc.opcode) {
             reader.skipBytes(4);

@@ -5,14 +5,11 @@ import com.github.zxh.classpy.common.BytesReader;
 
 import java.nio.ByteOrder;
 
-/**
- * Convenience class for reading class files.
- */
-public class ClassReader extends BytesReader {
+public class ClassFileReader extends BytesReader {
 
     private ConstantPool constantPool;
 
-    public ClassReader(byte[] bytes) {
+    public ClassFileReader(byte[] bytes) {
         super(bytes, ByteOrder.BIG_ENDIAN);
     }
 
