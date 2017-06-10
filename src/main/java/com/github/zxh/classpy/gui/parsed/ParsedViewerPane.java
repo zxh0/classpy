@@ -10,7 +10,7 @@ import com.github.zxh.classpy.common.BytesComponent;
 import com.github.zxh.classpy.gui.support.HexText;
 
 /**
- * Container of TreeView, HexPane and StatusBar.
+ * Container of TreeView, HexPane, StatusBar and BytesBar.
  * 
  * |------------------------------|
  * | TreeView      |      HexPane |
@@ -19,14 +19,14 @@ import com.github.zxh.classpy.gui.support.HexText;
  * | StatusLabel          BytesBar|
  * |------------------------------|
  */
-public class ParsedPane extends BorderPane {
+public class ParsedViewerPane extends BorderPane {
     
     private final TreeView<BytesComponent> tree;
     private final HexPane hexPane;
     private final Label statusLabel;
     private final BytesBar bytesBar;
     
-    public ParsedPane(BytesComponent file, HexText hex) {
+    public ParsedViewerPane(BytesComponent file, HexText hex) {
         tree = buildClassTree(file);
         hexPane = new HexPane(hex);
         statusLabel = new Label(" ");

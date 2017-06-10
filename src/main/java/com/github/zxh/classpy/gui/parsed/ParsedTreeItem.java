@@ -13,7 +13,7 @@ public class ParsedTreeItem extends TreeItem<BytesComponent> {
     private boolean isFirstTimeChildren = true;
 
     public ParsedTreeItem(BytesComponent cc) {
-                super(cc);
+        super(cc);
     }
 
     @Override
