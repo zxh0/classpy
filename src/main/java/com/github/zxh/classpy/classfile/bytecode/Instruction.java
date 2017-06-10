@@ -1,13 +1,13 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
 /**
  * Base class for all instructions.
  */
-public class Instruction extends ClassComponent {
+public class Instruction extends ClassFileComponent {
 
     protected final Opcode opcode;
     protected final int pc;

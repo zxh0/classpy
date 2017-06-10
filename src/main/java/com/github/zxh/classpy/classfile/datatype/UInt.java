@@ -1,13 +1,13 @@
 package com.github.zxh.classpy.classfile.datatype;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public abstract class UInt extends ClassComponent {
+public abstract class UInt extends ClassFileComponent {
 
     protected static final Function<ClassFileReader, Integer> READ_U1 = ClassFileReader::readUnsignedByte;
     protected static final Function<ClassFileReader, Integer> READ_U2 = ClassFileReader::readUnsignedShort;

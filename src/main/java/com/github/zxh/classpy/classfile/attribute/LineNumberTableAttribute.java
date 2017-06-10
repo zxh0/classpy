@@ -1,8 +1,7 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.datatype.U2;
 
 /*
 LineNumberTable_attribute {
@@ -22,7 +21,7 @@ public class LineNumberTableAttribute extends AttributeInfo {
     }
 
     
-    public static class LineNumberTableEntry extends ClassComponent {
+    public static class LineNumberTableEntry extends ClassFileComponent {
 
         {
             u2("start_pc");

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 
 /*
@@ -24,7 +24,7 @@ public class LocalVariableTypeTableAttribute extends AttributeInfo {
     }
 
 
-    public static class LocalVariableTypeTableEntry extends ClassComponent {
+    public static class LocalVariableTypeTableEntry extends ClassFileComponent {
 
         {
             u2  ("start_pc");

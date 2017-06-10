@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 
 /*
 MethodParameters_attribute {
@@ -20,7 +20,7 @@ public class MethodParametersAttribute extends AttributeInfo {
     }
 
     
-    public static class ParameterInfo extends ClassComponent {
+    public static class ParameterInfo extends ClassFileComponent {
 
         {
             u2("name_index");

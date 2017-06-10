@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.ClassFileReader;
@@ -30,7 +30,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         } element_value_pairs[num_element_value_pairs];
     }
     */
-    public static class AnnotationInfo extends ClassComponent {
+    public static class AnnotationInfo extends ClassFileComponent {
 
         {
             u2cp ("type_index");
@@ -47,7 +47,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
     }
     
-    public static class ElementValuePair extends ClassComponent {
+    public static class ElementValuePair extends ClassFileComponent {
 
         {
             u2cp("element_name_index");
@@ -82,7 +82,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         } value;
     }
     */
-    public static class ElementValue extends ClassComponent {
+    public static class ElementValue extends ClassFileComponent {
         
         @Override
         protected void readContent(ClassFileReader reader) {
@@ -129,7 +129,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
 
     }
     
-    public static class EnumConstValue extends ClassComponent {
+    public static class EnumConstValue extends ClassFileComponent {
 
         {
             u2cp("type_name_index");
@@ -138,7 +138,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
     }
     
-    public static class ArrayValue extends  ClassComponent {
+    public static class ArrayValue extends ClassFileComponent {
 
         {
             u2   ("num_values");

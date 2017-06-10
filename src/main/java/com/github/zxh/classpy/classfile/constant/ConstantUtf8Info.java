@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.ClassFileReader;
@@ -37,7 +37,7 @@ public class ConstantUtf8Info extends ConstantInfo {
 
 
     // UTF8 String in constant pool.
-    private class Mutf8 extends ClassComponent {
+    private class Mutf8 extends ClassFileComponent {
 
         private final U2 length;
         private String str;

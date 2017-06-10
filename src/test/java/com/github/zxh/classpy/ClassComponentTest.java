@@ -1,8 +1,6 @@
 package com.github.zxh.classpy;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -13,8 +11,8 @@ public class ClassComponentTest {
     @Test
     public void _toString() {
         // name == null && desc == null
-//        ClassComponent fc = new ClassComponent();
-//        assertEquals(ClassComponent.class.getSimpleName(), fc.toString());
+//        ClassFileComponent fc = new ClassFileComponent();
+//        assertEquals(ClassFileComponent.class.getSimpleName(), fc.toString());
 //        
 //        // desc == null
 //        fc.setName("nama");

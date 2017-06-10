@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.datatype.U1Hex;
 import com.github.zxh.classpy.classfile.datatype.UInt;
@@ -46,7 +46,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         } element_value_pairs[num_element_value_pairs];
     }
     */
-    public static class TypeAnnotationInfo extends ClassComponent {
+    public static class TypeAnnotationInfo extends ClassFileComponent {
 
         {
             U1Hex targetType = new U1Hex();
@@ -96,7 +96,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         u1 type_argument_index;
     }
     */
-    public static class TargetInfo extends ClassComponent {
+    public static class TargetInfo extends ClassFileComponent {
 
         private final UInt targetType;
 
@@ -158,7 +158,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         
     }
     
-    public static class LocalVarInfo extends ClassComponent {
+    public static class LocalVarInfo extends ClassFileComponent {
 
         {
             u2("start_pc");
@@ -176,7 +176,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         } path[path_length];
     }
     */
-    public static class TypePath extends ClassComponent {
+    public static class TypePath extends ClassFileComponent {
 
         {
             u1   ("path_length");
@@ -185,7 +185,7 @@ public class RuntimeVisibleTypeAnnotationsAttribute extends AttributeInfo {
         
     }
     
-    public static class PathInfo extends ClassComponent {
+    public static class PathInfo extends ClassFileComponent {
 
         {
             u1("type_path_kind");

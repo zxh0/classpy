@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.classfile.datatype;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 
 /**
  * Unparsed bytes.
  */
-public class Bytes extends ClassComponent {
+public class Bytes extends ClassFileComponent {
 
     private UInt count;
 

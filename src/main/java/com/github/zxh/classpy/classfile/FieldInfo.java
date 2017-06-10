@@ -13,7 +13,7 @@ field_info {
     attribute_info attributes[attributes_count];
 }
  */
-public class FieldInfo extends ClassComponent {
+public class FieldInfo extends ClassFileComponent {
 
     {
         u2af ("access_flags", AccessFlagType.AF_FIELD);

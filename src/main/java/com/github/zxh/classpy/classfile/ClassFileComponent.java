@@ -5,9 +5,9 @@ import com.github.zxh.classpy.classfile.datatype.*;
 import com.github.zxh.classpy.common.FileComponent;
 
 /**
- * Abstract base class for all class file components.
+ * Base class for all class file components.
  */
-public abstract class ClassComponent extends FileComponent {
+public abstract class ClassFileComponent extends FileComponent {
 
     /**
      * Reads content, records offset and length.
@@ -27,7 +27,7 @@ public abstract class ClassComponent extends FileComponent {
      */
     protected void readContent(ClassFileReader reader) {
         for (FileComponent fc : getComponents()) {
-            ((ClassComponent) fc).read(reader);
+            ((ClassFileComponent) fc).read(reader);
         }
     }
 
@@ -68,7 +68,7 @@ public abstract class ClassComponent extends FileComponent {
     }
 
     protected final void table(String name,
-                               Class<? extends ClassComponent> entryClass) {
+                               Class<? extends ClassFileComponent> entryClass) {
         UInt length = (UInt) getComponents().get(getComponents().size() - 1);
         Table table = new Table(length, entryClass);
         this.add(name, table);
@@ -80,7 +80,7 @@ public abstract class ClassComponent extends FileComponent {
         this.add(name, bytes);
     }
 
-    protected final void add(ClassComponent subComponent) {
+    protected final void add(ClassFileComponent subComponent) {
         this.add(null, subComponent);
     }
 

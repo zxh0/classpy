@@ -26,7 +26,7 @@ ClassFile {
     attribute_info attributes[attributes_count];
 }
 */
-public class ClassFile extends ClassComponent {
+public class ClassFile extends ClassFileComponent {
 
     {
         U2 cpCount = new U2();

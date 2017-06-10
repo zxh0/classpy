@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.ClassComponent;
+import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
@@ -62,7 +62,7 @@ public class TableSwitch extends Instruction {
     }
 
     
-    public static class JumpOffset extends ClassComponent {
+    public static class JumpOffset extends ClassFileComponent {
 
         private int offset;
         
