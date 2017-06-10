@@ -10,17 +10,17 @@ import javafx.stage.FileChooser.ExtensionFilter;
  */
 public enum FileType {
 
-    JAVA_JAR(ImageHelper.loadImage("/jar.png"), new ExtensionFilter("Java JAR", "*.jar")),
-    JAVA_CLASS(ImageHelper.loadImage("/java.png"), new ExtensionFilter("Java Class", "*.class")),
-    LUA_BC(ImageHelper.loadImage("/lua.png"), new ExtensionFilter("Lua Binary Chunk", "*.luac")),
+    JAVA_JAR("/jar.png", "Java JAR", "*.jar"),
+    JAVA_CLASS("/java.png", "Java Class", "*.class"),
+    LUA_BC("/lua.png", "Lua Binary Chunk", "*.luac"),
     ;
 
     public final Image icon;
     public final ExtensionFilter filter;
 
-    private FileType(Image icon, ExtensionFilter filter) {
-        this.icon = icon;
-        this.filter = filter;
+    private FileType(String icon, String description, String extension) {
+        this.icon = ImageHelper.loadImage(icon);
+        this.filter = new ExtensionFilter(description, extension);
     }
 
     public static FileType typeOf(BytesComponent root) {
