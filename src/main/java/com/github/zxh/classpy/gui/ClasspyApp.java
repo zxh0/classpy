@@ -3,16 +3,14 @@ package com.github.zxh.classpy.gui;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.file.Path;
 
-import com.github.zxh.classpy.gui.jar.JarDialog;
+import com.github.zxh.classpy.gui.jar.JarTreeView;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -99,12 +97,17 @@ public class ClasspyApp extends Application {
     }
 
     private void openJar(File jarFile) throws Exception {
-        URL classUrl = JarDialog.showDialog(jarFile);
-        RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile.toURI().toURL());
-        menuBar.updateRecentFiles();
-        if (classUrl != null) {
-            openFile(classUrl);
-        }
+        TreeView<Path> treeView = JarTreeView.createTreeView(jarFile);
+        Tab tab = createTab(jarFile.toURI().toURL());
+        tab.setContent(treeView);
+
+
+//        URL classUrl = JarTreeView.showDialog(jarFile);
+//        RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile.toURI().toURL());
+//        menuBar.updateRecentFiles();
+//        if (classUrl != null) {
+//            openFile(classUrl);
+//        }
     }
     
     private void openFile(File file) throws MalformedURLException {
