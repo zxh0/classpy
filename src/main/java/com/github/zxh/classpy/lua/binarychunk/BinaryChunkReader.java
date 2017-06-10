@@ -11,8 +11,8 @@ public class BinaryChunkReader extends BytesReader {
     private int luaIntSize = 8;
     private int luaNumSize = 8;
 
-    public BinaryChunkReader(byte[] bytes) {
-        super(bytes, ByteOrder.LITTLE_ENDIAN);
+    public BinaryChunkReader(byte[] data) {
+        super(data, ByteOrder.LITTLE_ENDIAN);
     }
 
     // setters

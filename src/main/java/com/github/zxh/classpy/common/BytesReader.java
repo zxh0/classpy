@@ -7,8 +7,8 @@ public class BytesReader {
     
     private final ByteBuffer buf;
 
-    public BytesReader(byte[] bytes, ByteOrder order) {
-        this.buf = ByteBuffer.wrap(bytes)
+    public BytesReader(byte[] data, ByteOrder order) {
+        this.buf = ByteBuffer.wrap(data)
                 .asReadOnlyBuffer()
                 .order(order);
     }

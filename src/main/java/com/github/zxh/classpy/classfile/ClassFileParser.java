@@ -6,18 +6,18 @@ import com.github.zxh.classpy.common.FileParser;
 
 public class ClassFileParser implements FileParser {
     
-    public ClassFile parse(byte[] bytes) {
+    public ClassFile parse(byte[] data) {
         ClassFile cf = new ClassFile();
-        cf.read(new ClassFileReader(bytes));
+        cf.read(new ClassFileReader(data));
         postRead(cf, cf.getConstantPool());
         return cf;
     }
 
-    private static void postRead(ClassFileComponent cc, ConstantPool cp) {
-        for (FileComponent c : cc.getComponents()) {
+    private static void postRead(ClassFileComponent fc, ConstantPool cp) {
+        for (FileComponent c : fc.getComponents()) {
             postRead((ClassFileComponent) c, cp);
         }
-        cc.postRead(cp);
+        fc.postRead(cp);
     }
 
 }

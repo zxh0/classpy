@@ -9,8 +9,8 @@ public class ClassFileReader extends BytesReader {
 
     private ConstantPool constantPool;
 
-    public ClassFileReader(byte[] bytes) {
-        super(bytes, ByteOrder.BIG_ENDIAN);
+    public ClassFileReader(byte[] data) {
+        super(data, ByteOrder.BIG_ENDIAN);
     }
 
     public ConstantPool getConstantPool() {

@@ -6,8 +6,8 @@ import com.github.zxh.classpy.common.FileParser;
 public class BinaryChunkParser implements FileParser {
 
     @Override
-    public FileComponent parse(byte[] bytes) {
-        BinaryChunkReader reader = new BinaryChunkReader(bytes);
+    public FileComponent parse(byte[] data) {
+        BinaryChunkReader reader = new BinaryChunkReader(data);
         BinaryChunkFile root = new BinaryChunkFile();
         root.read(reader);
         postRead(root);
