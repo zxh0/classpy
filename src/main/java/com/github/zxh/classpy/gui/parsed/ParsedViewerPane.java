@@ -7,7 +7,6 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
 import com.github.zxh.classpy.common.BytesComponent;
-import com.github.zxh.classpy.gui.support.HexText;
 
 /**
  * Container of TreeView, HexPane, StatusBar and BytesBar.

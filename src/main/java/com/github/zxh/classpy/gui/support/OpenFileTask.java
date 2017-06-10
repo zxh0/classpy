@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui.support;
 
 import com.github.zxh.classpy.classfile.ClassParser;
 import com.github.zxh.classpy.common.BytesComponent;
+import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.helper.UrlHelper;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
 import java.io.InputStream;

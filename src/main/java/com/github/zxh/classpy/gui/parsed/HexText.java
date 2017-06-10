@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui.support;
+package com.github.zxh.classpy.gui.parsed;
 
 import com.github.zxh.classpy.common.BytesComponent;
 

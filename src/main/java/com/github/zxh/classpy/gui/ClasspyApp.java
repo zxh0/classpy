@@ -6,6 +6,7 @@ import java.net.URL;
 import java.nio.file.Path;
 
 import com.github.zxh.classpy.gui.jar.JarTreeView;
+import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;

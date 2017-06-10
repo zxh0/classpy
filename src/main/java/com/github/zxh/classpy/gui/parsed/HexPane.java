@@ -3,7 +3,6 @@ package com.github.zxh.classpy.gui.parsed;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
 import com.github.zxh.classpy.common.BytesComponent;
-import com.github.zxh.classpy.gui.support.HexText;
 
 public class HexPane extends TextArea {
     
