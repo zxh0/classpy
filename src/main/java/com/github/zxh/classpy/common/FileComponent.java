@@ -5,15 +5,15 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Abstract base class for all class file components.
+ * Base class for all file components.
  */
 public abstract class FileComponent {
     
     private String name;
     private String desc; // description
-    private int offset; // the position of this ClassComponent in the file
-    private int length; // how many bytes this ClassComponent has
-    private List<FileComponent> components;
+    private int offset; // the position of this FileComponent in the file
+    private int length; // how many bytes this FileComponent has
+    private List<FileComponent> components; // sub-components
     
     // Getters & Setters
     public final String getName() {return name;}

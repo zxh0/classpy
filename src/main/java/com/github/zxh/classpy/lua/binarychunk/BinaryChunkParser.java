@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.lua.binarychunk;
 
 import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.common.BytesParser;
+import com.github.zxh.classpy.common.FileParser;
 
-public class BinaryChunkParser implements BytesParser {
+public class BinaryChunkParser implements FileParser {
 
     @Override
     public FileComponent parse(byte[] bytes) {

@@ -2,9 +2,9 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.common.BytesParser;
+import com.github.zxh.classpy.common.FileParser;
 
-public class ClassParser implements BytesParser {
+public class ClassParser implements FileParser {
     
     public ClassFile parse(byte[] bytes) {
         ClassFile cf = new ClassFile();
