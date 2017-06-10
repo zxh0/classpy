@@ -6,23 +6,22 @@ import javafx.scene.control.TreeItem;
 import com.github.zxh.classpy.common.BytesComponent;
 
 /**
- * FileComponentTreeItem.
- * Build children lazily.
  * http://download.java.net/jdk8/jfxdocs/javafx/scene/control/TreeItem.html
  */
 public class BytesTreeItem extends TreeItem<BytesComponent> {
 
     private boolean isFirstTimeChildren = true;
-    
+
     public BytesTreeItem(BytesComponent cc) {
-        super(cc);
+                super(cc);
     }
 
     @Override
     public boolean isLeaf() {
         return getValue().getComponents().isEmpty();
     }
-    
+
+    // build children lazily
     @Override
     public ObservableList<TreeItem<BytesComponent>> getChildren() {
         if (isFirstTimeChildren) {

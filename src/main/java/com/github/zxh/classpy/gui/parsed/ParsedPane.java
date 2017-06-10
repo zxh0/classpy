@@ -19,14 +19,14 @@ import com.github.zxh.classpy.gui.support.HexText;
  * | StatusLabel          BytesBar|
  * |------------------------------|
  */
-public class MainPane extends BorderPane {
+public class ParsedPane extends BorderPane {
     
     private final TreeView<BytesComponent> tree;
     private final HexPane hexPane;
     private final Label statusLabel;
     private final BytesBar bytesBar;
     
-    public MainPane(BytesComponent file, HexText hex) {
+    public ParsedPane(BytesComponent file, HexText hex) {
         tree = buildClassTree(file);
         hexPane = new HexPane(hex);
         statusLabel = new Label(" ");

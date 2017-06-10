@@ -5,7 +5,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import com.github.zxh.classpy.gui.jar.JarDialog;
-import com.github.zxh.classpy.gui.parsed.MainPane;
+import com.github.zxh.classpy.gui.parsed.ParsedPane;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
@@ -116,8 +116,8 @@ public class ClasspyApp extends Application {
         OpenFileTask task = new OpenFileTask(url);
         
         task.setOnSucceeded((BytesComponent bc, HexText hex) -> {
-            MainPane mainPane = new MainPane(bc, hex);
-            tab.setContent(mainPane);
+            ParsedPane parsedPane = new ParsedPane(bc, hex);
+            tab.setContent(parsedPane);
             
             // todo
             RecentFiles.INSTANCE.add(FileType.typeOf(bc), url);
