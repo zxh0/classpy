@@ -44,7 +44,7 @@ public class MyMenuBar extends MenuBar {
         Menu openMenu = new Menu("Open", ImageHelper.createImageView("/open.png"));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_JAR));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_CLASS));
-        openMenu.getItems().add(createOpenMenuItem(FileType.LUAC_OUT));
+        openMenu.getItems().add(createOpenMenuItem(FileType.LUA_BC));
         return openMenu;
     }
 

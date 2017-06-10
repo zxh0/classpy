@@ -12,7 +12,7 @@ public enum FileType {
 
     JAVA_JAR(ImageHelper.loadImage("/jar.png"), new ExtensionFilter("Java JAR", "*.jar")),
     JAVA_CLASS(ImageHelper.loadImage("/java.png"), new ExtensionFilter("Java Class", "*.class")),
-    LUAC_OUT(ImageHelper.loadImage("/lua.png"), new ExtensionFilter("luac.out", "*.luac")),
+    LUA_BC(ImageHelper.loadImage("/lua.png"), new ExtensionFilter("Lua Binary Chunk", "*.luac")),
     ;
 
     public final Image icon;
@@ -27,7 +27,7 @@ public enum FileType {
         if (root instanceof ClassFile) {
             return JAVA_CLASS;
         } else {
-            return LUAC_OUT;
+            return LUA_BC;
         }
     }
 
