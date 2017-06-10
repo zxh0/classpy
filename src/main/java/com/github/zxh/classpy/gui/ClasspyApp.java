@@ -3,6 +3,8 @@ package com.github.zxh.classpy.gui;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+
+import com.github.zxh.classpy.gui.jar.JarDialog;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;

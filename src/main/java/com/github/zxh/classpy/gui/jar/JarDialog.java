@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui;
+package com.github.zxh.classpy.gui.jar;
 
 import java.io.File;
 import java.net.MalformedURLException;

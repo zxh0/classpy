@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui;
+package com.github.zxh.classpy.gui.jar;
 
 import java.io.IOException;
 import java.nio.file.FileVisitOption;
@@ -10,12 +10,10 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 public class JarTreeItem extends TreeItem<Path> {
 
