@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.nio.file.FileSystem;
+import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -85,6 +86,15 @@ public class JarTreeView {
             }
         }
         return null;
+    }
+
+    public static boolean isOpen(File jarFile) throws Exception {
+        URI jarUri = new URI("jar", jarFile.toPath().toUri().toString(), null);
+        try {
+            return FileSystems.getFileSystem(jarUri) != null;
+        } catch (FileSystemNotFoundException e) {
+            return false;
+        }
     }
     
 }

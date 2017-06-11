@@ -97,6 +97,12 @@ public class ClasspyApp extends Application {
     }
 
     private void openJar(File jarFile) throws Exception {
+        if (JarTreeView.isOpen(jarFile)) {
+            // todo
+            System.out.println("jar is already open: " + jarFile);
+            return;
+        }
+
         JarTreeView treeView = new JarTreeView(jarFile);
         treeView.setOpenClassHandler(this::openClassInJar);
 
