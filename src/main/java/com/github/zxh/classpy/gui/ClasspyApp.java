@@ -3,7 +3,6 @@ package com.github.zxh.classpy.gui;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
 
 import com.github.zxh.classpy.gui.jar.JarTreeView;
 import com.github.zxh.classpy.gui.parsed.HexText;
@@ -98,17 +97,14 @@ public class ClasspyApp extends Application {
     }
 
     private void openJar(File jarFile) throws Exception {
-        TreeView<Path> treeView = JarTreeView.createTreeView(jarFile);
+        JarTreeView treeView = new JarTreeView(jarFile);
         Tab tab = createTab(jarFile.toURI().toURL());
-        tab.setContent(treeView);
+        tab.setContent(treeView.getTreeView());
+        tab.setOnClosed(event -> treeView.closeZipFs());
+        stage.setOnCloseRequest(event -> treeView.closeZipFs());
 
-
-//        URL classUrl = JarTreeView.showDialog(jarFile);
-//        RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile.toURI().toURL());
-//        menuBar.updateRecentFiles();
-//        if (classUrl != null) {
-//            openFile(classUrl);
-//        }
+        RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile);
+        menuBar.updateRecentFiles();
     }
     
     private void openFile(File file) throws MalformedURLException {
