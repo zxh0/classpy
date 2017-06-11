@@ -119,12 +119,12 @@ public class ClasspyApp extends Application {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
         
-        task.setOnSucceeded((FileComponent bc, HexText hex) -> {
-            ParsedViewerPane viewerPane = new ParsedViewerPane(bc, hex);
+        task.setOnSucceeded((FileComponent fc, HexText hex) -> {
+            ParsedViewerPane viewerPane = new ParsedViewerPane(fc, hex);
             tab.setContent(viewerPane);
             
             // todo
-            RecentFiles.INSTANCE.add(FileType.typeOf(bc), url);
+            RecentFiles.INSTANCE.add(FileType.typeOf(fc), url);
             menuBar.updateRecentFiles();
         });
         

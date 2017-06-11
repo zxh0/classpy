@@ -5,7 +5,6 @@ import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.helper.UrlHelper;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
-import java.io.InputStream;
 import java.net.URL;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
@@ -23,41 +22,40 @@ public class OpenFileTask extends Task<Object> {
     @Override
     protected Object call() throws Exception {
         System.out.println("loading " + url + "...");
-        
-        try (InputStream is = url.openStream()) {
-            byte[] bytes = new byte[is.available()];
-            is.read(bytes);
-            FileComponent cc = parse(bytes);
-            cc.setName(UrlHelper.getFileName(url));
-            HexText hex = new HexText(bytes);
 
-            System.out.println("finish loading");
-            return new Object[] {cc, hex};
-        }
+        byte[] data = UrlHelper.readData(url);
+        String fileName = UrlHelper.getFileName(url);
+
+        HexText hex = new HexText(data);
+        FileComponent fc = parse(data);
+        fc.setName(fileName);
+
+        System.out.println("finish loading");
+        return new Object[] {fc, hex};
     }
 
-    private FileComponent parse(byte[] bytes) {
+    private FileComponent parse(byte[] data) {
         if (url.toString().endsWith(".class")) {
-            return new ClassFileParser().parse(bytes);
+            return new ClassFileParser().parse(data);
         } else {
             // todo
-            return new BinaryChunkParser().parse(bytes);
+            return new BinaryChunkParser().parse(data);
         }
     }
     
     public void setOnSucceeded(BiConsumer<FileComponent, HexText> callback) {
         super.setOnSucceeded(e -> {
             Object[] arr = (Object[]) e.getSource().getValue();
-            FileComponent cc = (FileComponent) arr[0];
+            FileComponent fc = (FileComponent) arr[0];
             HexText hex = (HexText) arr[1];
             
-            callback.accept(cc, hex);
+            callback.accept(fc, hex);
         });
     }
     
     public void setOnFailed(Consumer<Throwable> callback) {
-        super.setOnFailed(e -> {
-            Throwable err = e.getSource().getException();
+        super.setOnFailed(event -> {
+            Throwable err = event.getSource().getException();
             err.printStackTrace(System.err);
             
             callback.accept(err);
