@@ -98,6 +98,8 @@ public class ClasspyApp extends Application {
 
     private void openJar(File jarFile) throws Exception {
         JarTreeView treeView = new JarTreeView(jarFile);
+        treeView.setOpenClassHandler(this::openClassInJar);
+
         Tab tab = createTab(jarFile.toURI().toURL());
         tab.setContent(treeView.getTreeView());
         tab.setOnClosed(event -> treeView.closeZipFs());
@@ -106,7 +108,15 @@ public class ClasspyApp extends Application {
         RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile);
         menuBar.updateRecentFiles();
     }
-    
+
+    private void openClassInJar(String url) {
+        try {
+            openFile(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace(System.err);
+        }
+    }
+
     private void openFile(File file) throws MalformedURLException {
         openFile(file.toURI().toURL());
     }

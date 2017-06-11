@@ -5,19 +5,19 @@ import javafx.scene.control.TreeView;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.HashMap;
+import java.util.function.Consumer;
 
 public class JarTreeView {
 
     private final File jarFile;
     private final FileSystem zipFs;
     private final TreeView<Path> treeView;
+    private Consumer<String> openClassHandler;
 
     public JarTreeView(File jarFile) throws Exception {
         this.jarFile = jarFile;
@@ -27,6 +27,10 @@ public class JarTreeView {
 
     public TreeView<Path> getTreeView() {
         return treeView;
+    }
+
+    public void setOpenClassHandler(Consumer<String> openClassHandler) {
+        this.openClassHandler = openClassHandler;
     }
 
     public void closeZipFs() {
@@ -51,20 +55,19 @@ public class JarTreeView {
         TreeView<Path> tree = new TreeView<>(rootItem);
         tree.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                try {
-                    System.out.println(getSelectedClass());
-                } catch (Exception e) {
-                    e.printStackTrace(System.err);
+                String selectedClass = getSelectedClass();
+                if (selectedClass != null && openClassHandler != null) {
+                    System.out.println(selectedClass);
+                    openClassHandler.accept(selectedClass);
                 }
             }
         });
-        tree.setMinWidth(200);
 
         return tree;
     }
 
     // jar:file:/absolute/location/of/yourJar.jar!/path/to/ClassName.class
-    private URL getSelectedClass() throws MalformedURLException {
+    private String getSelectedClass() {
         TreeItem<Path> selectedItem = treeView.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             Path selectedPath = selectedItem.getValue();
@@ -77,8 +80,8 @@ public class JarTreeView {
                 String classPath = selectedPath.toAbsolutePath().toString();
                 String classUrl = String.format("jar:file:%s!%s", jarPath, classPath);
                 classUrl = classUrl.replace('\\', '/');
-                System.out.println(classUrl);
-                return new URL(classUrl);
+                //System.out.println(classUrl);
+                return classUrl;
             }
         }
         return null;
