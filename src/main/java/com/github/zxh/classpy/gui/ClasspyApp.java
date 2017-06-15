@@ -38,7 +38,10 @@ public class ClasspyApp extends Application {
         root.setTop(createMenuBar());
         root.setCenter(createTabPane());
 
-        stage.setScene(new Scene(root, 960, 540));
+        Scene scene = new Scene(root, 960, 540);
+        //scene.getStylesheets().add("classpy.css");
+
+        stage.setScene(scene);
         stage.setTitle(TITLE);
         stage.getIcons().add(ImageHelper.loadImage("/spy16.png"));
         stage.getIcons().add(ImageHelper.loadImage("/spy32.png"));
