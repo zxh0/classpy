@@ -108,8 +108,6 @@ public class ClasspyApp extends Application {
 
         Tab tab = createTab(jarFile.toURI().toURL());
         tab.setContent(treeView.getTreeView());
-        tab.setOnClosed(event -> treeView.closeZipFs());
-        stage.setOnCloseRequest(event -> treeView.closeZipFs());
 
         RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile);
         menuBar.updateRecentFiles();
