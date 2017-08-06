@@ -1,16 +1,16 @@
 package com.github.zxh.classpy.gui;
 
-import java.net.URL;
-import java.util.function.BiConsumer;
-
+import com.github.zxh.classpy.gui.support.FileType;
 import com.github.zxh.classpy.gui.support.ImageHelper;
+import com.github.zxh.classpy.gui.support.RecentFile;
+import com.github.zxh.classpy.gui.support.RecentFiles;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-import com.github.zxh.classpy.gui.support.FileType;
-import com.github.zxh.classpy.gui.support.RecentFile;
-import com.github.zxh.classpy.gui.support.RecentFiles;
+
+import java.net.URL;
+import java.util.function.BiConsumer;
 
 /**
  * Classpy menu bar.

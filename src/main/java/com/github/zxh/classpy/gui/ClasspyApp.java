@@ -1,22 +1,28 @@
 package com.github.zxh.classpy.gui;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.jar.JarTreeView;
 import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
+import com.github.zxh.classpy.gui.support.FileType;
+import com.github.zxh.classpy.gui.support.ImageHelper;
+import com.github.zxh.classpy.gui.support.OpenFileTask;
+import com.github.zxh.classpy.gui.support.RecentFiles;
+import com.github.zxh.classpy.helper.UrlHelper;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.gui.support.*;
-import com.github.zxh.classpy.helper.UrlHelper;
+
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Main class.

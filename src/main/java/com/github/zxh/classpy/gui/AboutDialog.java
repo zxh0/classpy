@@ -1,8 +1,6 @@
 package com.github.zxh.classpy.gui;
 
-import java.awt.Desktop;
-import java.io.IOException;
-import java.net.URI;
+import com.github.zxh.classpy.gui.support.ImageHelper;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -11,7 +9,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import com.github.zxh.classpy.gui.support.ImageHelper;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 
 public class AboutDialog {
     

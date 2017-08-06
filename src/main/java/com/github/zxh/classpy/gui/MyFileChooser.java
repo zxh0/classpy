@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.gui;
 
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import com.github.zxh.classpy.gui.support.FileType;
 import com.github.zxh.classpy.gui.support.RecentFiles;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 
