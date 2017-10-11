@@ -64,6 +64,15 @@ public class ClasspyApp extends Application {
         return tp;
     }
 
+    private Tab createTab(URL url) {
+        Tab tab = new Tab();
+        tab.setText(UrlHelper.getFileName(url));
+        tab.setUserData(url);
+        tab.setContent(new BorderPane(new ProgressBar()));
+        ((TabPane) root.getCenter()).getTabs().add(tab);
+        return tab;
+    }
+
     private MenuBar createMenuBar() {
         menuBar = new MyMenuBar();
 
@@ -73,26 +82,47 @@ public class ClasspyApp extends Application {
         return menuBar;
     }
 
+    // http://www.java2s.com/Code/Java/JavaFX/DraganddropfiletoScene.htm
+    private void enableDragAndDrop(Scene scene) {
+        scene.setOnDragOver(event -> {
+            Dragboard db = event.getDragboard();
+            if (db.hasFiles()) {
+                event.acceptTransferModes(TransferMode.COPY);
+            } else {
+                event.consume();
+            }
+        });
+
+        // Dropping over surface
+        scene.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+            if (db.hasFiles()) {
+                success = true;
+                for (File file : db.getFiles()) {
+                    //System.out.println(file.getAbsolutePath());
+                    openFile(file);
+                }
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
+    }
+
+    private void openNewWindow() {
+        ClasspyApp newApp = new ClasspyApp();
+        // is this correct?
+        newApp.start(new Stage());
+    }
+
     private void onOpenFile(FileType ft, URL url) {
         if (url == null) {
-            showFileChooser(ft);
+            File file = MyFileChooser.showFileChooser(stage, ft);
+            if (file != null) {
+                openFile(file);
+            }
         } else {
             openFile(url);
-        }
-    }
-
-    private void showFileChooser(FileType ft) {
-        File file = MyFileChooser.showFileChooser(stage, ft);
-        if (file != null) {
-            openFile(file);
-        }
-    }
-
-    private void openClassInJar(String url) {
-        try {
-            openFile(new URL(url));
-        } catch (MalformedURLException e) {
-            e.printStackTrace(System.err);
         }
     }
 
@@ -130,46 +160,12 @@ public class ClasspyApp extends Application {
         task.startInNewThread();
     }
 
-    private Tab createTab(URL url) {
-        Tab tab = new Tab();
-        tab.setText(UrlHelper.getFileName(url));
-        tab.setUserData(url);
-        tab.setContent(new BorderPane(new ProgressBar()));
-        ((TabPane) root.getCenter()).getTabs().add(tab);
-        return tab;
-    }
-
-    private void openNewWindow() {
-        ClasspyApp newApp = new ClasspyApp();
-        // is this correct?
-        newApp.start(new Stage());
-    }
-
-    // http://www.java2s.com/Code/Java/JavaFX/DraganddropfiletoScene.htm
-    private void enableDragAndDrop(Scene scene) {
-        scene.setOnDragOver(event -> {
-            Dragboard db = event.getDragboard();
-            if (db.hasFiles()) {
-                event.acceptTransferModes(TransferMode.COPY);
-            } else {
-                event.consume();
-            }
-        });
-
-        // Dropping over surface
-        scene.setOnDragDropped(event -> {
-            Dragboard db = event.getDragboard();
-            boolean success = false;
-            if (db.hasFiles()) {
-                success = true;
-                for (File file : db.getFiles()) {
-                    //System.out.println(file.getAbsolutePath());
-                    openFile(file);
-                }
-            }
-            event.setDropCompleted(success);
-            event.consume();
-        });
+    private void openClassInJar(String url) {
+        try {
+            openFile(new URL(url));
+        } catch (MalformedURLException e) {
+            e.printStackTrace(System.err);
+        }
     }
 
 
