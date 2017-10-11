@@ -16,6 +16,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -39,13 +41,14 @@ public class ClasspyApp extends Application {
     @Override
     public void start(Stage stage) {
         this.stage = stage;
-        
+
         root = new BorderPane();
         root.setTop(createMenuBar());
         root.setCenter(createTabPane());
 
         Scene scene = new Scene(root, 960, 540);
         //scene.getStylesheets().add("classpy.css");
+        enableDragAndDrop(scene);
 
         stage.setScene(scene);
         stage.setTitle(TITLE);
@@ -53,7 +56,7 @@ public class ClasspyApp extends Application {
         stage.getIcons().add(ImageHelper.loadImage("/spy32.png"));
         stage.show();
     }
-    
+
     private TabPane createTabPane() {
         TabPane tp = new TabPane();
         tp.getSelectionModel().selectedItemProperty().addListener(
@@ -65,7 +68,7 @@ public class ClasspyApp extends Application {
         });
         return tp;
     }
-    
+
     private MenuBar createMenuBar() {
         menuBar = new MyMenuBar();
 
@@ -99,7 +102,7 @@ public class ClasspyApp extends Application {
                     openFile(file);
                 }
             } catch (Exception e) {
-                // todo
+                // TODO
                 e.printStackTrace(System.err);
             }
         }
@@ -107,7 +110,7 @@ public class ClasspyApp extends Application {
 
     private void openJar(File jarFile) throws Exception {
         if (JarTreeView.isOpen(jarFile)) {
-            // todo
+            // TODO
             System.out.println("jar is already open: " + jarFile);
             return;
         }
@@ -133,20 +136,20 @@ public class ClasspyApp extends Application {
     private void openFile(File file) throws MalformedURLException {
         openFile(file.toURI().toURL());
     }
-    
+
     private void openFile(URL url) {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
-        
+
         task.setOnSucceeded((FileComponent fc, HexText hex) -> {
             ParsedViewerPane viewerPane = new ParsedViewerPane(fc, hex);
             tab.setContent(viewerPane);
-            
-            // todo
+
+            // TODO
             RecentFiles.INSTANCE.add(FileType.typeOf(fc), url);
             menuBar.updateRecentFiles();
         });
-        
+
         task.setOnFailed((Throwable err) -> {
             Text errMsg = new Text(err.toString());
             tab.setContent(errMsg);
@@ -154,7 +157,7 @@ public class ClasspyApp extends Application {
 
         task.startInNewThread();
     }
-    
+
     private Tab createTab(URL url) {
         Tab tab = new Tab();
         tab.setText(UrlHelper.getFileName(url));
@@ -169,10 +172,46 @@ public class ClasspyApp extends Application {
         // is this correct?
         newApp.start(new Stage());
     }
-    
-    
+
+    // http://www.java2s.com/Code/Java/JavaFX/DraganddropfiletoScene.htm
+    private void enableDragAndDrop(Scene scene) {
+        scene.setOnDragOver(event -> {
+            Dragboard db = event.getDragboard();
+            if (db.hasFiles()) {
+                event.acceptTransferModes(TransferMode.COPY);
+            } else {
+                event.consume();
+            }
+        });
+
+        // Dropping over surface
+        scene.setOnDragDropped(event -> {
+            Dragboard db = event.getDragboard();
+            boolean success = false;
+            if (db.hasFiles()) {
+                success = true;
+                for (File file : db.getFiles()) {
+                    //System.out.println(file.getAbsolutePath());
+                    try {
+                        if (file.getName().endsWith(".jar")) {
+                            openJar(file);
+                        } else {
+                            openFile(file);
+                        }
+                    } catch (Exception e) {
+                        // TODO
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+            event.setDropCompleted(success);
+            event.consume();
+        });
+    }
+
+
     public static void main(String[] args) {
         Application.launch(args);
     }
-    
+
 }
