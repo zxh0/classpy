@@ -12,8 +12,8 @@ import com.github.zxh.classpy.lua.binarychunk.datatype.LuaInt;
  */
 public class Header extends BinaryChunkComponent {
 
-    private final byte[] _luaSig = new byte[]{0x1b, 'L', 'u', 'a'};
-    private final byte[] _luacData = new byte[]{0x19, (byte) 0x93, '\r', '\n', 0x1a, '\n'};
+    private final byte[] _luaSig = {0x1b, 'L', 'u', 'a'};
+    private final byte[] _luacData = {0x19, (byte) 0x93, '\r', '\n', 0x1a, '\n'};
 
     {
         bytes  ("LUA_SIGNATURE",    4);

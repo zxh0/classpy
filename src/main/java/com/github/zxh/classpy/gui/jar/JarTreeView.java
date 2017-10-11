@@ -5,19 +5,20 @@ import javafx.scene.control.TreeView;
 
 import java.io.File;
 import java.net.URI;
+import java.net.URL;
 import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.FileSystems;
 import java.util.function.Consumer;
 
 public class JarTreeView {
 
-    private final File jarFile;
+    private final URL jarURL;
     private final TreeView<JarTreeNode> treeView;
     private Consumer<String> openClassHandler;
 
-    public JarTreeView(File jarFile) throws Exception {
-        this.jarFile = jarFile;
-        this.treeView = createTreeView(jarFile);
+    public JarTreeView(URL jarURL, JarTreeNode rootNode) {
+        this.jarURL = jarURL;
+        this.treeView = createTreeView(rootNode);
     }
 
     public TreeView<JarTreeNode> getTreeView() {
@@ -28,8 +29,7 @@ public class JarTreeView {
         this.openClassHandler = openClassHandler;
     }
 
-    private TreeView<JarTreeNode> createTreeView(File jarFile) throws Exception {
-        JarTreeNode rootNode = JarTreeLoader.load(jarFile);
+    private TreeView<JarTreeNode> createTreeView(JarTreeNode rootNode) {
         JarTreeItem rootItem = new JarTreeItem(rootNode);
         rootItem.setExpanded(true);
 
@@ -53,12 +53,7 @@ public class JarTreeView {
         if (selectedItem != null) {
             JarTreeNode selectedPath = selectedItem.getValue();
             if (selectedPath.toString().endsWith(".class")) {
-                String jarPath = jarFile.getAbsolutePath();
-                if (!jarPath.startsWith("/")) {
-                    // windows
-                    jarPath = "/" + jarPath;
-                }
-                String classUrl = String.format("jar:file:%s!%s", jarPath, selectedPath.path);
+                String classUrl = String.format("jar:%s!%s", jarURL, selectedPath.path);
                 classUrl = classUrl.replace('\\', '/');
                 //System.out.println(classUrl);
                 return classUrl;

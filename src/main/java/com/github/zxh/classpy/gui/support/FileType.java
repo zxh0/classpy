@@ -13,6 +13,7 @@ public enum FileType {
     JAVA_JAR("/jar.png", "Java JAR", "*.jar"),
     JAVA_CLASS("/java.png", "Java Class", "*.class"),
     LUA_BC("/lua.png", "Lua Binary Chunk", "*.luac"),
+    UNKNOWN("/file.png", "Unknown", "*.*"),
     ;
 
     public final Image icon;

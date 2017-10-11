@@ -1,13 +1,8 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.jar.JarTreeView;
-import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
-import com.github.zxh.classpy.gui.support.FileType;
-import com.github.zxh.classpy.gui.support.ImageHelper;
-import com.github.zxh.classpy.gui.support.OpenFileTask;
-import com.github.zxh.classpy.gui.support.RecentFiles;
+import com.github.zxh.classpy.gui.support.*;
 import com.github.zxh.classpy.helper.UrlHelper;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
@@ -81,12 +76,6 @@ public class ClasspyApp extends Application {
     private void onOpenFile(FileType ft, URL url) {
         if (url == null) {
             showFileChooser(ft);
-        } else if (ft == FileType.JAVA_JAR) {
-            try {
-                openJar(new File(url.toURI()));
-            } catch (Exception e) {
-                e.printStackTrace(System.err);
-            }
         } else {
             openFile(url);
         }
@@ -95,34 +84,8 @@ public class ClasspyApp extends Application {
     private void showFileChooser(FileType ft) {
         File file = MyFileChooser.showFileChooser(stage, ft);
         if (file != null) {
-            try {
-                if (ft == FileType.JAVA_JAR) {
-                    openJar(file);
-                } else {
-                    openFile(file);
-                }
-            } catch (Exception e) {
-                // TODO
-                e.printStackTrace(System.err);
-            }
+            openFile(file);
         }
-    }
-
-    private void openJar(File jarFile) throws Exception {
-        if (JarTreeView.isOpen(jarFile)) {
-            // TODO
-            System.out.println("jar is already open: " + jarFile);
-            return;
-        }
-
-        JarTreeView treeView = new JarTreeView(jarFile);
-        treeView.setOpenClassHandler(this::openClassInJar);
-
-        Tab tab = createTab(jarFile.toURI().toURL());
-        tab.setContent(treeView.getTreeView());
-
-        RecentFiles.INSTANCE.add(FileType.JAVA_JAR, jarFile);
-        menuBar.updateRecentFiles();
     }
 
     private void openClassInJar(String url) {
@@ -133,20 +96,29 @@ public class ClasspyApp extends Application {
         }
     }
 
-    private void openFile(File file) throws MalformedURLException {
-        openFile(file.toURI().toURL());
+    private void openFile(File file) {
+        try {
+            openFile(file.toURI().toURL());
+        } catch (MalformedURLException e) {
+            e.printStackTrace(System.err);
+        }
     }
 
     private void openFile(URL url) {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
 
-        task.setOnSucceeded((FileComponent fc, HexText hex) -> {
-            ParsedViewerPane viewerPane = new ParsedViewerPane(fc, hex);
-            tab.setContent(viewerPane);
+        task.setOnSucceeded((OpenFileResult ofr) -> {
+            if (ofr.fileType == FileType.JAVA_JAR) {
+                JarTreeView treeView = new JarTreeView(ofr.url, ofr.jarRootNode);
+                treeView.setOpenClassHandler(this::openClassInJar);
+                tab.setContent(treeView.getTreeView());
+            } else {
+                ParsedViewerPane viewerPane = new ParsedViewerPane(ofr.fileRootNode, ofr.hexText);
+                tab.setContent(viewerPane);
+            }
 
-            // TODO
-            RecentFiles.INSTANCE.add(FileType.typeOf(fc), url);
+            RecentFiles.INSTANCE.add(ofr.fileType, url);
             menuBar.updateRecentFiles();
         });
 
@@ -192,16 +164,7 @@ public class ClasspyApp extends Application {
                 success = true;
                 for (File file : db.getFiles()) {
                     //System.out.println(file.getAbsolutePath());
-                    try {
-                        if (file.getName().endsWith(".jar")) {
-                            openJar(file);
-                        } else {
-                            openFile(file);
-                        }
-                    } catch (Exception e) {
-                        // TODO
-                        throw new RuntimeException(e);
-                    }
+                    openFile(file);
                 }
             }
             event.setDropCompleted(success);
