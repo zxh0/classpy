@@ -25,6 +25,7 @@ public enum AccessFlags {
     ACC_SYNTHETIC   (0x1000, AF_ALL                                ),
     ACC_ANNOTATION  (0x2000, AF_CLASS | AF_NESTED_CLASS            ),
     ACC_ENUM        (0x4000, AF_CLASS | AF_FIELD | AF_NESTED_CLASS ),
+    ACC_MODULE      (0x8000, AF_CLASS                              ),
     ;
     
     public final int flag;
