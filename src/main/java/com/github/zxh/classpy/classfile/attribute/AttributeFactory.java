@@ -34,6 +34,7 @@ public class AttributeFactory {
             case "BootstrapMethods": return new BootstrapMethodsAttribute();
             case "MethodParameters": return new MethodParametersAttribute(); // todo
             case "Module": return new ModuleAttribute();
+            case "ModulePackages": return new ModulePackagesAttribute();
         }
 
         //throw new ParseException(name);
