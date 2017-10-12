@@ -33,6 +33,7 @@ public class AttributeFactory {
             case "AnnotationDefault": return new AnnotationDefaultAttribute();
             case "BootstrapMethods": return new BootstrapMethodsAttribute();
             case "MethodParameters": return new MethodParametersAttribute(); // todo
+            case "Module": return new ModuleAttribute();
         }
 
         //throw new ParseException(name);
