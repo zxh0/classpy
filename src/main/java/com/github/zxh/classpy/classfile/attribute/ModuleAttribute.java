@@ -2,7 +2,6 @@ package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
-import com.github.zxh.classpy.classfile.datatype.U2;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.jvm.AccessFlagType;
 
@@ -58,7 +57,7 @@ public class ModuleAttribute extends AttributeInfo {
         u2   ("opens_count");
         table("opens", Open.class);
         u2   ("uses_count");
-        table("uses_index", U2.class);
+        table("uses_index", U2CpIndex.class);
         u2   ("provides_count");
         table("provides", Provide.class);
     }
@@ -86,7 +85,7 @@ public class ModuleAttribute extends AttributeInfo {
             u2cp ("exports_index");
             u2af ("exports_flags", AccessFlagType.AF_MODULE_ATTR);
             u2   ("exports_to_count");
-            table("exports_to", U2CpIndex.class); ;
+            table("exports_to", U2CpIndex.class);
         }
 
         @Override
@@ -115,9 +114,14 @@ public class ModuleAttribute extends AttributeInfo {
     public static class Provide extends ClassFileComponent {
 
         {
-            u2   ("provides_index");
+            u2cp ("provides_index");
             u2   ("provides_with_count");
-            table("provides_with_index", U2.class);
+            table("provides_with_index", U2CpIndex.class);
+        }
+
+        @Override
+        protected void postRead(ConstantPool cp) {
+            setDesc(cp.getConstantDesc(super.getUInt("provides_index")));
         }
 
     }
