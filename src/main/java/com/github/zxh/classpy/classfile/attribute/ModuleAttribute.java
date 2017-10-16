@@ -1,7 +1,9 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U2;
+import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.jvm.AccessFlagType;
 
 /*
@@ -65,8 +67,15 @@ public class ModuleAttribute extends AttributeInfo {
 
         {
             u2cp("requires_index");
-            u2af("requires_flags", AccessFlagType.AF_REQUIRES);
+            u2af("requires_flags", AccessFlagType.AF_MODULE_ATTR);
             u2cp("requires_version_index");
+        }
+
+        @Override
+        protected void postRead(ConstantPool cp) {
+            String moduleName = cp.getConstantDesc(super.getUInt("requires_index"));
+            String version = cp.getConstantDesc(super.getUInt("requires_version_index"));
+            setDesc(moduleName + "@" + version);
         }
 
     }
@@ -74,10 +83,15 @@ public class ModuleAttribute extends AttributeInfo {
     public static class Export extends ClassFileComponent {
 
         {
-            u2   ("exports_index");
-            u2   ("exports_flags");
+            u2cp ("exports_index");
+            u2af ("exports_flags", AccessFlagType.AF_MODULE_ATTR);
             u2   ("exports_to_count");
-            table("exports_to", U2.class); ;
+            table("exports_to", U2CpIndex.class); ;
+        }
+
+        @Override
+        protected void postRead(ConstantPool cp) {
+            setDesc(cp.getConstantDesc(super.getUInt("exports_index")));
         }
 
     }
