@@ -45,18 +45,18 @@ Module_attribute {
 public class ModuleAttribute extends AttributeInfo {
 
     {
-        u2("module_name_index");
-        u2("module_flags");
-        u2("module_version_index");
-        u2("requires_count");
+        u2cp ("module_name_index");
+        u2   ("module_flags");
+        u2cp ("module_version_index");
+        u2   ("requires_count");
         table("requires", Require.class);
-        u2("exports_count");
+        u2   ("exports_count");
         table("exports", Export.class);
-        u2("opens_count");
+        u2   ("opens_count");
         table("opens", Open.class);
-        u2("uses_count");
+        u2   ("uses_count");
         table("uses_index", U2.class);
-        u2("provides_count");
+        u2   ("provides_count");
         table("provides", Provide.class);
     }
 
@@ -73,9 +73,9 @@ public class ModuleAttribute extends AttributeInfo {
     public static class Export extends ClassFileComponent {
 
         {
-            u2("exports_index");
-            u2("exports_flags");
-            u2("exports_to_count");
+            u2   ("exports_index");
+            u2   ("exports_flags");
+            u2   ("exports_to_count");
             table("exports_to", U2.class); ;
         }
 
@@ -84,9 +84,9 @@ public class ModuleAttribute extends AttributeInfo {
     public static class Open extends ClassFileComponent {
 
         {
-            u2("opens_index");
-            u2("opens_flags");
-            u2("opens_to_count");
+            u2   ("opens_index");
+            u2   ("opens_flags");
+            u2   ("opens_to_count");
             table("opens_to_index", U2.class);
         }
 
@@ -95,8 +95,8 @@ public class ModuleAttribute extends AttributeInfo {
     public static class Provide extends ClassFileComponent {
 
         {
-            u2("provides_index");
-            u2("provides_with_count");
+            u2   ("provides_index");
+            u2   ("provides_with_count");
             table("provides_with_index", U2.class);
         }
 
