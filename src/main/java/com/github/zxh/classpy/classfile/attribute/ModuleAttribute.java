@@ -99,10 +99,15 @@ public class ModuleAttribute extends AttributeInfo {
     public static class Open extends ClassFileComponent {
 
         {
-            u2   ("opens_index");
-            u2   ("opens_flags");
+            u2cp ("opens_index");
+            u2af ("opens_flags", AccessFlagType.AF_MODULE_ATTR);
             u2   ("opens_to_count");
-            table("opens_to_index", U2.class);
+            table("opens_to_index", U2CpIndex.class);
+        }
+
+        @Override
+        protected void postRead(ConstantPool cp) {
+            setDesc(cp.getConstantDesc(super.getUInt("opens_index")));
         }
 
     }
