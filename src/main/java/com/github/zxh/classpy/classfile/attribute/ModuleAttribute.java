@@ -2,6 +2,7 @@ package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.datatype.U2;
+import com.github.zxh.classpy.classfile.jvm.AccessFlagType;
 
 /*
 Module_attribute {
@@ -63,9 +64,9 @@ public class ModuleAttribute extends AttributeInfo {
     public static class Require extends ClassFileComponent {
 
         {
-            u2("requires_index");
-            u2("requires_flags");
-            u2("requires_version_index");
+            u2cp("requires_index");
+            u2af("requires_flags", AccessFlagType.AF_REQUIRES);
+            u2cp("requires_version_index");
         }
 
     }
