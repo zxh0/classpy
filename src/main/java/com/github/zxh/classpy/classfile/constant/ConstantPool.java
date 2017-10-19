@@ -110,7 +110,8 @@ public class ConstantPool extends ClassFileComponent {
         ConstantInfo c = constants[index];
         if (c.getClass() != classOfT) {
             throw new ParseException("Constant#" + index
-                    + " is not " + classOfT.getSimpleName() + "!");
+                    + " is " + c.getClass().getSimpleName()
+                    + " not " + classOfT.getSimpleName() + "!");
         }
         return classOfT.cast(c);
     }

@@ -25,6 +25,8 @@ public class ConstantFactory {
             case 15: return new ConstantMethodHandleInfo();
             case 16: return new ConstantMethodTypeInfo();
             case 18: return new ConstantInvokeDynamicInfo();
+            case 19: return new ConstantModuleInfo();
+            case 20: return new ConstantPackageInfo();
         }
 
         throw new ParseException("Invalid Constant Type: " + tag);
