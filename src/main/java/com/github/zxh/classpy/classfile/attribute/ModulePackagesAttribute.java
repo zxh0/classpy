@@ -13,8 +13,6 @@ ModulePackages_attribute {
 public class ModulePackagesAttribute extends AttributeInfo {
 
     {
-        u2("attribute_name_index");
-        u4("attribute_length");
         u2("package_count");
         table("package_index", U2.class);
     }

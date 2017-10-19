@@ -10,8 +10,6 @@ ModuleMainClass_attribute {
 public class ModuleMainClassAttribute extends AttributeInfo {
 
     {
-        u2("attribute_name_index");
-        u4("attribute_length");
         u2("main_class_index");
     }
 
