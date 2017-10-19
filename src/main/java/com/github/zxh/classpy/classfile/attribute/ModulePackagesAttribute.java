@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.classfile.attribute;
 
 import com.github.zxh.classpy.classfile.datatype.U2;
+import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
 /*
 ModulePackages_attribute {
@@ -14,7 +15,7 @@ public class ModulePackagesAttribute extends AttributeInfo {
 
     {
         u2("package_count");
-        table("package_index", U2.class);
+        table("package_index", U2CpIndex.class);
     }
 
 }

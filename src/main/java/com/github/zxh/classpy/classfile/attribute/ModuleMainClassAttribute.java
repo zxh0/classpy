@@ -10,7 +10,7 @@ ModuleMainClass_attribute {
 public class ModuleMainClassAttribute extends AttributeInfo {
 
     {
-        u2("main_class_index");
+        u2cp("main_class_index");
     }
 
 }
