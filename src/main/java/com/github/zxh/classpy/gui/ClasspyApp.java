@@ -78,6 +78,7 @@ public class ClasspyApp extends Application {
 
         menuBar.setOnOpenFile(this::onOpenFile);
         menuBar.setOnNewWindow(this::openNewWindow);
+        //menuBar.setUseSystemMenuBar(true);
 
         return menuBar;
     }
