@@ -4,6 +4,7 @@ import com.github.zxh.classpy.gui.jar.JarTreeView;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import com.github.zxh.classpy.gui.support.*;
 import com.github.zxh.classpy.helper.UrlHelper;
+import com.github.zxh.classpy.helper.font.FontHelper;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
@@ -14,6 +15,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -28,10 +30,13 @@ public class ClasspyApp extends Application {
 
     private static final String TITLE = "Classpy";
 
+    public static final int DEFAULT_WIDTH = 960;
+    public static final int DEFAULT_HEIGHT = 540;
 
     private Stage stage;
     private BorderPane root;
     private MyMenuBar menuBar;
+    private Font defaultFont  = FontHelper.uiFont;
 
     @Override
     public void start(Stage stage) {
@@ -41,8 +46,15 @@ public class ClasspyApp extends Application {
         root.setTop(createMenuBar());
         root.setCenter(createTabPane());
 
-        Scene scene = new Scene(root, 960, 540);
-        //scene.getStylesheets().add("classpy.css");
+        /*
+        menuBar.getMenus().forEach(it -> {
+            if (FontHelper.uiFontName != null)
+                it.setStyle(" -fx-font-family: " + FontHelper.uiFontName + ";");
+            it.textProperty();
+        });*/
+
+        Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        scene.getStylesheets().add("classpy.css");
         enableDragAndDrop(scene);
 
         stage.setScene(scene);
@@ -60,7 +72,7 @@ public class ClasspyApp extends Application {
                         URL url = (URL) newTab.getUserData();
                         stage.setTitle(TITLE + " - " + url);
                     }
-        });
+                });
         return tp;
     }
 

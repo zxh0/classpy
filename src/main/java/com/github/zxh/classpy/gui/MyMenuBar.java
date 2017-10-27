@@ -37,8 +37,8 @@ public class MyMenuBar extends MenuBar {
         Menu fileMenu = new Menu("_File");
         fileMenu.getItems().add(createOpenMenu());
         fileMenu.getItems().add(createRecentMenu());
-        getMenus().add(fileMenu);
         fileMenu.setMnemonicParsing(true);
+        getMenus().add(fileMenu);
     }
 
     private Menu createOpenMenu() {
