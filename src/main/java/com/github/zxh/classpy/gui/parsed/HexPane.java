@@ -1,25 +1,88 @@
 package com.github.zxh.classpy.gui.parsed;
 
 import com.github.zxh.classpy.helper.font.FontHelper;
-import javafx.scene.control.TextArea;
+import javafx.geometry.Orientation;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import com.github.zxh.classpy.common.FileComponent;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.HBox;
 
-public class HexPane extends TextArea {
-    
+import static com.github.zxh.classpy.gui.parsed.HexText.BYTES_PER_ROW;
+
+public class HexPane extends ScrollPane {
+
     private final HexText hex;
-    
+    private final TextArea textArea1;
+    private final TextArea textArea2;
+    private final TextArea textArea3;
+
+    private HBox hbox;
+
     public HexPane(HexText hex) {
-        super(hex.getText());
         this.hex = hex;
-        setEditable(false);
-        // http://stackoverflow.com/questions/24983841/format-text-output-in-javafx
-        setFont(FontHelper.textFont);
+        textArea1 = new TextArea(hex.rowHeaderText);
+        textArea2 = new TextArea(hex.bytesText);
+        textArea3 = new TextArea(hex.asciiString);
+
+        initTextArea();
+
+        Separator separator1 = new Separator();
+        Separator separator2 = new Separator();
+
+        separator1.setOrientation(Orientation.VERTICAL);
+        separator2.setOrientation(Orientation.VERTICAL);
+
+        hbox = new HBox();
+
+        hbox.getChildren().addAll(textArea1, textArea2, textArea3);
+
+        setContent(hbox);
     }
-    
+
     public void select(FileComponent cc) {
-        HexText.Selection selection = hex.select(cc);
-        positionCaret(selection.getStartPosition());
-        selectPositionCaret(selection.getEndPosition());
+        int byteOffset = cc.getOffset();
+
+        textArea2.positionCaret(calcBytesTextPosition(cc.getOffset()));
+        textArea2.selectPositionCaret(calcBytesTextPosition(cc.getOffset() + cc.getLength()) - 1);
+
+        textArea3.positionCaret(calcAsciiTextPosition(cc.getOffset()));
+        textArea3.selectPositionCaret(calcAsciiTextPosition(cc.getOffset() + cc.getLength()));
     }
-    
+
+    private void initTextArea() {
+        textArea1.setFont(FontHelper.textFont);
+        textArea2.setFont(FontHelper.textFont);
+        textArea3.setFont(FontHelper.textFont);
+
+        textArea1.setPrefColumnCount(6);
+        textArea2.setPrefColumnCount(45);
+        textArea3.setPrefColumnCount(16);
+
+        int rowCount = hex.rowHeaderText.length() / 7;
+
+        textArea1.setPrefRowCount(rowCount);
+        textArea2.setPrefRowCount(rowCount);
+        textArea3.setPrefRowCount(rowCount);
+
+        textArea1.setEditable(false);
+        textArea2.setEditable(false);
+        textArea3.setEditable(false);
+
+        textArea1.setStyle("-fx-text-fill: grey;");
+    }
+
+    private int calcBytesTextPosition(int byteOffset) {
+        int rowIndex = byteOffset / BYTES_PER_ROW;
+        int colIndex = byteOffset % BYTES_PER_ROW;
+
+        return (49 * rowIndex) + (colIndex * 3);
+    }
+
+    private int calcAsciiTextPosition(int byteOffset) {
+        int rowIndex = byteOffset / BYTES_PER_ROW;
+        int colIndex = byteOffset % BYTES_PER_ROW;
+
+        return (17 * rowIndex) + (colIndex);
+    }
 }

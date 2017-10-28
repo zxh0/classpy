@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui.parsed;
 
+import com.github.zxh.classpy.helper.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
@@ -26,7 +27,7 @@ public class ParsedTreeItem extends TreeItem<FileComponent> {
     public ObservableList<TreeItem<FileComponent>> getChildren() {
         if (isFirstTimeChildren) {
             isFirstTimeChildren = false;
-            System.out.println("get children of " + getValue());
+            Log.log("get children of " + getValue());
 
             // First getChildren() call, so we actually go off and 
             // determine the children of the File contained in this TreeItem.
@@ -38,9 +39,7 @@ public class ParsedTreeItem extends TreeItem<FileComponent> {
 
     private ObservableList<TreeItem<FileComponent>> buildChildren() {
         ObservableList<TreeItem<FileComponent>> children = FXCollections.observableArrayList();
-        getValue().getComponents().forEach(sub -> {
-            children.add(new ParsedTreeItem(sub));
-        });
+        getValue().getComponents().forEach(sub -> children.add(new ParsedTreeItem(sub)));
         return children;
     }
     

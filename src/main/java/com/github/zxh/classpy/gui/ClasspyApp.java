@@ -24,6 +24,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -36,8 +37,8 @@ public class ClasspyApp extends Application {
 
     private static final String TITLE = "Classpy";
 
-    public static final int DEFAULT_WIDTH = 960;
-    public static final int DEFAULT_HEIGHT = 540;
+    public static final int DEFAULT_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4 * 3;
+    public static final int DEFAULT_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4 * 3;
 
     public static Cmd cmd = new Cmd();
 

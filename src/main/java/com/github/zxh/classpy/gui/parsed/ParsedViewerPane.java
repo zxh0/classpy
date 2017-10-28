@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui.parsed;
 
+import com.github.zxh.classpy.helper.Log;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
@@ -70,7 +71,7 @@ public class ParsedViewerPane extends BorderPane {
                     TreeItem<FileComponent> node = c.getList().get(c.getFrom());
                     if (node != null && node.getParent() != null) {
                         FileComponent cc = node.getValue();
-                        //System.out.println("select " + cc);
+                        Log.log("select " + cc);
                         statusLabel.setText(" " + cc.getClass().getSimpleName());
                         if (cc.getLength() > 0) {
                             hexPane.select(cc);
