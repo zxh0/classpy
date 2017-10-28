@@ -9,7 +9,10 @@ public class UrlHelper {
     public static byte[] readData(URL url) throws IOException {
         try (InputStream is = url.openStream()) {
             byte[] data = new byte[is.available()];
-            is.read(data);
+            int len = 0;
+            while (len < data.length){
+                len += is.read(data, len, data.length - len);
+            }
             return data;
         }
     }
