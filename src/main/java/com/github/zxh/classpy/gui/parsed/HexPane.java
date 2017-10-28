@@ -1,10 +1,11 @@
 package com.github.zxh.classpy.gui.parsed;
 
 import com.github.zxh.classpy.helper.font.FontHelper;
+import com.github.zxh.classpy.common.FileComponent;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Separator;
-import com.github.zxh.classpy.common.FileComponent;
+
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 
@@ -43,6 +44,8 @@ public class HexPane extends ScrollPane {
     public void select(FileComponent cc) {
         int byteOffset = cc.getOffset();
 
+        int rowIndex = byteOffset / BYTES_PER_ROW;
+
         textArea2.positionCaret(calcBytesTextPosition(cc.getOffset()));
         textArea2.selectPositionCaret(calcBytesTextPosition(cc.getOffset() + cc.getLength()) - 1);
 
@@ -56,14 +59,17 @@ public class HexPane extends ScrollPane {
         textArea3.setFont(FontHelper.textFont);
 
         textArea1.setPrefColumnCount(6);
-        textArea2.setPrefColumnCount(45);
+        textArea2.setPrefColumnCount(46);
         textArea3.setPrefColumnCount(16);
 
-        int rowCount = hex.rowHeaderText.length() / 7;
-
+        int rowCount = hex.rowHeaderText.length() / 9 + 1;
         textArea1.setPrefRowCount(rowCount);
         textArea2.setPrefRowCount(rowCount);
         textArea3.setPrefRowCount(rowCount);
+
+        textArea1.setContextMenu(new AsciiPaneMenu(textArea1));
+        textArea2.setContextMenu(new HexPaneMenu(textArea2));
+        textArea3.setContextMenu(new AsciiPaneMenu(textArea3));
 
         textArea1.setEditable(false);
         textArea2.setEditable(false);

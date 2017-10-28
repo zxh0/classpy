@@ -3,6 +3,7 @@ package com.github.zxh.classpy.gui.jar;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.github.zxh.classpy.helper.Log;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
@@ -24,7 +25,7 @@ public class JarTreeItem extends TreeItem<JarTreeNode> {
     public ObservableList<TreeItem<JarTreeNode>> getChildren() {
         if (isFirstTimeChildren) {
             isFirstTimeChildren = false;
-            System.out.println("get children of " + getValue());
+            Log.log("get children of " + getValue());
 
             // First getChildren() call, so we actually go off and 
             // determine the children of the File contained in this TreeItem.

@@ -80,33 +80,4 @@ public class HexText {
         }
     }
 
-    public Selection select(FileComponent cc) {
-        Selection selection = new Selection();
-        selection.startPosition = calcTextPosition(cc.getOffset());
-        selection.endPosition = calcTextPosition(cc.getOffset() + cc.getLength()) - 1;
-        return selection;
-    }
-
-    private int calcTextPosition(int byteOffset) {
-        int rowIndex = byteOffset / BYTES_PER_ROW;
-        int colIndex = byteOffset % BYTES_PER_ROW;
-        return (76 * rowIndex) + 10 + (colIndex * 3);
-    }
-
-
-    public static class Selection {
-
-        private int startPosition;
-        private int endPosition;
-
-        public int getStartPosition() {
-            return startPosition;
-        }
-
-        public int getEndPosition() {
-            return endPosition;
-        }
-
-    }
-
 }

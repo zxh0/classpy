@@ -1,5 +1,7 @@
 package com.github.zxh.classpy.gui.support;
 
+import com.github.zxh.classpy.helper.Log;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -74,7 +76,7 @@ public class RecentFiles {
                     .getBytes(StandardCharsets.UTF_8);
 
             Path tmp = Paths.get(System.getProperty("java.io.tmpdir"), "classpy.tmp");
-            System.out.println("saving " + tmp + " ...");
+            Log.log("saving " + tmp + " ...");
             try {
                 Files.write(tmp, bytes);
             } catch (IOException e) {
@@ -86,7 +88,7 @@ public class RecentFiles {
     private void loadFromTmp() {
         Path tmp = Paths.get(System.getProperty("java.io.tmpdir"), "classpy.tmp");
         if (Files.exists(tmp)) {
-            System.out.println("loading " + tmp + " ...");
+            Log.log("loading " + tmp + " ...");
             try {
                 List<String> rfs = Files.readAllLines(tmp, StandardCharsets.UTF_8);
                 for (String rf : rfs) {
