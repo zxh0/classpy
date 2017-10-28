@@ -10,7 +10,7 @@ public class UrlHelper {
         try (InputStream is = url.openStream()) {
             byte[] data = new byte[is.available()];
             int len = 0;
-            while (len < data.length){
+            while (len < data.length) {
                 len += is.read(data, len, data.length - len);
             }
             return data;
