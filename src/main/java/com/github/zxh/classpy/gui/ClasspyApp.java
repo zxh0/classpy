@@ -1,9 +1,15 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.gui.jar.JarTreeLoader;
+import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.jar.JarTreeView;
+import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import com.github.zxh.classpy.gui.support.*;
+import com.github.zxh.classpy.helper.Log;
 import com.github.zxh.classpy.helper.UrlHelper;
+import com.github.zxh.classpy.helper.font.FontHelper;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
@@ -14,12 +20,15 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 
 /**
  * Main class.
@@ -28,10 +37,15 @@ public class ClasspyApp extends Application {
 
     private static final String TITLE = "Classpy";
 
+    public static final int DEFAULT_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4 * 3;
+    public static final int DEFAULT_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4 * 3;
+
+    public static Cmd cmd = new Cmd();
 
     private Stage stage;
     private BorderPane root;
     private MyMenuBar menuBar;
+    private Font defaultFont = FontHelper.uiFont;
 
     @Override
     public void start(Stage stage) {
@@ -41,14 +55,25 @@ public class ClasspyApp extends Application {
         root.setTop(createMenuBar());
         root.setCenter(createTabPane());
 
-        Scene scene = new Scene(root, 960, 540);
-        //scene.getStylesheets().add("classpy.css");
+        Scene scene = new Scene(root, DEFAULT_WIDTH, DEFAULT_HEIGHT);
+        scene.getStylesheets().add("classpy.css");
         enableDragAndDrop(scene);
 
         stage.setScene(scene);
         stage.setTitle(TITLE);
         stage.getIcons().add(ImageHelper.loadImage("/spy16.png"));
         stage.getIcons().add(ImageHelper.loadImage("/spy32.png"));
+
+        if (cmd.files != null) {
+            for (String file : cmd.files) {
+                try {
+                    openFileInThisThread(new File(file).toURI().toURL());
+                } catch (MalformedURLException e) {
+                    Log.log(e);
+                }
+            }
+        }
+
         stage.show();
     }
 
@@ -60,7 +85,7 @@ public class ClasspyApp extends Application {
                         URL url = (URL) newTab.getUserData();
                         stage.setTitle(TITLE + " - " + url);
                     }
-        });
+                });
         return tp;
     }
 
@@ -135,7 +160,7 @@ public class ClasspyApp extends Application {
         }
     }
 
-    private void openFile(URL url) {
+    private OpenFileTask makeOpenFileTask(URL url) {
         Tab tab = createTab(url);
         OpenFileTask task = new OpenFileTask(url);
 
@@ -158,7 +183,15 @@ public class ClasspyApp extends Application {
             tab.setContent(errMsg);
         });
 
-        task.startInNewThread();
+        return task;
+    }
+
+    private void openFileInThisThread(URL url) {
+        makeOpenFileTask(url).run();
+    }
+
+    private void openFile(URL url) {
+        makeOpenFileTask(url).startInNewThread();
     }
 
     private void openClassInJar(String url) {
@@ -171,7 +204,7 @@ public class ClasspyApp extends Application {
 
 
     public static void main(String[] args) {
-        Application.launch(args);
+        Application.launch(cmd.parse(args));
     }
 
 }

@@ -1,4 +1,4 @@
-.tree-cell {
-    -fx-font-family: Courier New ;
-    -fx-font-size: 14 ;
+.root {
+    -fx-font-family: Ubuntu;
+    -fx-font-size: 14;
 }

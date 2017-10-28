@@ -34,17 +34,19 @@ public class MyMenuBar extends MenuBar {
     }
     
     private void createFileMenu() {
-        Menu fileMenu = new Menu("File");
+        Menu fileMenu = new Menu("_File");
         fileMenu.getItems().add(createOpenMenu());
         fileMenu.getItems().add(createRecentMenu());
+        fileMenu.setMnemonicParsing(true);
         getMenus().add(fileMenu);
     }
 
     private Menu createOpenMenu() {
-        Menu openMenu = new Menu("Open", ImageHelper.createImageView("/open.png"));
+        Menu openMenu = new Menu("_Open", ImageHelper.createImageView("/open.png"));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_JAR));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_CLASS));
         openMenu.getItems().add(createOpenMenuItem(FileType.LUA_BC));
+        openMenu.setMnemonicParsing(true);
         return openMenu;
     }
 
@@ -57,13 +59,14 @@ public class MyMenuBar extends MenuBar {
     }
 
     private Menu createRecentMenu() {
-        Menu recentMenu = new Menu("Open Recent", ImageHelper.createImageView("/clock.png"));
+        Menu recentMenu = new Menu("Open _Recent", ImageHelper.createImageView("/clock.png"));
         for (RecentFile rf : RecentFiles.INSTANCE.getAll()) {
             ImageView icon = new ImageView(rf.type.icon);
             MenuItem menuItem = new MenuItem(rf.url.toString(), icon);
             menuItem.setOnAction(e -> onOpenFile.accept(rf.type, rf.url));
             recentMenu.getItems().add(menuItem);
         }
+        recentMenu.setMnemonicParsing(true);
         return recentMenu;
     }
     
@@ -71,19 +74,22 @@ public class MyMenuBar extends MenuBar {
         MenuItem newWinMenuItem = new MenuItem("New Window");
         newWinMenuItem.setOnAction(e -> onNewWindow.run());
         
-        Menu winMenu = new Menu("Window");
+        Menu winMenu = new Menu("_Window");
         winMenu.getItems().add(newWinMenuItem);
-        
+        winMenu.setMnemonicParsing(true);
+
         getMenus().add(winMenu);
     }
     
     private void createHelpMenu() {
-        MenuItem aboutMenuItem = new MenuItem("About");
+        MenuItem aboutMenuItem = new MenuItem("_About");
         aboutMenuItem.setOnAction(e -> AboutDialog.showDialog());
-        
-        Menu helpMenu = new Menu("Help");
+        aboutMenuItem.setMnemonicParsing(true);
+
+        Menu helpMenu = new Menu("_Help");
         helpMenu.getItems().add(aboutMenuItem);
-        
+        helpMenu.setMnemonicParsing(true);
+
         getMenus().add(helpMenu);
     }
 
