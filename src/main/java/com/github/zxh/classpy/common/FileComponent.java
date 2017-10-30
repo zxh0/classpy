@@ -27,7 +27,7 @@ public abstract class FileComponent {
 
     public List<FileComponent> getComponents() {
         return components == null
-                ? Collections.EMPTY_LIST
+                ? Collections.emptyList()
                 : Collections.unmodifiableList(components);
     }
 
