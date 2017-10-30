@@ -28,12 +28,6 @@ public class HexPane extends ScrollPane {
 
         initTextArea();
 
-        Separator separator1 = new Separator();
-        Separator separator2 = new Separator();
-
-        separator1.setOrientation(Orientation.VERTICAL);
-        separator2.setOrientation(Orientation.VERTICAL);
-
         hbox = new HBox();
 
         hbox.getChildren().addAll(textArea1, textArea2, textArea3);
@@ -45,12 +39,28 @@ public class HexPane extends ScrollPane {
         int byteOffset = cc.getOffset();
 
         int rowIndex = byteOffset / BYTES_PER_ROW;
+        int rows = textArea3.getText().length() / (BYTES_PER_ROW + 1);
 
         textArea2.positionCaret(calcBytesTextPosition(cc.getOffset()));
         textArea2.selectPositionCaret(calcBytesTextPosition(cc.getOffset() + cc.getLength()) - 1);
 
         textArea3.positionCaret(calcAsciiTextPosition(cc.getOffset()));
         textArea3.selectPositionCaret(calcAsciiTextPosition(cc.getOffset() + cc.getLength()));
+
+        double height = getHeight();
+        double textHeight = textArea2.getHeight();
+
+        double vvalue = (((double) rowIndex) / rows * textHeight / (textHeight - height) - height / 2 / textHeight);
+
+        if (Double.isFinite(vvalue)) {
+            if (vvalue < 0) {
+                this.setVvalue(0);
+            } else if (vvalue > 1) {
+                this.setVvalue(1);
+            } else {
+                this.setVvalue(vvalue);
+            }
+        }
     }
 
     private void initTextArea() {
