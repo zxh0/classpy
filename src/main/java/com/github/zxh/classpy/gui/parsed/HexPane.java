@@ -52,14 +52,14 @@ public class HexPane extends ScrollPane {
 
         double vvalue = (((double) rowIndex) / rows * textHeight / (textHeight - height) - height / 2 / textHeight);
 
-        if (((Double) vvalue).isInfinite() || ((Double) vvalue).isNaN()) {
-
-        } else if (vvalue < 0) {
-            this.setVvalue(0);
-        } else if (vvalue > 1) {
-            this.setVvalue(1);
-        } else {
-            this.setVvalue(vvalue);
+        if (Double.isFinite(vvalue)) {
+            if (vvalue < 0) {
+                this.setVvalue(0);
+            } else if (vvalue > 1) {
+                this.setVvalue(1);
+            } else {
+                this.setVvalue(vvalue);
+            }
         }
     }
 
