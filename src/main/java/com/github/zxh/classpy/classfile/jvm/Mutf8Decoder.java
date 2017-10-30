@@ -7,24 +7,28 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 public class Mutf8Decoder {
-    
+
     /**
      * Decode modified UTF-8 string from byte[].
      * todo: optimize
-     * 
+     *
      * @param bytes
-     * @return 
-     * @throws java.io.IOException 
+     * @return
+     * @throws java.io.IOException
      */
     public static String decodeMutf8(byte[] bytes) throws IOException {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream(bytes.length + 2);
-        DataOutputStream dos = new DataOutputStream(baos);
-        dos.writeShort(bytes.length);
-        dos.write(bytes);
+        byte[] data = new byte[bytes.length + 2];
+        data[0] = (byte) ((bytes.length >>> 8) & 0xFF);
+        data[1] = (byte) (bytes.length & 0xFF);
+        System.arraycopy(
+                bytes, 0,
+                data, 2,
+                bytes.length
+        );
 
-        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+        ByteArrayInputStream bais = new ByteArrayInputStream(data);
         DataInputStream dis = new DataInputStream(bais);
         return dis.readUTF();
     }
-    
+
 }
