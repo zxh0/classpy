@@ -18,11 +18,9 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.awt.Toolkit;
-import java.awt.Dimension;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -34,15 +32,9 @@ public class ClasspyApp extends Application {
 
     private static final String TITLE = "Classpy";
 
-    public static final int DEFAULT_WIDTH;
-    public static final int DEFAULT_HEIGHT;
+    public static final int DEFAULT_WIDTH = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 4 * 3;
+    public static final int DEFAULT_HEIGHT = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 4 * 3;
 
-	static {
-		Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-		DEFAULT_WIDTH = (int)(screensize.getWidth() / 4 * 3);
-		DEFAULT_HEIGHT = (int)(screensize.getHeight() / 4 * 3);
-	}
-	
     public static Cmd cmd = new Cmd();
 
     private Stage stage;
@@ -201,7 +193,7 @@ public class ClasspyApp extends Application {
         try {
             openFile(new URL(url));
         } catch (MalformedURLException e) {
-            Log.log(e);
+            e.printStackTrace(System.err);
         }
     }
 
