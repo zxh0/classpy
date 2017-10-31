@@ -3,7 +3,7 @@ package com.github.zxh.classpy.gui;
 import java.util.Arrays;
 import java.util.List;
 
-public class Cmd {
+public final class Cmd {
     public List<String> files;
 
     public String[] parse(String[] args) {

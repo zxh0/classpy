@@ -225,7 +225,7 @@ public enum Opcode {
     public final int opcode;
     public final int operandCount;
 
-    private Opcode(int opcode, int operandCount) {
+    Opcode(int opcode, int operandCount) {
         this.opcode = opcode;
         this.operandCount = operandCount;
     }

@@ -13,19 +13,10 @@ public class FontHelper {
 
     static {
         Log.log("loading fonts...");
-        try {
-            awtTextFont = java.awt.Font.createFont(
-                    java.awt.Font.PLAIN,
-                    FontHelper.class.getResourceAsStream("/TextFont.ttf")).deriveFont(14f);
-        } catch (FontFormatException | IOException e) {
-            Log.log(e);
-        }
     }
 
 
     public static Font uiFont = Font.loadFont(FontHelper.class.getResourceAsStream("/UIFont.ttf"), 12);
 
     public static Font textFont = Font.loadFont(FontHelper.class.getResourceAsStream("/TextFont.ttf"), 14);
-
-    public static java.awt.Font awtTextFont;
 }
