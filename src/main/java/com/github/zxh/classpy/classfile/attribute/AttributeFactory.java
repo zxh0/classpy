@@ -4,8 +4,8 @@ public class AttributeFactory {
 
     /**
      * Create concrete XxxAttribute by name.
-     * @param name
-     * @return
+     * @param name type of attribute
+     * @return new AttributeInfo
      */
     public static AttributeInfo create(String name) {
         //  predefined class file attributes:

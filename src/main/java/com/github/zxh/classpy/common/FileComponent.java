@@ -33,8 +33,8 @@ public abstract class FileComponent {
 
     /**
      * Find sub-component by name.
-     * @param name
-     * @return
+     * @param name name of sub-component
+     * @return value of sub-component
      */
     protected final FileComponent get(String name) {
         for (FileComponent c : components) {

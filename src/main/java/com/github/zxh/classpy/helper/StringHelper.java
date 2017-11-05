@@ -1,8 +1,12 @@
 package com.github.zxh.classpy.helper;
 
+import java.util.regex.Pattern;
+
 public class StringHelper {
 
     public static final String[] arr = new String[256];
+
+    private static final Pattern newLine = Pattern.compile("\\r|\\n");
 
     static {
         for (int i = 0; i <= 0xFF; i++) {
@@ -43,7 +47,7 @@ public class StringHelper {
      * @return
      */
     public static String cutAndAppendEllipsis(String str, int maxLength) {
-        str = str.replaceAll("\\r|\\n", "");
+        str = newLine.matcher(str).replaceAll("");
 
         if (str.length() <= maxLength) {
             return str;

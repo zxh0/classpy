@@ -22,7 +22,7 @@ import java.util.function.BiConsumer;
  *    |-Luac Out...
  *  |-Open Recent >
  */
-public class MyMenuBar extends MenuBar {
+public final class MyMenuBar extends MenuBar {
 
     private BiConsumer<FileType, URL> onOpenFile;
     private Runnable onNewWindow;

@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.gui.parsed;
 
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.helper.StringHelper;
 
 /**
@@ -28,11 +27,10 @@ public class HexText {
     }
 
     private String formatRowHeader(int length) {
-        StringBuilder sb = new StringBuilder((length / BYTES_PER_ROW + 1) * 11);
+        StringBuilder sb = new StringBuilder((length / BYTES_PER_ROW + 1) * 9);
 
         for (int i = 0; i < length; i += BYTES_PER_ROW) {
-            sb.append(String.format("%08X", i)); // row number
-            sb.append('\n');
+            sb.append(String.format("%08X\n", i)); // row number
         }
         return sb.toString();
     }
@@ -47,7 +45,7 @@ public class HexText {
     }
 
     private String formatAsciiText(byte[] bytes) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder(bytes.length + bytes.length / BYTES_PER_ROW);
         for (int i = 0; i < bytes.length; i += BYTES_PER_ROW) {
             rowToAscii(bytes, i, sb);
             sb.append('\n');

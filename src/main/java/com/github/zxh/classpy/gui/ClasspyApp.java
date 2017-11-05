@@ -1,10 +1,6 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.common.FileComponent;
-import com.github.zxh.classpy.gui.jar.JarTreeLoader;
-import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.jar.JarTreeView;
-import com.github.zxh.classpy.gui.parsed.HexText;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import com.github.zxh.classpy.gui.support.*;
 import com.github.zxh.classpy.helper.Log;
@@ -24,11 +20,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
+import java.awt.Toolkit;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 
 /**
  * Main class.
@@ -204,7 +199,7 @@ public class ClasspyApp extends Application {
 
 
     public static void main(String[] args) {
-        Application.launch(cmd.parse(args));
+        Application.launch(ClasspyApp.class, cmd.parse(args));
     }
 
 }

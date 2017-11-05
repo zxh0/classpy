@@ -16,7 +16,7 @@ public enum RefKind {
 
     public final int kind;
 
-    private RefKind(int kind) {
+    RefKind(int kind) {
         this.kind = kind;
     }
 

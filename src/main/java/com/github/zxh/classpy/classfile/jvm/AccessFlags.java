@@ -34,7 +34,7 @@ public enum AccessFlags {
     public final int flag;
     public final int type;
 
-    private AccessFlags(int flag, int type) {
+    AccessFlags(int flag, int type) {
         this.flag = flag;
         this.type = type;
     }
