@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.gui.support.ImageHelper;
-import com.github.zxh.classpy.helper.Log;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -45,7 +44,7 @@ public class AboutDialog {
             try {
                 Desktop.getDesktop().browse(URI.create(homeUrl));
             } catch (IOException x) {
-                Log.log(x);
+                x.printStackTrace(System.err);
             }
         });
 

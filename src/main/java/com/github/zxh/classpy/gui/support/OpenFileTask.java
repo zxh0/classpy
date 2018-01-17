@@ -5,7 +5,6 @@ import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.jar.JarTreeLoader;
 import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.parsed.HexText;
-import com.github.zxh.classpy.helper.Log;
 import com.github.zxh.classpy.helper.UrlHelper;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
 
@@ -30,7 +29,7 @@ public class OpenFileTask extends Task<OpenFileResult> {
     
     @Override
     protected OpenFileResult call() throws Exception {
-        Log.log("loading " + url + "...");
+        System.out.println("loading " + url + "...");
 
         FileType fileType = getFileType(url);
         if (fileType == FileType.JAVA_JAR) {
@@ -47,11 +46,11 @@ public class OpenFileTask extends Task<OpenFileResult> {
         FileComponent fc = parse(data, fileType);
         fc.setName(UrlHelper.getFileName(url));
 
-        Log.log("finish loading");
+        System.out.println("finish loading");
         return new OpenFileResult(url, fileType, fc, hex);
     }
 
-    public static FileType getFileType(URL url) {
+    private static FileType getFileType(URL url) {
         String filename = url.toString().toLowerCase();
         if (filename.endsWith(".jar")) {
             return FileType.JAVA_JAR;

@@ -70,7 +70,7 @@ public class TypeAnnotatedClass<@MyTypeAnnotation(strValue = "targetType0x00") T
     }
     
     public void targetType0x46() {
-        Predicate<Object> y = Objects::isNull;
+        Predicate<Object> y = @MyTypeAnnotation(strValue = "targetType0x46") Objects::isNull;
     }
     
     public void targetType0x47() {
