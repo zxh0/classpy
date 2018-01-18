@@ -14,11 +14,16 @@ public abstract class ClassFileComponent extends FileComponent {
      * @param reader
      */
     public final void read(ClassFileReader reader) {
-        int offset = reader.getPosition();
-        readContent(reader);
-        int length = reader.getPosition() - offset;
-        super.setOffset(offset);
-        super.setLength(length);
+        try {
+            int offset = reader.getPosition();
+            readContent(reader);
+            int length = reader.getPosition() - offset;
+            super.setOffset(offset);
+            super.setLength(length);
+        } catch (Exception e) {
+            System.out.println("error parsing: " + getClass());
+            throw e;
+        }
     }
 
     /**
