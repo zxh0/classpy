@@ -21,13 +21,13 @@ import com.github.zxh.classpy.common.FileComponent;
 public class ParsedViewerPane extends BorderPane {
     
     private final TreeView<FileComponent> tree;
-    private final HexPane hexPane;
+    private final HexPane2 hexPane;
     private final Label statusLabel;
     private final BytesBar bytesBar;
     
     public ParsedViewerPane(FileComponent file, HexText hex) {
         tree = buildClassTree(file);
-        hexPane = new HexPane(hex);
+        hexPane = new HexPane2(hex);
         statusLabel = new Label(" ");
         bytesBar = new BytesBar(file.getLength());
         bytesBar.setMaxHeight(statusLabel.getPrefHeight());
