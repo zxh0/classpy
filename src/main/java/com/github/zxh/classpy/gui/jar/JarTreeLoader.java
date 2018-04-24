@@ -11,8 +11,7 @@ import java.util.HashMap;
 public class JarTreeLoader {
 
     public static JarTreeNode load(File jarFile) throws Exception {
-        URI jarUri = new URI("jar", jarFile.toPath().toUri().toString(), null);
-        try (FileSystem zipFs = FileSystems.newFileSystem(jarUri, new HashMap<>())) {
+        try (FileSystem zipFs = FileSystems.newFileSystem(jarFile.toPath(), null)) {
             return path2node(zipFs.getPath("/"));
         }
     }
