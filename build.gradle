@@ -23,22 +23,17 @@ dependencies {
     // TODO: Add dependencies here ...
     // You can read more about how to add dependency here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
-    compile project(':classpy-common')
-    compile project(':classpy-classfile')
-    compile project(':classpy-binarychunk')
     compile project(':classpy-gui')
-    testCompile 'junit:junit:4.12'
 }
 
-// http://stackoverflow.com/questions/9749032/create-a-groovy-executable-jar-with-gradle
-task uberjar(type: Jar, dependsOn: 'build') {
-    from files(sourceSets.main.output.classesDir)
-    from files(sourceSets.main.output.resourcesDir)
-    //from configurations.runtime.asFileTree.files.collect { zipTree(it) }
-
+// https://www.baeldung.com/gradle-fat-jar
+task uberjar(type: Jar) {
     manifest {
         attributes 'Main-Class': 'com.github.zxh.classpy.gui.ClasspyApp'
     }
+    //baseName = 'all-in-one-jar'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
 }
 
 allprojects {
