@@ -19,18 +19,12 @@ if (!hasProperty('mainClass')) {
 // required by application plugin
 mainClassName = 'com.github.zxh.classpy.gui.ClasspyApp'
 
-repositories {
-    mavenCentral()
-    // You may define additional repositories, or even remove "mavenCentral()".
-    // Read more about repositories here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:repositories
-}
-
 dependencies {
     // TODO: Add dependencies here ...
     // You can read more about how to add dependency here:
     //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
-    testCompile 'junit:junit:4.10'
+    compile project(':classpy-common')
+    testCompile 'junit:junit:4.12'
 }
 
 // http://stackoverflow.com/questions/9749032/create-a-groovy-executable-jar-with-gradle
@@ -42,4 +36,27 @@ task uberjar(type: Jar, dependsOn: 'build') {
     manifest {
         attributes 'Main-Class': 'com.github.zxh.classpy.gui.ClasspyApp'
     }
+}
+
+allprojects {
+
+    repositories {
+        jcenter()
+    }
+
+}
+
+subprojects {
+
+    apply plugin: 'java'
+    //apply plugin: 'application'
+
+    sourceCompatibility = "1.8";
+    //mainClassName = 'com.github.zxh0.luago.Main'
+
+    dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.0'
+        testCompile 'junit:junit:4.12'
+    }
+
 }

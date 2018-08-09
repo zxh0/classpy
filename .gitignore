@@ -1,6 +1,6 @@
 /.gradle/*
 /.nb-gradle/*
-/build/
+build/
 .idea/
 out/
 classpy.sublime-workspace
