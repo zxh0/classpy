@@ -1,3 +1,4 @@
 rootProject.name = 'classpy'
 
 include 'classpy-common'
+include 'classpy-classfile'
