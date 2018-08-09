@@ -1,8 +1,8 @@
-/.gradle/*
-/.nb-gradle/*
-/build/
+.gradle/
+.nb-gradle/
 .idea/
+build/
 out/
-classpy.sublime-workspace
-classpy.iml
+*.sublime-workspace
+*.iml
 .DS_Store

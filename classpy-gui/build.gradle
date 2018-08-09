@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':classpy-common')
+    compile project(':classpy-classfile')
+    compile project(':classpy-binarychunk')
+}
