@@ -3,19 +3,6 @@ apply plugin: 'application'
 
 version '0.5-SNAPSHOT'
 
-sourceCompatibility = '1.8'
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-// NetBeans will automatically add "run" and "debug" tasks relying on the
-// "mainClass" property. You may however define the property prior executing
-// tasks by passing a "-PmainClass=<QUALIFIED_CLASS_NAME>" argument.
-//
-// Note however, that you may define your own "run" and "debug" task if you
-// prefer. In this case NetBeans will not add these tasks but you may rely on
-// your own implementation.
-if (!hasProperty('mainClass')) {
-    ext.mainClass = 'com.github.zxh.classpy.gui.ClasspyApp'
-}
 // required by application plugin
 mainClassName = 'com.github.zxh.classpy.gui.ClasspyApp'
 
@@ -36,14 +23,6 @@ task uberjar(type: Jar) {
     with jar
 }
 
-allprojects {
-
-    repositories {
-        jcenter()
-    }
-
-}
-
 subprojects {
 
     apply plugin: 'java'
@@ -52,9 +31,16 @@ subprojects {
     sourceCompatibility = "1.8";
     //mainClassName = 'com.github.zxh0.luago.Main'
 
+    sourceCompatibility = '1.8'
+    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+
     dependencies {
         compileOnly 'org.projectlombok:lombok:1.18.0'
         testCompile 'junit:junit:4.12'
+    }
+
+    repositories {
+        jcenter()
     }
 
 }
