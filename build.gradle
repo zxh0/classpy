@@ -26,6 +26,7 @@ dependencies {
     compile project(':classpy-common')
     compile project(':classpy-classfile')
     compile project(':classpy-binarychunk')
+    compile project(':classpy-gui')
     testCompile 'junit:junit:4.12'
 }
 
