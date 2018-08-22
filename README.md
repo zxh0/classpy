@@ -18,13 +18,13 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 ## Build
 ```shell
 cd path/to/classpy
-gradle uberjar
+./gradlew uberjar
 ```
 
 ## Run
 ```shell
 cd path/to/classpy
-gradle run
+./gradlew run
 ```
 
 ## Screenshots
