@@ -10,16 +10,11 @@ import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.function.Consumer;
 
 import javafx.concurrent.Task;
 
 public class OpenFileTask extends Task<OpenFileResult> {
-
-    private static final byte[] classMagicNumber = {(byte)0xCA, (byte) 0xFE, (byte) 0xBA, (byte) 0xBE};
-    private static final byte[] binaryChunkSig = {0x1B, 'L', 'u', 'a'};
-
 
     private final URL url;
 
@@ -31,7 +26,7 @@ public class OpenFileTask extends Task<OpenFileResult> {
     protected OpenFileResult call() throws Exception {
         System.out.println("loading " + url + "...");
 
-        FileType fileType = getFileType(url);
+        FileType fileType = FileTypeInferer.inferFileType(url);
         if (fileType == FileType.JAVA_JAR) {
             JarTreeNode rootNode = JarTreeLoader.load(new File(url.toURI()));
             return new OpenFileResult(url, fileType, rootNode);
@@ -39,7 +34,7 @@ public class OpenFileTask extends Task<OpenFileResult> {
 
         byte[] data = UrlHelper.readData(url);
         if (fileType == FileType.UNKNOWN) {
-            fileType = getFileType(data);
+            fileType = FileTypeInferer.inferFileType(data);
         }
 
         HexText hex = new HexText(data);
@@ -48,33 +43,6 @@ public class OpenFileTask extends Task<OpenFileResult> {
 
         System.out.println("finish loading");
         return new OpenFileResult(url, fileType, fc, hex);
-    }
-
-    private static FileType getFileType(URL url) {
-        String filename = url.toString().toLowerCase();
-        if (filename.endsWith(".jar")) {
-            return FileType.JAVA_JAR;
-        }
-        if (filename.endsWith(".class")) {
-            return FileType.JAVA_CLASS;
-        }
-        if (filename.endsWith(".luac")) {
-            return FileType.LUA_BC;
-        }
-        return FileType.UNKNOWN;
-    }
-
-    private static FileType getFileType(byte[] data) {
-        if (data.length >= 4) {
-            byte[] magicNumber = Arrays.copyOf(data, 4);
-            if (Arrays.equals(magicNumber, classMagicNumber)) {
-                return FileType.JAVA_CLASS;
-            }
-            if (Arrays.equals(magicNumber, binaryChunkSig)) {
-                return FileType.LUA_BC;
-            }
-        }
-        return FileType.UNKNOWN;
     }
 
     private static FileComponent parse(byte[] data, FileType fileType) {

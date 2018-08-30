@@ -13,6 +13,10 @@ public class BytesReader {
                 .order(order);
     }
 
+    public int remaining() {
+        return buf.remaining();
+    }
+
     public int getPosition() {
         return buf.position();
     }
