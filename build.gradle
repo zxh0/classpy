@@ -28,7 +28,7 @@ subprojects {
     apply plugin: 'java'
     //apply plugin: 'application'
 
-    sourceCompatibility = "1.8";
+    sourceCompatibility = "1.8"
     //mainClassName = 'com.github.zxh0.luago.Main'
 
     sourceCompatibility = '1.8'

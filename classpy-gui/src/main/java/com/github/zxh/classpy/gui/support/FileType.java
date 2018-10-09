@@ -11,6 +11,7 @@ public enum FileType {
     JAVA_JAR("/jar.png", "Java JAR", "*.jar"),
     JAVA_CLASS("/java.png", "Java Class", "*.class"),
     LUA_BC("/lua.png", "Lua Binary Chunk", "*.luac"),
+    WASM("/wasm.png", "WebAssembly Binary Code", "*.wasm"),
     UNKNOWN("/file.png", "Unknown", "*.*"),
     ;
 

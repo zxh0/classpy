@@ -12,6 +12,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.function.Consumer;
 
+import com.github.zxh.classpy.wasm.WasmBinParser;
 import javafx.concurrent.Task;
 
 public class OpenFileTask extends Task<OpenFileResult> {
@@ -49,6 +50,7 @@ public class OpenFileTask extends Task<OpenFileResult> {
         switch (fileType) {
             case JAVA_CLASS: return new ClassFileParser().parse(data);
             case LUA_BC: return new BinaryChunkParser().parse(data);
+            case WASM: return new WasmBinParser().parse(data);
             default: return new FileComponent() {}; // todo
         }
     }

@@ -5,6 +5,7 @@ import java.util.Arrays;
 
 public class FileTypeInferer {
 
+    private static final byte[] wasmMagicNumber = {0, 'a', 's', 'm'};
     private static final byte[] binaryChunkSig = {0x1B, 'L', 'u', 'a'};
     private static final byte[] classMagicNumber = {
             (byte) 0xCA,
@@ -24,6 +25,9 @@ public class FileTypeInferer {
         if (filename.endsWith(".luac")) {
             return FileType.LUA_BC;
         }
+        if (filename.endsWith(".wasm")) {
+            return FileType.WASM;
+        }
         return FileType.UNKNOWN;
     }
 
@@ -35,6 +39,9 @@ public class FileTypeInferer {
             }
             if (Arrays.equals(magicNumber, binaryChunkSig)) {
                 return FileType.LUA_BC;
+            }
+            if (Arrays.equals(magicNumber, wasmMagicNumber)) {
+                return FileType.WASM;
             }
         }
         return FileType.UNKNOWN;

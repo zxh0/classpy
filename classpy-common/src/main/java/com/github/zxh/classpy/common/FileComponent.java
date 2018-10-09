@@ -55,6 +55,10 @@ public abstract class FileComponent {
         components.add(subComponent);
     }
 
+    protected final void clear() {
+        components.clear();
+    }
+
     /**
      * The returned string will be displayed by BytesTreeItem.
      *
