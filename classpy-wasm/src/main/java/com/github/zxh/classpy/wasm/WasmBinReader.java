@@ -4,6 +4,7 @@ import com.github.zxh.classpy.common.BytesReader;
 
 import java.nio.ByteOrder;
 
+// https://en.wikipedia.org/wiki/LEB128
 public class WasmBinReader extends BytesReader {
 
     public WasmBinReader(byte[] data) {
