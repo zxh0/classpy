@@ -3,10 +3,8 @@ package com.github.zxh.classpy.wasm;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.wasm.instructions.Expr;
 import com.github.zxh.classpy.wasm.types.ValType;
+import com.github.zxh.classpy.wasm.values.*;
 import com.github.zxh.classpy.wasm.values.Byte;
-import com.github.zxh.classpy.wasm.values.Bytes;
-import com.github.zxh.classpy.wasm.values.Name;
-import com.github.zxh.classpy.wasm.values.U32;
 
 import java.util.function.Supplier;
 
@@ -42,6 +40,13 @@ public class WasmBinComponent extends FileComponent {
         return u32.getIntValue();
     }
 
+    protected int readIndex(WasmBinReader reader, String name) {
+        Index idx = new Index();
+        add(name, idx);
+        idx.read(reader);
+        return idx.getIntValue();
+    }
+
     protected int readByte(WasmBinReader reader, String name) {
         Byte b = new Byte();
         add(name, b);
@@ -64,9 +69,7 @@ public class WasmBinComponent extends FileComponent {
     }
 
     protected <T extends WasmBinComponent> T read(WasmBinReader reader,
-                                                  String name,
-                                                  Supplier<T> supplier) {
-        T c = supplier.get();
+                                                  String name, T c) {
         add(name, c);
         c.read(reader);
         return c;
@@ -87,8 +90,8 @@ public class WasmBinComponent extends FileComponent {
         add(name, new U32());
     }
 
-    protected void name(String name) {
-        add(name, new Name());
+    protected void idx(String name) {
+        add(name, new Index());
     }
 
     protected void valType(String name) {

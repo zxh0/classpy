@@ -15,6 +15,7 @@ public class S32 extends WasmBinComponent {
         return (int) value;
     }
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         value = reader.readS32();
         setDesc(Long.toString(value));

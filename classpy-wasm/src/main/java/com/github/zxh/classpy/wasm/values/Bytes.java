@@ -16,6 +16,7 @@ public class Bytes extends WasmBinComponent {
         return bytes;
     }
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         bytes = reader.readBytes(n);
     }

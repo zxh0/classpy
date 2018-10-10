@@ -6,6 +6,7 @@ import com.github.zxh.classpy.wasm.WasmBinReader;
 
 public class BlockType extends WasmBinComponent {
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         byte valType = reader.readByte();
         switch (valType) {

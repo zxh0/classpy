@@ -15,6 +15,7 @@ public class S64 extends WasmBinComponent {
         return (int) value;
     }
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         value = reader.readS64();
         setDesc(Long.toString(value));

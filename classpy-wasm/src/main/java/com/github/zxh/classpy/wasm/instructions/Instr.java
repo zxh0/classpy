@@ -40,6 +40,15 @@ public class Instr extends WasmBinComponent {
         } else {
             readNumericInstructions2(reader);
         }
+
+        if (opcode == 0x05        // else
+                || opcode == 0x0B // end
+                || opcode == 0x1A // drop
+                || opcode == 0x1B // select
+                || opcode >= 0x45) {
+            // no operands
+            clear();
+        }
     }
 
     /*
@@ -113,7 +122,6 @@ instr ::= . . .
         | 0x1B ⇒ select
      */
     private void readParametricInstructions(WasmBinReader reader) {
-        clear();
         switch (opcode) {
             case 0x1A: setName("drop"); break;
             case 0x1B: setName("select"); break;
@@ -140,7 +148,8 @@ instr ::= . . .
             default: throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
-        readU32(reader, "index");
+        int idx = readU32(reader, "index");
+        setDesc(Integer.toString(idx));
     }
 
     /*
@@ -227,11 +236,13 @@ instr ::= . . .
         switch (opcode) {
             case 0x41:
                 setName("i32.const");
-                read(reader, "n", S32::new);
+                S32 i32 = read(reader, "n", new S32());
+                setDesc(i32.getDesc());
                 break;
             case 0x42:
                 setName("i64.const");
-                read(reader, "n", S64::new);
+                S64 i64 = read(reader, "n", new S64());
+                setDesc(i64.getDesc());
                 break;
             case 0x43:
                 setName("i64.const");
@@ -381,7 +392,6 @@ instr ::= . . .
         | 0xBF ⇒ f64.reinterpret/i64
      */
     private void readNumericInstructions2(WasmBinReader reader) {
-        clear();
         switch (opcode) {
             case 0x45: setName("i32.eqz"); break;
             case 0x46: setName("i32.eq"); break;
@@ -512,19 +522,19 @@ instr ::= . . .
     }
 
     private void readBlock(WasmBinReader reader, boolean isIfBlock) {
-        read(reader, "rt", BlockType::new);
+        read(reader, "rt", new BlockType());
 
         // instrs
         if (isIfBlock) {
             while (reader.remaining() > 0) {
-                Instr instr = read(reader, null, Instr::new);
+                Instr instr = read(reader, null, new Instr());
                 if (instr.opcode == 0x05) { // else
                     break;
                 }
             }
         }
         while (reader.remaining() > 0) {
-            Instr instr = read(reader, null, Instr::new);
+            Instr instr = read(reader, null, new Instr());
             if (instr.opcode == 0x0B) { // end
                 break;
             }

@@ -6,7 +6,7 @@ import com.github.zxh.classpy.wasm.values.U32;
 public class Element extends WasmBinComponent {
 
     {
-        u32("table");
+        idx("tableidx");
         expr("offset");
         vector("init", U32::new);
         setName("element");

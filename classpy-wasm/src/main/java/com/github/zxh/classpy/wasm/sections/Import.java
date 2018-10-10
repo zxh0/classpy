@@ -6,32 +6,35 @@ import com.github.zxh.classpy.wasm.WasmBinReader;
 import com.github.zxh.classpy.wasm.types.GlobalType;
 import com.github.zxh.classpy.wasm.types.Limits;
 import com.github.zxh.classpy.wasm.types.TableType;
-import com.github.zxh.classpy.wasm.values.U32;
+import com.github.zxh.classpy.wasm.values.Index;
+import com.github.zxh.classpy.wasm.values.Name;
 
 public class Import extends WasmBinComponent {
 
-    {
-        name("module");
-        name("name");
-        add("desc", new Desc());
-    }
-
     @Override
-    protected void postRead() {
-        setDesc(get("module").getDesc() + "." + get("name").getDesc());
+    protected void readContent(WasmBinReader reader) {
+        Name module = read(reader, "module", new Name());
+        Name name = read(reader, "name", new Name());
+        Desc desc = read(reader, "desc", new Desc());
+        setDesc(module.getDesc() + "." + name.getDesc());
+        if (desc.b == 0) {
+            setDesc(getDesc() + "()");
+        }
     }
 
 
     private static class Desc extends WasmBinComponent {
 
+        private int b;
+
         @Override
         protected void readContent(WasmBinReader reader) {
-            int b = readByte(reader, null);
+            b = readByte(reader, null);
             switch (b) {
-                case 0x00: read(reader, "func",   U32::new);        break; // typeidx
-                case 0x01: read(reader, "table",  TableType::new);  break;
-                case 0x02: read(reader, "mem",    Limits::new);     break;
-                case 0x03: read(reader, "global", GlobalType::new); break;
+                case 0x00: read(reader, "func",   new Index());      break;
+                case 0x01: read(reader, "table",  new TableType());  break;
+                case 0x02: read(reader, "mem",    new Limits());     break;
+                case 0x03: read(reader, "global", new GlobalType()); break;
                 default: throw new ParseException("Invalid import desc: " + b);
             }
         }

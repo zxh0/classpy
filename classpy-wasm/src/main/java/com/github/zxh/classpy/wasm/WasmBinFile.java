@@ -4,6 +4,7 @@ import com.github.zxh.classpy.wasm.sections.Section;
 
 public class WasmBinFile extends WasmBinComponent {
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         readBytes(reader, "magic", 4);
         readBytes(reader, "version", 4);

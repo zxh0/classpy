@@ -7,10 +7,12 @@ import com.github.zxh.classpy.wasm.types.FuncType;
 import com.github.zxh.classpy.wasm.types.Limits;
 import com.github.zxh.classpy.wasm.types.TableType;
 import com.github.zxh.classpy.wasm.values.Byte;
-import com.github.zxh.classpy.wasm.values.U32;
+import com.github.zxh.classpy.wasm.values.Index;
+import com.github.zxh.classpy.wasm.values.Name;
 
 public class Section extends WasmBinComponent {
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         int id = readID(reader);
         int size = readU32(reader, "size");
@@ -28,8 +30,7 @@ public class Section extends WasmBinComponent {
     private void readContents(WasmBinReader reader,
                               int id, int size) {
         if (id == 0) {
-            setName("custom section");
-            readBytes(reader, "contents", size);
+            readCustomSection(reader, size);
         } else if (id == 1) {
             setName("type section");
             readVector(reader, "types", FuncType::new);
@@ -38,7 +39,7 @@ public class Section extends WasmBinComponent {
             readVector(reader, "imports", Import::new);
         } else if (id == 3) {
             setName("function section");
-            readVector(reader, "functions", U32::new);
+            readVector(reader, "functions", Index::new);
         } else if (id == 4) {
             setName("table section");
             readVector(reader, "tables", TableType::new);
@@ -53,7 +54,7 @@ public class Section extends WasmBinComponent {
             readVector(reader, "exports", Export::new);
         } else if (id == 8) {
             setName("start section");
-            reader.readU32();
+            readIndex(reader, "funcidx");
         } else if (id == 9) {
             setName("element section");
             readVector(reader, "elements", Element::new);
@@ -65,6 +66,17 @@ public class Section extends WasmBinComponent {
             readVector(reader, "datas", Data::new);
         } else {
             throw new ParseException("Invalid section id: " + id);
+        }
+    }
+
+    private void readCustomSection(WasmBinReader reader, int size) {
+        setName("custom section");
+        int pos1 = reader.getPosition();
+        read(reader, "name", new Name());
+        int pos2 = reader.getPosition();
+        size -= (pos2 - pos1);
+        if (size > 0) {
+            readBytes(reader, "contents", size);
         }
     }
 

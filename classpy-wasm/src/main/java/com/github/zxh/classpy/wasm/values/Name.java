@@ -7,11 +7,11 @@ import java.nio.charset.StandardCharsets;
 
 public class Name extends WasmBinComponent {
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         int length = readU32(reader, "length");
         byte[] bytes = readBytes(reader, "bytes", length);
-        String name = new String(bytes, StandardCharsets.UTF_8);
-        setDesc(name);
+        setDesc(new String(bytes, StandardCharsets.UTF_8));
     }
 
 }

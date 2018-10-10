@@ -5,7 +5,7 @@ import com.github.zxh.classpy.wasm.WasmBinReader;
 
 public class U32 extends WasmBinComponent {
 
-    private long value;
+    protected long value;
 
     public long getValue() {
         return value;
@@ -15,8 +15,13 @@ public class U32 extends WasmBinComponent {
         return (int) value;
     }
 
+    @Override
     protected void readContent(WasmBinReader reader) {
         value = reader.readU32();
+    }
+
+    @Override
+    protected void postRead() {
         setDesc(Long.toString(value));
     }
 

@@ -6,7 +6,7 @@ import com.github.zxh.classpy.wasm.WasmBinReader;
 public class Data extends WasmBinComponent {
 
     {
-        u32("data");
+        idx("memidx");
         expr("offset");
         add("init", new Init());
         setName("data");
