@@ -1,6 +1,39 @@
+// https://openjfx.io/openjfx-docs/#gradle
+// def currentOS = org.gradle.internal.os.OperatingSystem.current()
+// def platform
+// if (currentOS.isWindows()) {
+//     platform = 'win'
+// } else if (currentOS.isLinux()) {
+//     platform = 'linux'
+// } else if (currentOS.isMacOsX()) {
+//     platform = 'mac'
+// }
+
 dependencies {
     compile project(':classpy-common')
     compile project(':classpy-classfile')
     compile project(':classpy-binarychunk')
     compile project(':classpy-wasm')
+
+    // compile "org.openjfx:javafx-base:11:${platform}"
+    // compile "org.openjfx:javafx-graphics:11:${platform}"
+    // compile "org.openjfx:javafx-controls:11:${platform}"
 }
+
+// compileJava {
+//     doFirst {
+//         options.compilerArgs = [
+//                 '--module-path', classpath.asPath,
+//                 '--add-modules', 'javafx.controls'
+//         ]
+//     }
+// }
+//
+//run {
+//    doFirst {
+//        jvmArgs = [
+//                '--module-path', classpath.asPath,
+//                '--add-modules', 'javafx.controls'
+//        ]
+//    }
+//}
