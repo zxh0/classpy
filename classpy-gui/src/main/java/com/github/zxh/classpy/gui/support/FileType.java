@@ -12,6 +12,7 @@ public enum FileType {
     JAVA_CLASS("/java.png", "Java Class", "*.class"),
     LUA_BC("/lua.png", "Lua Binary Chunk", "*.luac"),
     WASM("/wasm.png", "WebAssembly Binary Code", "*.wasm"),
+    BITCOIN_BLOCK("/bitcoin.png", "Bitcoin Block", "?"),
     UNKNOWN("/file.png", "Unknown", "*.*"),
     ;
 

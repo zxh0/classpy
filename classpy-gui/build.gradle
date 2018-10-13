@@ -13,6 +13,7 @@ dependencies {
     compile project(':classpy-common')
     compile project(':classpy-classfile')
     compile project(':classpy-binarychunk')
+    compile project(':classpy-bitcoin')
     compile project(':classpy-wasm')
 
     // compile "org.openjfx:javafx-base:11:${platform}"

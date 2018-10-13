@@ -1,10 +1,12 @@
 package com.github.zxh.classpy.gui.support;
 
+import com.github.zxh.classpy.bitcoin.BlockParser;
 import com.github.zxh.classpy.classfile.ClassFileParser;
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.gui.jar.JarTreeLoader;
 import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.parsed.HexText;
+import com.github.zxh.classpy.helper.StringHelper;
 import com.github.zxh.classpy.helper.UrlHelper;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
 
@@ -33,7 +35,9 @@ public class OpenFileTask extends Task<OpenFileResult> {
             return new OpenFileResult(url, fileType, rootNode);
         }
 
-        byte[] data = UrlHelper.readData(url);
+        byte[] data = fileType == FileType.BITCOIN_BLOCK
+                ? StringHelper.hex2Bytes(UrlHelper.readOneLine(url))
+                : UrlHelper.readData(url);
         if (fileType == FileType.UNKNOWN) {
             fileType = FileTypeInferer.inferFileType(data);
         }
@@ -51,6 +55,7 @@ public class OpenFileTask extends Task<OpenFileResult> {
             case JAVA_CLASS: return new ClassFileParser().parse(data);
             case LUA_BC: return new BinaryChunkParser().parse(data);
             case WASM: return new WasmBinParser().parse(data);
+            case BITCOIN_BLOCK: return new BlockParser().parse(data);
             default: return new FileComponent() {}; // todo
         }
     }

@@ -45,5 +45,19 @@ public class StringHelper {
             return str.substring(0, cutPos) + "...";
         }
     }
-    
+
+    /**
+     * Convert hex string to byte array.
+     * @param str
+     * @return
+     */
+    public static byte[] hex2Bytes(String str) {
+        byte[] bytes = new byte[str.length() / 2];
+        for (int i = 0; i < bytes.length; i++) {
+            bytes[i] = (byte) Integer.parseInt(
+                    str.substring(2 * i, 2 * i + 2), 16);
+        }
+        return bytes;
+    }
+
 }

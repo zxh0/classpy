@@ -16,6 +16,9 @@ public class FileTypeInferer {
 
     public static FileType inferFileType(URL url) {
         String filename = url.toString().toLowerCase();
+        if (filename.startsWith("https://blockchain.info/rawblock")) {
+            return FileType.BITCOIN_BLOCK;
+        }
         if (filename.endsWith(".jar")) {
             return FileType.JAVA_JAR;
         }
