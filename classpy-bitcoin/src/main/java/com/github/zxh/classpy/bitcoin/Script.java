@@ -1,7 +1,6 @@
-package com.github.zxh.classpy.bitcoin.types;
+package com.github.zxh.classpy.bitcoin;
 
-import com.github.zxh.classpy.bitcoin.BlockComponent;
-import com.github.zxh.classpy.bitcoin.BlockReader;
+import com.github.zxh.classpy.bitcoin.types.Bytes;
 import com.github.zxh.classpy.common.ParseException;
 
 // https://en.bitcoin.it/wiki/Script
