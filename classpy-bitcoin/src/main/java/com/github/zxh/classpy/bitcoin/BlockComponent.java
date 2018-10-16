@@ -26,6 +26,13 @@ public class BlockComponent extends FileComponent {
         }
     }
 
+    protected <T extends BlockComponent> T read(BlockReader reader,
+                                                String name, T c) {
+        add(name, c);
+        c.read(reader);
+        return c;
+    }
+
     protected long readVarInt(BlockReader reader, String name) {
         VarInt varInt = new VarInt();
         add(name, varInt);

@@ -5,7 +5,7 @@ import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.common.FileParser;
 
 public class ClassFileParser implements FileParser {
-    
+
     public ClassFile parse(byte[] data) {
         ClassFile cf = new ClassFile();
         cf.read(new ClassFileReader(data));

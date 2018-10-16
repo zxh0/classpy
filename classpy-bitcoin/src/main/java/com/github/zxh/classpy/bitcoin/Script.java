@@ -9,22 +9,32 @@ public class Script extends BlockComponent {
     @Override
     protected void readContent(BlockReader reader) {
         long n = readVarInt(reader, "Length");
-
+        int basePos = reader.getPosition();
         Bytes bytes = new Bytes((int) n);
         bytes.read(reader);
-        byte[] code = bytes.getBytes();
+        decodeScript(bytes.getBytes(), basePos);
+    }
+
+    private void decodeScript(byte[] code, int basePos) {
         try {
             decodeScript(new BlockReader(code) {
-                int basePos = reader.getPosition() - code.length;
                 @Override
                 public int getPosition() {
                     return basePos + super.getPosition();
                 }
             });
         } catch (Exception e) {
+            System.err.println(bytes2Hex(code));
             e.printStackTrace(System.err);
-            //add("Script", bytes);
         }
+    }
+
+    private static String bytes2Hex(byte[] bytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < bytes.length; i++) {
+            sb.append(Integer.toHexString(bytes[i] & 0xFF));
+        }
+        return sb.toString();
     }
 
     private void decodeScript(BlockReader reader) {

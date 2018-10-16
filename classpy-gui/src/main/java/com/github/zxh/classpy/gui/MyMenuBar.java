@@ -7,12 +7,9 @@ import com.github.zxh.classpy.gui.support.RecentFiles;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Optional;
 import java.util.function.BiConsumer;
 
 /**
@@ -50,7 +47,8 @@ public final class MyMenuBar extends MenuBar {
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_CLASS));
         openMenu.getItems().add(createOpenMenuItem(FileType.LUA_BC));
         openMenu.getItems().add(createOpenMenuItem(FileType.WASM));
-        openMenu.getItems().add(createOpenBcBlockMenuItem());
+        openMenu.getItems().add(createOpenMenuItem(FileType.BITCOIN_BLOCK));
+        openMenu.getItems().add(createOpenMenuItem(FileType.BITCOIN_TX));
         openMenu.setMnemonicParsing(true);
         return openMenu;
     }
@@ -96,30 +94,6 @@ public final class MyMenuBar extends MenuBar {
         helpMenu.setMnemonicParsing(true);
 
         getMenus().add(helpMenu);
-    }
-
-    private MenuItem createOpenBcBlockMenuItem() {
-        String apiUrl = "https://blockchain.info/rawblock/<hash>?format=hex";
-        String genesisBlockHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
-
-        MenuItem item = createOpenMenuItem(FileType.BITCOIN_BLOCK);
-        item.setOnAction(e -> {
-            TextInputDialog dialog = new TextInputDialog(genesisBlockHash);
-            dialog.setTitle("Block Hash Input Dialog");
-            dialog.setHeaderText("API: " + apiUrl);
-            dialog.setContentText("hash: ");
-            dialog.setResizable(true);
-
-            // Traditional way to get the response value.
-            Optional<String> result = dialog.showAndWait();
-            if (result.isPresent()){
-                try {
-                    String url = apiUrl.replace("<hash>", result.get());
-                    onOpenFile.accept(FileType.BITCOIN_BLOCK, new URL(url));
-                } catch (MalformedURLException ignored) {}
-            }
-        });
-        return item;
     }
 
     public void setOnOpenFile(BiConsumer<FileType, URL> onOpenFile) {

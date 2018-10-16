@@ -7,10 +7,7 @@ import com.github.zxh.classpy.helper.UrlHelper;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
@@ -20,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 
 /**
  * Main class.
@@ -118,12 +116,59 @@ public class ClasspyApp extends Application {
 
     private void onOpenFile(FileType ft, URL url) {
         if (url == null) {
-            File file = MyFileChooser.showFileChooser(stage, ft);
-            if (file != null) {
-                openFile(file);
+            if (ft == FileType.BITCOIN_BLOCK) {
+                showBitcoinBlockDialog();
+            } else if (ft == FileType.BITCOIN_TX) {
+                showBitcoinTxDialog();
+            } else {
+                showFileChooser(ft);
             }
         } else {
             openFile(url);
+        }
+    }
+
+    private void showBitcoinBlockDialog() {
+        String apiUrl = "https://blockchain.info/rawblock/<hash>?format=hex";
+        String genesisBlockHash = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f";
+
+        TextInputDialog dialog = new TextInputDialog(genesisBlockHash);
+        dialog.setTitle("Block Hash Input Dialog");
+        dialog.setHeaderText("API: " + apiUrl);
+        dialog.setContentText("hash: ");
+        dialog.setResizable(true);
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            try {
+                openFile(new URL(apiUrl.replace("<hash>", result.get())));
+            } catch (MalformedURLException ignored) {}
+        }
+    }
+
+    private void showBitcoinTxDialog() {
+        String apiUrl = "https://blockchain.info/rawtx/<hash>?format=hex";
+
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("Transaction Hash Input Dialog");
+        dialog.setHeaderText("API: " + apiUrl);
+        dialog.setContentText("hash: ");
+        dialog.setResizable(true);
+
+        // Traditional way to get the response value.
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            try {
+                openFile(new URL(apiUrl.replace("<hash>", result.get())));
+            } catch (MalformedURLException ignored) {}
+        }
+    }
+
+    private void showFileChooser(FileType ft) {
+        File file = MyFileChooser.showFileChooser(stage, ft);
+        if (file != null) {
+            openFile(file);
         }
     }
 
