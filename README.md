@@ -1,6 +1,6 @@
 # Classpy
 
-Classpy is a GUI tool for investigating Java class files.
+Classpy is a GUI tool for investigating Java class file, Lua binary chunk, Wasm binary code, and other binary file formats.
 
 ## Inspiration
 
@@ -12,6 +12,9 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 ## Features
 
 * Understands class files described by [JVMS9](https://docs.oracle.com/javase/specs/jvms/se9/html/jvms-4.html)
+* Supports [Lua](https://www.lua.org/) 5.3 binary chunk format
+* Supports [Wasm](https://webassembly.org/) binary format
+* Supports [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) raw block and transaction format
 * Displays parsed class file as tree and hex text
 * The corresponding hex text is highlighted when you select a tree node
 
