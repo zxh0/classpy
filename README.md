@@ -31,3 +31,5 @@ cd path/to/classpy
 
 ![Screenshot1](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot.png)
 ![Screenshot2](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot2.png)
+![Screenshot3](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot3.png)
+![Screenshot4](https://raw.githubusercontent.com/zxh0/classpy/master/screenshot4.png)
