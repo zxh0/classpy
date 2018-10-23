@@ -15,7 +15,7 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 * Supports [Lua](https://www.lua.org/) 5.3 binary chunk format
 * Supports [Wasm](https://webassembly.org/) binary format
 * Supports [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) raw block and transaction format
-* Displays parsed class file as tree and hex text
+* Displays parsed binary file as tree and hex text
 * The corresponding hex text is highlighted when you select a tree node
 
 ## Build
