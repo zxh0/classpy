@@ -1,16 +1,12 @@
 package com.github.zxh.classpy.wasm.sections;
 
 import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
 import java.util.Base64;
 
 public class Code extends WasmBinComponent {
-
-//    {
-//        u32("size");
-//        add("code", new Func());
-//    }
 
     @Override
     protected void readContent(WasmBinReader reader) {
@@ -30,8 +26,8 @@ public class Code extends WasmBinComponent {
                 }
             });
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            System.out.println(Base64.getEncoder().encodeToString(code));
+            System.err.println(e.getMessage());
+            System.err.println(Base64.getEncoder().encodeToString(code));
         }
     }
 
@@ -54,7 +50,7 @@ public class Code extends WasmBinComponent {
         }
 
         @Override
-        protected void postRead() {
+        protected void postRead(WasmBinFile wasm) {
             setDesc(get("type").getDesc() + " x " + get("n").getDesc());
         }
 

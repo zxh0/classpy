@@ -2,6 +2,7 @@ package com.github.zxh.classpy.wasm.types;
 
 import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinFile;
 
 import java.util.stream.Collectors;
 
@@ -14,7 +15,7 @@ public class FuncType extends WasmBinComponent {
     }
 
     @Override
-    protected void postRead() {
+    protected void postRead(WasmBinFile wasm) {
         String params = get("parameters").getComponents().stream()
                 .skip(1)
                 .map(FileComponent::getDesc)

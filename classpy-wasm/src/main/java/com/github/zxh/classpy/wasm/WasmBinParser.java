@@ -10,18 +10,19 @@ public class WasmBinParser implements FileParser {
         WasmBinFile wasm = new WasmBinFile();
         try {
             wasm.read(new WasmBinReader(data));
-            postRead(wasm);
+            postRead(wasm, wasm);
         } catch (Exception e) {
             e.printStackTrace(System.err);
         }
         return wasm;
     }
 
-    private static void postRead(WasmBinComponent bc) {
+    private static void postRead(WasmBinComponent bc,
+                                 WasmBinFile wasm) {
         for (FileComponent c : bc.getComponents()) {
-            postRead((WasmBinComponent) c);
+            postRead((WasmBinComponent) c, wasm);
         }
-        bc.postRead();
+        bc.postRead(wasm);
     }
 
 }

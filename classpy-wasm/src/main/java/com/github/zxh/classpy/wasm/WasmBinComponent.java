@@ -29,7 +29,7 @@ public class WasmBinComponent extends FileComponent {
         }
     }
 
-    protected void postRead() {
+    protected void postRead(WasmBinFile wasm) {
 
     }
 

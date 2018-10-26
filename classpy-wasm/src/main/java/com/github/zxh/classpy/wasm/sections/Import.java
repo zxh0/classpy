@@ -17,7 +17,7 @@ public class Import extends WasmBinComponent {
         Name name = read(reader, "name", new Name());
         Desc desc = read(reader, "desc", new Desc());
         setDesc(module.getDesc() + "." + name.getDesc());
-        if (desc.b == 0) {
+        if (desc.b == 0) { // func
             setDesc(getDesc() + "()");
         }
     }

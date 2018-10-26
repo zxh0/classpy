@@ -2,6 +2,7 @@ package com.github.zxh.classpy.wasm.instructions;
 
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 import com.github.zxh.classpy.wasm.types.BlockType;
 import com.github.zxh.classpy.wasm.values.S32;
@@ -17,9 +18,18 @@ public class Instr extends WasmBinComponent {
     }
 
     @Override
+    protected void postRead(WasmBinFile wasm) {
+        if ("call".equals(getName())) {
+            int funcIdx = Integer.parseInt(getDesc().replace("func#", ""));
+            if (funcIdx < wasm.getImportedFuncs().size()) {
+                setDesc(wasm.getImportedFuncs().get(funcIdx));
+            }
+        }
+    }
+
+    @Override
     protected void readContent(WasmBinReader reader) {
         opcode = readByte(reader, "opcode");
-        //System.out.println(opcode.getDesc());
 
         if (opcode == 0x05) {
             setName("else");
@@ -103,7 +113,8 @@ instr ::= 0x00 ⇒ unreachable
                 break;
             case 0x10:
                 setName("call");
-                readU32(reader, "func");
+                int idx = readU32(reader, "func");
+                setDesc("func#" + idx);
                 break;
             case 0x11:
                 setName("call_indirect");

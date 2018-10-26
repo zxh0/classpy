@@ -2,6 +2,7 @@ package com.github.zxh.classpy.wasm.sections;
 
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 import com.github.zxh.classpy.wasm.types.FuncType;
 import com.github.zxh.classpy.wasm.types.Limits;
@@ -10,11 +11,20 @@ import com.github.zxh.classpy.wasm.values.Byte;
 import com.github.zxh.classpy.wasm.values.Index;
 import com.github.zxh.classpy.wasm.values.Name;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class Section extends WasmBinComponent {
+
+    private int id;
+
+    public int getID() {
+        return id;
+    }
 
     @Override
     protected void readContent(WasmBinReader reader) {
-        int id = readID(reader);
+        id = readID(reader);
         int size = readU32(reader, "size");
         readContents(reader, id, size);
     }
@@ -77,6 +87,28 @@ public class Section extends WasmBinComponent {
         size -= (pos2 - pos1);
         if (size > 0) {
             readBytes(reader, "contents", size);
+        }
+    }
+
+    @Override
+    protected void postRead(WasmBinFile wasm) {
+        if (id == 10) { // code section
+            List<Code> codes = getComponents().get(2)
+                    .getComponents().stream().skip(1)
+                    .map(c -> (Code) c)
+                    .collect(Collectors.toList());
+
+            int importedFuncCount = wasm.getImportedFuncs().size();
+//            for (int i = 0; i < codes.size(); i++) {
+//                codes.get(i).setDesc("func#" + (importedFuncCount + i));
+//            }
+
+            for (Export export : wasm.getExportedFuncs()) {
+                int idx = export.getFuncIdx() - importedFuncCount;
+                if (idx < codes.size()) {
+                    codes.get(idx).setDesc(export.getDesc());
+                }
+            }
         }
     }
 

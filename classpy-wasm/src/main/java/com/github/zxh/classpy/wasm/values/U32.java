@@ -1,6 +1,7 @@
 package com.github.zxh.classpy.wasm.values;
 
 import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
 public class U32 extends WasmBinComponent {
@@ -21,7 +22,7 @@ public class U32 extends WasmBinComponent {
     }
 
     @Override
-    protected void postRead() {
+    protected void postRead(WasmBinFile wasm) {
         setDesc(Long.toString(value));
     }
 
