@@ -40,7 +40,7 @@ public class Script extends BlockComponent {
     private void decodeScript(BlockReader reader) {
         while (reader.remaining() > 0) {
             Instr instr = new Instr();
-            add("Instr", instr);
+            add("?", instr);
             instr.read(reader);
         }
     }
