@@ -9,10 +9,8 @@ import com.github.zxh.classpy.wasm.types.Limits;
 import com.github.zxh.classpy.wasm.types.TableType;
 import com.github.zxh.classpy.wasm.values.Byte;
 import com.github.zxh.classpy.wasm.values.Index;
-import com.github.zxh.classpy.wasm.values.Name;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Section extends WasmBinComponent {
 
@@ -80,36 +78,105 @@ public class Section extends WasmBinComponent {
     }
 
     private void readCustomSection(WasmBinReader reader, int size) {
-        setName("custom section");
         int pos1 = reader.getPosition();
-        read(reader, "name", new Name());
-        int pos2 = reader.getPosition();
-        size -= (pos2 - pos1);
-        if (size > 0) {
-            readBytes(reader, "contents", size);
+        String name = readName(reader, "name");
+        setName("custom section: " + name);
+
+        if (name.equals("name")) {
+            readNameData(reader);
+        } else if (name.equals("dylink")) {
+            readDyLinkData(reader);
+        } else {
+            int pos2 = reader.getPosition();
+            size -= (pos2 - pos1);
+            if (size > 0) {
+                readBytes(reader, "contents", size);
+            }
         }
+    }
+
+    private void readNameData(WasmBinReader reader) {
+        while (reader.remaining() > 0) {
+            int subID = readByte(reader, "subID");
+            int size = readU32(reader, "size");
+            if (subID == 1) {
+                readVector(reader, "function names", NameAssoc::new);
+            } else {
+                readBytes(reader, "contents", size);
+            }
+        }
+    }
+
+    private void readDyLinkData(WasmBinReader reader) {
+        readU32(reader, "memorySize");
+        readU32(reader, "memoryAlignment");
+        readU32(reader, "tableSize");
+        readU32(reader, "tableAlignment");
     }
 
     @Override
     protected void postRead(WasmBinFile wasm) {
-        if (id == 10) { // code section
-            List<Code> codes = getComponents().get(2)
-                    .getComponents().stream().skip(1)
-                    .map(c -> (Code) c)
-                    .collect(Collectors.toList());
+        if (id == 1) {
+            postReadTypes(wasm);
+        } else if (id == 2) {
+            postReadImports(wasm);
+        } else if (id == 10) {
+            postReadCodes(wasm);
+        }
+    }
 
-            int importedFuncCount = wasm.getImportedFuncs().size();
-//            for (int i = 0; i < codes.size(); i++) {
-//                codes.get(i).setDesc("func#" + (importedFuncCount + i));
-//            }
+    private void postReadTypes(WasmBinFile wasm) {
+        int typeIdx = 0;
+        for (FuncType ft : wasm.getFuncTypes()) {
+            ft.setName("#" + (typeIdx++));
+        }
+    }
 
-            for (Export export : wasm.getExportedFuncs()) {
+    private void postReadImports(WasmBinFile wasm) {
+        int funcIdx = 0;
+        int globalIdx = 0;
+        for (Import imp : wasm.getImports()) {
+            if (imp.isFunc()) {
+                imp.setName("func#" + (funcIdx++));
+            } else if (imp.isGlobal()) {
+                imp.setName("global#" + (globalIdx++));
+            }
+        }
+        for (Index idx : wasm.getFuncs()) {
+            idx.setName("func#" + (funcIdx++));
+            idx.setDesc("type" + idx.getDesc());
+        }
+        for (Global glb : wasm.getGlobals()) {
+            glb.setName("global#" + (globalIdx++));
+        }
+    }
+
+    private void postReadCodes(WasmBinFile wasm) {
+        List<Code> codes = wasm.getCodes();
+        int importedFuncCount = wasm.getImportedFuncs().size();
+        for (int i = 0; i < codes.size(); i++) {
+            codes.get(i).setName("func#" + (importedFuncCount + i));
+        }
+        for (Export export : wasm.getExports()) {
+            if (export.getFuncIdx() >= 0) {
                 int idx = export.getFuncIdx() - importedFuncCount;
                 if (idx < codes.size()) {
                     codes.get(idx).setDesc(export.getDesc());
                 }
             }
         }
+    }
+
+    private static class NameAssoc extends WasmBinComponent {
+
+        @Override
+        protected void readContent(WasmBinReader reader) {
+            int idx = readIndex(reader, "idx");
+            String name = readName(reader, "name");
+            setName("#" + idx);
+            setDesc(name + "()");
+        }
+
     }
 
 }

@@ -18,7 +18,7 @@ public class Global extends WasmBinComponent {
         GlobalType gt = (GlobalType) get("type");
         Byte valType = (Byte) gt.getComponents().get(1);
         String mut = gt.getComponents().get(0).getDesc();
-        String desc = mut + (valType.getValue() == 0 ? ": const" : ": var");
+        String desc = mut + (valType.getValue() == 0 ? "/const" : "/var");
         setDesc(desc);
     }
 

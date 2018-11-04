@@ -22,7 +22,7 @@ public class Instr extends WasmBinComponent {
         if ("call".equals(getName())) {
             int funcIdx = Integer.parseInt(getDesc().replace("func#", ""));
             if (funcIdx < wasm.getImportedFuncs().size()) {
-                setDesc(wasm.getImportedFuncs().get(funcIdx));
+                setDesc(wasm.getImportedFuncs().get(funcIdx).getDesc());
             }
         }
     }

@@ -68,6 +68,13 @@ public class WasmBinComponent extends FileComponent {
         return bytes.getBytes();
     }
 
+    protected String readName(WasmBinReader reader, String name) {
+        Name nm = new Name();
+        add(name, nm);
+        nm.read(reader);
+        return nm.getDesc();
+    }
+
     protected <T extends WasmBinComponent> T read(WasmBinReader reader,
                                                   String name, T c) {
         add(name, c);
