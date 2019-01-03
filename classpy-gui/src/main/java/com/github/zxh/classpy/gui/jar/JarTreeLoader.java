@@ -2,11 +2,9 @@ package com.github.zxh.classpy.gui.jar;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.EnumSet;
-import java.util.HashMap;
 
 public class JarTreeLoader {
 
@@ -23,7 +21,7 @@ public class JarTreeLoader {
 
             @Override
             public FileVisitResult visitFile(Path subPath, BasicFileAttributes attrs) throws IOException {
-                if (isFolder(subPath)) {
+                if (Files.isDirectory(subPath)) {
                     JarTreeNode subNode = path2node(subPath);
                     if (subNode.hasSubNodes()) {
                         node.addSubNode(subNode);
@@ -41,10 +39,6 @@ public class JarTreeLoader {
         return node;
     }
 
-
-    private static boolean isFolder(Path p) {
-        return p.toString().endsWith("/");
-    }
 
     private static boolean isClassFile(Path p) {
         return p.toString().endsWith(".class");
