@@ -18,7 +18,7 @@ public class ConstantDoubleInfo extends ConstantInfo {
     protected String loadDesc(ConstantPool cp) {
         long high = super.getUInt("high_bytes");
         long low = super.getUInt("low_bytes") & 0xffffffffL;
-        double d = Double.longBitsToDouble(high << 32 | low);
+        double d = Double.longBitsToDouble((high << 32) + low);
         return String.valueOf(d);
     }
     
