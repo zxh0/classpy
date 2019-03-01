@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.lua.binarychunk.datatype;
 
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 /**
@@ -14,7 +14,7 @@ import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
  * @see /lua/src/luaconf.h
  * @see /lua/src/ldump.c#DumpInteger()
  */
-public class LuaInt extends BinaryChunkComponent {
+public class LuaInt extends BinaryChunkPart {
 
     private long value;
 

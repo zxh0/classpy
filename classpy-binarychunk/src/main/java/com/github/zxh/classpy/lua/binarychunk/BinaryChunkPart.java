@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 /**
  * Component of lua binary chunk file.
  */
-public class BinaryChunkComponent extends FilePart {
+public class BinaryChunkPart extends FilePart {
 
     public final void read(BinaryChunkReader reader) {
         int offset = reader.getPosition();
@@ -20,7 +20,7 @@ public class BinaryChunkComponent extends FilePart {
 
     protected void readContent(BinaryChunkReader reader) {
         for (FilePart bc : getParts()) {
-            ((BinaryChunkComponent) bc).read(reader);
+            ((BinaryChunkPart) bc).read(reader);
         }
     }
 
@@ -52,7 +52,7 @@ public class BinaryChunkComponent extends FilePart {
         super.add(name, new Bytes(n));
     }
 
-    public void table(String name, Supplier<BinaryChunkComponent> componentSupplier) {
+    public void table(String name, Supplier<BinaryChunkPart> componentSupplier) {
         super.add(name, new Table(componentSupplier));
     }
 

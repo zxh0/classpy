@@ -9,7 +9,7 @@ import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
  * 
  * @see /lua/src/ldump.c#luaU_dump().
  */
-public class BinaryChunkFile extends BinaryChunkComponent {
+public class BinaryChunkFile extends BinaryChunkPart {
 
     {
         add("header",        new Header());

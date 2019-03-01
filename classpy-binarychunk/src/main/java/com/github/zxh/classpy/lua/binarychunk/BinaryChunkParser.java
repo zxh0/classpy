@@ -14,9 +14,9 @@ public class BinaryChunkParser implements FileParser {
         return bc;
     }
 
-    private static void postRead(BinaryChunkComponent bc) {
+    private static void postRead(BinaryChunkPart bc) {
         for (FilePart c : bc.getParts()) {
-            postRead((BinaryChunkComponent) c);
+            postRead((BinaryChunkPart) c);
         }
         bc.postRead();
     }

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.lua.binarychunk.component;
 
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
 import com.github.zxh.classpy.lua.binarychunk.datatype.LuaInt;
@@ -11,7 +11,7 @@ import com.github.zxh.classpy.lua.vm.LuaType;
 /**
  * Lua constant.
  */
-public class Constant extends BinaryChunkComponent {
+public class Constant extends BinaryChunkPart {
 
     @Override
     protected void readContent(BinaryChunkReader reader) {

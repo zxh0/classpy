@@ -2,7 +2,7 @@ package com.github.zxh.classpy.lua.binarychunk.datatype;
 
 import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.helper.StringHelper;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 import java.util.List;
@@ -11,11 +11,11 @@ import java.util.function.Supplier;
 /**
  * Table in binary chunk.
  */
-public class Table extends BinaryChunkComponent {
+public class Table extends BinaryChunkPart {
 
-    private final Supplier<BinaryChunkComponent> componentSupplier;
+    private final Supplier<BinaryChunkPart> componentSupplier;
 
-    public Table(Supplier<BinaryChunkComponent> componentSupplier) {
+    public Table(Supplier<BinaryChunkPart> componentSupplier) {
         this.componentSupplier = componentSupplier;
     }
 
@@ -26,7 +26,7 @@ public class Table extends BinaryChunkComponent {
         super.add("size", size);
 
         for (int i = 0; i < size.getValue(); i++) {
-            BinaryChunkComponent c = componentSupplier.get();
+            BinaryChunkPart c = componentSupplier.get();
             super.add(null, c);
             c.read(reader);
         }

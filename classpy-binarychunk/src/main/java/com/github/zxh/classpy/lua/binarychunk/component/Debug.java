@@ -2,7 +2,7 @@ package com.github.zxh.classpy.lua.binarychunk.component;
 
 import java.util.List;
 import com.github.zxh.classpy.common.FilePart;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua.binarychunk.datatype.CInt;
 import com.github.zxh.classpy.lua.binarychunk.datatype.LuaStr;
 
@@ -11,7 +11,7 @@ import com.github.zxh.classpy.lua.binarychunk.datatype.LuaStr;
  *
  * @see /lua/src/ldump.c#DumpDebug()
  */
-public class Debug extends BinaryChunkComponent {
+public class Debug extends BinaryChunkPart {
 
     {
         table("line_info",  CInt::new);
@@ -46,7 +46,7 @@ public class Debug extends BinaryChunkComponent {
         }
     }
 
-    public static class LocVar extends BinaryChunkComponent {
+    public static class LocVar extends BinaryChunkPart {
 
         {
             str ("var_name");

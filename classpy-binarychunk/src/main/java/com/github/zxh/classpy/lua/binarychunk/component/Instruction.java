@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.lua.binarychunk.component;
 
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 import com.github.zxh.classpy.lua.vm.OpArgMask;
 import com.github.zxh.classpy.lua.vm.OpCode;
@@ -19,7 +19,7 @@ import com.github.zxh.classpy.lua.vm.OpCode;
  *  +-------+^------+-^-----+-^-----
  * 31      23      15       7      0
  */
-public class Instruction extends BinaryChunkComponent {
+public class Instruction extends BinaryChunkPart {
 
     private int code;
     private OpCode opcode;

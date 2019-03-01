@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.lua.binarychunk.datatype;
 
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkComponent;
+import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
 
 /**
@@ -9,7 +9,7 @@ import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
  * @see /lua/src/llimits.h
  * @see /lua/src/ldump.c#DumpByte
  */
-public class LuByte extends BinaryChunkComponent {
+public class LuByte extends BinaryChunkPart {
 
     private int value;
 
