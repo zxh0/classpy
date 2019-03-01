@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.wasm.instructions;
 
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
-public class Expr extends WasmBinComponent {
+public class Expr extends WasmBinPart {
 
     @Override
     protected void readContent(WasmBinReader reader) {

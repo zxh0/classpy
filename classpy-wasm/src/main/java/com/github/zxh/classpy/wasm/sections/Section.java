@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.wasm.sections;
 
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 import com.github.zxh.classpy.wasm.types.FuncType;
@@ -12,7 +12,7 @@ import com.github.zxh.classpy.wasm.values.Index;
 
 import java.util.List;
 
-public class Section extends WasmBinComponent {
+public class Section extends WasmBinPart {
 
     private int id;
 
@@ -167,7 +167,7 @@ public class Section extends WasmBinComponent {
         }
     }
 
-    private static class NameAssoc extends WasmBinComponent {
+    private static class NameAssoc extends WasmBinPart {
 
         @Override
         protected void readContent(WasmBinReader reader) {

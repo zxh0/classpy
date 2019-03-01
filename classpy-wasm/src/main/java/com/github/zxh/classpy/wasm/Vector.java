@@ -2,11 +2,11 @@ package com.github.zxh.classpy.wasm;
 
 import java.util.function.Supplier;
 
-public class Vector extends WasmBinComponent {
+public class Vector extends WasmBinPart {
 
-    private Supplier<? extends WasmBinComponent> supplier;
+    private Supplier<? extends WasmBinPart> supplier;
 
-    public Vector(Supplier<? extends WasmBinComponent> supplier) {
+    public Vector(Supplier<? extends WasmBinPart> supplier) {
         this.supplier = supplier;
     }
 
@@ -14,7 +14,7 @@ public class Vector extends WasmBinComponent {
     protected void readContent(WasmBinReader reader) {
         int length = readU32(reader, "length");
         for (int i = 0; i < length; i++) {
-            WasmBinComponent element = supplier.get();
+            WasmBinPart element = supplier.get();
             add(null, element);
             element.read(reader);
         }

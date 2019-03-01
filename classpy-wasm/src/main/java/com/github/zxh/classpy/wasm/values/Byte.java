@@ -1,10 +1,10 @@
 package com.github.zxh.classpy.wasm.values;
 
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
-public class Byte extends WasmBinComponent {
+public class Byte extends WasmBinPart {
 
     private final byte[] expectedValues;
     private byte value;

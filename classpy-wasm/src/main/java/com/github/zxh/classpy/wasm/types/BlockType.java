@@ -1,10 +1,10 @@
 package com.github.zxh.classpy.wasm.types;
 
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
-public class BlockType extends WasmBinComponent {
+public class BlockType extends WasmBinPart {
 
     @Override
     protected void readContent(WasmBinReader reader) {

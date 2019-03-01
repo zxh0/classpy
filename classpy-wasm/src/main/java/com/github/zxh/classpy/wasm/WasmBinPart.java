@@ -8,7 +8,7 @@ import com.github.zxh.classpy.wasm.values.Byte;
 
 import java.util.function.Supplier;
 
-public class WasmBinComponent extends FilePart {
+public class WasmBinPart extends FilePart {
 
     public final void read(WasmBinReader reader) {
         try {
@@ -25,7 +25,7 @@ public class WasmBinComponent extends FilePart {
 
     protected void readContent(WasmBinReader reader) {
         for (FilePart fc : getParts()) {
-            ((WasmBinComponent) fc).read(reader);
+            ((WasmBinPart) fc).read(reader);
         }
     }
 
@@ -75,15 +75,15 @@ public class WasmBinComponent extends FilePart {
         return nm.getDesc();
     }
 
-    protected <T extends WasmBinComponent> T read(WasmBinReader reader,
-                                                  String name, T c) {
+    protected <T extends WasmBinPart> T read(WasmBinReader reader,
+                                             String name, T c) {
         add(name, c);
         c.read(reader);
         return c;
     }
 
     protected void readVector(WasmBinReader reader, String name,
-                              Supplier<? extends WasmBinComponent> supplier) {
+                              Supplier<? extends WasmBinPart> supplier) {
         Vector vec = new Vector(supplier);
         add(name, vec);
         vec.read(reader);
@@ -110,7 +110,7 @@ public class WasmBinComponent extends FilePart {
     }
 
     protected void vector(String name,
-                          Supplier<? extends WasmBinComponent> supplier) {
+                          Supplier<? extends WasmBinPart> supplier) {
         add(name, new Vector(supplier));
     }
 

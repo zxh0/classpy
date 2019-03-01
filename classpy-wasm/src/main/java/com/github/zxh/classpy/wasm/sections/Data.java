@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.wasm.sections;
 
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
-public class Data extends WasmBinComponent {
+public class Data extends WasmBinPart {
 
     {
         idx("memidx");
@@ -12,7 +12,7 @@ public class Data extends WasmBinComponent {
         setName("data");
     }
 
-    private static class Init extends WasmBinComponent {
+    private static class Init extends WasmBinPart {
 
         @Override
         protected void readContent(WasmBinReader reader) {

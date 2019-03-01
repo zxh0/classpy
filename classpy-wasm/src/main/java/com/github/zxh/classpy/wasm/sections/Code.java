@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.wasm.sections;
 
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
 import java.util.Base64;
 
-public class Code extends WasmBinComponent {
+public class Code extends WasmBinPart {
 
     @Override
     protected void readContent(WasmBinReader reader) {
@@ -32,7 +32,7 @@ public class Code extends WasmBinComponent {
     }
 
 
-    public static class Func extends WasmBinComponent {
+    public static class Func extends WasmBinPart {
 
         {
             vector("locals", Locals::new);
@@ -42,7 +42,7 @@ public class Code extends WasmBinComponent {
     }
 
 
-    private static class Locals extends WasmBinComponent {
+    private static class Locals extends WasmBinPart {
 
         {
             u32("n");

@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.wasm.values;
 
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 
-public class S64 extends WasmBinComponent {
+public class S64 extends WasmBinPart {
 
     private long value;
 

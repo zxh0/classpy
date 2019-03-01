@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.wasm.sections;
 
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 import com.github.zxh.classpy.wasm.types.FuncType;
@@ -9,7 +9,7 @@ import com.github.zxh.classpy.wasm.types.GlobalType;
 import com.github.zxh.classpy.wasm.types.Limits;
 import com.github.zxh.classpy.wasm.types.TableType;
 
-public class Import extends WasmBinComponent {
+public class Import extends WasmBinPart {
 
     private Desc desc;
 
@@ -41,7 +41,7 @@ public class Import extends WasmBinComponent {
     }
 
 
-    private static class Desc extends WasmBinComponent {
+    private static class Desc extends WasmBinPart {
 
         private int tag;
         private int funcTypeIdx = -1;

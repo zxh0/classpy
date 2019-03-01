@@ -7,7 +7,7 @@ import com.github.zxh.classpy.wasm.values.Index;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WasmBinFile extends WasmBinComponent {
+public class WasmBinFile extends WasmBinPart {
 
     private List<FuncType> funcTypes;
     private List<Import> imports;

@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.wasm.types;
 
 import com.github.zxh.classpy.common.FilePart;
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 
 import java.util.stream.Collectors;
 
-public class FuncType extends WasmBinComponent {
+public class FuncType extends WasmBinPart {
 
     {
         _byte(null, (byte) 0x60);

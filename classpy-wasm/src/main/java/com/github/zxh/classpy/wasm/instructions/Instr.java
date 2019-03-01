@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.wasm.instructions;
 
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 import com.github.zxh.classpy.wasm.types.BlockType;
@@ -9,7 +9,7 @@ import com.github.zxh.classpy.wasm.values.S32;
 import com.github.zxh.classpy.wasm.values.S64;
 import com.github.zxh.classpy.wasm.values.U32;
 
-public class Instr extends WasmBinComponent {
+public class Instr extends WasmBinPart {
 
     private int opcode;
 

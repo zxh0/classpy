@@ -1,8 +1,8 @@
 package com.github.zxh.classpy.wasm.types;
 
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 
-public class TableType extends WasmBinComponent {
+public class TableType extends WasmBinPart {
 
     {
         _byte("elemtype", (byte) 0x70);

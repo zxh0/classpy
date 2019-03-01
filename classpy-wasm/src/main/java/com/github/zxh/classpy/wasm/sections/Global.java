@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.wasm.sections;
 
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.instructions.Expr;
 import com.github.zxh.classpy.wasm.types.GlobalType;
 import com.github.zxh.classpy.wasm.values.Byte;
 
-public class Global extends WasmBinComponent {
+public class Global extends WasmBinPart {
 
     {
         add("type", new GlobalType());

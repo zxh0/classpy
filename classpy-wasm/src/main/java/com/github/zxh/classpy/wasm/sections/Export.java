@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.wasm.sections;
 
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.wasm.WasmBinComponent;
+import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
 import com.github.zxh.classpy.wasm.types.FuncType;
 
-public class Export extends WasmBinComponent {
+public class Export extends WasmBinPart {
 
     private int funcIdx = -1;
 
@@ -37,7 +37,7 @@ public class Export extends WasmBinComponent {
     }
 
 
-    private static class Desc extends WasmBinComponent {
+    private static class Desc extends WasmBinPart {
 
         private int b;
         private int idx;
