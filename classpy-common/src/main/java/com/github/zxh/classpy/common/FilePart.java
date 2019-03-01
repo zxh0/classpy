@@ -45,14 +45,14 @@ public abstract class FilePart {
         return null;
     }
 
-    protected final void add(String name, FilePart subComponent) {
+    protected final void add(String name, FilePart subPart) {
         if (name != null) {
-            subComponent.setName(name);
+            subPart.setName(name);
         }
         if (components == null) {
             components = new ArrayList<>();
         }
-        components.add(subComponent);
+        components.add(subPart);
     }
 
     protected final void clear() {

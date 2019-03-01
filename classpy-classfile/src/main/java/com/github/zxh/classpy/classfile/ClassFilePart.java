@@ -85,8 +85,8 @@ public abstract class ClassFilePart extends FilePart {
         this.add(name, bytes);
     }
 
-    protected final void add(ClassFilePart subComponent) {
-        this.add(null, subComponent);
+    protected final void add(ClassFilePart subPart) {
+        this.add(null, subPart);
     }
 
 }
