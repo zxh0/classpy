@@ -1,7 +1,7 @@
 package com.github.zxh.classpy.lua.binarychunk;
 
-import com.github.zxh.classpy.lua.binarychunk.component.Function;
-import com.github.zxh.classpy.lua.binarychunk.component.Header;
+import com.github.zxh.classpy.lua.binarychunk.part.Function;
+import com.github.zxh.classpy.lua.binarychunk.part.Header;
 import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
 
 /**

@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.lua.binarychunk.component;
+package com.github.zxh.classpy.lua.binarychunk.part;
 
 import java.util.List;
 import com.github.zxh.classpy.common.FilePart;

@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.lua.binarychunk.component;
+package com.github.zxh.classpy.lua.binarychunk.part;
 
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
