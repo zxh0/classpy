@@ -7,7 +7,7 @@ import com.github.zxh.classpy.common.FilePart;
 /**
  * Base class for all class file components.
  */
-public abstract class ClassFileComponent extends FilePart {
+public abstract class ClassFilePart extends FilePart {
 
     /**
      * Reads content, records offset and length.
@@ -32,7 +32,7 @@ public abstract class ClassFileComponent extends FilePart {
      */
     protected void readContent(ClassFileReader reader) {
         for (FilePart fc : getParts()) {
-            ((ClassFileComponent) fc).read(reader);
+            ((ClassFilePart) fc).read(reader);
         }
     }
 
@@ -73,7 +73,7 @@ public abstract class ClassFileComponent extends FilePart {
     }
 
     protected final void table(String name,
-                               Class<? extends ClassFileComponent> entryClass) {
+                               Class<? extends ClassFilePart> entryClass) {
         UInt length = (UInt) getParts().get(getParts().size() - 1);
         Table table = new Table(length, entryClass);
         this.add(name, table);
@@ -85,7 +85,7 @@ public abstract class ClassFileComponent extends FilePart {
         this.add(name, bytes);
     }
 
-    protected final void add(ClassFileComponent subComponent) {
+    protected final void add(ClassFilePart subComponent) {
         this.add(null, subComponent);
     }
 

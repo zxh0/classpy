@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 /**
  * The constant pool in class file.
  */
-public class ConstantPool extends ClassFileComponent {
+public class ConstantPool extends ClassFilePart {
     
     private final U2 cpCount;
     private ConstantInfo[] constants;

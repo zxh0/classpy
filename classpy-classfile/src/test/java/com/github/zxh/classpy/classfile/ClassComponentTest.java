@@ -11,8 +11,8 @@ public class ClassComponentTest {
     @Test
     public void _toString() {
         // name == null && desc == null
-//        ClassFileComponent fc = new ClassFileComponent();
-//        assertEquals(ClassFileComponent.class.getSimpleName(), fc.toString());
+//        ClassFilePart fc = new ClassFilePart();
+//        assertEquals(ClassFilePart.class.getSimpleName(), fc.toString());
 //        
 //        // desc == null
 //        fc.setName("nama");

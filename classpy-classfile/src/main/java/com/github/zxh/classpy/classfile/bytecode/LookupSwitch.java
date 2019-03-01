@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.bytecode;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
 
@@ -49,7 +49,7 @@ public class LookupSwitch extends Instruction {
     }
 
     
-    public static class MatchOffset extends ClassFileComponent {
+    public static class MatchOffset extends ClassFilePart {
 
         private final boolean isDefault;
         private final int basePc;

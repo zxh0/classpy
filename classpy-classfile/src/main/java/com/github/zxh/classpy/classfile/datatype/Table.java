@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.datatype;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.common.ParseException;
@@ -12,12 +12,12 @@ import com.github.zxh.classpy.helper.StringHelper;
 /**
  * Array of class components.
  */
-public class Table extends ClassFileComponent {
+public class Table extends ClassFilePart {
 
     private final UInt length;
-    private final Class<? extends ClassFileComponent> entryClass;
+    private final Class<? extends ClassFilePart> entryClass;
 
-    public Table(UInt length, Class<? extends ClassFileComponent> entryClass) {
+    public Table(UInt length, Class<? extends ClassFilePart> entryClass) {
         this.length = length;
         this.entryClass = entryClass;
     }
@@ -33,11 +33,11 @@ public class Table extends ClassFileComponent {
         }
     }
 
-    private ClassFileComponent readEntry(ClassFileReader reader) throws ReflectiveOperationException {
+    private ClassFilePart readEntry(ClassFileReader reader) throws ReflectiveOperationException {
         if (entryClass == AttributeInfo.class) {
             return readAttributeInfo(reader);
         } else {
-            ClassFileComponent c = entryClass.newInstance();
+            ClassFilePart c = entryClass.newInstance();
             c.read(reader);
             return c;
         }

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.classfile.bytecode.Instruction;
 import com.github.zxh.classpy.classfile.bytecode.InstructionFactory;
 import com.github.zxh.classpy.classfile.jvm.Opcode;
@@ -45,7 +45,7 @@ public class CodeAttribute extends AttributeInfo {
     }
 
 
-    public static class ExceptionTableEntry extends ClassFileComponent {
+    public static class ExceptionTableEntry extends ClassFilePart {
 
         {
             u2  ("start_pc");
@@ -57,7 +57,7 @@ public class CodeAttribute extends AttributeInfo {
     }
 
 
-    private class Code extends ClassFileComponent {
+    private class Code extends ClassFilePart {
 
         private final U4 codeLength;
 

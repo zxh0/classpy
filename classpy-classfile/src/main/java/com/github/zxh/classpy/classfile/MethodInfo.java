@@ -13,7 +13,7 @@ method_info {
     attribute_info attributes[attributes_count];
 }
  */
-public class MethodInfo extends ClassFileComponent {
+public class MethodInfo extends ClassFilePart {
 
     {
         u2af ("access_flags", AccessFlagType.AF_METHOD);

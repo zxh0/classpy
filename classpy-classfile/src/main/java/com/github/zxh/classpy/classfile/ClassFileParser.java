@@ -13,9 +13,9 @@ public class ClassFileParser implements FileParser {
         return cf;
     }
 
-    private static void postRead(ClassFileComponent fc, ConstantPool cp) {
+    private static void postRead(ClassFilePart fc, ConstantPool cp) {
         for (FilePart c : fc.getParts()) {
-            postRead((ClassFileComponent) c, cp);
+            postRead((ClassFilePart) c, cp);
         }
         fc.postRead(cp);
     }

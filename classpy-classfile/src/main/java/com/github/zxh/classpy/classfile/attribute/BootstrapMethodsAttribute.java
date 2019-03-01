@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 
 /*
@@ -22,7 +22,7 @@ public class BootstrapMethodsAttribute extends AttributeInfo {
     }
 
     
-    public static class BootstrapMethodInfo extends ClassFileComponent {
+    public static class BootstrapMethodInfo extends ClassFilePart {
 
         {
             u2cp ("bootstrap_method_ref");

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.classfile.attribute.RuntimeVisibleAnnotationsAttribute.AnnotationInfo;
 
 /*
@@ -21,7 +21,7 @@ public class RuntimeVisibleParameterAnnotationsAttribute extends AttributeInfo {
     }
     
     
-    public static class ParameterAnnotationInfo extends ClassFileComponent {
+    public static class ParameterAnnotationInfo extends ClassFilePart {
 
         {
             u2   ("num_annotations");

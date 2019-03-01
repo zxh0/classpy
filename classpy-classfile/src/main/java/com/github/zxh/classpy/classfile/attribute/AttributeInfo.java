@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 
 /*
 attribute_info {
@@ -9,7 +9,7 @@ attribute_info {
     u1 info[attribute_length];
 }
  */
-public abstract class AttributeInfo extends ClassFileComponent {
+public abstract class AttributeInfo extends ClassFilePart {
 
     {
         u2("attribute_name_index");

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U2CpIndex;
 import com.github.zxh.classpy.classfile.jvm.AccessFlagType;
@@ -62,7 +62,7 @@ public class ModuleAttribute extends AttributeInfo {
         table("provides", Provide.class);
     }
 
-    public static class Require extends ClassFileComponent {
+    public static class Require extends ClassFilePart {
 
         {
             u2cp("requires_index");
@@ -79,7 +79,7 @@ public class ModuleAttribute extends AttributeInfo {
 
     }
 
-    public static class Export extends ClassFileComponent {
+    public static class Export extends ClassFilePart {
 
         {
             u2cp ("exports_index");
@@ -95,7 +95,7 @@ public class ModuleAttribute extends AttributeInfo {
 
     }
 
-    public static class Open extends ClassFileComponent {
+    public static class Open extends ClassFilePart {
 
         {
             u2cp ("opens_index");
@@ -111,7 +111,7 @@ public class ModuleAttribute extends AttributeInfo {
 
     }
 
-    public static class Provide extends ClassFileComponent {
+    public static class Provide extends ClassFilePart {
 
         {
             u2cp ("provides_index");

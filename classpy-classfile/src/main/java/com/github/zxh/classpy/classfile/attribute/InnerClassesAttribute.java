@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.classfile.attribute;
 
-import com.github.zxh.classpy.classfile.ClassFileComponent;
+import com.github.zxh.classpy.classfile.ClassFilePart;
 import com.github.zxh.classpy.classfile.jvm.AccessFlagType;
 
 /*
@@ -23,7 +23,7 @@ public class InnerClassesAttribute extends AttributeInfo {
     }
     
     
-    public static class InnerClassInfo extends ClassFileComponent {
+    public static class InnerClassInfo extends ClassFilePart {
 
         {
             u2cp("inner_class_info_index");
