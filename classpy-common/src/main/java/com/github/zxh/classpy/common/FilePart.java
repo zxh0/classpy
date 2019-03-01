@@ -25,7 +25,7 @@ public abstract class FilePart {
     public final int getLength() {return length;}
     public final void setLength(int length) {this.length = length;}
 
-    public List<FilePart> getComponents() {
+    public List<FilePart> getParts() {
         return components == null
                 ? Collections.emptyList()
                 : Collections.unmodifiableList(components);

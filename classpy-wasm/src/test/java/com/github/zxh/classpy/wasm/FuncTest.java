@@ -18,7 +18,7 @@ public class FuncTest {
         try {
             func.read(new WasmBinReader(code));
         } catch (Exception e) {
-            new ExprPrinter().printExpr((Expr) func.getComponents().get(1));
+            new ExprPrinter().printExpr((Expr) func.getParts().get(1));
             throw e;
         }
     }
@@ -29,7 +29,7 @@ public class FuncTest {
         private int indentation;
 
         private void printExpr(Expr expr) {
-            for (FilePart fc : expr.getComponents()) {
+            for (FilePart fc : expr.getParts()) {
                 printInstr((Instr) fc);
             }
         }
@@ -48,7 +48,7 @@ public class FuncTest {
                     || instr.getOpcode() == 0x04) {
                 indentation += 1;
             }
-            for (FilePart fc : instr.getComponents()) {
+            for (FilePart fc : instr.getParts()) {
                 if (fc instanceof Instr) {
                     printInstr((Instr) fc);
                 }

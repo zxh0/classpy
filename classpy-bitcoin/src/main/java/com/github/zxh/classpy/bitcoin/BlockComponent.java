@@ -21,7 +21,7 @@ public class BlockComponent extends FilePart {
     }
 
     protected void readContent(BlockReader reader) {
-        for (FilePart fc : getComponents()) {
+        for (FilePart fc : getParts()) {
             ((BlockComponent) fc).read(reader);
         }
     }

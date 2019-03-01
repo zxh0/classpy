@@ -34,19 +34,19 @@ public class Function extends BinaryChunkComponent {
         super.setDesc("<" + lineDefined + "," + lastLineDefined + ">");
 
         Debug debug = (Debug) super.get("debug");
-        super.get("upvalues").getComponents().stream()
+        super.get("upvalues").getParts().stream()
                 .skip(1) // skip size
                 .map(c -> (UpValue) c)
                 .forEach(upval -> upval.setDesc(debug));
 
-        List<FilePart> code = super.get("code").getComponents();
+        List<FilePart> code = super.get("code").getParts();
         for (int i = 1; i < code.size(); i++) {
             ((Instruction) code.get(i)).setDesc(i - 1, this, debug);
         }
     }
 
     public String getConstant(int idx) {
-        return super.get("constants").getComponents().get(idx + 1).getDesc();
+        return super.get("constants").getParts().get(idx + 1).getDesc();
     }
 
 

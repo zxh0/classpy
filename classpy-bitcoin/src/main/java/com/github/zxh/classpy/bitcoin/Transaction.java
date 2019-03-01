@@ -11,10 +11,10 @@ public class Transaction extends BlockComponent {
         read(reader, "Version", new UInt32());
         Table txins = new Table(TxIn::new);
         txins.read(reader);
-        if (txins.getComponents().size() == 1 && reader.readByte() != 0) {
+        if (txins.getParts().size() == 1 && reader.readByte() != 0) {
             read(reader, "Txins", new Table(TxIn::new));
             read(reader, "Txouts", new Table(TxOut::new));
-            int nTxins = get("Txins").getComponents().size() - 1;
+            int nTxins = get("Txins").getParts().size() - 1;
             for (int i = 0; i < nTxins; i++) {
                 read(reader, "Witnesses", new WitnessData());
             }

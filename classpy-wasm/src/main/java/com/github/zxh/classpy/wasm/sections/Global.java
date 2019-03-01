@@ -16,8 +16,8 @@ public class Global extends WasmBinComponent {
     @Override
     protected void postRead(WasmBinFile wasm) {
         GlobalType gt = (GlobalType) get("type");
-        Byte valType = (Byte) gt.getComponents().get(1);
-        String mut = gt.getComponents().get(0).getDesc();
+        Byte valType = (Byte) gt.getParts().get(1);
+        String mut = gt.getParts().get(0).getDesc();
         String desc = mut + (valType.getValue() == 0 ? "/const" : "/var");
         setDesc(desc);
     }

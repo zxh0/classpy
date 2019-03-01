@@ -31,7 +31,7 @@ public abstract class ClassFileComponent extends FilePart {
      * @param reader
      */
     protected void readContent(ClassFileReader reader) {
-        for (FilePart fc : getComponents()) {
+        for (FilePart fc : getParts()) {
             ((ClassFileComponent) fc).read(reader);
         }
     }
@@ -74,13 +74,13 @@ public abstract class ClassFileComponent extends FilePart {
 
     protected final void table(String name,
                                Class<? extends ClassFileComponent> entryClass) {
-        UInt length = (UInt) getComponents().get(getComponents().size() - 1);
+        UInt length = (UInt) getParts().get(getParts().size() - 1);
         Table table = new Table(length, entryClass);
         this.add(name, table);
     }
 
     protected final void bytes(String name) {
-        UInt count = (UInt) getComponents().get(getComponents().size() - 1);
+        UInt count = (UInt) getParts().get(getParts().size() - 1);
         Bytes bytes = new Bytes(count);
         this.add(name, bytes);
     }

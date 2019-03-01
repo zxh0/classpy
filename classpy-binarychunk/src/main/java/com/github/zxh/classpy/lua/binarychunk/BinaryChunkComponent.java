@@ -19,7 +19,7 @@ public class BinaryChunkComponent extends FilePart {
     }
 
     protected void readContent(BinaryChunkReader reader) {
-        for (FilePart bc : getComponents()) {
+        for (FilePart bc : getParts()) {
             ((BinaryChunkComponent) bc).read(reader);
         }
     }

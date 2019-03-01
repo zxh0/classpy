@@ -24,7 +24,7 @@ public class WasmBinComponent extends FilePart {
     }
 
     protected void readContent(WasmBinReader reader) {
-        for (FilePart fc : getComponents()) {
+        for (FilePart fc : getParts()) {
             ((WasmBinComponent) fc).read(reader);
         }
     }

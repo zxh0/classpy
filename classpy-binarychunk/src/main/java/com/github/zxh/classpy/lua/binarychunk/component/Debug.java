@@ -20,7 +20,7 @@ public class Debug extends BinaryChunkComponent {
     }
 
     public long getLine(int pc) {
-        List<FilePart> locVars = super.get("line_info").getComponents();
+        List<FilePart> locVars = super.get("line_info").getParts();
         if (pc + 1 >= locVars.size()) {
             return -1;
         } else {
@@ -29,7 +29,7 @@ public class Debug extends BinaryChunkComponent {
     }
 
     public String getLocVarName(int idx) {
-        List<FilePart> locVars = super.get("loc_vars").getComponents();
+        List<FilePart> locVars = super.get("loc_vars").getParts();
         if (idx + 1 >= locVars.size()) {
             return "";
         } else {
@@ -38,7 +38,7 @@ public class Debug extends BinaryChunkComponent {
     }
 
     public String getUpvalName(int idx) {
-        List<FilePart> upvals = super.get("upvalues").getComponents();
+        List<FilePart> upvals = super.get("upvalues").getParts();
         if (idx + 1 >= upvals.size()) {
             return "";
         } else {

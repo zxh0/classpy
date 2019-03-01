@@ -19,7 +19,7 @@ public class WasmBinParser implements FileParser {
 
     private static void postRead(WasmBinComponent bc,
                                  WasmBinFile wasm) {
-        for (FilePart c : bc.getComponents()) {
+        for (FilePart c : bc.getParts()) {
             postRead((WasmBinComponent) c, wasm);
         }
         bc.postRead(wasm);

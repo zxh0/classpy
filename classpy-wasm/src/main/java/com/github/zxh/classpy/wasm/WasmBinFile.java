@@ -50,12 +50,12 @@ public class WasmBinFile extends WasmBinComponent {
     }
 
     private <T> List<T> getSectionItems(int secID, Class<T> itemClass) {
-        return getComponents().stream()
+        return getParts().stream()
                 .filter(c -> c instanceof Section)                // section?
                 .map(c -> (Section) c)                            // yes
                 .filter(sec -> sec.getID() == secID)              // section
-                .map(sec -> (Vector) sec.getComponents().get(2))  // vector
-                .flatMap(v -> v.getComponents().stream().skip(1)) // items
+                .map(sec -> (Vector) sec.getParts().get(2))  // vector
+                .flatMap(v -> v.getParts().stream().skip(1)) // items
                 .map(c -> itemClass.cast(c))                      // Ts
                 .collect(Collectors.toList());
     }

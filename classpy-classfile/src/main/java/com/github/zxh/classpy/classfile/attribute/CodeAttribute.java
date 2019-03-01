@@ -83,7 +83,7 @@ public class CodeAttribute extends AttributeInfo {
 
         @Override
         protected void postRead(ConstantPool cp) {
-            List<FilePart> instructions = super.getComponents();
+            List<FilePart> instructions = super.getParts();
 
             int maxPc = ((Instruction) instructions.get(instructions.size() - 1)).getPc();
             int pcWidth = String.valueOf(maxPc).length();

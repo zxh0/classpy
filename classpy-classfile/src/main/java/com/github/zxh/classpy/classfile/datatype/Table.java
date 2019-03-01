@@ -57,7 +57,7 @@ public class Table extends ClassFileComponent {
     @Override
     protected void postRead(ConstantPool cp) {
         int i = 0;
-        for (FilePart entry : super.getComponents()) {
+        for (FilePart entry : super.getParts()) {
             String newName = StringHelper.formatIndex(length.getValue(), i++);
             String oldName = entry.getName();
             if (oldName != null) {

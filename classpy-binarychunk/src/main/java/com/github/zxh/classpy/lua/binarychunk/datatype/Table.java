@@ -34,7 +34,7 @@ public class Table extends BinaryChunkComponent {
 
     @Override
     protected void postRead() {
-        List<FilePart> kids = super.getComponents();
+        List<FilePart> kids = super.getParts();
         int maxIdx = kids.size() - 1;
         for (int i = 1; i < kids.size(); i++) {
             FilePart kid = kids.get(i);

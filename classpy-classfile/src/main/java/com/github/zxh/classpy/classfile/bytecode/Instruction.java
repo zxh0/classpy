@@ -24,7 +24,7 @@ public class Instruction extends ClassFileComponent {
     
     @Override
     protected final void readContent(ClassFileReader reader) {
-        if (!super.getComponents().isEmpty()) {
+        if (!super.getParts().isEmpty()) {
             super.readContent(reader);
         } else {
             reader.readUnsignedByte(); // opcode

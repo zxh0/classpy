@@ -72,7 +72,7 @@ public class ConstantPool extends ClassFileComponent {
     }
 
     @Override
-    public List<FilePart> getComponents() {
+    public List<FilePart> getParts() {
         return Arrays.stream(constants)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());

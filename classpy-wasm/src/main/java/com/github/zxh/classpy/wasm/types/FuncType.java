@@ -16,11 +16,11 @@ public class FuncType extends WasmBinComponent {
 
     @Override
     protected void postRead(WasmBinFile wasm) {
-        String params = get("parameters").getComponents().stream()
+        String params = get("parameters").getParts().stream()
                 .skip(1)
                 .map(FilePart::getDesc)
                 .collect(Collectors.joining(",", "(", ")"));
-        String results = get("results").getComponents().stream()
+        String results = get("results").getParts().stream()
                 .skip(1)
                 .map(FilePart::getDesc)
                 .collect(Collectors.joining(",", "(", ")"));
