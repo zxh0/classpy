@@ -13,10 +13,10 @@ import java.util.function.Supplier;
  */
 public class Table extends BinaryChunkPart {
 
-    private final Supplier<BinaryChunkPart> componentSupplier;
+    private final Supplier<BinaryChunkPart> partSupplier;
 
-    public Table(Supplier<BinaryChunkPart> componentSupplier) {
-        this.componentSupplier = componentSupplier;
+    public Table(Supplier<BinaryChunkPart> partSupplier) {
+        this.partSupplier = partSupplier;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class Table extends BinaryChunkPart {
         super.add("size", size);
 
         for (int i = 0; i < size.getValue(); i++) {
-            BinaryChunkPart c = componentSupplier.get();
+            BinaryChunkPart c = partSupplier.get();
             super.add(null, c);
             c.read(reader);
         }

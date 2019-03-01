@@ -52,8 +52,8 @@ public class BinaryChunkPart extends FilePart {
         super.add(name, new Bytes(n));
     }
 
-    public void table(String name, Supplier<BinaryChunkPart> componentSupplier) {
-        super.add(name, new Table(componentSupplier));
+    public void table(String name, Supplier<BinaryChunkPart> partSupplier) {
+        super.add(name, new Table(partSupplier));
     }
 
 }
