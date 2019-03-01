@@ -2,11 +2,11 @@ package com.github.zxh.classpy.classfile.datatype;
 
 import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.classfile.ClassFileReader;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.attribute.AttributeFactory;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
-import com.github.zxh.classpy.common.FileComponent;
 import com.github.zxh.classpy.helper.StringHelper;
 
 /**
@@ -57,7 +57,7 @@ public class Table extends ClassFileComponent {
     @Override
     protected void postRead(ConstantPool cp) {
         int i = 0;
-        for (FileComponent entry : super.getComponents()) {
+        for (FilePart entry : super.getComponents()) {
             String newName = StringHelper.formatIndex(length.getValue(), i++);
             String oldName = entry.getName();
             if (oldName != null) {

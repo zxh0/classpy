@@ -7,7 +7,7 @@ import com.github.zxh.classpy.classfile.jvm.Opcode;
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.U4;
 import com.github.zxh.classpy.classfile.ClassFileReader;
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 
 import java.util.List;
 
@@ -83,12 +83,12 @@ public class CodeAttribute extends AttributeInfo {
 
         @Override
         protected void postRead(ConstantPool cp) {
-            List<FileComponent> instructions = super.getComponents();
+            List<FilePart> instructions = super.getComponents();
 
             int maxPc = ((Instruction) instructions.get(instructions.size() - 1)).getPc();
             int pcWidth = String.valueOf(maxPc).length();
             String fmtStr = "%0" + pcWidth + "d";
-            for (FileComponent c : instructions) {
+            for (FilePart c : instructions) {
                 Instruction instruction = (Instruction) c;
                 instruction.setName(String.format(fmtStr, instruction.getPc()));
             }

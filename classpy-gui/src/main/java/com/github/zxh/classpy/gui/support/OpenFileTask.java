@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui.support;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.gui.jar.JarTreeLoader;
 import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.parsed.HexText;
@@ -39,7 +39,7 @@ public class OpenFileTask extends Task<OpenFileResult> {
         }
 
         System.out.println("parsing " + url + "...");
-        FileComponent fc = fileType.parser.parse(data);
+        FilePart fc = fileType.parser.parse(data);
         fc.setName(UrlHelper.getFileName(url));
         HexText hex = new HexText(data);
 

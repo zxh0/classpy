@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.lua.binarychunk;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.lua.binarychunk.datatype.*;
 
 import java.util.function.Supplier;
@@ -8,7 +8,7 @@ import java.util.function.Supplier;
 /**
  * Component of lua binary chunk file.
  */
-public class BinaryChunkComponent extends FileComponent {
+public class BinaryChunkComponent extends FilePart {
 
     public final void read(BinaryChunkReader reader) {
         int offset = reader.getPosition();
@@ -19,7 +19,7 @@ public class BinaryChunkComponent extends FileComponent {
     }
 
     protected void readContent(BinaryChunkReader reader) {
-        for (FileComponent bc : getComponents()) {
+        for (FilePart bc : getComponents()) {
             ((BinaryChunkComponent) bc).read(reader);
         }
     }

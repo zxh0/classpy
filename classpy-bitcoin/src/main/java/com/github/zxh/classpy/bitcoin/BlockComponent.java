@@ -1,11 +1,11 @@
 package com.github.zxh.classpy.bitcoin;
 
 import com.github.zxh.classpy.bitcoin.types.*;
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 
 import java.util.function.Supplier;
 
-public class BlockComponent extends FileComponent {
+public class BlockComponent extends FilePart {
 
     public final void read(BlockReader reader) {
         try {
@@ -21,7 +21,7 @@ public class BlockComponent extends FileComponent {
     }
 
     protected void readContent(BlockReader reader) {
-        for (FileComponent fc : getComponents()) {
+        for (FilePart fc : getComponents()) {
             ((BlockComponent) fc).read(reader);
         }
     }

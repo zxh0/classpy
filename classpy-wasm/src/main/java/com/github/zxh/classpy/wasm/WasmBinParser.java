@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.wasm;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.common.FileParser;
 
 public class WasmBinParser implements FileParser {
@@ -19,7 +19,7 @@ public class WasmBinParser implements FileParser {
 
     private static void postRead(WasmBinComponent bc,
                                  WasmBinFile wasm) {
-        for (FileComponent c : bc.getComponents()) {
+        for (FilePart c : bc.getComponents()) {
             postRead((WasmBinComponent) c, wasm);
         }
         bc.postRead(wasm);

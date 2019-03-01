@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.gui.parsed;
 
+import com.github.zxh.classpy.common.FilePart;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Label;
 import javafx.scene.control.SplitPane;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
-import com.github.zxh.classpy.common.FileComponent;
 
 /**
  * Container of TreeView, HexPane, StatusBar and BytesBar.
@@ -20,12 +20,12 @@ import com.github.zxh.classpy.common.FileComponent;
  */
 public class ParsedViewerPane extends BorderPane {
     
-    private final TreeView<FileComponent> tree;
+    private final TreeView<FilePart> tree;
     private final HexPane hexPane;
     private final Label statusLabel;
     private final BytesBar bytesBar;
     
-    public ParsedViewerPane(FileComponent file, HexText hex) {
+    public ParsedViewerPane(FilePart file, HexText hex) {
         tree = buildClassTree(file);
         hexPane = new HexPane(hex);
         statusLabel = new Label(" ");
@@ -38,11 +38,11 @@ public class ParsedViewerPane extends BorderPane {
         listenTreeItemSelection();
     }
 
-    private static TreeView<FileComponent> buildClassTree(FileComponent file) {
+    private static TreeView<FilePart> buildClassTree(FilePart file) {
         ParsedTreeItem root = new ParsedTreeItem(file);
         root.setExpanded(true);
         
-        TreeView<FileComponent> tree = new TreeView<>(root);
+        TreeView<FilePart> tree = new TreeView<>(root);
         tree.setMinWidth(200);
         
         return tree;
@@ -65,11 +65,11 @@ public class ParsedViewerPane extends BorderPane {
     
     private void listenTreeItemSelection() {
         tree.getSelectionModel().getSelectedItems().addListener(
-            (ListChangeListener.Change<? extends TreeItem<FileComponent>> c) -> {
+            (ListChangeListener.Change<? extends TreeItem<FilePart>> c) -> {
                 if (c.next() && c.wasAdded()) {
-                    TreeItem<FileComponent> node = c.getList().get(c.getFrom());
+                    TreeItem<FilePart> node = c.getList().get(c.getFrom());
                     if (node != null && node.getParent() != null) {
-                        FileComponent cc = node.getValue();
+                        FilePart cc = node.getValue();
                         //System.out.println("select " + cc);
                         statusLabel.setText(" " + cc.getClass().getSimpleName());
                         if (cc.getLength() > 0) {

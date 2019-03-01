@@ -4,7 +4,7 @@ import com.github.zxh.classpy.classfile.ClassFileComponent;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.classfile.ClassFileReader;
 import com.github.zxh.classpy.classfile.datatype.U2;
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.helper.StringHelper;
 
 import java.util.Arrays;
@@ -72,7 +72,7 @@ public class ConstantPool extends ClassFileComponent {
     }
 
     @Override
-    public List<FileComponent> getComponents() {
+    public List<FilePart> getComponents() {
         return Arrays.stream(constants)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());

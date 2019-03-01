@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.wasm;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.wasm.instructions.Expr;
 import com.github.zxh.classpy.wasm.types.ValType;
 import com.github.zxh.classpy.wasm.values.*;
@@ -8,7 +8,7 @@ import com.github.zxh.classpy.wasm.values.Byte;
 
 import java.util.function.Supplier;
 
-public class WasmBinComponent extends FileComponent {
+public class WasmBinComponent extends FilePart {
 
     public final void read(WasmBinReader reader) {
         try {
@@ -24,7 +24,7 @@ public class WasmBinComponent extends FileComponent {
     }
 
     protected void readContent(WasmBinReader reader) {
-        for (FileComponent fc : getComponents()) {
+        for (FilePart fc : getComponents()) {
             ((WasmBinComponent) fc).read(reader);
         }
     }

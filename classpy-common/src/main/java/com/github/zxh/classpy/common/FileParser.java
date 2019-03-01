@@ -2,8 +2,8 @@ package com.github.zxh.classpy.common;
 
 public interface FileParser {
 
-    FileParser NOP = data -> new FileComponent() {};
+    FileParser NOP = data -> new FilePart() {};
 
-    FileComponent parse(byte[] data);
+    FilePart parse(byte[] data);
 
 }

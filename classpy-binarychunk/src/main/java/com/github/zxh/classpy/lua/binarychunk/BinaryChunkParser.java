@@ -1,12 +1,12 @@
 package com.github.zxh.classpy.lua.binarychunk;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.common.FileParser;
 
 public class BinaryChunkParser implements FileParser {
 
     @Override
-    public FileComponent parse(byte[] data) {
+    public FilePart parse(byte[] data) {
         BinaryChunkReader reader = new BinaryChunkReader(data);
         BinaryChunkFile bc = new BinaryChunkFile();
         bc.read(reader);
@@ -15,7 +15,7 @@ public class BinaryChunkParser implements FileParser {
     }
 
     private static void postRead(BinaryChunkComponent bc) {
-        for (FileComponent c : bc.getComponents()) {
+        for (FilePart c : bc.getComponents()) {
             postRead((BinaryChunkComponent) c);
         }
         bc.postRead();

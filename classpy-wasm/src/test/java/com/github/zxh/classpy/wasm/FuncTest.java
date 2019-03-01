@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.wasm;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.wasm.instructions.Expr;
 import com.github.zxh.classpy.wasm.instructions.Instr;
 import com.github.zxh.classpy.wasm.sections.Code;
@@ -29,7 +29,7 @@ public class FuncTest {
         private int indentation;
 
         private void printExpr(Expr expr) {
-            for (FileComponent fc : expr.getComponents()) {
+            for (FilePart fc : expr.getComponents()) {
                 printInstr((Instr) fc);
             }
         }
@@ -48,7 +48,7 @@ public class FuncTest {
                     || instr.getOpcode() == 0x04) {
                 indentation += 1;
             }
-            for (FileComponent fc : instr.getComponents()) {
+            for (FilePart fc : instr.getComponents()) {
                 if (fc instanceof Instr) {
                     printInstr((Instr) fc);
                 }

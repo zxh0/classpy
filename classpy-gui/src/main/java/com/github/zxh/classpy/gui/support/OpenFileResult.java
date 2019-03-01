@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.gui.support;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.parsed.HexText;
 
@@ -11,7 +11,7 @@ public class OpenFileResult {
     public final URL url;
     public final FileType fileType;
     public final JarTreeNode jarRootNode;
-    public final FileComponent fileRootNode;
+    public final FilePart fileRootNode;
     public final HexText hexText;
 
     public OpenFileResult(URL url, FileType fileType,
@@ -24,7 +24,7 @@ public class OpenFileResult {
     }
 
     public OpenFileResult(URL url, FileType fileType,
-                          FileComponent fileRootNode, HexText hexText) {
+                          FilePart fileRootNode, HexText hexText) {
         this.url = url;
         this.fileType = fileType;
         this.jarRootNode = null;

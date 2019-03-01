@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.wasm.types;
 
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.wasm.WasmBinComponent;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 
@@ -18,11 +18,11 @@ public class FuncType extends WasmBinComponent {
     protected void postRead(WasmBinFile wasm) {
         String params = get("parameters").getComponents().stream()
                 .skip(1)
-                .map(FileComponent::getDesc)
+                .map(FilePart::getDesc)
                 .collect(Collectors.joining(",", "(", ")"));
         String results = get("results").getComponents().stream()
                 .skip(1)
-                .map(FileComponent::getDesc)
+                .map(FilePart::getDesc)
                 .collect(Collectors.joining(",", "(", ")"));
         setDesc(params + "->" + results);
     }

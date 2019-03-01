@@ -2,7 +2,7 @@ package com.github.zxh.classpy.gui.parsed;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Font;
-import com.github.zxh.classpy.common.FileComponent;
+import com.github.zxh.classpy.common.FilePart;
 
 public class HexPane extends TextArea {
     
@@ -16,7 +16,7 @@ public class HexPane extends TextArea {
         setFont(Font.font("Courier New", 14));
     }
     
-    public void select(FileComponent cc) {
+    public void select(FilePart cc) {
         HexText.Selection selection = hex.select(cc);
         positionCaret(selection.getStartPosition());
         selectPositionCaret(selection.getEndPosition());
