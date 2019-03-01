@@ -32,9 +32,9 @@ public abstract class FilePart {
     }
 
     /**
-     * Find sub-component by name.
-     * @param name name of sub-component
-     * @return value of sub-component
+     * Find sub-part by name.
+     * @param name name of sub-part
+     * @return value of sub-part
      */
     protected final FilePart get(String name) {
         for (FilePart c : parts) {

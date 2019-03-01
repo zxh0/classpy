@@ -5,7 +5,7 @@ import com.github.zxh.classpy.classfile.datatype.*;
 import com.github.zxh.classpy.common.FilePart;
 
 /**
- * Base class for all class file components.
+ * Base class for all class file parts.
  */
 public abstract class ClassFilePart extends FilePart {
 

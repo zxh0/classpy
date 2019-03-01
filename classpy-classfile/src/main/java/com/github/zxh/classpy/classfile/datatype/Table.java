@@ -10,7 +10,7 @@ import com.github.zxh.classpy.classfile.attribute.AttributeInfo;
 import com.github.zxh.classpy.helper.StringHelper;
 
 /**
- * Array of class components.
+ * Array of class parts.
  */
 public class Table extends ClassFilePart {
 
