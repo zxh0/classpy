@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Base class for all file components.
+ * Base class for all file parts.
  */
 public abstract class FilePart {
     
@@ -13,7 +13,7 @@ public abstract class FilePart {
     private String desc; // description
     private int offset; // the position of this FilePart in the file
     private int length; // how many bytes this FilePart has
-    private List<FilePart> components; // sub-components
+    private List<FilePart> parts; // sub-parts
     
     // Getters & Setters
     public final String getName() {return name;}
@@ -26,9 +26,9 @@ public abstract class FilePart {
     public final void setLength(int length) {this.length = length;}
 
     public List<FilePart> getParts() {
-        return components == null
+        return parts == null
                 ? Collections.emptyList()
-                : Collections.unmodifiableList(components);
+                : Collections.unmodifiableList(parts);
     }
 
     /**
@@ -37,7 +37,7 @@ public abstract class FilePart {
      * @return value of sub-component
      */
     protected final FilePart get(String name) {
-        for (FilePart c : components) {
+        for (FilePart c : parts) {
             if (name.equals(c.getName())) {
                 return c;
             }
@@ -49,14 +49,14 @@ public abstract class FilePart {
         if (name != null) {
             subPart.setName(name);
         }
-        if (components == null) {
-            components = new ArrayList<>();
+        if (parts == null) {
+            parts = new ArrayList<>();
         }
-        components.add(subPart);
+        parts.add(subPart);
     }
 
     protected final void clear() {
-        components.clear();
+        parts.clear();
     }
 
     /**
