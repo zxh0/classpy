@@ -4,7 +4,7 @@ import com.github.zxh.classpy.bitcoin.types.Table;
 import com.github.zxh.classpy.bitcoin.types.UInt32;
 
 // https://en.bitcoin.it/wiki/Transaction
-public class Transaction extends BlockComponent {
+public class Transaction extends BlockPart {
 
     @Override
     protected void readContent(BlockReader reader) {
@@ -26,7 +26,7 @@ public class Transaction extends BlockComponent {
     }
 
 
-    private static class WitnessData extends BlockComponent {
+    private static class WitnessData extends BlockPart {
 
         @Override
         protected void readContent(BlockReader reader) {
@@ -39,7 +39,7 @@ public class Transaction extends BlockComponent {
 
     }
 
-    private static class TxIn extends BlockComponent {
+    private static class TxIn extends BlockPart {
 
         {
             hash  ("PreviousTransactionHash");
@@ -50,7 +50,7 @@ public class Transaction extends BlockComponent {
 
     }
 
-    private static class TxOut extends BlockComponent {
+    private static class TxOut extends BlockPart {
 
         {
             uint64("value");

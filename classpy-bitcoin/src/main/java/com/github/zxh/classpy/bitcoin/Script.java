@@ -4,7 +4,7 @@ import com.github.zxh.classpy.bitcoin.types.Bytes;
 import com.github.zxh.classpy.common.ParseException;
 
 // https://en.bitcoin.it/wiki/Script
-public class Script extends BlockComponent {
+public class Script extends BlockPart {
 
     @Override
     protected void readContent(BlockReader reader) {
@@ -46,7 +46,7 @@ public class Script extends BlockComponent {
     }
 
 
-    private static class Instr extends BlockComponent {
+    private static class Instr extends BlockPart {
 
         @Override
         protected void readContent(BlockReader reader) {

@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.bitcoin;
 
-public class Block extends BlockComponent {
+public class Block extends BlockPart {
 
     {
         uint32("Version");

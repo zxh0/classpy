@@ -5,7 +5,7 @@ import com.github.zxh.classpy.common.FilePart;
 
 import java.util.function.Supplier;
 
-public class BlockComponent extends FilePart {
+public class BlockPart extends FilePart {
 
     public final void read(BlockReader reader) {
         try {
@@ -22,12 +22,12 @@ public class BlockComponent extends FilePart {
 
     protected void readContent(BlockReader reader) {
         for (FilePart fc : getParts()) {
-            ((BlockComponent) fc).read(reader);
+            ((BlockPart) fc).read(reader);
         }
     }
 
-    protected <T extends BlockComponent> T read(BlockReader reader,
-                                                String name, T c) {
+    protected <T extends BlockPart> T read(BlockReader reader,
+                                           String name, T c) {
         add(name, c);
         c.read(reader);
         return c;
@@ -61,7 +61,7 @@ public class BlockComponent extends FilePart {
     }
 
     protected void table(String name,
-                         Supplier<? extends BlockComponent> supplier) {
+                         Supplier<? extends BlockPart> supplier) {
         add(name, new Table(supplier));
     }
 

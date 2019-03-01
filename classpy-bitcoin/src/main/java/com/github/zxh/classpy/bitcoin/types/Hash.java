@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.bitcoin.types;
 
-import com.github.zxh.classpy.bitcoin.BlockComponent;
+import com.github.zxh.classpy.bitcoin.BlockPart;
 import com.github.zxh.classpy.bitcoin.BlockReader;
 
-public class Hash extends BlockComponent {
+public class Hash extends BlockPart {
 
     @Override
     protected void readContent(BlockReader reader) {
