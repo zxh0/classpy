@@ -13,6 +13,7 @@ dependencies {
     compile project(':classpy-common')
     compile project(':classpy-classfile')
     compile project(':classpy-binarychunk')
+    compile project(':classpy-pyc')
     compile project(':classpy-bitcoin')
     compile project(':classpy-wasm')
 

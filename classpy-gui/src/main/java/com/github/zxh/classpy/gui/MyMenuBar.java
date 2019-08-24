@@ -46,6 +46,7 @@ public final class MyMenuBar extends MenuBar {
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_JAR));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_CLASS));
         openMenu.getItems().add(createOpenMenuItem(FileType.LUA_BC));
+        openMenu.getItems().add(createOpenMenuItem(FileType.PYTHON_PYC));
         openMenu.getItems().add(createOpenMenuItem(FileType.WASM));
         openMenu.getItems().add(createOpenMenuItem(FileType.BITCOIN_BLOCK));
         openMenu.getItems().add(createOpenMenuItem(FileType.BITCOIN_TX));
