@@ -2,6 +2,7 @@
 
 Classpy is a GUI tool for investigating Java class file, Lua binary chunk, Wasm binary code, and other binary file formats.
 
+
 ## Inspiration
 
 This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javap.html) and [JavaClassViewer](http://www.codeproject.com/Articles/35915/Java-Class-Viewer). I reinvent the wheel for the following two reasons:
@@ -17,6 +18,27 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 * Supports [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) raw block and transaction format
 * Displays parsed binary file as tree and hex text
 * The corresponding hex text is highlighted when you select a tree node
+
+## Quick Start
+
+Just for macos with brew
+
+- Install
+```shell
+brew tap guxingke/repo && brew install classpy
+```
+- Try  
+  - open default gui window
+  ```shell
+  classpy
+  ```
+  - open gui window with args
+  ```shell
+  echo "public class HelloWorld { public static void main(String[] args) { System.out.println(\"Hello World\"); } }" > HelloWorld.java
+  $JAVA_HOME/bin/javac HelloWorld.java
+
+  classpy HelloWorld.class
+  ```
 
 ## Build
 ```shell
