@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.gui.dir.DirTreeView;
 import com.github.zxh.classpy.gui.jar.JarTreeView;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import com.github.zxh.classpy.gui.support.*;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Optional;
 
@@ -72,10 +74,18 @@ public class ClasspyApp extends Application {
         return tp;
     }
 
-    private Tab createTab(URL url) {
+    private Tab createFileTab(URL url) {
         Tab tab = new Tab();
         tab.setText(UrlHelper.getFileName(url));
         tab.setUserData(url);
+        tab.setContent(new BorderPane(new ProgressBar()));
+        ((TabPane) root.getCenter()).getTabs().add(tab);
+        return tab;
+    }
+
+    private Tab createDirTab(File dir) {
+        Tab tab = new Tab();
+        tab.setText(dir.getName() + "/");
         tab.setContent(new BorderPane(new ProgressBar()));
         ((TabPane) root.getCenter()).getTabs().add(tab);
         return tab;
@@ -125,7 +135,9 @@ public class ClasspyApp extends Application {
     }
 
     private void onOpenFile(FileType ft, URL url) {
-        if (url == null) {
+        if (ft == FileType.FOLDER) {
+            openDir(url);
+        } else if (url == null) {
             if (ft == FileType.BITCOIN_BLOCK) {
                 showBitcoinBlockDialog();
             } else if (ft == FileType.BITCOIN_TX) {
@@ -135,6 +147,35 @@ public class ClasspyApp extends Application {
             }
         } else {
             openFile(url);
+        }
+    }
+
+    private void openDir(URL url) {
+        File dir = null;
+        if (url != null) {
+            try {
+                dir = new File(url.toURI());
+            } catch (URISyntaxException e) {
+                e.printStackTrace(System.err);
+            }
+        } else {
+            dir = MyFileChooser.showDirChooser(stage);
+        }
+
+        if (dir != null) {
+            System.out.println(dir);
+            try {
+                DirTreeView treeView = DirTreeView.create(dir);
+                treeView.setOpenFileHandler(this::openFile);
+
+                Tab tab = createDirTab(dir);
+                tab.setContent(treeView.getTreeView());
+
+                RecentFiles.INSTANCE.add(FileType.FOLDER, dir.toURI().toURL());
+                menuBar.updateRecentFiles();
+            } catch (Exception e) {
+                e.printStackTrace(System.err);
+            }
         }
     }
 
@@ -191,7 +232,7 @@ public class ClasspyApp extends Application {
     }
 
     private void openFile(URL url) {
-        Tab tab = createTab(url);
+        Tab tab = createFileTab(url);
         OpenFileTask task = new OpenFileTask(url);
 
         task.setOnSucceeded((OpenFileResult ofr) -> {

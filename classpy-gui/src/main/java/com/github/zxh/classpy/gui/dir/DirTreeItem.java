@@ -1,17 +1,17 @@
-package com.github.zxh.classpy.gui.jar;
-
-import java.util.List;
-import java.util.stream.Collectors;
+package com.github.zxh.classpy.gui.dir;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-public class JarTreeItem extends TreeItem<JarTreeNode> {
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class DirTreeItem extends TreeItem<DirTreeNode> {
 
     private boolean isFirstTimeChildren = true;
 
-    public JarTreeItem(JarTreeNode root) {
+    public DirTreeItem(DirTreeNode root) {
         super(root);
     }
 
@@ -21,7 +21,7 @@ public class JarTreeItem extends TreeItem<JarTreeNode> {
     }
 
     @Override
-    public ObservableList<TreeItem<JarTreeNode>> getChildren() {
+    public ObservableList<TreeItem<DirTreeNode>> getChildren() {
         if (isFirstTimeChildren) {
             isFirstTimeChildren = false;
             System.out.println("get children of " + getValue());
@@ -34,9 +34,9 @@ public class JarTreeItem extends TreeItem<JarTreeNode> {
         return super.getChildren();
     }
 
-    private ObservableList<TreeItem<JarTreeNode>> buildChildren() {
-        List<JarTreeItem> items = getValue().subNodes.stream()
-                .map(JarTreeItem::new)
+    private ObservableList<TreeItem<DirTreeNode>> buildChildren() {
+        List<DirTreeItem> items = getValue().getSubNodes().stream()
+                .map(DirTreeItem::new)
                 .collect(Collectors.toList());
 
         return FXCollections.observableArrayList(items);

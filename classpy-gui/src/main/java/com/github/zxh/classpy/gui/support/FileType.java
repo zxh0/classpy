@@ -14,6 +14,7 @@ import javafx.stage.FileChooser.ExtensionFilter;
  */
 public enum FileType {
 
+    FOLDER       ("/folder.png",  "Folder",              "/",       null),
     JAVA_JAR     ("/jar.png",     "Java JAR",            "*.jar",   null),
     JAVA_CLASS   ("/java.png",    "Java Class",          "*.class", new ClassFileParser()),
     LUA_BC       ("/lua.png",     "Lua Binary Chunk",    "*.luac",  new BinaryChunkParser()),

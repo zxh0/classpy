@@ -3,11 +3,7 @@ package com.github.zxh.classpy.gui.jar;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
-import java.io.File;
-import java.net.URI;
 import java.net.URL;
-import java.nio.file.FileSystemNotFoundException;
-import java.nio.file.FileSystems;
 import java.util.function.Consumer;
 
 public class JarTreeView {
@@ -60,15 +56,6 @@ public class JarTreeView {
             }
         }
         return null;
-    }
-
-    public static boolean isOpen(File jarFile) throws Exception {
-        URI jarUri = new URI("jar", jarFile.toPath().toUri().toString(), null);
-        try {
-            return FileSystems.getFileSystem(jarUri) != null;
-        } catch (FileSystemNotFoundException e) {
-            return false;
-        }
     }
 
 }

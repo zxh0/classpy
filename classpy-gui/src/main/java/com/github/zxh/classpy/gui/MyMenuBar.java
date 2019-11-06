@@ -42,7 +42,9 @@ public final class MyMenuBar extends MenuBar {
     }
 
     private Menu createOpenMenu() {
-        Menu openMenu = new Menu("_Open", ImageHelper.createImageView("/open.png"));
+        ImageView folderIcon = ImageHelper.createImageView("/folder.png");
+        Menu openMenu = new Menu("_Open", folderIcon);
+        openMenu.getItems().add(createOpenFolderItem(folderIcon));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_JAR));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_CLASS));
         openMenu.getItems().add(createOpenMenuItem(FileType.LUA_BC));
@@ -51,6 +53,12 @@ public final class MyMenuBar extends MenuBar {
         openMenu.getItems().add(createOpenMenuItem(FileType.BITCOIN_TX));
         openMenu.setMnemonicParsing(true);
         return openMenu;
+    }
+
+    private MenuItem createOpenFolderItem(ImageView icon) {
+        MenuItem item = new MenuItem("Folder ... ", icon);
+        item.setOnAction(e -> onOpenFile.accept(FileType.FOLDER, null));
+        return item;
     }
 
     private MenuItem createOpenMenuItem(FileType ft) {

@@ -2,7 +2,6 @@ package com.github.zxh.classpy.gui.support;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -46,10 +45,6 @@ public class RecentFiles {
 
     public List<RecentFile> getAll() {
         return list;
-    }
-
-    public void add(FileType fileType, File file) throws MalformedURLException {
-        add(fileType, file.toURI().toURL());
     }
 
     public void add(FileType fileType, URL fileUrl) {

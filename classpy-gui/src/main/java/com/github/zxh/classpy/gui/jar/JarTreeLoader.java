@@ -17,23 +17,24 @@ public class JarTreeLoader {
     private static JarTreeNode path2node(Path path) throws IOException {
         JarTreeNode node = new JarTreeNode(path);
 
-        Files.walkFileTree(path, EnumSet.noneOf(FileVisitOption.class), 1, new SimpleFileVisitor<Path>() {
+        Files.walkFileTree(path, EnumSet.noneOf(FileVisitOption.class), 1,
+                new SimpleFileVisitor<Path>() {
 
-            @Override
-            public FileVisitResult visitFile(Path subPath, BasicFileAttributes attrs) throws IOException {
-                if (Files.isDirectory(subPath)) {
-                    JarTreeNode subNode = path2node(subPath);
-                    if (subNode.hasSubNodes()) {
-                        node.addSubNode(subNode);
+                    @Override
+                    public FileVisitResult visitFile(Path subPath, BasicFileAttributes attrs) throws IOException {
+                        if (Files.isDirectory(subPath)) {
+                            JarTreeNode subNode = path2node(subPath);
+                            if (subNode.hasSubNodes()) {
+                                node.addSubNode(subNode);
+                            }
+                        } else if (isClassFile(subPath)) {
+                            node.addSubNode(new JarTreeNode(subPath));
+                        }
+
+                        return FileVisitResult.CONTINUE;
                     }
-                } else if (isClassFile(subPath)) {
-                    node.addSubNode(new JarTreeNode(subPath));
-                }
 
-                return FileVisitResult.CONTINUE;
-            }
-
-        });
+                });
 
         node.sortSubNodes();
         return node;
