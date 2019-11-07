@@ -1,16 +1,16 @@
-package com.github.zxh.classpy.gui.jar;
+package com.github.zxh.classpy.gui.zip;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JarTreeNode {
+public class ZipTreeNode {
 
     final String path;
     final String name;
-    List<JarTreeNode> subNodes;
+    List<ZipTreeNode> subNodes;
 
-    JarTreeNode(Path path) {
+    ZipTreeNode(Path path) {
         this.path = path.toString();
         if (path.getFileName() != null) {
             this.name = path.getFileName().toString();
@@ -28,7 +28,7 @@ public class JarTreeNode {
         return subNodes != null && !subNodes.isEmpty();
     }
 
-    void addSubNode(JarTreeNode node) {
+    void addSubNode(ZipTreeNode node) {
         if (subNodes == null) {
             subNodes = new ArrayList<>();
         }
@@ -37,11 +37,11 @@ public class JarTreeNode {
 
     void sortSubNodes() {
         if (subNodes != null) {
-            subNodes.sort(JarTreeNode::comparePaths);
+            subNodes.sort(ZipTreeNode::comparePaths);
         }
     }
 
-    static int comparePaths(JarTreeNode n1, JarTreeNode n2) {
+    private static int comparePaths(ZipTreeNode n1, ZipTreeNode n2) {
         if (n1.hasSubNodes() && !n2.hasSubNodes()) {
             return -1;
         } else if (!n1.hasSubNodes() && n2.hasSubNodes()) {

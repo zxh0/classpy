@@ -8,14 +8,17 @@ import java.net.URL;
 
 public class UrlHelper {
 
-    public static String readOneLine(URL url) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()))) {
+    public static String readOneLine(String url) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new URL(url).openStream()))) {
             return reader.readLine();
         }
     }
 
-    public static byte[] readData(URL url) throws IOException {
-        try (InputStream is = url.openStream()) {
+    public static byte[] readData(String url) throws IOException {
+        if (url.startsWith("jmod:")) {
+            url = url.replace("jmod:", "jar:");
+        }
+        try (InputStream is = new URL(url).openStream()) {
             byte[] data = new byte[is.available()];
             int len = 0;
             while (len < data.length) {
@@ -25,10 +28,15 @@ public class UrlHelper {
         }
     }
 
-    public static String getFileName(URL url) {
-        String urlStr = url.toString();
-        int idxOfDot = urlStr.lastIndexOf('/');
-        return idxOfDot < 0 ? urlStr : urlStr.substring(idxOfDot + 1);
+    public static String getFileName(String url) {
+        int lastSlashIdx = url.lastIndexOf('/');
+        return lastSlashIdx < 0 ? url : url.substring(lastSlashIdx + 1);
     }
-    
+
+    public static String getFileSuffix(String url) {
+        String fileName = getFileName(url);
+        int lastDotIdx = fileName.lastIndexOf('.');
+        return lastDotIdx < 0 ? "" : fileName.substring(lastDotIdx + 1);
+    }
+
 }

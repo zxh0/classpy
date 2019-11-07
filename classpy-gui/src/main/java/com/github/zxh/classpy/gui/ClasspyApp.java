@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.gui;
 
 import com.github.zxh.classpy.gui.dir.DirTreeView;
-import com.github.zxh.classpy.gui.jar.JarTreeView;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import com.github.zxh.classpy.gui.support.*;
+import com.github.zxh.classpy.gui.zip.ZipTreeView;
 import com.github.zxh.classpy.helper.UrlHelper;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
@@ -67,14 +67,13 @@ public class ClasspyApp extends Application {
         tp.getSelectionModel().selectedItemProperty().addListener(
                 (ObservableValue<? extends Tab> observable, Tab oldTab, Tab newTab) -> {
                     if (newTab != null) {
-                        URL url = (URL) newTab.getUserData();
-                        stage.setTitle(TITLE + " - " + url);
+                        stage.setTitle(TITLE + " - " + newTab.getUserData());
                     }
         });
         return tp;
     }
 
-    private Tab createFileTab(URL url) {
+    private Tab createFileTab(String url) {
         Tab tab = new Tab();
         tab.setText(UrlHelper.getFileName(url));
         tab.setUserData(url);
@@ -134,7 +133,7 @@ public class ClasspyApp extends Application {
         newApp.start(new Stage());
     }
 
-    private void onOpenFile(FileType ft, URL url) {
+    private void onOpenFile(FileType ft, String url) {
         if (ft == FileType.FOLDER) {
             openDir(url);
         } else if (url == null) {
@@ -150,12 +149,12 @@ public class ClasspyApp extends Application {
         }
     }
 
-    private void openDir(URL url) {
+    private void openDir(String url) {
         File dir = null;
         if (url != null) {
             try {
-                dir = new File(url.toURI());
-            } catch (URISyntaxException e) {
+                dir = new File(new URL(url).toURI());
+            } catch (MalformedURLException | URISyntaxException e) {
                 e.printStackTrace(System.err);
             }
         } else {
@@ -171,7 +170,7 @@ public class ClasspyApp extends Application {
                 Tab tab = createDirTab(dir);
                 tab.setContent(treeView.getTreeView());
 
-                RecentFiles.INSTANCE.add(FileType.FOLDER, dir.toURI().toURL());
+                RecentFiles.INSTANCE.add(FileType.FOLDER, dir.toURI().toURL().toString());
                 menuBar.updateRecentFiles();
             } catch (Exception e) {
                 e.printStackTrace(System.err);
@@ -192,9 +191,7 @@ public class ClasspyApp extends Application {
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            try {
-                openFile(new URL(apiUrl.replace("<hash>", result.get())));
-            } catch (MalformedURLException ignored) {}
+            openFile(apiUrl.replace("<hash>", result.get()));
         }
     }
 
@@ -210,9 +207,7 @@ public class ClasspyApp extends Application {
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            try {
-                openFile(new URL(apiUrl.replace("<hash>", result.get())));
-            } catch (MalformedURLException ignored) {}
+            apiUrl.replace("<hash>", result.get());
         }
     }
 
@@ -225,20 +220,20 @@ public class ClasspyApp extends Application {
 
     private void openFile(File file) {
         try {
-            openFile(file.toURI().toURL());
+            openFile(file.toURI().toURL().toString());
         } catch (MalformedURLException e) {
             e.printStackTrace(System.err);
         }
     }
 
-    private void openFile(URL url) {
+    private void openFile(String url) {
         Tab tab = createFileTab(url);
         OpenFileTask task = new OpenFileTask(url);
 
         task.setOnSucceeded((OpenFileResult ofr) -> {
-            if (ofr.fileType == FileType.JAVA_JAR) {
-                JarTreeView treeView = new JarTreeView(ofr.url, ofr.jarRootNode);
-                treeView.setOpenClassHandler(this::openClassInJar);
+            if (ofr.fileType.isZip()) {
+                ZipTreeView treeView = new ZipTreeView(ofr.url, ofr.zipRootNode);
+                treeView.setOpenFileHandler(this::openFile);
                 tab.setContent(treeView.getTreeView());
             } else {
                 ParsedViewerPane viewerPane = new ParsedViewerPane(ofr.fileRootNode, ofr.hexText);
@@ -255,14 +250,6 @@ public class ClasspyApp extends Application {
         });
 
         task.startInNewThread();
-    }
-
-    private void openClassInJar(String url) {
-        try {
-            openFile(new URL(url));
-        } catch (MalformedURLException e) {
-            e.printStackTrace(System.err);
-        }
     }
 
 

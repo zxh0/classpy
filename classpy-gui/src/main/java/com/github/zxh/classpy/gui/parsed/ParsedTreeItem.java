@@ -5,9 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TreeItem;
 
-/**
- * http://download.java.net/jdk8/jfxdocs/javafx/scene/control/TreeItem.html
- */
 public class ParsedTreeItem extends TreeItem<FilePart> {
 
     private boolean isFirstTimeChildren = true;

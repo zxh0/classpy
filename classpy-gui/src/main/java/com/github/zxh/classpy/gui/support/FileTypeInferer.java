@@ -11,19 +11,21 @@ public class FileTypeInferer {
             (byte) 0xCA, (byte) 0xFE, (byte) 0xBA, (byte) 0xBE
     };
 
-    public static FileType inferFileType(URL url) {
-        String filename = url.toString().toLowerCase();
-        if (filename.startsWith("https://blockchain.info/rawblock")) {
+    public static FileType inferFileType(String url) {
+        url = url.toLowerCase();
+        if (url.startsWith("https://blockchain.info/rawblock")) {
             return FileType.BITCOIN_BLOCK;
-        } else if (filename.startsWith("https://blockchain.info/rawtx")) {
+        } else if (url.startsWith("https://blockchain.info/rawtx")) {
             return FileType.BITCOIN_TX;
-        } else if (filename.endsWith(".jar")) {
+        } else if (url.endsWith(".jar")) {
             return FileType.JAVA_JAR;
-        } else if (filename.endsWith(".class")) {
+        } else if (url.endsWith(".jmod")) {
+            return FileType.JAVA_JMOD;
+        } else if (url.endsWith(".class")) {
             return FileType.JAVA_CLASS;
-        } else if (filename.endsWith(".luac")) {
+        } else if (url.endsWith(".luac")) {
             return FileType.LUA_BC;
-        } else if (filename.endsWith(".wasm")) {
+        } else if (url.endsWith(".wasm")) {
             return FileType.WASM;
         } else {
             return FileType.UNKNOWN;

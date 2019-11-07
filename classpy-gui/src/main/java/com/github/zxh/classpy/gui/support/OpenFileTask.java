@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.gui.support;
 
 import com.github.zxh.classpy.common.FilePart;
-import com.github.zxh.classpy.gui.jar.JarTreeLoader;
-import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.parsed.HexText;
+import com.github.zxh.classpy.gui.zip.ZipTreeLoader;
+import com.github.zxh.classpy.gui.zip.ZipTreeNode;
 import com.github.zxh.classpy.helper.StringHelper;
 import com.github.zxh.classpy.helper.UrlHelper;
 
@@ -15,9 +15,9 @@ import javafx.concurrent.Task;
 
 public class OpenFileTask extends Task<OpenFileResult> {
 
-    private final URL url;
+    private final String url;
 
-    public OpenFileTask(URL url) {
+    public OpenFileTask(String url) {
         this.url = url;
     }
 
@@ -26,12 +26,12 @@ public class OpenFileTask extends Task<OpenFileResult> {
         System.out.println("loading " + url + "...");
 
         FileType fileType = FileTypeInferer.inferFileType(url);
-        if (fileType == FileType.JAVA_JAR) {
-            JarTreeNode rootNode = JarTreeLoader.load(new File(url.toURI()));
+        if (fileType.isZip()) {
+            ZipTreeNode rootNode = ZipTreeLoader.load(new File(new URL(url).toURI()));
             return new OpenFileResult(url, fileType, rootNode);
         }
 
-        byte[] data = (fileType == FileType.BITCOIN_BLOCK || fileType == FileType.BITCOIN_TX)
+        byte[] data = (fileType.isBitcoin())
                 ? StringHelper.hex2Bytes(UrlHelper.readOneLine(url))
                 : UrlHelper.readData(url);
         if (fileType == FileType.UNKNOWN) {

@@ -2,6 +2,7 @@ package com.github.zxh.classpy.gui.support;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -31,10 +32,10 @@ public class RecentFiles {
 
     public File getLastOpenFile(FileType ft) {
         for (RecentFile rf : list) {
-            if (rf.type == ft && rf.url.toString().startsWith("file")) {
+            if (rf.type == ft && rf.url.startsWith("file")) {
                 try {
-                    return new File(rf.url.toURI());
-                } catch (URISyntaxException e) {
+                    return new File(new URL(rf.url).toURI());
+                } catch (MalformedURLException | URISyntaxException e) {
                     e.printStackTrace(System.err);
                 }
             }
@@ -47,8 +48,8 @@ public class RecentFiles {
         return list;
     }
 
-    public void add(FileType fileType, URL fileUrl) {
-        add(new RecentFile(fileType, fileUrl));
+    public void add(FileType fileType, String fileURL) {
+        add(new RecentFile(fileType, fileURL));
     }
 
     private void add(RecentFile rf) {

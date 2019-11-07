@@ -9,7 +9,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 
-import java.net.URL;
 import java.util.function.BiConsumer;
 
 /**
@@ -24,7 +23,7 @@ import java.util.function.BiConsumer;
  */
 public final class MyMenuBar extends MenuBar {
 
-    private BiConsumer<FileType, URL> onOpenFile;
+    private BiConsumer<FileType, String> onOpenFile;
     private Runnable onNewWindow;
 
     public MyMenuBar() {
@@ -32,7 +31,7 @@ public final class MyMenuBar extends MenuBar {
         createWindowMenu();
         createHelpMenu();
     }
-    
+
     private void createFileMenu() {
         Menu fileMenu = new Menu("_File");
         fileMenu.getItems().add(createOpenMenu());
@@ -46,6 +45,7 @@ public final class MyMenuBar extends MenuBar {
         Menu openMenu = new Menu("_Open", folderIcon);
         openMenu.getItems().add(createOpenFolderItem(folderIcon));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_JAR));
+        openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_JMOD));
         openMenu.getItems().add(createOpenMenuItem(FileType.JAVA_CLASS));
         openMenu.getItems().add(createOpenMenuItem(FileType.LUA_BC));
         openMenu.getItems().add(createOpenMenuItem(FileType.WASM));
@@ -104,7 +104,7 @@ public final class MyMenuBar extends MenuBar {
         getMenus().add(helpMenu);
     }
 
-    public void setOnOpenFile(BiConsumer<FileType, URL> onOpenFile) {
+    public void setOnOpenFile(BiConsumer<FileType, String> onOpenFile) {
         this.onOpenFile = onOpenFile;
     }
 

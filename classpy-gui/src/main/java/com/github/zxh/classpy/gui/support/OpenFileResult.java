@@ -1,33 +1,31 @@
 package com.github.zxh.classpy.gui.support;
 
 import com.github.zxh.classpy.common.FilePart;
-import com.github.zxh.classpy.gui.jar.JarTreeNode;
 import com.github.zxh.classpy.gui.parsed.HexText;
-
-import java.net.URL;
+import com.github.zxh.classpy.gui.zip.ZipTreeNode;
 
 public class OpenFileResult {
 
-    public final URL url;
+    public final String url;
     public final FileType fileType;
-    public final JarTreeNode jarRootNode;
+    public final ZipTreeNode zipRootNode;
     public final FilePart fileRootNode;
     public final HexText hexText;
 
-    public OpenFileResult(URL url, FileType fileType,
-                          JarTreeNode jarTreeNode) {
+    public OpenFileResult(String url, FileType fileType,
+                          ZipTreeNode zipRootNode) {
         this.url = url;
         this.fileType = fileType;
-        this.jarRootNode = jarTreeNode;
+        this.zipRootNode = zipRootNode;
         this.fileRootNode = null;
         this.hexText = null;
     }
 
-    public OpenFileResult(URL url, FileType fileType,
+    public OpenFileResult(String url, FileType fileType,
                           FilePart fileRootNode, HexText hexText) {
         this.url = url;
         this.fileType = fileType;
-        this.jarRootNode = null;
+        this.zipRootNode = null;
         this.fileRootNode = fileRootNode;
         this.hexText = hexText;
     }

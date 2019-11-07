@@ -1,7 +1,6 @@
 package com.github.zxh.classpy.gui.support;
 
 import java.net.MalformedURLException;
-import java.net.URL;
 
 /**
  * Recent open file.
@@ -9,16 +8,15 @@ import java.net.URL;
 public class RecentFile {
 
     public final FileType type;
-    public final URL url;
+    public final String url;
 
-    public RecentFile(FileType type, URL url) {
+    public RecentFile(FileType type, String url) {
         this.type = type;
         this.url = url;
     }
 
     public RecentFile(String str) throws MalformedURLException {
-        this(FileType.valueOf(str.split("#=>")[0]),
-                new URL(str.split("#=>")[1]));
+        this(FileType.valueOf(str.split("#=>")[0]), str.split("#=>")[1]);
     }
 
     @Override
