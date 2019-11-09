@@ -4,30 +4,18 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumSet;
 import java.util.List;
 
-public class DirTreeNode {
-
-    final Path path;
-    final String name;
+public class DirTreeNode extends BaseTreeNode {
 
     public DirTreeNode(Path path) {
-        this.path = path;
-        if (path.getFileName() != null) {
-            this.name = path.getFileName().toString();
-        } else {
-            this.name = path.toString();
-        }
-    }
-
-    @Override
-    public String toString() {
-        return name;
+        super(path);
     }
 
     boolean hasSubNodes() {
-        return Files.isDirectory(path);
+        return super.isDir();
     }
 
     List<DirTreeNode> getSubNodes() {
@@ -39,7 +27,9 @@ public class DirTreeNode {
 
                         @Override
                         public FileVisitResult visitFile(Path subPath, BasicFileAttributes attrs) {
-                            nodes.add(new DirTreeNode(subPath));
+                            if (!subPath.getFileName().toString().startsWith(".")) {
+                                nodes.add(new DirTreeNode(subPath));
+                            }
                             return FileVisitResult.CONTINUE;
                         }
 
@@ -48,6 +38,7 @@ public class DirTreeNode {
             e.printStackTrace(System.err);
         }
 
+        Collections.sort(nodes);
         return nodes;
     }
 
