@@ -10,13 +10,14 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
 
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 /**
  * Classpy menu bar.
  * 
- * File              Window        Help
- *  |-Open >         |-New Window  |-About
- *    |-Java Class...
+ * File               Window          Help
+ *  |-Open >          |-New Window    |-About
+ *    |-Java Class... |-Class All Tabs
  *    |-Java Jar...
  *    |-Luac Out...
  *  |-Open Recent >
@@ -24,6 +25,7 @@ import java.util.function.BiConsumer;
 public final class MyMenuBar extends MenuBar {
 
     private BiConsumer<FileType, String> onOpenFile;
+    private Runnable onCloseAllTabs;
     private Runnable onNewWindow;
 
     public MyMenuBar() {
@@ -84,9 +86,12 @@ public final class MyMenuBar extends MenuBar {
     private void createWindowMenu() {
         MenuItem newWinMenuItem = new MenuItem("New Window");
         newWinMenuItem.setOnAction(e -> onNewWindow.run());
+        MenuItem closeTabsMenuItem = new MenuItem("Class All Tabs");
+        closeTabsMenuItem.setOnAction(e -> onCloseAllTabs.run());
         
         Menu winMenu = new Menu("_Window");
         winMenu.getItems().add(newWinMenuItem);
+        winMenu.getItems().add( closeTabsMenuItem);
         winMenu.setMnemonicParsing(true);
 
         getMenus().add(winMenu);
@@ -110,6 +115,10 @@ public final class MyMenuBar extends MenuBar {
 
     public void setOnNewWindow(Runnable onNewWindow) {
         this.onNewWindow = onNewWindow;
+    }
+
+    public void setOnCloseAllTabs(Runnable onCloseAllTabs) {
+        this.onCloseAllTabs = onCloseAllTabs;
     }
 
     public void updateRecentFiles() {

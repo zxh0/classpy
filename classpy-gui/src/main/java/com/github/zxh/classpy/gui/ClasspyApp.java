@@ -95,6 +95,7 @@ public class ClasspyApp extends Application {
 
         menuBar.setOnOpenFile(this::onOpenFile);
         menuBar.setOnNewWindow(this::openNewWindow);
+        menuBar.setOnCloseAllTabs(this::onCloseTabs);
         //menuBar.setUseSystemMenuBar(true);
 
         return menuBar;
@@ -131,6 +132,10 @@ public class ClasspyApp extends Application {
         ClasspyApp newApp = new ClasspyApp();
         // is this correct?
         newApp.start(new Stage());
+    }
+
+    private void onCloseTabs() {
+        ((TabPane) root.getCenter()).getTabs().clear();
     }
 
     private void onOpenFile(FileType ft, String url) {
