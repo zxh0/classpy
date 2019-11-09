@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui.zip;
+package com.github.zxh.classpy.gui.fs;
 
 import java.io.File;
 import java.io.IOException;

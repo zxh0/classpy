@@ -2,8 +2,8 @@ package com.github.zxh.classpy.gui.support;
 
 import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.gui.parsed.HexText;
-import com.github.zxh.classpy.gui.zip.ZipTreeLoader;
-import com.github.zxh.classpy.gui.zip.ZipTreeNode;
+import com.github.zxh.classpy.gui.fs.ZipTreeLoader;
+import com.github.zxh.classpy.gui.fs.ZipTreeNode;
 import com.github.zxh.classpy.helper.StringHelper;
 import com.github.zxh.classpy.helper.UrlHelper;
 

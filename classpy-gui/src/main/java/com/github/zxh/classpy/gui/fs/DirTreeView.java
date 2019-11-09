@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.gui.dir;
+package com.github.zxh.classpy.gui.fs;
 
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;

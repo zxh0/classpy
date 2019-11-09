@@ -1,9 +1,9 @@
 package com.github.zxh.classpy.gui;
 
-import com.github.zxh.classpy.gui.dir.DirTreeView;
+import com.github.zxh.classpy.gui.fs.DirTreeView;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import com.github.zxh.classpy.gui.support.*;
-import com.github.zxh.classpy.gui.zip.ZipTreeView;
+import com.github.zxh.classpy.gui.fs.ZipTreeView;
 import com.github.zxh.classpy.helper.UrlHelper;
 import javafx.application.Application;
 import javafx.beans.value.ObservableValue;
