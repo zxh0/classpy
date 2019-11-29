@@ -143,19 +143,19 @@ instr ::= . . .
 
     /*
 instr ::= . . .
-        | 0x20 𝑥:localidx ⇒ get_local 𝑥
-        | 0x21 𝑥:localidx ⇒ set_local 𝑥
-        | 0x22 𝑥:localidx ⇒ tee_local 𝑥
-        | 0x23 𝑥:globalidx ⇒ get_global 𝑥
-        | 0x24 𝑥:globalidx ⇒ set_global 𝑥
+        | 0x20 𝑥:localidx ⇒ local.get 𝑥
+        | 0x21 𝑥:localidx ⇒ local.set 𝑥
+        | 0x22 𝑥:localidx ⇒ local.tee 𝑥
+        | 0x23 𝑥:globalidx ⇒ global.get 𝑥
+        | 0x24 𝑥:globalidx ⇒ global.set 𝑥
      */
     private void readVariableInstructions(WasmBinReader reader) {
         switch (opcode) {
-            case 0x20: setName("get_local"); break;
-            case 0x21: setName("set_local"); break;
-            case 0x22: setName("tee_local"); break;
-            case 0x23: setName("get_global"); break;
-            case 0x24: setName("set_global"); break;
+            case 0x20: setName("local.get"); break;
+            case 0x21: setName("local.set"); break;
+            case 0x22: setName("local.tee"); break;
+            case 0x23: setName("global.get"); break;
+            case 0x24: setName("global.set"); break;
             default: throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
@@ -376,31 +376,31 @@ instr ::= . . .
         | 0xA5 ⇒ f64.max
         | 0xA6 ⇒ f64.copysign
 
-        | 0xA7 ⇒ i32.wrap/i64
-        | 0xA8 ⇒ i32.trunc_s/f32
-        | 0xA9 ⇒ i32.trunc_u/f32
-        | 0xAA ⇒ i32.trunc_s/f64
-        | 0xAB ⇒ i32.trunc_u/f64
-        | 0xAC ⇒ i64.extend_s/i32
-        | 0xAD ⇒ i64.extend_u/i32
-        | 0xAE ⇒ i64.trunc_s/f32
-        | 0xAF ⇒ i64.trunc_u/f32
-        | 0xB0 ⇒ i64.trunc_s/f64
-        | 0xB1 ⇒ i64.trunc_u/f64
-        | 0xB2 ⇒ f32.convert_s/i32
-        | 0xB3 ⇒ f32.convert_u/i32
-        | 0xB4 ⇒ f32.convert_s/i64
-        | 0xB5 ⇒ f32.convert_u/i64
-        | 0xB6 ⇒ f32.demote/f64
-        | 0xB7 ⇒ f64.convert_s/i32
-        | 0xB8 ⇒ f64.convert_u/i32
-        | 0xB9 ⇒ f64.convert_s/i64
-        | 0xBA ⇒ f64.convert_u/i64
-        | 0xBB ⇒ f64.promote/f32
-        | 0xBC ⇒ i32.reinterpret/f32
-        | 0xBD ⇒ i64.reinterpret/f64
-        | 0xBE ⇒ f32.reinterpret/i32
-        | 0xBF ⇒ f64.reinterpret/i64
+        | 0xA7 ⇒ i32.wrap_i64
+        | 0xA8 ⇒ i32.trunc_f32_s
+        | 0xA9 ⇒ i32.trunc_f32_u
+        | 0xAA ⇒ i32.trunc_f64_s
+        | 0xAB ⇒ i32.trunc_f64_u
+        | 0xAC ⇒ i64.extend_i32_s
+        | 0xAD ⇒ i64.extend_i32_u
+        | 0xAE ⇒ i64.trunc_f32_s
+        | 0xAF ⇒ i64.trunc_f32_u
+        | 0xB0 ⇒ i64.trunc_f64_s
+        | 0xB1 ⇒ i64.trunc_f64_u
+        | 0xB2 ⇒ f32.convert_i32_s
+        | 0xB3 ⇒ f32.convert_i32_u
+        | 0xB4 ⇒ f32.convert_i64_s
+        | 0xB5 ⇒ f32.convert_i64_u
+        | 0xB6 ⇒ f32.demote_f64
+        | 0xB7 ⇒ f64.convert_i32_s
+        | 0xB8 ⇒ f64.convert_i32_u
+        | 0xB9 ⇒ f64.convert_i64_s
+        | 0xBA ⇒ f64.convert_i64_u
+        | 0xBB ⇒ f64.promote_f32
+        | 0xBC ⇒ i32.reinterpret_f32
+        | 0xBD ⇒ i64.reinterpret_f64
+        | 0xBE ⇒ f32.reinterpret_i32
+        | 0xBF ⇒ f64.reinterpret_i64
      */
     private void readNumericInstructions2(WasmBinReader reader) {
         switch (opcode) {
@@ -502,31 +502,31 @@ instr ::= . . .
             case 0xA4: setName("f64.min"); break;
             case 0xA5: setName("f64.max"); break;
             case 0xA6: setName("f64.copysign"); break;
-            case 0xA7: setName("i32.wrap/i64"); break;
-            case 0xA8: setName("i32.trunc_s/f32"); break;
-            case 0xA9: setName("i32.trunc_u/f32"); break;
-            case 0xAA: setName("i32.trunc_s/f64"); break;
-            case 0xAB: setName("i32.trunc_u/f64"); break;
-            case 0xAC: setName("i64.extend_s/i32"); break;
-            case 0xAD: setName("i64.extend_u/i32"); break;
-            case 0xAE: setName("i64.trunc_s/f32"); break;
-            case 0xAF: setName("i64.trunc_u/f32"); break;
-            case 0xB0: setName("i64.trunc_s/f64"); break;
-            case 0xB1: setName("i64.trunc_u/f64"); break;
-            case 0xB2: setName("f32.convert_s/i32"); break;
-            case 0xB3: setName("f32.convert_u/i32"); break;
-            case 0xB4: setName("f32.convert_s/i64"); break;
-            case 0xB5: setName("f32.convert_u/i64"); break;
-            case 0xB6: setName("f32.demote/f64"); break;
-            case 0xB7: setName("f64.convert_s/i32"); break;
-            case 0xB8: setName("f64.convert_u/i32"); break;
-            case 0xB9: setName("f64.convert_s/i64"); break;
-            case 0xBA: setName("f64.convert_u/i64"); break;
-            case 0xBB: setName("f64.promote/f32"); break;
-            case 0xBC: setName("i32.reinterpret/f32"); break;
-            case 0xBD: setName("i64.reinterpret/f64"); break;
-            case 0xBE: setName("f32.reinterpret/i32"); break;
-            case 0xBF: setName("f64.reinterpret/i64"); break;
+            case 0xA7: setName("i32.wrap_i64"); break;
+            case 0xA8: setName("i32.trunc_f32_s"); break;
+            case 0xA9: setName("i32.trunc_f32_u"); break;
+            case 0xAA: setName("i32.trunc_f64_s"); break;
+            case 0xAB: setName("i32.trunc_f64_u"); break;
+            case 0xAC: setName("i64.extend_i32_s"); break;
+            case 0xAD: setName("i64.extend_i32_u"); break;
+            case 0xAE: setName("i64.trunc_f32_s"); break;
+            case 0xAF: setName("i64.trunc_f32_u"); break;
+            case 0xB0: setName("i64.trunc_f64_s"); break;
+            case 0xB1: setName("i64.trunc_f64_u"); break;
+            case 0xB2: setName("f32.convert_i32_s"); break;
+            case 0xB3: setName("f32.convert_i32_u"); break;
+            case 0xB4: setName("f32.convert_i64_s"); break;
+            case 0xB5: setName("f32.convert_i64_u"); break;
+            case 0xB6: setName("f32.demote_f64"); break;
+            case 0xB7: setName("f64.convert_i32_s"); break;
+            case 0xB8: setName("f64.convert_i32_u"); break;
+            case 0xB9: setName("f64.convert_i64_s"); break;
+            case 0xBA: setName("f64.convert_i64_u"); break;
+            case 0xBB: setName("f64.promote_f32"); break;
+            case 0xBC: setName("i32.reinterpret_f32"); break;
+            case 0xBD: setName("i64.reinterpret_f64"); break;
+            case 0xBE: setName("f32.reinterpret_i32"); break;
+            case 0xBF: setName("f64.reinterpret_i64"); break;
             default: throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
