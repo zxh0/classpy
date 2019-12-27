@@ -1,6 +1,8 @@
 package com.github.zxh.classpy.wasm.sections;
 
+import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.common.ParseException;
+import com.github.zxh.classpy.wasm.Vector;
 import com.github.zxh.classpy.wasm.WasmBinPart;
 import com.github.zxh.classpy.wasm.WasmBinFile;
 import com.github.zxh.classpy.wasm.WasmBinReader;
@@ -116,10 +118,14 @@ public class Section extends WasmBinPart {
 
     @Override
     protected void postRead(WasmBinFile wasm) {
-        if (id == 1) {
+        if (id == 0) {
+            postReadCustomSec(wasm);
+        } else if (id == 1) {
             postReadTypes(wasm);
         } else if (id == 2) {
             postReadImports(wasm);
+        } else if (id == 3) {
+            postReadFuncs(wasm);
         } else if (id == 10) {
             postReadCodes(wasm);
         }
@@ -151,6 +157,14 @@ public class Section extends WasmBinPart {
         }
     }
 
+    private void postReadFuncs(WasmBinFile wasm) {
+        int i = 0;
+        for (Index idx : wasm.getFuncs()) {
+            idx.setName("#" + (i++));
+            idx.setDesc("sig=" + idx.getValue());
+        }
+    }
+
     private void postReadCodes(WasmBinFile wasm) {
         List<Code> codes = wasm.getCodes();
         int importedFuncCount = wasm.getImportedFuncs().size();
@@ -167,12 +181,32 @@ public class Section extends WasmBinPart {
         }
     }
 
+    private void postReadCustomSec(WasmBinFile wasm) {
+        List<Index> funcIndexes = wasm.getFuncs();
+
+        Vector funcNames = (Vector) get("function names");
+        if (funcNames != null) {
+            funcNames.getParts().stream()
+                    .filter(p -> p instanceof NameAssoc)
+                    .map(p -> (NameAssoc) p)
+                    .filter(funcName -> funcName.idx < funcIndexes.size())
+                    .forEach(funcName -> {
+                        Index funcIdx = funcIndexes.get(funcName.idx);
+                        funcIdx.setDesc(funcIdx.getDesc() + ", name=" + funcName.name);
+                    });
+        }
+    }
+
+
     private static class NameAssoc extends WasmBinPart {
+
+        private int idx;
+        private String name;
 
         @Override
         protected void readContent(WasmBinReader reader) {
-            int idx = readIndex(reader, "idx");
-            String name = readName(reader, "name");
+            idx = readIndex(reader, "idx");
+            name = readName(reader, "name");
             setName("#" + idx);
             setDesc(name + "()");
         }

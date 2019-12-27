@@ -51,13 +51,22 @@ public class WasmBinFile extends WasmBinPart {
 
     private <T> List<T> getSectionItems(int secID, Class<T> itemClass) {
         return getParts().stream()
-                .filter(c -> c instanceof Section)                // section?
-                .map(c -> (Section) c)                            // yes
-                .filter(sec -> sec.getID() == secID)              // section
+                .filter(c -> c instanceof Section)           // section?
+                .map(c -> (Section) c)                       // yes
+                .filter(sec -> sec.getID() == secID)         // section
                 .map(sec -> (Vector) sec.getParts().get(2))  // vector
                 .flatMap(v -> v.getParts().stream().skip(1)) // items
-                .map(c -> itemClass.cast(c))                      // Ts
+                .map(c -> itemClass.cast(c))                 // Ts
                 .collect(Collectors.toList());
+    }
+
+    public void getFuncNames() {
+        Section customSec = getParts().stream()
+                .filter(c -> c instanceof Section)
+                .map(c -> (Section) c)
+                .filter(sec -> sec.getID() == 0)
+                .findFirst()
+                .orElse(null);
     }
 
 }
