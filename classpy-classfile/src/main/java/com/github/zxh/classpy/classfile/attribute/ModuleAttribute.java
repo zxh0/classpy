@@ -73,8 +73,13 @@ public class ModuleAttribute extends AttributeInfo {
         @Override
         protected void postRead(ConstantPool cp) {
             String moduleName = cp.getConstantDesc(super.getUInt("requires_index"));
-            String version = cp.getConstantDesc(super.getUInt("requires_version_index"));
-            setDesc(moduleName + "@" + version);
+            int idx = super.getUInt("requires_version_index");
+            if (idx == 0) {
+                setDesc(moduleName);
+            } else {
+                String version = cp.getConstantDesc(idx);
+                setDesc(moduleName + "@" + version);
+            }
         }
 
     }
