@@ -18,6 +18,7 @@ public class Vector extends WasmBinPart {
             add(null, element);
             element.read(reader);
         }
+        setDesc(String.valueOf(length));
     }
 
 }

@@ -12,6 +12,7 @@ public class WasmBinFile extends WasmBinPart {
     private List<FuncType> funcTypes;
     private List<Import> imports;
     private List<Import> importedFuncs;
+    private List<Import> importedGlobals;
     private List<Index> funcs;
     private List<Global> globals;
     private List<Export> exports;
@@ -20,6 +21,7 @@ public class WasmBinFile extends WasmBinPart {
     public List<FuncType> getFuncTypes() { return funcTypes; }
     public List<Import> getImports() { return imports; }
     public List<Import> getImportedFuncs() { return importedFuncs; }
+    public List<Import> getImportedGlobals() { return importedGlobals; }
     public List<Index> getFuncs() { return funcs; }
     public List<Global> getGlobals() { return globals; }
     public List<Export> getExports() { return exports; }
@@ -34,6 +36,9 @@ public class WasmBinFile extends WasmBinPart {
         imports = getSectionItems(2, Import.class);
         importedFuncs = imports.stream()
                 .filter(Import::isFunc)
+                .collect(Collectors.toList());
+        importedGlobals = imports.stream()
+                .filter(Import::isGlobal)
                 .collect(Collectors.toList());
         funcs = getSectionItems(3, Index.class);
         globals = getSectionItems(6, Global.class);

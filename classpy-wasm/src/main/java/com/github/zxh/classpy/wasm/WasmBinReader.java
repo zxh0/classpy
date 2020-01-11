@@ -8,7 +8,7 @@ import java.nio.ByteOrder;
 public class WasmBinReader extends BytesReader {
 
     public WasmBinReader(byte[] data) {
-        super(data, ByteOrder.LITTLE_ENDIAN); // ?
+        super(data, ByteOrder.LITTLE_ENDIAN);
     }
 
     public long readU32() {

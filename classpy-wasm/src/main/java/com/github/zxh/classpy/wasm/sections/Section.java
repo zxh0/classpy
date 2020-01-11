@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.wasm.sections;
 
-import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.common.ParseException;
 import com.github.zxh.classpy.wasm.Vector;
 import com.github.zxh.classpy.wasm.WasmBinPart;
@@ -126,6 +125,8 @@ public class Section extends WasmBinPart {
             postReadImports(wasm);
         } else if (id == 3) {
             postReadFuncs(wasm);
+        } else if (id == 6) {
+            postReadGlobals(wasm);
         } else if (id == 10) {
             postReadCodes(wasm);
         }
@@ -148,20 +149,23 @@ public class Section extends WasmBinPart {
                 imp.setName("global#" + (globalIdx++));
             }
         }
-        for (Index idx : wasm.getFuncs()) {
-            idx.setName("func#" + (funcIdx++));
-            idx.setDesc("type" + idx.getDesc());
-        }
         for (Global glb : wasm.getGlobals()) {
             glb.setName("global#" + (globalIdx++));
         }
     }
 
     private void postReadFuncs(WasmBinFile wasm) {
-        int i = 0;
-        for (Index idx : wasm.getFuncs()) {
-            idx.setName("#" + (i++));
-            idx.setDesc("sig=" + idx.getValue());
+        int idx = wasm.getImportedFuncs().size();
+        for (Index sigIdx : wasm.getFuncs()) {
+            sigIdx.setName("func#" + (idx++));
+            sigIdx.setDesc("sig=" + sigIdx.getValue());
+        }
+    }
+
+    private void postReadGlobals(WasmBinFile wasm) {
+        int idx = wasm.getImportedGlobals().size();
+        for (Global glb : wasm.getGlobals()) {
+            glb.setName("global#" + (idx++));
         }
     }
 
