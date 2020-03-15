@@ -1,3 +1,10 @@
+import org.gradle.internal.SystemProperties
+import org.gradle.util.VersionNumber
+
+plugins {
+    id 'org.openjfx.javafxplugin' version '0.0.8' apply false
+}
+
 apply plugin: 'java'
 apply plugin: 'application'
 
@@ -23,6 +30,19 @@ task uberjar(type: Jar) {
     with jar
 }
 
+def currentJvm = SystemProperties.getInstance().getJavaVersion()
+
+if (VersionNumber.parse(currentJvm) > VersionNumber.parse("1.8")) {
+    run {
+        doFirst {
+            jvmArgs = [
+                    '--module-path', classpath.asPath,
+                    '--add-modules', 'javafx.controls'
+            ]
+        }
+    }
+}
+
 subprojects {
 
     apply plugin: 'java'
@@ -43,4 +63,8 @@ subprojects {
         jcenter()
     }
 
+}
+
+repositories {
+    mavenCentral()
 }
