@@ -4,6 +4,7 @@ import com.github.zxh.classpy.bitcoin.BlockParser;
 import com.github.zxh.classpy.bitcoin.TxParser;
 import com.github.zxh.classpy.classfile.ClassFileParser;
 import com.github.zxh.classpy.common.FileParser;
+import com.github.zxh.classpy.ethereum.EvmBinParser;
 import com.github.zxh.classpy.lua.binarychunk.BinaryChunkParser;
 import com.github.zxh.classpy.wasm.WasmBinParser;
 import javafx.scene.image.Image;
@@ -22,6 +23,7 @@ public enum FileType {
     WASM         ("/wasm.png",    "Wasm Binary Code",    "*.wasm",  new WasmBinParser()),
     BITCOIN_BLOCK("/bitcoin.png", "Bitcoin Block",       "?",       new BlockParser()),
     BITCOIN_TX   ("/bitcoin.png", "Bitcoin Transaction", "?",       new TxParser()),
+    EVM_BYTECODE ("/eth.png",     "EVM Bytecode",        "?",       new EvmBinParser()),
     UNKNOWN      ("/file.png",    "Unknown",             "*.*",     FileParser.NOP),
     ;
 

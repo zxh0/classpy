@@ -146,6 +146,8 @@ public class ClasspyApp extends Application {
                 showBitcoinBlockDialog();
             } else if (ft == FileType.BITCOIN_TX) {
                 showBitcoinTxDialog();
+            } else if (ft == FileType.EVM_BYTECODE) {
+                showEvmBytecodeDialog();
             } else {
                 showFileChooser(ft);
             }
@@ -214,6 +216,17 @@ public class ClasspyApp extends Application {
         if (result.isPresent()){
             apiUrl.replace("<hash>", result.get());
         }
+    }
+
+    private void showEvmBytecodeDialog() {
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setTitle("EVM Bytecode Input Dialog");
+        dialog.setHeaderText("EVM Bytecode:");
+        //dialog.setContentText("hash: ");
+        dialog.setResizable(true);
+        dialog.getEditor().setMinWidth(500);
+
+        // TODO
     }
 
     private void showFileChooser(FileType ft) {
