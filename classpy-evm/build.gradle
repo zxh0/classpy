@@ -3,5 +3,5 @@ plugins {
 }
 
 dependencies {
-    compile project(':classpy-common')
+    implementation project(':classpy-common')
 }

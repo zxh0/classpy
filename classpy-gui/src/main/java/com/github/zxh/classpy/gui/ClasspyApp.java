@@ -52,14 +52,14 @@ public class ClasspyApp extends Application {
         stage.show();
 
         // cmd args
-        String userDir = System.getProperty("user.dir");
-        for (String arg : this.getParameters().getRaw()) {
-            String path = arg;
-            if (!arg.startsWith("/")) {
-                path = userDir + "/" + arg;
-            }
-            openFile(new File(path));
-        }
+//        String userDir = System.getProperty("user.dir");
+//        for (String arg : this.getParameters().getRaw()) {
+//            String path = arg;
+//            if (!arg.startsWith("/")) {
+//                path = userDir + "/" + arg;
+//            }
+//            openFile(new File(path));
+//        }
     }
 
     private TabPane createTabPane() {

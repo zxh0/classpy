@@ -1,6 +1,8 @@
 plugins {
-    // id 'application'
-    id 'org.openjfx.javafxplugin' version '0.0.9'
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    // https://github.com/openjfx/javafx-gradle-plugin/issues/90
+    // id 'org.openjfx.javafxplugin' version '0.0.9'
 }
 
 javafx {
@@ -8,18 +10,24 @@ javafx {
 }
 
 dependencies {
-    compile project(':classpy-common')
-    compile project(':classpy-classfile')
-    compile project(':classpy-binarychunk')
-    compile project(':classpy-bitcoin')
-    compile project(':classpy-evm')
-    compile project(':classpy-wasm')
+    implementation project(':classpy-common')
+    implementation project(':classpy-classfile')
+    implementation project(':classpy-binarychunk')
+    implementation project(':classpy-bitcoin')
+    implementation project(':classpy-evm')
+    implementation project(':classpy-wasm')
     // implementation project(':utilities')
     // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.1'
     // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
 
-// application {
-//     mainModule = 'classpy.gui'
-//     mainClass = 'com.github.zxh.classpy.gui.ClasspyApp'
-// }
+application {
+    mainModule = 'classpy.gui'
+    mainClass = 'com.github.zxh.classpy.gui.ClasspyApp'
+}
+
+sourceSets {
+    main {
+        output.setResourcesDir(java.outputDir)
+    }
+}
