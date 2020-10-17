@@ -9,7 +9,7 @@ import java.util.EnumSet;
 public class ZipTreeLoader {
 
     public static ZipTreeNode load(File zipFile) throws Exception {
-        try (FileSystem zipFS = FileSystems.newFileSystem(zipFile.toPath(), null)) {
+        try (FileSystem zipFS = FileSystems.newFileSystem(zipFile.toPath())) {
             return path2node(zipFS.getPath("/"));
         }
     }

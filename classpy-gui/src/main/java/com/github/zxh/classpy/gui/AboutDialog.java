@@ -9,10 +9,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-
 public class AboutDialog {
     
     public static void showDialog() {
@@ -41,11 +37,11 @@ public class AboutDialog {
         String homeUrl = "https://github.com/zxh0/classpy";
         Hyperlink link = new Hyperlink(homeUrl);
         link.setOnAction(e -> {
-            try {
-                Desktop.getDesktop().browse(URI.create(homeUrl));
-            } catch (IOException x) {
-                x.printStackTrace(System.err);
-            }
+//            try {
+//                Desktop.getDesktop().browse(URI.create(homeUrl));
+//            } catch (IOException x) {
+//                x.printStackTrace(System.err);
+//            }
         });
 
         BorderPane.setAlignment(link, Pos.CENTER);

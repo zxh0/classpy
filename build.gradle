@@ -1,70 +1,27 @@
-import org.gradle.internal.SystemProperties
-import org.gradle.util.VersionNumber
-
-plugins {
-    id 'org.openjfx.javafxplugin' version '0.0.8' apply false
-}
-
-apply plugin: 'java'
-apply plugin: 'application'
-
-version '0.8-SNAPSHOT'
-
-// required by application plugin
-mainClassName = 'com.github.zxh.classpy.gui.ClasspyApp'
-
-dependencies {
-    // TODO: Add dependencies here ...
-    // You can read more about how to add dependency here:
-    //   http://www.gradle.org/docs/current/userguide/dependency_management.html#sec:how_to_declare_your_dependencies
-    compile project(':classpy-gui')
-}
-
-// https://www.baeldung.com/gradle-fat-jar
-task uberjar(type: Jar) {
-    manifest {
-        attributes 'Main-Class': 'com.github.zxh.classpy.gui.ClasspyApp'
-    }
-    //baseName = 'all-in-one-jar'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}
-
-def currentJvm = SystemProperties.getInstance().getJavaVersion()
-
-if (VersionNumber.parse(currentJvm) > VersionNumber.parse("1.8")) {
-    run {
-        doFirst {
-            jvmArgs = [
-                    '--module-path', classpath.asPath,
-                    '--add-modules', 'javafx.controls'
-            ]
-        }
-    }
-}
-
 subprojects {
-
-    apply plugin: 'java'
-    //apply plugin: 'application'
-
-    sourceCompatibility = "1.8"
-    //mainClassName = 'com.github.zxh0.luago.Main'
-
-    sourceCompatibility = '1.8'
-    [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-    dependencies {
-        //compileOnly 'org.projectlombok:lombok:1.18.0'
-        testCompile 'junit:junit:4.12'
-    }
+    version = '0.10.0'
+    group = 'jvmgo2'
 
     repositories {
         jcenter()
     }
 
-}
+    plugins.withType(JavaPlugin).configureEach {
+        java {
+            modularity.inferModulePath = true
+        }
+    }
 
-repositories {
-    mavenCentral()
+    tasks.withType(JavaCompile) {
+        options.compilerArgs += '--enable-preview'
+    }
+    tasks.withType(JavaExec) {
+        jvmArgs += '--enable-preview'
+//        jvmArgs += '-XX:+ShowCodeDetailsInExceptionMessages'
+    }
+
+    tasks.withType(Test).configureEach {
+        jvmArgs += "--enable-preview"
+        useJUnitPlatform()
+    }
 }

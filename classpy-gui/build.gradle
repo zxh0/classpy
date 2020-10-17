@@ -1,17 +1,10 @@
-import org.gradle.internal.SystemProperties
-import org.gradle.util.VersionNumber
+plugins {
+    // id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
+}
 
-
-def currentJvm = SystemProperties.getInstance().getJavaVersion()
-
-if (VersionNumber.parse(currentJvm) > VersionNumber.parse("1.8")) {
-
-    apply plugin: 'org.openjfx.javafxplugin'
-
-    javafx {
-        version = "11.0.2"
-        modules = [ 'javafx.controls' ]
-    }
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 dependencies {
@@ -21,4 +14,12 @@ dependencies {
     compile project(':classpy-bitcoin')
     compile project(':classpy-evm')
     compile project(':classpy-wasm')
+    // implementation project(':utilities')
+    // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.1'
+    // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 }
+
+// application {
+//     mainModule = 'classpy.gui'
+//     mainClass = 'com.github.zxh.classpy.gui.ClasspyApp'
+// }
