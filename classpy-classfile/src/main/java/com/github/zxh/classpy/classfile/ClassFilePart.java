@@ -2,12 +2,13 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.*;
+import com.github.zxh.classpy.common.AbstractFilePart;
 import com.github.zxh.classpy.common.FilePart;
 
 /**
  * Base class for all class file parts.
  */
-public abstract class ClassFilePart extends FilePart {
+public abstract class ClassFilePart extends AbstractFilePart {
 
     /**
      * Reads content, records offset and length.

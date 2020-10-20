@@ -1,0 +1,571 @@
+{
+  "name": "Java Class File",
+  "endianness": "big-endian",
+  "version": "15",
+  "type": "ClassFile",
+  "builtin": ["u1", "u2", "u4"],
+  "types": [
+    {
+      "name": "ClassFile",
+      "format": [
+        {"name": "magic",               "type": "u4"},
+        {"name": "minor_version",       "type": "u2"},
+        {"name": "major_version",       "type": "u2"},
+        {"name": "constant_pool_count", "type": "u2"},
+        {"name": "constant_pool",       "type": "[constant_pool_count-1]cp_info"},
+        {"name": "access_flags",        "type": "u2"},
+        {"name": "this_class",          "type": "u2"},
+        {"name": "super_class",         "type": "u2"},
+        {"name": "interfaces_count",    "type": "u2"},
+        {"name": "interfaces",          "type": "[interfaces_count]u2"},
+        {"name": "fields_count",        "type": "u2"},
+        {"name": "fields",              "type": "[fields_count]field_info"},
+        {"name": "methods_count",       "type": "u2"},
+        {"name": "methods",             "type": "[methods_count]method_info"},
+        {"name": "attributes_count",    "type": "u2"},
+        {"name": "attributes",          "type": "[attributes_count]attribute_info"}
+      ]
+    },
+    {
+      "name": "cp_info",
+      "type": "tagged(u1)",
+      "tags": [
+        {"tag":  1, "type": "CONSTANT_Utf8_info"},
+        {"tag":  3, "type": "CONSTANT_Integer_info"},
+        {"tag":  4, "type": "CONSTANT_Float_info"},
+        {"tag":  5, "type": "CONSTANT_Long_info"},
+        {"tag":  6, "type": "CONSTANT_Double_info"},
+        {"tag":  7, "type": "CONSTANT_Class_info"},
+        {"tag":  8, "type": "CONSTANT_String_info"},
+        {"tag":  9, "type": "CONSTANT_Fieldref_info"},
+        {"tag": 10, "type": "CONSTANT_Methodref_info"},
+        {"tag": 11, "type": "CONSTANT_InterfaceMethodref_info"},
+        {"tag": 12, "type": "CONSTANT_NameAndType_info"},
+        {"tag": 15, "type": "CONSTANT_MethodHandle_info"},
+        {"tag": 16, "type": "CONSTANT_MethodType_info"},
+        {"tag": 17, "type": "CONSTANT_Dynamic_info"},
+        {"tag": 18, "type": "CONSTANT_InvokeDynamic_info"},
+        {"tag": 19, "type": "CONSTANT_Module_info"},
+        {"tag": 20, "type": "CONSTANT_Package_info"}
+      ]
+    },
+    {
+      "name": "CONSTANT_Utf8_info",
+      "format": [
+        {"name": "tag",    "type": "u1"},
+        {"name": "length", "type": "u2"},
+        {"name": "bytes",  "type": "[length]u1"}
+      ]
+    },
+    {
+      "name": [
+        "CONSTANT_Integer_info",
+        "CONSTANT_Float_info"
+      ],
+      "format": [
+        {"name": "tag",   "type": "u1"},
+        {"name": "bytes", "type": "u4"}
+      ]
+    },
+    {
+      "name": [
+        "CONSTANT_Long_info",
+        "CONSTANT_Double_info"
+      ],
+      "format": [
+        {"name": "tag",        "type": "u1"},
+        {"name": "high_bytes", "type": "u4"},
+        {"name": "low_bytes",  "type": "u4"}
+      ]
+    },
+    {
+      "name": "CONSTANT_Class_info",
+      "format": [
+        {"name": "tag",        "type": "u1"},
+        {"name": "name_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": "CONSTANT_String_info",
+      "format": [
+        {"name": "tag",          "type": "u1"},
+        {"name": "string_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": [
+        "CONSTANT_Fieldref_info",
+        "CONSTANT_Methodref_info",
+        "CONSTANT_InterfaceMethodref_info"
+      ],
+      "format": [
+        {"name": "tag",                 "type": "u1"},
+        {"name": "class_index",         "type": "u2"},
+        {"name": "name_and_type_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": "CONSTANT_NameAndType_info",
+      "format": [
+        {"name": "tag",              "type": "u1"},
+        {"name": "name_index",       "type": "u2"},
+        {"name": "descriptor_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": "CONSTANT_MethodHandle_info",
+      "format": [
+        {"name": "tag",             "type": "u1"},
+        {"name": "reference_kind",  "type": "u2"},
+        {"name": "reference_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": "CONSTANT_MethodType_info",
+      "format": [
+        {"name": "tag",              "type": "u1"},
+        {"name": "descriptor_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": [
+        "CONSTANT_Dynamic_info",
+        "CONSTANT_InvokeDynamic_info"
+      ],
+      "format": [
+        {"name": "tag",                         "type": "u1"},
+        {"name": "bootstrap_method_attr_index", "type": "u2"},
+        {"name": "name_and_type_index",         "type": "u2"}
+      ]
+    },
+    {
+      "name": [
+        "CONSTANT_Module_info",
+        "CONSTANT_Package_info"
+      ],
+      "format": [
+        {"name": "tag",        "type": "u1"},
+        {"name": "name_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": [
+        "field_info",
+        "method_info"
+      ],
+      "format": [
+        {"name": "access_flags",     "type": "u2"},
+        {"name": "name_index",       "type": "u2"},
+        {"name": "descriptor_index", "type": "u2"},
+        {"name": "attributes_count", "type": "u2"},
+        {"name": "attributes",       "type": "[attributes_count]attribute_info"}
+      ]
+    },
+    {
+      "name": "attribute_info",
+      "type": "named(u2); name=${constant_pool[$_]}; unknown=Unknown_attribute"
+    },
+    {
+      "name": "Unknown_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "info",                 "type": "[attribute_length]u1"}
+      ]
+    },
+    {
+      "name": "ConstantValue_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "constantvalue_index",  "type": "u2"}
+      ]
+    },
+    {
+      "name": "Code_attribute",
+      "format": [
+        {"name": "attribute_name_index",   "type": "u2"},
+        {"name": "attribute_length",       "type": "u4"},
+        {"name": "max_stack",              "type": "u2"},
+        {"name": "max_locals",             "type": "u2"},
+        {"name": "code_length",            "type": "u4"},
+        {"name": "code",                   "type": "[code_length]u1"},
+        {"name": "exception_table_length", "type": "u2"},
+        {"name": "exception_table",        "type": "[exception_table_length]ExceptionTableEntry"},
+        {"name": "attributes_count",       "type": "u2"},
+        {"name": "attributes",             "type": "[attributes_count]attribute_info"}
+      ]
+    },
+    {
+      "name": "ExceptionTableEntry",
+      "format": [
+        {"name": "start_pc",   "type": "u2"},
+        {"name": "end_pc",     "type": "u2"},
+        {"name": "handler_pc", "type": "u2"},
+        {"name": "catch_type", "type": "u2"}
+      ]
+    },
+    {
+      "name": "Exceptions_attribute",
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "number_of_exceptions",  "type": "u2"},
+        {"name": "exception_index_table", "type": "[number_of_exceptions]u2"}
+      ]
+    },
+    {
+      "name": "SourceFile_attribute",
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "sourcefile_index",      "type": "u2"}
+      ]
+    },
+    {
+      "name": "LineNumberTable_attribute",
+      "format": [
+        {"name": "attribute_name_index",     "type": "u2"},
+        {"name": "attribute_length",         "type": "u2"},
+        {"name": "line_number_table_length", "type": "u2"},
+        {"name": "line_number_table",        "type": "[line_number_table_length]LineNumberTableEntry"}
+      ]
+    },
+    {
+      "name": "LineNumberTableEntry",
+      "format": [
+        {"name": "start_pc",    "type": "u2"},
+        {"name": "line_number", "type": "u2"}
+      ]
+    },
+    {
+      "name": "LocalVariableTable_attribute",
+      "format": [
+        {"name": "attribute_name_index",        "type": "u2"},
+        {"name": "attribute_length",            "type": "u2"},
+        {"name": "local_variable_table_length", "type": "u2"},
+        {"name": "local_variable_table",        "type": "[local_variable_table_length]LocalVariableTable"}
+      ]
+    },
+    {
+      "name": "LocalVariableTableEntry",
+      "format": [
+        {"name": "start_pc",         "type": "u2"},
+        {"name": "length",           "type": "u2"},
+        {"name": "name_index",       "type": "u2"},
+        {"name": "descriptor_index", "type": "u2"},
+        {"name": "index",            "type": "u2"}
+      ]
+    },
+    {
+      "name": "InnerClasses_attribute",
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "number_of_classes",     "type": "u2"},
+        {"name": "classes",               "type": "[number_of_classes]InnerClassEntry"}
+      ]
+    },
+    {
+      "name": "InnerClassEntry",
+      "format": [
+        {"name": "inner_class_info_index",   "type": "u2"},
+        {"name": "outer_class_info_index",   "type": "u2"},
+        {"name": "inner_name_index",         "type": "u2"},
+        {"name": "inner_class_access_flags", "type": "u2"}
+      ]
+    },
+    {
+      "name": [
+        "Synthetic_attribute",
+        "Deprecated_attribute"
+      ],
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u2"}
+      ]
+    },
+    {
+      "name": "EnclosingMethod_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "class_index",          "type": "u2"},
+        {"name": "method_index",         "type": "u2"}
+      ]
+    },
+    {
+      "name": "Signature_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "signature_index",      "type": "u2"}
+      ]
+    },
+    {
+      "name": "SourceDebugExtension_attribute",
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "debug_extension",       "type": "[attribute_length]u1"}
+      ]
+    },
+    {
+      "name": "LocalVariableTypeTable_attribute",
+      "format": [
+        {"name": "attribute_name_index",             "type": "u2"},
+        {"name": "attribute_length",                 "type": "u4"},
+        {"name": "local_variable_type_table_length", "type": "u2"},
+        {"name": "local_variable_type_table",        "type": "[local_variable_type_table_length]LocalVariableTypeTableEntry"}
+      ]
+    },
+    {
+      "name": "LocalVariableTypeTableEntry",
+      "format": [
+        {"name": "start_pc",        "type": "u2"},
+        {"name": "length",          "type": "u2"},
+        {"name": "name_index",      "type": "u2"},
+        {"name": "signature_index", "type": "u2"},
+        {"name": "index",           "type": "u2"}
+      ]
+    },
+    {
+      "name": "RuntimeVisibleAnnotations_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "num_annotations",      "type": "u2"},
+        {"name": "annotations",          "type": "[num_annotations]annotation"}
+      ]
+    },
+    {
+      "name": "annotation",
+      "format": [
+        {"name": "type_index",              "type": "u2"},
+        {"name": "num_element_value_pairs", "type": "u2"},
+        {"name": "element_value_pairs",     "type": "[num_element_value_pairs]element_value_pair"}
+      ]
+    },
+    {
+      "name": "element_value_pair",
+      "format": [
+        {"name": "element_name_index", "type": "u2"},
+        {"name": "value",              "type": "element_value"}
+      ]
+    },
+    {
+      "name": "element_value",
+      "format": [
+        {"name": "tag",               "type": "u1"},
+        {"name": "const_value_index", "type": "u2", "if": "$tag==BCDFIJSZs"},
+        {"name": "enum_const_value",  "type": "u2", "if": "$tag==e"},
+        {"name": "class_info_index",  "type": "u2", "if": "$tag==c"},
+        {"name": "annotation_value",  "type": "u2", "if": "$tag==@"},
+        {"name": "array_value",       "type": "u2", "if": "$tag==["}
+      ]
+    },
+    {
+      "name": "enum_const_value",
+      "format": [
+        {"name": "type_name_index",  "type": "u2"},
+        {"name": "const_name_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": "array_value",
+      "format": [
+        {"name": "num_values", "type": "u2"},
+        {"name": "values",     "type": "[num_values]element_value"}
+      ]
+    },
+    {
+      "name": "RuntimeInvisibleAnnotations_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "num_annotations",      "type": "u2"},
+        {"name": "annotations",          "type": "[num_annotations]annotation"}
+      ]
+    },
+    {
+      "name": [
+        "RuntimeVisibleParameterAnnotations_attribute",
+        "RuntimeInvisibleParameterAnnotations_attribute"
+      ],
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "num_parameters",        "type": "u2"},
+        {"name": "parameter_annotations", "type": "[num_parameters]parameter_annotation"}
+      ]
+    },
+    {
+      "name": "parameter_annotation",
+      "format": [
+        {"name": "num_annotations", "type": "u2"},
+        {"name": "annotations",     "type": "[num_annotations]annotation"}
+      ]
+    },
+    {
+      "name": "AnnotationDefault_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "default_value",        "type": "element_value"}
+      ]
+    },
+    {
+      "name": "StackMapTable_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "info",                 "type": "[attribute_length]u1"}
+      ]
+    },
+    {
+      "name": "BootstrapMethods_attribute",
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "num_bootstrap_methods", "type": "u2"},
+        {"name": "bootstrap_methods",     "type": "[num_bootstrap_methods]bootstrap_method"}
+      ]
+    },
+    {
+      "name": "bootstrap_method",
+      "format": [
+        {"name": "bootstrap_method_ref",    "type": "u2"},
+        {"name": "num_bootstrap_arguments", "type": "u4"},
+        {"name": "bootstrap_arguments",     "type": "[num_bootstrap_methods]u2"}
+      ]
+    },
+    {
+      "name": [
+        "RuntimeVisibleTypeAnnotations_attribute",
+        "RuntimeInvisibleTypeAnnotations_attribute"
+      ],
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "num_annotations",      "type": "u2"},
+        {"name": "annotations",          "type": "[num_annotations]type_annotation"}
+      ]
+    },
+    {
+      "name": "type_annotation",
+      "format": [
+        {"name": "target_type",             "type": "u1"},
+        {"name": "target_info",             "type": "TODO"},
+        {"name": "target_path",             "type": "type_path"},
+        {"name": "type_index",              "type": "u2"},
+        {"name": "num_element_value_pairs", "type": "u2"},
+        {"name": "element_value_pairs",     "type": "[num_element_value_pairs]TODO"}
+
+      ]
+    },
+    {
+      "name": "MethodParameters_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "parameters_count",     "type": "u2"},
+        {"name": "parameters",           "type": "[parameters_count]MethodParameter"}
+      ]
+    },
+    {
+      "name": "MethodParameter",
+      "format": [
+        {"name": "name_index",   "type": "u2"},
+        {"name": "access_flags", "type": "u2"}
+      ]
+    },
+    {
+      "name": "Module_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "module_name_index",    "type": "u2"},
+        {"name": "module_flags",         "type": "u2"},
+        {"name": "module_version_index", "type": "u2"},
+        {"name": "requires_count",       "type": "u2"},
+        {"name": "requires",             "type": "[requires_count]require"},
+        {"name": "exports_count",        "type": "u2"},
+        {"name": "exports",              "type": "[exports_count]export"},
+        {"name": "opens_count",          "type": "u2"},
+        {"name": "opens",                "type": "[opens_count]open"},
+        {"name": "uses_count",           "type": "u2"},
+        {"name": "uses_index",           "type": "[uses_count]u2"},
+        {"name": "provides_count",       "type": "u2"},
+        {"name": "provides",             "type": "[provides_count]provide"}
+      ]
+    },
+    {
+      "name": "require",
+      "format": [
+        {"name": "requires_index",         "type": "u2"},
+        {"name": "requires_flags",         "type": "u2"},
+        {"name": "requires_version_index", "type": "u2"}
+      ]
+    },
+    {
+      "name": "export",
+      "format": [
+        {"name": "exports_index",    "type": "u2"},
+        {"name": "exports_flags",    "type": "u2"},
+        {"name": "exports_to_count", "type": "u2"},
+        {"name": "exports_to_index", "type": "[exports_to_count]u2"}
+      ]
+    },
+    {
+      "name": "open",
+      "format": [
+        {"name": "opens_index",    "type": "u2"},
+        {"name": "opens_flags",    "type": "u2"},
+        {"name": "opens_to_count", "type": "u2"},
+        {"name": "opens_to_index", "type": "[opens_to_count]u2"}
+      ]
+    },
+    {
+      "name": "provide",
+      "format": [
+        {"name": "provides_index",      "type": "u2"},
+        {"name": "provides_with_count", "type": "u2"},
+        {"name": "provides_with_index", "type": "[provides_with_count]u2"}
+      ]
+    },
+    {
+      "name": "ModulePackages_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "package_count",        "type": "u2"},
+        {"name": "package_index",        "type": "[package_count]u2"}
+      ]
+    },
+    {
+      "name": "ModuleMainClass_attribute",
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "main_class_index",      "type": "u2"}
+      ]
+    },
+    {
+      "name": "NestHost_attribute",
+      "format": [
+        {"name": "attribute_name_index",  "type": "u2"},
+        {"name": "attribute_length",      "type": "u4"},
+        {"name": "host_class_index",      "type": "u2"}
+      ]
+    },
+    {
+      "name": "NestMembers_attribute",
+      "format": [
+        {"name": "attribute_name_index", "type": "u2"},
+        {"name": "attribute_length",     "type": "u4"},
+        {"name": "number_of_classes",    "type": "u2"},
+        {"name": "classes",              "type": "[number_of_classes]u2"}
+      ]
+    }
+  ]
+}

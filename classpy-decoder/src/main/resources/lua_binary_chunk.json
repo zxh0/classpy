@@ -1,0 +1,9 @@
+{
+  "name": "Lua Binary Chunk",
+  "endianness": "?",
+  "version": "5.4.1",
+  "type": "Chunk",
+  "builtin": [],
+  "types": [
+  ]
+}

@@ -1,8 +1,9 @@
 package com.github.zxh.classpy.ethereum;
 
+import com.github.zxh.classpy.common.AbstractFilePart;
 import com.github.zxh.classpy.common.FilePart;
 
-public class EvmBinComponent extends FilePart {
+public class EvmBinComponent extends AbstractFilePart {
 
     public final void read(EvmBinReader reader) {
         int offset = reader.getPosition();

@@ -1,0 +1,227 @@
+{
+  "name": "Wasm Binary Format",
+  "endianness": "little-endian",
+  "version": "1.1",
+  "type": "Module",
+  "builtin": ["byte", "bytes4", "u32", "u64", "s32", "s64", "name"],
+  "types": [
+    {
+      "name": "Module",
+      "format": [
+        {"name": "magic",    "type": "bytes4", "value": ["0x00", "0x61", "0x73", "0x6D"]},
+        {"name": "version",  "type": "bytes4", "value": ["0x01", "0x00", "0x00", "0x00"]},
+        {"name": "sections", "type": "repeated<Section>"}
+      ]
+    },
+    {
+      "name": "Section",
+      "type": "tagged<byte>",
+      "tags": [
+        {"tag":  0, "type": "CustomSection"},
+        {"tag":  1, "type": "TypeSection"},
+        {"tag":  2, "type": "ImportSection"},
+        {"tag":  3, "type": "FunctionSection"},
+        {"tag":  4, "type": "TableSection"},
+        {"tag":  5, "type": "MemorySection"},
+        {"tag":  6, "type": "GlobalSection"},
+        {"tag":  7, "type": "ExportSection"},
+        {"tag":  8, "type": "StartSection"},
+        {"tag":  9, "type": "ElementSection"},
+        {"tag": 10, "type": "CodeSection"},
+        {"tag": 11, "type": "DataSection"}
+      ]
+    },
+    {
+      "name": "CustomSection",
+      "format": [
+        {"name": "ID",   "type": "byte"},
+        {"name": "size", "type": "u32"},
+        {"name": "cont", "type": "[$size]byte"}
+      ]
+    },
+    {
+      "name": "TypeSection",
+      "format": [
+        {"name": "ID",    "type": "byte"},
+        {"name": "size",  "type": "u32"},
+        {"name": "types", "type": "vec<FunctionType>"}
+      ]
+    },
+    {
+      "name": "ImportSection",
+      "format": [
+        {"name": "ID",      "type": "byte"},
+        {"name": "size",    "type": "u32"},
+        {"name": "imports", "type": "vec<Import>"}
+      ]
+    },
+    {
+      "name": "FunctionSection",
+      "format": [
+        {"name": "ID",      "type": "byte"},
+        {"name": "size",    "type": "u32"},
+        {"name": "indices", "type": "vec<u32>"}
+      ]
+    },
+    {
+      "name": "TableSection",
+      "format": [
+        {"name": "ID",    "type": "byte"},
+        {"name": "size",  "type": "u32"},
+        {"name": "tables", "type": "vec<TableType>"}
+      ]
+    },
+    {
+      "name": "MemorySection",
+      "format": [
+        {"name": "ID",       "type": "byte"},
+        {"name": "size",     "type": "u32"},
+        {"name": "memories", "type": "vec<Limits>"}
+      ]
+    },
+    {
+      "name": "GlobalSection",
+      "format": [
+        {"name": "ID",      "type": "byte"},
+        {"name": "size",    "type": "u32"},
+        {"name": "globals", "type": "vec<Global>"}
+      ]
+    },
+    {
+      "name": "ExportSection",
+      "format": [
+        {"name": "ID",      "type": "byte"},
+        {"name": "size",    "type": "u32"},
+        {"name": "exports", "type": "vec<Export>"}
+      ]
+    },
+    {
+      "name": "StartSection",
+      "format": [
+        {"name": "ID",    "type": "byte"},
+        {"name": "size",  "type": "u32"},
+        {"name": "index", "type": "u32"}
+      ]
+    },
+    {
+      "name": "ElementSection",
+      "format": [
+        {"name": "ID",       "type": "byte"},
+        {"name": "size",     "type": "u32"},
+        {"name": "elements", "type": "vec<Element>"}
+      ]
+    },
+    {
+      "name": "CodeSection",
+      "format": [
+        {"name": "ID",   "type": "byte"},
+        {"name": "size", "type": "u32"},
+        {"name": "codes", "type": "vec<Code>"}
+      ]
+    },
+    {
+      "name": "DataSection",
+      "format": [
+        {"name": "ID",   "type": "byte"},
+        {"name": "size", "type": "u32"},
+        {"name": "data", "type": "vec<Data>"}
+      ]
+    },
+    {
+      "name": "ValType",
+      "type": "byte",
+      "valid": ["0x7F", "0x7E", "0x7D", "0x7C"]
+    },
+    {
+      "name": "Limits",
+      "format": [
+        {"name": "tag", "type": "byte", "valid": ["0x00", "0x01"]},
+        {"name": "min", "type": "u32"},
+        {"name": "max", "type": "u32", "if": "$tag == 0x01"}
+      ]
+    },
+    {
+      "name": "FunctionType",
+      "format": [
+        {"name": "tag",     "type": "byte", "value": "0x60"},
+        {"name": "params",  "type": "vec<ValType>"},
+        {"name": "results", "type": "vec<ValType>"}
+      ]
+    },
+    {
+      "name": "TableType",
+      "format": [
+        {"name": "elemType", "type": "byte", "value": "0x70"},
+        {"name": "limits",   "type": "Limits"}
+      ]
+    },
+    {
+      "name": "GlobalType",
+      "format": [
+        {"name": "valType", "type": "ValType"},
+        {"name": "mut",     "type": "byte", "valid": ["0x00", "0x01"]}
+      ]
+    },
+    {
+      "name": "Import",
+      "format": [
+        {"name": "module", "type": "name"},
+        {"name": "name",   "type": "name"},
+        {"name": "desc",   "type": "ImportDesc"}
+      ]
+    },
+    {
+      "name": "ImportDesc",
+      "format": [
+        {"name": "tag",    "type": "byte"},
+        {"name": "func",   "type": "u32",        "if": "$tag == 0"},
+        {"name": "table",  "type": "TableType",  "if": "$tag == 1"},
+        {"name": "memory", "type": "MemoryType", "if": "$tag == 2"},
+        {"name": "global", "type": "GlobalType", "if": "$tag == 3"}
+      ]
+    },
+    {
+      "name": "Export",
+      "format": [
+        {"name": "tag",    "type": "byte"},
+        {"name": "func",   "type": "u32", "if": "$tag == 0"},
+        {"name": "table",  "type": "u32", "if": "$tag == 1"},
+        {"name": "memory", "type": "u32", "if": "$tag == 2"},
+        {"name": "global", "type": "u32", "if": "$tag == 3"}
+      ]
+    },
+    {
+      "name": "Global",
+      "format": [
+      	{"name": "type", "type": "GlobalType"},
+      	{"name": "init", "type": "Expr"}
+      ]
+    },
+    {
+      "name": "Element",
+      "format": [
+        {"name": "table",  "type": "u32"},
+        {"name": "offset", "type": "Expr"},
+        {"name": "init",   "type": "vec<u32>"}
+      ]
+    },
+    {
+      "name": "Data",
+      "format": [
+      	{"name": "memory", "type": "u32"},
+        {"name": "offset", "type": "Expr"},
+        {"name": "init",   "type": "vec<u32>"}
+      ]
+    },
+    {
+      "name": "Code",
+      "format": [
+      ]
+    },
+    {
+      "name": "Expr",
+      "format": [
+      ]
+    }
+  ]
+}

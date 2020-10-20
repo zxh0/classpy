@@ -1,11 +1,12 @@
 package com.github.zxh.classpy.bitcoin;
 
 import com.github.zxh.classpy.bitcoin.types.*;
+import com.github.zxh.classpy.common.AbstractFilePart;
 import com.github.zxh.classpy.common.FilePart;
 
 import java.util.function.Supplier;
 
-public class BlockPart extends FilePart {
+public class BlockPart extends AbstractFilePart {
 
     public final void read(BlockReader reader) {
         try {
