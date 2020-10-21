@@ -5,7 +5,7 @@ import lombok.Getter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ListWithoutLenType {
+public class ListWithoutLenTypeDef {
 
     private static final Pattern PATTERN = Pattern.compile("\\[(\\w+)(-1)?\\](\\w+)");
 
@@ -16,7 +16,7 @@ public class ListWithoutLenType {
 
     private final boolean minusOne;
 
-    public ListWithoutLenType(String type) {
+    public ListWithoutLenTypeDef(String type) {
         Matcher matcher = PATTERN.matcher(type);
         if (!matcher.matches()) {
             throw new FormatException("invalid type: " + type);

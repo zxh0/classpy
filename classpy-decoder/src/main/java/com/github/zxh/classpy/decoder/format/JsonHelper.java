@@ -6,6 +6,13 @@ import com.google.gson.JsonObject;
 
 public class JsonHelper {
 
+    public static Integer getInteger(JsonObject obj, String fieldName) {
+        JsonElement field = getField(obj, fieldName);
+        if (!field.isJsonPrimitive()) {
+            throw new FormatException(String.format("'%s' is not Integer", fieldName), field);
+        }
+        return field.getAsInt();
+    }
     public static String getString(JsonObject obj, String fieldName) {
         JsonElement field = getField(obj, fieldName);
         if (!field.isJsonPrimitive()) {

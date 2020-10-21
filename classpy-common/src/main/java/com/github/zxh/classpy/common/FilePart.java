@@ -14,5 +14,6 @@ public interface FilePart {
 
     List<FilePart> getParts();
     FilePart get(String name);
+    void add(String name, FilePart subPart);
 
 }

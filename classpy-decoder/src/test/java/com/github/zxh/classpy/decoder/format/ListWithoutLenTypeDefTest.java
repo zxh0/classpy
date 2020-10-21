@@ -4,16 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ListWithoutLenTypeTest {
+public class ListWithoutLenTypeDefTest {
 
     @Test
     public void parse() {
-        var type = new ListWithoutLenType("[foo]bar");
+        var type = new ListWithoutLenTypeDef("[foo]bar");
         assertEquals("foo", type.getLenFieldName());
         assertEquals("bar", type.getElemTypeName());
         assertFalse(type.hasMinusOne());
 
-        type = new ListWithoutLenType("[bar-1]foo");
+        type = new ListWithoutLenTypeDef("[bar-1]foo");
         assertEquals("bar", type.getLenFieldName());
         assertEquals("foo", type.getElemTypeName());
         assertTrue(type.hasMinusOne());

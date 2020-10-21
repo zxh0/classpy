@@ -33,7 +33,7 @@ public class TypeDefTest {
     }
 
     @Test
-    public void fields() {
+    public void structType() {
         testFormatEx("'format' not found", """
                 {"name": "a"}
                 """);
@@ -45,6 +45,47 @@ public class TypeDefTest {
                 """);
     }
 
+    @Test
+    public void taggedType() {
+        testFormatEx("'tagType' not found", """
+                {"name": "a", "tagged": true}
+                """);
+        testFormatEx("'tags' not found", """
+                {"name": "a", "tagged": true, "tagType": "u1"}
+                """);
+        testFormatEx("'tag' not found", """
+                {"name": "a", "tagged": true, "tagType": "u1", "tags": [
+                  {}
+                ]}
+                """);
+        testFormatEx("'type' not found", """
+                {"name": "a", "tagged": true, "tagType": "u1", "tags": [
+                  {"tag": 1}
+                ]}
+                """);
+        parseTypeDef("""
+                {"name": "a", "tagged": true, "tagType": "u1", "tags": [
+                  {"tag": 1, "type": "a"}
+                ]}
+                """);
+    }
+
+    @Test
+    public void namedType() {
+        var td = (NamedTypeDef) parseTypeDef("""
+                {
+                  "name": "a",
+                  "named": true,
+                  "nameIndexType": "u2",
+                  "nameContainer": "cp",
+                  "unknownNameType": "un"
+                }
+                """);
+        assertEquals("u2", td.getNameIndexType());
+        assertEquals("cp", td.getNameContainer());
+        assertEquals("un", td.getUnknownNameType());
+    }
+
     private static void testFormatEx(String errMsg, String json) {
         var ex = assertThrows(FormatException.class,
                 () -> parseTypeDef(json));
@@ -52,7 +93,7 @@ public class TypeDefTest {
     }
 
     private static TypeDef parseTypeDef(String json) {
-        return new TypeDef(new Gson().fromJson(json, JsonObject.class));
+        return TypeDef.parse(new Gson().fromJson(json, JsonObject.class));
     }
 
 }

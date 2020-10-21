@@ -56,7 +56,7 @@ public class FileFormatDef {
     private static Map<String, TypeDef> getDefinedTypes(JsonObject ffJson) {
         Map<String, TypeDef> types = new HashMap<>();
         for (JsonElement typeDefJson : JsonHelper.getArray(ffJson, "types")) {
-            TypeDef typeDef = new TypeDef(JsonHelper.toObject(typeDefJson));
+            TypeDef typeDef = TypeDef.parse(JsonHelper.toObject(typeDefJson));
             for (String name: typeDef.getNames()) {
                 if (types.containsKey(name)) {
                     throw new FormatException("duplicated type names: " + name);

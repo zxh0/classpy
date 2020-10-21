@@ -59,8 +59,8 @@ public class FileFormatDefTest {
                 """);
         testFormatEx("duplicated type names: b", """
                 {"name": "a", "version": 1, "type": "b", "endianness": "big-endian", "builtin": [], "types": [
-                  {"name": "b", "type": "b1"},
-                  {"name": "b", "type": "b2"}
+                  {"name": "b", "format": []},
+                  {"name": "b", "format": []}
                 ]}
                 """);
     }
@@ -71,7 +71,7 @@ public class FileFormatDefTest {
                 {
                   "name": "a", "version": 1, "type": "b", "endianness": "big-endian", "builtin": [],
                   "types": [
-                    {"name": "b", "type": "u1"}
+                    {"name": "b", "format": []}
                   ]
                 }
                 """);

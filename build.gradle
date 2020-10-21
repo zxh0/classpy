@@ -1,6 +1,6 @@
 subprojects {
     version = '0.10.0'
-    group = 'jvmgo2'
+    group = 'classpy'
 
     repositories {
         jcenter()

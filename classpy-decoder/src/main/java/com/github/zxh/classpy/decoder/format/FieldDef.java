@@ -11,15 +11,15 @@ public class FieldDef {
     private final String type;
 
     @Getter
-    private final ListWithoutLenType listWithoutLenType;
+    private final ListWithoutLenTypeDef listWithoutLenTypeDef;
 
     public FieldDef(JsonObject fdJson) {
         this.name = JsonHelper.getString(fdJson, "name");
         this.type = JsonHelper.getString(fdJson, "type");
         if (this.type.startsWith("[")) {
-            this.listWithoutLenType = new ListWithoutLenType(this.type);
+            this.listWithoutLenTypeDef = new ListWithoutLenTypeDef(this.type);
         } else {
-            this.listWithoutLenType = null;
+            this.listWithoutLenTypeDef = null;
         }
     }
 

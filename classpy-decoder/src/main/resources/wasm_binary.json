@@ -15,7 +15,7 @@
     },
     {
       "name": "Section",
-      "type": "tagged<byte>",
+      "format": "tagged<byte>",
       "tags": [
         {"tag":  0, "type": "CustomSection"},
         {"tag":  1, "type": "TypeSection"},

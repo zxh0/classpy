@@ -28,7 +28,8 @@
     },
     {
       "name": "cp_info",
-      "type": "tagged(u1)",
+      "tagged": true,
+      "tagType": "u1",
       "tags": [
         {"tag":  1, "type": "CONSTANT_Utf8_info"},
         {"tag":  3, "type": "CONSTANT_Integer_info"},
@@ -163,7 +164,10 @@
     },
     {
       "name": "attribute_info",
-      "type": "named(u2); name=${constant_pool[$_]}; unknown=Unknown_attribute"
+      "named": true,
+      "nameIndexType": "u2",
+      "nameContainer": "constant_pool",
+      "unknownNameType": "Unknown_attribute"
     },
     {
       "name": "Unknown_attribute",
