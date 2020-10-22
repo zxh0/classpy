@@ -1,8 +1,8 @@
-package com.github.zxh.classpy.lua.binarychunk;
+package com.github.zxh.classpy.lua53.binarychunk;
 
-import com.github.zxh.classpy.lua.binarychunk.part.Function;
-import com.github.zxh.classpy.lua.binarychunk.part.Header;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
+import com.github.zxh.classpy.lua53.binarychunk.part.Function;
+import com.github.zxh.classpy.lua53.binarychunk.part.Header;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuByte;
 
 /**
  * Represent lua binary chunk file.

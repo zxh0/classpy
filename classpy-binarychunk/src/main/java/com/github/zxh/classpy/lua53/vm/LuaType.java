@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.lua.vm;
+package com.github.zxh.classpy.lua53.vm;
 
 import com.github.zxh.classpy.common.ParseException;
 

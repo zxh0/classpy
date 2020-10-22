@@ -1,9 +1,9 @@
-package com.github.zxh.classpy.lua.binarychunk.part;
+package com.github.zxh.classpy.lua53.binarychunk.part;
 
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
-import com.github.zxh.classpy.lua.vm.OpArgMask;
-import com.github.zxh.classpy.lua.vm.OpCode;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkReader;
+import com.github.zxh.classpy.lua53.vm.OpArgMask;
+import com.github.zxh.classpy.lua53.vm.OpCode;
 
 /**
  * LuaVM instruction.

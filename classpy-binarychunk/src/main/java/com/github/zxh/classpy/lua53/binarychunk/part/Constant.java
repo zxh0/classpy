@@ -1,12 +1,12 @@
-package com.github.zxh.classpy.lua.binarychunk.part;
+package com.github.zxh.classpy.lua53.binarychunk.part;
 
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuaInt;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuaNum;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuaStr;
-import com.github.zxh.classpy.lua.vm.LuaType;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkReader;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuByte;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuaInt;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuaNum;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuaStr;
+import com.github.zxh.classpy.lua53.vm.LuaType;
 
 /**
  * Lua constant.

@@ -1,11 +1,11 @@
-package com.github.zxh.classpy.lua.binarychunk.part;
+package com.github.zxh.classpy.lua53.binarychunk.part;
 
 import java.util.Arrays;
 import com.github.zxh.classpy.common.ParseException;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
-import com.github.zxh.classpy.lua.binarychunk.datatype.Bytes;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuaInt;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.Bytes;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuByte;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuaInt;
 
 /**
  * Header.

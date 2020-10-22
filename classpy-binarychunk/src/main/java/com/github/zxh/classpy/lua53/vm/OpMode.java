@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.lua.vm;
+package com.github.zxh.classpy.lua53.vm;
 
 /* basic instruction format */
 public enum OpMode {

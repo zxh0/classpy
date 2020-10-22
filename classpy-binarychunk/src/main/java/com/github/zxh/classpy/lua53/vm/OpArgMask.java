@@ -1,4 +1,4 @@
-package com.github.zxh.classpy.lua.vm;
+package com.github.zxh.classpy.lua53.vm;
 
 /*
  * masks for instruction properties. The format is:

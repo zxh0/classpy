@@ -1,7 +1,7 @@
-package com.github.zxh.classpy.lua.binarychunk;
+package com.github.zxh.classpy.lua53.binarychunk;
 
 import com.github.zxh.classpy.common.FilePart;
-import com.github.zxh.classpy.lua.binarychunk.datatype.*;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.*;
 
 import java.util.function.Supplier;
 

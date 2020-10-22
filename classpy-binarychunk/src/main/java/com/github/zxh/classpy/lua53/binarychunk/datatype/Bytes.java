@@ -1,7 +1,7 @@
-package com.github.zxh.classpy.lua.binarychunk.datatype;
+package com.github.zxh.classpy.lua53.binarychunk.datatype;
 
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkReader;
 
 /**
  * byte array.

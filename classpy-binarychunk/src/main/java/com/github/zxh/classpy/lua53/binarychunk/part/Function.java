@@ -1,10 +1,10 @@
-package com.github.zxh.classpy.lua.binarychunk.part;
+package com.github.zxh.classpy.lua53.binarychunk.part;
 
 import java.util.List;
 import com.github.zxh.classpy.common.FilePart;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
-import com.github.zxh.classpy.lua.binarychunk.datatype.CInt;
-import com.github.zxh.classpy.lua.binarychunk.datatype.LuByte;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.CInt;
+import com.github.zxh.classpy.lua53.binarychunk.datatype.LuByte;
 
 /**
  * Lua function.

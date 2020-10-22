@@ -1,9 +1,9 @@
-package com.github.zxh.classpy.lua.binarychunk.datatype;
+package com.github.zxh.classpy.lua53.binarychunk.datatype;
 
 import com.github.zxh.classpy.common.FilePart;
 import com.github.zxh.classpy.helper.StringHelper;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkPart;
-import com.github.zxh.classpy.lua.binarychunk.BinaryChunkReader;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
+import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkReader;
 
 import java.util.List;
 import java.util.function.Supplier;
