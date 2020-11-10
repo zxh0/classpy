@@ -1,0 +1,6 @@
+print(nil)
+print(true)
+print(false)
+print(0xABCD)
+print(456.78)
+print("foo")

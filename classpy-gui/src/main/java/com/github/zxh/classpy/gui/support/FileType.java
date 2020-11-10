@@ -4,7 +4,7 @@ import com.github.zxh.classpy.bitcoin.BlockParser;
 import com.github.zxh.classpy.bitcoin.TxParser;
 import com.github.zxh.classpy.classfile.ClassFileParser;
 import com.github.zxh.classpy.common.FileParser;
-import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkParser;
+import com.github.zxh.classpy.lua.BinaryChunkParser;
 import com.github.zxh.classpy.wasm.WasmBinParser;
 import javafx.scene.image.Image;
 import javafx.stage.FileChooser.ExtensionFilter;
