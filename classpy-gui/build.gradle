@@ -1,23 +1,55 @@
-import org.gradle.internal.SystemProperties
-import org.gradle.util.VersionNumber
+plugins {
+    id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
+    id 'org.beryx.jlink' version '2.12.0'
+    // https://github.com/openjfx/javafx-gradle-plugin/issues/90
+    // id 'org.openjfx.javafxplugin' version '0.0.9'
+}
 
-
-def currentJvm = SystemProperties.getInstance().getJavaVersion()
-
-if (VersionNumber.parse(currentJvm) > VersionNumber.parse("1.8")) {
-
-    apply plugin: 'org.openjfx.javafxplugin'
-
-    javafx {
-        version = "11.0.2"
-        modules = [ 'javafx.controls' ]
-    }
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 dependencies {
-    compile project(':classpy-common')
-    compile project(':classpy-classfile')
-    compile project(':classpy-binarychunk')
-    compile project(':classpy-bitcoin')
-    compile project(':classpy-wasm')
+    implementation project(':classpy-common')
+    implementation project(':classpy-classfile')
+    implementation project(':classpy-binarychunk')
+    implementation project(':classpy-bitcoin')
+    implementation project(':classpy-wasm')
+    // implementation project(':utilities')
+    // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.1'
+    // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+}
+
+application {
+    mainModule = 'classpy.gui'
+    mainClass = 'com.github.zxh.classpy.gui.ClasspyApp'
+}
+
+// https://stackoverflow.com/questions/51864473/where-do-resource-files-go-in-a-gradle-project-that-builds-a-java-9-module/51921521
+sourceSets {
+    main {
+        output.setResourcesDir(java.outputDir)
+    }
+}
+
+// https://www.baeldung.com/gradle-fat-jar
+// https://stackoverflow.com/questions/57452363/building-fatjar-for-javafx-with-gradle-and-intellij-getting-noclassdeffounderro
+// https://stackoverflow.com/questions/52569724/javafx-11-create-a-jar-file-with-gradle
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Main-Class': 'com.github.zxh.classpy.gui.Main'
+    }
+    baseName = 'classpy-fat-jar'
+    from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+mainClassName = "$moduleName/com.github.zxh.classpy.gui.ClasspyApp"
+
+jlink {
+    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+    launcher {
+        name = 'classpy'
+    }
 }

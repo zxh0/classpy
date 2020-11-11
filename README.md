@@ -3,12 +3,15 @@
 Classpy is a GUI tool for investigating Java class file, Lua binary chunk, Wasm binary code, and other binary file formats.
 
 
+
 ## Inspiration
 
 This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/technotes/tools/windows/javap.html) and [JavaClassViewer](http://www.codeproject.com/Articles/35915/Java-Class-Viewer). I reinvent the wheel for the following two reasons:
 
     1. Learn Java class file format and bytecode through parsing it
     2. Try JavaFX 8
+
+
 
 ## Features
 
@@ -18,6 +21,8 @@ This tool is mainly inspired by [javap](http://docs.oracle.com/javase/8/docs/tec
 * Supports [Bitcoin](https://en.wikipedia.org/wiki/Bitcoin) raw block and transaction format
 * Displays parsed binary file as tree and hex text
 * The corresponding hex text is highlighted when you select a tree node
+
+
 
 ## Quick Start
 
@@ -40,17 +45,32 @@ brew tap guxingke/repo && brew install classpy
   classpy HelloWorld.class
   ```
 
+
+
+## Requirements
+
+Java 15 (switch to branch `java8` if you stuck on Java 8)
+
+
+
 ## Build
+
 ```shell
 cd path/to/classpy
-./gradlew uberjar
+./gradlew fatJar
+# java -jar path/to/classpy/classpy-gui/build/libs/classpy-fat-jar-0.10.0.jar
 ```
 
+
+
 ## Run
+
 ```shell
 cd path/to/classpy
 ./gradlew run
 ```
+
+
 
 ## Screenshots
 

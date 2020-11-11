@@ -21,8 +21,8 @@ public class ClassFileTest {
     @Test
     public void simpleClass() throws Exception {
         ClassFile cf = loadClass(SimpleClass.class);
-        assertEquals(0, cf.getUInt("minor_version"));
-        assertEquals(52, cf.getUInt("major_version"));
+        assertEquals(65535, cf.getUInt("minor_version"));
+        assertEquals(59, cf.getUInt("major_version"));
         assertEquals(37, cf.getUInt("constant_pool_count"));
         assertEquals(2, cf.getUInt("interfaces_count"));
         assertEquals(2, cf.getUInt("fields_count"));

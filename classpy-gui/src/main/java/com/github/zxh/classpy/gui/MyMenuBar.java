@@ -27,6 +27,7 @@ public final class MyMenuBar extends MenuBar {
     private BiConsumer<FileType, String> onOpenFile;
     private Runnable onCloseAllTabs;
     private Runnable onNewWindow;
+    private Consumer<String> onOpenURL;
 
     public MyMenuBar() {
         createFileMenu();
@@ -99,7 +100,7 @@ public final class MyMenuBar extends MenuBar {
     
     private void createHelpMenu() {
         MenuItem aboutMenuItem = new MenuItem("_About");
-        aboutMenuItem.setOnAction(e -> AboutDialog.showDialog());
+        aboutMenuItem.setOnAction(e -> AboutDialog.showDialog(onOpenURL));
         aboutMenuItem.setMnemonicParsing(true);
 
         Menu helpMenu = new Menu("_Help");
@@ -119,6 +120,10 @@ public final class MyMenuBar extends MenuBar {
 
     public void setOnCloseAllTabs(Runnable onCloseAllTabs) {
         this.onCloseAllTabs = onCloseAllTabs;
+    }
+
+    public void setOnOpenURL(Consumer<String> onOpenURL) {
+        this.onOpenURL = onOpenURL;
     }
 
     public void updateRecentFiles() {
