@@ -53,6 +53,7 @@ public final class MyMenuBar extends MenuBar {
         openMenu.getItems().add(createOpenMenuItem(FileType.WASM));
         openMenu.getItems().add(createOpenMenuItem(FileType.BITCOIN_BLOCK));
         openMenu.getItems().add(createOpenMenuItem(FileType.BITCOIN_TX));
+        openMenu.getItems().add(createOpenMenuItem(FileType.EVM_BYTECODE));
         openMenu.setMnemonicParsing(true);
         return openMenu;
     }
