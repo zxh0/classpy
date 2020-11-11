@@ -49,7 +49,7 @@ brew tap guxingke/repo && brew install classpy
 
 ## Requirements
 
-Java 15 (switch to branch `java8` if you stuck on Java 8)
+Java 15 (checkout branch `java8` if you stuck on Java 8)
 
 
 

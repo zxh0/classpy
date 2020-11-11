@@ -77,53 +77,46 @@ instr ::= 0x00 ⇒ unreachable
      */
     private void readControlInstructions(WasmBinReader reader) {
         switch (opcode) {
-            case 0x00:
-                setName("unreachable");
-                break;
-            case 0x01:
-                setName("nop");
-                break;
-            case 0x02:
+            case 0x00 -> setName("unreachable");
+            case 0x01 -> setName("nop");
+            case 0x02 -> {
                 setName("block");
                 readBlock(reader, false);
-                break;
-            case 0x03:
+            }
+            case 0x03 -> {
                 setName("loop");
                 readBlock(reader, false);
-                break;
-            case 0x04:
+            }
+            case 0x04 -> {
                 setName("if");
                 readBlock(reader, true);
-                break;
-            case 0x0C:
+            }
+            case 0x0C -> {
                 setName("br");
                 readU32(reader, "label");
-                break;
-            case 0x0D:
+            }
+            case 0x0D -> {
                 setName("br_if");
                 readU32(reader, "label");
-                break;
-            case 0x0E:
+            }
+            case 0x0E -> {
                 setName("br_table");
                 readVector(reader, "labels", U32::new);
                 readU32(reader, "default");
-                break;
-            case 0x0F:
-                setName("return");
-                break;
-            case 0x10:
+            }
+            case 0x0F -> setName("return");
+            case 0x10 -> {
                 setName("call");
                 int idx = readU32(reader, "func");
                 setDesc("func#" + idx);
-                break;
-            case 0x11:
+            }
+            case 0x11 -> {
                 setName("call_indirect");
                 readU32(reader, "type");
                 readByte(reader, null, (byte) 0x00);
-                break;
-            default:
-                throw new ParseException(String.format(
-                        "Invalid opcode: 0x%02X", opcode));
+            }
+            default -> throw new ParseException(String.format(
+                    "Invalid opcode: 0x%02X", opcode));
         }
     }
 
@@ -134,10 +127,10 @@ instr ::= . . .
      */
     private void readParametricInstructions(WasmBinReader reader) {
         switch (opcode) {
-            case 0x1A: setName("drop"); break;
-            case 0x1B: setName("select"); break;
-            default: throw new ParseException(String.format(
-                        "Invalid opcode: 0x%02X", opcode));
+            case 0x1A -> setName("drop");
+            case 0x1B -> setName("select");
+            default -> throw new ParseException(String.format(
+                    "Invalid opcode: 0x%02X", opcode));
         }
     }
 
@@ -151,12 +144,12 @@ instr ::= . . .
      */
     private void readVariableInstructions(WasmBinReader reader) {
         switch (opcode) {
-            case 0x20: setName("local.get"); break;
-            case 0x21: setName("local.set"); break;
-            case 0x22: setName("local.tee"); break;
-            case 0x23: setName("global.get"); break;
-            case 0x24: setName("global.set"); break;
-            default: throw new ParseException(String.format(
+            case 0x20 -> setName("local.get");
+            case 0x21 -> setName("local.set");
+            case 0x22 -> setName("local.tee");
+            case 0x23 -> setName("global.get");
+            case 0x24 -> setName("global.set");
+            default -> throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
         int idx = readU32(reader, "index");
@@ -194,30 +187,30 @@ instr ::= . . .
      */
     private void readMemoryInstructions1(WasmBinReader reader) {
         switch (opcode) {
-            case 0x28: setName("i32.load"); break;
-            case 0x29: setName("i64.load"); break;
-            case 0x2A: setName("f32.load"); break;
-            case 0x2B: setName("f64.load"); break;
-            case 0x2C: setName("i32.load8_s"); break;
-            case 0x2D: setName("i32.load8_u"); break;
-            case 0x2E: setName("i32.load16_s"); break;
-            case 0x2F: setName("i32.load16_u"); break;
-            case 0x30: setName("i64.load8_s"); break;
-            case 0x31: setName("i64.load8_u"); break;
-            case 0x32: setName("i64.load16_s"); break;
-            case 0x33: setName("i64.load16_u"); break;
-            case 0x34: setName("i64.load32_s"); break;
-            case 0x35: setName("i64.load32_u"); break;
-            case 0x36: setName("i32.store"); break;
-            case 0x37: setName("i64.store"); break;
-            case 0x38: setName("f32.store"); break;
-            case 0x39: setName("f64.store"); break;
-            case 0x3A: setName("i32.store8"); break;
-            case 0x3B: setName("i32.store16"); break;
-            case 0x3C: setName("i64.store8"); break;
-            case 0x3D: setName("i64.store16"); break;
-            case 0x3E: setName("i64.store32"); break;
-            default: throw new ParseException(String.format(
+            case 0x28 -> setName("i32.load");
+            case 0x29 -> setName("i64.load");
+            case 0x2A -> setName("f32.load");
+            case 0x2B -> setName("f64.load");
+            case 0x2C -> setName("i32.load8_s");
+            case 0x2D -> setName("i32.load8_u");
+            case 0x2E -> setName("i32.load16_s");
+            case 0x2F -> setName("i32.load16_u");
+            case 0x30 -> setName("i64.load8_s");
+            case 0x31 -> setName("i64.load8_u");
+            case 0x32 -> setName("i64.load16_s");
+            case 0x33 -> setName("i64.load16_u");
+            case 0x34 -> setName("i64.load32_s");
+            case 0x35 -> setName("i64.load32_u");
+            case 0x36 -> setName("i32.store");
+            case 0x37 -> setName("i64.store");
+            case 0x38 -> setName("f32.store");
+            case 0x39 -> setName("f64.store");
+            case 0x3A -> setName("i32.store8");
+            case 0x3B -> setName("i32.store16");
+            case 0x3C -> setName("i64.store8");
+            case 0x3D -> setName("i64.store16");
+            case 0x3E -> setName("i64.store32");
+            default -> throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
 
@@ -227,9 +220,9 @@ instr ::= . . .
 
     private void readMemoryInstructions2(WasmBinReader reader) {
         switch (opcode) {
-            case 0x3F: setName("memory.size"); break;
-            case 0x40: setName("memory.grow"); break;
-            default: throw new ParseException(String.format(
+            case 0x3F -> setName("memory.size");
+            case 0x40 -> setName("memory.grow");
+            default -> throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
 
@@ -245,25 +238,25 @@ instr ::= . . .
      */
     private void readNumericInstructions1(WasmBinReader reader) {
         switch (opcode) {
-            case 0x41:
+            case 0x41 -> {
                 setName("i32.const");
                 S32 i32 = read(reader, "n", new S32());
                 setDesc(i32.getDesc());
-                break;
-            case 0x42:
+            }
+            case 0x42 -> {
                 setName("i64.const");
                 S64 i64 = read(reader, "n", new S64());
                 setDesc(i64.getDesc());
-                break;
-            case 0x43:
+            }
+            case 0x43 -> {
                 setName("i64.const");
                 reader.readBytes(4); // todo
-                break;
-            case 0x44:
+            }
+            case 0x44 -> {
                 setName("i64.const");
                 reader.readBytes(8); // todo
-                break;
-            default: throw new ParseException(String.format(
+            }
+            default -> throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
     }
@@ -404,130 +397,130 @@ instr ::= . . .
      */
     private void readNumericInstructions2(WasmBinReader reader) {
         switch (opcode) {
-            case 0x45: setName("i32.eqz"); break;
-            case 0x46: setName("i32.eq"); break;
-            case 0x47: setName("i32.ne"); break;
-            case 0x48: setName("i32.lt_s"); break;
-            case 0x49: setName("i32.lt_u"); break;
-            case 0x4A: setName("i32.gt_s"); break;
-            case 0x4B: setName("i32.gt_u"); break;
-            case 0x4C: setName("i32.le_s"); break;
-            case 0x4D: setName("i32.le_u"); break;
-            case 0x4E: setName("i32.ge_s"); break;
-            case 0x4F: setName("i32.ge_u"); break;
-            case 0x50: setName("i64.eqz"); break;
-            case 0x51: setName("i64.eq"); break;
-            case 0x52: setName("i64.ne"); break;
-            case 0x53: setName("i64.lt_s"); break;
-            case 0x54: setName("i64.lt_u"); break;
-            case 0x55: setName("i64.gt_s"); break;
-            case 0x56: setName("i64.gt_u"); break;
-            case 0x57: setName("i64.le_s"); break;
-            case 0x58: setName("i64.le_u"); break;
-            case 0x59: setName("i64.ge_s"); break;
-            case 0x5A: setName("i64.ge_u"); break;
-            case 0x5B: setName("f32.eq"); break;
-            case 0x5C: setName("f32.ne"); break;
-            case 0x5D: setName("f32.lt"); break;
-            case 0x5E: setName("f32.gt"); break;
-            case 0x5F: setName("f32.le"); break;
-            case 0x60: setName("f32.ge"); break;
-            case 0x61: setName("f64.eq"); break;
-            case 0x62: setName("f64.ne"); break;
-            case 0x63: setName("f64.lt"); break;
-            case 0x64: setName("f64.gt"); break;
-            case 0x65: setName("f64.le"); break;
-            case 0x66: setName("f64.ge"); break;
-            case 0x67: setName("i32.clz"); break;
-            case 0x68: setName("i32.ctz"); break;
-            case 0x69: setName("i32.popcnt"); break;
-            case 0x6A: setName("i32.add"); break;
-            case 0x6B: setName("i32.sub"); break;
-            case 0x6C: setName("i32.mul"); break;
-            case 0x6D: setName("i32.div_s"); break;
-            case 0x6E: setName("i32.div_u"); break;
-            case 0x6F: setName("i32.rem_s"); break;
-            case 0x70: setName("i32.rem_u"); break;
-            case 0x71: setName("i32.and"); break;
-            case 0x72: setName("i32.or"); break;
-            case 0x73: setName("i32.xor"); break;
-            case 0x74: setName("i32.shl"); break;
-            case 0x75: setName("i32.shr_s"); break;
-            case 0x76: setName("i32.shr_u"); break;
-            case 0x77: setName("i32.rotl"); break;
-            case 0x78: setName("i32.rotr"); break;
-            case 0x79: setName("i64.clz"); break;
-            case 0x7A: setName("i64.ctz"); break;
-            case 0x7B: setName("i64.popcnt"); break;
-            case 0x7C: setName("i64.add"); break;
-            case 0x7D: setName("i64.sub"); break;
-            case 0x7E: setName("i64.mul"); break;
-            case 0x7F: setName("i64.div_s"); break;
-            case 0x80: setName("i64.div_u"); break;
-            case 0x81: setName("i64.rem_s"); break;
-            case 0x82: setName("i64.rem_u"); break;
-            case 0x83: setName("i64.and"); break;
-            case 0x84: setName("i64.or"); break;
-            case 0x85: setName("i64.xor"); break;
-            case 0x86: setName("i64.shl"); break;
-            case 0x87: setName("i64.shr_s"); break;
-            case 0x88: setName("i64.shr_u"); break;
-            case 0x89: setName("i64.rotl"); break;
-            case 0x8A: setName("i64.rotr"); break;
-            case 0x8B: setName("f32.abs"); break;
-            case 0x8C: setName("f32.neg"); break;
-            case 0x8D: setName("f32.ceil"); break;
-            case 0x8E: setName("f32.floor"); break;
-            case 0x8F: setName("f32.trunc"); break;
-            case 0x90: setName("f32.nearest"); break;
-            case 0x91: setName("f32.sqrt"); break;
-            case 0x92: setName("f32.add"); break;
-            case 0x93: setName("f32.sub"); break;
-            case 0x94: setName("f32.mul"); break;
-            case 0x95: setName("f32.div"); break;
-            case 0x96: setName("f32.min"); break;
-            case 0x97: setName("f32.max"); break;
-            case 0x98: setName("f32.copysign"); break;
-            case 0x99: setName("f64.abs"); break;
-            case 0x9A: setName("f64.neg"); break;
-            case 0x9B: setName("f64.ceil"); break;
-            case 0x9C: setName("f64.floor"); break;
-            case 0x9D: setName("f64.trunc"); break;
-            case 0x9E: setName("f64.nearest"); break;
-            case 0x9F: setName("f64.sqrt"); break;
-            case 0xA0: setName("f64.add"); break;
-            case 0xA1: setName("f64.sub"); break;
-            case 0xA2: setName("f64.mul"); break;
-            case 0xA3: setName("f64.div"); break;
-            case 0xA4: setName("f64.min"); break;
-            case 0xA5: setName("f64.max"); break;
-            case 0xA6: setName("f64.copysign"); break;
-            case 0xA7: setName("i32.wrap_i64"); break;
-            case 0xA8: setName("i32.trunc_f32_s"); break;
-            case 0xA9: setName("i32.trunc_f32_u"); break;
-            case 0xAA: setName("i32.trunc_f64_s"); break;
-            case 0xAB: setName("i32.trunc_f64_u"); break;
-            case 0xAC: setName("i64.extend_i32_s"); break;
-            case 0xAD: setName("i64.extend_i32_u"); break;
-            case 0xAE: setName("i64.trunc_f32_s"); break;
-            case 0xAF: setName("i64.trunc_f32_u"); break;
-            case 0xB0: setName("i64.trunc_f64_s"); break;
-            case 0xB1: setName("i64.trunc_f64_u"); break;
-            case 0xB2: setName("f32.convert_i32_s"); break;
-            case 0xB3: setName("f32.convert_i32_u"); break;
-            case 0xB4: setName("f32.convert_i64_s"); break;
-            case 0xB5: setName("f32.convert_i64_u"); break;
-            case 0xB6: setName("f32.demote_f64"); break;
-            case 0xB7: setName("f64.convert_i32_s"); break;
-            case 0xB8: setName("f64.convert_i32_u"); break;
-            case 0xB9: setName("f64.convert_i64_s"); break;
-            case 0xBA: setName("f64.convert_i64_u"); break;
-            case 0xBB: setName("f64.promote_f32"); break;
-            case 0xBC: setName("i32.reinterpret_f32"); break;
-            case 0xBD: setName("i64.reinterpret_f64"); break;
-            case 0xBE: setName("f32.reinterpret_i32"); break;
-            case 0xBF: setName("f64.reinterpret_i64"); break;
-            default: throw new ParseException(String.format(
+            case 0x45 -> setName("i32.eqz");
+            case 0x46 -> setName("i32.eq");
+            case 0x47 -> setName("i32.ne");
+            case 0x48 -> setName("i32.lt_s");
+            case 0x49 -> setName("i32.lt_u");
+            case 0x4A -> setName("i32.gt_s");
+            case 0x4B -> setName("i32.gt_u");
+            case 0x4C -> setName("i32.le_s");
+            case 0x4D -> setName("i32.le_u");
+            case 0x4E -> setName("i32.ge_s");
+            case 0x4F -> setName("i32.ge_u");
+            case 0x50 -> setName("i64.eqz");
+            case 0x51 -> setName("i64.eq");
+            case 0x52 -> setName("i64.ne");
+            case 0x53 -> setName("i64.lt_s");
+            case 0x54 -> setName("i64.lt_u");
+            case 0x55 -> setName("i64.gt_s");
+            case 0x56 -> setName("i64.gt_u");
+            case 0x57 -> setName("i64.le_s");
+            case 0x58 -> setName("i64.le_u");
+            case 0x59 -> setName("i64.ge_s");
+            case 0x5A -> setName("i64.ge_u");
+            case 0x5B -> setName("f32.eq");
+            case 0x5C -> setName("f32.ne");
+            case 0x5D -> setName("f32.lt");
+            case 0x5E -> setName("f32.gt");
+            case 0x5F -> setName("f32.le");
+            case 0x60 -> setName("f32.ge");
+            case 0x61 -> setName("f64.eq");
+            case 0x62 -> setName("f64.ne");
+            case 0x63 -> setName("f64.lt");
+            case 0x64 -> setName("f64.gt");
+            case 0x65 -> setName("f64.le");
+            case 0x66 -> setName("f64.ge");
+            case 0x67 -> setName("i32.clz");
+            case 0x68 -> setName("i32.ctz");
+            case 0x69 -> setName("i32.popcnt");
+            case 0x6A -> setName("i32.add");
+            case 0x6B -> setName("i32.sub");
+            case 0x6C -> setName("i32.mul");
+            case 0x6D -> setName("i32.div_s");
+            case 0x6E -> setName("i32.div_u");
+            case 0x6F -> setName("i32.rem_s");
+            case 0x70 -> setName("i32.rem_u");
+            case 0x71 -> setName("i32.and");
+            case 0x72 -> setName("i32.or");
+            case 0x73 -> setName("i32.xor");
+            case 0x74 -> setName("i32.shl");
+            case 0x75 -> setName("i32.shr_s");
+            case 0x76 -> setName("i32.shr_u");
+            case 0x77 -> setName("i32.rotl");
+            case 0x78 -> setName("i32.rotr");
+            case 0x79 -> setName("i64.clz");
+            case 0x7A -> setName("i64.ctz");
+            case 0x7B -> setName("i64.popcnt");
+            case 0x7C -> setName("i64.add");
+            case 0x7D -> setName("i64.sub");
+            case 0x7E -> setName("i64.mul");
+            case 0x7F -> setName("i64.div_s");
+            case 0x80 -> setName("i64.div_u");
+            case 0x81 -> setName("i64.rem_s");
+            case 0x82 -> setName("i64.rem_u");
+            case 0x83 -> setName("i64.and");
+            case 0x84 -> setName("i64.or");
+            case 0x85 -> setName("i64.xor");
+            case 0x86 -> setName("i64.shl");
+            case 0x87 -> setName("i64.shr_s");
+            case 0x88 -> setName("i64.shr_u");
+            case 0x89 -> setName("i64.rotl");
+            case 0x8A -> setName("i64.rotr");
+            case 0x8B -> setName("f32.abs");
+            case 0x8C -> setName("f32.neg");
+            case 0x8D -> setName("f32.ceil");
+            case 0x8E -> setName("f32.floor");
+            case 0x8F -> setName("f32.trunc");
+            case 0x90 -> setName("f32.nearest");
+            case 0x91 -> setName("f32.sqrt");
+            case 0x92 -> setName("f32.add");
+            case 0x93 -> setName("f32.sub");
+            case 0x94 -> setName("f32.mul");
+            case 0x95 -> setName("f32.div");
+            case 0x96 -> setName("f32.min");
+            case 0x97 -> setName("f32.max");
+            case 0x98 -> setName("f32.copysign");
+            case 0x99 -> setName("f64.abs");
+            case 0x9A -> setName("f64.neg");
+            case 0x9B -> setName("f64.ceil");
+            case 0x9C -> setName("f64.floor");
+            case 0x9D -> setName("f64.trunc");
+            case 0x9E -> setName("f64.nearest");
+            case 0x9F -> setName("f64.sqrt");
+            case 0xA0 -> setName("f64.add");
+            case 0xA1 -> setName("f64.sub");
+            case 0xA2 -> setName("f64.mul");
+            case 0xA3 -> setName("f64.div");
+            case 0xA4 -> setName("f64.min");
+            case 0xA5 -> setName("f64.max");
+            case 0xA6 -> setName("f64.copysign");
+            case 0xA7 -> setName("i32.wrap_i64");
+            case 0xA8 -> setName("i32.trunc_f32_s");
+            case 0xA9 -> setName("i32.trunc_f32_u");
+            case 0xAA -> setName("i32.trunc_f64_s");
+            case 0xAB -> setName("i32.trunc_f64_u");
+            case 0xAC -> setName("i64.extend_i32_s");
+            case 0xAD -> setName("i64.extend_i32_u");
+            case 0xAE -> setName("i64.trunc_f32_s");
+            case 0xAF -> setName("i64.trunc_f32_u");
+            case 0xB0 -> setName("i64.trunc_f64_s");
+            case 0xB1 -> setName("i64.trunc_f64_u");
+            case 0xB2 -> setName("f32.convert_i32_s");
+            case 0xB3 -> setName("f32.convert_i32_u");
+            case 0xB4 -> setName("f32.convert_i64_s");
+            case 0xB5 -> setName("f32.convert_i64_u");
+            case 0xB6 -> setName("f32.demote_f64");
+            case 0xB7 -> setName("f64.convert_i32_s");
+            case 0xB8 -> setName("f64.convert_i32_u");
+            case 0xB9 -> setName("f64.convert_i64_s");
+            case 0xBA -> setName("f64.convert_i64_u");
+            case 0xBB -> setName("f64.promote_f32");
+            case 0xBC -> setName("i32.reinterpret_f32");
+            case 0xBD -> setName("i64.reinterpret_f64");
+            case 0xBE -> setName("f32.reinterpret_i32");
+            case 0xBF -> setName("f64.reinterpret_i64");
+            default -> throw new ParseException(String.format(
                     "Invalid opcode: 0x%02X", opcode));
         }
     }

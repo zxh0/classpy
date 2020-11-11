@@ -94,30 +94,12 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         private void preRead(byte tag) {
             u1("tag");
             switch (tag) {
-                case 'B':
-                case 'C':
-                case 'D':
-                case 'F':
-                case 'I':
-                case 'J':
-                case 'S':
-                case 'Z':
-                case 's':
-                    u2cp("const_value_index");
-                    break;
-                case 'e':
-                    add("enum_const_value", new EnumConstValue());
-                    break;
-                case 'c':
-                    u2cp("class_info_index");
-                    break;
-                case '@':
-                    add("annotation_value", new AnnotationInfo());
-                    break;
-                case '[':
-                    add("array_value", new ArrayValue());
-                    break;
-                default: throw new ParseException("Invalid element_value tag: " + tag);
+                case 'B', 'C', 'D', 'F', 'I', 'J', 'S', 'Z', 's' -> u2cp("const_value_index");
+                case 'e' -> add("enum_const_value", new EnumConstValue());
+                case 'c' -> u2cp("class_info_index");
+                case '@' -> add("annotation_value", new AnnotationInfo());
+                case '[' -> add("array_value", new ArrayValue());
+                default -> throw new ParseException("Invalid element_value tag: " + tag);
             }
         }
 

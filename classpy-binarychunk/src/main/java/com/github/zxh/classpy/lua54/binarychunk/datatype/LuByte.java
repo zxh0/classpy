@@ -22,15 +22,9 @@ public class LuByte extends BinaryChunkPart {
         // TODO
         if (super.getName() != null) {
             switch (super.getName()) {
-                case "sizeof(Instruction)":
-                    reader.setInstrSize(value);
-                    break;
-                case "sizeof(lua_Integer)":
-                    reader.setLuaIntSize(value);
-                    break;
-                case "sizeof(lua_Number)":
-                    reader.setLuaNumSize(value);
-                    break;
+                case "sizeof(Instruction)" -> reader.setInstrSize(value);
+                case "sizeof(lua_Integer)" -> reader.setLuaIntSize(value);
+                case "sizeof(lua_Number)"  -> reader.setLuaNumSize(value);
             }
         }
     }

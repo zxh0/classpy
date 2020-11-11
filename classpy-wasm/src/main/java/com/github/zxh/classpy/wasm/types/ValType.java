@@ -10,11 +10,11 @@ public class ValType extends WasmBinPart {
     protected void readContent(WasmBinReader reader) {
         byte b = reader.readByte();
         switch (b) {
-            case 0x7F: setDesc("i32"); break;
-            case 0x7E: setDesc("i64"); break;
-            case 0x7D: setDesc("f32"); break;
-            case 0x7C: setDesc("f64"); break;
-            default: throw new ParseException(
+            case 0x7F -> setDesc("i32");
+            case 0x7E -> setDesc("i64");
+            case 0x7D -> setDesc("f32");
+            case 0x7C -> setDesc("f64");
+            default -> throw new ParseException(
                     String.format("Invalid value type: 0x%02X", b));
         }
     }

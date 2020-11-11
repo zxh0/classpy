@@ -57,21 +57,11 @@ public class Instruction extends BinaryChunkPart {
         StringBuilder desc = new StringBuilder();
         desc.append(opcode.toString().substring(3));
         switch (opcode.mode) {
-            case iABC:
-                desc.append(String.format("A=%d, k=%d, B=%d, C=%d", a, k, b, c));
-                break;
-            case iABx:
-                desc.append(String.format("A=%d, Bx=%d", a, bx));
-                break;
-            case iAsBx:
-                desc.append(String.format("A=%d, sBx=%d", a, sBx));
-                break;
-            case iAx:
-                desc.append(String.format("Ax=%d", ax));
-                break;
-            case isJ:
-                desc.append(String.format("sJ=%d", sj));
-                break;
+            case iABC  -> desc.append(String.format("A=%d, k=%d, B=%d, C=%d", a, k, b, c));
+            case iABx  -> desc.append(String.format("A=%d, Bx=%d", a, bx));
+            case iAsBx -> desc.append(String.format("A=%d, sBx=%d", a, sBx));
+            case iAx   -> desc.append(String.format("Ax=%d", ax));
+            case isJ   -> desc.append(String.format("sJ=%d", sj));
         }
 
         super.setDesc(desc.toString());

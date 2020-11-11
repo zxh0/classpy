@@ -9,37 +9,37 @@ public class AttributeFactory {
      */
     public static AttributeInfo create(String name) {
         //  predefined class file attributes:
-        switch (name) {
-            case "ConstantValue": return new ConstantValueAttribute();
-            case "Code": return new CodeAttribute();
-            case "StackMapTable": return new StackMapTableAttribute(); // todo
-            case "Exceptions": return new ExceptionsAttribute();
-            case "InnerClasses": return new InnerClassesAttribute();
-            case "EnclosingMethod": return new EnclosingMethodAttribute();
-            case "Synthetic": return new SyntheticAttribute();
-            case "Signature": return new SignatureAttribute();
-            case "SourceFile":  return new SourceFileAttribute();
-            case "SourceDebugExtension": return new SourceDebugExtensionAttribute(); // todo
-            case "LineNumberTable": return new LineNumberTableAttribute();
-            case "LocalVariableTable": return new LocalVariableTableAttribute();
-            case "LocalVariableTypeTable": return new LocalVariableTypeTableAttribute();
-            case "Deprecated": return new DeprecatedAttribute();
-            case "RuntimeVisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
-            case "RuntimeInvisibleAnnotations": return new RuntimeVisibleAnnotationsAttribute();
-            case "RuntimeVisibleParameterAnnotations": return new RuntimeVisibleParameterAnnotationsAttribute();
-            case "RuntimeInvisibleParameterAnnotations": return new RuntimeVisibleParameterAnnotationsAttribute();
-            case "RuntimeVisibleTypeAnnotations": return new RuntimeVisibleTypeAnnotationsAttribute();
-            case "RuntimeInvisibleTypeAnnotations": return new RuntimeVisibleTypeAnnotationsAttribute();
-            case "AnnotationDefault": return new AnnotationDefaultAttribute();
-            case "BootstrapMethods": return new BootstrapMethodsAttribute();
-            case "MethodParameters": return new MethodParametersAttribute(); // todo
-            case "Module": return new ModuleAttribute();
-            case "ModulePackages": return new ModulePackagesAttribute();
-            case "ModuleMainClass": return new ModuleMainClassAttribute();
-        }
+        return switch (name) {
+            case "ConstantValue" -> new ConstantValueAttribute();
+            case "Code" -> new CodeAttribute();
+            case "StackMapTable" -> new StackMapTableAttribute(); // TODO
+            case "Exceptions" -> new ExceptionsAttribute();
+            case "InnerClasses" -> new InnerClassesAttribute();
+            case "EnclosingMethod" -> new EnclosingMethodAttribute();
+            case "Synthetic" -> new SyntheticAttribute();
+            case "Signature" -> new SignatureAttribute();
+            case "SourceFile" -> new SourceFileAttribute();
+            case "SourceDebugExtension" -> new SourceDebugExtensionAttribute(); // TODO
+            case "LineNumberTable" -> new LineNumberTableAttribute();
+            case "LocalVariableTable" -> new LocalVariableTableAttribute();
+            case "LocalVariableTypeTable" -> new LocalVariableTypeTableAttribute();
+            case "Deprecated" -> new DeprecatedAttribute();
+            case "RuntimeVisibleAnnotations" -> new RuntimeVisibleAnnotationsAttribute();
+            case "RuntimeInvisibleAnnotations" -> new RuntimeVisibleAnnotationsAttribute();
+            case "RuntimeVisibleParameterAnnotations" -> new RuntimeVisibleParameterAnnotationsAttribute();
+            case "RuntimeInvisibleParameterAnnotations" -> new RuntimeVisibleParameterAnnotationsAttribute();
+            case "RuntimeVisibleTypeAnnotations" -> new RuntimeVisibleTypeAnnotationsAttribute();
+            case "RuntimeInvisibleTypeAnnotations" -> new RuntimeVisibleTypeAnnotationsAttribute();
+            case "AnnotationDefault" -> new AnnotationDefaultAttribute();
+            case "BootstrapMethods" -> new BootstrapMethodsAttribute();
+            case "MethodParameters" -> new MethodParametersAttribute(); // TODO
+            case "Module" -> new ModuleAttribute();
+            case "ModulePackages" -> new ModulePackagesAttribute();
+            case "ModuleMainClass" -> new ModuleMainClassAttribute();
+            default -> new UndefinedAttribute();
+        };
 
         //throw new ParseException(name);
-        return new UndefinedAttribute();
     }
 
 }

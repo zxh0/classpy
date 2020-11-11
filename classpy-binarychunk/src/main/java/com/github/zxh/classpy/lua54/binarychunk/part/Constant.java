@@ -31,9 +31,7 @@ public class Constant extends BinaryChunkPart {
         super.setName(lt.name());
         switch (lt) {
             case LUA_TNIL:
-                break;
             case LUA_VFALSE:
-                break;
             case LUA_VTRUE:
                 break;
             case LUA_TNUMBER:

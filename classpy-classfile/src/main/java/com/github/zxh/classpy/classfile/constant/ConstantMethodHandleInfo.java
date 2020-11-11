@@ -40,9 +40,8 @@ public class ConstantMethodHandleInfo extends ConstantInfo {
                 }
             case REF_invokeInterface:
                 return refKind + "->" + cp.getInterfaceMethodrefInfo(referenceIndex).loadDesc(cp);
+            default:return null;
         }
-        
-        return null;
     }
 
 }

@@ -46,11 +46,11 @@ public class Export extends WasmBinPart {
         protected void readContent(WasmBinReader reader) {
             b = readByte(reader, null);
             switch (b) {
-                case 0x00: idx = readIndex(reader, "func");   break; // funcidx
-                case 0x01: idx = readIndex(reader, "table");  break; // tableidx
-                case 0x02: idx = readIndex(reader, "mem");    break; // memidx
-                case 0x03: idx = readIndex(reader, "global"); break; // globalidx
-                default: throw new ParseException("Invalid export desc: " + b);
+                case 0x00 -> idx = readIndex(reader, "func");   // funcidx
+                case 0x01 -> idx = readIndex(reader, "table");  // tableidx
+                case 0x02 -> idx = readIndex(reader, "mem");    // memidx
+                case 0x03 -> idx = readIndex(reader, "global"); // globalidx
+                default -> throw new ParseException("Invalid export desc: " + b);
             }
         }
 
