@@ -7,8 +7,8 @@ import java.util.function.Supplier;
 
 public class Table extends BlockPart {
 
-    private Supplier<? extends BlockPart> supplier;
-    private String partName;
+    private final Supplier<? extends BlockPart> supplier;
+    private final String partName;
 
     public Table(Supplier<? extends BlockPart> supplier) {
         this.supplier = supplier;

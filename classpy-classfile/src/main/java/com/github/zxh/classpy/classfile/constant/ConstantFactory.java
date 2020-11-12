@@ -6,8 +6,6 @@ public class ConstantFactory {
 
     /**
      * Create concrete ConstantXxxInfo by tag.
-     * @param tag
-     * @return
      */
     public static ConstantInfo create(byte tag) {
         return switch (tag) {

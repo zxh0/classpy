@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.classfile.constant;
 
-import com.github.zxh.classpy.classfile.datatype.U2;
-
 /*
 CONSTANT_Fieldref_info {
     u1 tag;

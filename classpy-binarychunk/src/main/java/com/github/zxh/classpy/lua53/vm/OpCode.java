@@ -1,8 +1,7 @@
 package com.github.zxh.classpy.lua53.vm;
 
 /**
- * LuaVM OpCode.
- * @see /lua/src/lopcodes.h
+ * LuaVM OpCode - /lua/src/lopcodes.h
  */
 public enum OpCode {
 

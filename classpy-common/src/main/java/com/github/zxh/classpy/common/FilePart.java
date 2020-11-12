@@ -61,8 +61,6 @@ public abstract class FilePart {
 
     /**
      * The returned string will be displayed by BytesTreeItem.
-     *
-     * @return
      */
     @Override
     public final String toString() {

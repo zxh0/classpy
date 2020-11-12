@@ -196,9 +196,7 @@ public class ClasspyApp extends Application {
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            openFile(apiUrl.replace("<hash>", result.get()));
-        }
+        result.ifPresent(s -> openFile(apiUrl.replace("<hash>", s)));
     }
 
     private void showBitcoinTxDialog() {
@@ -212,9 +210,7 @@ public class ClasspyApp extends Application {
 
         // Traditional way to get the response value.
         Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            apiUrl.replace("<hash>", result.get());
-        }
+        result.ifPresent(s -> apiUrl.replace("<hash>", s));
     }
 
     private void showFileChooser(FileType ft) {

@@ -37,7 +37,7 @@ public class ConstantUtf8Info extends ConstantInfo {
 
 
     // UTF8 String in constant pool.
-    private class Mutf8 extends ClassFilePart {
+    private static class Mutf8 extends ClassFilePart {
 
         private final U2 length;
         private String str;

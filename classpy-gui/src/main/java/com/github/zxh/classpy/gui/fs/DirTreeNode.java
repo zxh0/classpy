@@ -23,7 +23,7 @@ public class DirTreeNode extends BaseTreeNode {
 
         try {
             Files.walkFileTree(path, EnumSet.noneOf(FileVisitOption.class), 1,
-                    new SimpleFileVisitor<Path>() {
+                    new SimpleFileVisitor<>() {
 
                         @Override
                         public FileVisitResult visitFile(Path subPath, BasicFileAttributes attrs) {

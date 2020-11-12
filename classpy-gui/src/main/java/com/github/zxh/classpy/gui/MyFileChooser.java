@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class MyFileChooser {
+class MyFileChooser {
 
     private static FileChooser fileChooser;
     private static DirectoryChooser dirChooser;

@@ -27,7 +27,7 @@ public class FieldInfo extends ClassFilePart {
     protected void postRead(ConstantPool cp) {
         int nameIndex = super.getUInt("name_index");
         if (nameIndex > 0) {
-            // todo fix loading java.lang.String from rt.jar
+            // TODO: fix loading java.lang.String from rt.jar
             setDesc(cp.getUtf8String(nameIndex));
         }
     }

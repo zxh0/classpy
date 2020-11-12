@@ -64,15 +64,12 @@ public class RecentFiles {
 
     private void saveToTmp() {
         if (!list.isEmpty() && listChanged) {
-            byte[] bytes = list.stream()
-                    .map(RecentFile::toString)
-                    .collect(Collectors.joining("\n"))
-                    .getBytes(StandardCharsets.UTF_8);
-
             Path tmp = Paths.get(System.getProperty("java.io.tmpdir"), "classpy.tmp");
             System.out.println("saving " + tmp + " ...");
             try {
-                Files.write(tmp, bytes);
+                Files.writeString(tmp, list.stream()
+                        .map(RecentFile::toString)
+                        .collect(Collectors.joining("\n")));
             } catch (IOException e) {
                 e.printStackTrace(System.err);
             }

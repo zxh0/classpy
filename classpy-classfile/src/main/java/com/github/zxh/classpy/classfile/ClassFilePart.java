@@ -11,7 +11,6 @@ public abstract class ClassFilePart extends FilePart {
 
     /**
      * Reads content, records offset and length.
-     * @param reader
      */
     public final void read(ClassFileReader reader) {
         try {
@@ -28,7 +27,6 @@ public abstract class ClassFilePart extends FilePart {
 
     /**
      * Reads content using ClassFileReader.
-     * @param reader
      */
     protected void readContent(ClassFileReader reader) {
         for (FilePart fc : getParts()) {

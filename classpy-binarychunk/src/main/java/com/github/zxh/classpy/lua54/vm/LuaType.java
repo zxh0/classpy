@@ -4,8 +4,8 @@ import com.github.zxh.classpy.common.ParseException;
 
 /**
  * Lua types.
- * @see /lua/src/lua.h
- * @see /lua/src/lobject.h
+ * - /lua/src/lua.h
+ * - /lua/src/lobject.h
  */
 public enum LuaType {
 
@@ -34,7 +34,7 @@ public enum LuaType {
 
     public final int type;
 
-    private LuaType(int type) {
+    LuaType(int type) {
         this.type = type;
     }
 

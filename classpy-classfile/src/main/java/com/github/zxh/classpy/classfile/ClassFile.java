@@ -49,7 +49,7 @@ public class ClassFile extends ClassFilePart {
         table("attributes", AttributeInfo.class);
     }
 
-    public ConstantPool getConstantPool() {
+    ConstantPool getConstantPool() {
         return (ConstantPool) super.get("constant_pool");
     }
 

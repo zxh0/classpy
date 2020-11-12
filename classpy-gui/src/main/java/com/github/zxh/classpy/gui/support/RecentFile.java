@@ -1,7 +1,5 @@
 package com.github.zxh.classpy.gui.support;
 
-import java.net.MalformedURLException;
-
 /**
  * Recent open file.
  */
@@ -15,7 +13,7 @@ public class RecentFile {
         this.url = url;
     }
 
-    public RecentFile(String str) throws MalformedURLException {
+    public RecentFile(String str) {
         this(FileType.valueOf(str.split("#=>")[0]), str.split("#=>")[1]);
     }
 
@@ -31,7 +29,7 @@ public class RecentFile {
 
     @Override
     public boolean equals(Object o) {
-        return (o instanceof  RecentFile)
+        return (o instanceof RecentFile)
                 && ((RecentFile) o).url.equals(this.url);
     }
 

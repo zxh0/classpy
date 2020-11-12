@@ -38,7 +38,7 @@ public class Instr extends WasmBinPart {
         } else if (opcode < 0x1A) {
             readControlInstructions(reader);
         } else if (opcode < 0x1C) {
-            readParametricInstructions(reader);
+            readParametricInstructions();
         } else if (opcode < 0x25) {
             readVariableInstructions(reader);
         } else if (opcode < 0x3F) {
@@ -48,7 +48,7 @@ public class Instr extends WasmBinPart {
         } else if (opcode < 0x45) {
             readNumericInstructions1(reader);
         } else {
-            readNumericInstructions2(reader);
+            readNumericInstructions2();
         }
 
         if (opcode == 0x05        // else
@@ -125,7 +125,7 @@ instr ::= . . .
         | 0x1A ⇒ drop
         | 0x1B ⇒ select
      */
-    private void readParametricInstructions(WasmBinReader reader) {
+    private void readParametricInstructions() {
         switch (opcode) {
             case 0x1A -> setName("drop");
             case 0x1B -> setName("select");
@@ -395,7 +395,7 @@ instr ::= . . .
         | 0xBE ⇒ f32.reinterpret_i32
         | 0xBF ⇒ f64.reinterpret_i64
      */
-    private void readNumericInstructions2(WasmBinReader reader) {
+    private void readNumericInstructions2() {
         switch (opcode) {
             case 0x45 -> setName("i32.eqz");
             case 0x46 -> setName("i32.eq");

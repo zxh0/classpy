@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.util.function.Consumer;
 
-public class AboutDialog {
+class AboutDialog {
 
     public static void showDialog(Consumer<String> onOpenURL) {
         Stage stage = new Stage();

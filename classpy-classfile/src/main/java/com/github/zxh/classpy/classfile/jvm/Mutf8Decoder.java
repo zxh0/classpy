@@ -10,11 +10,7 @@ public class Mutf8Decoder {
     
     /**
      * Decode modified UTF-8 string from byte[].
-     * todo: optimize
-     * 
-     * @param bytes
-     * @return 
-     * @throws java.io.IOException 
+     * TODO: optimize
      */
     public static String decodeMutf8(byte[] bytes) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream(bytes.length + 2);

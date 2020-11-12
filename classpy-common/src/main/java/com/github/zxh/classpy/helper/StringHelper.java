@@ -12,10 +12,6 @@ public class StringHelper {
      * 123        8    #008
      * 123       12    #012
      * 123      120    #120
-     * 
-     * @param maxIndex
-     * @param index
-     * @return 
      */
     public static String formatIndex(int maxIndex, int index) {
         int idxWidth = String.valueOf(maxIndex).length();
@@ -25,12 +21,9 @@ public class StringHelper {
     
     /**
      * Cut the string and append ellipsis.
-     * @param str
-     * @param maxLength
-     * @return 
      */
     public static String cutAndAppendEllipsis(String str, int maxLength) {
-        str = str.replaceAll("\\r|\\n", "");
+        str = str.replaceAll("[\\r\\n]", "");
         
         if (str.length() <= maxLength) {
             return str;
@@ -48,8 +41,6 @@ public class StringHelper {
 
     /**
      * Convert hex string to byte array.
-     * @param str
-     * @return
      */
     public static byte[] hex2Bytes(String str) {
         byte[] bytes = new byte[str.length() / 2];

@@ -5,7 +5,7 @@ import com.github.zxh.classpy.lua54.binarychunk.part.Function;
 import com.github.zxh.classpy.lua54.binarychunk.part.Header;
 
 /**
- * Represent lua binary chunk file.
+ * Lua 5.4 binary chunk file.
  */
 public class BinaryChunkFile extends BinaryChunkPart {
 

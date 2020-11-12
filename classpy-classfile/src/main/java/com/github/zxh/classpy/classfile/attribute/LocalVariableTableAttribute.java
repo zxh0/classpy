@@ -40,10 +40,9 @@ public class LocalVariableTableAttribute extends AttributeInfo {
             int length = super.getUInt("length");
             int nameIndex = super.getUInt("name_index");
 
-            int fromPc = startPc;
-            int toPc = fromPc + length - 1;
+            int endPc = startPc + length - 1;
             String varName = cp.getConstantDesc(nameIndex);
-            setDesc(String.format("%s(%d~%d)", varName, fromPc, toPc));
+            setDesc(String.format("%s(%d~%d)", varName, startPc, endPc));
         }
         
     }

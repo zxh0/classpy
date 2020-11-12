@@ -37,7 +37,7 @@ public class Table extends ClassFilePart {
         if (entryClass == AttributeInfo.class) {
             return readAttributeInfo(reader);
         } else {
-            ClassFilePart c = entryClass.newInstance();
+            ClassFilePart c = entryClass.getDeclaredConstructor().newInstance();
             c.read(reader);
             return c;
         }

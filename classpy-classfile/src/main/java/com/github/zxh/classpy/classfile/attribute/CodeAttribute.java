@@ -57,7 +57,7 @@ public class CodeAttribute extends AttributeInfo {
     }
 
 
-    private class Code extends ClassFilePart {
+    private static class Code extends ClassFilePart {
 
         private final U4 codeLength;
 

@@ -4,9 +4,7 @@ import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkReader;
 
 /**
- * string in binary chunk.
- *
- * @see /lua/src/ldump.c#DumpString()
+ * string in binary chunk - /lua/src/ldump.c#DumpString()
  */
 public class LuaStr extends BinaryChunkPart {
 

@@ -1,6 +1,5 @@
 package com.github.zxh.classpy.gui.support;
 
-import java.net.URL;
 import java.util.Arrays;
 
 public class FileTypeInferer {

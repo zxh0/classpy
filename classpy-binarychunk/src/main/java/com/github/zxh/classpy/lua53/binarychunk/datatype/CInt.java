@@ -4,9 +4,7 @@ import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkReader;
 
 /**
- * c int.
- *
- * @see /lua/src/ldump.c#DumpInt()
+ * c int - /lua/src/ldump.c#DumpInt()
  */
 public class CInt extends BinaryChunkPart {
 

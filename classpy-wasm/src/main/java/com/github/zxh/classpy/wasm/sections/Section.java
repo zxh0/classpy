@@ -38,43 +38,53 @@ public class Section extends WasmBinPart {
 
     private void readContents(WasmBinReader reader,
                               int id, int size) {
-        if (id == 0) {
-            readCustomSection(reader, size);
-        } else if (id == 1) {
-            setName("type section");
-            readVector(reader, "types", FuncType::new);
-        } else if (id == 2) {
-            setName("import section");
-            readVector(reader, "imports", Import::new);
-        } else if (id == 3) {
-            setName("function section");
-            readVector(reader, "functions", Index::new);
-        } else if (id == 4) {
-            setName("table section");
-            readVector(reader, "tables", TableType::new);
-        } else if (id == 5) {
-            setName("memory section");
-            readVector(reader, "memories", Limits::new);
-        } else if (id == 6) {
-            setName("global section");
-            readVector(reader, "globals", Global::new);
-        } else if (id == 7) {
-            setName("export section");
-            readVector(reader, "exports", Export::new);
-        } else if (id == 8) {
-            setName("start section");
-            readIndex(reader, "funcidx");
-        } else if (id == 9) {
-            setName("element section");
-            readVector(reader, "elements", Element::new);
-        } else if (id == 10) {
-            setName("code section");
-            readVector(reader, "codes", Code::new);
-        } else if (id == 11) {
-            setName("data section");
-            readVector(reader, "datas", Data::new);
-        } else {
-            throw new ParseException("Invalid section id: " + id);
+        switch (id) {
+            case 0 -> readCustomSection(reader, size);
+            case 1 -> {
+                setName("type section");
+                readVector(reader, "types", FuncType::new);
+            }
+            case 2 -> {
+                setName("import section");
+                readVector(reader, "imports", Import::new);
+            }
+            case 3 -> {
+                setName("function section");
+                readVector(reader, "functions", Index::new);
+            }
+            case 4 -> {
+                setName("table section");
+                readVector(reader, "tables", TableType::new);
+            }
+            case 5 -> {
+                setName("memory section");
+                readVector(reader, "memories", Limits::new);
+            }
+            case 6 -> {
+                setName("global section");
+                readVector(reader, "globals", Global::new);
+            }
+            case 7 -> {
+                setName("export section");
+                readVector(reader, "exports", Export::new);
+            }
+            case 8 -> {
+                setName("start section");
+                readIndex(reader, "funcidx");
+            }
+            case 9 -> {
+                setName("element section");
+                readVector(reader, "elements", Element::new);
+            }
+            case 10 -> {
+                setName("code section");
+                readVector(reader, "codes", Code::new);
+            }
+            case 11 -> {
+                setName("data section");
+                readVector(reader, "datas", Data::new);
+            }
+            default -> throw new ParseException("Invalid section id: " + id);
         }
     }
 

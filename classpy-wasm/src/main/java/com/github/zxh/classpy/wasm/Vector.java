@@ -4,7 +4,7 @@ import java.util.function.Supplier;
 
 public class Vector extends WasmBinPart {
 
-    private Supplier<? extends WasmBinPart> supplier;
+    private final Supplier<? extends WasmBinPart> supplier;
 
     public Vector(Supplier<? extends WasmBinPart> supplier) {
         this.supplier = supplier;

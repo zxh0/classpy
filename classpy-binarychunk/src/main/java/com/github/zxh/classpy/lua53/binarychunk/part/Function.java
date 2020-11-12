@@ -7,9 +7,7 @@ import com.github.zxh.classpy.lua53.binarychunk.datatype.CInt;
 import com.github.zxh.classpy.lua53.binarychunk.datatype.LuByte;
 
 /**
- * Lua function.
- *
- * @see /lua/src/ldump.c#DumpFunction()
+ * Lua function - /lua/src/ldump.c#DumpFunction()
  */
 public class Function extends BinaryChunkPart {
 

@@ -22,7 +22,7 @@ import java.util.function.Consumer;
  *    |-Luac Out...
  *  |-Open Recent >
  */
-public final class MyMenuBar extends MenuBar {
+final class MyMenuBar extends MenuBar {
 
     private BiConsumer<FileType, String> onOpenFile;
     private Runnable onCloseAllTabs;
@@ -76,7 +76,7 @@ public final class MyMenuBar extends MenuBar {
         Menu recentMenu = new Menu("Open _Recent", ImageHelper.createImageView("/clock.png"));
         for (RecentFile rf : RecentFiles.INSTANCE.getAll()) {
             ImageView icon = new ImageView(rf.type.icon);
-            MenuItem menuItem = new MenuItem(rf.url.toString(), icon);
+            MenuItem menuItem = new MenuItem(rf.url, icon);
             menuItem.setOnAction(e -> onOpenFile.accept(rf.type, rf.url));
             recentMenu.getItems().add(menuItem);
         }

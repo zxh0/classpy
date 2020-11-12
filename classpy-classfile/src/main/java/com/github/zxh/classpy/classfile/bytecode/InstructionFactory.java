@@ -6,9 +6,6 @@ public class InstructionFactory {
 
     /**
      * Create instruction by opcode.
-     * @param opcode
-     * @param pc
-     * @return
      */
     public static Instruction create(Opcode opcode, int pc) {
         // TODO

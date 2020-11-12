@@ -8,7 +8,7 @@ import com.github.zxh.classpy.classfile.ClassFileReader;
  */
 public class Bytes extends ClassFilePart {
 
-    private UInt count;
+    private final UInt count;
 
     public Bytes(UInt count) {
         this.count = count;

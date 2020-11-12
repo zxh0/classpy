@@ -28,7 +28,7 @@ public class MethodInfo extends ClassFilePart {
         int nameIndex = super.getUInt("name_index");
         int descIndex = super.getUInt("descriptor_index");
         if (nameIndex > 0) {
-            // todo fix loading java.lang.String from rt.jar
+            // TODO: fix loading java.lang.String from rt.jar
             setDesc(cp.getUtf8String(nameIndex) + cp.getUtf8String(descIndex));
         }
     }

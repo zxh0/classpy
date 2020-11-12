@@ -4,10 +4,7 @@ import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkPart;
 import com.github.zxh.classpy.lua53.binarychunk.BinaryChunkReader;
 
 /**
- * typedef unsigned char lu_byte;
- *
- * @see /lua/src/llimits.h
- * @see /lua/src/ldump.c#DumpByte
+ * lu_byte - /lua/src/ldump.c#DumpByte()
  */
 public class LuByte extends BinaryChunkPart {
 

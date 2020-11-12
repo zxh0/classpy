@@ -50,11 +50,11 @@ public class Import extends WasmBinPart {
         protected void readContent(WasmBinReader reader) {
             tag = readByte(reader, null);
             switch (tag) {
-                case 0x00: funcTypeIdx = readIndex(reader, "type");  break; // typeidx
-                case 0x01: read(reader, "table",  new TableType());  break; // tabletype
-                case 0x02: read(reader, "mem",    new Limits());     break; // memtype
-                case 0x03: read(reader, "global", new GlobalType()); break; // globaltype
-                default: throw new ParseException("Invalid import desc: " + tag);
+                case 0x00 -> funcTypeIdx = readIndex(reader, "type");  // typeidx
+                case 0x01 -> read(reader, "table", new TableType());   // tabletype
+                case 0x02 -> read(reader, "mem", new Limits());        // memtype
+                case 0x03 -> read(reader, "global", new GlobalType()); // globaltype
+                default -> throw new ParseException("Invalid import desc: " + tag);
             }
         }
 

@@ -35,9 +35,7 @@ public class ParsedTreeItem extends TreeItem<FilePart> {
 
     private ObservableList<TreeItem<FilePart>> buildChildren() {
         ObservableList<TreeItem<FilePart>> children = FXCollections.observableArrayList();
-        getValue().getParts().forEach(sub -> {
-            children.add(new ParsedTreeItem(sub));
-        });
+        getValue().getParts().forEach(sub -> children.add(new ParsedTreeItem(sub)));
         return children;
     }
     

@@ -7,9 +7,7 @@ import com.github.zxh.classpy.lua53.binarychunk.datatype.CInt;
 import com.github.zxh.classpy.lua53.binarychunk.datatype.LuaStr;
 
 /**
- * debug info.
- *
- * @see /lua/src/ldump.c#DumpDebug()
+ * debug info - /lua/src/ldump.c#DumpDebug()
  */
 public class Debug extends BinaryChunkPart {
 

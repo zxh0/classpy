@@ -5,9 +5,7 @@ import com.github.zxh.classpy.lua53.binarychunk.part.Header;
 import com.github.zxh.classpy.lua53.binarychunk.datatype.LuByte;
 
 /**
- * Represent lua binary chunk file.
- * 
- * @see /lua/src/ldump.c#luaU_dump().
+ * Lua 5.3 binary chunk file - /lua/src/ldump.c#luaU_dump()
  */
 public class BinaryChunkFile extends BinaryChunkPart {
 
