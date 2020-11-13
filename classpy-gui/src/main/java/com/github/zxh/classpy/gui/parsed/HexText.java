@@ -63,11 +63,11 @@ public class HexText {
         return text;
     }
     
-    // todo
-    public Selection select(FilePart cc) {
+    // TODO
+    public Selection select(FilePart fp) {
         Selection selection = new Selection();
-        selection.startPosition = calcTextPosition(cc.getOffset());
-        selection.endPosition = calcTextPosition(cc.getOffset() + cc.getLength()) - 1;
+        selection.startPosition = calcTextPosition(fp.getOffset());
+        selection.endPosition = calcTextPosition(fp.getOffset() + fp.getLength()) - 1;
         return selection;
     }
     
