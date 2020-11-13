@@ -22,19 +22,19 @@ public class BinaryChunkReader extends BytesReader {
     public void setLuaNumSize(int luaNumSize) {this.luaNumSize = luaNumSize;}
 
     public long readSizet() {
-        return sizetSize == 8 ? super.readLong() : super.readUnsignedInt();
+        return sizetSize == 8 ? super.readFixedI64() : super.readFixedU32();
     }
 
     public long readCInt() {
-        return cIntSize == 8 ? super.readLong() : super.readInt();
+        return cIntSize == 8 ? super.readFixedI64() : super.readFixedI32();
     }
 
     public long readLuaInt() {
-        return luaIntSize == 8 ? super.readLong() : super.readInt();
+        return luaIntSize == 8 ? super.readFixedI64() : super.readFixedI32();
     }
 
     public double readLuaNum() {
-        return luaNumSize == 8 ? super.readDouble(): super.readFloat();
+        return luaNumSize == 8 ? super.readF64(): super.readF32();
     }
 
 }

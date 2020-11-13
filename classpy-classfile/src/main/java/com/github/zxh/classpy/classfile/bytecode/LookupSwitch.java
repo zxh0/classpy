@@ -32,7 +32,7 @@ public class LookupSwitch extends Instruction {
         MatchOffset defaultOffset = new MatchOffset(true, pc);
         defaultOffset.read(reader);
         
-        int npairs = reader.readInt();
+        int npairs = reader.readFixedI32();
         for (int i = 0; i < npairs; i++) {
             MatchOffset offset = new MatchOffset(false, pc);
             offset.read(reader);
@@ -64,13 +64,13 @@ public class LookupSwitch extends Instruction {
         @Override
         protected void readContent(ClassFileReader reader) {
             if (!isDefault) {
-                match = reader.readInt();
+                match = reader.readFixedI32();
                 setName(String.valueOf(match));
             } else {
                 setName("default");
             }
             
-            offset = reader.readInt();
+            offset = reader.readFixedI32();
             setDesc(Integer.toString(basePc + offset));
         }
         

@@ -11,7 +11,7 @@ public class Sipush extends Instruction {
 
     @Override
     protected void readOperands(ClassFileReader reader) {
-        short operand = reader.readShort();
+        short operand = reader.readFixedI16();
         setDesc(getDesc() + " " + operand);
     }
     

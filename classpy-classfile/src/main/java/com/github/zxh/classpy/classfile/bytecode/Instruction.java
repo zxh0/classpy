@@ -27,7 +27,7 @@ public class Instruction extends ClassFilePart {
         if (!super.getParts().isEmpty()) {
             super.readContent(reader);
         } else {
-            reader.readUnsignedByte(); // opcode
+            reader.readFixedU8(); // opcode
             readOperands(reader);
         }
     }

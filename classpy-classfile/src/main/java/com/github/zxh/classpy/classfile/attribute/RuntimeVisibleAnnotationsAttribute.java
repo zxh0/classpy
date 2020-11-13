@@ -86,7 +86,7 @@ public class RuntimeVisibleAnnotationsAttribute extends AttributeInfo {
         
         @Override
         protected void readContent(ClassFileReader reader) {
-            byte tag = reader.getByte(reader.getPosition());
+            byte tag = reader.getFixedI8(reader.getPosition());
             preRead(tag);
             super.readContent(reader);
         }

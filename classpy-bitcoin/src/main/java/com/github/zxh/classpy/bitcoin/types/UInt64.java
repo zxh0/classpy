@@ -7,7 +7,7 @@ public class UInt64 extends BlockPart {
 
     @Override
     protected void readContent(BlockReader reader) {
-        long value = reader.readLong();
+        long value = reader.readFixedI64();
         setDesc(Long.toString(value));
     }
 

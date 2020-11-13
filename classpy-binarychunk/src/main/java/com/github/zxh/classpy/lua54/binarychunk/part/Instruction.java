@@ -39,7 +39,7 @@ public class Instruction extends BinaryChunkPart {
 
     @Override
     protected void readContent(BinaryChunkReader reader) {
-        code = reader.readInt();
+        code = reader.readFixedI32();
         opcode = OpCode.values()[code & 0b111_1111];
         //super.setName(opcode.name());
     }

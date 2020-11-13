@@ -16,11 +16,11 @@ public class BlockReader extends BytesReader {
         if (b < 0xFD) {
             return b;
         } if (b == 0xFD) {
-            return readUnsignedShort();
+            return readFixedU16();
         } if (b == 0xFE) {
-            return readUnsignedInt();
+            return readFixedU32();
         } else {
-            return readLong();
+            return readFixedI64();
         }
     }
 

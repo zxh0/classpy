@@ -7,7 +7,7 @@ public class UInt32 extends BlockPart {
 
     @Override
     protected void readContent(BlockReader reader) {
-        long value = reader.readUnsignedInt();
+        long value = reader.readFixedU32();
         setDesc(Long.toString(value));
     }
 

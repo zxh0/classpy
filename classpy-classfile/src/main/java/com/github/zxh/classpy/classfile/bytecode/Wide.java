@@ -11,7 +11,7 @@ public class Wide extends Instruction {
     
     @Override
     protected void readOperands(ClassFileReader reader) {
-        int wideOpcode = reader.readUnsignedByte();
+        int wideOpcode = reader.readFixedU8();
         if (wideOpcode == Opcode.iinc.opcode) {
             reader.skipBytes(4);
         } else {

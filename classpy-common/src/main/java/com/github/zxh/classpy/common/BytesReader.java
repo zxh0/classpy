@@ -4,7 +4,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 
 public class BytesReader {
-    
+
     private final ByteBuffer buf;
 
     public BytesReader(byte[] data, ByteOrder order) {
@@ -21,54 +21,60 @@ public class BytesReader {
         return buf.position();
     }
 
-    public byte getByte(int index) {
+    public byte getFixedI8(int index) {
         return buf.get(index);
     }
 
-    public short getShort(int index) {
+    public short getFixedI16(int index) {
         return buf.getShort(index);
     }
 
-    // 8-bit signed int
     public byte readByte() {
+        return readFixedI8();
+    }
+
+    // 8-bit signed int
+    public byte readFixedI8() {
         return buf.get();
     }
-    
+
     // 8-bit unsigned int
-    public int readUnsignedByte() {
+    public int readFixedU8() {
         return Byte.toUnsignedInt(buf.get());
     }
-    
+
     // 16-bit signed int
-    public short readShort() {
+    public short readFixedI16() {
         return buf.getShort();
     }
-    
+
     // 16-bit unsigned int
-    public int readUnsignedShort() {
+    public int readFixedU16() {
         return Short.toUnsignedInt(buf.getShort());
     }
-    
+
     // 32-bit signed int
-    public int readInt() {
+    public int readFixedI32() {
         return buf.getInt();
     }
 
     // 32-bit unsigned int
-    public long readUnsignedInt() {
+    public long readFixedU32() {
         return Integer.toUnsignedLong(buf.getInt());
     }
 
     // 64-bit signed int
-    public long readLong() {
+    public long readFixedI64() {
         return buf.getLong();
     }
 
-    public float readFloat() {
+    // 32-bit float
+    public float readF32() {
         return buf.getFloat();
     }
 
-    public double readDouble() {
+    // 64-bit float
+    public double readF64() {
         return buf.getDouble();
     }
 

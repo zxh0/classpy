@@ -44,7 +44,7 @@ public class Table extends ClassFilePart {
     }
     
     private AttributeInfo readAttributeInfo(ClassFileReader reader) {
-        int attrNameIndex = reader.getShort(reader.getPosition());
+        int attrNameIndex = reader.getFixedI16(reader.getPosition());
         String attrName = reader.getConstantPool().getUtf8String(attrNameIndex);
         
         AttributeInfo attr = AttributeFactory.create(attrName);

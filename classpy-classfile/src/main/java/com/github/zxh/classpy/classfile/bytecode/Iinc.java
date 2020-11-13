@@ -11,7 +11,7 @@ public class Iinc extends Instruction {
     
     @Override
     protected void readOperands(ClassFileReader reader) {
-        int index = reader.readUnsignedByte();
+        int index = reader.readFixedU8();
         int _const = reader.readByte();
         setDesc(getDesc() + " " + index + ", " + _const);
     }

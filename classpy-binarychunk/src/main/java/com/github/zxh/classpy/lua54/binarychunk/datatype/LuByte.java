@@ -16,7 +16,7 @@ public class LuByte extends BinaryChunkPart {
 
     @Override
     protected void readContent(BinaryChunkReader reader) {
-        value = reader.readUnsignedByte();
+        value = reader.readFixedU8();
         super.setDesc(Integer.toString(value));
 
         // TODO

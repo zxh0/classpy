@@ -2,37 +2,12 @@ package com.github.zxh.classpy.classfile;
 
 import com.github.zxh.classpy.classfile.constant.ConstantPool;
 import com.github.zxh.classpy.classfile.datatype.*;
-import com.github.zxh.classpy.common.FilePart;
+import com.github.zxh.classpy.common.ReadableFilePart;
 
 /**
  * Base class for all class file parts.
  */
-public abstract class ClassFilePart extends FilePart {
-
-    /**
-     * Reads content, records offset and length.
-     */
-    public final void read(ClassFileReader reader) {
-        try {
-            int offset = reader.getPosition();
-            readContent(reader);
-            int length = reader.getPosition() - offset;
-            super.setOffset(offset);
-            super.setLength(length);
-        } catch (Exception e) {
-            System.out.println("error parsing: " + getClass());
-            throw e;
-        }
-    }
-
-    /**
-     * Reads content using ClassFileReader.
-     */
-    protected void readContent(ClassFileReader reader) {
-        for (FilePart fc : getParts()) {
-            ((ClassFilePart) fc).read(reader);
-        }
-    }
+public abstract class ClassFilePart extends ReadableFilePart<ClassFileReader> {
 
     protected void postRead(ConstantPool cp) {
 

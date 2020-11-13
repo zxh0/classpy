@@ -9,9 +9,9 @@ import java.util.function.Function;
 
 public abstract class UInt extends ClassFilePart {
 
-    protected static final Function<ClassFileReader, Integer> READ_U1 = ClassFileReader::readUnsignedByte;
-    protected static final Function<ClassFileReader, Integer> READ_U2 = ClassFileReader::readUnsignedShort;
-    protected static final Function<ClassFileReader, Integer> READ_U4 = ClassFileReader::readInt;
+    protected static final Function<ClassFileReader, Integer> READ_U1 = ClassFileReader::readFixedU8;
+    protected static final Function<ClassFileReader, Integer> READ_U2 = ClassFileReader::readFixedU16;
+    protected static final Function<ClassFileReader, Integer> READ_U4 = ClassFileReader::readFixedI32;
 
     protected static final BiFunction<Integer, ConstantPool, String> TO_STRING =
             (val, cp) -> val.toString();

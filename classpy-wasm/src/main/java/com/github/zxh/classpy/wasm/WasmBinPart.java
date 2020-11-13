@@ -1,6 +1,6 @@
 package com.github.zxh.classpy.wasm;
 
-import com.github.zxh.classpy.common.FilePart;
+import com.github.zxh.classpy.common.ReadableFilePart;
 import com.github.zxh.classpy.wasm.instructions.Expr;
 import com.github.zxh.classpy.wasm.types.ValType;
 import com.github.zxh.classpy.wasm.values.*;
@@ -8,26 +8,7 @@ import com.github.zxh.classpy.wasm.values.Byte;
 
 import java.util.function.Supplier;
 
-public class WasmBinPart extends FilePart {
-
-    public final void read(WasmBinReader reader) {
-        try {
-            int offset = reader.getPosition();
-            readContent(reader);
-            int length = reader.getPosition() - offset;
-            super.setOffset(offset);
-            super.setLength(length);
-        } catch (Exception e) {
-            System.out.println("error parsing: " + getClass());
-            throw e;
-        }
-    }
-
-    protected void readContent(WasmBinReader reader) {
-        for (FilePart fc : getParts()) {
-            ((WasmBinPart) fc).read(reader);
-        }
-    }
+public class WasmBinPart extends ReadableFilePart<WasmBinReader> {
 
     protected void postRead(WasmBinFile wasm) {
 

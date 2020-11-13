@@ -73,7 +73,7 @@ public class CodeAttribute extends AttributeInfo {
             int position;
             while ((position = reader.getPosition()) < endPosition) {
                 int pc = position - startPosition;
-                byte b = reader.getByte(position);
+                byte b = reader.getFixedI8(position);
                 Opcode opcode = Opcode.valueOf(Byte.toUnsignedInt(b));
                 Instruction instruction = InstructionFactory.create(opcode, pc);
                 instruction.read(reader);

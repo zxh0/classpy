@@ -17,7 +17,7 @@ public class BytesReaderTest {
     public void order() {
         BytesReader be = new BytesReader(new byte[] {0x12, 0x34},
                 ByteOrder.BIG_ENDIAN);
-        assertEquals(0x1234, be.readShort());
+        assertEquals(0x1234, be.readFixedI16());
     }
     
 }

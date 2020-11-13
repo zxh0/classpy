@@ -21,11 +21,11 @@ public class BinaryChunkReader extends BytesReader {
     public void setLuaNumSize(int luaNumSize) {this.luaNumSize = luaNumSize;}
 
     public long readLuaInt() {
-        return luaIntSize == 8 ? super.readLong() : super.readInt();
+        return luaIntSize == 8 ? super.readFixedI64() : super.readFixedI32();
     }
 
     public double readLuaNum() {
-        return luaNumSize == 8 ? super.readDouble(): super.readFloat();
+        return luaNumSize == 8 ? super.readF64(): super.readF32();
     }
 
     // lua5.4.1/lundump.c#loadInt()

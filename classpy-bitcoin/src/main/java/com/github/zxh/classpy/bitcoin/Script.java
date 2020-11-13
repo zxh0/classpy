@@ -58,15 +58,15 @@ public class Script extends BlockPart {
                 reader.readBytes(opcode);
             } else if (opcode == 0x4C) {
                 setName("OP_PUSHDATA1");
-                int n = reader.readUnsignedByte();
+                int n = reader.readFixedU8();
                 reader.readBytes(n);
             } else if (opcode == 0x4D) {
                 setName("OP_PUSHDATA2");
-                int n = reader.readUnsignedShort();
+                int n = reader.readFixedU16();
                 reader.readBytes(n);
             } else if (opcode == 0x4E) {
                 setName("OP_PUSHDATA4");
-                int n = (int) reader.readUnsignedInt();
+                int n = (int) reader.readFixedU32();
                 reader.readBytes(n);
             } else {
                 setOpcodeName(opcode);
