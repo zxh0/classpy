@@ -21,6 +21,13 @@ public class BytesReader {
         return buf.position();
     }
 
+    public void setLimit(int newLimit) {
+        buf.limit(newLimit);
+    }
+    public void clearLimit() {
+        buf.limit(buf.capacity());
+    }
+
     public byte getFixedI8(int index) {
         return buf.get(index);
     }

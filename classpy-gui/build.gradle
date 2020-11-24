@@ -14,8 +14,9 @@ dependencies {
     implementation project(':classpy-common')
     implementation project(':classpy-classfile')
     implementation project(':classpy-binarychunk')
-    implementation project(':classpy-bitcoin')
     implementation project(':classpy-wasm')
+    implementation project(':classpy-bitcode')
+    implementation project(':classpy-bitcoin')
     // implementation project(':utilities')
     // testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.1'
     // testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'

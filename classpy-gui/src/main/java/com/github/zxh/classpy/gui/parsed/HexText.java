@@ -13,6 +13,7 @@ import com.github.zxh.classpy.common.FilePart;
 public class HexText {
     
     private static final int BYTES_PER_ROW = 16;
+    private static final int ROW_LEN = 76;
     
     private final String text;
     
@@ -68,13 +69,16 @@ public class HexText {
         Selection selection = new Selection();
         selection.startPosition = calcTextPosition(fp.getOffset());
         selection.endPosition = calcTextPosition(fp.getOffset() + fp.getLength()) - 1;
+        if (selection.endPosition % ROW_LEN == 9) {
+            selection.endPosition -= 27;
+        }
         return selection;
     }
     
     private int calcTextPosition(int byteOffset) {
         int rowIndex = byteOffset / BYTES_PER_ROW;
         int colIndex = byteOffset % BYTES_PER_ROW;
-        return (76 * rowIndex) + 10 + (colIndex * 3);
+        return (ROW_LEN * rowIndex) + 10 + (colIndex * 3);
     }
 
     

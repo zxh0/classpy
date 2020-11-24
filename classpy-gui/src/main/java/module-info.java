@@ -3,7 +3,8 @@ module classpy.gui {
     requires classpy.common;
     requires classpy.classfile;
     requires classpy.binarychunk;
-    requires classpy.bitcoin;
     requires classpy.wasm;
+    requires classpy.bitcode;
+    requires classpy.bitcoin;
     requires javafx.controls;
 }
