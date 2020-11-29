@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.gui.events.*;
 import com.github.zxh.classpy.gui.support.FileType;
 import com.github.zxh.classpy.gui.support.ImageHelper;
 import com.github.zxh.classpy.gui.support.RecentFile;
@@ -8,9 +9,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.ImageView;
-
-import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 /**
  * Classpy menu bar.
@@ -24,15 +22,15 @@ import java.util.function.Consumer;
  */
 final class MyMenuBar extends MenuBar {
 
-    private BiConsumer<FileType, String> onOpenFile;
-    private Runnable onCloseAllTabs;
-    private Runnable onNewWindow;
-    private Consumer<String> onOpenURL;
+    private final EventBus eventBus;
 
-    public MyMenuBar() {
+    public MyMenuBar(EventBus eventBus) {
+        this.eventBus = eventBus;
         createFileMenu();
         createWindowMenu();
         createHelpMenu();
+        this.eventBus.sub(UpdateRecentFiles.class,
+                x -> updateRecentFiles());
     }
 
     private void createFileMenu() {
@@ -61,7 +59,7 @@ final class MyMenuBar extends MenuBar {
 
     private MenuItem createOpenFolderItem(ImageView icon) {
         MenuItem item = new MenuItem("Folder ... ", icon);
-        item.setOnAction(e -> onOpenFile.accept(FileType.FOLDER, null));
+        item.setOnAction(e -> eventBus.pub(new OpenFile(FileType.FOLDER, null)));
         return item;
     }
 
@@ -69,7 +67,7 @@ final class MyMenuBar extends MenuBar {
         String text = ft.filter.getDescription() + " ...";
         ImageView icon = new ImageView(ft.icon);
         MenuItem item = new MenuItem(text, icon);
-        item.setOnAction(e -> onOpenFile.accept(ft, null));
+        item.setOnAction(e -> eventBus.pub(new OpenFile(ft, null)));
         return item;
     }
 
@@ -78,7 +76,7 @@ final class MyMenuBar extends MenuBar {
         for (RecentFile rf : RecentFiles.INSTANCE.getAll()) {
             ImageView icon = new ImageView(rf.type.icon);
             MenuItem menuItem = new MenuItem(rf.url, icon);
-            menuItem.setOnAction(e -> onOpenFile.accept(rf.type, rf.url));
+            menuItem.setOnAction(e -> eventBus.pub(new OpenFile(rf.type, rf.url)));
             recentMenu.getItems().add(menuItem);
         }
         recentMenu.setMnemonicParsing(true);
@@ -87,9 +85,9 @@ final class MyMenuBar extends MenuBar {
     
     private void createWindowMenu() {
         MenuItem newWinMenuItem = new MenuItem("New Window");
-        newWinMenuItem.setOnAction(e -> onNewWindow.run());
+        newWinMenuItem.setOnAction(e -> eventBus.pub(new OpenNewWindow()));
         MenuItem closeTabsMenuItem = new MenuItem("Class All Tabs");
-        closeTabsMenuItem.setOnAction(e -> onCloseAllTabs.run());
+        closeTabsMenuItem.setOnAction(e -> eventBus.pub(new CloseAllTabs()));
         
         Menu winMenu = new Menu("_Window");
         winMenu.getItems().add(newWinMenuItem);
@@ -101,7 +99,7 @@ final class MyMenuBar extends MenuBar {
     
     private void createHelpMenu() {
         MenuItem aboutMenuItem = new MenuItem("_About");
-        aboutMenuItem.setOnAction(e -> AboutDialog.showDialog(onOpenURL));
+        aboutMenuItem.setOnAction(e -> AboutDialog.showDialog(eventBus));
         aboutMenuItem.setMnemonicParsing(true);
 
         Menu helpMenu = new Menu("_Help");
@@ -111,23 +109,7 @@ final class MyMenuBar extends MenuBar {
         getMenus().add(helpMenu);
     }
 
-    public void setOnOpenFile(BiConsumer<FileType, String> onOpenFile) {
-        this.onOpenFile = onOpenFile;
-    }
-
-    public void setOnNewWindow(Runnable onNewWindow) {
-        this.onNewWindow = onNewWindow;
-    }
-
-    public void setOnCloseAllTabs(Runnable onCloseAllTabs) {
-        this.onCloseAllTabs = onCloseAllTabs;
-    }
-
-    public void setOnOpenURL(Consumer<String> onOpenURL) {
-        this.onOpenURL = onOpenURL;
-    }
-
-    public void updateRecentFiles() {
+    private void updateRecentFiles() {
         Menu fileMenu = getMenus().get(0);
         fileMenu.getItems().set(1, createRecentMenu());
     }
