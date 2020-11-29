@@ -1,5 +1,6 @@
 package com.github.zxh.classpy.gui;
 
+import com.github.zxh.classpy.gui.events.*;
 import com.github.zxh.classpy.gui.fs.DirTreeView;
 import com.github.zxh.classpy.gui.parsed.ParsedViewerPane;
 import com.github.zxh.classpy.gui.support.*;
@@ -28,10 +29,10 @@ public class ClasspyApp extends Application {
 
     private static final String TITLE = "Classpy";
 
+    private final EventBus eventBus = new EventBus();
 
     private Stage stage;
     private BorderPane root;
-    private MyMenuBar menuBar;
 
     @Override
     public void start(Stage stage) {
@@ -44,6 +45,7 @@ public class ClasspyApp extends Application {
         Scene scene = new Scene(root, 960, 540);
         //scene.getStylesheets().add("classpy.css");
         enableDragAndDrop(scene);
+        listenEvents();
 
         stage.setScene(scene);
         stage.setTitle(TITLE);
@@ -91,14 +93,8 @@ public class ClasspyApp extends Application {
     }
 
     private MenuBar createMenuBar() {
-        menuBar = new MyMenuBar();
-
-        menuBar.setOnOpenFile(this::onOpenFile);
-        menuBar.setOnNewWindow(this::openNewWindow);
-        menuBar.setOnCloseAllTabs(this::onCloseTabs);
-        menuBar.setOnOpenURL(url -> getHostServices().showDocument(url));
+        MyMenuBar menuBar = new MyMenuBar(eventBus);
         //menuBar.setUseSystemMenuBar(true);
-
         return menuBar;
     }
 
@@ -129,17 +125,7 @@ public class ClasspyApp extends Application {
         });
     }
 
-    private void openNewWindow() {
-        ClasspyApp newApp = new ClasspyApp();
-        // is this correct?
-        newApp.start(new Stage());
-    }
-
-    private void onCloseTabs() {
-        ((TabPane) root.getCenter()).getTabs().clear();
-    }
-
-    private void onOpenFile(FileType ft, String url) {
+    private void openFile(FileType ft, String url) {
         if (ft == FileType.FOLDER) {
             openDir(url);
         } else if (url == null) {
@@ -177,7 +163,7 @@ public class ClasspyApp extends Application {
                 tab.setContent(treeView.getTreeView());
 
                 RecentFiles.INSTANCE.add(FileType.FOLDER, dir.toURI().toURL().toString());
-                menuBar.updateRecentFiles();
+                eventBus.pub(new UpdateRecentFiles());
             } catch (Exception e) {
                 e.printStackTrace(System.err);
             }
@@ -243,7 +229,7 @@ public class ClasspyApp extends Application {
             }
 
             RecentFiles.INSTANCE.add(ofr.fileType, url);
-            menuBar.updateRecentFiles();
+            eventBus.pub(new UpdateRecentFiles());
         });
 
         task.setOnFailed((Throwable err) -> {
@@ -254,6 +240,16 @@ public class ClasspyApp extends Application {
         task.startInNewThread();
     }
 
+    private void listenEvents() {
+        eventBus.sub(OpenAboutDialog.class,
+                event -> getHostServices().showDocument(event.url));
+        eventBus.sub(OpenNewWindow.class,
+                event -> new ClasspyApp().start(new Stage()));
+        eventBus.sub(CloseAllTabs.class,
+                event -> ((TabPane) root.getCenter()).getTabs().clear());
+        eventBus.sub(OpenFile.class,
+                event -> openFile(event.fileType, event.fileUrl));
+    }
 
     public static void main(String[] args) {
         Application.launch(args);
