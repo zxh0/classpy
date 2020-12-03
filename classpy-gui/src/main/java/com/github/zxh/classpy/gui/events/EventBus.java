@@ -1,9 +1,6 @@
 package com.github.zxh.classpy.gui.events;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Consumer;
 
 // A very simple EventBus implementation.
@@ -16,16 +13,10 @@ public class EventBus {
             .add(listener);
     }
 
-    public void pub(Object event) {
-        if (listeners.containsKey(event.getClass())) {
-            listeners.get(event.getClass())
-                    .forEach(listener -> notifyListener(listener, event));
-        }
-    }
-
-    @SuppressWarnings({"unchecked", "raw"})
-    private static void notifyListener(Consumer<?> x, Object event) {
-        ((Consumer<Object>) x).accept(event);
+    @SuppressWarnings("unchecked")
+    public <T> void pub(T event) {
+        listeners.getOrDefault(event.getClass(), Collections.emptyList())
+                .forEach(listener -> ((Consumer<T>) listener).accept(event));
     }
 
 //    public static void main(String[] args) {
