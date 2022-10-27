@@ -43,6 +43,7 @@ public class ClasspyApp extends Application {
         root.setCenter(createTabPane());
 
         Scene scene = new Scene(root, 960, 540);
+        scene.getRoot().setStyle("-fx-font-family: 'serif'");
         //scene.getStylesheets().add("classpy.css");
         enableDragAndDrop(scene);
         listenEvents();
